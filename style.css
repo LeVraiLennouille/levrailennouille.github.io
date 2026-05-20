@@ -9,3 +9,19 @@
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+
+    &::after, &::before {
+        box-sizing: border-box;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: "Syne", sans-serif;
+}
