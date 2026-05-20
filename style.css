@@ -115,7 +115,7 @@ section.Work {
 
 @media (max-width: 600px) {
     .CardImg {
-        img:first-child {display: none;}
-        img:last-child {display: flex;}
+        img:first-child {display: none !important;}
+        img:last-child {display: flex !important;}
     }
 }
