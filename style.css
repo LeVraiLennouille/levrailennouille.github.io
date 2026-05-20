@@ -25,3 +25,124 @@ html, body {
     width: 100%;
     font-family: "Syne", sans-serif;
 }
+
+section.Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+
+    .Box {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150vw;
+        height: 150vh;
+        transform: translate(-10vw, 0);
+
+        &#Ground {z-index: 5;}
+        &#Air    {z-index: 10;}
+        &#Text   {
+            z-index: 15;
+        
+            .SubBox {
+                display: flex;
+                flex-direction: column;
+                gap: var(--Gap);
+                text-align: center;
+                font-size: 20px;
+                transform: rotate(var(--Rotation));
+
+                .SubText {
+                    display: inline;
+                    width: fit-content;
+                    position: relative;
+                    overflow: visible;
+                    padding: 15px;
+                    margin: 0px;
+                    font-weight: 800;
+                    font-size: 80px;
+                    line-height: 65px;
+                    border-radius: 5px;
+                    paint-order: stroke fill;
+
+                    &#SubT1 {
+                        margin-right: 150px;
+                        padding-top: 10px;
+                        padding-bottom: 0px;
+                        -webkit-text-stroke: 18px var(--Primary);
+                        color: var(--Background);
+                        
+                        span {
+                            &.T1A {right: -50px; bottom: 0px;}
+                            &.T1B {right: 15px; bottom: 60px;}
+                            &.T1C {right: -90px; bottom: 0px;}
+                            &.T1D {right: 15px; bottom: 100px;}
+                            &.T1E {right: -5px; bottom: 150px;}
+                        }
+                    }
+
+                    &#SubT2 {
+                        margin-left: 110px;
+                        padding-bottom: 10px;
+                        padding-top: 0px;
+                        -webkit-text-stroke: 18px var(--Background);
+                        color: var(--Primary);
+
+                        span {
+                            &.T2A {left: -50px; top: 0px;}
+                            &.T2B {left: 15px; top: 60px;}
+                            &.T2C {left: -100px; top: 0px;}
+                            &.T2D {left: 15px; top: 100px;}
+                            &.T2E {left: -5px; top: 150px;}
+                        }
+                    }
+
+                    span {
+                        position: absolute;
+                        line-height: auto;
+                        -webkit-Text-stroke-width: 9px;
+                        white-space: nowrap;
+                        text-transform: uppercase;
+
+                        &.TS26 {font-size: 26px; font-weight: 400;}
+                        &.TS30 {font-size: 30px; font-weight: 600;}
+                        &.TS46 {font-size: 46px; font-weight: 700;}
+
+                        &.VT {
+                            writing-mode: vertical-rl;
+                            text-orientation: upright;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Ground {backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);}
+
+#Air {
+    backGround:
+        linear-gradient(
+        var(--Rotation),
+        transparent calc(50% - var(--Thickness) - var(--Border)),
+        var(--Background) calc(50% - var(--Thickness) - var(--Border)),
+        var(--Background) calc(50% - var(--Thickness)),
+        color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
+        color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
+        var(--Primary) calc(50% + var(--Thickness)),
+        var(--Primary) calc(50% + var(--Thickness) + var(--Border)),
+        transparent calc(50% + var(--Thickness) + var(--Border)));
+    backGround-repeat: no-repeat;
+}
+
+svg#Design {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    max-width: 500px;
+    mix-blend-mode: luminosity;
+    #grid, #cursor, #nodes { fill: var(--BgDark); }
+}
