@@ -50,8 +50,25 @@ section.Hero {
         height: 150vh;
         transform: translate(-10vw, 0);
 
-        &#Ground {z-index: 5;}
-        &#Air    {z-index: 10;}
+        &#Ground {
+            z-index: 5;
+            backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);
+        }
+
+        &#Air    {
+            z-index: 10;
+
+            backGround:
+                linear-gradient(var(--Rotation), transparent calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness) + var(--Border)), transparent calc(50% + var(--Thickness) + var(--Border)));
+            backGround-repeat: no-repeat;
+        }
+
         &#Text   {
             z-index: 15;
         
@@ -128,32 +145,15 @@ section.Hero {
             }
         }
     }
-}
 
-#Ground {backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);}
-
-#Air {
-    backGround:
-        linear-gradient(
-        var(--Rotation),
-        transparent calc(50% - var(--Thickness) - var(--Border)),
-        var(--Background) calc(50% - var(--Thickness) - var(--Border)),
-        var(--Background) calc(50% - var(--Thickness)),
-        color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
-        color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
-        var(--Primary) calc(50% + var(--Thickness)),
-        var(--Primary) calc(50% + var(--Thickness) + var(--Border)),
-        transparent calc(50% + var(--Thickness) + var(--Border)));
-    backGround-repeat: no-repeat;
-}
-
-svg#Design {
-    position: absolute;
-    z-index: 5;
-    width: 100%;
-    max-width: 500px;
-    mix-blend-mode: luminosity;
-    #grid, #cursor, #nodes { fill: var(--BgDark); }
+    svg#Design {
+        position: absolute;
+        z-index: 5;
+        width: 100%;
+        max-width: 500px;
+        mix-blend-mode: luminosity;
+        #grid, #cursor, #nodes { fill: var(--BgDark); }
+    }
 }
 
 @media (max-width: 600px) {
