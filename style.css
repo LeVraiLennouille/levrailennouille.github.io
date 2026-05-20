@@ -30,7 +30,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     font-family: "Syne", sans-serif;
 }
 
@@ -39,7 +39,8 @@ section.Hero {
     align-items: center;
     justify-content: center;
     visibility: hidden;
-    transform: rotate(var(--Rotation)) scale(var(--Scale));
+    width: 100vw;
+    height: 100vh;
 
     .Box {
         position: absolute;
