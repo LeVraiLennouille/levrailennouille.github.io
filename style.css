@@ -14,6 +14,7 @@
     --Thickness: 20px;
     --Border: 8px;
     --Gap: 30px;
+    --Scale: 1;
 }
 
 * {
@@ -38,6 +39,7 @@ section.Hero {
     align-items: center;
     justify-content: center;
     visibility: hidden;
+    transform: rotate(var(--Rotation)) scale(var(--Scale));
 
     .Box {
         position: absolute;
@@ -152,4 +154,16 @@ svg#Design {
     max-width: 500px;
     mix-blend-mode: luminosity;
     #grid, #cursor, #nodes { fill: var(--BgDark); }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --Scale:     0.45;
+        --Thickness: 10px;
+        --Border:    5px;
+        --Gap:       28px;
+    }
+
+    .Box {transform: translate(-10vw, 0);}
+    svg#Design {max-width: 225px;}
 }
