@@ -54,8 +54,8 @@ const WorkHTML = `
             </div>
             <div class="Card">
                 <div class="CardImg">
-                    <img src="/img/reals/HabitsTracker/pc-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
-                    <img src="/img/reals/HabitsTracker/mobile-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
+                    <img src="/img/reals/habitstracker/pc-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
+                    <img src="/img/reals/habitstracker/mobile-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
                 </div>
                 <div class="CardDesc">
                     <p>Habits Tracker</p>
@@ -64,8 +64,8 @@ const WorkHTML = `
             </div>
             <div class="Card">
                 <div class="CardImg">
-                    <img src="/img/reals/GymAddict/pc-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
-                    <img src="/img/reals/GymAddict/mobile-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
+                    <img src="/img/reals/gymaddict/pc-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
+                    <img src="/img/reals/gymaddict/mobile-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
                 </div>
                 <div class="CardDesc">
                     <p>GymAddict</p>
