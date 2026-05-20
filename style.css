@@ -88,6 +88,9 @@ section.Work {
             .CardImg {
                 flex: 1;
                 overflow: hidden;
+
+                >img {display: flex;}
+                >img>img {display: none;}
             }
 
             .CardDesc {
@@ -101,5 +104,12 @@ section.Work {
                 color: var(--Primary);
             }
         }
+    }
+}
+
+@media (max-width: 600px) {
+    .CardImg {
+        >img {display: none;}
+        >img>img {display: flex;}
     }
 }

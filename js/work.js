@@ -5,6 +5,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/mu/pc-home.webp" alt="Aperçu de la page d'accueil de Mü">
+                    <img src="/img/reals/mu/mobile-home.webp" alt="Aperçu de la page d'accueil de Mü">
                 </div>
                 <div class="CardDesc">
                     <p>Mü être</p>
@@ -14,6 +15,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/portfolio/pc-home.webp" alt="Aperçu de la page d'accueil du portfolio de Lenny Gadroy">
+                    <img src="/img/reals/portfolio/mobile-home.webp" alt="Aperçu de la page d'accueil du portfolio de Lenny Gadroy">
                 </div>
                 <div class="CardDesc">
                     <p>Portfolio personnel</p>
@@ -23,6 +25,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/primaire/pc-home.webp" alt="Aperçu de la page d'accueil de Primaire">
+                    <img src="/img/reals/primaire/mobile-home.webp" alt="Aperçu de la page d'accueil de Primaire">
                 </div>
                 <div class="CardDesc">
                     <p>Primaire</p>
@@ -32,6 +35,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/goon/pc-home.webp" alt="Aperçu de la page d'accueil de Goon">
+                    <img src="/img/reals/goon/mobile-home.webp" alt="Aperçu de la page d'accueil de Goon">
                 </div>
                 <div class="CardDesc">
                     <p>Goon</p>
@@ -41,6 +45,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/geoptime/pc-home.webp" alt="Aperçu de la page d'accueil de Geoptime">
+                    <img src="/img/reals/geoptime/mobile-home.webp" alt="Aperçu de la page d'accueil de Geoptime">
                 </div>
                 <div class="CardDesc">
                     <p>GeopTime</p>
@@ -50,6 +55,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/HabitsTracker/pc-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
+                    <img src="/img/reals/HabitsTracker/mobile-home.webp" alt="Aperçu de la page d'accueil de HabitsTracker">
                 </div>
                 <div class="CardDesc">
                     <p>Habits Tracker</p>
@@ -59,6 +65,7 @@ const WorkHTML = `
             <div class="Card">
                 <div class="CardImg">
                     <img src="/img/reals/GymAddict/pc-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
+                    <img src="/img/reals/GymAddict/mobile-home.webp" alt="Aperçu de la page d'accueil de GymAddict">
                 </div>
                 <div class="CardDesc">
                     <p>GymAddict</p>
