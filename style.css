@@ -150,12 +150,14 @@ section.Hero {
 
 @media (max-width: 600px) {
     :root {
-        --Scale:     0.45;
+        --Scale:     0.65;
         --Thickness: 10px;
         --Border:    5px;
         --Gap:       28px;
     }
 
-    .Box {transform: translate(-10vw, 0);}
-    img {max-width: 225px;}
+    section.Hero {
+        .Box {transform: translate(-2vw, -40px);}
+        img {max-width: 225px;}
+    }
 }
