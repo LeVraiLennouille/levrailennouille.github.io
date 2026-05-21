@@ -51,12 +51,11 @@ section.Talk {
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            background-color: rgba(var(--PureWhiteRGB), 0.12);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.32);
+            background-color: rgba(var(--PureWhiteRGB), 0.15);
+            border: 1px solid rgba(var(--PureWhiteRGB), 0.8);
             color: var(--PureWhite);
-            font-size: 0.76rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.09em;
             padding: 6px 16px;
             border-radius: 50px;
