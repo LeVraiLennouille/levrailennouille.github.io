@@ -58,7 +58,7 @@ section.Merge {
             padding-bottom: 50vh;
 
             li {
-                color: oklch(75% 0.2 calc(var(--i) * calc(360 / 20)));
+                color: var(--Primary);
                 line-height: 1.2;
                 opacity: 0.15;
                 margin-bottom: 10px;
