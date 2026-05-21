@@ -1,0 +1,16 @@
+const TalkHTML = `
+    <section class="Talk" aria-label="Prendre contact">
+        <div class="TalkContainer">
+            <span class="TalkBadge">Disponible pour de nouvelles opportunités</span>
+            <h2 class="TalkTitle">Un projet en tête ?<br>Parlons-en.</h2>
+            <p class="TalkSub">Que ce soit pour votre site internet, votre boutique ou votre portfolio, je suis à votre écoute et prêt à donner vie à vos idées ! Partant ?</p>
+            <div class="TalkCTA">
+                <a href="/contact" class="BtnSolid" aria-label="Contactez Lenny Gadroy">Me contacter →</a>
+                <a href="https://linkedin.com/in/LennyGadroy" target="_blank" rel="noopener" class="BtnOutline" aria-label="Voir le profil LinkedIn de Lenny Gadroy">Mon LinkedIn</a>
+            </div>
+        </div>
+        <div class="TalkDeco" aria-hidden="true"></div>
+    </section>
+`;
+
+document.getElementById('TalkPlaceHolder').innerHTML = TalkHTML;
