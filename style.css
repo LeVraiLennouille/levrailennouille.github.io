@@ -99,17 +99,17 @@ section.Talk {
                 padding: 10px 45px;
                 text-decoration: none;
                 font-size: 40px;
-                color: white;
-                background: #207EDE;
+                color: var(--PureWhite);
+                background: var(--Primary);
                 transition: 1s;
-                box-shadow: 6px 6px 0 black;
+                box-shadow: 6px 6px 0 var(--PureBlack);
                 transform: skewX(-15deg);
     
                 &:focus {outline: none;}
 
                 &:hover {
                     transition: 0.5s;
-                    box-shadow: 10px 10px 0 #FBC638;
+                    box-shadow: 10px 10px 0 var(--PureWhite);
 
                     path.Three {animation: color_anim 1s infinite 0.2s;}
                     path.One {transform: translateX(0%); animation: color_anim 1s infinite 0.6s;}
@@ -150,7 +150,7 @@ section.Talk {
 }
 
 @keyframes color_anim {
-    0% {fill: white;}
-    50% {fill: #FBC638;}
-    100% {fill: white;}
+    0% {fill: var(--PureWhite);}
+    50% {fill: var(--Primary);}
+    100% {fill: var(--PureWhite);}
 }
