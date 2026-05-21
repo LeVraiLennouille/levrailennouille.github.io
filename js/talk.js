@@ -9,7 +9,6 @@ const TalkHTML = `
                 <a href="https://linkedin.com/in/LennyGadroy" target="_blank" rel="noopener" class="BtnOutline" aria-label="Voir le profil LinkedIn de Lenny Gadroy">Mon LinkedIn</a>
             </div>
         </div>
-        <div class="TalkDeco" aria-hidden="true"></div>
     </section>
 `;
 
