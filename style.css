@@ -158,3 +158,20 @@ section.Talk {
     50% {fill: var(--Primary);}
     100% {fill: var(--PureWhite);}
 }
+
+@media (hover: none) {
+    section.Talk .TalkContainer .NextWrapper {
+        .NextBtn {
+            box-shadow: 10px 10px 0 var(--PureWhite);
+ 
+            span:nth-child(2) {
+                margin-right: 45px;
+ 
+                path.One {transform: translateX(0%); animation: ColorAnim 1s infinite 0.6s;}
+                path.Two {transform: translateX(0%); animation: ColorAnim 1s infinite 0.4s;}
+            }
+ 
+            path.Three {animation: ColorAnim 1s infinite 0.2s;}
+        }
+    }
+}
