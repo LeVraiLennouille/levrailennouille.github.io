@@ -5,6 +5,7 @@
 
 :root {
     --Primary: #207EDE; --PrimaryRGB: 32, 126, 222;
+    --DarkPrimary: #134C85; --DarkPrimaryRGB: 19, 76, 133;
     --PureBlack: #000; --PureBlackRGB: 0, 0, 0;
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
