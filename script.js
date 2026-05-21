@@ -8,8 +8,10 @@ let splitSpan = [[], [], []];
 let stagger   = 0.04;
 
 window.onload = () => {
-    gsap.set("body",   {"--Rotation": "120deg", transformOrigin: "50% 50%"});
-    gsap.set("body",   {"--Thickness": "8px", "--Border": "8px", "--Gap": "30px"});
+    const heroSection = select(".Hero"); 
+    gsap.set(heroSection, { "--Rotation": "120deg", transformOrigin: "50% 50%" });
+    gsap.set(heroSection, { "--Thickness": "8px", "--Border": "8px", "--Gap": "30px" });
+
     gsap.set("#SubT1", {x: -600, opacity: 0});
     gsap.set("#SubT2", {x:  600, opacity: 0});
 
@@ -34,19 +36,22 @@ window.onload = () => {
             let splitText = splitSpan[i][j];
             gsap.timeline({
                 defaults: { repeatDelay: 0 },
-                onComplete: () => {
-                    if (split[i][j + 1]) writeText(i, j + 1);}
+                onComplete: () => {if (split[i][j + 1]) writeText(i, j + 1);}
             }).to(splitText.chars, {opacity: 1, stagger});
         }
     }
 
     gsap.set("section", {autoAlpha: 1});
+
     gsap.timeline({defaults: {ease: "elastic.inOut(1.6,0.6,1.3,1)"}})
         .delay(0.25)
+
         .to("#SubT1", {duration: 2.5, x: 0, opacity: 1})
         .to("#SubT2", {duration: 2.5, x: 0, opacity: 1}, "<")
-        .to("body",   {duration: 2,   "--Rotation": "-60deg", transformOrigin: "50% 50%"}, 1.5)
-        .to("body",   {duration: 0.5, "--Thickness": "20px", "--Border": "10px", "--Gap": "52px"}, 2.3)
+
+        .to(heroSection, {duration: 2,   "--Rotation": "-60deg", transformOrigin: "50% 50%"}, 1.5)
+        .to(heroSection, {duration: 0.5, "--Thickness": "20px", "--Border": "10px", "--Gap": "52px"}, 2.3)
+
         .add(() => callWriteText(), 2.5);
 };
 
