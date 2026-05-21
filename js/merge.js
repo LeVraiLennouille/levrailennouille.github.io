@@ -3,26 +3,26 @@ const mergeHTML = `
     <div class="ListContainer">
       <p class="ListText">Ma méthode :</p>
       <ul class="List">
-        <li>auditer.</li>
-        <li>observer.</li>
-        <li>comprendre.</li>
-        <li>esquisser.</li>
-        <li>structurer.</li>
-        <li>concevoir.</li>
-        <li>maquetter.</li>
-        <li>harmoniser.</li>
-        <li>sublimer.</li>
-        <li>prototyper.</li>
-        <li>animer.</li>
-        <li>tester.</li>
-        <li>itérer.</li>
-        <li>simplifier.</li>
-        <li>adapter.</li>
-        <li>accessibiliser.</li>
-        <li>optimiser.</li>
-        <li>intégrer.</li>
-        <li>livrer.</li>
-        <li>recommencer.</li>
+        <li>Auditer.</li>
+        <li>Observer.</li>
+        <li>Comprendre.</li>
+        <li>Esquisser.</li>
+        <li>Structurer.</li>
+        <li>Concevoir.</li>
+        <li>Maquetter.</li>
+        <li>Harmoniser.</li>
+        <li>Sublimer.</li>
+        <li>Prototyper.</li>
+        <li>Animer.</li>
+        <li>Tester.</li>
+        <li>Itérer.</li>
+        <li>Simplifier.</li>
+        <li>Adapter.</li>
+        <li>Accessibiliser.</li>
+        <li>Optimiser.</li>
+        <li>Intégrer.</li>
+        <li>Liveer.</li>
+        <li>Recommencer.</li>
       </ul>
     </div>
   </section>
