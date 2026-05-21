@@ -159,6 +159,10 @@ section.Talk {
     100% {fill: var(--PureWhite);}
 }
 
+@media (max-width: 600px) {
+    section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+}
+
 @media (hover: none) {
     section.Talk .TalkContainer .NextWrapper {
         .NextBtn {
