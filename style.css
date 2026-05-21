@@ -67,7 +67,7 @@ section.Talk {
                 border-radius: 50%;
                 background-color: #4ade80;
                 box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-                animation: FooterPulse 2s infinite;
+                animation: Pulse 2s infinite;
                 flex-shrink: 0;
             }
         }
@@ -145,6 +145,12 @@ section.Talk {
             }
         }
     }
+}
+
+@keyframes Pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
 
 @keyframes ColorAnim {
