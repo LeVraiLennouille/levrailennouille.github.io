@@ -234,6 +234,76 @@ section.Work {
     }
 }
 
+section.Merge {
+    max-width: 1400px;
+    margin: 10rem auto;
+    padding: 0 20px;
+
+    .ListContainer {
+        position: relative;
+        display: flex;
+        gap: 2rem;
+
+        .ListText {
+            height: max-content;
+            position: sticky;
+            top: 50vh;
+            color: var(--PureBlack);
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 600;
+            margin: 0;
+            transform: translateY(-50%);
+            white-space: nowrap;
+        }
+
+        .List {
+            list-style: none;
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+            padding-top: 50vh;
+            padding-bottom: 50vh;
+            text-transform: capitalize;
+
+            li {
+                color: var(--Primary);
+                line-height: 1.2;
+                opacity: 0.15;
+                margin-bottom: 10px;
+                transition: opacity 0.3s ease-in-out;
+            }
+        }
+    }
+}   
+
+@supports (animation-timeline: scroll()) {
+    .List li {
+        animation: Bright both linear;
+        animation-timeline: view();
+        animation-range: cover calc(50% - 9rem) calc(50% + 9rem);
+    }
+}
+
+@keyframes fadeInLetter {to {opacity: 1; transform: translateY(0);}}
+@keyframes drawCircle {to {stroke-dashoffset: 0;}}
+
+@keyframes Strip {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-100%);}
+}
+
+@keyframes StripReverse {
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(0);}
+}
+
+@keyframes Bright {
+    0% {opacity: 0.15;}
+    50% {opacity: 1;}
+    100% {opacity: 0.15;}
+}
+
 @media (max-width: 600px) {
     :root {
         --Scale:     0.65;
