@@ -8,6 +8,13 @@
     --PureBlack: #000; --PureBlackRGB: 0, 0, 0;
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
+
+/* Hero */
+    --Rotation: 0deg;
+    --Thickness: 20px;
+    --Border: 8px;
+    --Gap: 30px;
+    --Scale: 0.9;
 }
 
 * {
@@ -23,5 +30,134 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    overflow-x: clip;
     font-family: "Syne", sans-serif;
+}
+
+section.Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    width: 100vw;
+    height: 100vh;
+
+    .Box {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150vw;
+        height: 150vh;
+        transform: translate(-10vw, -40px);
+
+        &#Ground {
+            z-index: 5;
+            backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);
+        }
+
+        &#Air    {
+            z-index: 10;
+
+            backGround:
+                linear-gradient(var(--Rotation), transparent calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness) + var(--Border)), transparent calc(50% + var(--Thickness) + var(--Border)));
+            backGround-repeat: no-repeat;
+        }
+
+        &#Text   {
+            z-index: 15;
+        
+            .SubBox {
+                display: flex;
+                flex-direction: column;
+                gap: var(--Gap);
+                text-align: center;
+                font-size: 20px;
+                transform: rotate(var(--Rotation)) scale(var(--Scale));
+
+                .SubText {
+                    display: inline;
+                    width: fit-content;
+                    position: relative;
+                    overflow: visible;
+                    padding: 15px;
+                    margin: 0px;
+                    font-weight: 800;
+                    font-size: 80px;
+                    line-height: 65px;
+                    border-radius: 5px;
+                    paint-order: stroke fill;
+
+                    &#SubT1 {
+                        margin-right: 150px;
+                        padding-top: 10px;
+                        padding-bottom: 0px;
+                        -webkit-text-stroke: 18px var(--Primary);
+                        color: var(--Background);
+                        
+                        span {
+                            &.T1A {right: -50px; bottom: 0px;}
+                            &.T1B {right: 15px; bottom: 60px;}
+                            &.T1C {right: -90px; bottom: 0px;}
+                            &.T1D {right: 15px; bottom: 100px; letter-spacing:5px;}
+                            &.T1E {right: -5px; bottom: 150px;}
+                        }
+                    }
+
+                    &#SubT2 {
+                        margin-left: 110px;
+                        padding-bottom: 10px;
+                        padding-top: 0px;
+                        -webkit-text-stroke: 18px var(--Background);
+                        color: var(--Primary);
+
+                        span {
+                            &.T2A {left: -50px; top: 0px;}
+                            &.T2B {left: 15px; top: 60px;}
+                            &.T2C {left: -100px; top: 0px;}
+                            &.T2D {left: 15px; top: 100px; letter-spacing:5px;}
+                            &.T2E {left: -5px; top: 150px;}
+                        }
+                    }
+
+                    span {
+                        position: absolute;
+                        line-height: auto;
+                        -webkit-Text-stroke-width: 9px;
+                        white-space: nowrap;
+                        text-transform: uppercase;
+
+                        &.TS26 {font-size: 26px; font-weight: 400;}
+                        &.TS30 {font-size: 30px; font-weight: 600;}
+                        &.TS46 {font-size: 46px; font-weight: 700;}
+
+                        &.VT {
+                            writing-mode: vertical-rl;
+                            text-orientation: upright;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --Scale:     0.65;
+        --Thickness: 10px;
+        --Border:    5px;
+        --Gap:       28px;
+    }
+
+    section.Hero {
+        .Box {transform: translate(-2vw, -40px);}
+        img {max-width: 225px;}
+    }
 }
