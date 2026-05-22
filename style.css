@@ -201,7 +201,7 @@ html, body {
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            padding: 10px 10px 10px 32px;
+            padding: 0 10px 0 32px;
             height: 44px;
             border: none;
             border-radius: 999px;
@@ -209,6 +209,7 @@ html, body {
             cursor: pointer;
             overflow: hidden;
             outline: none;
+            text-decoration: none;
             -webkit-tap-highlight-color: transparent;
             box-shadow: rgba(var(--PureBlackRGB), 0.15) 2.4px 2.4px 3.2px;
 
