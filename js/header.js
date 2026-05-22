@@ -90,5 +90,3 @@ function initHamburger() {
     nav.querySelectorAll('a').forEach(function (a) {a.addEventListener('click', function () { toggle(false); });});
     window.addEventListener('resize', function () {if (window.innerWidth > 950) toggle(false);});
 }
-
-initHamburger();
