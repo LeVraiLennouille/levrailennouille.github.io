@@ -10,12 +10,18 @@ const headerHTML = `
             <li><a href="/blog">Blog</a></li>
             <li><a href="/about">À propos</a></li>
         </ul>
-        <a href="/contact" class="NavCTA">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <polyline points="2,4 12,13 22,4"/>     
-            </svg>Me contacter
-        </a>
+        <div class="NavCTAs">
+            <button class="SwitchBtn" type="button">
+                <span class="BtnTexts">
+                    <span class="DefaultText">Me contacter</span>
+                    <span class="HoverText">Me contacter</span>
+                </span>
+                <span class="BtnIcon">
+                    <span class="Dot"></span>
+                    <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                </span>
+            </button>
+        </div>
     </nav>
 `;
 
