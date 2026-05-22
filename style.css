@@ -26,183 +26,165 @@ html, body {
     font-family: "Syne", sans-serif;
 }
 
-.MainHeader {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 1200px;
-    z-index: 1000;
+.NavBar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--PureWhite);
+    padding: 0 60px;
+    height: 64px;
 
-    .NavBar {
+    .NavLogo {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        background-color: var(--PureWhite);
-        padding: 10px 15px 10px 25px;
-        border-radius: 50px;
-        box-shadow: 0 4px 4px rgba(var(--PureBlackRGB), 0.25);
-    
-        .NavLogo {
+        flex-shrink: 0;
+        text-decoration: none;
+
+        img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    .NavLinks {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        list-style: none;
+        margin: 0; padding: 0;
+
+        a {
             text-decoration: none;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--Primary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--PureBlack);
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: color 0.2s ease;
 
-            img {
-                width: 36px;
-                height: 36px;
-            }
+            &:hover, &.active {color: var(--Primary);}
+        }
+    }
+
+    .NavCTA {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        text-decoration: none;
+        color: var(--PureWhite);
+        background-color: var(--BgDark);
+        padding: 10px 22px;
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 0.2s ease, transform 0.15s ease;
+
+        &:hover {
+            background-color: var(--Primary);
+            transform: translateY(-1px);
         }
 
-        ul.NavLinks {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-            align-items: center;
+        svg {width: 16px; height: 16px; flex-shrink: 0;}
+    }
 
-            a {
-                text-decoration: none;
-                color: var(--Primary);
-                font-weight: 600;
-                font-size: 1.2rem;
-                transition: color 0.3s ease;
-                display: flex;
-                align-items: center;
-                gap: 5px;
+    .HamburgerBtn {
+        display: none;
+        background: none; border: none;
+        cursor: pointer; padding: 6px;
+        flex-direction: column; justify-content: center;
+        align-items: center; gap: 5px;
+        width: 38px; height: 38px;
+        border-radius: 8px;
+        transition: background 0.2s ease;
 
-                &:hover {color: var(--Primary);}
-            }
+        &:hover {background: rgba(var(--PureBlackRGB), 0.07);}
+
+        &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(-45deg);}
+        &.open .HamburgerLine:nth-child(2) {opacity: 0;}
+        &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(45deg);}
+
+        .HamburgerLine {
+            display: block; width: 22px; height: 2px;
+            background-color: var(--BgDark);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
+    }
+    
+    .MobileNav {
+        display: none;
+        position: absolute;
+        top: 100%; left: 0;
+        width: 100%;
+        background-color: var(--PureWhite);
+        box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.12);
+        z-index: 999;
+        padding: 12px 16px 20px;
+        flex-direction: column; gap: 2px;
+        border-top: 1px solid rgba(var(--PureBlackRGB), 0.06);
+        animation: mobileNavIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 
-        .NavBtn {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+        &.open {display: flex;}
 
-            a.BtnSolid {
-                text-decoration: none;
-                color: var(--PureWhite);
-                background-color: var(--Primary);
-                padding: 10px 24px;
-                border-radius: 50px;
-                box-shadow: 0 2px 2px rgba(var(--PureBlackRGB), 0.25);
-                font-weight: 600;
-                font-size: 0.95rem;
-                transition: all 0.3s ease;
-                border: none;
-
-                &:hover {
-                    filter: brightness(0.9);
-                    transform: translateY(-2px);
-                }
-            }
-        }
-
-        .HamburgerBtn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            width: 38px;
-            height: 38px;
+        a {
+            display: block; padding: 11px 16px;
+            text-decoration: none;
+            color: var(--BgDark);
+            font-weight: 600; font-size: 0.95rem;
             border-radius: 8px;
-            transition: background 0.2s ease;
+            transition: background 0.18s, color 0.18s;
 
-            &:hover {background: rgba(var(--PrimaryRGB),0.1);}
-
-            .HamburgerLine {
-                display: block;
-                width: 22px;
-                height: 2px;
-                background-color: var(--Primary);
-                border-radius: 2px;
-                transition: transform 0.3s ease, opacity 0.3s ease;
-            }
-
-            &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(-45deg);}
-            &.open .HamburgerLine:nth-child(2) {opacity: 0;}
-            &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(45deg);}
+            &:hover {background: rgba(var(--PureBlackRGB), 0.05);}
         }
 
-        .MobileNav {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 1200px;
-            width: 95%;
-            background-color: var(--PureWhite);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(var(--PureBlackRGB),0.2);
-            z-index: 999;
-            padding: 16px;
-            flex-direction: column;
-            gap: 4px;
-            border-top: 3px solid var(--Primary);
-            animation: mobileNavIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        .Divider {
+            height: 1px;
+            background: rgba(var(--PureBlackRGB), 0.08);
+            margin: 8px 0;
+        }
 
-            &.open {display: flex;}
+        .CTA {
+            margin-top: 6px;
 
             a {
                 display: block;
-                padding: 11px 16px;
-                text-decoration: none;
-                color: var(--Primary);
-                font-weight: 600;
-                font-size: 1rem;
-                border-radius: 8px;
-                transition: background 0.2s, color 0.2s;
+                text-align: center;
+                padding: 13px 0;
+                background: var(--BgDark);
+                color: var(--PureWhite);
+                border-radius: 50px;
+                font-size: 0.88rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                transition: background 0.2s;
 
-                &:hover {
-                    background: rgba(var(--PrimaryRGB),0.1);
-                    color: var(--Primary);
-                }
-            }
-
-            .MobileNavDivider {
-                height: 1px;
-                background: rgba(var(--PrimaryRGB),0.15);
-                margin: 6px 0;
-            }
-
-            .MobileNavCTA {
-                margin-top: 8px;
-
-                .BtnSolid {
-                    display: block;
-                    width: 100%;
-                    text-align: center;
-                    padding: 12px 0;
-                    color: var(--PureWhite);
-                }
+                &:hover {background: var(--Primary);}
             }
         }
     }
 }
 
 @keyframes mobileNavIn {
-    from {opacity: 0; transform: translateX(-50%) translateY(-8px);}
-    to   {opacity: 1; transform: translateX(-50%) translateY(0);}
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 950px) {
-    .MainHeader .NavBar {
-        padding: 10px 20px;
+    .NavBar {
+        padding: 0 24px;
 
-        ul.NavLinks {display: none;}
-        .HamburgerBtn {display: flex;}
+        .NavLinks { display: none; }
+        .NavCTA   { display: none; }
     }
+
+    .HamburgerBtn { display: flex; }
+}
+
+@media (min-width: 951px) {
+    .MobileNav    { display: none !important; }
+    .HamburgerBtn { display: none !important; }
 }
