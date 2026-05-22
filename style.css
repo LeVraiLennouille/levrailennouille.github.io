@@ -78,7 +78,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     background-color: var(--PureWhite);
-    padding: 0 200px;
+    padding-left: 200px;
     height: 64px;
     font-size: 1rem;
     font-weight: 600;
@@ -115,7 +115,6 @@ html, body {
             z-index:2;
             color:var(--Primary);
             text-decoration:none;
-            text-transform:uppercase;
 
             &:hover>div{transform:scale(1.3); -webkit-transform:scale(1.3);}
             &:hover>div:after{transition-delay:0.15s; -webkit-transition-delay:0.15s;}
@@ -159,6 +158,7 @@ html, body {
             justify-content: center;
             align-items: center;
             line-height: 35px;
+            padding: 0 8px;
             border: 1px solid var(--Primary);
             color: var(--Primary);
             border-radius: 50px;
