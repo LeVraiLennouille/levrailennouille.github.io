@@ -25,3 +25,38 @@ html, body {
     width: 100%;
     font-family: "Syne", sans-serif;
 }
+
+#Trail {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+#CursorDot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.15s, height 0.15s, background 0.2s;
+}
+ 
+#CursorBall {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    transition: width 0.2s, height 0.2s, border-color 0.2s;
+}
