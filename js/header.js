@@ -17,11 +17,13 @@ var path = window.location.pathname.split('/').pop() || 'index';
 })();
 
 const headerHTML = `
+    <div id="CursorDot"></div>
+    <div id="CursorBall"></div>
     <nav class="NavBar">
-        <a class="NavLogo" href="/index" aria-label="Retour à l'accueil">
+        <a class="NavLogo CursorHover" href="/index" aria-label="Retour à l'accueil">
             <img src="assets/icon.svg" alt="Logo de Lenouille"/>
         </a>
-        <ul class="NavLinks">
+        <ul class="NavLinks CursorHover">
             <li><a href="/index"><div data-text="Page principale">Accueil</div></a></li>
             <li><a href="/services"><div data-text="Designs UI / UX">Services</div></a></li>
             <li><a href="/reals"><div data-text="Mes réalisations">Portfolio</div></a></li>
@@ -29,8 +31,8 @@ const headerHTML = `
             <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
         <div class="NavCTA">
-            <div><a class="SimBtn" href="/simulateur" data-hover="de devis">Simulateur</a></div>
-            <a class="SwitchBtn" href="/contact">
+            <div><a class="SimBtn CursorHover" href="/simulateur" data-hover="de devis">Simulateur</a></div>
+            <a class="SwitchBtn CursorHover" href="/contact">
                 <span class="BtnTexts">
                     <span class="DefaultText">Me contacter</span>
                     <span class="HoverText">Me contacter</span>
