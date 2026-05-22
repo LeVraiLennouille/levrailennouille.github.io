@@ -106,3 +106,67 @@ html, body {
         }
     }
 }
+
+.HamburgerBtn {
+    display: none;
+    background: none; border: none;
+    cursor: pointer; padding: 6px;
+    flex-direction: column; justify-content: center;
+    align-items: center; gap: 5px;
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+.HamburgerBtn:hover { background: rgba(var(--PrimaryRGB),0.1); }
+
+.HamburgerLine {
+    display: block; width: 22px; height: 2px;
+    background-color: var(--Primary);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.HamburgerBtn.open .HamburgerLine:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.HamburgerBtn.open .HamburgerLine:nth-child(2) { opacity: 0; }
+.HamburgerBtn.open .HamburgerLine:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.MobileNav {
+    display: none;
+    position: fixed;
+    top: 80px; left: 50%;
+    transform: translateX(-50%);
+    width: 95%; max-width: 1200px;
+    background-color: var(--PureWhite);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(var(--PureBlackRGB),0.2);
+    z-index: 999;
+    padding: 16px;
+    flex-direction: column; gap: 4px;
+    border-top: 3px solid var(--Primary);
+    animation: mobileNavIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.MobileNav.open { display: flex; }
+
+.MobileNav a {
+    display: block; padding: 11px 16px;
+    text-decoration: none; color: var(--Primary);
+    font-weight: 600; font-size: 1rem;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+.MobileNav a:hover { background: rgba(var(--PrimaryRGB),0.1); color: var(--Primary); }
+.MobileNavDivider { height: 1px; background: rgba(var(--PrimaryRGB),0.15); margin: 6px 0; }
+.MobileNavSub { display: flex; flex-direction: column; gap: 0; padding-left: 10px; }
+.MobileNavSub a { font-size: 0.88rem; font-weight: 500; padding: 8px 14px; }
+.MobileNavCTA { margin-top: 8px; }
+.MobileNavCTA .BtnSolid { display: block; width: 100%; text-align: center; padding: 12px 0; color: var(--PureWhite); }
+
+@keyframes mobileNavIn {
+    from {opacity: 0; transform: translateX(-50%) translateY(-8px);}
+    to   {opacity: 1; transform: translateX(-50%) translateY(0);}
+}
+
+@media (max-width: 950px) {
+    .NavLinks {display: none !important;}
+    .NavBar {padding: 10px 20px;}
+    .HamburgerBtn {display: flex;}
+}
