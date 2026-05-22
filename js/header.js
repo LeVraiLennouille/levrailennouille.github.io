@@ -4,11 +4,11 @@ const headerHTML = `
             <img src="assets/icon.svg" alt="Logo de Lenouille"/>
         </a>
         <ul class="NavLinks">
-            <li><a href="/index">Accueil</a></li>
-            <li><a href="/services">Mes services</a></li>
-            <li><a href="/reals">Réalisations</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/about">À propos</a></li>
+            <li><a href="/index"><div data-text="Page principale">Accueil</div></a></li>
+            <li><a href="/services"><div data-text="Designs UI / UX">Services</div></a></li>
+            <li><a href="/reals"><div data-text="Mes réalisations">Portfolio</div></a></li>
+            <li><a href="/blog"><div data-text="Tips & Astuces">Articles</div></a></li>
+            <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
         <div class="NavCTAs">
             <button class="SwitchBtn" type="button">

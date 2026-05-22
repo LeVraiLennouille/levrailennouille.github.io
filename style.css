@@ -59,32 +59,62 @@ html, body {
         list-style: none;
         margin: 0; padding: 0;
 
-        a {
-            position: relative;
-            text-decoration: none;
-            color: rgba(var(--PureBlackRGB),0.75);
-            line-height: 1.6;
-            letter-spacing: 0.03em;
-            width: fit-content;
-            transition: all 0.3s ease;
+        li>a{
+            position:relative;
+            display:inline-block;
+            height:35px;
+            padding:15px;
+            margin-left:25px;
+            margin-right:25px;
+            margin-bottom:25px;
+            background:transparent;
+            transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
+            z-index:2;
+            color:var(--Primary);
+            text-decoration:none;
+            font-family:Arial, sans-serif;
+            text-transform:uppercase;
 
-            &:hover {
-                color: var(--Primary);
+            &:hover>div{transform:scale(1.3); -webkit-transform:scale(1.3);}
+            &:hover>div:before{transition-delay:0s; -webkit-transition-delay:0s;}
+            &:hover>div:after{transition-delay:0.15s; -webkit-transition-delay:0.15s;}
+            &:hover>div:before, &:hover>div:after{transform:translateY(16px); -webkit-transform:translateY(16px); opacity:1;}
 
-                &::before {transform: scaleX(1);}
-            }
+            &>div {
+                font-size:1em;
+                text-align:center;
+                position:relative;
+                z-index:2;
+                color:var(--Primary);
+                text-decoration:none;
+                text-transform:uppercase;
+                transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
+                transition-delay:0s; -webkit-transition-delay:0s;
 
-            &::before {
-                content: "";
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 2px;
-                bottom: 0;
-                left: 0;
-                background-color: var(--Primary);
-                transform: scaleX(0);
-                transition: transform 0.3s ease;
+                &:before, &:after{
+                    opacity:0;
+                    position:absolute;
+                    top:5px;
+                    left:0px; 
+                    width:100%;
+                    font-size:0.45em;
+                    transform:translateY(36px); -webkit-transform:translateY(36px);
+                    transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
+                }
+
+                &:before{
+                    content:'';
+                    height:2px;
+                    background:var(--Primary);
+                    transition-delay:0s; -webkit-transition-delay:0s;
+                }
+
+                &:after{
+                    content:attr(data-text);
+                    color:var(--Primary);
+                    margin-top: 5px;
+                    transition-delay:0s; -webkit-transition-delay:0s;
+                }
             }
         }
     }
