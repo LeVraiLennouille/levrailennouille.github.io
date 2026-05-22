@@ -26,13 +26,6 @@ html, body {
     font-family: "Syne", sans-serif;
 }
 
-#Trail {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9997;
-}
-
 #CursorDot {
     width: 8px;
     height: 8px;
