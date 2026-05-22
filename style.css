@@ -378,21 +378,30 @@ html, body {
         }
 
         .CTA {
+            display:flex;
+            flex-direction: row;
             margin-top: 6px;
+            justify-content: space-between;
 
             a {
-                 display: block;
-                text-align: center;
-                padding: 13px 0;
-                background: var(--BgDark);
-                color: var(--PureWhite);
+                text-decoration: none;
+                padding: 10px 24px;
                 border-radius: 50px;
-                font-size: 0.88rem;
-                font-weight: 700;
-                letter-spacing: 0.02em;
-                transition: background 0.2s;
+                box-shadow: 0 2px 2px rgba(var(--PureBlackRGB), 0.25);
+                font-weight: 800;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                border: none;              
 
-                &:hover {background: var(--Primary);}          
+                &.BtnOutline {
+                    color: var(--Primary);
+                    border: 1px solid var(--Primary);
+                }
+
+                &.BtnSolid {
+                    color: var(--PureWhite);
+                    background-color: var(--Primary);
+                }
             }
         }
     }

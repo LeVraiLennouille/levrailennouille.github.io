@@ -73,7 +73,10 @@ function initHamburger() {
         '<a href="/blog">Blog</a>' +
         '<a href="/about">À propos</a>' +
         '<div class="Divider"></div>' +
-        '<div class="CTA"><a href="/contact">Me contacter</a></div>';
+        '<div class="CTA">' +
+            '<a class="BtnOutline" href="/simulateur">Simulateur</a>' +
+            '<a class="BtnSolid" href="/contact">Me contacter</a>' +
+        '</div>';
     navbar.appendChild(nav);
 
     function toggle(force) {
