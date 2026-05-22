@@ -31,7 +31,7 @@ function initHamburger() {
   nav.className = 'MobileNav';
   nav.setAttribute('role', 'navigation');
   nav.setAttribute('aria-label', 'Navigation mobile');
-  
+
   nav.innerHTML =
     '<a href="/index">Accueil</a>' +
     '<a href="/services">Services</a>' +
@@ -39,7 +39,7 @@ function initHamburger() {
     '<a href="/about">A propos</a>' +
     '<div class="MobileNavDivider"></div>' +
     '<div class="MobileNavCTA"><a href="contact.html" class="BtnSolid">Contactez moi</a></div>';
-  document.body.appendChild(nav);
+  navbar.appendChild(nav);
 
   function toggle(force) {
     var open = (force !== undefined) ? force : !nav.classList.contains('open');
