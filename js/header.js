@@ -1,3 +1,21 @@
+var path = window.location.pathname.split('/').pop() || 'index';
+
+(function () {
+    var bar = document.createElement('div');
+    bar.className = 'ReadingProgress';
+    document.body.prepend(bar);
+
+    function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = Math.min(progress, 100) + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress, {passive: true});
+    updateProgress();
+})();
+
 const headerHTML = `
     <nav class="NavBar">
         <a class="NavLogo" href="/index" aria-label="Retour à l'accueil">
