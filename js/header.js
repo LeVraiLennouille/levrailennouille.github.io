@@ -11,6 +11,7 @@ const headerHTML = `
             <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
         <div class="NavCTAs">
+            <div><a class="SimBtn" href="/simulateur" data-hover="de devis">Simulateur</a></div>
             <button class="SwitchBtn" type="button">
                 <span class="BtnTexts">
                     <span class="DefaultText">Me contacter</span>

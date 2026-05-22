@@ -123,6 +123,57 @@ html, body {
         display: flex;
         gap: 16px;
 
+        .SimBtn {
+            display: flex;
+            width: 120px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            margin: 0.5rem;
+            line-height: 35px;
+            border: 1px solid;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.35s;
+            box-sizing: border-box;
+
+            position: relative;
+            border-color: var(--Primary);
+            color: var(--Primary);
+            transition-delay: 0.3s;
+            overflow: hidden;
+
+            &:hover {
+                transform: translateY(-0.3em);
+                border-color: var(--Primary);
+                color: rgba(221, 99, 149, 0);
+                transition-delay: 0s;
+
+                &::before {
+                    opacity: 1;
+                    transform: translateX(0);
+                    transition-delay: 0.15s;
+                }
+            }
+
+            &::before {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                content: attr(data-hover);
+                color: var(--Primary);
+                text-align: center;
+                transform: translateX(-60%);
+                transition: all 0.4s;
+                z-index: 1;
+            }
+        }
+
         .SwitchBtn {
             position: relative;
             display: inline-flex;
