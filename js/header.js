@@ -30,7 +30,7 @@ const headerHTML = `
         </ul>
         <div class="NavCTA">
             <div><a class="SimBtn" href="/simulateur" data-hover="de devis">Simulateur</a></div>
-            <button class="SwitchBtn" type="button">
+            <a class="SwitchBtn" href="/contact">
                 <span class="BtnTexts">
                     <span class="DefaultText">Me contacter</span>
                     <span class="HoverText">Me contacter</span>
