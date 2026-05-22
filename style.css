@@ -131,9 +131,9 @@ html, body {
                 transition: transform 0.3s ease, opacity 0.3s ease;
             }
 
-            &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(45deg);}
+            &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(-45deg);}
             &.open .HamburgerLine:nth-child(2) {opacity: 0;}
-            &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(-45deg);}
+            &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(45deg);}
         }
 
         .MobileNav {
