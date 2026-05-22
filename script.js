@@ -76,10 +76,10 @@ window.addEventListener('mousemove', e => {
 
 document.querySelectorAll('.CursorHover').forEach(el => {
     el.addEventListener('mouseenter', () => {
-        ball.style.width  = '52px';
-        ball.style.height = '52px';
-        dot.style.width   = '4px';
-        dot.style.height  = '4px';
+        ball.style.width  = '28px';
+        ball.style.height = '28px';
+        dot.style.width   = '12px';
+        dot.style.height  = '12px';
     });
 
     el.addEventListener('mouseleave', () => {
