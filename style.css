@@ -38,7 +38,7 @@ html, body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    transition: width 0.15s, height 0.15s, background 0.2s;
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
 }
  
 #CursorBall {
@@ -52,7 +52,8 @@ html, body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9998;
-    transition: width 0.2s, height 0.2s, border-color 0.2s;
+    background: transparent;
+    transition: border-color 0.35s ease;
 }
 
 .ReadingProgress {
@@ -385,22 +386,22 @@ html, body {
 }
 
 @keyframes mobileNavIn {
-    from { opacity: 0; transform: translateY(-6px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {opacity: 0; transform: translateY(-6px);}
+    to   {opacity: 1; transform: translateY(0);}
 }
 
 @media (max-width: 950px) {
     .NavBar {
         padding: 0 24px;
 
-        .NavLinks { display: none; }
-        .NavCTA   { display: none; }
+        .NavLinks {display: none;}
+        .NavCTA   {display: none;}
     }
 
-    .HamburgerBtn { display: flex; }
+    .HamburgerBtn {display: flex;}
 }
 
 @media (min-width: 951px) {
-    .MobileNav    { display: none !important; }
-    .HamburgerBtn { display: none !important; }
+    .MobileNav    {display: none !important;}
+    .HamburgerBtn {display: none !important;}
 }

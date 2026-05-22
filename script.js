@@ -65,8 +65,8 @@ let lightMode = false;
 function applyTheme(light) {
     if (light === lightMode) return;
     lightMode = light;
-    dot.style.background   = light ? '#000' : '#fff';
-    ball.style.borderColor = light ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+    dot.style.background = light ? '#000' : '#fff';
+    if (!isHovering) {ball.style.borderColor = light ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';}
 }
 
 window.addEventListener('mousemove', e => {
@@ -74,8 +74,11 @@ window.addEventListener('mousemove', e => {
     mouse.y = e.clientY;
 });
 
+let isHovering = false;
+
 document.querySelectorAll('.CursorHover').forEach(el => {
     el.addEventListener('mouseenter', () => {
+        isHovering = true;
         ball.style.width  = '28px';
         ball.style.height = '28px';
         dot.style.width   = '12px';
@@ -83,6 +86,7 @@ document.querySelectorAll('.CursorHover').forEach(el => {
     });
 
     el.addEventListener('mouseleave', () => {
+        isHovering = false;
         ball.style.width  = '28px';
         ball.style.height = '28px';
         dot.style.width   = '8px';
