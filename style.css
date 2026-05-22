@@ -149,6 +149,50 @@ section.Hero {
     }
 }
 
+section.Scroll {
+    height: 400vh;
+    position: relative;
+    background-color: var(--Primary);
+
+    .Wrapper {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .TextReveal {
+            max-width: 900px;
+            color: var(--PureWhite);
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .Word {
+            display: inline-block;
+            background-color: var(--Primary);
+            color: transparent;
+            border-radius: 3px;
+            margin: 2px;
+            padding: 0 4px;
+            transition:
+                background-color 0.1s,
+                color 0.1s;
+
+            &.Revealed {
+                background-color: transparent;
+                color: var(--PureWhite);
+            }
+        }
+    }
+}
+
 section.Work {
     position: relative;
     width: 100vw;
