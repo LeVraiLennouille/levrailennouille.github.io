@@ -28,7 +28,7 @@ const headerHTML = `
             <li><a href="/blog"><div data-text="Tips & Astuces">Articles</div></a></li>
             <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
-        <div class="NavCTAs">
+        <div class="NavCTA">
             <div><a class="SimBtn" href="/simulateur" data-hover="de devis">Simulateur</a></div>
             <button class="SwitchBtn" type="button">
                 <span class="BtnTexts">
