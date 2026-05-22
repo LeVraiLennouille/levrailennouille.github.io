@@ -311,11 +311,16 @@ html, body {
 
     .HamburgerBtn {
         display: none;
-        background: none; border: none;
-        cursor: pointer; padding: 6px;
-        flex-direction: column; justify-content: center;
-        align-items: center; gap: 5px;
-        width: 38px; height: 38px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
         border-radius: 8px;
         transition: background 0.2s ease;
 
@@ -326,8 +331,10 @@ html, body {
         &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(45deg);}
 
         .HamburgerLine {
-            display: block; width: 22px; height: 2px;
-            background-color: var(--BgDark);
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: var(--Primary);
             border-radius: 2px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
@@ -336,23 +343,28 @@ html, body {
     .MobileNav {
         display: none;
         position: absolute;
-        top: 100%; left: 0;
+        top: 100%;
+        left: 0;
         width: 100%;
+        max-width: calc(100vw - 32px);
         background-color: var(--PureWhite);
         box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.12);
         z-index: 999;
         padding: 12px 16px 20px;
-        flex-direction: column; gap: 2px;
-        border-top: 1px solid rgba(var(--PureBlackRGB), 0.06);
-        animation: mobileNavIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        flex-direction: column;
+        gap: 2px;
+        border-top: 1px solid rgba(var(--PrimaryRGB), 0.5);
+        animation: mobileNavIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 
         &.open {display: flex;}
 
         a {
-            display: block; padding: 11px 16px;
+            display: block;
+            padding: 11px 16px;
             text-decoration: none;
-            color: var(--BgDark);
-            font-weight: 600; font-size: 0.95rem;
+            color: var(--Primary);
+            font-weight: 800;
+            font-size: 0.9rem;
             border-radius: 8px;
             transition: background 0.18s, color 0.18s;
 
@@ -361,7 +373,7 @@ html, body {
 
         .Divider {
             height: 1px;
-            background: rgba(var(--PureBlackRGB), 0.08);
+            background: rgba(var(--PrimaryRGB), 0.5);
             margin: 8px 0;
         }
 
@@ -369,7 +381,7 @@ html, body {
             margin-top: 6px;
 
             a {
-                display: block;
+                 display: block;
                 text-align: center;
                 padding: 13px 0;
                 background: var(--BgDark);
@@ -380,7 +392,7 @@ html, body {
                 letter-spacing: 0.02em;
                 transition: background 0.2s;
 
-                &:hover {background: var(--Primary);}
+                &:hover {background: var(--Primary);}          
             }
         }
     }
@@ -391,18 +403,18 @@ html, body {
     to   {opacity: 1; transform: translateY(0);}
 }
 
+@media (min-width: 951px) {
+    .HamburgerBtn {display: none !important;}
+    .MobileNav    {display: none !important;}
+}
+
 @media (max-width: 950px) {
+    #CursorDot, #CursorBall {display: none;}
     .NavBar {
         padding: 0 24px;
 
         .NavLinks {display: none;}
         .NavCTA   {display: none;}
+        .HamburgerBtn {display: flex;}
     }
-
-    .HamburgerBtn {display: flex;}
-}
-
-@media (min-width: 951px) {
-    .MobileNav    {display: none !important;}
-    .HamburgerBtn {display: none !important;}
 }
