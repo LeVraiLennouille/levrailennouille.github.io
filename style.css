@@ -199,7 +199,10 @@ html, body {
 }
 
 @media (max-width: 950px) {
-    .NavLinks {display: none !important;}
-    .NavBar {padding: 10px 20px;}
-    .HamburgerBtn {display: flex !important;}
+    .MainHeader .NavBar {
+        padding: 10px 20px;
+
+        ul.NavLinks {display: none;}
+        .HamburgerBtn {display: flex;}
+    }
 }
