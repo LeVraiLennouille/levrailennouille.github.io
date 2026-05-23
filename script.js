@@ -1,5 +1,14 @@
 // ! Functions ! //
 // * Cursor * //
+if (window.matchMedia('(pointer: coarse)').matches) {
+    const _dot  = document.getElementById('CursorDot');
+    const _ball = document.getElementById('CursorBall');
+
+    if (_dot)  _dot.style.display  = 'none';
+    if (_ball) _ball.style.display = 'none';
+    throw new Error('Touch device — cursor disabled.');
+}
+
 const dot    = document.getElementById('CursorDot');
 const ball   = document.getElementById('CursorBall');
 
@@ -185,17 +194,18 @@ document.querySelectorAll('.CursorHover').forEach(el => {
 
 let last = performance.now();
 let frameCount = 0;
+let rafId = null;
 
 function loop(now) {
-    const dt    = Math.min(now - last, 50);
-    last        = now;
+    const dt = Math.min(now - last, 50);
+    last = now;
 
     const delta = dt * (60 / 1000);
     const lerpT = 1.0 - Math.pow(1.0 - speed, delta);
 
     if (prefersReduced) {
-        pos.x    = mouse.x;
-        pos.y    = mouse.y;
+        pos.x = mouse.x;
+        pos.y = mouse.y;
         dotPos.x = mouse.x;
         dotPos.y = mouse.y;
     } else {
@@ -206,10 +216,10 @@ function loop(now) {
         dotPos.y += (mouse.y - dotPos.y) * 0.85;
     }
 
-    dot.style.left  = Math.round(dotPos.x) + 'px';
-    dot.style.top   = Math.round(dotPos.y) + 'px';
+    dot.style.left = Math.round(dotPos.x) + 'px';
+    dot.style.top = Math.round(dotPos.y) + 'px';
     ball.style.left = Math.round(pos.x) + 'px';
-    ball.style.top  = Math.round(pos.y) + 'px';
+    ball.style.top = Math.round(pos.y) + 'px';
 
     if (frameCount++ % 3 === 0) {
         const bgRGB = getEffectiveBgRGB(Math.round(mouse.x), Math.round(mouse.y));
@@ -224,7 +234,7 @@ function loop(now) {
         }
     }
 
-    requestAnimationFrame(loop);
+    rafId = requestAnimationFrame(loop);
 }
 
 requestAnimationFrame(loop);
