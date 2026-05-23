@@ -49,7 +49,7 @@ section.Hero {
         justify-content: center;
         width: 150vw;
         height: 150vh;
-        transform: translate(-10vw, -40px);
+        transform: translate(-10vw, 20px);
 
         &#Ground {
             z-index: 5;
