@@ -112,7 +112,7 @@ function loop(now) {
 
     if (frameCount++ % 3 === 0) {
         const bgRGB = getEffectiveBgRGB(Math.round(mouse.x), Math.round(mouse.y));
-        applyTheme(bgRGB ? isLightTarget(bgRGB) : false);
+        applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
     }
 
     requestAnimationFrame(loop);
