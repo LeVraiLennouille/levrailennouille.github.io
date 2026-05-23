@@ -29,7 +29,7 @@ html, body {
 #CursorDot {
     width: 8px;
     height: 8px;
-    background: #fff;
+    background: var(--PureWhite);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -37,13 +37,13 @@ html, body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    transition: width 0.15s, height 0.15s, background 0.2s;
+    transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.15s;
 }
  
 #CursorBall {
     width: 28px;
     height: 28px;
-    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(var(--PureWhiteRGB), 0.6);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -51,5 +51,5 @@ html, body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9998;
-    transition: width 0.2s, height 0.2s, border-color 0.2s;
+    transition: width 0.2s, height 0.2s, border-color 0.2s, border-radius 0.2s, background 0.2s, opacity 0.2s;
 }

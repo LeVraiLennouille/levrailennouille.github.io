@@ -67,25 +67,115 @@ function applyTheme(light) {
     lightMode = light;
     dot.style.background   = light ? '#000' : '#fff';
     ball.style.borderColor = light ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+    if (cursorState === 'text') {ball.style.background = light ? '#000' : '#fff';}
+}
+
+let cursorState = 'default';
+let isHovering  = false;
+let isClicking  = false;
+let isDragging  = false;
+let isText      = false;
+
+function applyCursorState() {
+    let newState = 'default';
+    if (isDragging) newState = 'drag';
+    else if (isClicking) newState = 'click';
+    else if (isHovering) newState = 'hover';
+    else if (isText) newState = 'text';
+    if (newState === cursorState) return;
+
+    cursorState = newState;
+    const fg = lightMode ? '#000' : '#fff';
+    const border = lightMode ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
+    
+    dot.style.width = '8px';
+    dot.style.height = '8px';
+    dot.style.borderRadius = '50%';
+    dot.style.opacity = '1';
+    ball.style.width = '28px';
+    ball.style.height = '28px';
+    ball.style.borderRadius = '50%';
+    ball.style.border = `1.5px solid ${border}`;
+    ball.style.background = 'transparent';
+    ball.style.opacity = '1';
+
+    switch (newState) {
+        case 'hover':
+            ball.style.width = '52px';
+            ball.style.height = '52px';
+            dot.style.width = '4px';
+            dot.style.height = '4px';
+            break;
+
+        case 'text':
+            ball.style.width = '2px';
+            ball.style.height = '24px';
+            ball.style.borderRadius = '2px';
+            ball.style.border = 'none';
+            ball.style.background = fg;
+            dot.style.width = '0px';
+            dot.style.height = '0px';
+            dot.style.opacity = '0';
+            break;
+
+        case 'click':
+
+            ball.style.width = '18px';
+            ball.style.height = '18px';
+            dot.style.width = '10px';
+            dot.style.height = '10px';
+            break;
+
+        case 'drag':
+            ball.style.width = '56px';
+            ball.style.height = '56px';
+            ball.style.opacity = '0.7';
+            dot.style.width = '4px';
+            dot.style.height = '4px';
+            break;
+    }
+}
+
+function isTextUnderCursor(x, y) {
+    const elements = document.elementsFromPoint(x, y).filter(el => el !== dot && el !== ball);
+    for (const el of elements) {
+        const cursor = getComputedStyle(el).cursor;
+        if (cursor === 'text' || cursor === 'vertical-text') return true;
+    }
+    return false;
 }
 
 window.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    if (isClicking && !isDragging) {
+        isDragging = true;
+        applyCursorState();
+    }
+});
+
+document.addEventListener('mousedown', () => {
+    isClicking = true;
+    isDragging = false;
+    applyCursorState();
+});
+
+document.addEventListener('mouseup', () => {
+    isClicking = false;
+    isDragging = false;
+    applyCursorState();
 });
 
 document.querySelectorAll('.CursorHover').forEach(el => {
     el.addEventListener('mouseenter', () => {
-        ball.style.width  = '52px';
-        ball.style.height = '52px';
-        dot.style.width   = '4px';
-        dot.style.height  = '4px';
+        isHovering = true;
+        applyCursorState();
     });
+    
     el.addEventListener('mouseleave', () => {
-        ball.style.width  = '28px';
-        ball.style.height = '28px';
-        dot.style.width   = '8px';
-        dot.style.height  = '8px';
+        isHovering = false;
+        applyCursorState();
     });
 });
 
@@ -113,6 +203,14 @@ function loop(now) {
     if (frameCount++ % 3 === 0) {
         const bgRGB = getEffectiveBgRGB(Math.round(mouse.x), Math.round(mouse.y));
         applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
+
+        if (!isClicking && !isDragging && !isHovering) {
+            const textNow = isTextUnderCursor(Math.round(mouse.x), Math.round(mouse.y));
+            if (textNow !== isText) {
+                isText = textNow;
+                applyCursorState();
+            }
+        }
     }
 
     requestAnimationFrame(loop);
