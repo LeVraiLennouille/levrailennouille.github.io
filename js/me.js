@@ -19,6 +19,7 @@ const MeHTML = `
         <div class="Text">
             <h4>Qui se cache derrière Lennouille ?</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut lectus vel justo feugiat molestie vitae nec urna. Cras lobortis leo vel sapien hendrerit, eget varius libero vestibulum. Proin euismod, dolor non varius euismod, turpis enim commodo nunc, non dictum urna nisi in est. Suspendisse at porta dui. In vel euismod lacus, nec tristique velit. Mauris tempor tristique orci accumsan pulvinar. Nullam nec dignissim est. Vestibulum nec purus sed est euismod rhoncus. Etiam est justo, egestas ut ex a, fringilla porta tortor. Sed ut ligula elit. Aliquam eget mattis dui. Pellentesque condimentum magna nec lobortis ullamcorper. Vestibulum blandit vulputate velit, sit amet vulputate ex consectetur in.</p>
+            <a href="/about"><button class="GlowingBtn" type="button">HOVER ME, THEN CLICK ME!</button></a>
         </div>
     </section>
 `;
