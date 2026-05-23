@@ -16,6 +16,10 @@ const dotPos = {x: W/2, y: H/2};
 const pos    = {x: W/2, y: H/2};
 const speed  = 0.08;
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let prefersReduced  = reducedMotion.matches;
+reducedMotion.addEventListener('change', e => { prefersReduced = e.matches; });
+
 const rootStyles = getComputedStyle(document.documentElement);
 const bgVarRaw = rootStyles.getPropertyValue('--Background').trim();
 
@@ -189,11 +193,18 @@ function loop(now) {
     const delta = dt * (60 / 1000);
     const lerpT = 1.0 - Math.pow(1.0 - speed, delta);
 
-    pos.x += (mouse.x - pos.x) * lerpT;
-    pos.y += (mouse.y - pos.y) * lerpT;
+    if (prefersReduced) {
+        pos.x    = mouse.x;
+        pos.y    = mouse.y;
+        dotPos.x = mouse.x;
+        dotPos.y = mouse.y;
+    } else {
+        pos.x += (mouse.x - pos.x) * lerpT;
+        pos.y += (mouse.y - pos.y) * lerpT;
 
-    dotPos.x += (mouse.x - dotPos.x) * 0.85;
-    dotPos.y += (mouse.y - dotPos.y) * 0.85;
+        dotPos.x += (mouse.x - dotPos.x) * 0.85;
+        dotPos.y += (mouse.y - dotPos.y) * 0.85;
+    }
 
     dot.style.left  = Math.round(dotPos.x) + 'px';
     dot.style.top   = Math.round(dotPos.y) + 'px';
