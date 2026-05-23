@@ -237,4 +237,13 @@ function loop(now) {
     rafId = requestAnimationFrame(loop);
 }
 
-requestAnimationFrame(loop);
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+    } else {
+        last  = performance.now();
+        rafId = requestAnimationFrame(loop);
+    }
+});
+rafId = requestAnimationFrame(loop);
