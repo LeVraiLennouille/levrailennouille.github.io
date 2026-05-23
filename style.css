@@ -25,3 +25,32 @@ html, body {
     width: 100%;
     font-family: "Syne", sans-serif;
 }
+
+svg.Me {
+	max-width: 70vw;
+	max-height: 80vh;
+	aspect-ratio: 1/1;
+
+	#LennouilleClip {
+        transform-origin: center;
+		transition: ease-out transform .4s;
+	}
+
+	&:hover {
+		#LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
+
+		.TextContent{
+			fill: var(--PureWhite);
+			mix-blend-mode: overlay;
+		}
+	}
+
+    .TextContent {
+	    font-weight: 900; 
+        font-size: 0.38rem;
+	    letter-spacing: 1.5px;
+	    fill: var(--Primary);
+	    mix-blend-mode: normal;
+	    transition: ease fill .5s;
+    }
+}
