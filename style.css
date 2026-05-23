@@ -100,6 +100,12 @@ section.Hero {
                         padding-bottom: 0px;
                         -webkit-text-stroke: 18px var(--Primary);
                         color: var(--Background);
+
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                        }
                         
                         span {
                             &.T1A {right: -50px; bottom: 0px;}
@@ -116,6 +122,13 @@ section.Hero {
                         padding-top: 0px;
                         -webkit-text-stroke: 18px var(--Background);
                         color: var(--Primary);
+
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                            text-transform: uppercase;
+                        }
 
                         span {
                             &.T2A {left: -50px; top: 0px;}
