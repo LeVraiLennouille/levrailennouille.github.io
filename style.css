@@ -14,6 +14,7 @@
 * {
     margin: 0;
     padding: 0;
+    cursor: none !important;
 
     &::after, &::before {
         box-sizing: border-box;
@@ -30,7 +31,7 @@ html, body {
 #CursorDot {
     width: 8px;
     height: 8px;
-    background: #fff;
+    background: var(--PureWhite);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -38,7 +39,7 @@ html, body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.15s;
 }
  
 #CursorBall {
@@ -66,6 +67,7 @@ html, body {
     z-index: 1100;
     transition: width 0.08s linear;
     pointer-events: none;
+    transition: width 0.2s, height 0.2s, border-color 0.2s, border-radius 0.2s, background 0.2s, opacity 0.2s;
 }
 
 .NavBar {
