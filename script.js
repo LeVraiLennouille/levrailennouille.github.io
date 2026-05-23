@@ -78,23 +78,21 @@ let lightMode = false;
 function applyTheme(light) {
     if (light === lightMode) return;
     lightMode = light;
-    dot.style.background   = light ? '#000' : '#fff';
+    dot.style.background = light ? '#000' : '#fff';
     ball.style.borderColor = light ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.6)';
     if (cursorState === 'text') {ball.style.background = light ? '#000' : '#fff';}
 }
 
 let cursorState = 'default';
-let isHovering  = false;
-let isClicking  = false;
-let isDragging  = false;
-let isText      = false;
+let isHovering = false;
+let isClicking = false;
+let isDragging = false;
 
 function applyCursorState() {
     let newState = 'default';
     if (isDragging) newState = 'drag';
     else if (isClicking) newState = 'click';
     else if (isHovering) newState = 'hover';
-    else if (isText) newState = 'text';
     if (newState === cursorState) return;
 
     cursorState = newState;
@@ -120,17 +118,6 @@ function applyCursorState() {
             dot.style.height = '4px';
             break;
 
-        case 'text':
-            ball.style.width = '2px';
-            ball.style.height = '24px';
-            ball.style.borderRadius = '2px';
-            ball.style.border = 'none';
-            ball.style.background = fg;
-            dot.style.width = '0px';
-            dot.style.height = '0px';
-            dot.style.opacity = '0';
-            break;
-
         case 'click':
 
             ball.style.width = '18px';
@@ -147,15 +134,6 @@ function applyCursorState() {
             dot.style.height = '4px';
             break;
     }
-}
-
-function isTextUnderCursor(x, y) {
-    const elements = document.elementsFromPoint(x, y).filter(el => el !== dot && el !== ball);
-    for (const el of elements) {
-        const cursor = getComputedStyle(el).cursor;
-        if (cursor === 'text' || cursor === 'vertical-text') return true;
-    }
-    return false;
 }
 
 window.addEventListener('mousemove', e => {
@@ -224,14 +202,6 @@ function loop(now) {
     if (frameCount++ % 3 === 0) {
         const bgRGB = getEffectiveBgRGB(Math.round(mouse.x), Math.round(mouse.y));
         applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
-
-        if (!isClicking && !isDragging && !isHovering) {
-            const textNow = isTextUnderCursor(Math.round(mouse.x), Math.round(mouse.y));
-            if (textNow !== isText) {
-                isText = textNow;
-                applyCursorState();
-            }
-        }
     }
 
     rafId = requestAnimationFrame(loop);
