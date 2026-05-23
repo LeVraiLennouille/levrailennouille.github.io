@@ -60,4 +60,17 @@ section.Me {
 	        transition: ease fill .5s;
         }
     }
+    
+    .Text {
+        max-width: 50%;
+        font-weight: 400; 
+        font-size: 1em;
+
+        h4 {
+            font-weight: 900; 
+            font-size: 1em;
+        }
+
+        p {text-align: justify ;} 
+    }
 }
