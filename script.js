@@ -1,16 +1,19 @@
 // ! Functions ! //
 // * Cursor * //
-if (window.matchMedia('(pointer: coarse)').matches) {
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+let dot  = null;
+let ball = null;
+
+if (isTouchDevice) {
     const _dot  = document.getElementById('CursorDot');
     const _ball = document.getElementById('CursorBall');
-
     if (_dot)  _dot.style.display  = 'none';
     if (_ball) _ball.style.display = 'none';
-    throw new Error('Touch device — cursor disabled.');
+} else {
+    dot  = document.getElementById('CursorDot');
+    ball = document.getElementById('CursorBall');
 }
-
-const dot    = document.getElementById('CursorDot');
-const ball   = document.getElementById('CursorBall');
 
 let W = window.innerWidth;
 let H = window.innerHeight;
@@ -28,6 +31,8 @@ const speed  = 0.08;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let prefersReduced  = reducedMotion.matches;
 reducedMotion.addEventListener('change', e => { prefersReduced = e.matches; });
+
+if (!isTouchDevice) {
 
 const rootStyles = getComputedStyle(document.documentElement);
 const bgVarRaw = rootStyles.getPropertyValue('--Background').trim();
@@ -217,6 +222,7 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 rafId = requestAnimationFrame(loop);
+} // end if (!isTouchDevice)
 
 // * NavBar Mobile* //
 document.addEventListener('DOMContentLoaded', function () {

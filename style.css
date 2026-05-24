@@ -1027,11 +1027,11 @@ section.Talk {
     section.Hero {
         .Box {transform: translate(-2vw, -40px);}
         img {max-width: 225px;}
+    }
 
-        .CardImg {
-            img:first-child {display: none !important;}
-            img:last-child {display: flex !important;}
-        }
+    section.Work .Container .Card .CardImg {
+        img:first-child {display: none !important;}
+        img:last-child {display: flex !important;}
     }
 
     section.Merge {
