@@ -53,8 +53,9 @@ html, body {
 
         .FooterCol {
             .FooterLogo {
-                font-size: 1.8rem;
-                color: var(--Primary);
+                font-size: 2rem;
+                font-weight: 900;
+                color: var(--PureWhite);
                 margin-bottom: 15px;
             }
 
