@@ -50,9 +50,16 @@ const footerHTML = `
     </div>
     <div class="FooterBottom">
         <p>&copy; 2026 Lennouille. Tous droits réservés.</p>
-        <button class="FooterBackTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-        </button>
+        <div class="FooterTerms">
+            <ul class="FooterLinks">
+                <li><a href="/mentions-legales">Mentions légales</a></li>
+                <li><a href="/politique-confidentialite">Politique de confidentialité</a></li>
+                <li><a href="/cgu">CGU</a></li>
+            </ul>
+            <button class="FooterBackTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+            </button>
+        </div>
     </div>
 </footer>
 `;

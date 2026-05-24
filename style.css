@@ -207,9 +207,9 @@ html, body {
 
     .FooterBottom {
         text-align: center;
-        padding-top: 20px;
+        padding-top: 10px;
         font-size: 0.85rem;
-        color: #6C8293;
+        color: var(--SuperMuted);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -221,6 +221,26 @@ html, body {
             font-size: 0.85rem;
         }
 
+        .FooterTerms {
+            display: flex;
+            gap: 20px;
+
+            .FooterLinks {
+                list-style: none;
+                align-items: center;
+                display: flex;
+                gap: 20px;
+                padding: 0;
+
+                li>a {
+                    color: var(--SuperMuted);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+
+                    &:hover {color: var(--Primary);}
+                }
+            }
+        }
         .FooterBackTop {
             display: flex;
             align-items: center;
