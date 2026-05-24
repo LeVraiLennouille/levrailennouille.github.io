@@ -8,6 +8,16 @@ const footerHTML = `
                 <span class="FooterBadgeDot"></span>Disponible pour des opportunités
             </span>
             <p class="FooterDesc">Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs.</p>
+            <a class="SwitchBtn" href="/contact">
+                <span class="BtnTexts">
+                    <span class="DefaultText">Me contacter</span>
+                    <span class="HoverText">Me contacter</span>
+                </span>
+                <span class="BtnIcon">
+                    <span class="Dot"></span>
+                    <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                </span>
+            </a>
         </div>
         <div class="FooterCol">
             <h4 class="FooterTitle">Navigation</h4>
