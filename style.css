@@ -27,7 +27,7 @@ html, body {
 }
 section.Me {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
