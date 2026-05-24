@@ -35,7 +35,7 @@ section.Me {
 
     svg {
     	width: 70vw;
-	    height: 80vh;
+	    height: auto;
     	aspect-ratio: 1/1;
 
 	    #LennouilleClip {
@@ -131,4 +131,16 @@ section.Me {
     0% {background-position: 0 0;}
     50% {background-position: 400% 0;}
     100% {background-position: 0 0;}
+}
+
+@media (max-width: 600px) {
+    section.Me {
+        flex-direction: column-reverse;
+        margin: 20px;
+        gap: 30px;
+
+        svg {
+            height: auto;
+        }
+    }
 }
