@@ -100,3 +100,25 @@ section.Merge {
     50% {opacity: 1;}
     100% {opacity: 0.15;}
 }
+
+@media (max-width: 600px) {
+    section.Merge {
+        padding: 0 10px;
+
+        .ListContainer {
+
+            .ListText, .List {font-size: 1.5rem; }
+
+            .ListText {
+                white-space: nowrap;
+                text-align: right;
+                width: 50%;
+            }
+
+            .List {
+                width: 50%;
+                text-align: left;
+            }
+        }
+    }
+}
