@@ -31,10 +31,11 @@ section.Me {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 100px;
 
     svg {
-    	max-width: 70vw;
-	    max-height: 80vh;
+    	width: 70vw;
+	    height: 80vh;
     	aspect-ratio: 1/1;
 
 	    #LennouilleClip {
@@ -65,7 +66,6 @@ section.Me {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        max-width: 50%;
         font-weight: 400; 
         font-size: 1em;
 
@@ -83,12 +83,10 @@ section.Me {
         }
 
         .GlowingBtn {
-            width: 220px;
-            height: 50px;
             border: none;
             outline: none;
             color: var(--PureWhite);
-            background: var(--Charcoal);
+            background: var(--PureBlack);
             cursor: pointer;
             position: relative;
             z-index: 0;
@@ -120,7 +118,7 @@ section.Me {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                background: var(--Charcoal);
+                background: var(--PureBlack);
                 left: 0;
                 top: 0;
                 border-radius: 10px;
