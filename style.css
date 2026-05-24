@@ -30,7 +30,7 @@ html, body {
 }
 
 .Footer {
-    background-color: var(--DarkPrimary);
+    background-color: #071C32;
     color: var(--PureWhite);
     padding: 60px 20px 20px;
     margin-top: auto;
