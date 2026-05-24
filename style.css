@@ -501,7 +501,7 @@ section.Talk {
 
 section.Me {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -541,12 +541,12 @@ section.Me {
         flex-direction: column;
         gap: 20px;
         font-weight: 400; 
-        font-size: 1em;
+        font-size: 1.1em;
 
         h4 {
             color: var(--DarkPrimary);
             font-weight: 900; 
-            font-size: 1em;
+            font-size: 1.5em;
         }
 
         .Desc {
@@ -655,7 +655,10 @@ section.Me {
         gap: 30px;
 
         svg {height: auto;}
-        .GlowingBtn {align-self: flex-start;}
+        .Text {
+            text-align: center;
+            .GlowingBtn {align-self: flex-start; margin: 0 auto;}
+        }
     }
 
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
