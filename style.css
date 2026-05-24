@@ -5,9 +5,12 @@
 
 :root {
     --Primary: #207EDE; --PrimaryRGB: 32, 126, 222;
+    --DarkPrimary: #134C85; --DarkPrimaryRGB: 19, 76, 133;
     --PureBlack: #000; --PureBlackRGB: 0, 0, 0;
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
+    --Muted: #A0B3C1; --MutedRGB: 160, 179, 193;
+    --SuperMuted: #6C8293; --SuperMutedRGB: 108, 130, 147;
 }
 
 * {
@@ -27,14 +30,14 @@ html, body {
 }
 
 .Footer {
-    background-color: var(--Four);
+    background-color: var(--DarkPrimary);
     color: var(--PureWhite);
     padding: 60px 20px 20px;
     margin-top: auto;
 
     .FooterAccent {
         height: 2px;
-        background: linear-gradient(to right, transparent, var(--Two) 20%, var(--One) 50%, var(--Two) 80%, transparent);
+        background: linear-gradient(to right, transparent, var(--Primary) 20%, var(--Primary) 50%, var(--Primary) 80%, transparent);
         margin-bottom: 60px;
         opacity: 0.6;
     }
@@ -51,7 +54,7 @@ html, body {
         .FooterCol {
             .FooterLogo {
                 font-size: 1.8rem;
-                color: var(--One);
+                color: var(--Primary);
                 margin-bottom: 15px;
             }
 
@@ -59,9 +62,9 @@ html, body {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background-color: rgba(var(--OneRGB), 0.12);
-                border: 1px solid rgba(var(--OneRGB), 0.3);
-                color: var(--One);
+                background-color: rgba(var(--PrimaryRGB), 0.12);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
+                color: var(--Primary);
                 font-size: 0.78rem;
                 font-weight: 600;
                 text-transform: uppercase;
@@ -84,7 +87,7 @@ html, body {
             .FooterDesc {
                 font-size: 0.95rem;
                 line-height: 1.6;
-                color: #A0B3C1;
+                color: var(--Muted);
                 text-transform: none;
                 margin-bottom: 20px;
             }
@@ -94,8 +97,8 @@ html, body {
                 align-items: center;
                 gap: 8px;
                 color: var(--PureWhite);
-                background-color: rgba(var(--OneRGB), 0.15);
-                border: 1px solid rgba(var(--OneRGB), 0.35);
+                background-color: rgba(var(--PrimaryRGB), 0.15);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.35);
                 text-decoration: none;
                 font-size: 0.88rem;
                 font-weight: 600;
@@ -104,8 +107,8 @@ html, body {
                 transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
 
                 &:hover {
-                    background-color: var(--One);
-                    border-color: var(--One);
+                    background-color: var(--Primary);
+                    border-color: var(--Primary);
                     transform: translateY(-2px);
 
                     svg {transform: translateX(3px);}
@@ -138,13 +141,13 @@ html, body {
                     margin-bottom: 12px;
 
                     >a {
-                        color: #A0B3C1;
+                        color: var(--Muted);
                         text-decoration: none;
                         font-size: 0.95rem;
                         transition: color 0.3s ease, padding-left 0.3s ease;
 
                         &:hover {
-                            color: var(--One);
+                            color: var(--Primary);
                             padding-left: 5px;
 
                             span.FooterLinkArrow {
@@ -156,7 +159,7 @@ html, body {
                         span.FooterLinkArrow {
                             display: inline-block;
                             margin-right: 7px;
-                            color: var(--One);
+                            color: var(--Primary);
                             opacity: 0;
                             transform: translateX(-6px);
                             transition: opacity 0.25s ease, transform 0.25s ease;
@@ -172,7 +175,7 @@ html, body {
                 gap: 10px;
 
                 &:hover .FooterIcon {
-                    background-color: var(--One);
+                    background-color: var(--Primary);
 
                     svg {stroke: var(--PureWhite);}
                 }
@@ -184,14 +187,14 @@ html, body {
                     width: 30px;
                     height: 30px;
                     border-radius: 8px;
-                    background-color: rgba(var(--OneRGB), 0.1);
+                    background-color: rgba(var(--PrimaryRGB), 0.1);
                     flex-shrink: 0;
                     transition: background-color 0.3s ease;
 
                     svg {
                         width: 14px;
                         height: 14px;
-                        stroke: var(--One); 
+                        stroke: var(--Primary); 
                         fill: none;
                         stroke-width: 2;
                         stroke-linecap: round;
@@ -232,8 +235,8 @@ html, body {
             flex-shrink: 0;
 
             &:hover {
-                background-color: var(--One);
-                border-color: var(--One);
+                background-color: var(--Primary);
+                border-color: var(--Primary);
                 transform: translateY(-3px);
 
                 svg {stroke: var(--PureWhite);}
@@ -242,7 +245,7 @@ html, body {
             svg {
                 width: 16px;
                 height: 16px;
-                stroke: #A0B3C1;
+                stroke: var(--Muted);
                 fill: none;
                 stroke-width: 2.5;
                 stroke-linecap: round;
