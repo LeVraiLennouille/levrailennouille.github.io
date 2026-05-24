@@ -25,3 +25,236 @@ html, body {
     width: 100%;
     font-family: "Syne", sans-serif;
 }
+
+.Footer {
+    background-color: var(--Four);
+    color: var(--PureWhite);
+    padding: 60px 20px 20px;
+    margin-top: auto;
+
+    .FooterAccent {
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--Two) 20%, var(--One) 50%, var(--Two) 80%, transparent);
+        margin-bottom: 60px;
+        opacity: 0.6;
+    }
+
+    .FooterContainer {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(var(--PureWhiteRGB), 0.1);
+
+        .FooterCol {
+            .FooterLogo {
+                font-size: 1.8rem;
+                color: var(--One);
+                margin-bottom: 15px;
+            }
+
+            .FooterBadge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background-color: rgba(var(--OneRGB), 0.12);
+                border: 1px solid rgba(var(--OneRGB), 0.3);
+                color: var(--One);
+                font-size: 0.78rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding: 5px 12px;
+                border-radius: 50px;
+                margin-bottom: 16px;
+
+                .FooterBadgeDot {
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background-color: #4ade80;
+                    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+                    animation: FooterPulse 2s infinite;
+                    flex-shrink: 0;
+                }
+            }
+
+            .FooterDesc {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: #A0B3C1;
+                text-transform: none;
+                margin-bottom: 20px;
+            }
+
+            .FooterCta {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--PureWhite);
+                background-color: rgba(var(--OneRGB), 0.15);
+                border: 1px solid rgba(var(--OneRGB), 0.35);
+                text-decoration: none;
+                font-size: 0.88rem;
+                font-weight: 600;
+                padding: 9px 18px;
+                border-radius: 50px;
+                transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+
+                &:hover {
+                    background-color: var(--One);
+                    border-color: var(--One);
+                    transform: translateY(-2px);
+
+                    svg {transform: translateX(3px);}
+                }
+
+                svg {
+                    width: 15px;
+                    height: 15px;
+                    stroke: currentColor;
+                    fill: none;
+                    stroke-width: 2;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    transition: transform 0.25s ease;
+                }
+            }
+
+            .FooterTitle {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--PureWhite);
+            }
+
+            .FooterLinks {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 12px;
+
+                    >a {
+                        color: #A0B3C1;
+                        text-decoration: none;
+                        font-size: 0.95rem;
+                        transition: color 0.3s ease, padding-left 0.3s ease;
+
+                        &:hover {
+                            color: var(--One);
+                            padding-left: 5px;
+
+                            span.FooterLinkArrow {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+
+                        span.FooterLinkArrow {
+                            display: inline-block;
+                            margin-right: 7px;
+                            color: var(--One);
+                            opacity: 0;
+                            transform: translateX(-6px);
+                            transition: opacity 0.25s ease, transform 0.25s ease;
+                            font-style: normal;
+                        }
+                    }
+                }
+            }
+
+            .FooterSocialLinks a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                &:hover .FooterIcon {
+                    background-color: var(--One);
+
+                    svg {stroke: var(--PureWhite);}
+                }
+
+                .FooterIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 8px;
+                    background-color: rgba(var(--OneRGB), 0.1);
+                    flex-shrink: 0;
+                    transition: background-color 0.3s ease;
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                        stroke: var(--One); 
+                        fill: none;
+                        stroke-width: 2;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                    }
+                }
+            }
+        }
+    }
+
+    .FooterBottom {
+        text-align: center;
+        padding-top: 20px;
+        font-size: 0.85rem;
+        color: #6C8293;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        p {
+            text-transform: none;
+            font-size: 0.85rem;
+        }
+
+        .FooterBackTop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(var(--PureWhiteRGB), 0.15);
+            background-color: rgba(var(--PureWhiteRGB), 0.05);
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+            flex-shrink: 0;
+
+            &:hover {
+                background-color: var(--One);
+                border-color: var(--One);
+                transform: translateY(-3px);
+
+                svg {stroke: var(--PureWhite);}
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+                stroke: #A0B3C1;
+                fill: none;
+                stroke-width: 2.5;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: stroke 0.3s ease;
+            }
+        }
+    }
+}
+
+@keyframes FooterPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+    70%  { box-shadow: 0 0 0 7px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
