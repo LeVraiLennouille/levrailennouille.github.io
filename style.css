@@ -6,10 +6,15 @@
 :root {
     --Primary: #207EDE; --PrimaryRGB: 32, 126, 222;
     --DarkPrimary: #134C85; --DarkPrimaryRGB: 19, 76, 133;
+    
     --PureBlack: #000; --PureBlackRGB: 0, 0, 0;
     --Charcoal: #1c1c1e; --CharcoalRGB: 28, 28, 30;
+
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
+
+    --Muted: #A0B3C1; --MutedRGB: 160, 179, 193;
+    --SuperMuted: #6C8293; --SuperMutedRGB: 108, 130, 147;
 
 /* Hero */
     --Rotation: 0deg;
