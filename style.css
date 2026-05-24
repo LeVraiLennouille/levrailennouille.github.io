@@ -144,6 +144,9 @@ section.Me {
         gap: 30px;
 
         svg {height: auto;}
-        .GlowingBtn {align-self: flex-start;}
+        .Text {
+            text-align: center;
+            .GlowingBtn {align-self: flex-start; margin: 0 auto;}
+        }
     }
 }
