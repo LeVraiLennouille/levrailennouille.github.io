@@ -3,11 +3,11 @@ const footerHTML = `
     <div class="FooterAccent"></div>
     <div class="FooterContainer">
         <div class="FooterCol">
-            <h3 class="FooterLogo">Lenny Gadroy</h3>
+            <h3 class="FooterLogo">Lennouille</h3>
             <span class="FooterBadge">
                 <span class="FooterBadgeDot"></span>Disponible pour des opportunités
             </span>
-            <p class="FooterDesc">Étudiant passionné par l'UI/UX Design, créant des expériences digitales fluides et mémorables.</p>
+            <p class="FooterDesc">Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs.</p>
             <a href="/contact" class="FooterCta">Me contacter
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -49,7 +49,7 @@ const footerHTML = `
         </div>
     </div>
     <div class="FooterBottom">
-        <p>&copy; 2026 Lenny Gadroy. Tous droits réservés.</p>
+        <p>&copy; 2026 Lennouille. Tous droits réservés.</p>
         <button class="FooterBackTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
         </button>
