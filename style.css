@@ -306,11 +306,12 @@ html, body {
             gap: 20px;
 
             .FooterLinks {
-                text-align: right;
-                pointer-events: auto;
+                list-style: none;
+                align-items: center;
                 display: flex;
-                flex-direction: column;
-                align-items: flex-end;
+                gap: 20px;
+                padding: 0;
+                pointer-events: auto;
 
                 li>a {
                     color: var(--SuperMuted);
@@ -323,7 +324,7 @@ html, body {
                     transition: all 0.3s ease;
 
                     &:hover {
-                        color: var(--PureBlack);
+                        color: var(--Primary);
 
                         &::before {transform: scaleX(1);}
                     }
@@ -344,6 +345,7 @@ html, body {
                 }
             }
         }
+        
         .FooterBackTop {
             display: flex;
             align-items: center;
