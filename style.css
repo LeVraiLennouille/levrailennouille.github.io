@@ -62,9 +62,9 @@ html, body {
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
-                background-color: rgba(var(--PrimaryRGB), 0.12);
-                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
-                color: var(--Primary);
+                background-color: rgba(var(--PureWhiteRGB), 0.12);
+                border: 1px solid rgba(var(--PureWhiteRGB), 0.32);
+                color: var(--PureWhite);
                 font-size: 0.78rem;
                 font-weight: 600;
                 text-transform: uppercase;
