@@ -67,12 +67,12 @@ section.Me {
         flex-direction: column;
         gap: 20px;
         font-weight: 400; 
-        font-size: 1em;
+        font-size: 1.1em;
 
         h4 {
             color: var(--DarkPrimary);
             font-weight: 900; 
-            font-size: 1em;
+            font-size: 1.5em;
         }
 
         .Desc {
