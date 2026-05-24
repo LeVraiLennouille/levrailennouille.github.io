@@ -499,6 +499,118 @@ section.Talk {
     100% {fill: var(--PureWhite);}
 }
 
+section.Me {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+
+    svg {
+    	width: 70vw;
+	    height: auto;
+    	aspect-ratio: 1/1;
+
+	    #LennouilleClip {
+            transform-origin: center;
+    		transition: ease-out transform .4s;
+	    }
+
+	    &:hover {
+		    #LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
+
+    		.TextContent{
+	    		fill: var(--PureWhite);
+		    	mix-blend-mode: overlay;
+    		}
+	    }
+
+        .TextContent {
+    	    font-weight: 900; 
+            font-size: 0.38rem;
+	        letter-spacing: 1.5px;
+    	    fill: var(--Primary);
+	        mix-blend-mode: normal;
+	        transition: ease fill .5s;
+        }
+    }
+    
+    .Text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-weight: 400; 
+        font-size: 1em;
+
+        h4 {
+            color: var(--DarkPrimary);
+            font-weight: 900; 
+            font-size: 1em;
+        }
+
+        .Desc {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            p {text-align: justify ;}
+        }
+
+        .GlowingBtn {
+            align-self: flex-start;
+            padding: 16px 32px;
+            border: none;
+            outline: none;
+            color: var(--PureWhite);
+            background: var(--DarkPrimary);
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            text-decoration: none;
+
+            &:before {
+                content: '';
+                background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+                position: absolute;
+                top: -2px;
+                left:-2px;
+                background-size: 400%;
+                z-index: -1;
+                filter: blur(5px);
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                animation: Glowing 20s linear infinite;
+                opacity: 0;
+                transition: opacity .3s ease-in-out;
+                border-radius: 10px;
+            }
+
+            &:active {color: var(--PureBlack)}
+            &:active:after {background: transparent;}
+            &:hover:before {opacity: 1;}
+            &:after {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--DarkPrimary);
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+            }
+        }   
+    }
+}
+
+@keyframes Glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
 @media (max-width: 600px) {
     :root {
         --Scale:     0.65;
@@ -518,6 +630,15 @@ section.Talk {
     }
 
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+
+    section.Me {
+        flex-direction: column-reverse;
+        margin: 20px;
+        gap: 30px;
+
+        svg {height: auto;}
+        .GlowingBtn {align-self: flex-start;}
+    }
 }
 
 @media (hover: none) {
