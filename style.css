@@ -1005,6 +1005,364 @@ section.Talk {
     100% {fill: var(--PureWhite);}
 }
 
+.Footer {
+    background-color: #071C32;
+    color: var(--PureWhite);
+    padding: 60px 20px 20px;
+    margin-top: auto;
+
+    .FooterAccent {
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--Primary) 20%, var(--Primary) 50%, var(--Primary) 80%, transparent);
+        margin-bottom: 60px;
+        opacity: 0.6;
+    }
+
+    .FooterContainer {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(var(--PureWhiteRGB), 0.1);
+
+        .FooterCol {
+            .FooterLogo {
+                font-size: 2rem;
+                font-weight: 900;
+                color: var(--PureWhite);
+                margin-bottom: 15px;
+            }
+
+            .FooterBadge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background-color: rgba(var(--PureWhiteRGB), 0.12);
+                border: 1px solid rgba(var(--PureWhiteRGB), 0.32);
+                color: var(--PureWhite);
+                font-size: 0.78rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding: 5px 12px;
+                border-radius: 50px;
+                margin-bottom: 16px;
+
+                .FooterBadgeDot {
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background-color: #4ade80;
+                    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+                    animation: FooterPulse 2s infinite;
+                    flex-shrink: 0;
+                }
+            }
+
+            .SwitchBtn {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 0 10px 0 32px;
+                height: 44px;
+                border: none;
+                border-radius: 999px;
+                background: var(--Primary);
+                cursor: pointer;
+                overflow: hidden;
+                outline: none;
+                text-decoration: none;
+                -webkit-tap-highlight-color: transparent;
+                box-shadow: rgba(var(--PureBlackRGB), 0.15) 2.4px 2.4px 3.2px;
+
+                &:hover::before {clip-path: circle(150% at calc(100% - 34px) 50%);}
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: var(--PureWhite);
+                    border-radius: inherit;
+                    clip-path: circle(0% at calc(100% - 34px) 50%);
+                    transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+                    z-index: 0;
+                }
+
+                .BtnTexts {
+                    position: relative;
+                    z-index: 1;
+                    height: 28px;
+                    overflow: hidden;
+    
+                    span {
+                        display: block;
+                        font-size: 1.15rem;
+                        font-weight: 500;
+                        line-height: 28px;
+                        white-space: nowrap;
+                        transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease;
+                    }
+
+                    .DefaultText {
+                        color: var(--PureWhite);
+                        transform: translateY(0);
+                    }
+
+                    .HoverText {
+                        color: var(--Primary);
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        transform: translateY(100%);
+                    }
+                }
+
+                &:hover .DefaultText {transform: translateY(-100%);}
+                &:hover .HoverText {transform: translateY(0);}
+
+                .BtnIcon {
+                    position: relative;
+                    z-index: 1;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background 0.35s ease, transform 0.35s ease;
+
+                    .Dot {
+                        width: 14px;
+                        height: 14px;
+                        border-radius: 50%;
+                        background: var(--PureWhite);
+                        flex-shrink: 0;
+                        transition: opacity 0.25s ease, transform 0.25s ease;
+                        position: absolute;
+                    }
+
+                    .Arrow {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background: var(--Primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transform: scale(0.4);
+                        transition: opacity 0.3s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+                        
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            stroke: var(--PureWhite);
+                            stroke-width: 2;
+                            fill: none;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                        }
+                    }
+                }
+
+                &:hover .Dot {opacity: 0; transform: scale(0);}
+                &:hover .Arrow {opacity: 1; transform: scale(1);}
+            }
+
+            .FooterDesc {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: var(--Muted);
+                text-transform: none;
+                margin-bottom: 20px;
+            }
+
+            .FooterTitle {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--PureWhite);
+            }
+
+            .FooterLinks {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 12px;
+
+                    >a {
+                        color: var(--Muted);
+                        text-decoration: none;
+                        font-size: 0.95rem;
+                        transition: color 0.3s ease, padding-left 0.3s ease;
+
+                        &:hover {
+                            color: var(--Primary);
+                            padding-left: 5px;
+
+                            span.FooterLinkArrow {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+
+                        span.FooterLinkArrow {
+                            display: inline-block;
+                            margin-right: 7px;
+                            color: var(--Primary);
+                            opacity: 0;
+                            transform: translateX(-6px);
+                            transition: opacity 0.25s ease, transform 0.25s ease;
+                            font-style: normal;
+                        }
+                    }
+                }
+            }
+
+            .FooterSocialLinks a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                &:hover .FooterIcon {
+                    background-color: var(--Primary);
+
+                    svg {stroke: var(--PureWhite);}
+                }
+
+                .FooterIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 8px;
+                    background-color: rgba(var(--PrimaryRGB), 0.1);
+                    flex-shrink: 0;
+                    transition: background-color 0.3s ease;
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                        stroke: var(--Primary); 
+                        fill: none;
+                        stroke-width: 2;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                    }
+                }
+            }
+        }
+    }
+
+    .FooterBottom {
+        text-align: center;
+        padding-top: 10px;
+        font-size: 0.85rem;
+        color: var(--SuperMuted);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        p {
+            text-transform: none;
+            font-size: 0.85rem;
+        }
+
+        .FooterTerms {
+            display: flex;
+            gap: 20px;
+
+            .FooterLinks {
+                list-style: none;
+                align-items: center;
+                display: flex;
+                gap: 20px;
+                padding: 0;
+                pointer-events: auto;
+
+                li>a {
+                    color: var(--SuperMuted);
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    line-height: 1.6;
+                    letter-spacing: 0.03em;
+                    width: fit-content;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--Primary);
+
+                        &::before {transform: scaleX(1);}
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(0);
+                        transform-origin: top right;
+                        transition: transform 0.3s ease;
+                    }
+                }
+            }
+        }
+        
+        .FooterBackTop {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(var(--PureWhiteRGB), 0.15);
+            background-color: rgba(var(--PureWhiteRGB), 0.05);
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+            flex-shrink: 0;
+
+            &:hover {
+                background-color: var(--Primary);
+                border-color: var(--Primary);
+                transform: translateY(-3px);
+
+                svg {stroke: var(--PureWhite);}
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+                stroke: var(--Muted);
+                fill: none;
+                stroke-width: 2.5;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: stroke 0.3s ease;
+            }
+        }
+    }
+}
+
+@keyframes FooterPulse {
+    0%   {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);}
+    70%  {box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);}
+    100% {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);}
+}
+
 @media (min-width: 951px) {
     .HamburgerBtn {display: none !important;}
     .MobileNav    {display: none !important;}
