@@ -50,7 +50,7 @@ section.Hero {
         justify-content: center;
         width: 150vw;
         height: 150vh;
-        transform: translate(-10vw, -40px);
+        transform: translate(-10vw, 20px);
 
         &#Ground {
             z-index: 5;
@@ -101,13 +101,19 @@ section.Hero {
                         padding-bottom: 0px;
                         -webkit-text-stroke: 18px var(--Primary);
                         color: var(--Background);
+
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                        }
                         
                         span {
                             &.T1A {right: -50px; bottom: 0px;}
                             &.T1B {right: 15px; bottom: 60px;}
                             &.T1C {right: -90px; bottom: 0px;}
-                            &.T1D {right: 15px; bottom: 100px; letter-spacing:5px;}
-                            &.T1E {right: -5px; bottom: 150px;}
+                            &.T1D {right: 45px; bottom: 120px;}
+                            &.T1E {right: -5px; bottom: 120px;}
                         }
                     }
 
@@ -118,12 +124,19 @@ section.Hero {
                         -webkit-text-stroke: 18px var(--Background);
                         color: var(--Primary);
 
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                            text-transform: uppercase;
+                        }
+
                         span {
                             &.T2A {left: -50px; top: 0px;}
                             &.T2B {left: 15px; top: 60px;}
                             &.T2C {left: -100px; top: 0px;}
-                            &.T2D {left: 15px; top: 100px; letter-spacing:5px;}
-                            &.T2E {left: -5px; top: 150px;}
+                            &.T2D {left: 45px; top: 120px}
+                            &.T2E {left: -5px; top: 120px;}
                         }
                     }
 
@@ -134,9 +147,14 @@ section.Hero {
                         white-space: nowrap;
                         text-transform: uppercase;
 
+                        div {transform: rotate(90deg);}
+
                         &.TS26 {font-size: 26px; font-weight: 400;}
                         &.TS30 {font-size: 30px; font-weight: 600;}
-                        &.TS46 {font-size: 46px; font-weight: 700;}
+                        &.TS46 {
+                            font-size: 46px; font-weight: 900;
+                            div {transform: rotate(0deg);}
+                        }
 
                         &.VT {
                             writing-mode: vertical-rl;
