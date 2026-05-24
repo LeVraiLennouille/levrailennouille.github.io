@@ -94,7 +94,7 @@ html, body {
                 height: 44px;
                 border: none;
                 border-radius: 999px;
-                background: var(--Charcoal);
+                background: var(--Primary);
                 cursor: pointer;
                 overflow: hidden;
                 outline: none;
@@ -108,7 +108,7 @@ html, body {
                     content: '';
                     position: absolute;
                     inset: 0;
-                    background: var(--Primary);
+                    background: var(--PureWhite);
                     border-radius: inherit;
                     clip-path: circle(0% at calc(100% - 34px) 50%);
                     transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1);
@@ -136,7 +136,7 @@ html, body {
                     }
 
                     .HoverText {
-                        color: var(--Charcoal);
+                        color: var(--Primary);
                         position: absolute;
                         top: 0;
                         left: 0;
@@ -163,7 +163,7 @@ html, body {
                         width: 14px;
                         height: 14px;
                         border-radius: 50%;
-                        background: var(--Primary);
+                        background: var(--PureWhite);
                         flex-shrink: 0;
                         transition: opacity 0.25s ease, transform 0.25s ease;
                         position: absolute;
@@ -173,7 +173,7 @@ html, body {
                         width: 32px;
                         height: 32px;
                         border-radius: 50%;
-                        background: var(--Charcoal);
+                        background: var(--Primary);
                         display: flex;
                         align-items: center;
                         justify-content: center;
