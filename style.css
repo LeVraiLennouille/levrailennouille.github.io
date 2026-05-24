@@ -622,14 +622,32 @@ section.Me {
     section.Hero {
         .Box {transform: translate(-2vw, -40px);}
         img {max-width: 225px;}
+
+        .CardImg {
+            img:first-child {display: none !important;}
+            img:last-child {display: flex !important;}
+        }
     }
 
-    section.Hero .CardImg {
-        img:first-child {display: none !important;}
-        img:last-child {display: flex !important;}
-    }
+    section.Merge {
+        padding: 0 10px;
 
-    section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+        .ListContainer {
+
+            .ListText, .List {font-size: 1.5rem; }
+
+            .ListText {
+                white-space: nowrap;
+                text-align: right;
+                width: 50%;
+            }
+
+            .List {
+                width: 50%;
+                text-align: left;
+            }
+        }
+    }
 
     section.Me {
         flex-direction: column-reverse;
@@ -639,6 +657,8 @@ section.Me {
         svg {height: auto;}
         .GlowingBtn {align-self: flex-start;}
     }
+
+    section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
 }
 
 @media (hover: none) {
