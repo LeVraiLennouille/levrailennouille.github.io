@@ -18,7 +18,10 @@ const MeHTML = `
         </svg>
         <div class="Text">
             <h4>Qui se cache derrière Lennouille ?</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut lectus vel justo feugiat molestie vitae nec urna. Cras lobortis leo vel sapien hendrerit, eget varius libero vestibulum. Proin euismod, dolor non varius euismod, turpis enim commodo nunc, non dictum urna nisi in est. Suspendisse at porta dui. In vel euismod lacus, nec tristique velit. Mauris tempor tristique orci accumsan pulvinar. Nullam nec dignissim est. Vestibulum nec purus sed est euismod rhoncus. Etiam est justo, egestas ut ex a, fringilla porta tortor. Sed ut ligula elit. Aliquam eget mattis dui. Pellentesque condimentum magna nec lobortis ullamcorper. Vestibulum blandit vulputate velit, sit amet vulputate ex consectetur in.</p>
+            <p>Salut ! Moi c'est Lenny, fondateur du studio Lennouille, ton partenaire créatif et technique.</p>
+            <p>Tout a commencé par une volonté de comprendre les mécaniques derrière les interfaces que nous utilisons chaque jour. De ma formation initiale centrée sur l'humain et la relation client à ma spécialisation web, cette curiosité s'est transformée en une véritable passion pour l'ergonomie, que j'ai forgée en grande partie en autodidacte.</p>
+            <p>Aujourd'hui, je ne me contente pas de dessiner des maquettes ou de taper du code : je m'implique, je conseille et je t'accompagne de A à Z. Mon objectif ? Révéler l'essence de ton projet et créer une interface qui te ressemble à 100 %.</p>
+            <p>Chaque projet est pensé de manière globale pour marquer les esprits et atteindre tes objectifs. Du Branding au Développement Web, en passant par l'UI/UX et la création de Design Systems pérennes, je conçois des produits fluides, performants et sans friction.</p>
             <a href="/about"><button class="GlowingBtn" type="button">HOVER ME, THEN CLICK ME!</button></a>
         </div>
     </section>
