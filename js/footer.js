@@ -16,10 +16,10 @@ const footerHTML = `
             <h4 class="FooterTitle">Navigation</h4>
             <ul class="FooterLinks">
                 <li><a href="/index"><span class="FooterLinkArrow">›</span>Accueil</a></li>
-                <li><a href="/projets"><span class="FooterLinkArrow">›</span>Mes projets</a></li>
-                <li><a href="/albums"><span class="FooterLinkArrow">›</span>Mes albums</a></li>
-                <li><a href="/skills"><span class="FooterLinkArrow">›</span>Compétences</a></li>
-                <li><a href="/cv"><span class="FooterLinkArrow">›</span>Mon CV</a></li>
+                <li><a href="/services"><span class="FooterLinkArrow">›</span>Mes services</a></li>
+                <li><a href="/reals"><span class="FooterLinkArrow">›</span>Portfolio</a></li>
+                <li><a href="/blog"><span class="FooterLinkArrow">›</span>Articles</a></li>
+                <li><a href="/about"><span class="FooterLinkArrow">›</span>A propos</a></li>
             </ul>
         </div>
         <div class="FooterCol">
