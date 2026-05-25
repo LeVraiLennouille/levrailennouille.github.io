@@ -1011,7 +1011,7 @@ main.Contact {
         flex-direction: column;
         gap: 14px;
         width: 100%;
-        max-width: 460px;
+        max-width: 468px;
 
         .InputGroup {
             position: relative;
@@ -1058,6 +1058,7 @@ main.Contact {
         .FormActions {
             display: flex;
             justify-content: space-between;
+            width: 500px;
             gap: 1rem;
             margin-top: 1rem;
             flex-wrap: wrap;
