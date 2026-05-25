@@ -1034,8 +1034,10 @@ main.Contact {
                 &:focus~.FormLabel,
                 &:valid~.FormLabel {
                     top: 0;
+                    background-color: var(--Primary);
+                    color: var(--PureWhite);
+                    border-radius: 4px;
                     font-size: 0.8rem;
-                    color: var(--Primary);
                     font-weight: bold;
                 }
             }
@@ -1046,7 +1048,7 @@ main.Contact {
                 top: 50%;
                 transform: translateY(-50%);
                 color: var(--Primary);
-                background-color: var(--PureWhite);
+                background-color: transparent;
                 padding: 0 5px;
                 pointer-events: none;
                 transition: all 0.3s ease;
