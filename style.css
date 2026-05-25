@@ -3,7 +3,12 @@
     src: url("assets/Syne.ttf") format("truetype");
 }
 
+/* ==========================================================================
+   # Basics
+========================================================================== */
+
 :root {
+/* --- All --- */
     --Primary: #207EDE; --PrimaryRGB: 32, 126, 222;
     --DarkPrimary: #134C85; --DarkPrimaryRGB: 19, 76, 133;
     
@@ -16,7 +21,7 @@
     --Muted: #A0B3C1; --MutedRGB: 160, 179, 193;
     --SuperMuted: #6C8293; --SuperMutedRGB: 108, 130, 147;
 
-/* Hero */
+/* --- Hero section --- */
     --Rotation: 0deg;
     --Thickness: 20px;
     --Border: 8px;
@@ -42,6 +47,10 @@ html, body {
     background: var(--Background);
     font-family: "Syne", sans-serif;
 }
+
+/* ==========================================================================
+   # JS Functions
+========================================================================== */
 
 #CursorDot {
     width: 8px;
@@ -84,6 +93,10 @@ html, body {
     pointer-events: none;
     transition: width 0.2s, height 0.2s, border-color 0.2s, border-radius 0.2s, background 0.2s, opacity 0.2s;
 }
+
+/* ==========================================================================
+   # NavBar
+========================================================================== */
 
 .NavBar {
     position: fixed;
@@ -429,581 +442,9 @@ html, body {
     to   {opacity: 1; transform: translateY(0);}
 }
 
-section.Hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    width: 100vw;
-    height: 100vh;
-
-    .Box {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 150vw;
-        height: 150vh;
-        transform: translate(-10vw, 20px);
-
-        &#Ground {
-            z-index: 5;
-            backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);
-        }
-
-        &#Air    {
-            z-index: 10;
-
-            backGround:
-                linear-gradient(var(--Rotation), transparent calc(50% - var(--Thickness) - var(--Border)),
-                var(--Background) calc(50% - var(--Thickness) - var(--Border)),
-                var(--Background) calc(50% - var(--Thickness)),
-                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
-                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
-                var(--Primary) calc(50% + var(--Thickness)),
-                var(--Primary) calc(50% + var(--Thickness) + var(--Border)), transparent calc(50% + var(--Thickness) + var(--Border)));
-            backGround-repeat: no-repeat;
-        }
-
-        &#Text   {
-            z-index: 15;
-        
-            .SubBox {
-                display: flex;
-                flex-direction: column;
-                gap: var(--Gap);
-                text-align: center;
-                font-size: 20px;
-                transform: rotate(var(--Rotation)) scale(var(--Scale));
-
-                .SubText {
-                    display: inline;
-                    width: fit-content;
-                    position: relative;
-                    overflow: visible;
-                    padding: 15px;
-                    margin: 0px;
-                    font-weight: 800;
-                    font-size: 80px;
-                    line-height: 65px;
-                    border-radius: 5px;
-                    paint-order: stroke fill;
-
-                    &#SubT1 {
-                        margin-right: 150px;
-                        padding-top: 10px;
-                        padding-bottom: 0px;
-                        -webkit-text-stroke: 18px var(--Primary);
-                        color: var(--Background);
-
-                        h1 {
-                            font-size: inherit;
-                            line-height: inherit;
-                            font-weight: inherit;
-                        }
-                        
-                        span {
-                            &.T1A {right: -50px; bottom: 0px;}
-                            &.T1B {right: 15px; bottom: 60px;}
-                            &.T1C {right: -90px; bottom: 0px;}
-                            &.T1D {right: 45px; bottom: 120px;}
-                            &.T1E {right: -5px; bottom: 120px;}
-                        }
-                    }
-
-                    &#SubT2 {
-                        margin-left: 110px;
-                        padding-bottom: 10px;
-                        padding-top: 0px;
-                        -webkit-text-stroke: 18px var(--Background);
-                        color: var(--Primary);
-
-                        h1 {
-                            font-size: inherit;
-                            line-height: inherit;
-                            font-weight: inherit;
-                            text-transform: uppercase;
-                        }
-
-                        span {
-                            &.T2A {left: -50px; top: 0px;}
-                            &.T2B {left: 15px; top: 60px;}
-                            &.T2C {left: -100px; top: 0px;}
-                            &.T2D {left: 45px; top: 120px}
-                            &.T2E {left: -5px; top: 120px;}
-                        }
-                    }
-
-                    span {
-                        position: absolute;
-                        line-height: auto;
-                        -webkit-Text-stroke-width: 9px;
-                        white-space: nowrap;
-                        text-transform: uppercase;
-
-                        div {transform: rotate(90deg);}
-
-                        &.TS26 {font-size: 26px; font-weight: 400;}
-                        &.TS30 {font-size: 30px; font-weight: 600;}
-                        &.TS46 {
-                            font-size: 46px; font-weight: 900;
-                            div {transform: rotate(0deg);}
-                        }
-
-                        &.VT {
-                            writing-mode: vertical-rl;
-                            text-orientation: upright;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-section.Scroll {
-    height: 400vh;
-    position: relative;
-    background-color: var(--Primary);
-
-    .Wrapper {
-        height: 100vh;
-        position: sticky;
-        top: 0;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .TextReveal {
-            max-width: 900px;
-            color: var(--PureWhite);
-            text-align: center;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 700;
-            line-height: 1.4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .Word {
-            display: inline-block;
-            background-color: var(--Primary);
-            color: transparent;
-            border-radius: 3px;
-            margin: 2px;
-            padding: 0 4px;
-            transition:
-                background-color 0.1s,
-                color 0.1s;
-
-            &.Revealed {
-                background-color: transparent;
-                color: var(--PureWhite);
-            }
-        }
-    }
-}
-
-section.Work {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--PureBlack);
-
-    canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        
-        #CanvasGrid {z-index: 0;}
-        #CanvasLetters{z-index: 1;}
-    }
-
-    .Letters {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        pointer-events: none;
-        perspective: 156.25rem;
-        perspective-origin: center;
-    }
-
-    .Letter {
-        position: absolute;
-        font-size: 14rem;
-        font-weight: bold;
-        color: var(--Primary);
-        z-index: 2;
-        transform-origin: center;
-        transform-style: preserve-3d;
-        will-change: transform;
-    }
-
-    .Container {
-        position: relative;
-        width: 500vw;
-        height: 100vh;
-        padding-left: 100vw;
-        overflow: hidden;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        z-index: 10;
-
-        .Card {
-            width: 10%;
-            height: 50%;
-            padding: 0.5rem;
-            background-color: var(--PureBlack);
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            .CardImg {
-                flex: 1;
-                overflow: hidden;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-
-                    &:first-child {display: flex;}
-                    &:last-child {display: none;}
-                }
-            }
-
-            .CardDesc {
-                height: 0.75rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0 0.25rem;
-                font-size: 0.75rem;
-                color: var(--PureWhite);
-            }
-        }
-    }
-}
-
-section.Merge {
-    max-width: 1400px;
-    margin: 10rem auto;
-    padding: 0 20px;
-
-    .ListContainer {
-        position: relative;
-        display: flex;
-        gap: 2rem;
-
-        .ListText {
-            height: max-content;
-            position: sticky;
-            top: 50vh;
-            color: var(--PureBlack);
-            font-size: clamp(2.5rem, 6vw, 6rem);
-            font-weight: 600;
-            margin: 0;
-            transform: translateY(-50%);
-            white-space: nowrap;
-        }
-
-        .List {
-            list-style: none;
-            font-size: clamp(2.5rem, 6vw, 6rem);
-            font-weight: 600;
-            margin: 0;
-            padding: 0;
-            padding-top: 50vh;
-            padding-bottom: 50vh;
-            text-transform: capitalize;
-
-            li {
-                color: var(--Primary);
-                line-height: 1.2;
-                opacity: 0.15;
-                margin-bottom: 10px;
-                transition: opacity 0.3s ease-in-out;
-            }
-        }
-    }
-}   
-
-@supports (animation-timeline: scroll()) {
-    .List li {
-        animation: Bright both linear;
-        animation-timeline: view();
-        animation-range: cover calc(50% - 9rem) calc(50% + 9rem);
-    }
-}
-
-@keyframes fadeInLetter {to {opacity: 1; transform: translateY(0);}}
-@keyframes drawCircle {to {stroke-dashoffset: 0;}}
-
-@keyframes Strip {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-100%);}
-}
-
-@keyframes StripReverse {
-    0% {transform: translateX(-100%);}
-    100% {transform: translateX(0);}
-}
-
-@keyframes Bright {
-    0% {opacity: 0.15;}
-    50% {opacity: 1;}
-    100% {opacity: 0.15;}
-}
-
-section.Me {
-    max-width: 1400px;
-    margin: 0 auto 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 100px;
-
-    svg {
-    	width: 70vw;
-	    height: auto;
-    	aspect-ratio: 1/1;
-
-	    #LennouilleClip {
-            transform-origin: center;
-    		transition: ease-out transform .4s;
-	    }
-
-	    &:hover {
-		    #LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
-
-    		.TextContent{
-	    		fill: var(--PureWhite);
-		    	mix-blend-mode: overlay;
-    		}
-	    }
-
-        .TextContent {
-    	    font-weight: 900; 
-            font-size: 0.38rem;
-	        letter-spacing: 1.5px;
-    	    fill: var(--Primary);
-	        mix-blend-mode: normal;
-	        transition: ease fill .5s;
-        }
-    }
-    
-    .Text {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        font-weight: 400; 
-        font-size: 1.1em;
-
-        h4 {
-            color: var(--DarkPrimary);
-            font-weight: 900; 
-            font-size: 1.5em;
-        }
-
-        .Desc {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            p {text-align: justify ;}
-        }
-
-        .GlowingBtn {
-            align-self: flex-start;
-            padding: 16px 32px;
-            border: none;
-            outline: none;
-            color: var(--PureWhite);
-            background: var(--DarkPrimary);
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
-            border-radius: 10px;
-            text-decoration: none;
-
-            &:before {
-                content: '';
-                background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-                position: absolute;
-                top: -2px;
-                left:-2px;
-                background-size: 400%;
-                z-index: -1;
-                filter: blur(5px);
-                width: calc(100% + 4px);
-                height: calc(100% + 4px);
-                animation: Glowing 20s linear infinite;
-                opacity: 0;
-                transition: opacity .3s ease-in-out;
-                border-radius: 10px;
-            }
-
-            &:active {color: var(--PureBlack)}
-            &:active:after {background: transparent;}
-            &:hover:before {opacity: 1;}
-            &:after {
-                z-index: -1;
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: var(--DarkPrimary);
-                left: 0;
-                top: 0;
-                border-radius: 10px;
-            }
-        }   
-    }
-}
-
-@keyframes Glowing {
-    0% {background-position: 0 0;}
-    50% {background-position: 400% 0;}
-    100% {background-position: 0 0;}
-}
-
-section.Talk {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 65%);
-    padding: 110px 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .TalkContainer {
-        position: relative;
-        z-index: 2;
-        max-width: 1000px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
- 
-        .TalkBadge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            background-color: rgba(var(--PureWhiteRGB), 0.15);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.8);
-            color: var(--PureWhite);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.09em;
-            padding: 6px 16px;
-            border-radius: 50px;
-
-            &::before {
-                content: "";
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                background-color: #4ade80;
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-                animation: Pulse 2s infinite;
-                flex-shrink: 0;
-            }
-        }
- 
-        .TalkTitle {
-            font-size: clamp(2.6rem, 6vw, 4.2rem);
-            font-weight: 900;
-            color: var(--PureWhite);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
- 
-        .TalkSub {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: rgba(var(--PureWhiteRGB), 0.8);
-            line-height: 1.65;
-            max-width: 500px;
-            text-transform: none;
-        }
-
-        .NextWrapper {
-            display: flex;
-            justify-content: center;
-
-            .NextBtn {
-                display: flex;
-                padding: 10px 45px;
-                text-decoration: none;
-                font-size: 40px;
-                color: var(--PureWhite);
-                background: var(--Primary);
-                transition: 1s;
-                box-shadow: 6px 6px 0 var(--PureBlack);
-                transform: skewX(-15deg);
-    
-                &:focus {outline: none;}
-
-                &:hover {
-                    transition: 0.5s;
-                    box-shadow: 10px 10px 0 var(--PureWhite);
-
-                    span:nth-child(2) {
-                        transition: 0.5s;
-                        margin-right: 45px;
-                    }
-
-                    path.One {transform: translateX(0%); animation: ColorAnim 1s infinite 0.6s;}
-                    path.Two {transform: translateX(0%); animation: ColorAnim 1s infinite 0.4s;}
-                    path.Three {animation: ColorAnim 1s infinite 0.2s;}
-                }
-            }
-
-            span {transform: skewX(15deg)}
-            span:nth-child(2) {
-                width: 20px;
-                margin-left: 30px;
-                position: relative;
-                top: 12%;
-
-                path.One {
-                    transition: 0.4s;
-                    transform: translateX(-60%);
-                }
-
-                path.Two {
-                    transition: 0.5s;
-                    transform: translateX(-30%);
-                }
-            }
-
-            span:nth-child(2) {
-                transition: 0.5s;
-                margin-right: 0px;
-            }
-        }
-    }
-}
-
-@keyframes Pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); }
-    70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-}
-
-@keyframes ColorAnim {
-    0% {fill: var(--PureWhite);}
-    50% {fill: var(--Primary);}
-    100% {fill: var(--PureWhite);}
-}
+/* ==========================================================================
+   # Footer
+========================================================================== */
 
 .Footer {
     background-color: #071C32;
@@ -1056,7 +497,7 @@ section.Talk {
                     border-radius: 50%;
                     background-color: #4ade80;
                     box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-                    animation: FooterPulse 2s infinite;
+                    animation: Pulse 2s infinite;
                     flex-shrink: 0;
                 }
             }
@@ -1357,11 +798,595 @@ section.Talk {
     }
 }
 
-@keyframes FooterPulse {
-    0%   {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);}
-    70%  {box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);}
+@keyframes Pulse {
+    0%   {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);}
+    70%  {box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);}
     100% {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);}
 }
+
+/* ==========================================================================
+   # Home page
+========================================================================== */
+
+/* --- Hero section --- */
+section.Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    width: 100vw;
+    height: 100vh;
+
+    .Box {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150vw;
+        height: 150vh;
+        transform: translate(-10vw, 20px);
+
+        &#Ground {
+            z-index: 5;
+            backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);
+        }
+
+        &#Air    {
+            z-index: 10;
+
+            backGround:
+                linear-gradient(var(--Rotation), transparent calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness) - var(--Border)),
+                var(--Background) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
+                color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness)),
+                var(--Primary) calc(50% + var(--Thickness) + var(--Border)), transparent calc(50% + var(--Thickness) + var(--Border)));
+            backGround-repeat: no-repeat;
+        }
+
+        &#Text   {
+            z-index: 15;
+        
+            .SubBox {
+                display: flex;
+                flex-direction: column;
+                gap: var(--Gap);
+                text-align: center;
+                font-size: 20px;
+                transform: rotate(var(--Rotation)) scale(var(--Scale));
+
+                .SubText {
+                    display: inline;
+                    width: fit-content;
+                    position: relative;
+                    overflow: visible;
+                    padding: 15px;
+                    margin: 0px;
+                    font-weight: 800;
+                    font-size: 80px;
+                    line-height: 65px;
+                    border-radius: 5px;
+                    paint-order: stroke fill;
+
+                    &#SubT1 {
+                        margin-right: 150px;
+                        padding-top: 10px;
+                        padding-bottom: 0px;
+                        -webkit-text-stroke: 18px var(--Primary);
+                        color: var(--Background);
+
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                        }
+                        
+                        span {
+                            &.T1A {right: -50px; bottom: 0px;}
+                            &.T1B {right: 15px; bottom: 60px;}
+                            &.T1C {right: -90px; bottom: 0px;}
+                            &.T1D {right: 45px; bottom: 120px;}
+                            &.T1E {right: -5px; bottom: 120px;}
+                        }
+                    }
+
+                    &#SubT2 {
+                        margin-left: 110px;
+                        padding-bottom: 10px;
+                        padding-top: 0px;
+                        -webkit-text-stroke: 18px var(--Background);
+                        color: var(--Primary);
+
+                        h1 {
+                            font-size: inherit;
+                            line-height: inherit;
+                            font-weight: inherit;
+                            text-transform: uppercase;
+                        }
+
+                        span {
+                            &.T2A {left: -50px; top: 0px;}
+                            &.T2B {left: 15px; top: 60px;}
+                            &.T2C {left: -100px; top: 0px;}
+                            &.T2D {left: 45px; top: 120px}
+                            &.T2E {left: -5px; top: 120px;}
+                        }
+                    }
+
+                    span {
+                        position: absolute;
+                        line-height: auto;
+                        -webkit-Text-stroke-width: 9px;
+                        white-space: nowrap;
+                        text-transform: uppercase;
+
+                        div {transform: rotate(90deg);}
+
+                        &.TS26 {font-size: 26px; font-weight: 400;}
+                        &.TS30 {font-size: 30px; font-weight: 600;}
+                        &.TS46 {
+                            font-size: 46px; font-weight: 900;
+                            div {transform: rotate(0deg);}
+                        }
+
+                        &.VT {
+                            writing-mode: vertical-rl;
+                            text-orientation: upright;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* --- Scroll section --- */
+section.Scroll {
+    height: 400vh;
+    position: relative;
+    background-color: var(--Primary);
+
+    .Wrapper {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .TextReveal {
+            max-width: 900px;
+            color: var(--PureWhite);
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .Word {
+            display: inline-block;
+            background-color: var(--Primary);
+            color: transparent;
+            border-radius: 3px;
+            margin: 2px;
+            padding: 0 4px;
+            transition:
+                background-color 0.1s,
+                color 0.1s;
+
+            &.Revealed {
+                background-color: transparent;
+                color: var(--PureWhite);
+            }
+        }
+    }
+}
+
+/* --- Work section --- */
+section.Work {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--PureBlack);
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        #CanvasGrid {z-index: 0;}
+        #CanvasLetters{z-index: 1;}
+    }
+
+    .Letters {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        pointer-events: none;
+        perspective: 156.25rem;
+        perspective-origin: center;
+    }
+
+    .Letter {
+        position: absolute;
+        font-size: 14rem;
+        font-weight: bold;
+        color: var(--Primary);
+        z-index: 2;
+        transform-origin: center;
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
+
+    .Container {
+        position: relative;
+        width: 500vw;
+        height: 100vh;
+        padding-left: 100vw;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 10;
+
+        .Card {
+            width: 10%;
+            height: 50%;
+            padding: 0.5rem;
+            background-color: var(--PureBlack);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .CardImg {
+                flex: 1;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+
+                    &:first-child {display: flex;}
+                    &:last-child {display: none;}
+                }
+            }
+
+            .CardDesc {
+                height: 0.75rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 0.25rem;
+                font-size: 0.75rem;
+                color: var(--PureWhite);
+            }
+        }
+    }
+}
+
+/* --- Merge section --- */
+section.Merge {
+    max-width: 1400px;
+    margin: 10rem auto;
+    padding: 0 20px;
+
+    .ListContainer {
+        position: relative;
+        display: flex;
+        gap: 2rem;
+
+        .ListText {
+            height: max-content;
+            position: sticky;
+            top: 50vh;
+            color: var(--PureBlack);
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 600;
+            margin: 0;
+            transform: translateY(-50%);
+            white-space: nowrap;
+        }
+
+        .List {
+            list-style: none;
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-weight: 600;
+            margin: 0;
+            padding: 0;
+            padding-top: 50vh;
+            padding-bottom: 50vh;
+            text-transform: capitalize;
+
+            li {
+                color: var(--Primary);
+                line-height: 1.2;
+                opacity: 0.15;
+                margin-bottom: 10px;
+                transition: opacity 0.3s ease-in-out;
+            }
+        }
+    }
+}   
+
+@supports (animation-timeline: scroll()) {
+    .List li {
+        animation: Bright both linear;
+        animation-timeline: view();
+        animation-range: cover calc(50% - 9rem) calc(50% + 9rem);
+    }
+}
+
+@keyframes fadeInLetter {to {opacity: 1; transform: translateY(0);}}
+@keyframes drawCircle {to {stroke-dashoffset: 0;}}
+
+@keyframes Strip {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-100%);}
+}
+
+@keyframes StripReverse {
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(0);}
+}
+
+@keyframes Bright {
+    0% {opacity: 0.15;}
+    50% {opacity: 1;}
+    100% {opacity: 0.15;}
+}
+
+/* --- Me section --- */
+section.Me {
+    max-width: 1400px;
+    margin: 0 auto 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+
+    svg {
+    	width: 70vw;
+	    height: auto;
+    	aspect-ratio: 1/1;
+
+	    #LennouilleClip {
+            transform-origin: center;
+    		transition: ease-out transform .4s;
+	    }
+
+	    &:hover {
+		    #LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
+
+    		.TextContent{
+	    		fill: var(--PureWhite);
+		    	mix-blend-mode: overlay;
+    		}
+	    }
+
+        .TextContent {
+    	    font-weight: 900; 
+            font-size: 0.38rem;
+	        letter-spacing: 1.5px;
+    	    fill: var(--Primary);
+	        mix-blend-mode: normal;
+	        transition: ease fill .5s;
+        }
+    }
+    
+    .Text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-weight: 400; 
+        font-size: 1.1em;
+
+        h4 {
+            color: var(--DarkPrimary);
+            font-weight: 900; 
+            font-size: 1.5em;
+        }
+
+        .Desc {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            p {text-align: justify ;}
+        }
+
+        .GlowingBtn {
+            align-self: flex-start;
+            padding: 16px 32px;
+            border: none;
+            outline: none;
+            color: var(--PureWhite);
+            background: var(--DarkPrimary);
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            text-decoration: none;
+
+            &:before {
+                content: '';
+                background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+                position: absolute;
+                top: -2px;
+                left:-2px;
+                background-size: 400%;
+                z-index: -1;
+                filter: blur(5px);
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                animation: Glowing 20s linear infinite;
+                opacity: 0;
+                transition: opacity .3s ease-in-out;
+                border-radius: 10px;
+            }
+
+            &:active {color: var(--PureBlack)}
+            &:active:after {background: transparent;}
+            &:hover:before {opacity: 1;}
+            &:after {
+                z-index: -1;
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: var(--DarkPrimary);
+                left: 0;
+                top: 0;
+                border-radius: 10px;
+            }
+        }   
+    }
+}
+
+@keyframes Glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
+/* --- Talk section --- */
+section.Talk {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 65%);
+    padding: 110px 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .TalkContainer {
+        position: relative;
+        z-index: 2;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+ 
+        .TalkBadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background-color: rgba(var(--PureWhiteRGB), 0.15);
+            border: 1px solid rgba(var(--PureWhiteRGB), 0.8);
+            color: var(--PureWhite);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            padding: 6px 16px;
+            border-radius: 50px;
+
+            &::before {
+                content: "";
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background-color: #4ade80;
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+                animation: Pulse 2s infinite;
+                flex-shrink: 0;
+            }
+        }
+ 
+        .TalkTitle {
+            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            font-weight: 900;
+            color: var(--PureWhite);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+ 
+        .TalkSub {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: rgba(var(--PureWhiteRGB), 0.8);
+            line-height: 1.65;
+            max-width: 500px;
+            text-transform: none;
+        }
+
+        .NextWrapper {
+            display: flex;
+            justify-content: center;
+
+            .NextBtn {
+                display: flex;
+                padding: 10px 45px;
+                text-decoration: none;
+                font-size: 40px;
+                color: var(--PureWhite);
+                background: var(--Primary);
+                transition: 1s;
+                box-shadow: 6px 6px 0 var(--PureBlack);
+                transform: skewX(-15deg);
+    
+                &:focus {outline: none;}
+
+                &:hover {
+                    transition: 0.5s;
+                    box-shadow: 10px 10px 0 var(--PureWhite);
+
+                    span:nth-child(2) {
+                        transition: 0.5s;
+                        margin-right: 45px;
+                    }
+
+                    path.One {transform: translateX(0%); animation: ColorAnim 1s infinite 0.6s;}
+                    path.Two {transform: translateX(0%); animation: ColorAnim 1s infinite 0.4s;}
+                    path.Three {animation: ColorAnim 1s infinite 0.2s;}
+                }
+            }
+
+            span {transform: skewX(15deg)}
+            span:nth-child(2) {
+                width: 20px;
+                margin-left: 30px;
+                position: relative;
+                top: 12%;
+
+                path.One {
+                    transition: 0.4s;
+                    transform: translateX(-60%);
+                }
+
+                path.Two {
+                    transition: 0.5s;
+                    transform: translateX(-30%);
+                }
+            }
+
+            span:nth-child(2) {
+                transition: 0.5s;
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+@keyframes ColorAnim {
+    0% {fill: var(--PureWhite);}
+    50% {fill: var(--Primary);}
+    100% {fill: var(--PureWhite);}
+}
+
+/* ==========================================================================
+   # Responsive Design
+========================================================================== */
 
 @media (min-width: 951px) {
     .HamburgerBtn {display: none !important;}
@@ -1402,7 +1427,7 @@ section.Talk {
 
         .ListContainer {
 
-            .ListText, .List {font-size: 1.5rem; }
+            .ListText, .List {font-size: 1.5rem;}
 
             .ListText {
                 white-space: nowrap;
