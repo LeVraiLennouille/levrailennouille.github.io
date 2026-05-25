@@ -1463,17 +1463,17 @@ section.Talk {
 
 .Panel {
     background-color: var(--PureWhite);
-    border: 2px solid var(--One);
+    border: 2px solid var(--Primary);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 8px 24px rgba(var(--PureBlackRGB), 0.1);
 }
 
 .PanelTitle {
-    color: var(--Three);
+    color: var(--Primary);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
-    border-bottom: 2px solid var(--One);
+    border-bottom: 2px solid var(--Primary);
     padding-bottom: 0.5rem;
 }
 
@@ -1485,25 +1485,25 @@ section.Talk {
 }
 
 .ContactLink {
-    color: var(--Two);
+    color: var(--Primary);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .ContactLink:hover {
-    color: var(--One);
+    color: var(--Primary);
     text-decoration: underline;
 }
 
 .ContactInfo,
 .StatusFormFormLabel,
 .StatusTime {
-    color: var(--Three);
+    color: var(--Primary);
 }
 
 .Divider {
     border: none;
-    border-top: 1px solid rgba(var(--OneRGB), 0.3);
+    border-top: 1px solid rgba(var(--PrimaryRGB), 0.3);
     margin: 1rem 0;
 }
