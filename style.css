@@ -1009,12 +1009,16 @@ main.Contact {
     .Form {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 14px;
+        width: 100%;
+        max-width: 460px;
 
         .InputGroup {
             position: relative;
             margin-bottom: 6px;
             width: 100%;
+            color: var(--Primary);
+            background: transparent;
 
             .FormInput {
                 width: 100%;
