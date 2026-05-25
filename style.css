@@ -1552,5 +1552,40 @@ main.Contact {
                 .CoordDot {color: rgba(var(--PrimaryRGB),0.2);}
             }
         }
+
+        .ContactRight {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 40px 48px;
+            pointer-events: none;
+
+            .AddressBlock {
+                text-align: right;
+                pointer-events: auto;
+            
+                p {
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    letter-spacing: 0.03em;
+                }
+
+                .AddrIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 6px;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                }
+
+                svg {
+                    flex-shrink: 0;
+                    opacity: 0.55;
+                }
+            }
+        }
     }
 }
