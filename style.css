@@ -1005,6 +1005,65 @@ section.Talk {
     100% {fill: var(--PureWhite);}
 }
 
+.Form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.InputGroup {
+    position: relative;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.FormInput {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--Primary);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--Primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.FormLabel {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--Primary);
+    background-color: var(--PureWhite);
+    padding: 0 5px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+textarea.FormInput+.FormLabel {
+    top: 22px;
+}
+
+.FormInput:focus~.FormLabel,
+.FormInput:valid~.FormLabel {
+    top: 0;
+    font-size: 0.8rem;
+    color: var(--Primary);
+    font-weight: bold;
+}
+
+.FormActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    top: -10px;
+    font-size: 0.85rem;
+    color: var(--Primary);
+}
+
 .Footer {
     background-color: #071C32;
     color: var(--PureWhite);
