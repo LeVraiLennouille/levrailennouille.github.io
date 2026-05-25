@@ -1449,6 +1449,45 @@ section.Talk {
     }
 }
 
+main.Contact {
+
+    .SocialSidebar {
+        position: absolute;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        pointer-events: auto;
+    
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            color: var(--Primary);
+            opacity: 0.65;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+    }
+}
+
 .ContactGrid {
     position: absolute;
     top: 0;
