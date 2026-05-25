@@ -1485,6 +1485,55 @@ main.Contact {
             fill: currentColor;
         }
     }
+
+    .ContactLayout {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        pointer-events: none;
+    
+        .ContactLeft {
+            width: 52%;
+            min-width: 480px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 64px 60px 100px;
+            pointer-events: auto;
+            position: relative;
+
+            .ContactTitle {
+                font-size: clamp(2.8rem, 5vw, 4.5rem);
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: #1a1a1a;
+                line-height: 1;
+                margin-bottom: 18px;
+            }
+
+            .ContactSubtitle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0;
+                margin-bottom: 36px;
+            
+                span {
+                    font-size: 0.72rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.12em;
+                    color: #1a1a1a;
+                    padding-bottom: 4px;
+                    border-bottom: 2px solid var(--Primary);
+                    padding-left: 2px;
+                    padding-right: 2px;
+                }
+            }
+        }
+    }
 }
 
 .ContactGrid {
