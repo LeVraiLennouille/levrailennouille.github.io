@@ -1005,6 +1005,257 @@ section.Talk {
     100% {fill: var(--PureWhite);}
 }
 
+main.Contact {
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--Background);
+
+    .SocialSidebar {
+        position: absolute;
+        left: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        pointer-events: auto;
+    
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            color: var(--Primary);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.75;
+                transform: scale(1.2);
+            }
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    }
+
+    .ContactLayout {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        pointer-events: none;
+    
+        .ContactLeft {
+            width: 58%;
+            min-width: 500px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 64px 60px 100px;
+            pointer-events: auto;
+            position: relative;
+
+            .ContactTitle {
+                font-size: clamp(2.8rem, 5vw, 4.5rem);
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: #1a1a1a;
+                line-height: 1;
+                margin-bottom: 18px;
+            }
+
+            .ContactSubtitle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0;
+                margin-bottom: 36px;
+            
+                span {
+                    font-size: 0.72rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.12em;
+                    color: #1a1a1a;
+                    padding-bottom: 4px;
+                    border-bottom: 2px solid var(--Primary);
+                    padding-left: 2px;
+                    padding-right: 2px;
+                }
+            }
+
+            .Form {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                width: 100%;
+                max-width: 468px;
+
+                .InputGroup {
+                    position: relative;
+                    margin-bottom: 6px;
+                    width: 100%;
+                    color: var(--Primary);
+                    background: transparent;
+
+                    .FormInput {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 1px solid var(--Primary);
+                        border-radius: 8px;
+                        background: transparent;
+                        color: var(--Primary);
+                        font-size: 1rem;
+                        outline: none;
+                        transition: all 0.3s ease;
+
+                        &:focus~.FormLabel,
+                        &:valid~.FormLabel {
+                            top: 0;
+                            background-color: var(--Primary);
+                            color: var(--PureWhite);
+                            border-radius: 4px;
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .FormLabel {
+                        position: absolute;
+                        left: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: var(--Primary);
+                        background-color: transparent;
+                        padding: 0 5px;
+                        pointer-events: none;
+                        transition: all 0.3s ease;
+                    }
+
+                    textarea.FormInput+.FormLabel {top: 22px;}
+                }
+
+                .FormActions {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 500px;
+                    gap: 1rem;
+                    margin-top: 1rem;
+                    flex-wrap: wrap;
+                    top: -10px;
+                    font-size: 0.85rem;
+                    color: var(--Primary);
+
+                    button[type="submit"] {
+                        flex: 1;
+                        min-width: 160px;
+                        padding: 14px 28px;
+                        background: var(--Primary);
+                        color: var(--PureWhite);
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 700;
+                        letter-spacing: 0.12em;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: filter 0.25s ease, transform 0.2s ease;
+
+                        &:hover {
+                            filter: brightness(0.88);
+                            transform: translateY(-2px);
+                        }
+                    }
+
+                    button[type="reset"] {
+                        padding: 14px 24px;
+                        background: transparent;
+                        color: rgba(var(--PureBlackRGB),0.4);
+                        border: 1px solid rgba(var(--PureBlackRGB),0.18);
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 600;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: border-color 0.25s ease, color 0.25s ease;
+    
+                        &:hover {
+                            border-color: var(--Primary);
+                            color: var(--Primary);
+                        }
+                    }
+                }
+            }
+
+            .ContactCoords {
+                margin-top: 28px;
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+    
+                a, span {
+                    font-size: 0.78rem;
+                    color: rgba(var(--PrimaryRGB),0.45);
+                    text-decoration: none;
+                    letter-spacing: 0.03em;
+                    transition: color 0.2s ease;
+                }
+        
+                a:hover {color: var(--Primary);}
+    
+                .CoordDot {color: rgba(var(--PrimaryRGB),0.2);}
+            }
+        }
+
+        .ContactRight {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 40px 48px;
+            pointer-events: none;
+
+            .AddressBlock {
+                text-align: right;
+                pointer-events: auto;
+            
+                p {
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    letter-spacing: 0.03em;
+                }
+
+                .AddrIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 6px;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                }
+
+                svg {
+                    flex-shrink: 0;
+                    opacity: 0.55;
+                }
+            }
+        }
+    }
+}
+
 .Footer {
     background-color: #071C32;
     color: var(--PureWhite);
@@ -1445,153 +1696,6 @@ section.Talk {
             }
  
             path.Three {animation: ColorAnim 1s infinite 0.2s;}
-        }
-    }
-}
-
-main.Contact {
-    position: relative;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--Background);
-
-    .SocialSidebar {
-        position: absolute;
-        left: 28px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 20;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        align-items: center;
-        pointer-events: auto;
-    
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            color: var(--Primary);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            text-decoration: none;
-
-            &:hover {
-                opacity: 0.75;
-                transform: scale(1.2);
-            }
-        }
-
-        svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-    }
-
-    .ContactLayout {
-        position: absolute;
-        inset: 0;
-        z-index: 10;
-        display: flex;
-        pointer-events: none;
-    
-        .ContactLeft {
-            width: 58%;
-            min-width: 500px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 64px 60px 100px;
-            pointer-events: auto;
-            position: relative;
-
-            .ContactTitle {
-                font-size: clamp(2.8rem, 5vw, 4.5rem);
-                font-weight: 800;
-                text-transform: uppercase;
-                letter-spacing: 0.04em;
-                color: #1a1a1a;
-                line-height: 1;
-                margin-bottom: 18px;
-            }
-
-            .ContactSubtitle {
-                display: inline-flex;
-                align-items: center;
-                gap: 0;
-                margin-bottom: 36px;
-            
-                span {
-                    font-size: 0.72rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.12em;
-                    color: #1a1a1a;
-                    padding-bottom: 4px;
-                    border-bottom: 2px solid var(--Primary);
-                    padding-left: 2px;
-                    padding-right: 2px;
-                }
-            }
-
-            .ContactCoords {
-                margin-top: 28px;
-                display: flex;
-                gap: 24px;
-                flex-wrap: wrap;
-    
-                a, span {
-                    font-size: 0.78rem;
-                    color: rgba(var(--PrimaryRGB),0.45);
-                    text-decoration: none;
-                    letter-spacing: 0.03em;
-                    transition: color 0.2s ease;
-                }
-        
-                a:hover {color: var(--Primary);}
-    
-                .CoordDot {color: rgba(var(--PrimaryRGB),0.2);}
-            }
-        }
-
-        .ContactRight {
-            flex: 1;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 40px 48px;
-            pointer-events: none;
-
-            .AddressBlock {
-                text-align: right;
-                pointer-events: auto;
-            
-                p {
-                    font-size: 0.8rem;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                    line-height: 1.6;
-                    letter-spacing: 0.03em;
-                }
-
-                .AddrIcon {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    gap: 6px;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                }
-
-                svg {
-                    flex-shrink: 0;
-                    opacity: 0.55;
-                }
-            }
         }
     }
 }

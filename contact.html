@@ -55,6 +55,32 @@
                 <div class="ContactSubtitle">
                     <span>Drop a message</span>
                 </div>
+                <form method="POST" action="https://formspree.io/f/xnnegzdy" class="Form">
+                    <div class="InputGroup">
+                        <input id="nom" type="text" name="nom" class="FormInput" required>
+                        <label for="nom" class="FormLabel">Nom</label>
+                    </div>
+                    <div class="InputGroup">
+                        <input id="prenom" type="text" name="prenom" class="FormInput" required>
+                        <label for="prenom" class="FormLabel">Prénom</label>
+                    </div>
+                    <div class="InputGroup">
+                        <input id="email" type="email" name="email" class="FormInput" required>
+                        <label for="email" class="FormLabel">Email</label>
+                    </div>
+                    <div class="InputGroup">
+                        <input id="objet" type="text" name="objet" class="FormInput" required>
+                        <label for="objet" class="FormLabel">Objet</label>
+                    </div>
+                    <div class="InputGroup">
+                        <textarea id="message" name="message" rows="6" class="FormInput" required></textarea>
+                        <label for="message" class="FormLabel">Message</label>
+                    </div>
+                    <div class="FormActions">
+                        <button type="submit" aria-label="Envoyer le message">Envoyer votre message</button>
+                        <button type="reset" aria-label="Effacer le formulaire">Réinitialiser</button>
+                    </div>
+                </form>
                 <div class="ContactCoords">
                     <a href="mailto:levrailennouille@gmail.com?subject=Contact via Portfolio">levrailennouille@gmail.com</a>
                     <span class="CoordDot">·</span>
