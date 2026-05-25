@@ -1009,8 +1009,7 @@ main.Contact {
     position: relative;
     margin: 0;
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
     background-color: var(--Background);
 
     .SocialSidebar {
@@ -1049,10 +1048,11 @@ main.Contact {
     }
 
     .ContactLayout {
-        position: absolute;
+        position: relative;
         inset: 0;
         z-index: 10;
         display: flex;
+        min-height: 100vh;
         pointer-events: none;
     
         .ContactLeft {
@@ -1628,6 +1628,22 @@ main.Contact {
         .NavCTA   {display: none;}
         .HamburgerBtn {display: flex;}
     }
+
+    main.Contact {
+        .SocialSidebar {left: 16px}
+        .ContactLayout {
+            flex-direction: column;
+
+            .ContactLeft {
+                width: 100%;
+                min-width: unset;
+                padding: 50px 32px 40px 64px;
+                height: auto;
+            }
+
+            .ContactRight {display: none;}
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -1681,6 +1697,19 @@ main.Contact {
     }
 
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+
+    main.Contact {
+        max-width: calc(100% - 40px);
+
+        .SocialSidebar {display: none}
+        .ContactLayout {
+            .ContactLeft {
+                padding: 40px 20px 40px;
+
+                .ContactTitle {font-size: 2rem;}
+            }
+        }
+    }
 }
 
 @media (hover: none) {
@@ -1696,40 +1725,6 @@ main.Contact {
             }
  
             path.Three {animation: ColorAnim 1s infinite 0.2s;}
-        }
-    }
-}
-
-@media (max-width: 900px) {
-    main.Contact {
-        .SocialSidebar {left: 16px}
-        .ContactLayout {
-            flex-direction: column;
-
-            .ContactLeft {
-                width: 100%;
-                min-width: unset;
-                padding: 50px 32px 40px 64px;
-                height: auto;
-            }
-
-            .ContactRight {display: none;}
-        }
-    }
-}
-
-
-@media (max-width: 600px) {
-    main.Contact {
-        max-width: calc(100% - 40px);
-
-        .SocialSidebar {display: none}
-        .ContactLayout {
-            .ContactLeft {
-                padding: 40px 20px 40px;
-
-                .ContactTitle {font-size: 2rem;}
-            }
         }
     }
 }
