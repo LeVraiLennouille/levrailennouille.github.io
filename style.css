@@ -1450,6 +1450,12 @@ section.Talk {
 }
 
 main.Contact {
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--Background);
 
     .SocialSidebar {
         position: absolute;
@@ -1494,8 +1500,8 @@ main.Contact {
         pointer-events: none;
     
         .ContactLeft {
-            width: 52%;
-            min-width: 480px;
+            width: 58%;
+            min-width: 500px;
             height: 100%;
             display: flex;
             flex-direction: column;
