@@ -1064,6 +1064,46 @@ main.Contact {
             top: -10px;
             font-size: 0.85rem;
             color: var(--Primary);
+
+            button[type="submit"] {
+                flex: 1;
+                min-width: 160px;
+                padding: 14px 28px;
+                background: var(--Primary);
+                color: var(--PureWhite);
+                border: none;
+                border-radius: 50px;
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: filter 0.25s ease, transform 0.2s ease;
+
+                &:hover {
+                    filter: brightness(0.88);
+                    transform: translateY(-2px);
+                }
+            }
+
+            button[type="reset"] {
+                padding: 14px 24px;
+                background: transparent;
+                color: rgba(var(--PureBlackRGB),0.4);
+                border: 1px solid rgba(var(--PureBlackRGB),0.18);
+                border-radius: 50px;
+                font-size: 0.78rem;
+                font-weight: 600;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: border-color 0.25s ease, color 0.25s ease;
+    
+                &:hover {
+                    border-color: var(--Primary);
+                    color: var(--Primary);
+                }
+            }
         }
     }
 }
