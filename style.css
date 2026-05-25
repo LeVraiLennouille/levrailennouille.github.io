@@ -21,6 +21,8 @@
     --Muted: #A0B3C1; --MutedRGB: 160, 179, 193;
     --SuperMuted: #6C8293; --SuperMutedRGB: 108, 130, 147;
 
+    --Online: #4ade80; --OnlineRGB: 74, 222, 128;
+
 /* --- Hero section --- */
     --Rotation: 0deg;
     --Thickness: 20px;
@@ -495,8 +497,8 @@ html, body {
                     width: 7px;
                     height: 7px;
                     border-radius: 50%;
-                    background-color: #4ade80;
-                    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+                    background-color: var(--Primary);
+                    box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.6);
                     animation: Pulse 2s infinite;
                     flex-shrink: 0;
                 }
@@ -799,9 +801,9 @@ html, body {
 }
 
 @keyframes Pulse {
-    0%   {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);}
-    70%  {box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);}
-    100% {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);}
+    0%   {box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.6);}
+    70%  {box-shadow: 0 0 0 8px rgba(var(--PrimaryRGB), 0);}
+    100% {box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0);}
 }
 
 /* ==========================================================================
@@ -1296,8 +1298,8 @@ section.Talk {
                 width: 7px;
                 height: 7px;
                 border-radius: 50%;
-                background-color: #4ade80;
-                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+                background-color: var(--Primary);
+                box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.6);
                 animation: Pulse 2s infinite;
                 flex-shrink: 0;
             }
