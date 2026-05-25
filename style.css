@@ -1595,3 +1595,37 @@ main.Contact {
         }
     }
 }
+
+@media (max-width: 900px) {
+    main.Contact {
+        .SocialSidebar {left: 16px}
+        .ContactLayout {
+            flex-direction: column;
+
+            .ContactLeft {
+                width: 100%;
+                min-width: unset;
+                padding: 50px 32px 40px 64px;
+                height: auto;
+            }
+
+            .ContactRight {display: none;}
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    main.Contact {
+        max-width: calc(100% - 40px);
+
+        .SocialSidebar {display: none}
+        .ContactLayout {
+            .ContactLeft {
+                padding: 40px 20px 40px;
+
+                .ContactTitle {font-size: 2rem;}
+            }
+        }
+    }
+}
