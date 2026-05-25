@@ -1532,6 +1532,25 @@ main.Contact {
                     padding-right: 2px;
                 }
             }
+
+            .ContactCoords {
+                margin-top: 28px;
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+    
+                a, span {
+                    font-size: 0.78rem;
+                    color: rgba(var(--PrimaryRGB),0.45);
+                    text-decoration: none;
+                    letter-spacing: 0.03em;
+                    transition: color 0.2s ease;
+                }
+        
+                a:hover {color: var(--Primary);}
+    
+                .CoordDot {color: rgba(var(--PrimaryRGB),0.2);}
+            }
         }
     }
 }
