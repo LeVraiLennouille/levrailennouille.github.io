@@ -1476,13 +1476,13 @@ main.Contact {
 
             &:hover {
                 opacity: 1;
-                transform: scale(1.15);
+                transform: scale(1.2);
             }
         }
 
         svg {
-            width: 18px;
-            height: 18px;
+            width: 24px;
+            height: 24px;
             fill: currentColor;
         }
     }
