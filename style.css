@@ -48,6 +48,10 @@ html, body {
     overflow-x: clip;
     background: var(--Background);
     font-family: "Syne", sans-serif;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar, body::-webkit-scrollbar {display: none;}
 }
 
 /* ==========================================================================
