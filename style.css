@@ -1228,28 +1228,20 @@ main.Contact {
             padding: 40px 48px;
             pointer-events: none;
 
-            .AddressBlock {
+            .Terms {
                 text-align: right;
                 pointer-events: auto;
+                display: flex;
+                flex-direction: column;
             
-                p {
+                a {
                     font-size: 0.8rem;
                     color: rgba(var(--PureBlackRGB),0.45);
                     line-height: 1.6;
                     letter-spacing: 0.03em;
-                }
+                    text-decoration: none;
 
-                .AddrIcon {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    gap: 6px;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                }
-
-                svg {
-                    flex-shrink: 0;
-                    opacity: 0.55;
+                    &:hover {text-decoration: underline;}
                 }
             }
         }
