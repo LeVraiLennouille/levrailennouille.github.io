@@ -1071,7 +1071,7 @@ main.Contact {
                 font-weight: 800;
                 text-transform: uppercase;
                 letter-spacing: 0.04em;
-                color: #1a1a1a;
+                color: var(--Charcoal);
                 line-height: 1;
                 margin-bottom: 18px;
             }
@@ -1127,19 +1127,19 @@ main.Contact {
                     color: var(--Primary);
                     background: transparent;
 
-                    .FormInput {
+                    .Input {
                         width: 100%;
                         padding: 12px 15px;
-                        border: 1px solid var(--Primary);
+                        border: 1px solid var(--PureBlack);
                         border-radius: 8px;
                         background: transparent;
-                        color: var(--Primary);
+                        color: var(--PureBlack);
                         font-size: 1rem;
                         outline: none;
                         transition: all 0.3s ease;
 
-                        &:focus~.FormLabel,
-                        &:valid~.FormLabel {
+                        &:focus~.Label,
+                        &:valid~.Label {
                             top: 0;
                             background-color: var(--Primary);
                             color: var(--PureWhite);
@@ -1149,19 +1149,24 @@ main.Contact {
                         }
                     }
 
-                    .FormLabel {
+                    .Label {
                         position: absolute;
                         left: 15px;
                         top: 50%;
                         transform: translateY(-50%);
-                        color: var(--Primary);
+                        color: var(--PureBlack);
                         background-color: transparent;
                         padding: 0 5px;
                         pointer-events: none;
                         transition: all 0.3s ease;
                     }
 
-                    textarea.FormInput+.FormLabel {top: 22px;}
+                    textarea.Input+.Label {top: 22px;}
+
+                    input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
+                    input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill {
+                        border-color: var(--Primary);
+                    }
                 }
 
                 .FormActions {
