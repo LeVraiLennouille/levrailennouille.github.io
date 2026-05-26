@@ -1007,7 +1007,7 @@ section.Talk {
 
 main.Contact {
     position: relative;
-    margin: 0;
+    margin: 100px 0 0;
     width: 100vw;
     min-height: 100vh;
     background-color: var(--Background);
@@ -1015,7 +1015,7 @@ main.Contact {
     .SocialSidebar {
         position: absolute;
         left: 28px;
-        top: 50%;
+        top: 30%;
         transform: translateY(-50%);
         z-index: 20;
         display: flex;
@@ -1052,7 +1052,7 @@ main.Contact {
         inset: 0;
         z-index: 10;
         display: flex;
-        min-height: 100vh;
+        min-height: 91vh;
         pointer-events: none;
     
         .ContactLeft {
