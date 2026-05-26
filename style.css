@@ -1251,6 +1251,7 @@ main.Contact {
                 pointer-events: auto;
                 display: flex;
                 flex-direction: column;
+                align-items: flex-end;
             
                 a {
                     position: relative;
@@ -1260,7 +1261,7 @@ main.Contact {
                     line-height: 1.6;
                     letter-spacing: 0.03em;
                     text-decoration: none;
-                    width: 100%;
+                    width: fit-content;
                     transition: all 0.3s ease;
 
                     &:hover {
