@@ -222,12 +222,28 @@ document.addEventListener('visibilitychange', () => {
     }
 });
 rafId = requestAnimationFrame(loop);
-} // end if (!isTouchDevice)
+}
 
 // * NavBar Mobile* //
 document.addEventListener('DOMContentLoaded', function () {
     initHamburger();
     if (typeof initScrollReveal === 'function')  initScrollReveal();
+});
+
+// * Form * //
+const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
+
+function toggleValueClass(event) {
+  const el = event.target;
+  if (el.value.trim().length > 0) {el.classList.add('has-value');}
+  else {el.classList.remove('has-value');}
+}
+
+inputs.forEach(input => {
+  input.addEventListener('input', toggleValueClass);
+  if (input.value.trim().length > 0) {
+    input.classList.add('has-value');
+  }
 });
 
 // ! Animations ! //

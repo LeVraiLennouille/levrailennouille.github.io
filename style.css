@@ -452,6 +452,328 @@ html, body {
    # Footer
 ========================================================================== */
 
+main.Contact {
+    position: relative;
+    margin: 100px 0 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--Background);
+
+    .SocialSidebar {
+        position: absolute;
+        left: 28px;
+        top: 30%;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        pointer-events: auto;
+    
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            color: var(--Primary);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.75;
+                transform: scale(1.2);
+            }
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    }
+
+    .ContactLayout {
+        position: relative;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        min-height: 91vh;
+        pointer-events: none;
+    
+        .ContactLeft {
+            width: 58%;
+            min-width: 500px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 64px 60px 100px;
+            pointer-events: auto;
+            position: relative;
+
+            .ContactTitle {
+                font-size: clamp(2.8rem, 5vw, 4.5rem);
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                color: var(--Charcoal);
+                line-height: 1;
+                margin-bottom: 18px;
+            }
+
+            .ContactSubtitle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0;
+                margin-bottom: 36px;
+            
+                span {
+                    position: relative;
+                    display: inline-block;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    color: rgba(var(--PureBlackRGB), 0.8);
+                    line-height: 1.6;
+                    letter-spacing: 0.12em;
+                    transition: color 0.3s ease;
+                    padding: 0 2px 4px;
+
+                    &:hover::before {transform: scaleX(0);}
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(1); 
+                        transform-origin: left; 
+                        transition: transform 0.3s ease;
+                    }
+                }
+            }
+
+            .Form {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                width: 100%;
+                max-width: 600px;
+
+                .InputGroup {
+                    position: relative;
+                    margin-bottom: 6px;
+                    width: 100%;
+                    color: var(--Primary);
+                    background: transparent;
+
+                    .Input {
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 12px 15px;
+                        border: 1px solid var(--PureBlack);
+                        border-radius: 8px;
+                        background: transparent;
+                        color: var(--PureBlack);
+                        font-size: 1rem;
+                        outline: none;
+                        transition: all 0.3s ease;
+
+                        &:focus~.Label,
+                        &:valid~.Label {
+                            top: 0;
+                            background-color: var(--Primary);
+                            color: var(--PureWhite);
+                            border-radius: 4px;
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .Label {
+                        position: absolute;
+                        left: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: var(--PureBlack);
+                        background-color: transparent;
+                        padding: 0 5px;
+                        pointer-events: none;
+                        transition: all 0.3s ease;
+                    }
+
+                    textarea.Input+.Label {top: 22px;}
+
+                    input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
+                    input[type="text"].has-value, input[type="email"].has-value, textarea.has-value,
+                    input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
+                    input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
+                }
+
+                .FormRow {
+                    display: flex;
+                    gap: 14px;
+                    width: 100%;
+
+                    .InputGroup {
+                        margin-bottom: 0;
+                        flex: 1;
+                    }
+                }
+
+                .FormActions {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 600px;
+                    gap: 1rem;
+                    margin-top: 1rem;
+                    flex-wrap: wrap;
+                    top: -10px;
+                    font-size: 0.85rem;
+                    color: var(--Primary);
+
+                    button[type="submit"] {
+                        flex: 1;
+                        min-width: 160px;
+                        padding: 14px 28px;
+                        background: var(--Primary);
+                        color: var(--PureWhite);
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 700;
+                        letter-spacing: 0.12em;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: filter 0.25s ease, transform 0.2s ease;
+
+                        &:hover {
+                            filter: brightness(0.88);
+                            transform: translateY(-2px);
+                        }
+                    }
+
+                    button[type="reset"] {
+                        padding: 14px 24px;
+                        background: transparent;
+                        color: rgba(var(--PureBlackRGB),0.4);
+                        border: 1px solid rgba(var(--PureBlackRGB),0.18);
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 600;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: border-color 0.25s ease, color 0.25s ease;
+    
+                        &:hover {
+                            border-color: var(--Primary);
+                            color: var(--Primary);
+                        }
+                    }
+                }
+            }
+
+            .ContactCoords {
+                margin-top: 28px;
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    letter-spacing: 0.03em;
+                    width: fit-content;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--Primary);
+
+                        &::before {transform: scaleX(1);}
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(0);
+                        transform-origin: top left;
+                        transition: transform 0.3s ease;
+                    }
+                }
+    
+                .CoordDot {color: var(--Primary); font-size: 0.8rem;}
+            }
+        }
+
+        .ContactRight {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 40px 48px;
+            pointer-events: none;
+
+            .Terms {
+                text-align: right;
+                pointer-events: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    letter-spacing: 0.03em;
+                    text-decoration: none;
+                    width: fit-content;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--PureBlack);
+
+                        &::before {transform: scaleX(1);}
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(0);
+                        transform-origin: top right;
+                        transition: transform 0.3s ease;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .Footer {
     background-color: #071C32;
     color: var(--PureWhite);
@@ -1408,6 +1730,22 @@ section.Talk {
         .NavCTA   {display: none;}
         .HamburgerBtn {display: flex;}
     }
+
+    main.Contact {
+        .SocialSidebar {left: 16px}
+        .ContactLayout {
+            flex-direction: column;
+
+            .ContactLeft {
+                width: 100%;
+                min-width: unset;
+                padding: 50px 32px 40px 64px;
+                height: auto;
+            }
+
+            .ContactRight {display: none;}
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -1461,6 +1799,19 @@ section.Talk {
     }
 
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+
+    main.Contact {
+        max-width: calc(100% - 40px);
+
+        .SocialSidebar {display: none}
+        .ContactLayout {
+            .ContactLeft {
+                padding: 40px 20px 40px;
+
+                .ContactTitle {font-size: 2rem;}
+            }
+        }
+    }
 }
 
 @media (hover: none) {
