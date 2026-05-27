@@ -1118,7 +1118,7 @@ main.Contact {
                 flex-direction: column;
                 gap: 14px;
                 width: 100%;
-                max-width: 468px;
+                max-width: 600px;
 
                 .InputGroup {
                     position: relative;
@@ -1129,6 +1129,7 @@ main.Contact {
 
                     .Input {
                         width: 100%;
+                        box-sizing: border-box;
                         padding: 12px 15px;
                         border: 1px solid var(--PureBlack);
                         border-radius: 8px;
@@ -1169,10 +1170,21 @@ main.Contact {
                     input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
                 }
 
+                .FormRow {
+                    display: flex;
+                    gap: 14px;
+                    width: 100%;
+
+                    .InputGroup {
+                        margin-bottom: 0;
+                        flex: 1;
+                    }
+                }
+
                 .FormActions {
                     display: flex;
                     justify-content: space-between;
-                    width: 500px;
+                    width: 600px;
                     gap: 1rem;
                     margin-top: 1rem;
                     flex-wrap: wrap;
