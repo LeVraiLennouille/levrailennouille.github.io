@@ -5,7 +5,7 @@ const footerHTML = `
         <div class="FooterCol">
             <h3 class="FooterLogo">Lennouille</h3>
             <span class="FooterBadge">
-                <span class="FooterBadgeDot"></span>Disponible pour des opportunités
+                <span class="FooterBadgeDot"></span>Disponible pour de nouveaux projets
             </span>
             <p class="FooterDesc">Un nom décalé, une conception redoutable.<br>Lennouille : UI/UX Designer freelance</p>
             <a class="SwitchBtn" href="/contact">
