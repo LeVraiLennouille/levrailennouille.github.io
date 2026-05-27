@@ -1735,6 +1735,8 @@ main.Contact {
         .HamburgerBtn {display: flex;}
     }
 
+    .Footer {width: 100%}
+
     main.Contact {
         .SocialSidebar {left: 16px}
         .ContactLayout {
@@ -1745,6 +1747,10 @@ main.Contact {
                 min-width: unset;
                 padding: 50px 32px 40px 64px;
                 height: auto;
+
+                .Form .FormActions {
+                    width:100%;
+                }
             }
 
             .ContactRight {display: none;}
