@@ -1735,7 +1735,19 @@ main.Contact {
         .HamburgerBtn {display: flex;}
     }
 
-    .Footer {width: 100%}
+    .Footer {
+        width: 100%;
+
+        .FooterContainer {
+            grid-template-columns: 1fr 1fr;
+
+            .FooterCol:first-child {
+                grid-column: 1 / -1;
+                align-items: center;
+                    text-align: center;
+            }
+        }
+    }
 
     main.Contact {
         .SocialSidebar {left: 16px}
