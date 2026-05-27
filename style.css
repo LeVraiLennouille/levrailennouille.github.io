@@ -2149,6 +2149,41 @@ main.Terms {
             .ContactRight {display: none;}
         }
     }
+
+    main.Terms .TermsContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
+}
+
+@media (max-width: 768px) {
+    main.Terms {
+        .TermsHero {
+            padding: 130px 24px 60px;
+            min-height: 300px;
+
+            .Decor {display: none;}
+        }
+
+        .TermsContent {
+            padding: 48px 24px 80px;
+
+            .Container {
+                grid-template-columns: 1fr;
+                gap: 0;
+
+                .Nav {
+                    position: static;
+                    margin-bottom: 40px;
+                }
+
+                .TermsArticles .TermsArticle {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+
+                    .Num {padding-top: 0;}
+                    .SecondContainer .Card .CardRow .Label {width: 90px;}
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -2214,6 +2249,13 @@ main.Terms {
                 .ContactTitle {font-size: 2rem;}
             }
         }
+    }
+
+    main.Terms .TermsContent .Container.TermsArticles .TermsArticle .SecondContainer .Card .CardRow {
+        flex-direction: column;
+        gap: 4px;
+
+        .Label {width: auto;}
     }
 }
 
