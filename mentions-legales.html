@@ -29,6 +29,26 @@
     <link rel="canonical" href="https://levrailennouille.github.io/mentions-legales/">
     <link href="style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+
+    <style>
+        @media (max-width: 1024px) {
+            .Container { grid-template-columns: 200px 1fr; gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .TermsHero { padding: 130px 24px 60px; min-height: 300px; }
+            .Decor { display: none; }
+            .TermsContent { padding: 48px 24px 80px; }
+            .Container { grid-template-columns: 1fr; gap: 0; }
+            .Nav { position: static; margin-bottom: 40px; }
+            .TermsArticle { grid-template-columns: 1fr; gap: 8px; }
+            .Num { padding-top: 0; }
+            .Label { width: 90px; }
+        }
+        @media (max-width: 480px) {
+            .CardRow { flex-direction: column; gap: 4px; }
+            .Label { width: auto; }
+        }
+    </style>
 </head>
 <body>
     <main class="Terms Mentions">
@@ -48,9 +68,168 @@
                 <span>LEGAL</span>
             </div>
         </section>
+        <section class="TermsContent">
+            <div class="Container">
+                <nav class="Nav" aria-label="Sommaire">
+                    <p class="Title">Sommaire</p>
+                    <ul>
+                        <li><a href="#editeur">01. Éditeur du site</a></li>
+                        <li><a href="#hebergement">02. Hébergement</a></li>
+                        <li><a href="#propriete">03. Propriété intellectuelle</a></li>
+                        <li><a href="#donnees">04. Données personnelles</a></li>
+                        <li><a href="#cookies">05. Cookies</a></li>
+                        <li><a href="#liens">06. Liens hypertextes</a></li>
+                        <li><a href="#responsabilite">07. Responsabilité</a></li>
+                        <li><a href="#contact">08. Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="TermsArticles">
+                    <article class="TermsArticle" id="editeur">
+                        <div class="Num">01</div>
+                        <div class="SecondContainer">
+                            <h2>Éditeur du site</h2>
+                            <p>Le présent site web est édité par :</p>
+                            <div class="Card">
+                                <div class="CardRow">
+                                    <span class="Label">Dénomination</span>
+                                    <span class="Value">Lennouille — Lenny Gadroy</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Statut</span>
+                                    <span class="Value">Auto-entrepreneur / Freelance</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Activité</span>
+                                    <span class="Value">Designer UI/UX &amp; Développeur web</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">SIRET</span>
+                                    <span class="Value">À renseigner</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Email</span>
+                                    <span class="Value"><a href="/contact">Via le formulaire de contact</a></span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Site web</span>
+                                    <span class="Value">https://levrailennouille.github.io</span>
+                                </div>
+                            </div>
+                            <p>Le directeur de la publication est Lenny Gadroy, en qualité d'éditeur du site.</p>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="hebergement">
+                        <div class="Num">02</div>
+                        <div class="SecondContainer">
+                            <h2>Hébergement</h2>
+                            <p>Le site est hébergé par :</p>
+                            <div class="Card">
+                                <div class="CardRow">
+                                    <span class="Label">Hébergeur</span>
+                                    <span class="Value">GitHub, Inc.</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Service</span>
+                                    <span class="Value">GitHub Pages</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Adresse</span>
+                                    <span class="Value">88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</span>
+                                </div>
+                                <div class="CardRow">
+                                    <span class="Label">Site</span>
+                                    <span class="Value"><a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="propriete">
+                        <div class="Num">03</div>
+                        <div class="SecondContainer">
+                            <h2>Propriété intellectuelle</h2>
+                            <p>L'ensemble du contenu de ce site — textes, visuels, typographies, icônes, animations, code source et tout autre élément — est la propriété exclusive de Lennouille (Lenny Gadroy), sauf mention contraire.</p>
+                            <p>Ce contenu est protégé par les lois françaises et internationales relatives à la propriété intellectuelle et au droit d'auteur (Code de la Propriété Intellectuelle).</p>
+                            <p>Toute reproduction, distribution, modification, adaptation ou réutilisation de tout ou partie du site, sans autorisation écrite préalable, est strictement interdite et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la Propriété Intellectuelle.</p>
+                            <div class="Highlight">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                                <p>Les marques et logos présents sur ce site sont des marques déposées. Toute utilisation non autorisée engage la responsabilité civile et/ou pénale de son auteur.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="donnees">
+                        <div class="Num">04</div>
+                        <div class="SecondContainer">
+                            <h2>Données personnelles</h2>
+                            <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez de droits sur vos données personnelles.</p>
+                            <h3>Données collectées</h3>
+                            <p>Ce site peut collecter les données suivantes lors de l'utilisation du formulaire de contact :</p>
+                            <ul class="List">
+                                <li>Nom et/ou prénom</li>
+                                <li>Adresse email</li>
+                                <li>Objet et contenu de votre message</li>
+                            </ul>
+                            <h3>Finalité du traitement</h3>
+                            <p>Les données collectées sont utilisées exclusivement dans le but de répondre à vos demandes de contact et ne sont ni cédées, ni vendues, ni transmises à des tiers.</p>
+                            <h3>Durée de conservation</h3>
+                            <p>Vos données sont conservées pour la durée strictement nécessaire à la gestion de votre demande, et supprimées au-delà.</p>
+                            <h3>Vos droits</h3>
+                            <p>Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification, de suppression, d'opposition et de portabilité de vos données. Pour exercer ces droits, contactez-moi via la <a href="/contact">page de contact</a>.</p>
+                            <p>En cas de réclamation non résolue, vous pouvez saisir la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.</p>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="cookies">
+                        <div class="Num">05</div>
+                        <div class="SecondContainer">
+                            <h2>Cookies</h2>
+                            <p>Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site. Ce site n'utilise pas de cookies à des fins publicitaires ou de tracking commercial.</p>
+                            <h3>Cookies techniques</h3>
+                            <p>Ce site peut utiliser des cookies strictement nécessaires au bon fonctionnement de la navigation. Ces cookies ne requièrent pas votre consentement préalable.</p>
+                            <h3>Gestion des cookies</h3>
+                            <p>Vous pouvez configurer votre navigateur pour refuser les cookies ou être alerté lors de leur dépôt. Notez que certaines fonctionnalités du site peuvent ne plus fonctionner correctement si les cookies sont désactivés.</p>
+                            <div class="Highlight">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                                <p>Aucun cookie tiers à des fins de publicité ciblée n'est déposé sur ce site.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="liens">
+                        <div class="Num">06</div>
+                        <div class="SecondContainer">
+                            <h2>Liens hypertextes</h2>
+                            <p>Ce site peut contenir des liens vers d'autres sites web, fournis à titre informatif. Lennouille n'exerce aucun contrôle sur leur contenu et décline toute responsabilité quant à leur politique de confidentialité.</p>
+                            <p>Tout lien hypertexte vers ce site nécessite une autorisation préalable écrite de l'éditeur. Pour toute demande, utilisez la <a href="/contact">page de contact</a>.</p>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="responsabilite">
+                        <div class="Num">07</div>
+                        <div class="SecondContainer">
+                            <h2>Responsabilité</h2>
+                            <p>Lennouille s'efforce de maintenir les informations de ce site à jour et exactes. Cependant, aucune garantie n'est donnée quant à l'exactitude, l'exhaustivité ou l'actualité des informations publiées.</p>
+                            <p>Lennouille ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site, d'une interruption d'accès, d'une intrusion extérieure, d'un virus informatique ou d'une défaillance technique.</p>
+                            <p>L'utilisateur est seul responsable de l'usage qu'il fait des informations et contenus présents sur ce site.</p>
+                        </div>
+                    </article>
+                    <article class="TermsArticle" id="contact">
+                        <div class="Num">08</div>
+                        <div class="SecondContainer">
+                            <h2>Contact</h2>
+                            <p>Pour toute question relative aux présentes mentions légales, vous pouvez me contacter :</p>
+                            <p class="Update">Dernière mise à jour : <strong>Janvier 2026</strong></p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
         <div id="TalkPlaceHolder"></div><script src="js/talk.js"></script>
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

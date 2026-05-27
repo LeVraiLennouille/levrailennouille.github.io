@@ -1813,6 +1813,242 @@ main.Terms {
             }
         }
     }
+
+    .TermsContent {
+        background-color: var(--Background);
+        padding: 80px 40px 120px;
+
+        .Container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 80px;
+            align-items: start;
+
+            .Nav {
+            position: sticky;
+            top: 88px;
+            background-color: var(--PureWhite);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
+
+                .Title {
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: var(--SuperMuted);
+                    margin-bottom: 16px;
+                    padding-bottom: 12px;
+                    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    li a {
+                        display: block;
+                        font-size: 0.82rem;
+                        font-weight: 600;
+                        color: var(--SuperMuted);
+                        text-decoration: none;
+                        padding: 7px 10px;
+                        border-radius: 8px;
+                        transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+                        border-left: 2px solid transparent;
+
+                        &:hover {
+                            background: rgba(var(--PrimaryRGB), 0.06);
+                            color: var(--Primary);
+                            padding-left: 14px;
+                        }
+
+                        &.active {
+                            background: rgba(var(--PrimaryRGB), 0.1);
+                            color: var(--Primary);
+                            border-left-color: var(--Primary);
+                            padding-left: 14px;
+                        }
+                    }
+                }
+            }
+
+            .TermsArticles {
+                display: flex; 
+                flex-direction: column;
+            }
+
+            .TermsArticle {
+                display: grid;
+                grid-template-columns: 56px 1fr;
+                gap: 24px;
+                padding: 48px 0;
+                border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.08);
+
+                &:first-child {padding-top: 0;}
+                &:last-child  {border-bottom: none;}
+
+                .Num {
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    color: var(--Primary);
+                    letter-spacing: 0.08em;
+                    padding-top: 6px;
+                    opacity: 0.7;
+                }
+
+                .SecondContainer {
+                    h2 {
+                        font-size: 1.55rem;
+                        font-weight: 800;
+                        color: var(--Charcoal);
+                        margin-bottom: 20px;
+                        letter-spacing: -0.02em;
+                    }
+
+                    h3 {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: var(--Charcoal);
+                        margin: 24px 0 10px;
+                    }
+
+                    p {
+                        font-size: 0.95rem;
+                        line-height: 1.75;
+                        color: var(--SuperMuted);
+                        margin-bottom: 14px;
+                        font-weight: 500;
+                        text-transform: none;
+
+                        &:last-child {margin-bottom: 0;}
+                    }
+
+                    a {
+                        color: var(--Primary);
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                        text-decoration-thickness: 1px;
+                        transition: color 0.2s ease;
+
+                        &:hover {color: var(--DarkPrimary);}
+                    }
+
+                    strong {color: var(--Charcoal);}
+
+                    .Card {
+                        background-color: var(--PureWhite);
+                        border-radius: 12px;
+                        padding: 6px 0;
+                        margin: 20px 0;
+                        box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.06);
+                        overflow: hidden;
+
+                        .CardRow {
+                            display: flex;
+                            align-items: baseline;
+                            gap: 16px;
+                            padding: 12px 20px;
+                            border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.05);
+                            transition: background 0.2s ease;
+
+                            &:last-child {border-bottom: none;}
+                            &:hover {background: rgba(var(--PrimaryRGB), 0.04);}
+
+                            .Label {
+                                font-size: 0.78rem;
+                                font-weight: 800;
+                                text-transform: uppercase;
+                                letter-spacing: 0.07em;
+                                color: var(--Muted);
+                                flex-shrink: 0;
+                                width: 120px;
+                            }
+
+                            .Value {
+                                font-size: 0.9rem;
+                                font-weight: 600;
+                                color: var(--Charcoal);
+                                text-transform: none;
+
+                                a {color: var(--Primary);}
+                            }
+                        }
+                    }
+
+                    .List {
+                        list-style: none;
+                        padding: 0;
+                        margin: 12px 0 16px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+
+                        li {
+                            font-size: 0.92rem;
+                            font-weight: 500;
+                            color: var(--SuperMuted);
+                            padding-left: 20px;
+                            position: relative;
+                            text-transform: none;
+                            line-height: 1.65;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                top: 10px;
+                                width: 6px;
+                                height: 6px;
+                                border-radius: 50%;
+                                background-color: var(--Primary);
+                            }
+                        }
+                    }
+
+                    .Highlight {
+                        display: flex;
+                        gap: 14px;
+                        align-items: flex-start;
+                        background: rgba(var(--PrimaryRGB), 0.07);
+                        border-left: 3px solid var(--Primary);
+                        border-radius: 0 10px 10px 0;
+                        padding: 16px 20px;
+                        margin: 20px 0;
+
+                        svg {
+                            width: 18px;
+                            height: 18px;
+                            stroke: var(--Primary);
+                            flex-shrink: 0;
+                            margin-top: 2px;
+                        }
+
+                        p {
+                            margin: 0;
+                            font-size: 0.9rem;
+                            color: var(--Charcoal);
+                            font-weight: 600;
+                        }
+                    }
+
+                    .Update {
+                        font-size: 0.8rem ;
+                        color: var(--Muted);
+                        font-style: italic;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* ==========================================================================
