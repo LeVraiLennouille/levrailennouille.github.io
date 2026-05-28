@@ -255,13 +255,10 @@ document.addEventListener('DOMContentLoaded', function () {if (typeof initHambur
     function onScroll() {
         var current = '';
         sections.forEach(function (section) {
-            if (section.getBoundingClientRect().top <= 120) {
-                current = section.getAttribute('id');
-            }
+            if (section.getBoundingClientRect().top <= 120) {current = section.getAttribute('id');}
         });
-        navLinks.forEach(function (link) {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-        });
+
+        navLinks.forEach(function (link) {link.classList.toggle('active', link.getAttribute('href') === '#' + current);});
     }
 
 window.addEventListener('scroll', onScroll, {passive: true});onScroll();})();
