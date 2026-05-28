@@ -1939,15 +1939,15 @@ main.Terms {
                                 font-weight: 800;
                                 text-transform: uppercase;
                                 letter-spacing: 0.07em;
-                                color: var(--Muted);
+                                color: var(--Primary);
                                 flex-shrink: 0;
-                                width: 120px;
+                                width: 200px;
                             }
 
                             .Value {
                                 font-size: 0.9rem;
                                 font-weight: 600;
-                                color: var(--Charcoal);
+                                color: var(--PureBlack);
                                 text-transform: none;
 
                                 a {color: var(--Primary);}
