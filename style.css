@@ -1829,7 +1829,7 @@ main.Terms {
                         display: block;
                         font-size: 0.82rem;
                         font-weight: 600;
-                        color: var(--SuperMuted);
+                        color: var(--Charcoal);
                         text-decoration: none;
                         padding: 7px 0;
                         border-radius: 8px;
@@ -1868,7 +1868,7 @@ main.Terms {
                 &:last-child  {border-bottom: none;}
 
                 .Num {
-                    font-size: 0.75rem;
+                    font-size: 1rem;
                     font-weight: 800;
                     color: var(--Primary);
                     letter-spacing: 0.08em;
