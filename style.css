@@ -1873,14 +1873,13 @@ main.Terms {
                     color: var(--Primary);
                     letter-spacing: 0.08em;
                     padding-top: 6px;
-                    opacity: 0.7;
                 }
 
                 .SecondContainer {
                     h2 {
                         font-size: 1.55rem;
                         font-weight: 800;
-                        color: var(--Charcoal);
+                        color: var(--Primary);
                         margin-bottom: 20px;
                         letter-spacing: -0.02em;
                     }
@@ -1888,14 +1887,14 @@ main.Terms {
                     h3 {
                         font-size: 1rem;
                         font-weight: 700;
-                        color: var(--Charcoal);
+                        color: var(--DarkPrimary);
                         margin: 24px 0 10px;
                     }
 
                     p {
                         font-size: 0.95rem;
                         line-height: 1.75;
-                        color: var(--SuperMuted);
+                        color: var(--Charcoal);
                         margin-bottom: 14px;
                         font-weight: 500;
                         text-transform: none;
@@ -1966,11 +1965,13 @@ main.Terms {
                         li {
                             font-size: 0.92rem;
                             font-weight: 500;
-                            color: var(--SuperMuted);
+                            color: var(--Charcoal);
                             padding-left: 20px;
                             position: relative;
                             text-transform: none;
                             line-height: 1.65;
+
+                            >a {color: inherit; text-decoration: none;}
 
                             &::before {
                                 content: "";
@@ -1980,7 +1981,7 @@ main.Terms {
                                 width: 6px;
                                 height: 6px;
                                 border-radius: 50%;
-                                background-color: var(--Primary);
+                                background-color: var(--Charcoal);
                             }
                         }
                     }
@@ -2059,9 +2060,11 @@ main.Terms {
 
                     .Update {
                         font-size: 0.8rem ;
-                        color: var(--Muted);
+                        color: var(--PureBlack);
                         font-style: italic;
                         margin-top: 20px;
+
+                        strong {color: var(--Primary);}
                     }
                 }
             }
