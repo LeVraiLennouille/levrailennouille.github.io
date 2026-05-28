@@ -1723,11 +1723,10 @@ main.Terms {
     .TermsHero {
         position: relative;
         background-color: var(--Charcoal);
-        padding: 160px 40px 80px;
         overflow: hidden;
         display: flex;
-        align-items: flex-end;
-        min-height: 380px;
+        align-items: center;
+        min-height: 400px;
 
         &::before {
             content: "";
@@ -1742,36 +1741,9 @@ main.Terms {
         .HeroInner {
             position: relative;
             z-index: 2;
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
-            margin: 0 auto;
-
-            .Breadcrumb {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 0.85rem;
-                font-weight: 600;
-                color: var(--Muted);
-                margin-bottom: 24px;
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-
-                a {
-                    color: var(--Primary);
-                    text-decoration: none;
-                    transition: color 0.25s ease;
-
-                    &:hover { color: var(--PureWhite); }
-                }
-
-                svg {
-                    width: 14px;
-                    height: 14px;
-                    stroke: var(--SuperMuted);
-                    flex-shrink: 0;
-                }
-            }
+            margin: 64px auto 0;
 
             .Title {
                 font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -1785,7 +1757,6 @@ main.Terms {
                 font-size: 0.95rem;
                 font-weight: 500;
                 color: var(--Muted);
-                max-width: 560px;
                 line-height: 1.65;
                 text-transform: none;
             }
@@ -1794,13 +1765,14 @@ main.Terms {
         .Decor {
             position: absolute;
             right: -20px;
-            top: 50%;
+            top: 58%;
             transform: translateY(-50%);
             z-index: 1;
             pointer-events: none;
             display: flex;
             flex-direction: column;
             user-select: none;
+            align-items: flex-end;
 
             span {
                 font-size: clamp(5rem, 12vw, 11rem);
@@ -1819,7 +1791,7 @@ main.Terms {
         padding: 80px 40px 120px;
 
         .Container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 240px 1fr;
