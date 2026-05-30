@@ -246,6 +246,34 @@ inputs.forEach(input => {
   }
 });
 
+// * Terms * //
+document.addEventListener('DOMContentLoaded', function () {if (typeof initHamburger === 'function') initHamburger();});
+(function () {
+    var sections = document.querySelectorAll('.TermsArticle[id]');
+    var navLinks = document.querySelectorAll('.Nav a');
+
+    function onScroll() {
+        var current = '';
+        sections.forEach(function (section) {
+            if (section.getBoundingClientRect().top <= 120) {current = section.getAttribute('id');}
+        });
+
+        navLinks.forEach(function (link) {link.classList.toggle('active', link.getAttribute('href') === '#' + current);});
+    }
+
+window.addEventListener('scroll', onScroll, {passive: true});onScroll();})();
+
+document.querySelectorAll('.Nav a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            var top = target.getBoundingClientRect().top + window.scrollY - 96;
+            window.scrollTo({top: top, behavior: 'smooth'});
+        }
+    });
+});
+
 // ! Animations ! //
 // * Hero * //
 let select    = e => document.querySelector(e);

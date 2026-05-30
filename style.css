@@ -1123,7 +1123,7 @@ section.Merge {
 }   
 
 @supports (animation-timeline: scroll()) {
-    .List li {
+    section.Merge .ListContainer .ListText .List li {
         animation: Bright both linear;
         animation-timeline: view();
         animation-range: cover calc(50% - 9rem) calc(50% + 9rem);
@@ -1716,6 +1716,377 @@ main.Contact {
 }
 
 /* ==========================================================================
+   # Terms Page
+========================================================================== */
+
+main.Terms {
+    .TermsHero {
+        position: relative;
+        background-color: var(--Charcoal);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        min-height: 400px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(var(--PrimaryRGB), 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(var(--DarkPrimaryRGB), 0.25) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .HeroInner {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            margin: 64px auto 0;
+
+            .Title {
+                font-size: clamp(2.8rem, 7vw, 5.5rem);
+                font-weight: 900;
+                color: var(--PureWhite);
+                line-height: 1;
+                letter-spacing: -0.03em;
+                margin-bottom: 20px;
+            }
+            .SubTitle {
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: var(--Muted);
+                line-height: 1.65;
+                text-transform: none;
+            }
+        }
+
+        .Decor {
+            position: absolute;
+            right: -20px;
+            top: 58%;
+            transform: translateY(-50%);
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+            align-items: flex-end;
+
+            span {
+                font-size: clamp(5rem, 12vw, 11rem);
+                font-weight: 900;
+                letter-spacing: -0.04em;
+                line-height: 0.9;
+                color: transparent;
+                -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .TermsContent {
+        background-color: var(--Background);
+        padding: 80px 40px 120px;
+
+        .Container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 80px;
+            align-items: start;
+
+            .Nav {
+            position: sticky;
+            top: 88px;
+            background-color: var(--PureWhite);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
+
+                .Title {
+                    font-size: 0.7rem;
+                    font-weight: 800;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: var(--PureBlack);
+                    margin-bottom: 16px;
+                    padding-bottom: 12px;
+                    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    li a {
+                        display: block;
+                        font-size: 0.82rem;
+                        font-weight: 600;
+                        color: var(--Charcoal);
+                        text-decoration: none;
+                        padding: 7px 0;
+                        border-radius: 8px;
+                        transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+                        border-left: 2px solid transparent;
+
+                        &:hover {
+                            background: rgba(var(--PrimaryRGB), 0.06);
+                            color: var(--Primary);
+                            padding-left: 10px;
+                        }
+
+                        &.active {
+                            background: rgba(var(--PrimaryRGB), 0.1);
+                            color: var(--Primary);
+                            border-left-color: var(--Primary);
+                            padding-left: 10px;
+                        }
+                    }
+                }
+            }
+
+            .TermsArticles {
+                display: flex; 
+                flex-direction: column;
+            }
+
+            .TermsArticle {
+                display: grid;
+                grid-template-columns: 56px 1fr;
+                gap: 24px;
+                padding: 48px 0;
+                border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.08);
+
+                &:first-child {padding-top: 0;}
+                &:last-child  {border-bottom: none;}
+
+                .Num {
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: var(--Primary);
+                    letter-spacing: 0.08em;
+                    padding-top: 6px;
+                }
+
+                .SecondContainer {
+                    h2 {
+                        font-size: 1.55rem;
+                        font-weight: 800;
+                        color: var(--Primary);
+                        margin-bottom: 20px;
+                        letter-spacing: -0.02em;
+                    }
+
+                    h3 {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: var(--DarkPrimary);
+                        margin: 24px 0 10px;
+                    }
+
+                    p {
+                        font-size: 0.95rem;
+                        line-height: 1.75;
+                        color: var(--Charcoal);
+                        margin-bottom: 14px;
+                        font-weight: 500;
+                        text-transform: none;
+                        text-align: justify;
+
+                        &:last-child {margin-bottom: 0;}
+                    }
+
+                    a {
+                        color: var(--Primary);
+                        position: relative;
+                        text-decoration: none;
+                        width: fit-content;
+                        transition: all 0.3s ease;
+
+                        &:hover::before {transform: scaleX(1);}
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            display: block;
+                            width: 100%;
+                            height: 2px;
+                            bottom: 0;
+                            left: 0;
+                            background-color: var(--Primary);
+                            transform: scaleX(0);
+                            transition: transform 0.3s ease;
+                        }
+                    }
+
+                    strong {color: var(--Charcoal);}
+
+                    .Card {
+                        background-color: var(--PureWhite);
+                        border-radius: 12px;
+                        padding: 6px 0;
+                        margin: 20px 0;
+                        box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.06);
+                        overflow: hidden;
+
+                        .CardRow {
+                            display: flex;
+                            align-items: baseline;
+                            gap: 16px;
+                            padding: 12px 20px;
+                            border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.05);
+                            transition: background 0.2s ease;
+
+                            &:last-child {border-bottom: none;}
+                            &:hover {background: rgba(var(--PrimaryRGB), 0.04);}
+
+                            .Label {
+                                font-size: 0.78rem;
+                                font-weight: 800;
+                                text-transform: uppercase;
+                                letter-spacing: 0.07em;
+                                color: var(--Primary);
+                                flex-shrink: 0;
+                                width: 200px;
+                            }
+
+                            .Value {
+                                font-size: 0.9rem;
+                                font-weight: 600;
+                                color: var(--PureBlack);
+                                text-transform: none;
+
+                                a {color: var(--Primary);}
+                            }
+                        }
+                    }
+
+                    .List {
+                        list-style: none;
+                        padding: 0;
+                        margin: 12px 0 16px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+
+                        li {
+                            font-size: 0.92rem;
+                            font-weight: 500;
+                            color: var(--Charcoal);
+                            padding-left: 20px;
+                            position: relative;
+                            text-transform: none;
+                            line-height: 1.65;
+
+                            >a {color: inherit; text-decoration: none;}
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                top: 10px;
+                                width: 6px;
+                                height: 6px;
+                                border-radius: 50%;
+                                background-color: var(--Charcoal);
+                            }
+                        }
+                    }
+
+                    .Highlight {
+                        display: flex;
+                        gap: 14px;
+                        align-items: flex-start;
+                        background: rgba(var(--PrimaryRGB), 0.07);
+                        border-left: 3px solid var(--Primary);
+                        border-radius: 0 10px 10px 0;
+                        padding: 16px 20px;
+                        margin: 20px 0;
+
+                        svg {
+                            width: 18px;
+                            height: 18px;
+                            stroke: var(--Primary);
+                            flex-shrink: 0;
+                            margin-top: 2px;
+                        }
+
+                        p {
+                            margin: 0;
+                            font-size: 0.9rem;
+                            color: var(--Charcoal);
+                            font-weight: 600;
+                        }
+                    }
+
+                    .Button {
+                        display: inline-block;
+                        padding: .75rem 1.25rem;
+                        border-radius: 10rem;
+                        color: var(--PureWhite);
+                        text-transform: uppercase;
+                        font-size: 1rem;
+                        letter-spacing: .15rem;
+                        text-decoration: none;
+                        transition: all .3s;
+                        position: relative;
+                        overflow: hidden;
+                        z-index: 1;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: var(--Primary);
+                            border-radius: 10rem;
+                            z-index: -2;
+                        }
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            height: 100%;
+                            background-color: var(--DarkPrimary);
+                            transition: all .3s;
+                            border-radius: 10rem;
+                            z-index: -1;
+                        }
+
+                        &:hover {
+                            color: var(--PureWhite);
+
+                            &::before {width: 100%;}
+                        }
+                    }
+
+                    .Update {
+                        font-size: 0.8rem ;
+                        color: var(--PureBlack);
+                        font-style: italic;
+                        margin-top: 20px;
+
+                        strong {color: var(--Primary);}
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ==========================================================================
    # Responsive Design
 ========================================================================== */
 
@@ -1765,6 +2136,41 @@ main.Contact {
             }
 
             .ContactRight {display: none;}
+        }
+    }
+
+    main.Terms .TermsContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
+}
+
+@media (max-width: 768px) {
+    main.Terms {
+        .TermsHero {
+            padding: 130px 24px 60px;
+            min-height: 300px;
+
+            .Decor {display: none;}
+        }
+
+        .TermsContent {
+            padding: 48px 24px 80px;
+
+            .Container {
+                grid-template-columns: 1fr;
+                gap: 0;
+
+                .Nav {
+                    position: static;
+                    margin-bottom: 40px;
+                }
+
+                .TermsArticles .TermsArticle {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+
+                    .Num {padding-top: 0;}
+                    .SecondContainer .Card .CardRow .Label {width: 90px;}
+                }
+            }
         }
     }
 }
@@ -1832,6 +2238,13 @@ main.Contact {
                 .ContactTitle {font-size: 2rem;}
             }
         }
+    }
+
+    main.Terms .TermsContent .Container.TermsArticles .TermsArticle .SecondContainer .Card .CardRow {
+        flex-direction: column;
+        gap: 4px;
+
+        .Label {width: auto;}
     }
 }
 
