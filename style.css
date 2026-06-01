@@ -167,6 +167,123 @@ section.Hero {
     }
 }
 
+section.Why {
+    background-color: var(--Background);
+    padding: 80px 60px 100px;
+    position: relative;
+
+    .Label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--DarkPrimary);
+        text-transform: uppercase;
+        margin-bottom: 48px;
+    }
+
+    .Layout {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 60px;
+        align-items: start;
+
+        .Left {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            .Title {
+                font-size: clamp(1.6rem, 3vw, 2.5rem);
+                font-weight: 900;
+                color: var(--DarkPrimary);
+                text-transform: uppercase;
+                line-height: 1.15;
+                text-align: justify;
+                letter-spacing: -0.01em;
+            }
+
+            .Body {
+                font-size: 0.95rem;
+                font-weight: 400;
+                color: var(--DarkPrimary);
+                line-height: 1.7;
+                text-align: justify;
+                max-width: 400px;
+            }
+        }
+
+        .Right {
+            padding-top: 20px;
+        }
+
+        .Grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 0;
+            align-items: end;
+
+            .Card {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .CardImg {
+                    overflow: hidden;
+                    background-color: var(--Background);
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                        filter: grayscale(1);
+                        transition: filter 0.4s ease;
+
+                        &:hover {filter: grayscale(0);}
+                    }
+                }
+
+                &.User {
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    padding-bottom: 10px;
+
+                    .CardImg.ImgUser {height: 160px;}
+                }
+
+                &.Data .CardImgat.ImgData {height: 240px;}
+
+                &.Iterative {
+                    flex-direction: column;
+                    padding-bottom: 10px;
+
+                    .CardImg.ImgIterative {height: 160px;}
+
+                    .Label {text-align: right;}
+                }
+
+                .Label {
+                    font-size: 0.8rem;
+                    font-weight: 800;
+                    letter-spacing: 0.04em;
+                    color: var(--DarkPrimary);
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                }
+
+                .Desc {
+                    font-size: 0.78rem;
+                    font-weight: 400;
+                    color: var(--DarkPrimary);
+                    line-height: 1.55;
+                }
+            }
+        }
+    }
+}
+
 section.Scroll {
     height: 400vh;
     position: relative;
@@ -284,7 +401,7 @@ section.Work {
                 }
             }
 
-            .CardDesc {
+            .Desc {
                 height: 0.75rem;
                 display: flex;
                 justify-content: space-between;
@@ -681,148 +798,18 @@ section.Me {
     }
 }
 
-section.Why {
-    background-color: var(--Background);
-    padding: 80px 60px 100px;
-    position: relative;
-
-    .WhyLabel {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        color: var(--DarkPrimary);
-        text-transform: uppercase;
-        margin-bottom: 48px;
-    }
-
-    .WhyLayout {
-        display: grid;
-        grid-template-columns: 1fr 1.4fr;
-        gap: 60px;
-        align-items: start;
-    }
-
-    .WhyLeft {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .WhyTitle {
-        font-size: clamp(1.6rem, 3vw, 2.5rem);
-        font-weight: 900;
-        color: var(--DarkPrimary);
-        text-transform: uppercase;
-        line-height: 1.15;
-        text-align: justify;
-        letter-spacing: -0.01em;
-    }
-
-    .WhyBody {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: var(--DarkPrimary);
-        line-height: 1.7;
-        text-align: justify;
-        max-width: 400px;
-    }
-
-    .WhyRight {
-        padding-top: 20px;
-    }
-
-    .WhyGrid {
-        display: grid;
-        grid-template-columns: 1fr 1.6fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 0;
-        align-items: end;
-    }
-
-    .WhyCard {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .WhyCardLabel {
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        color: var(--DarkPrimary);
-        text-transform: uppercase;
-        line-height: 1.2;
-    }
-
-    .WhyCardDesc {
-        font-size: 0.78rem;
-        font-weight: 400;
-        color: var(--DarkPrimary);
-        line-height: 1.55;
-    }
-
-    .WhyCardImg {
-        overflow: hidden;
-        background-color: #ccc;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(1);
-            transition: filter 0.4s ease;
-
-            &:hover { filter: grayscale(0); }
-        }
-    }
-
-    /* Card: USER-FIRST — label on top, image below, shorter */
-    .WhyCard--user {
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-bottom: 10px;
-
-        .WhyCardImg--user {
-            height: 160px;
-        }
-    }
-
-    /* Card: DATA-DRIVEN — tall center card, image dominant */
-    .WhyCard--data {
-        .WhyCardImg--data {
-            height: 240px;
-        }
-    }
-
-    /* Card: ITERATIVE — image top, label bottom-right aligned */
-    .WhyCard--iterative {
-        flex-direction: column;
-        padding-bottom: 10px;
-
-        .WhyCardImg--iterative {
-            height: 160px;
-        }
-
-        .WhyCardLabel {
-            text-align: right;
-        }
-    }
-}
-
 @media (max-width: 900px) {
     section.Why {
         padding: 60px 20px 80px;
 
-        .WhyLayout {
+        .Layout {
             grid-template-columns: 1fr;
             gap: 48px;
         }
 
-        .WhyBody { max-width: 100%; }
+        .Body { max-width: 100%; }
 
-        .WhyGrid {
+        .Grid {
             grid-template-columns: 1fr 1.3fr 1fr;
         }
     }
@@ -832,11 +819,11 @@ section.Why {
     section.Why {
         padding: 40px 16px 60px;
 
-        .WhyGrid {
+        .Grid {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
 
-            .WhyCard--iterative { display: none; }
+            .Iterative { display: none; }
         }
     }
 }
