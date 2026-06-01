@@ -172,14 +172,15 @@ section.Why {
     padding: 80px 60px 80px;
     position: relative;
 
-    .Label {
+    .Title {
         display: block;
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
+        font-size: clamp(2rem, 4.5vw, 4rem);;
+        font-weight: 900;
         color: var(--DarkPrimary);
-        text-transform: uppercase;
+        line-height: 1.10;
+        text-align: justify;
         margin-bottom: 36px;
+            
     }
 
     .Layout {
@@ -195,17 +196,7 @@ section.Why {
             gap: 28px;
             padding-right: 40px;
 
-            .Title {
-                font-size: clamp(2rem, 4.5vw, 4rem);;
-                font-weight: 900;
-                color: var(--DarkPrimary);
-                text-transform: uppercase;
-                line-height: 1.10;
-                text-align: justify;
-                hyphens: auto;
-            }
-
-            .Body {
+            .Text {
                 font-size: 0.8rem;
                 font-weight: 400;
                 color: var(--DarkPrimary);
