@@ -264,22 +264,21 @@ section.Why {
                 }
             }
 
-            &.User {
+            &:nth-of-type(1) {
                 grid-column: 1;
                 grid-row: 1 / 3;
                 flex-direction: column;
                 justify-content: flex-end;
 
-                .CardImg.ImgUser {height: 160px;}
+                .CardImg {height: 160px;}
             }
 
-            &.Data .CardImgat.ImgData {height: 240px;}
+            &:nth-of-type(2) .CardImg {height: 240px;}
 
-            &.Iterative {
+            &:nth-of-type(3) {
                 flex-direction: column;
 
-                .CardImg.ImgIterative {height: 160px;}
-
+                .CardImg {height: 160px;}
                 .Label {text-align: right;}
             }
 
