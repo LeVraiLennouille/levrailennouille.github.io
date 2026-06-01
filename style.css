@@ -169,8 +169,10 @@ section.Hero {
 
 section.Why {
     background-color: var(--Background);
-    padding: 80px 60px 80px;
-    position: relative;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
 
     .Title {
         display: block;
@@ -184,85 +186,76 @@ section.Why {
     }
 
     .Layout {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: 45% 55%;
-        gap: 0;
-        align-items: start;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        justify-content: space-between;
 
-        .Text {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--DarkPrimary);
-            line-height: 1.7;
-            text-align: justify;
-            max-width: 380px;
-        }
+        .Card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
-        .Grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 0;
-            align-items: end;
+            .Text {
+                font-size: 0.8rem;
+                font-weight: 400;
+                color: var(--DarkPrimary);
+                line-height: 1.7;
+                text-align: justify;
+                max-width: 380px;
+            }
 
-            .Card {
-                display: flex;
+            .CardImg {
+                overflow: hidden;
+                background-color: var(--Background);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                    filter: grayscale(1);
+                    transition: filter 0.4s ease;
+
+                    &:hover {filter: grayscale(0);}
+                }
+            }
+
+            &.User {
+                grid-column: 1;
+                grid-row: 1 / 3;
                 flex-direction: column;
-                gap: 10px;
+                justify-content: flex-end;
+                padding-bottom: 10px;
 
-                .CardImg {
-                    overflow: hidden;
-                    background-color: var(--Background);
+                .CardImg.ImgUser {height: 160px;}
+            }
 
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                        filter: grayscale(1);
-                        transition: filter 0.4s ease;
+            &.Data .CardImgat.ImgData {height: 240px;}
 
-                        &:hover {filter: grayscale(0);}
-                    }
-                }
+            &.Iterative {
+                flex-direction: column;
+                padding-bottom: 10px;
 
-                &.User {
-                    grid-column: 1;
-                    grid-row: 1 / 3;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    padding-bottom: 10px;
+                .CardImg.ImgIterative {height: 160px;}
 
-                    .CardImg.ImgUser {height: 160px;}
-                }
+                .Label {text-align: right;}
+            }
 
-                &.Data .CardImgat.ImgData {height: 240px;}
+            .Label {
+                font-size: 0.8rem;
+                font-weight: 800;
+                letter-spacing: 0.04em;
+                color: var(--DarkPrimary);
+                text-transform: uppercase;
+                line-height: 1.2;
+            }
 
-                &.Iterative {
-                    flex-direction: column;
-                    padding-bottom: 10px;
-
-                    .CardImg.ImgIterative {height: 160px;}
-
-                    .Label {text-align: right;}
-                }
-
-                .Label {
-                    font-size: 0.8rem;
-                    font-weight: 800;
-                    letter-spacing: 0.04em;
-                    color: var(--DarkPrimary);
-                    text-transform: uppercase;
-                    line-height: 1.2;
-                }
-
-                .Desc {
-                    font-size: 0.78rem;
-                    font-weight: 400;
-                    color: var(--DarkPrimary);
-                    line-height: 1.55;
-                }
+            .Desc {
+                font-size: 0.78rem;
+                font-weight: 400;
+                color: var(--DarkPrimary);
+                line-height: 1.55;
             }
         }
     }
