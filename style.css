@@ -232,7 +232,7 @@ section.Why {
     .Layout {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 50px;
+        column-gap: 50px;
         justify-content: space-between;
 
         .Card {
@@ -282,7 +282,7 @@ section.Why {
                 .Label {text-align: right;}
             }
 
-            .Label {
+            h4 {
                 font-size: 0.8rem;
                 font-weight: 800;
                 letter-spacing: 0.04em;
