@@ -1187,7 +1187,7 @@ section.Merge {
 }   
 
 @supports (animation-timeline: view()) {
-    section.Merge .ListContainer .ListText .List li {
+    section.Merge .List li {
         animation: Bright both linear;
         animation-timeline: view();
         animation-range: cover calc(50% - 9rem) calc(50% + 9rem);

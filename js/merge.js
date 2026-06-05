@@ -21,7 +21,7 @@ const mergeHTML = `
         <li>Accessibiliser.</li>
         <li>Optimiser.</li>
         <li>Intégrer.</li>
-        <li>Liveer.</li>
+        <li>Livrer.</li>
         <li>Recommencer.</li>
       </ul>
     </div>
