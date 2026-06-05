@@ -33,6 +33,7 @@ html, body {
     width: 100%;
     overflow-x: clip;
     font-family: "Syne", sans-serif;
+    background-color: var(--Background);
 }
 
 section.Hero {
@@ -211,6 +212,71 @@ section.Scroll {
     }
 }
 
+section.Why {
+    background-color: var(--Background);
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto;
+
+    h2 {
+        display: block;
+        font-size: clamp(2rem, 4.5vw, 4rem);;
+        font-weight: 900;
+        color: var(--Charcoal);
+        line-height: 1.10;
+        text-align: center;
+        margin-bottom: 36px;
+    }
+
+    .Layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 50px;
+        justify-content: space-between;
+
+        .Card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            h4 {
+                font-size: 0.8rem;
+                font-weight: 800;
+                letter-spacing: 0.04em;
+                color: var(--DarkPrimary);
+                text-transform: uppercase;
+                line-height: 1.2;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: 400;
+                color: var(--Charcoal);
+                line-height: 1.5;
+                text-align: justify;
+            }
+
+            .CardImg {
+                overflow: hidden;
+                background-color: var(--Background);
+                border: 3px solid var(--Primary);
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    display: block;
+                    transition: filter 0.4s ease;
+                }
+            }
+
+            &:nth-of-type(2) {justify-content: center;}
+            &:nth-of-type(3) {justify-content: flex-end;}
+        }
+    }
+}
+
 section.Work {
     position: relative;
     width: 100vw;
@@ -284,7 +350,7 @@ section.Work {
                 }
             }
 
-            .CardDesc {
+            .Desc {
                 height: 0.75rem;
                 display: flex;
                 justify-content: space-between;
@@ -611,6 +677,26 @@ section.Me {
     100% {background-position: 0 0;}
 }
 
+@media (max-width: 900px) {
+    section.Why {
+        padding: 60px 20px 80px;
+
+        .Layout {
+            grid-template-columns: 1fr;
+            gap: 48px;
+
+            .Card:nth-of-type(2) {
+                display: flex;
+                flex-direction: column;
+
+                h4 {order: 1;}
+                p {order: 2;}
+                .CardImg {order: 3;}
+            }
+        }
+    }
+}
+
 @media (max-width: 600px) {
     :root {
         --Scale:     0.65;
@@ -627,6 +713,12 @@ section.Me {
             img:first-child {display: none !important;}
             img:last-child {display: flex !important;}
         }
+    }
+
+    section.Why {
+        padding: 40px 16px 60px;
+
+        .Layout {grid-template-columns: 1fr;}
     }
 
     section.Merge {
