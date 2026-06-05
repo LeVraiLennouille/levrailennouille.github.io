@@ -2169,13 +2169,25 @@ main.Terms {
         .HamburgerBtn {display: flex;}
     }
 
-    .Footer .FooterContainer {
-        grid-template-columns: 1fr 1fr;
+    .Footer {
+        .FooterContainer {
+            grid-template-columns: 1fr 1fr;
 
-        .FooterCol:first-child {
-            grid-column: 1 / -1;
-            align-items: center;
-                text-align: center;
+            .FooterCol {
+                &:first-child {
+                    grid-column: 1 / -1;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+        }
+
+        .FooterBottom {
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+
+            .FooterTerms {gap: 40px}
         }
     }
 
