@@ -500,8 +500,8 @@ html, body {
                     width: 7px;
                     height: 7px;
                     border-radius: 50%;
-                    background-color: var(--Primary);
-                    box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.6);
+                    background-color: rgb(74, 222, 128);
+                    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
                     animation: Pulse 2s infinite;
                     flex-shrink: 0;
                 }
@@ -804,9 +804,9 @@ html, body {
 }
 
 @keyframes Pulse {
-    0%   {box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.6);}
-    70%  {box-shadow: 0 0 0 8px rgba(var(--PrimaryRGB), 0);}
-    100% {box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0);}
+    0%   {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);}
+    70%  {box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);}
+    100% {box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);}
 }
 
 /* ==========================================================================
@@ -2169,17 +2169,13 @@ main.Terms {
         .HamburgerBtn {display: flex;}
     }
 
-    .Footer {
-        width: 100%;
+    .Footer .FooterContainer {
+        grid-template-columns: 1fr 1fr;
 
-        .FooterContainer {
-            grid-template-columns: 1fr 1fr;
-
-            .FooterCol:first-child {
-                grid-column: 1 / -1;
-                align-items: center;
-                    text-align: center;
-            }
+        .FooterCol:first-child {
+            grid-column: 1 / -1;
+            align-items: center;
+                text-align: center;
         }
     }
 
