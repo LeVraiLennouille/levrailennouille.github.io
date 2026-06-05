@@ -677,6 +677,26 @@ section.Me {
     100% {background-position: 0 0;}
 }
 
+@media (max-width: 900px) {
+    section.Why {
+        padding: 60px 20px 80px;
+
+        .Layout {
+            grid-template-columns: 1fr;
+            gap: 48px;
+
+            .Card:nth-of-type(2) {
+                display: flex;
+                flex-direction: column;
+
+                h4 {order: 1;}
+                p {order: 2;}
+                .CardImg {order: 3;}
+            }
+        }
+    }
+}
+
 @media (max-width: 600px) {
     :root {
         --Scale:     0.65;
@@ -693,6 +713,12 @@ section.Me {
             img:first-child {display: none !important;}
             img:last-child {display: flex !important;}
         }
+    }
+
+    section.Why {
+        padding: 40px 16px 60px;
+
+        .Layout {grid-template-columns: 1fr;}
     }
 
     section.Merge {
@@ -743,40 +769,6 @@ section.Me {
             }
  
             path.Three {animation: ColorAnim 1s infinite 0.2s;}
-        }
-    }
-}
-
-@media (max-width: 900px) {
-    section.Why {
-        padding: 60px 20px 80px;
-
-        .Layout {
-            grid-template-columns: 1fr;
-            gap: 48px;
-        }
-
-        .Left .Body {max-width: 100%;}
-
-        .Right .Grid {grid-template-columns: 1fr 1.4fr 1fr;}
-    }
-}
-
-@media (max-width: 600px) {
-    section.Why {
-        padding: 40px 16px 60px;
-
-        .Layout {
-            grid-template-columns: 1fr;
-            
-            .Right .Grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-
-                .Card.Iterative {display: none;}
-                .Card.User {grid-column: 1; grid-row: 1;}
-                .Card.Data {grid-column: 2; grid-row: 1;}
-            }
         }
     }
 }
