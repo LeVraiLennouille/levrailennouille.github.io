@@ -224,7 +224,6 @@ section.Why {
         font-weight: 900;
         color: var(--Charcoal);
         line-height: 1.10;
-        text-align: center;
         margin-bottom: 36px;
     }
 
@@ -405,7 +404,7 @@ section.Merge {
     }
 }   
 
-@supports (animation-timeline: scroll()) {
+@supports (animation-timeline: view()) {
     .List li {
         animation: Bright both linear;
         animation-timeline: view();
