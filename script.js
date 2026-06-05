@@ -224,12 +224,6 @@ document.addEventListener('visibilitychange', () => {
 rafId = requestAnimationFrame(loop);
 }
 
-// * NavBar Mobile* //
-document.addEventListener('DOMContentLoaded', function () {
-    initHamburger();
-    if (typeof initScrollReveal === 'function')  initScrollReveal();
-});
-
 // * Form * //
 const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
