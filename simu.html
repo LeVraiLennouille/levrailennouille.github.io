@@ -969,6 +969,16 @@ nav.NavBar {display: none !important;}
                             </label>
                         </div>
                         <div class="choice-card">
+                            <input type="radio" name="nature" id="n-ds" value="design-system">
+                            <label for="n-ds">
+                                <div class="ChoiceIcon">⊞</div>
+                                <div>
+                                    <div class="ChoiceLabelMain">Design System</div>
+                                    <div class="ChoiceLabelSub">Bibliothèque de composants UI scalable</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
                             <input type="radio" name="nature" id="n-features" value="features">
                             <label for="n-features">
                                 <div class="ChoiceIcon">＋</div>
@@ -988,16 +998,6 @@ nav.NavBar {display: none !important;}
                                 </div>
                             </label>
                         </div>
-                        <div class="choice-card">
-                            <input type="radio" name="nature" id="n-ds" value="design-system">
-                            <label for="n-ds">
-                                <div class="ChoiceIcon">⊞</div>
-                                <div>
-                                    <div class="ChoiceLabelMain">Design System</div>
-                                    <div class="ChoiceLabelSub">Bibliothèque de composants UI scalable</div>
-                                </div>
-                            </label>
-                        </div>
                     </div>
                     <span class="f-error" id="err-nature">Veuillez sélectionner une option.</span>
                 </div>
@@ -1010,26 +1010,6 @@ nav.NavBar {display: none !important;}
                         </p>
                     </div>
                     <div class="ChoiceGrid">
-                        <div class="choice-card">
-                            <input type="checkbox" name="plateformes" id="p-mobile" value="mobile">
-                            <label for="p-mobile">
-                                <div class="ChoiceIcon">📱</div>
-                                <div>
-                                    <div class="ChoiceLabelMain">Application mobile</div>
-                                    <div class="ChoiceLabelSub">iOS / Android</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="choice-card">
-                            <input type="checkbox" name="plateformes" id="p-saas" value="saas">
-                            <label for="p-saas">
-                                <div class="ChoiceIcon">☁</div>
-                                <div>
-                                    <div class="ChoiceLabelMain">Application SaaS</div>
-                                    <div class="ChoiceLabelSub">Web app / Dashboard</div>
-                                </div>
-                            </label>
-                        </div>
                         <div class="choice-card">
                             <input type="checkbox" name="plateformes" id="p-vitrine" value="vitrine">
                             <label for="p-vitrine">
@@ -1047,6 +1027,26 @@ nav.NavBar {display: none !important;}
                                 <div>
                                     <div class="ChoiceLabelMain">E-commerce</div>
                                     <div class="ChoiceLabelSub">Boutique en ligne</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
+                            <input type="checkbox" name="plateformes" id="p-mobile" value="mobile">
+                            <label for="p-mobile">
+                                <div class="ChoiceIcon">📱</div>
+                                <div>
+                                    <div class="ChoiceLabelMain">Application mobile</div>
+                                    <div class="ChoiceLabelSub">iOS / Android</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
+                            <input type="checkbox" name="plateformes" id="p-saas" value="saas">
+                            <label for="p-saas">
+                                <div class="ChoiceIcon">☁</div>
+                                <div>
+                                    <div class="ChoiceLabelMain">Application SaaS</div>
+                                    <div class="ChoiceLabelSub">Web app / Dashboard</div>
                                 </div>
                             </label>
                         </div>
@@ -1083,7 +1083,7 @@ nav.NavBar {display: none !important;}
                         <div class="choice-card">
                             <input type="radio" name="perimetre" id="per-large" value="large">
                             <label for="per-large">
-                                <div class="ChoiceIcon ChoiceIcon--text">XL</div>
+                                <div class="ChoiceIcon ChoiceIcon--text">L</div>
                                 <div>
                                     <div class="ChoiceLabelMain">15 écrans et plus</div>
                                     <div class="ChoiceLabelSub">Produit complexe, SaaS avancé</div>
@@ -1102,26 +1102,6 @@ nav.NavBar {display: none !important;}
                         </p>
                     </div>
                     <div class="ChoiceList">
-                        <div class="choice-card">
-                            <input type="checkbox" name="livrables" id="l-recherche" value="recherche">
-                            <label for="l-recherche">
-                                <div class="ChoiceIcon">🔍</div>
-                                <div>
-                                    <div class="ChoiceLabelMain">Recherche & Personas</div>
-                                    <div class="ChoiceLabelSub">Interviews, synthèse, profils utilisateurs</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="choice-card">
-                            <input type="checkbox" name="livrables" id="l-flows" value="userflows">
-                            <label for="l-flows">
-                                <div class="ChoiceIcon">→</div>
-                                <div>
-                                    <div class="ChoiceLabelMain">User Flows</div>
-                                    <div class="ChoiceLabelSub">Parcours et arborescences</div>
-                                </div>
-                            </label>
-                        </div>
                         <div class="choice-card">
                             <input type="checkbox" name="livrables" id="l-wires" value="wireframes">
                             <label for="l-wires">
@@ -1149,6 +1129,26 @@ nav.NavBar {display: none !important;}
                                 <div>
                                     <div class="ChoiceLabelMain">Prototype interactif</div>
                                     <div class="ChoiceLabelSub">Figma clickable et testable</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
+                            <input type="checkbox" name="livrables" id="l-recherche" value="recherche">
+                            <label for="l-recherche">
+                                <div class="ChoiceIcon">🔍</div>
+                                <div>
+                                    <div class="ChoiceLabelMain">Recherche & Personas</div>
+                                    <div class="ChoiceLabelSub">Interviews, synthèse, profils utilisateurs</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
+                            <input type="checkbox" name="livrables" id="l-flows" value="userflows">
+                            <label for="l-flows">
+                                <div class="ChoiceIcon">→</div>
+                                <div>
+                                    <div class="ChoiceLabelMain">User Flows</div>
+                                    <div class="ChoiceLabelSub">Parcours et arborescences</div>
                                 </div>
                             </label>
                         </div>
@@ -1293,7 +1293,7 @@ nav.NavBar {display: none !important;}
     <script>
         const CONFIG = {
 // ► Taux Journalier Moyen (HT)
-            TJM: 300,
+            TJM: 150,
 // ► TVA applicable
             TVA: 0.00,
 // ► Validité du devis
@@ -1311,18 +1311,18 @@ nav.NavBar {display: none !important;}
             },
 // ► Estimated days
             JOURS_NATURE: {
-                'creation': {min: 10, max: 20, label: 'Création de A à Z'},
-                'refonte': {min: 7, max: 15, label: 'Refonte complète'},
+                'creation': {min: 15, max: 20, label: 'Création de A à Z'},
+                'refonte': {min: 7, max: 10, label: 'Refonte complète'},
+                'design-system': {min: 15, max: 30, label: 'Design System'},
                 'features': {min: 3, max: 8, label: 'Ajout de fonctionnalités'},
                 'audit': {min: 2, max: 5, label: 'Audit UX'},
-                'design-system': {min: 15, max: 30, label: 'Design System'},
             },
 // ► Multipliers
             MULTI_PLATEFORME: {
-                'mobile': {valeur: 1.10, label: 'App Mobile'},
-                'saas': {valeur: 1.15, label: 'SaaS / Web App'},
                 'vitrine': {valeur: 1.00, label: 'Site Vitrine'},
                 'ecommerce': {valeur: 1.20, label: 'E-commerce'},
+                'mobile': {valeur: 1.10, label: 'App Mobile'},
+                'saas': {valeur: 1.15, label: 'SaaS / Web App'},
             },
 // ► Extra days
             JOURS_PERIMETRE: {
@@ -1332,18 +1332,18 @@ nav.NavBar {display: none !important;}
             },
 // ► Deliverables
             JOURS_LIVRABLES: {
-                'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
-                'userflows': {min: 1, max: 2, label: 'User Flows'},
-                'wireframes': {min: 2, max: 4, label: 'Wireframes'},
+                'wireframes': {min: 2, max: 3, label: 'Wireframes'},
                 'maquettes': {min: 3, max: 6, label: 'Maquettes UI'},
                 'prototype': {min: 2, max: 4, label: 'Prototype Interactif'},
+                'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
+                'userflows': {min: 1, max: 2, label: 'User Flows'},
                 'handoff': {min: 1, max: 2, label: 'Developer Handoff'},
             },
 // ► Emergency
             MAJORATION_URGENCE: 0.20,
 // ► Send
-            WEBHOOK_URL: 'https://formspree.io/f/mbdeoqrq',
-            FORMSPREE_URL: '',
+            WEBHOOK_URL: '',
+            FORMSPREE_URL: 'https://formspree.io/f/mbdeoqrq',
         };
 
         let STATE = {
