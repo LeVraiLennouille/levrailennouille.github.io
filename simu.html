@@ -882,6 +882,154 @@ body::before {
 }
 
 nav.NavBar {display: none !important;}
+
+.choice-card--locked label {
+    cursor: default;
+    pointer-events: none;
+}
+.choice-card--locked input:checked + label {
+    border-color: var(--Primary);
+    background: rgba(var(--PrimaryRGB), 0.09);
+    box-shadow: 0 0 0 1px rgba(var(--PrimaryRGB), 0.18);
+}
+.LockBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    background: rgba(var(--PrimaryRGB), 0.14);
+    color: var(--PalePrimary);
+    border: 1px solid rgba(var(--PrimaryRGB), 0.28);
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-left: 7px;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+#mobile-drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 12, 14, 0.65);
+    z-index: 48;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+#mobile-drawer-overlay.open {
+    display: block;
+    animation: fadeIn 0.25s ease;
+}
+
+#mobile-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--Surface);
+    border-top: 1px solid var(--Brd);
+    border-radius: 20px 20px 0 0;
+    z-index: 49;
+    transform: translateY(100%);
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+#mobile-drawer.open {
+    transform: translateY(0);
+}
+
+#mobile-drawer-handle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.DrawerPill {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--BrdLight);
+    transition: background 0.2s;
+}
+#mobile-drawer-handle:active .DrawerPill {
+    background: var(--Primary);
+}
+
+.DrawerContent {
+    overflow-y: auto;
+    padding: 4px 20px 24px;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+}
+.DrawerPriceHeader {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--Brd);
+}
+.DrawerPriceTitle {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+.DrawerPriceNote {
+    font-size: 11px;
+    color: var(--TextDim);
+    margin-top: 3px;
+}
+.DrawerSectionLabel {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--TextMut);
+    margin: 16px 0 10px;
+}
+
+.MobileBarInner {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.MobileDrawerHint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-left: 8px;
+}
+.MobileDrawerHintArrow {
+    font-size: 14px;
+    color: var(--TextMut);
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+.MobileDrawerHintLabel {
+    font-size: 9px;
+    color: var(--TextDim);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+}
+#mobile-drawer.open ~ #mobile-bar .MobileDrawerHintArrow {
+    transform: rotate(180deg);
+}
+
+@media (min-width: 1024px) {
+    #mobile-drawer,
+    #mobile-drawer-overlay {
+        display: none !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -1112,12 +1260,12 @@ nav.NavBar {display: none !important;}
                                 </div>
                             </label>
                         </div>
-                        <div class="choice-card">
-                            <input type="checkbox" name="livrables" id="l-ui" value="maquettes">
+                        <div class="choice-card choice-card--locked">
+                            <input type="checkbox" name="livrables" id="l-ui" value="maquettes" checked>
                             <label for="l-ui">
                                 <div class="ChoiceIcon">◉</div>
                                 <div>
-                                    <div class="ChoiceLabelMain">Maquettes UI haute-fidélité</div>
+                                    <div class="ChoiceLabelMain">Maquettes UI haute-fidélité <span class="LockBadge">Obligatoire</span></div>
                                     <div class="ChoiceLabelSub">Designs finaux pixel-perfect</div>
                                 </div>
                             </label>
@@ -1262,7 +1410,47 @@ nav.NavBar {display: none !important;}
             </div>
         </aside>
     </div>
-    <div id="mobile-bar">
+    <div id="mobile-drawer-overlay" onclick="closeMobileDrawer()"></div>
+    <div id="mobile-drawer">
+        <div id="mobile-drawer-handle" onclick="closeMobileDrawer()">
+            <div class="DrawerPill"></div>
+        </div>
+        <div class="DrawerContent">
+            <div class="DrawerPriceHeader">
+                <div class="SidebarEyebrow">Estimation en temps réel</div>
+                <div class="DrawerPriceTitle price-gradient" id="md-price-main">— €</div>
+                <div class="DrawerPriceNote">Fourchette HT (hors taxes)</div>
+            </div>
+            <div class="DrawerSectionLabel">Détail du calcul</div>
+            <div id="md-breakdown">
+                <div class="BreakdownPlaceholder">Complétez le formulaire...</div>
+            </div>
+            <div class="DrawerSectionLabel" style="margin-top:20px;">Récapitulatif</div>
+            <div class="PriceTable">
+                <div class="PriceRow">
+                    <span class="PriceRowLabel">Montant HT min.</span>
+                    <span class="PriceRowValue" id="md-ht-min">—</span>
+                </div>
+                <div class="PriceRow">
+                    <span class="PriceRowLabel">Montant HT max.</span>
+                    <span class="PriceRowValue" id="md-ht-max">—</span>
+                </div>
+                <div class="PriceRow">
+                    <span class="PriceRowLabel" id="md-tva-label">TVA</span>
+                    <span class="PriceRowValue" id="md-tva-val">—</span>
+                </div>
+                <div class="sep"></div>
+                <div class="PriceTotalRow">
+                    <span class="TotalLabel">Estimation TTC</span>
+                    <span class="TotalValue" id="md-ttc">—</span>
+                </div>
+            </div>
+            <div class="DaysNote" style="margin-top:12px;">
+                <span id="md-jours">—</span> jours estimés · TJM <span id="md-tjm-val">—</span> €/j
+            </div>
+        </div>
+    </div>
+    <div id="mobile-bar" onclick="toggleMobileDrawer()">
         <div class="MobileBarInner">
             <div>
                 <div class="MobileLabel">Estimation HT</div>
@@ -1271,6 +1459,10 @@ nav.NavBar {display: none !important;}
             <div class="MobilePriceRight">
                 <div class="MobileLabel">TTC estimé</div>
                 <div class="MobileTTC" id="m-ttc">—</div>
+            </div>
+            <div class="MobileDrawerHint">
+                <span class="MobileDrawerHintArrow">↑</span>
+                <span class="MobileDrawerHintLabel">Détails</span>
             </div>
         </div>
     </div>
@@ -1311,7 +1503,7 @@ nav.NavBar {display: none !important;}
             },
 // ► Estimated days
             JOURS_NATURE: {
-                'creation': {min: 15, max: 20, label: 'Création de A à Z'},
+                'creation': {min: 10, max: 20, label: 'Création de A à Z'},
                 'refonte': {min: 7, max: 10, label: 'Refonte complète'},
                 'design-system': {min: 15, max: 30, label: 'Design System'},
                 'features': {min: 3, max: 8, label: 'Ajout de fonctionnalités'},
@@ -1332,8 +1524,8 @@ nav.NavBar {display: none !important;}
             },
 // ► Deliverables
             JOURS_LIVRABLES: {
-                'wireframes': {min: 2, max: 3, label: 'Wireframes'},
-                'maquettes': {min: 3, max: 6, label: 'Maquettes UI'},
+                'wireframes': {min: 1, max: 2, label: 'Wireframes'},
+                'maquettes': {min: 2, max: 4, label: 'Maquettes UI'},
                 'prototype': {min: 2, max: 4, label: 'Prototype Interactif'},
                 'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
                 'userflows': {min: 1, max: 2, label: 'User Flows'},
@@ -1411,8 +1603,10 @@ nav.NavBar {display: none !important;}
 
             d.plateformes.forEach(p => {
             const cfg = CONFIG.MULTI_PLATEFORME[p];
-                if (cfg && cfg.valeur > multiPlat) {multiPlat = cfg.valeur;}
-                if (cfg) platLabels.push(cfg.label);
+                if (cfg) {
+                    multiPlat += (cfg.valeur - 1.0);
+                    platLabels.push(cfg.label);
+                }
             });
 
             if (multiPlat > 1.0) {
@@ -1570,6 +1764,34 @@ nav.NavBar {display: none !important;}
             }
             setText('m-price-main', rangeHT);
             setText('m-ttc', `${rangeTTC} TTC`);
+            setText('md-price-main', rangeHT);
+            setText('md-ht-min', euros(est.prixHtMin));
+            setText('md-ht-max', euros(est.prixHtMax));
+            setText('md-ttc', rangeTTC);
+            setText('md-jours', `${est.joursMin}–${est.joursMax}`);
+            setText('md-tjm-val', CONFIG.TJM);
+
+            if (CONFIG.TVA > 0) {
+                setText('md-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
+                setText('md-tva-val', `+${(CONFIG.TVA * 100).toFixed(0)}%`);
+            } else {
+                setText('md-tva-label', 'TVA');
+                setText('md-tva-val', 'Non assujetti');
+            }
+
+            const mdBd = document.getElementById('md-breakdown');
+            if (mdBd && est.details.length > 0) {
+                mdBd.innerHTML = est.details.map(d => {
+                    let color = '#F5F5F0';
+                    if (d.type === 'urgence')       color = '#F56565';
+                    if (d.type === 'multiplicateur') color = '#E8A020';
+                    if (d.type === 'livrable')       color = '#888890';
+                    return `<div class="detail-row">
+                                <span style="color:#888890">${d.label}</span>
+                                <span style="font-weight:500;color:${color}">${d.valeur}</span>
+                            </div>`;
+                }).join('');
+            }
         }
 
         function setText(id, val) {
@@ -2013,6 +2235,10 @@ nav.NavBar {display: none !important;}
 
             document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {el.checked = false;});
 
+            const maquettesEl = document.getElementById('l-ui');
+            if (maquettesEl) maquettesEl.checked = true;
+            STATE.data.livrables = ['maquettes'];
+
             const defRadio = document.querySelector('input[name="type_demande"][value="estimation"]');
             if (defRadio) defRadio.checked = true;
 
@@ -2027,6 +2253,14 @@ nav.NavBar {display: none !important;}
             setText('s-tva-val', '—');
             setText('s-ttc', '—');
             setText('s-jours', '—');
+            setText('md-price-main', '— €');
+            setText('md-ttc', '—');
+            setText('md-ht-min', '—');
+            setText('md-ht-max', '—');
+            setText('md-tva-val', '—');
+            setText('md-jours', '—');
+            const mdBdReset = document.getElementById('md-breakdown');
+            if (mdBdReset) mdBdReset.innerHTML = '<div class="BreakdownPlaceholder">Complétez le formulaire...</div>';
 
             document.getElementById('s-breakdown').innerHTML = '<div class="BreakdownPlaceholder">Complétez le formulaire...</div>';
 
@@ -2038,6 +2272,9 @@ nav.NavBar {display: none !important;}
         showStep(1);
 
         setText('s-tjm-val', CONFIG.TJM);
+        setText('md-tjm-val', CONFIG.TJM);
+
+        STATE.data.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(e => e.value);
 
         document.querySelectorAll('input[name="nature"]').forEach(el =>
             el.addEventListener('change', () => {
@@ -2073,6 +2310,67 @@ nav.NavBar {display: none !important;}
             document.getElementById('badge-urgent').classList.toggle('hidden', !this.checked);
             recalculate();
         });
+
+        const maquettesCheckbox = document.getElementById('l-ui');
+        if (maquettesCheckbox) {
+            maquettesCheckbox.addEventListener('change', function() {
+                if (!this.checked) {
+                    this.checked = true;
+                }
+            });
+        }
+
+        const mobileBar = document.getElementById('mobile-bar');
+        let touchStartY = 0;
+        let touchStartTime = 0;
+
+        if (mobileBar) {
+            mobileBar.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            }, {passive: true});
+            mobileBar.addEventListener('touchend', (e) => {
+                const dy = touchStartY - e.changedTouches[0].clientY;
+                const dt = Date.now() - touchStartTime;
+                if (dy > 20 || (dy > 8 && dt < 200)) openMobileDrawer();
+            }, {passive: true});
+        }
+
+        const drawer = document.getElementById('mobile-drawer');
+        let drawerTouchStartY = 0;
+        if (drawer) {
+            drawer.addEventListener('touchstart', (e) => {
+                drawerTouchStartY = e.touches[0].clientY;
+            }, {passive: true});
+            drawer.addEventListener('touchend', (e) => {
+                const dy = e.changedTouches[0].clientY - drawerTouchStartY;
+                if (dy > 55) closeMobileDrawer();
+            }, {passive: true});
+        }
+
+        function openMobileDrawer() {
+            const drawer  = document.getElementById('mobile-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            if (!drawer || !overlay) return;
+            drawer.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileDrawer() {
+            const drawer  = document.getElementById('mobile-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            if (!drawer || !overlay) return;
+            drawer.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobile-drawer');
+            if (!drawer) return;
+            drawer.classList.contains('open') ? closeMobileDrawer() : openMobileDrawer();
+        }
     });
     </script>
 </body>
