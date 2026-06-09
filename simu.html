@@ -2347,6 +2347,7 @@ nav.NavBar {display: none !important;}
                 if (dy > 55) closeMobileDrawer();
             }, {passive: true});
         }
+    });
 
         function openMobileDrawer() {
             const drawer  = document.getElementById('mobile-drawer');
@@ -2371,7 +2372,6 @@ nav.NavBar {display: none !important;}
             if (!drawer) return;
             drawer.classList.contains('open') ? closeMobileDrawer() : openMobileDrawer();
         }
-    });
     </script>
 </body>
 </html>
