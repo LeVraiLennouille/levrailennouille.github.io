@@ -1687,16 +1687,11 @@ nav.NavBar {display: none !important;}
             }
 // ► Final calculation
             const multiTotal = multiPlat * multiUrgence;
-            let joursMinFin = Math.ceil(joursMin * multiTotal);
-            let joursMaxFin = Math.ceil(joursMax * multiTotal);
+            const joursMinFin = Math.ceil(joursMin * multiTotal);
+            const joursMaxFin = Math.ceil(joursMax * multiTotal);
 
 // ► Travail partiel
-            let effectiveTJM = CONFIG.TJM;
-            if (CONFIG.TRAVAIL_PARTIEL) {
-                joursMinFin = joursMinFin * 2;
-                joursMaxFin = joursMaxFin * 2;
-                effectiveTJM = CONFIG.TJM / 2;
-            }
+            const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
 
             const htMin = joursMinFin * effectiveTJM;
             const htMax = joursMaxFin * effectiveTJM;
