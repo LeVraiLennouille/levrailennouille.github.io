@@ -328,8 +328,12 @@ body::before {
 }
 
 .choice-card label:hover {
-    border-color: var(--BrdLight);
-    background: var(--Surface2);
+    border-color: var(--Primary);
+    background: rgba(var(--PrimaryRGB), 0.1);
+}
+
+.choice-card label:hover::after {
+    border-color: var(--Primary);
 }
 
 .choice-card input:checked + label {
@@ -347,7 +351,7 @@ body::before {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 1.5px solid var(--BrdLight);
+    border: 1.5px solid rgba(var(--PrimaryRGB), 0.4);
     flex-shrink: 0;
     transition: all 0.2s ease;
 }
@@ -384,7 +388,7 @@ body::before {
     color: var(--TextMut);
 }
 
-.choice-card input:checked + label .ChoiceIcon {
+.choice-card input:hover + label .ChoiceIcon, .choice-card input:checked + label .ChoiceIcon {
     background: rgba(var(--PrimaryRGB), 0.14);
     border-color: rgba(var(--PrimaryRGB), 0.3);
 }
@@ -1632,8 +1636,11 @@ nav.NavBar {display: none !important;}
 // ► Estimated days
             if (d.perimetre && CONFIG.JOURS_PERIMETRE[d.perimetre]) {
                 const cfg = CONFIG.JOURS_PERIMETRE[d.perimetre];
-                joursMin += cfg.min;
-                joursMax += cfg.max;
+                const multPartiel = CONFIG.TRAVAIL_PARTIEL ? 2 : 1;
+                const pMin = cfg.min * multPartiel;
+                const pMax = cfg.max * multPartiel;
+                joursMin += pMin;
+                joursMax += pMax;
 
                 if (cfg.max > 0) {details.push({label: `Périmètre (${cfg.label})`, valeur: `+${cfg.min}–${cfg.max} j`, type: 'additive'});}
             }
@@ -1641,9 +1648,12 @@ nav.NavBar {display: none !important;}
             d.livrables.forEach(liv => {
                 const cfg = CONFIG.JOURS_LIVRABLES[liv];
                 if (cfg) {
-                    joursMin += cfg.min;
-                    joursMax += cfg.max;
-                    details.push({label: cfg.label, valeur: `+${cfg.min}–${cfg.max} j`, type: 'livrable'});
+                    const multPartiel = CONFIG.TRAVAIL_PARTIEL ? 2 : 1;
+                    const lMin = cfg.min * multPartiel;
+                    const lMax = cfg.max * multPartiel;
+                    joursMin += lMin;
+                    joursMax += lMax;
+                    details.push({label: cfg.label, valeur: `+${lMin}–${lMax} j`, type: 'livrable'});
                 }
             });
 // ► Multipliers
@@ -2315,8 +2325,9 @@ nav.NavBar {display: none !important;}
         document.addEventListener('DOMContentLoaded', () => {buildProgressBar();
         showStep(1);
 
-        setText('s-tjm-val', CONFIG.TJM);
-        setText('md-tjm-val', CONFIG.TJM);
+        const initTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
+        setText('s-tjm-val', initTJM);
+        setText('md-tjm-val', initTJM);
 
         STATE.data.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(e => e.value);
 
