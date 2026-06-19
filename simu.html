@@ -1030,6 +1030,53 @@ nav.NavBar {display: none !important;}
         display: none !important;
     }
 }
+
+#price-sidebar,
+#mobile-bar,
+#mobile-drawer {
+    --TextPri:  #ffffff;
+    --TextMut:  rgba(255, 255, 255, 0.58);
+    --TextDim:  rgba(255, 255, 255, 0.36);
+    --Brd:      rgba(255, 255, 255, 0.14);
+    --BrdLight: rgba(255, 255, 255, 0.24);
+    --Surface:  rgba(255, 255, 255, 0.09);
+    --Surface2: rgba(255, 255, 255, 0.05);
+}
+
+#price-sidebar {
+    background: var(--DarkPrimary);
+    backdrop-filter: none;
+}
+
+#mobile-bar {
+    background: var(--DarkPrimary);
+}
+
+#mobile-drawer {
+    background: var(--DarkPrimary);
+}
+
+#price-sidebar .price-gradient,
+#mobile-bar    .price-gradient,
+#mobile-drawer .price-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.75) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#price-sidebar .TotalValue,
+#mobile-drawer .TotalValue { color: #ffffff; }
+#mobile-bar    .MobileTTC  { color: #ffffff; }
+
+#mobile-drawer .DrawerPill               { background: rgba(255, 255, 255, 0.28); }
+#mobile-drawer-handle:active .DrawerPill { background: rgba(255, 255, 255, 0.55); }
+
+.detail-label                 { color: var(--TextMut); }
+.detail-value                 { font-weight: 500; color: var(--TextPri); }
+.detail-value--urgence        { color: #F56565; }
+.detail-value--multiplicateur { color: #E8A020; }
+.detail-value--livrable       { color: var(--TextMut); }
     </style>
 </head>
 <body>
@@ -1531,6 +1578,8 @@ nav.NavBar {display: none !important;}
                 'userflows': {min: 1, max: 2, label: 'User Flows'},
                 'handoff': {min: 1, max: 2, label: 'Developer Handoff'},
             },
+// ► Partial | Effect : TJM ÷ 2 —— durée estimée × 2
+            TRAVAIL_PARTIEL: true,
 // ► Emergency
             MAJORATION_URGENCE: 0.20,
 // ► Send
@@ -1628,11 +1677,19 @@ nav.NavBar {display: none !important;}
             }
 // ► Final calculation
             const multiTotal = multiPlat * multiUrgence;
-            const joursMinFin = Math.ceil(joursMin * multiTotal);
-            const joursMaxFin = Math.ceil(joursMax * multiTotal);
+            let joursMinFin = Math.ceil(joursMin * multiTotal);
+            let joursMaxFin = Math.ceil(joursMax * multiTotal);
 
-            const htMin = joursMinFin * CONFIG.TJM;
-            const htMax = joursMaxFin * CONFIG.TJM;
+// ► Travail partiel
+            let effectiveTJM = CONFIG.TJM;
+            if (CONFIG.TRAVAIL_PARTIEL) {
+                joursMinFin = joursMinFin * 2;
+                joursMaxFin = joursMaxFin * 2;
+                effectiveTJM = CONFIG.TJM / 2;
+            }
+
+            const htMin = joursMinFin * effectiveTJM;
+            const htMax = joursMaxFin * effectiveTJM;
             const ttcMin = htMin * (1 + CONFIG.TVA);
             const ttcMax = htMax * (1 + CONFIG.TVA);
 
@@ -1729,6 +1786,7 @@ nav.NavBar {display: none !important;}
             const est = STATE.estimation;
             if (est.prixHtMin === 0 && est.prixHtMax === 0) return;
 
+            const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
             const rangeHT = `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)}`;
             const rangeTTC = CONFIG.TVA > 0 ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)}` : rangeHT;
 
@@ -1737,7 +1795,7 @@ nav.NavBar {display: none !important;}
             setText('s-ht-max', euros(est.prixHtMax));
             setText('s-ttc', rangeTTC);
             setText('s-jours', `${est.joursMin}–${est.joursMax}`);
-            setText('s-tjm-val', CONFIG.TJM);
+            setText('s-tjm-val', effectiveTJM);
 
             if (CONFIG.TVA > 0) {
                 setText('s-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
@@ -1748,19 +1806,11 @@ nav.NavBar {display: none !important;}
             }
 
             const bd = document.getElementById('s-breakdown');
-                if (est.details.length > 0) {
-                    bd.innerHTML = est.details.map(d => {
-                    let color = '#F5F5F0';
-
-                    if (d.type === 'urgence') color = '#F56565';
-                    if (d.type === 'multiplicateur') color = '#E8A020';
-                    if (d.type === 'livrable') color = '#888890';
-
-                    return `<div class="detail-row">
-                                <span style="color:#888890">${d.label}</span>
-                                <span style="font-weight:500;color:${color}">${d.valeur}</span>
-                            </div>`;
-                }).join('');
+            if (est.details.length > 0) {
+                bd.innerHTML = est.details.map(d => `<div class="detail-row">
+                    <span class="detail-label">${d.label}</span>
+                    <span class="detail-value detail-value--${d.type || 'base'}">${d.valeur}</span>
+                </div>`).join('');
             }
             setText('m-price-main', rangeHT);
             setText('m-ttc', `${rangeTTC} TTC`);
@@ -1769,7 +1819,7 @@ nav.NavBar {display: none !important;}
             setText('md-ht-max', euros(est.prixHtMax));
             setText('md-ttc', rangeTTC);
             setText('md-jours', `${est.joursMin}–${est.joursMax}`);
-            setText('md-tjm-val', CONFIG.TJM);
+            setText('md-tjm-val', effectiveTJM);
 
             if (CONFIG.TVA > 0) {
                 setText('md-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
@@ -1781,16 +1831,10 @@ nav.NavBar {display: none !important;}
 
             const mdBd = document.getElementById('md-breakdown');
             if (mdBd && est.details.length > 0) {
-                mdBd.innerHTML = est.details.map(d => {
-                    let color = '#F5F5F0';
-                    if (d.type === 'urgence')       color = '#F56565';
-                    if (d.type === 'multiplicateur') color = '#E8A020';
-                    if (d.type === 'livrable')       color = '#888890';
-                    return `<div class="detail-row">
-                                <span style="color:#888890">${d.label}</span>
-                                <span style="font-weight:500;color:${color}">${d.valeur}</span>
-                            </div>`;
-                }).join('');
+                mdBd.innerHTML = est.details.map(d => `<div class="detail-row">
+                    <span class="detail-label">${d.label}</span>
+                    <span class="detail-value detail-value--${d.type || 'base'}">${d.valeur}</span>
+                </div>`).join('');
             }
         }
 
@@ -1988,7 +2032,7 @@ nav.NavBar {display: none !important;}
             y += 9;
 
             const rowsPrix = [
-                ['Taux Journalier Moyen (TJM)', `${CONFIG.TJM} €/jour`],
+                ['Taux Journalier Moyen (TJM)', `${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`],
                 ['Durée estimée', `${est.joursMin} à ${est.joursMax} jours`],
                 ['Montant HT — fourchette basse', euros(est.prixHtMin)],
                 ['Montant HT — fourchette haute', euros(est.prixHtMax)],
@@ -2160,7 +2204,7 @@ nav.NavBar {display: none !important;}
                 },
 
                 estimation: {
-                    tjm: CONFIG.TJM,
+                    tjm: CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM,
                     jours_min: est.joursMin,
                     jours_max: est.joursMax,
                     prix_ht_min: est.prixHtMin,
