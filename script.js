@@ -205,8 +205,15 @@ function loop(now) {
     ball.style.top = Math.round(pos.y) + 'px';
 
     if (frameCount++ % 3 === 0) {
-        const bgRGB = getEffectiveBgRGB(Math.round(mouse.x), Math.round(mouse.y));
-        applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
+        const mx = Math.round(mouse.x);
+        const my = Math.round(mouse.y);
+        const topEl = document.elementsFromPoint(mx, my).find(el => el !== dot && el !== ball);
+        if (topEl && topEl.closest('.choice-card, .f-input')) {
+            applyTheme(true);
+        } else {
+            const bgRGB = getEffectiveBgRGB(mx, my);
+            applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
+        }
     }
 
     rafId = requestAnimationFrame(loop);
