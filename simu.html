@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulateur de Devis UI/UX Design | Lennouille</title>
+
+    <meta name="description" content="Estime le coût de ton projet UI/UX Design en 6 questions simples. Obtient instantanément ta fourchette de prix et un devis PDF par Lennouille, freelance.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://levrailennouille.github.io/simulateur.html">
+    <meta property="og:title" content="Simulateur de Devis UI/UX Design | Lennouille">
+    <meta property="og:description" content="Estime le coût de ton projet UI/UX Design en 6 questions simples. Obtient instantanément ta fourchette de prix et un devis PDF par Lennouille, freelance.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Simulateur de Devis UI/UX Design | Lennouille">
+    <meta name="twitter:description" content="Estime le coût de ton projet UI/UX Design en 6 questions simples. Obtient instantanément ta fourchette de prix et un devis PDF par Lennouille, freelance.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/simulateur.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <main class="Simu">
+        <div id="HeaderPlaceHolder"></div><script src="js/header.js"></script>
+        <div class="Glow"></div>
+        <div class="Layout">
+            <section class="Form">
+                <header class="Brand">
+                    <div class="LogoRow">
+                        <img class="LogoIcon" src="assets/icon.svg" alt="Logo de Lenouille"/>
+                        <span class="LogoName">Lennouille — Génére ton devis en 5 clics</span>
+                    </div>
+                    <h1 class="MainTitle">Estime ton projet<br><span class="Accent">en moins de 5 minutes.</span></h1>
+                    <p class="MainDesc">Réponds à 6 questions pour recevoir une estimation personnalisée et ton devis complet par email.</p>
+                </header>
+                <div class="ProgressBar" id="ProgressBar" role="progressbar" aria-label="Progression du formulaire"></div>
+                <div class="Steps">
+                    <div class="Panel" data-step="1">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 1 / 6</span>
+                            <h2 class="StepTitle">Tes informations</h2>
+                            <p class="StepDesc">Pour personnaliser et te transmettre ton devis.</p>
+                        </div>
+                        <div class="FormGrid">
+                            <div>
+                                <label class="Label" for="prenom">Ton prénom</label>
+                                <input class="Input" type="text" id="prenom" autocomplete="given-name">
+                                <span class="Error" id="err-prenom">Ce champ est requis.</span>
+                            </div>
+                            <div>
+                                <label class="Label" for="nom">Ton nom</label>
+                                <input class="Input" type="text" id="nom" autocomplete="family-name">
+                                <span class="Error" id="err-nom">Ce champ est requis.</span>
+                            </div>
+                            <div class="ColFull">
+                                <label class="Label" for="email">Ton email</label>
+                                <input class="Input" type="email" id="email" autocomplete="email">
+                                <span class="Error" id="err-email">Saisis un email valide.</span>
+                            </div>
+                            <div>
+                                <label class="Label" for="entreprise">Ton entreprise <span class="Accent">*</span></label>
+                                <input class="Input" type="text" id="entreprise" autocomplete="organization">
+                            </div>
+                            <div>
+                                <label class="Label" for="role">Ton rôle <span class="Accent">*</span></label>
+                                <input class="Input" type="text" id="role" autocomplete="organization-title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Panel" data-step="2">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 2 / 6</span>
+                            <h2 class="StepTitle">Nature du projet</h2>
+                            <p class="StepDesc">Quel est le cœur de ton besoin ?</p>
+                        </div>
+                        <div class="ChoiceList">
+                            <div class="ChoiceCard">
+                                <input type="radio" name="nature" id="n-creation" value="creation">
+                                <label for="n-creation">
+                                    <div class="LabelIcon">✦</div>
+                                    <div>
+                                        <div class="LabelMain">Création de A à Z</div>
+                                        <div class="LabelSub">Nouveau produit, partir de zéro</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="nature" id="n-refonte" value="refonte">
+                                <label for="n-refonte">
+                                    <div class="LabelIcon">↻</div>
+                                    <div>
+                                        <div class="LabelMain">Refonte complète</div>
+                                        <div class="LabelSub">Redesign d'un produit existant</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="nature" id="n-ds" value="design-system">
+                                <label for="n-ds">
+                                    <div class="LabelIcon">⊞</div>
+                                    <div>
+                                        <div class="LabelMain">Design System</div>
+                                        <div class="LabelSub">Bibliothèque de composants UI scalable</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="nature" id="n-features" value="features">
+                                <label for="n-features">
+                                    <div class="LabelIcon">＋</div>
+                                    <div>
+                                        <div class="LabelMain">Ajout de fonctionnalités</div>
+                                        <div class="LabelSub">Extension d'un produit en place</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="nature" id="n-audit" value="audit">
+                                <label for="n-audit">
+                                    <div class="LabelIcon">◎</div>
+                                    <div>
+                                        <div class="LabelMain">Audit UX</div>
+                                        <div class="LabelSub">Analyse critique et recommandations</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <span class="Error" id="err-nature">Sélectionnes une option.</span>
+                    </div>
+                    <div class="Panel" data-step="3">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 3 / 6</span>
+                            <h2 class="StepTitle">Plateformes cibles</h2>
+                            <p class="StepDesc">Sur quels supports ton produit sera-t-il utilisé ?
+                                <span class="Accent">Tu peux en choisir plusieurs</span>
+                            </p>
+                        </div>
+                        <div class="ChoiceList ChoiceListGrid">
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="plateformes" id="p-vitrine" value="vitrine">
+                                <label for="p-vitrine">
+                                    <div class="LabelIcon">⬡</div>
+                                    <div>
+                                        <div class="LabelMain">Site vitrine</div>
+                                        <div class="LabelSub">Présence web institutionnelle</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="plateformes" id="p-ecom" value="ecommerce">
+                                <label for="p-ecom">
+                                    <div class="LabelIcon">⊙</div>
+                                    <div>
+                                        <div class="LabelMain">E-commerce</div>
+                                        <div class="LabelSub">Boutique en ligne</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="plateformes" id="p-mobile" value="mobile">
+                                <label for="p-mobile">
+                                    <div class="LabelIcon">📱</div>
+                                    <div>
+                                        <div class="LabelMain">Application mobile</div>
+                                        <div class="LabelSub">iOS / Android</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <span class="Error" id="err-plateformes">Sélectionnes au moins une option.</span>
+                    </div>
+                    <div class="Panel" data-step="4">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 4 / 6</span>
+                            <h2 class="StepTitle">Périmètre du projet</h2>
+                            <p class="StepDesc">Combien d'écrans / vues sont à concevoir ?</p>
+                        </div>
+                        <div class="ChoiceList ChoiceListGrid">
+                            <div class="ChoiceCard">
+                                <input type="radio" name="perimetre" id="per-small" value="small">
+                                <label for="per-small">
+                                    <div class="LabelIcon LabelIconText">S</div>
+                                    <div>
+                                        <div class="LabelMain">1 à 5 écrans</div>
+                                        <div class="LabelSub">MVP, landing page, micro-app</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="perimetre" id="per-medium" value="medium">
+                                <label for="per-medium">
+                                    <div class="LabelIcon LabelIconText">M</div>
+                                    <div>
+                                        <div class="LabelMain">5 à 15 écrans</div>
+                                        <div class="LabelSub">Application de taille standard</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="radio" name="perimetre" id="per-large" value="large">
+                                <label for="per-large">
+                                    <div class="LabelIcon LabelIconText">L</div>
+                                    <div>
+                                        <div class="LabelMain">15 écrans et plus</div>
+                                        <div class="LabelSub">Produit / service complexe</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <span class="Error" id="err-perimetre">Sélectionnes une option.</span>
+                    </div>
+                    <div class="Panel" data-step="5">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 5 / 6</span>
+                            <h2 class="StepTitle">Livrables attendus</h2>
+                            <p class="StepDesc">Quels livrables souhaites-tu inclure ?
+                                <span class="Accent">Tu peux en choisir plusieurs</span>
+                            </p>
+                        </div>
+                        <div class="ChoiceList">
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="livrables" id="l-wires" value="wireframes">
+                                <label for="l-wires">
+                                    <div class="LabelIcon">⬜</div>
+                                    <div>
+                                        <div class="LabelMain">Wireframes</div>
+                                        <div class="LabelSub">Zoning et structure des écrans</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard Locked" id="card-l-ui">
+                                <input type="checkbox" name="livrables" id="l-ui" value="maquettes" checked>
+                                <label for="l-ui">
+                                    <div class="LabelIcon">◉</div>
+                                    <div>
+                                        <div class="LabelMain">Maquettes UI haute-fidélité <span class="LockBadge">Compris</span></div>
+                                        <div class="LabelSub">Designs finaux pixel-perfect</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="livrables" id="l-proto" value="prototype">
+                                <label for="l-proto">
+                                    <div class="LabelIcon">▶</div>
+                                    <div>
+                                        <div class="LabelMain">Prototype interactif</div>
+                                        <div class="LabelSub">Figma clickable et testable</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="livrables" id="l-recherche" value="recherche">
+                                <label for="l-recherche">
+                                    <div class="LabelIcon">🔍</div>
+                                    <div>
+                                        <div class="LabelMain">Recherche & Personas</div>
+                                        <div class="LabelSub">Interviews, synthèse, profils utilisateurs</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="livrables" id="l-flows" value="userflows">
+                                <label for="l-flows">
+                                    <div class="LabelIcon">→</div>
+                                    <div>
+                                        <div class="LabelMain">User Flows</div>
+                                        <div class="LabelSub">Parcours et arborescences</div>
+                                    </div>  
+                                </label>
+                            </div>
+                            <div class="ChoiceCard">
+                                <input type="checkbox" name="livrables" id="l-handoff" value="handoff">
+                                <label for="l-handoff">
+                                    <div class="LabelIcon">⌥</div>
+                                    <div>
+                                        <div class="LabelMain">Developer Handoff</div>
+                                        <div class="LabelSub">Specs et assets pour les développeurs</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <span class="Error" id="err-livrables">Sélectionnes au moins un livrable.</span>
+                    </div>
+                    <div class="Panel" data-step="6">
+                        <div class="StepHead">
+                            <span class="StepLabel">Étape 6 / 6</span>
+                            <h2 class="StepTitle">Contraintes</h2>
+                            <p class="StepDesc">Dernière étape — définis tes contraintes.</p>
+                        </div>
+                        <div class="FormGroup">
+                            <label class="Label" for="description_projet">Décris ton projet (optionnel, mais très important)</label>
+                            <textarea id="description_projet" name="description_projet" class="Input" rows="5" maxlength="2000"></textarea>
+                        </div>
+                        <div class="UrgenceCard">
+                            <div class="UrgenceRow">
+                                <div>
+                                    <div class="UrgenceLabel">Délai standard ou urgent ?</div>
+                                    <div class="UrgenceDesc">Une livraison urgente entraîne une majoration de
+                                        <span class="Accent">+20%</span> sur le prix mais réduit ton délai de
+                                        <span class="Accent">40%</span>
+                                    </div>
+                                </div>
+                                <div class="Toggle">
+                                    <input type="checkbox" id="urgence" name="urgence" aria-label="Activer le mode urgent">
+                                </div>
+                            </div>
+                            <div class="BadgeRow">
+                                <span id="Standard" class="Badge Standard">Standard</span>
+                                <span id="Urgent" class="Badge Urgent Hidden">⚡ Urgent</span>
+                            </div>
+                        </div>
+                        <!-- <div class="FormGroup">
+                            <label class="Label" for="budget">Fourchette de budget envisagée</label>
+                            <select id="budget" name="budget" class="Input">
+                                <option value="" disabled selected>— Sélectionnes une fourchette —</option>
+                                <option value="moins-5k">Moins de 5 000 €</option>
+                                <option value="5k-10k">5 000 € — 10 000 €</option>
+                                <option value="10k-20k">10 000 € — 20 000 €</option>
+                                <option value="20k-50k">20 000 € — 50 000 €</option>
+                                <option value="plus-50k">Plus de 50 000 €</option>
+                                <option value="a-definir">Budget à définir ensemble</option>
+                            </select>
+                        </div> -->
+                        <div class="FormGroup">
+                            <label class="Label" for="code_parrainage">Code de parrainage (optionnel)</label>
+                            <input type="text" id="code_parrainage" name="code_parrainage" class="Input" autocomplete="off" maxlength="20">
+                            <div class="CodeFeedback" id="code-feedback"></div>
+                        </div>
+                        <div class="RadioBlock">
+                            <div class="Title">Type de demande</div>
+                            <div class="RadioList">
+                                <label class="RadioItem">
+                                    <input type="radio" name="type_demande" value="estimation" checked>
+                                    <div>
+                                        <div class="RadioItemMain">Estimation immédiate</div>
+                                        <div class="RadioItemSub">Recois une fourchette de prix par email</div>
+                                    </div>
+                                </label>
+                                <label class="RadioItem">
+                                    <input type="radio" name="type_demande" value="devis_officiel">
+                                    <div>
+                                        <div class="RadioItemMain">Devis officiel avec signature</div>
+                                        <div class="RadioItemSub">Recois un devis officiel à signer via Yousign</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="FormNav">
+                    <button class="BtnGhost" type="button" id="btn-prev" onclick="navigate(-1)">← Précédent</button>
+                    <button class="BtnMain" type="button" id="btn-next" onclick="navigate(1)">Continuer →</button>
+                </div>
+            </section>
+            <aside id="PriceSidebar">
+                <div class="PriceHeader">
+                    <div class="SidebarEyebrow">Ton estimation</div>
+                    <div class="PriceDisplay PriceGradient" id="s-price-main">— €</div>
+                    <div class="PriceNote">Fourchette HT (hors taxes)</div>
+                </div>
+                <div class="Breakdown">
+                    <div class="BreakdownEyebrow">Détail du calcul</div>
+                    <div id="s-breakdown">
+                        <div class="BreakdownPlaceholder">Complète le formulaire...</div>
+                    </div>
+                </div>
+                <div class="PriceTable">
+                    <div class="PriceRow">
+                        <span class="Label">Montant HT min.</span>
+                        <span class="Value" id="s-ht-min">—</span>
+                    </div>
+                    <div class="PriceRow">
+                        <span class="Label">Montant HT max.</span>
+                        <span class="Value" id="s-ht-max">—</span>
+                    </div>
+                    <div class="PriceRow Hidden" id="s-remise-row">
+                        <span class="Label">Remise parrainage</span>
+                        <span class="Value" id="s-remise-val">—</span>
+                    </div>
+                    <div class="PriceRow">
+                        <span class="Label" id="s-tva-label">TVA : 0%</span>
+                        <span class="Value" id="s-tva-val">—</span>
+                    </div>
+                    <div class="Separator"></div>
+                    <div class="PriceTotalRow">
+                        <span class="TotalLabel">Estimation TTC</span>
+                        <span class="TotalValue" id="s-ttc">—</span>
+                    </div>
+                </div>
+                <div class="DaysNote">
+                    <span id="s-jours">—</span> jours estimés · TJM <span id="s-tjm-val">—</span> €/j
+                </div>
+            </aside>
+        </div>
+        <div id="MobileDrawerOverlay" onclick="closeMobileDrawer()"></div>
+        <div id="MobileDrawer">
+            <div id="MobileDrawerHandle" onclick="closeMobileDrawer()">
+                <div class="DrawerPill"></div>
+            </div>
+            <div class="DrawerContent">
+                <div class="DrawerHeader">
+                    <div class="Estimation">Estimation en temps réel</div>
+                    <div class="Title" id="md-price-main">— €</div>
+                    <div class="PriceNote">Fourchette HT (hors taxes)</div>
+                </div>
+                <div class="SectionLabel">Détail du calcul</div>
+                <div id="md-breakdown">
+                    <div class="BreakdownPlaceholder">Complète le formulaire...</div>
+                </div>
+                <div class="SectionLabel">Récapitulatif</div>
+                <div class="PriceTable">
+                    <div class="PriceRow">
+                        <span class="Label">Montant HT min.</span>
+                        <span class="Value" id="md-ht-min">—</span>
+                    </div>
+                    <div class="PriceRow">
+                        <span class="Label">Montant HT max.</span>
+                        <span class="Value" id="md-ht-max">—</span>
+                    </div>
+                    <div class="PriceRow">
+                        <span class="Label" id="md-tva-label">TVA</span>
+                        <span class="Value" id="md-tva-val">—</span>
+                    </div>
+                    <div class="Separator"></div>
+                    <div class="PriceTotalRow">
+                        <span class="TotalLabel">Estimation TTC</span>
+                        <span class="TotalValue" id="md-ttc">—</span>
+                    </div>
+                </div>
+                <div class="DaysNote">
+                    <span id="md-jours">—</span> jours estimés · TJM <span id="md-tjm-val">—</span> €/j
+                </div>
+            </div>
+        </div>
+        <div id="MobileBar" onclick="toggleMobileDrawer()">
+            <div class="MobileBarInner">
+                <div>
+                    <div class="Label">Estimation HT</div>
+                    <div class="Price" id="m-price-main">— €</div>
+                </div>
+                <div class="PriceNote">
+                    <div class="Label">TTC estimé</div>
+                    <div class="MobileTTC" id="m-ttc">—</div>
+                </div>
+                <div class="Hint">
+                    <span class="Arrow">↑</span>
+                    <span class="Label">Détails</span>
+                </div>
+            </div>
+        </div>
+        <div id="ModalSuccess" class="Hidden">
+            <div class="Card">
+                <div class="ModalIcon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M5 14L11.5 20.5L23 8" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="ModalTitle">Devis envoyé !</h3>
+                <p class="ModalDesc" id="modal-msg">Ta demande a bien été enregistrée.</p>
+                <div class="ModalActions">
+                    <button class="BtnMain" onclick="downloadPDF()">↓ Télécharger le PDF</button>
+                    <button class="BtnGhost" onclick="resetForm()">Nouveau devis</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        const CONFIG = {
+// ► Taux Journalier Moyen (HT)
+            TJM: 100,
+// ► TVA applicable
+            TVA: 0.00,
+// ► Validité du devis
+            VALIDITE_DEVIS_JOURS: 30,
+// ► My Information
+            FREELANCE: {
+                nom: 'Lenny Gadroy',
+                titre: 'Lennouille — UI/UX Designer',
+                email: 'contact@levrailennouille.fr',
+                tel: '+33 6 52 51 49 19',
+                siret: '000 000 000 00000',
+                adresse: '51100 Reims, France',
+                site: 'levrailennouille.fr',
+                tva_intra: 'FR00000000000',
+            },
+// ► Estimated days
+            JOURS_NATURE: {
+                'creation': {min: 15, max: 21, label: 'Création de A à Z'},
+                'refonte': {min: 10, max: 14, label: 'Refonte complète'},
+                'design-system': {min: 15, max: 30, label: 'Design System'},
+                'features': {min: 5, max: 10, label: 'Ajout de fonctionnalités'},
+                'audit': {min: 2, max: 5, label: 'Audit UX'},
+            },
+// ► Multipliers
+            MULTI_PLATEFORME: {
+                'vitrine': {valeur: 1.00, label: 'Site Vitrine'},
+                'ecommerce': {valeur: 1.20, label: 'E-commerce'},
+                'mobile': {valeur: 1.10, label: 'App Mobile'},
+            },
+// ► Extra days
+            JOURS_PERIMETRE: {
+                'small': {min: 0, max: 0, label: '1–5 écrans'},
+                'medium': {min: 1, max: 4, label: '5–15 écrans'},
+                'large': {min: 5, max: 10, label: '15+ écrans'},
+            },
+// ► Deliverables
+            JOURS_LIVRABLES: {
+                'wireframes': {min: 1, max: 2, label: 'Wireframes'},
+                'maquettes': {min: 0, max: 0, label: 'Maquettes UI'},
+                'prototype': {min: 2, max: 4, label: 'Prototype Interactif'},
+                'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
+                'userflows': {min: 1, max: 2, label: 'User Flows'},
+                'handoff': {min: 1, max: 2, label: 'Developer Handoff'},
+            },
+            NATURES_MAQUETTE_INCLUSE: ['creation', 'refonte', 'design-system'],
+// ► Partial | Effect : TJM ÷ 2 —— durée estimée × 2
+            TRAVAIL_PARTIEL: true,
+// ► Referral codes
+            CODES_PARRAINAGE: [
+                'MUETRE',
+                'PRIMAIRE',
+                'SCORCONE',
+            ],
+            REMISE_PARRAINAGE: 0.10,
+// ► Emergency
+            MAJORATION_URGENCE: 0.20,
+            REDUCTION_DUREE_URGENCE: 0.40,
+// ► Send
+            WEBHOOK_URL: '',
+            FORMSPREE_URL: 'https://formspree.io/f/mbdeoqrq',
+        };
+
+        let STATE = {
+            currentStep: 1,
+            totalSteps: 6,
+// ► Données collectées depuis le formulaire
+            data: {
+                prenom: '',
+                nom: '',
+                email: '',
+                entreprise: '',
+                role: '',
+                nature: '',
+                plateformes: [],
+                perimetre: '',
+                livrables: [],
+                urgence: false,
+                budget: '',
+                type_demande: 'estimation',
+                code_parrainage: '',
+            },
+// ► Résultat du moteur de calcul
+            estimation: {
+                joursMin: 0,
+                joursMax: 0,
+                prixHtMin: 0,
+                prixHtMax: 0,
+                prixTtcMin: 0,
+                prixTtcMax: 0,
+                sousTotalHtMin: 0,
+                sousTotalHtMax: 0,
+                remiseMin: 0,
+                remiseMax: 0,
+                codeValide: false,
+                codeUtilise: '',
+                details: [],
+            },
+        };
+
+        function syncMaquetteInclusion() {
+            const card = document.getElementById('card-l-ui');
+            const checkbox = document.getElementById('l-ui');
+            if (!card || !checkbox) return;
+
+            const inclus = CONFIG.NATURES_MAQUETTE_INCLUSE.includes(STATE.data.nature);
+            card.classList.toggle('Hidden', !inclus);
+
+            if (inclus) {
+                checkbox.checked = true;
+                if (!STATE.data.livrables.includes('maquettes')) {
+                    STATE.data.livrables.push('maquettes');
+                }
+            } else {
+                checkbox.checked = false;
+                STATE.data.livrables = STATE.data.livrables.filter(l => l !== 'maquettes');
+            }
+        }
+
+        function recalculate() {
+            const d = STATE.data;
+            let joursMin = 0;
+            let joursMax = 0;
+            const details = [];
+// ► Base
+            if (d.nature && CONFIG.JOURS_NATURE[d.nature]) {
+                const cfg = CONFIG.JOURS_NATURE[d.nature];
+                joursMin += cfg.min;
+                joursMax += cfg.max;
+                details.push({label: cfg.label, valeur: `${cfg.min}–${cfg.max} j`, type: 'base'});
+            }
+// ► Estimated days
+            if (d.perimetre && CONFIG.JOURS_PERIMETRE[d.perimetre]) {
+                const cfg = CONFIG.JOURS_PERIMETRE[d.perimetre];
+                const multPartiel = CONFIG.TRAVAIL_PARTIEL ? 2 : 1;
+                const pMin = cfg.min * multPartiel;
+                const pMax = cfg.max * multPartiel;
+                joursMin += pMin;
+                joursMax += pMax;
+
+                if (cfg.max > 0) {details.push({label: `Périmètre (${cfg.label})`, valeur: `+${cfg.min}–${cfg.max} j`, type: 'additive'});}
+            }
+// ► Extra days
+            d.livrables.forEach(liv => {
+                const cfg = CONFIG.JOURS_LIVRABLES[liv];
+                if (cfg) {
+                    const multPartiel = CONFIG.TRAVAIL_PARTIEL ? 2 : 1;
+                    const lMin = cfg.min * multPartiel;
+                    const lMax = cfg.max * multPartiel;
+                    joursMin += lMin;
+                    joursMax += lMax;
+
+                    if (liv === 'maquettes') {details.push({label: cfg.label, valeur: 'inclus', type: 'livrable'});}
+                    else {details.push({label: cfg.label, valeur: `+${lMin}–${lMax} j`, type: 'livrable'});}
+                }
+            });
+// ► Multipliers
+            let multiPlat = 1.0;
+            let platLabels = [];
+
+            d.plateformes.forEach(p => {
+            const cfg = CONFIG.MULTI_PLATEFORME[p];
+                if (cfg) {
+                    multiPlat += (cfg.valeur - 1.0);
+                    platLabels.push(cfg.label);
+                }
+            });
+
+            if (multiPlat > 1.0) {
+                details.push({
+                    label: `Complexité (${platLabels.join(', ')})`,
+                    valeur: `×${multiPlat.toFixed(2)}`,
+                    type: 'multiplicateur',
+                });
+            }
+// ► Emergency
+            let multiUrgence = 1.0;
+            const joursMinBase = Math.ceil(joursMin * multiPlat);
+            const joursMaxBase = Math.ceil(joursMax * multiPlat);
+            let multiUrgencePrix = 1.0;
+            let multiUrgenceDuree = 1.0;
+            if (d.urgence) {
+                multiUrgencePrix = 1 + CONFIG.MAJORATION_URGENCE;
+                multiUrgenceDuree = 1 - CONFIG.REDUCTION_DUREE_URGENCE;
+                details.push({
+                    label: `Majoration urgence`,
+                    valeur: `+${(CONFIG.MAJORATION_URGENCE * 100).toFixed(0)}% prix / −${(CONFIG.REDUCTION_DUREE_URGENCE * 100).toFixed(0)}% délai`,
+                    type: 'urgence',
+                });
+            }
+// ► Final calculation
+            const multiTotal = multiPlat * multiUrgence;
+            const joursMinFin = Math.ceil(joursMinBase * multiUrgenceDuree);
+            const joursMaxFin = Math.ceil(joursMaxBase * multiUrgenceDuree);
+// ► Travail partiel
+            const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
+            const sousTotalHtMin = joursMinBase * effectiveTJM * multiUrgencePrix;
+            const sousTotalHtMax = joursMaxBase * effectiveTJM * multiUrgencePrix;
+// ► Referral codes
+            const code = checkCodeParrainage(d.code_parrainage);
+            let remiseMin = 0;
+            let remiseMax = 0;
+
+            if (code.valide) {
+                remiseMin = sousTotalHtMin * CONFIG.REMISE_PARRAINAGE;
+                remiseMax = sousTotalHtMax * CONFIG.REMISE_PARRAINAGE;
+                details.push({
+                    label: `Code parrainage (${code.code})`,
+                    valeur: `−${(CONFIG.REMISE_PARRAINAGE * 100).toFixed(0)}%`,
+                    type: 'remise',
+                });
+            }
+
+            const htMin = sousTotalHtMin - remiseMin;
+            const htMax = sousTotalHtMax - remiseMax;
+
+            const ttcMin = htMin * (1 + CONFIG.TVA);
+            const ttcMax = htMax * (1 + CONFIG.TVA);
+
+            STATE.estimation = {
+                joursMin: joursMinFin,
+                joursMax: joursMaxFin,
+                prixHtMin: htMin,
+                prixHtMax: htMax,
+                prixTtcMin: ttcMin,
+                prixTtcMax: ttcMax,
+                sousTotalHtMin,
+                sousTotalHtMax,
+                remiseMin,
+                remiseMax,
+                codeValide: code.valide,
+                codeUtilise: code.code,
+                details,
+                multiPlat,
+                multiUrgencePrix,
+                multiUrgenceDuree,
+            };
+        updatePriceUI();
+        updateCodeFeedback();
+        }
+
+/**
+ * @param {string} input
+ * @returns {{valide: boolean, code: string}}
+ */
+        function checkCodeParrainage(input) {
+            const code = (input || '').trim().toUpperCase();
+            if (!code) return {valide: false, code: ''};
+            return {valide: CONFIG.CODES_PARRAINAGE.includes(code), code};
+        }
+
+        function updateCodeFeedback() {
+            const el = document.getElementById('code-feedback');
+            const input = document.getElementById('code_parrainage');
+            if (!el || !input) return;
+
+            const raw = input.value.trim();
+            if (!raw) {
+                el.textContent = '';
+                el.className = 'CodeFeedback';
+                return;
+            }
+
+            if (STATE.estimation.codeValide) {
+                el.textContent = `✓ Code valide — ${(CONFIG.REMISE_PARRAINAGE * 100).toFixed(0)}% de remise appliquée`;
+                el.className = 'CodeFeedback Show Valid';
+            } else {
+                el.textContent = '✕ Code de parrainage invalide';
+                el.className = 'CodeFeedback Show Invalid';
+            }
+        }
+
+        function navigate(direction) {
+            if (direction > 0) {
+                if (!validateStep(STATE.currentStep)) return;
+                collectStep(STATE.currentStep);
+                recalculate();
+            }
+
+            const next = STATE.currentStep + direction;
+            if (next >= 1 && next <= STATE.totalSteps) {showStep(next);}
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.Panel').forEach(el => {
+                el.classList.remove('Active');
+                if (parseInt(el.dataset.step) === n) el.classList.add('Active');
+            });
+            STATE.currentStep = n;
+
+            const btnPrev = document.getElementById('btn-prev');
+            btnPrev.style.visibility = n === 1 ? 'Hidden' : 'visible';
+
+            const btnNext = document.getElementById('btn-next');
+                if (n === STATE.totalSteps) {
+                    btnNext.textContent = '✓ Générer mon devis';
+                    btnNext.onclick = submitForm;
+                } else {
+                    btnNext.textContent = 'Continuer →';
+                    btnNext.onclick = () => navigate(1);
+                }
+            updateProgressBar(n);
+        }
+
+        function buildProgressBar() {
+            const bar = document.getElementById('ProgressBar');
+            bar.innerHTML = '';
+
+            for (let i = 1; i <= STATE.totalSteps; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'Dots';
+                dot.id = `pd-${i}`;
+                dot.textContent = i;
+                bar.appendChild(dot);
+
+                if (i < STATE.totalSteps) {
+                    const line = document.createElement('div');
+                    line.className = 'Lines';
+                    line.id = `pl-${i}`;
+                    bar.appendChild(line);
+                }
+            }
+        }
+
+        function updateProgressBar(current) {
+            for (let i = 1; i <= STATE.totalSteps; i++) {
+                const dot = document.getElementById(`pd-${i}`);
+                const line = document.getElementById(`pl-${i}`);
+                dot.className = 'Dots';
+
+                if (i < current) {
+                    dot.classList.add('Done');
+                    dot.innerHTML = '✓';
+
+                    if (line) line.className = 'Lines Done';
+                } else if (i === current) {
+                    dot.classList.add('Active');
+                    dot.innerHTML = `<span class="Num">${i}</span>`;
+
+                    if (line) line.className = 'Lines';
+                } else {
+                    dot.innerHTML = `<span class="Num">${i}</span>`;
+                    if (line) line.className = 'Lines';
+                }
+            }
+        }
+
+        function updatePriceUI() {
+            const est = STATE.estimation;
+            if (est.prixHtMin === 0 && est.prixHtMax === 0) return;
+
+            const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
+            const rangeHT = `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)}`;
+            const rangeTTC = CONFIG.TVA > 0 ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)}` : rangeHT;
+
+            setText('s-price-main', rangeHT);
+            setText('s-ht-min', euros(est.prixHtMin));
+            setText('s-ht-max', euros(est.prixHtMax));
+            setText('s-ttc', rangeTTC);
+            setText('s-jours', `${est.joursMin}–${est.joursMax}`);
+            setText('s-tjm-val', effectiveTJM);
+
+            const sRemiseRow = document.getElementById('s-remise-row');
+            if (sRemiseRow) {
+                sRemiseRow.classList.toggle('Hidden', !est.codeValide);
+                if (est.codeValide) {
+                    setText('s-remise-val', `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`);
+                }
+            }
+
+            if (CONFIG.TVA > 0) {
+                setText('s-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
+                setText('s-tva-val', `+${(CONFIG.TVA * 100).toFixed(0)}%`);
+            } else {
+                setText('s-tva-label', 'TVA');
+                setText('s-tva-val', 'Non assujetti');
+            }
+
+            const bd = document.getElementById('s-breakdown');
+            if (est.details.length > 0) {
+                bd.innerHTML = est.details.map(d => `<div class="Details">
+                    <span class="DetailsLabel">${d.label}</span>
+                    <span class="DetailsValue DetailsValue--${d.type || 'base'}">${d.valeur}</span>
+                </div>`).join('');
+            }
+            setText('m-price-main', rangeHT);
+            setText('m-ttc', `${rangeTTC} TTC`);
+            setText('md-price-main', rangeHT);
+            setText('md-ht-min', euros(est.prixHtMin));
+            setText('md-ht-max', euros(est.prixHtMax));
+            setText('md-ttc', rangeTTC);
+            setText('md-jours', `${est.joursMin}–${est.joursMax}`);
+            setText('md-tjm-val', effectiveTJM);
+
+            const mdRemiseRow = document.getElementById('md-remise-row');
+            if (mdRemiseRow) {
+                mdRemiseRow.classList.toggle('Hidden', !est.codeValide);
+                if (est.codeValide) {
+                    setText('md-remise-val', `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`);
+                }
+            }
+
+            if (CONFIG.TVA > 0) {
+                setText('md-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
+                setText('md-tva-val', `+${(CONFIG.TVA * 100).toFixed(0)}%`);
+            } else {
+                setText('md-tva-label', 'TVA');
+                setText('md-tva-val', 'Non assujetti');
+            }
+
+            const mdBd = document.getElementById('md-breakdown');
+            if (mdBd && est.details.length > 0) {
+                mdBd.innerHTML = est.details.map(d => `<div class="Details">
+                    <span class="DetailsLabel">${d.label}</span>
+                    <span class="DetailsValue DetailsValue--${d.type || 'base'}">${d.valeur}</span>
+                </div>`).join('');
+            }
+        }
+
+        function setText(id, val) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val;
+        }
+
+        function euros(n) {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR',
+                maximumFractionDigits: 0,
+            }).format(n);
+        }
+
+        function validateStep(step) {
+            clearErrors();
+            switch (step) {
+                case 1: {
+                    let ok = true;
+                    const p = v('prenom'), n = v('nom'), e = v('email');
+                    if (!p) {showErr('err-prenom'); ok = false;}
+                    if (!n) {showErr('err-nom'); ok = false;}
+                    if (!e || !isEmail(e)) {showErr('err-email'); ok = false;}
+                    return ok;
+                }
+
+                case 2:
+                    if (!document.querySelector('input[name="nature"]:checked')) {showErr('err-nature'); return false;}
+                    return true;
+
+                case 3:
+                    if (!document.querySelectorAll('input[name="plateformes"]:checked').length) {showErr('err-plateformes'); return false;}
+                    return true;
+
+                case 4:
+                    if (!document.querySelector('input[name="perimetre"]:checked')) {showErr('err-perimetre'); return false;}
+                    return true;
+
+                case 5:
+                    if (!document.querySelectorAll('input[name="livrables"]:checked').length) {showErr('err-livrables'); return false;}
+                    return true;
+
+                default:
+                    return true;
+                }
+        }
+
+        function showErr(id) {const el = document.getElementById(id); if (el) el.classList.add('Show');}
+        function clearErrors() {document.querySelectorAll('.Error').forEach(el => el.classList.remove('Show'));}
+        function v(id) {return document.getElementById(id)?.value.trim() || '';}
+        function isEmail(s) {return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);}
+
+        function collectStep(step) {
+            const d = STATE.data;
+            switch (step) {
+                case 1:
+                    d.prenom = v('prenom');
+                    d.nom = v('nom');
+                    d.email = v('email');
+                    d.entreprise = v('entreprise');
+                    d.role = v('role');
+                break;
+
+                case 2: d.nature = document.querySelector('input[name="nature"]:checked')?.value || ''; break;
+
+                case 3: d.plateformes = [...document.querySelectorAll('input[name="plateformes"]:checked')].map(el => el.value);break;
+
+                case 4: d.perimetre = document.querySelector('input[name="perimetre"]:checked')?.value || ''; break;
+
+                case 5: d.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(el => el.value); break;
+
+                case 6:
+                    d.urgence = document.getElementById('urgence').checked;
+                    d.budget = document.getElementById('budget').value;
+                    d.type_demande = document.querySelector('input[name="type_demande"]:checked')?.value || 'estimation';
+                    d.code_parrainage = v('code_parrainage');
+                    d.description_projet = v('description_projet');
+                break;
+            }
+        }
+
+        function downloadPDF() {
+            const {jsPDF} = window.jspdf;
+            const doc = new jsPDF({orientation: 'portrait', unit: 'mm', format: 'a4'});
+
+            const d = STATE.data;
+            const est = STATE.estimation;
+            const fl = CONFIG.FREELANCE;
+            const now  = new Date();
+            const W = 210;
+
+            const numDevis = `DEV-${Date.now()}`;
+            const dateEmission = now.toLocaleDateString('fr-FR');
+            const dateValidite = new Date(now.getTime() + CONFIG.VALIDITE_DEVIS_JOURS * 86400000).toLocaleDateString('fr-FR');
+
+            const C = {
+                NOIR: [15, 15, 18],
+                BLANC: [245, 245, 240],
+                AMBER: [232, 160, 32],
+                GRIS: [100, 100, 110],
+                LGRIS: [238, 238, 236],
+            };
+
+            const fill = (c) => doc.setFillColor(...c);
+            const stroke = (c) => doc.setDrawColor(...c);
+            const color = (c) => doc.setTextColor(...c);
+            const font = (s, sz) => {doc.setFont('helvetica', s); doc.setFontSize(sz);};
+
+            fill(C.NOIR);
+            doc.rect(0, 0, W, 48, 'F');
+
+            color(C.BLANC);
+            font('bold', 18);
+            doc.text(fl.nom, 14, 18);
+
+            color(C.AMBER);
+            font('normal', 9);
+            doc.text(fl.titre.toUpperCase(), 14, 25);
+
+            color([160, 160, 165]);
+            font('normal', 8);
+            doc.text(fl.email, 14, 32);
+            doc.text(fl.tel, 14, 38);
+
+            color(C.BLANC);
+            font('bold', 22);
+            doc.text('DEVIS', W - 14, 18, {align: 'right'});
+
+            color(C.AMBER);
+            font('bold', 9);
+            doc.text(numDevis, W - 14, 26, {align: 'right'});
+
+            color([160, 160, 165]);
+            font('normal', 8);
+            doc.text(`Émis le ${dateEmission}`, W - 14, 33, {align: 'right'});
+            doc.text(`Valable jusqu'au ${dateValidite}`, W - 14, 39, {align: 'right'});
+
+            let y = 58;
+            color(C.GRIS);
+            font('bold', 8);
+            doc.text('CLIENT', 14, y);
+            stroke([210, 210, 210]);
+            doc.line(14, y + 2, W - 14, y + 2);
+
+            y += 9;
+            color(C.NOIR);
+            font('bold', 12);
+            doc.text(`${d.prenom} ${d.nom}`, 14, y);
+
+            y += 5;
+            font('normal', 9);
+            color(C.GRIS);
+            if (d.entreprise) {doc.text(d.entreprise, 14, y); y += 5;}
+            if (d.role) {doc.text(d.role, 14, y); y += 5;}
+            doc.text(d.email, 14, y);
+
+            y += 14;
+            color(C.GRIS);
+            font('bold', 8);
+            doc.text('DÉTAIL DE LA MISSION', 14, y);
+            stroke([210, 210, 210]);
+            doc.line(14, y + 2, W - 14, y + 2);
+
+            y += 9;
+
+            const rowsProjet = [
+                ['Nature du projet', CONFIG.JOURS_NATURE[d.nature]?.label || d.nature],
+                ['Plateformes', d.plateformes.map(p => CONFIG.MULTI_PLATEFORME[p]?.label || p).join(', ')],
+                ['Périmètre', CONFIG.JOURS_PERIMETRE[d.perimetre]?.label || d.perimetre],
+                ['Livrables inclus', d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l).join(', ')],
+                ['Délai', d.urgence ? '⚡ Urgent (+20% prix / −40% délai)' : 'Standard'],
+                ['Budget client', d.budget || 'Non précisé'],
+            ];
+
+            rowsProjet.forEach(([label, valeur], i) => {
+                const ry = y + i * 9;
+                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.GRIS);
+                font('bold', 8);
+                doc.text(label, 17, ry);
+                color(C.NOIR);
+                font('normal', 9);
+
+                const wrapped = doc.splitTextToSize(String(valeur), 105);
+                doc.text(wrapped, 85, ry);
+            });
+
+            y += rowsProjet.length * 9 + 12;
+            color(C.GRIS);
+            font('bold', 8);
+            doc.text('ESTIMATION FINANCIÈRE', 14, y);
+            stroke([210, 210, 210]);
+            doc.line(14, y + 2, W - 14, y + 2);
+
+            y += 9;
+
+            const rowsPrix = [
+                ['Taux Journalier Moyen (TJM)', `${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`],
+                ['Durée estimée', `${est.joursMin} à ${est.joursMax} jours`],
+            ];
+
+            if (est.codeValide) {
+                rowsPrix.push(['Sous-total HT — fourchette', `${euros(est.sousTotalHtMin)} – ${euros(est.sousTotalHtMax)}`]);
+                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`]);
+            }
+
+            rowsPrix.push(['Montant HT — fourchette basse', euros(est.prixHtMin)]);
+            rowsPrix.push(['Montant HT — fourchette haute', euros(est.prixHtMax)]);
+
+            if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', `${(CONFIG.TVA * 100).toFixed(0)}%`]);}
+
+            rowsPrix.forEach(([label, valeur], i) => {
+                const ry = y + i * 9;
+                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.GRIS);
+                font('bold', 8);
+                doc.text(label, 17, ry);
+                color(C.NOIR);
+                font('normal', 9);
+                doc.text(String(valeur), W - 17, ry, {align: 'right'});
+            });
+
+            y += rowsPrix.length * 9 + 5;
+
+            fill(C.NOIR);
+            doc.rect(14, y, W - 28, 15, 'F');
+
+            color(C.BLANC);
+            font('bold', 10);
+            doc.text('ESTIMATION TOTALE TTC', 19, y + 7);
+
+            color(C.AMBER);
+            font('bold', 12);
+            const ttcStr = CONFIG.TVA > 0
+                ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)}`
+                : `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)} HT`;
+            doc.text(ttcStr, W - 19, y + 8, {align: 'right'});
+
+            const fyBase = 270;
+            stroke([200, 200, 200]);
+            doc.line(14, fyBase, W - 14, fyBase);
+
+            color(C.GRIS);
+            font('normal', 7);
+            doc.text(
+                `SIRET : ${fl.siret} · ${fl.adresse} · ${fl.site}`,
+                W / 2, fyBase + 5, {align: 'center'}
+            );
+
+            const tvaNote = CONFIG.TVA === 0
+                ? 'TVA non applicable — Art. 293B du CGI'
+                : `TVA ${(CONFIG.TVA * 100).toFixed(0)}% incluse dans le montant TTC`;
+            doc.text(
+                `Ce devis est valable ${CONFIG.VALIDITE_DEVIS_JOURS} jours. ${tvaNote}.`,
+                W / 2, fyBase + 10, {align: 'center'}
+            );
+
+            const fname = `Devis_${d.prenom}_${d.nom}_${numDevis}.pdf`;
+            doc.save(fname);
+        }
+
+        async function submitForm() {
+            collectStep(6);
+            recalculate();
+
+            const payload = buildPayload();
+
+            console.group('📦 Payload devis');
+            console.log(JSON.stringify(payload, null, 2));
+            console.groupEnd();
+
+            Promise.all([
+                sendToWebhook(payload).then(r => { if (!r.success) console.warn('⚠ Webhook non envoyé :', r.reason || r.status); }),
+                sendToFormspree(payload).then(r => { if (!r.success) console.warn('⚠ Formspree non envoyé :', r.reason || r.error); }),
+            ]);
+
+            const modal = document.getElementById('ModalSuccess');
+            const msg  = document.getElementById('modal-msg');
+            const d = STATE.data;
+
+            if (d.type_demande === 'devis_officiel') {msg.textContent = `Ta demande de devis officiel a été enregistrée. Tu recevra un document à signer via Yousign à l'adresse ${d.email}.`;}
+            else {msg.textContent = `Ton estimation personnalisée a été enregistrée. Tu vas recevoir ton devis à l'adresse ${d.email}.`;}
+
+            modal.classList.remove('Hidden');
+        }
+
+        async function sendToFormspree(payload) {
+            if (!CONFIG.FORMSPREE_URL) {
+                console.info('ℹ FORMSPREE_URL vide — données non envoyées');
+                return {success: false, reason: 'no_url'};
+            }
+
+            const d = payload.contact;
+            const p = payload.projet;
+            const e = payload.estimation;
+            const m = payload.meta;
+
+            const flat = {
+                numero_devis:   m.numero_devis,
+                date:           m.date_lisible,
+                type_demande:   m.type_demande === 'devis_officiel' ? 'Devis officiel' : 'Estimation',
+                prenom:         d.prenom,
+                nom:            d.nom,
+                email:          d.email,
+                entreprise:     d.entreprise || '—',
+                role:           d.role || '—',
+                projet:         p.nature_label,
+                plateformes:    p.plateformes_labels.join(', '),
+                perimetre:      p.perimetre_label,
+                livrables:      p.livrables_labels.join(', '),
+                urgent:         p.urgent ? 'Oui (+20%)' : 'Non',
+                budget_client:  p.budget_client || 'Non renseigné',
+                description_projet: p.description || 'Non renseigné',
+                code_parrainage: e.code_parrainage_valide ? `${e.code_parrainage} (−${(e.remise_taux * 100).toFixed(0)}%)` : '—',
+                estimation_ht:  e.fourchette_ht,
+                estimation_ttc: e.fourchette_ttc,
+                jours_estimes:  `${e.jours_min} – ${e.jours_max} jours`,
+                tjm:            `${e.tjm} €/j`,
+            };
+
+            try {
+                const res = await fetch(CONFIG.FORMSPREE_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify(flat),
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    console.log('✅ Formspree envoyé avec succès');
+                    return {success: true};
+                } else {
+                    console.error('❌ Erreur Formspree :', data);
+                    return {success: false, error: data};
+                }
+            } catch (err) {
+                console.error('❌ Erreur réseau Formspree :', err.message);
+                return {success: false, error: err.message};
+            }
+        }
+
+        function buildPayload() {
+            const d = STATE.data;
+            const est = STATE.estimation;
+            const now = new Date();
+
+            return {
+
+                meta: {
+                    numero_devis: `DEV-${Date.now()}`,
+                    date_soumission: now.toISOString(),
+                    date_lisible: now.toLocaleDateString('fr-FR'),
+                    type_demande: d.type_demande,
+                },
+
+                contact: {
+                    prenom: d.prenom,
+                    nom: d.nom,
+                    nom_complet: `${d.prenom} ${d.nom}`,
+                    email: d.email,
+                    entreprise: d.entreprise,
+                    role: d.role,
+                },
+
+                projet: {
+                    nature: d.nature,
+                    nature_label: CONFIG.JOURS_NATURE[d.nature]?.label || '',
+                    plateformes: d.plateformes,
+                    plateformes_labels: d.plateformes.map(p => CONFIG.MULTI_PLATEFORME[p]?.label || p),
+                    perimetre: d.perimetre,
+                    perimetre_label: CONFIG.JOURS_PERIMETRE[d.perimetre]?.label || '',
+                    livrables: d.livrables,
+                    livrables_labels: d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l),
+                    urgent: d.urgence,
+                    budget_client: d.budget,
+                    description: d.description_projet || '',
+                },
+
+                estimation: {
+                    tjm: CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM,
+                    jours_min: est.joursMin,
+                    jours_max: est.joursMax,
+                    sous_total_ht_min: est.sousTotalHtMin,
+                    sous_total_ht_max: est.sousTotalHtMax,
+                    code_parrainage: est.codeUtilise || '',
+                    code_parrainage_valide: est.codeValide,
+                    remise_taux: est.codeValide ? CONFIG.REMISE_PARRAINAGE : 0,
+                    remise_ht_min: est.remiseMin,
+                    remise_ht_max: est.remiseMax,
+                    prix_ht_min: est.prixHtMin,
+                    prix_ht_max: est.prixHtMax,
+                    tva_taux: CONFIG.TVA,
+                    prix_ttc_min: est.prixTtcMin,
+                    prix_ttc_max: est.prixTtcMax,
+
+                    fourchette_ht: `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)} HT`,
+                    fourchette_ttc: CONFIG.TVA > 0
+                        ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)} TTC`
+                        : `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)} HT`,
+                    details_calcul: est.details,
+                },
+
+                freelance: CONFIG.FREELANCE,
+            };
+        }
+
+/**
+ * @param {Object} payload
+ * @returns {Promise<{success: boolean}>}
+ */
+
+        async function sendToWebhook(payload) {
+            if (!CONFIG.WEBHOOK_URL) {
+                console.info('ℹ WEBHOOK_URL vide — données non envoyées (mode dev)');
+                return {success: false, reason: 'no_url'};
+            }
+
+            try {
+                const res = await fetch(CONFIG.WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload),
+                });
+
+                if (res.ok) {
+                    console.log('✅ Webhook envoyé avec succès');
+                    return {success: true};
+                } else {
+                    console.error('❌ Erreur webhook :', res.status, res.statusText);
+                    return {success: false, status: res.status};
+                }
+            } catch (err) {
+                console.error('❌ Erreur réseau :', err.message);
+                return {success: false, error: err.message};
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('ModalSuccess').classList.add('Hidden');
+
+            STATE.currentStep = 1;
+            STATE.data = {
+                prenom: '', nom: '', email: '', entreprise: '', role: '',
+                nature: '', plateformes: [], perimetre: '',
+                livrables: [], urgence: false, budget: '', type_demande: 'estimation',
+                code_parrainage: '',
+            };
+
+            STATE.estimation = {
+                joursMin: 0, joursMax: 0,
+                prixHtMin: 0, prixHtMax: 0,
+                prixTtcMin: 0, prixTtcMax: 0,
+                sousTotalHtMin: 0, sousTotalHtMax: 0,
+                remiseMin: 0, remiseMax: 0,
+                codeValide: false, codeUtilise: '',
+                details: [],
+            };
+
+            document.querySelectorAll('.Input').forEach(el => {
+                if (el.tagName === 'SELECT') el.value = '';
+                else el.value = '';
+            });
+
+            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {el.checked = false;});
+
+            STATE.data.livrables = [];
+            syncMaquetteInclusion();
+
+            const defRadio = document.querySelector('input[name="type_demande"][value="estimation"]');
+            if (defRadio) defRadio.checked = true;
+
+            document.getElementById('Standard').classList.remove('Hidden');
+            document.getElementById('Urgent').classList.add('Hidden');
+
+            setText('s-price-main', '— €');
+            setText('m-price-main', '— €');
+            setText('m-ttc', '—');
+            setText('s-ht-min', '—');
+            setText('s-ht-max', '—');
+            setText('s-tva-val', '—');
+            setText('s-ttc', '—');
+            setText('s-jours', '—');
+            setText('md-price-main', '— €');
+            setText('md-ttc', '—');
+            setText('md-ht-min', '—');
+            setText('md-ht-max', '—');
+            setText('md-tva-val', '—');
+            setText('md-jours', '—');
+            const mdBdReset = document.getElementById('md-breakdown');
+            if (mdBdReset) mdBdReset.innerHTML = '<div class="BreakdownPlaceholder">Complète le formulaire...</div>';
+
+            document.getElementById('s-breakdown').innerHTML = '<div class="BreakdownPlaceholder">Complète le formulaire...</div>';
+
+            const sRemiseRowReset = document.getElementById('s-remise-row');
+            if (sRemiseRowReset) sRemiseRowReset.classList.add('Hidden');
+            const mdRemiseRowReset = document.getElementById('md-remise-row');
+            if (mdRemiseRowReset) mdRemiseRowReset.classList.add('Hidden');
+
+            const codeFeedbackReset = document.getElementById('code-feedback');
+            if (codeFeedbackReset) {
+                codeFeedbackReset.textContent = '';
+                codeFeedbackReset.className = 'CodeFeedback';
+            }
+
+            buildProgressBar();
+            showStep(1);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {buildProgressBar();
+        showStep(1);
+
+        const initTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
+        setText('s-tjm-val', initTJM);
+        setText('md-tjm-val', initTJM);
+
+        STATE.data.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(e => e.value);
+        syncMaquetteInclusion();
+
+        document.querySelectorAll('input[name="nature"]').forEach(el =>
+            el.addEventListener('change', () => {
+                STATE.data.nature = el.value;
+                syncMaquetteInclusion();
+                recalculate();
+            })
+        );
+
+        document.querySelectorAll('input[name="plateformes"]').forEach(el =>
+            el.addEventListener('change', () => {
+                STATE.data.plateformes = [...document.querySelectorAll('input[name="plateformes"]:checked')].map(e => e.value);
+                recalculate();
+            })
+        );
+
+        document.querySelectorAll('input[name="perimetre"]').forEach(el =>
+            el.addEventListener('change', () => {
+                STATE.data.perimetre = el.value;
+                recalculate();
+            })
+        );
+
+        document.querySelectorAll('input[name="livrables"]').forEach(el =>
+            el.addEventListener('change', () => {
+                STATE.data.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(e => e.value);
+                recalculate();
+            })
+        );
+
+        document.getElementById('urgence').addEventListener('change', function() {
+            STATE.data.urgence = this.checked;
+            document.getElementById('Standard').classList.toggle('Hidden', this.checked);
+            document.getElementById('Urgent').classList.toggle('Hidden', !this.checked);
+            recalculate();
+        });
+
+        const codeInput = document.getElementById('code_parrainage');
+        if (codeInput) {
+            codeInput.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+                STATE.data.code_parrainage = this.value;
+                recalculate();
+            });
+        }
+
+        const maquettesCheckbox = document.getElementById('l-ui');
+        if (maquettesCheckbox) {
+            maquettesCheckbox.addEventListener('change', function() {
+                if (!this.checked) {
+                    this.checked = true;
+                }
+            });
+        }
+
+        const mobileBar = document.getElementById('MobileBar');
+        let touchStartY = 0;
+        let touchStartTime = 0;
+
+        if (mobileBar) {
+            mobileBar.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            }, {passive: true});
+            mobileBar.addEventListener('touchend', (e) => {
+                const dy = touchStartY - e.changedTouches[0].clientY;
+                const dt = Date.now() - touchStartTime;
+                if (dy > 20 || (dy > 8 && dt < 200)) openMobileDrawer();
+            }, {passive: true});
+        }
+
+        const drawer = document.getElementById('MobileDrawer');
+        let drawerTouchStartY = 0;
+        if (drawer) {
+            drawer.addEventListener('touchstart', (e) => {
+                drawerTouchStartY = e.touches[0].clientY;
+            }, {passive: true});
+            drawer.addEventListener('touchend', (e) => {
+                const dy = e.changedTouches[0].clientY - drawerTouchStartY;
+                if (dy > 55) closeMobileDrawer();
+            }, {passive: true});
+        }
+    });
+
+        function openMobileDrawer() {
+            const drawer  = document.getElementById('MobileDrawer');
+            const overlay = document.getElementById('MobileDrawerOverlay');
+            if (!drawer || !overlay) return;
+            drawer.classList.add('Open');
+            overlay.classList.add('Open');
+            document.body.style.overflow = 'Hidden';
+        }
+
+        function closeMobileDrawer() {
+            const drawer  = document.getElementById('MobileDrawer');
+            const overlay = document.getElementById('MobileDrawerOverlay');
+            if (!drawer || !overlay) return;
+            drawer.classList.remove('Open');
+            overlay.classList.remove('Open');
+            document.body.style.overflow = '';
+        }
+
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('MobileDrawer');
+            if (!drawer) return;
+            drawer.classList.contains('Open') ? closeMobileDrawer() : openMobileDrawer();
+        }
+    </script>
+</body>
+</html>
