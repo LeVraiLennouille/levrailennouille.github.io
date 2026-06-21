@@ -18,8 +18,8 @@
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
 
-    --Muted: #A0B3C1; --MutedRGB: 160, 179, 193;
-    --SuperMuted: #6C8293; --SuperMutedRGB: 108, 130, 147;
+    --Muted: #6C8293; --MutedRGB: 108, 130, 147;
+    --MinMuted: #A0B3C1; --MinMutedRGB: 160, 179, 193;
 
 /* --- Infos --- */
     --Online: #4ade80; --OnlineRGB: 74, 222, 128;
@@ -626,7 +626,7 @@ html, body {
             .FooterDesc {
                 font-size: 0.95rem;
                 line-height: 1.6;
-                color: var(--Muted);
+                color: var(--MinMuted);
                 text-transform: none;
                 margin-bottom: 20px;
             }
@@ -646,7 +646,7 @@ html, body {
                     margin-bottom: 12px;
 
                     >a {
-                        color: var(--Muted);
+                        color: var(--MinMuted);
                         text-decoration: none;
                         font-size: 0.95rem;
                         transition: color 0.3s ease, padding-left 0.3s ease;
@@ -714,7 +714,7 @@ html, body {
         text-align: center;
         padding-top: 10px;
         font-size: 0.85rem;
-        color: var(--SuperMuted);
+        color: var(--Muted);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -739,7 +739,7 @@ html, body {
                 pointer-events: auto;
 
                 li>a {
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     position: relative;
                     text-decoration: none;
                     font-size: 0.8rem;
@@ -795,7 +795,7 @@ html, body {
             svg {
                 width: 16px;
                 height: 16px;
-                stroke: var(--Muted);
+                stroke: var(--MinMuted);
                 fill: none;
                 stroke-width: 2.5;
                 stroke-linecap: round;
@@ -1875,7 +1875,7 @@ main.Simu {
                 }
 
                 .MainDesc {
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     font-size: 14px;
                     line-height: 1.65;
                     margin: 0;
@@ -1897,7 +1897,7 @@ main.Simu {
                     justify-content: center;
                     font-size: 14px;
                     font-weight: 700;
-                    color: var(--Muted);
+                    color: var(--MinMuted);
                     flex-shrink: 0;
                     transition: all 0.3s ease;
 
@@ -1957,7 +1957,7 @@ main.Simu {
                         }
 
                         .StepDesc {
-                            color: var(--SuperMuted);
+                            color: var(--Muted);
                             font-size: 14px;
                             margin: 4px 0 0;
                         }
@@ -1976,7 +1976,7 @@ main.Simu {
                             font-weight: 600;
                             text-transform: uppercase;
                             letter-spacing: 0.8px;
-                            color: var(--SuperMuted);
+                            color: var(--Muted);
                             margin-bottom: 7px;
                         }
 
@@ -1997,7 +1997,7 @@ main.Simu {
                                 box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.10);
                             }
 
-                            &::placeholder {color: var(--Muted);}
+                            &::placeholder {color: var(--MinMuted);}
                         }
                     } 
 
@@ -2124,7 +2124,7 @@ main.Simu {
                                 .LabelIconText {
                                     font-size: 10px;
                                     font-weight: 700;
-                                    color: var(--SuperMuted);
+                                    color: var(--Muted);
                                 }
 
                                 .LabelMain {
@@ -2154,7 +2154,7 @@ main.Simu {
 
                                 .LabelSub {
                                     font-size: 12px;
-                                    color: var(--SuperMuted);
+                                    color: var(--Muted);
                                     margin-top: 2px;
                                 }
                             }
@@ -2183,7 +2183,7 @@ main.Simu {
 
                             .UrgenceDesc {
                                 font-size: 12px;
-                                color: var(--SuperMuted);
+                                color: var(--Muted);
                             }
 
                             .Toggle input[type="checkbox"] {
@@ -2238,7 +2238,7 @@ main.Simu {
 
                                 &.Standard {
                                     border: 1px solid var(--Borders);
-                                    color: var(--SuperMuted);
+                                    color: var(--Muted);
                                 }
 
                                 &.Urgent {
@@ -2259,7 +2259,7 @@ main.Simu {
                             font-weight: 600;
                             text-transform: uppercase;
                             letter-spacing: 0.8px;
-                            color: var(--SuperMuted);
+                            color: var(--Muted);
                             margin-bottom: 7px;
                         }
 
@@ -2280,7 +2280,7 @@ main.Simu {
                                 box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.10);
                             }
 
-                            &::placeholder {color: var(--Muted);}
+                            &::placeholder {color: var(--MinMuted);}
                             option {background: var(--PureWhite);}
                         }
                     }
@@ -2325,7 +2325,7 @@ main.Simu {
 
                                 .RadioItemSub {
                                     font-size: 12px;
-                                    color: var(--SuperMuted);
+                                    color: var(--Muted);
                                     margin-top: 2px;
                                 }
                             }
@@ -2370,7 +2370,7 @@ main.Simu {
 
                 .BtnGhost {
                     background: transparent;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     font-weight: 500;
                     font-size: 14px;
                     padding: 13px 22px;
@@ -2422,7 +2422,7 @@ main.Simu {
 
                 .PriceNote {
                     font-size: 11px;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     margin-top: 4px;
                 }
             }
@@ -2441,7 +2441,7 @@ main.Simu {
 
                 .BreakdownPlaceholder {
                     font-size: 12px;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     font-style: italic;
                 }
 
@@ -2455,8 +2455,8 @@ main.Simu {
 
                     &:last-child {border-bottom: none;}
 
-                    .DetailsLabel {color: var(--SuperMuted);}
-                    .DetailsValue {font-weight: 500; color: var(--SuperMuted);}
+                    .DetailsLabel {color: var(--Muted);}
+                    .DetailsValue {font-weight: 500; color: var(--Muted);}
                     .DetailsValue--multiplicateur {color: #E8A020;}
                     .DetailsValue--urgence {color: #F56565;}
                     .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
@@ -2478,7 +2478,7 @@ main.Simu {
 
                     &:last-of-type {margin-bottom: 0;}
 
-                    .Label {color: var(--SuperMuted);}
+                    .Label {color: var(--Muted);}
 
                     .Value {
                         font-weight: 500;
@@ -2515,7 +2515,7 @@ main.Simu {
             .DaysNote {
                 text-align: center;
                 font-size: 11px;
-                color: var(--SuperMuted);
+                color: var(--Muted);
             }
         }
     }
@@ -2593,7 +2593,7 @@ main.Simu {
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 2px;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     margin-bottom: 4px;
                 }
 
@@ -2605,7 +2605,7 @@ main.Simu {
 
                 .PriceNote {
                     font-size: 11px;
-                    color: var(--Muted);
+                    color: var(--MinMuted);
                     margin-top: 3px;
                 }
             }
@@ -2615,13 +2615,13 @@ main.Simu {
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 2px;
-                color: var(--SuperMuted);
+                color: var(--Muted);
                 margin: 20px 0 10px;
             }
 
             .BreakdownPlaceholder {
                 font-size: 12px;
-                color: var(--Muted);
+                color: var(--MinMuted);
                 font-style: italic;
             }
 
@@ -2635,8 +2635,8 @@ main.Simu {
 
                 &:last-child {border-bottom: none;}
 
-                .DetailsLabel {color: var(--SuperMuted);}
-                .DetailsValue {font-weight: 500; color: var(--SuperMuted);}
+                .DetailsLabel {color: var(--Muted);}
+                .DetailsValue {font-weight: 500; color: var(--Muted);}
                 .DetailsValue--multiplicateur {color: #E8A020;}
                 .DetailsValue--urgence {color: #F56565;}
                 .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
@@ -2658,7 +2658,7 @@ main.Simu {
 
                     &:last-of-type {margin-bottom: 0;}
 
-                    .Label {color: var(--SuperMuted);}
+                    .Label {color: var(--Muted);}
 
                     .Value {
                         font-weight: 500;
@@ -2695,7 +2695,7 @@ main.Simu {
             .DaysNote {
                 text-align: center;
                 font-size: 11px;
-                color: var(--Muted);
+                color: var(--MinMuted);
                 margin-top:12px;
             }
         }
@@ -2722,7 +2722,7 @@ main.Simu {
 
             .Label {
                 font-size: 10px;
-                color: var(--SuperMuted);
+                color: var(--Muted);
                 text-transform: uppercase;
                 letter-spacing: 0.08em;
                 margin-bottom: 2px;
@@ -2738,7 +2738,7 @@ main.Simu {
 
                 .Label {
                     font-size: 10px;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     text-transform: uppercase;
                     letter-spacing: 0.08em;
                     margin-bottom: 2px;
@@ -2760,14 +2760,14 @@ main.Simu {
 
                 .Arrow {
                     font-size: 14px;    
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     line-height: 1;
                     transition: transform 0.2s ease;
                 }
 
                 .Label {
                     font-size: 9px;
-                    color: var(--Muted);
+                    color: var(--MinMuted);
                     text-transform: uppercase;
                     letter-spacing: 0.7px;
                     white-space: nowrap;
@@ -2818,7 +2818,7 @@ main.Simu {
             }
 
             .ModalDesc {
-                color: var(--SuperMuted);
+                color: var(--Muted);
                 font-size: 14px;
                 line-height: 1.6;
                 margin: 0 0 28px;
@@ -2854,7 +2854,7 @@ main.Simu {
                 .BtnGhost {
                     width: 100%;
                     background: transparent;
-                    color: var(--SuperMuted);
+                    color: var(--Muted);
                     font-weight: 500;
                     font-size: 14px;
                     padding: 13px 22px;
@@ -2930,7 +2930,7 @@ main.Terms {
             .SubTitle {
                 font-size: 0.95rem;
                 font-weight: 500;
-                color: var(--Muted);
+                color: var(--MinMuted);
                 line-height: 1.65;
                 text-transform: none;
             }
