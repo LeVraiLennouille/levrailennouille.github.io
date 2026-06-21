@@ -305,7 +305,8 @@
                                 <div>
                                     <div class="UrgenceLabel">Délai standard ou urgent ?</div>
                                     <div class="UrgenceDesc">Une livraison urgente entraîne une majoration de
-                                        <span class="Accent">+20%</span>
+                                        <span class="Accent">+20%</span> sur le prix et réduit le délai estimé de
+                                        <span class="Accent">−40%</span>
                                     </div>
                                 </div>
                                 <div class="Toggle">
@@ -532,6 +533,7 @@
             REMISE_PARRAINAGE: 0.10,
 // ► Emergency
             MAJORATION_URGENCE: 0.20,
+            REDUCTION_DUREE_URGENCE: 0.40,
 // ► Send
             WEBHOOK_URL: '',
             FORMSPREE_URL: 'https://formspree.io/f/mbdeoqrq',
@@ -630,24 +632,27 @@
             }
 // ► Emergency
             let multiUrgence = 1.0;
+            const joursMinBase = Math.ceil(joursMin * multiPlat);
+            const joursMaxBase = Math.ceil(joursMax * multiPlat);
+            let multiUrgencePrix = 1.0;
+            let multiUrgenceDuree = 1.0;
             if (d.urgence) {
-                multiUrgence = 1 + CONFIG.MAJORATION_URGENCE;
+                multiUrgencePrix = 1 + CONFIG.MAJORATION_URGENCE;
+                multiUrgenceDuree = 1 - CONFIG.REDUCTION_DUREE_URGENCE;
                 details.push({
                     label: `Majoration urgence`,
-                    valeur: `+${(CONFIG.MAJORATION_URGENCE * 100).toFixed(0)}%`,
+                    valeur: `+${(CONFIG.MAJORATION_URGENCE * 100).toFixed(0)}% prix / −${(CONFIG.REDUCTION_DUREE_URGENCE * 100).toFixed(0)}% délai`,
                     type: 'urgence',
                 });
             }
 // ► Final calculation
             const multiTotal = multiPlat * multiUrgence;
-            const joursMinFin = Math.ceil(joursMin * multiTotal);
-            const joursMaxFin = Math.ceil(joursMax * multiTotal);
-
+            const joursMinFin = Math.ceil(joursMinBase * multiUrgenceDuree);
+            const joursMaxFin = Math.ceil(joursMaxBase * multiUrgenceDuree);
 // ► Travail partiel
             const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
-            const sousTotalHtMin = joursMinFin * effectiveTJM;
-            const sousTotalHtMax = joursMaxFin * effectiveTJM;
-
+            const sousTotalHtMin = joursMinBase * effectiveTJM * multiUrgencePrix;
+            const sousTotalHtMax = joursMaxBase * effectiveTJM * multiUrgencePrix;
 // ► Referral codes
             const code = checkCodeParrainage(d.code_parrainage);
             let remiseMin = 0;
@@ -683,7 +688,9 @@
                 codeValide: code.valide,
                 codeUtilise: code.code,
                 details,
-                multiTotal,
+                multiPlat,
+                multiUrgencePrix,
+                multiUrgenceDuree,
             };
         updatePriceUI();
         updateCodeFeedback();
@@ -1035,7 +1042,7 @@
                 ['Plateformes', d.plateformes.map(p => CONFIG.MULTI_PLATEFORME[p]?.label || p).join(', ')],
                 ['Périmètre', CONFIG.JOURS_PERIMETRE[d.perimetre]?.label || d.perimetre],
                 ['Livrables inclus', d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l).join(', ')],
-                ['Délai', d.urgence ? '⚡ Urgent (+20%)' : 'Standard'],
+                ['Délai', d.urgence ? '⚡ Urgent (+20% prix / −40% délai)' : 'Standard'],
                 ['Budget client', d.budget || 'Non précisé'],
             ];
 
