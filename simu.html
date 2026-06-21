@@ -329,6 +329,11 @@
                                 <option value="a-definir">Budget à définir ensemble</option>
                             </select>
                         </div>
+                        <div class="FormGroup">
+                            <label class="Label" for="code_parrainage">Code de parrainage (optionnel)</label>
+                            <input type="text" id="code_parrainage" name="code_parrainage" class="Input" placeholder="Ex. AMI10" autocomplete="off" maxlength="20">
+                            <div class="CodeFeedback" id="code-feedback"></div>
+                        </div>
                         <div class="RadioBlock">
                             <div class="Title">Type de demande</div>
                             <div class="RadioList">
@@ -375,6 +380,10 @@
                     <div class="PriceRow">
                         <span class="Label">Montant HT max.</span>
                         <span class="Value" id="s-ht-max">—</span>
+                    </div>
+                    <div class="PriceRow Hidden" id="s-remise-row">
+                        <span class="Label">Remise parrainage</span>
+                        <span class="Value" id="s-remise-val">—</span>
                     </div>
                     <div class="PriceRow">
                         <span class="Label" id="s-tva-label">TVA (20%)</span>
@@ -514,6 +523,13 @@
             },
 // ► Partial | Effect : TJM ÷ 2 —— durée estimée × 2
             TRAVAIL_PARTIEL: true,
+// ► Referral codes
+            CODES_PARRAINAGE: [
+                'MUETRE',
+                'PRIMAIRE',
+                'SCORCONE',
+            ],
+            REMISE_PARRAINAGE: 0.10,
 // ► Emergency
             MAJORATION_URGENCE: 0.20,
 // ► Send
@@ -538,6 +554,7 @@
                 urgence: false,
                 budget: '',
                 type_demande: 'estimation',
+                code_parrainage: '',
             },
 // ► Résultat du moteur de calcul
             estimation: {
@@ -547,6 +564,12 @@
                 prixHtMax: 0,
                 prixTtcMin: 0,
                 prixTtcMax: 0,
+                sousTotalHtMin: 0,
+                sousTotalHtMax: 0,
+                remiseMin: 0,
+                remiseMax: 0,
+                codeValide: false,
+                codeUtilise: '',
                 details: [],
             },
         };
@@ -622,9 +645,27 @@
 
 // ► Travail partiel
             const effectiveTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
+            const sousTotalHtMin = joursMinFin * effectiveTJM;
+            const sousTotalHtMax = joursMaxFin * effectiveTJM;
 
-            const htMin = joursMinFin * effectiveTJM;
-            const htMax = joursMaxFin * effectiveTJM;
+// ► Referral codes
+            const code = checkCodeParrainage(d.code_parrainage);
+            let remiseMin = 0;
+            let remiseMax = 0;
+
+            if (code.valide) {
+                remiseMin = sousTotalHtMin * CONFIG.REMISE_PARRAINAGE;
+                remiseMax = sousTotalHtMax * CONFIG.REMISE_PARRAINAGE;
+                details.push({
+                    label: `Code parrainage (${code.code})`,
+                    valeur: `−${(CONFIG.REMISE_PARRAINAGE * 100).toFixed(0)}%`,
+                    type: 'remise',
+                });
+            }
+
+            const htMin = sousTotalHtMin - remiseMin;
+            const htMax = sousTotalHtMax - remiseMax;
+
             const ttcMin = htMin * (1 + CONFIG.TVA);
             const ttcMax = htMax * (1 + CONFIG.TVA);
 
@@ -635,12 +676,49 @@
                 prixHtMax: htMax,
                 prixTtcMin: ttcMin,
                 prixTtcMax: ttcMax,
+                sousTotalHtMin,
+                sousTotalHtMax,
+                remiseMin,
+                remiseMax,
+                codeValide: code.valide,
+                codeUtilise: code.code,
                 details,
                 multiTotal,
             };
         updatePriceUI();
+        updateCodeFeedback();
         }
 
+/**
+ * @param {string} input
+ * @returns {{valide: boolean, code: string}}
+ */
+        function checkCodeParrainage(input) {
+            const code = (input || '').trim().toUpperCase();
+            if (!code) return {valide: false, code: ''};
+            return {valide: CONFIG.CODES_PARRAINAGE.includes(code), code};
+        }
+
+        function updateCodeFeedback() {
+            const el = document.getElementById('code-feedback');
+            const input = document.getElementById('code_parrainage');
+            if (!el || !input) return;
+
+            const raw = input.value.trim();
+            if (!raw) {
+                el.textContent = '';
+                el.className = 'CodeFeedback';
+                return;
+            }
+
+            if (STATE.estimation.codeValide) {
+                el.textContent = `✓ Code valide — ${(CONFIG.REMISE_PARRAINAGE * 100).toFixed(0)}% de remise appliquée`;
+                el.className = 'CodeFeedback Show Valid';
+            } else {
+                el.textContent = '✕ Code de parrainage invalide';
+                el.className = 'CodeFeedback Show Invalid';
+            }
+        }
 
         function navigate(direction) {
             if (direction > 0) {
@@ -732,6 +810,14 @@
             setText('s-jours', `${est.joursMin}–${est.joursMax}`);
             setText('s-tjm-val', effectiveTJM);
 
+            const sRemiseRow = document.getElementById('s-remise-row');
+            if (sRemiseRow) {
+                sRemiseRow.classList.toggle('Hidden', !est.codeValide);
+                if (est.codeValide) {
+                    setText('s-remise-val', `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`);
+                }
+            }
+
             if (CONFIG.TVA > 0) {
                 setText('s-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
                 setText('s-tva-val', `+${(CONFIG.TVA * 100).toFixed(0)}%`);
@@ -755,6 +841,14 @@
             setText('md-ttc', rangeTTC);
             setText('md-jours', `${est.joursMin}–${est.joursMax}`);
             setText('md-tjm-val', effectiveTJM);
+
+            const mdRemiseRow = document.getElementById('md-remise-row');
+            if (mdRemiseRow) {
+                mdRemiseRow.classList.toggle('Hidden', !est.codeValide);
+                if (est.codeValide) {
+                    setText('md-remise-val', `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`);
+                }
+            }
 
             if (CONFIG.TVA > 0) {
                 setText('md-tva-label', `TVA (${(CONFIG.TVA * 100).toFixed(0)}%)`);
@@ -847,6 +941,7 @@
                     d.urgence = document.getElementById('urgence').checked;
                     d.budget = document.getElementById('budget').value;
                     d.type_demande = document.querySelector('input[name="type_demande"]:checked')?.value || 'estimation';
+                    d.code_parrainage = v('code_parrainage');
                 break;
             }
         }
@@ -969,9 +1064,15 @@
             const rowsPrix = [
                 ['Taux Journalier Moyen (TJM)', `${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`],
                 ['Durée estimée', `${est.joursMin} à ${est.joursMax} jours`],
-                ['Montant HT — fourchette basse', euros(est.prixHtMin)],
-                ['Montant HT — fourchette haute', euros(est.prixHtMax)],
             ];
+
+            if (est.codeValide) {
+                rowsPrix.push(['Sous-total HT — fourchette', `${euros(est.sousTotalHtMin)} – ${euros(est.sousTotalHtMax)}`]);
+                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`]);
+            }
+
+            rowsPrix.push(['Montant HT — fourchette basse', euros(est.prixHtMin)]);
+            rowsPrix.push(['Montant HT — fourchette haute', euros(est.prixHtMax)]);
 
             if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', `${(CONFIG.TVA * 100).toFixed(0)}%`]);}
 
@@ -1076,6 +1177,7 @@
                 livrables:      p.livrables_labels.join(', '),
                 urgent:         p.urgent ? 'Oui (+20%)' : 'Non',
                 budget_client:  p.budget_client || 'Non renseigné',
+                code_parrainage: e.code_parrainage_valide ? `${e.code_parrainage} (−${(e.remise_taux * 100).toFixed(0)}%)` : '—',
                 estimation_ht:  e.fourchette_ht,
                 estimation_ttc: e.fourchette_ttc,
                 jours_estimes:  `${e.jours_min} – ${e.jours_max} jours`,
@@ -1142,6 +1244,13 @@
                     tjm: CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM,
                     jours_min: est.joursMin,
                     jours_max: est.joursMax,
+                    sous_total_ht_min: est.sousTotalHtMin,
+                    sous_total_ht_max: est.sousTotalHtMax,
+                    code_parrainage: est.codeUtilise || '',
+                    code_parrainage_valide: est.codeValide,
+                    remise_taux: est.codeValide ? CONFIG.REMISE_PARRAINAGE : 0,
+                    remise_ht_min: est.remiseMin,
+                    remise_ht_max: est.remiseMax,
                     prix_ht_min: est.prixHtMin,
                     prix_ht_max: est.prixHtMax,
                     tva_taux: CONFIG.TVA,
@@ -1198,12 +1307,16 @@
                 prenom: '', nom: '', email: '', entreprise: '', role: '',
                 nature: '', plateformes: [], perimetre: '',
                 livrables: [], urgence: false, budget: '', type_demande: 'estimation',
+                code_parrainage: '',
             };
 
             STATE.estimation = {
                 joursMin: 0, joursMax: 0,
                 prixHtMin: 0, prixHtMax: 0,
                 prixTtcMin: 0, prixTtcMax: 0,
+                sousTotalHtMin: 0, sousTotalHtMax: 0,
+                remiseMin: 0, remiseMax: 0,
+                codeValide: false, codeUtilise: '',
                 details: [],
             };
 
@@ -1242,6 +1355,17 @@
             if (mdBdReset) mdBdReset.innerHTML = '<div class="BreakdownPlaceholder">Complétez le formulaire...</div>';
 
             document.getElementById('s-breakdown').innerHTML = '<div class="BreakdownPlaceholder">Complétez le formulaire...</div>';
+
+            const sRemiseRowReset = document.getElementById('s-remise-row');
+            if (sRemiseRowReset) sRemiseRowReset.classList.add('Hidden');
+            const mdRemiseRowReset = document.getElementById('md-remise-row');
+            if (mdRemiseRowReset) mdRemiseRowReset.classList.add('Hidden');
+
+            const codeFeedbackReset = document.getElementById('code-feedback');
+            if (codeFeedbackReset) {
+                codeFeedbackReset.textContent = '';
+                codeFeedbackReset.className = 'CodeFeedback';
+            }
 
             buildProgressBar();
             showStep(1);
@@ -1290,6 +1414,15 @@
             document.getElementById('Urgent').classList.toggle('Hidden', !this.checked);
             recalculate();
         });
+
+        const codeInput = document.getElementById('code_parrainage');
+        if (codeInput) {
+            codeInput.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+                STATE.data.code_parrainage = this.value;
+                recalculate();
+            });
+        }
 
         const maquettesCheckbox = document.getElementById('l-ui');
         if (maquettesCheckbox) {

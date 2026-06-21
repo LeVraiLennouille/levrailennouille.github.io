@@ -2012,6 +2012,17 @@ main.Simu {
                         &.Show {display: block;}
                     }
 
+                    .CodeFeedback {
+                        font-size: 12px;
+                        font-weight: 600;
+                        margin-top: 7px;
+                        display: none;
+
+                        &.Show {display: block;}
+                        &.Valid {color: var(--Ok);}
+                        &.Invalid {color: var(--Danger);}
+                    }
+
                     .ChoiceList {
                         display: flex;
                         flex-direction: column;
@@ -2611,6 +2622,7 @@ main.Simu {
                     .DetailsValue--urgence {color: #F56565;}
                     .DetailsValue--multiplicateur {color: #E8A020;}
                     .DetailsValue--livrable {color: var(--SuperMuted);}
+                    .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
                 }
             }
 
@@ -2847,6 +2859,8 @@ main.Simu {
 
     .Accent {color: var(--Primary);}
     .Hidden {display: none !important;}
+
+    #s-remise-row .Label, #s-remise-row .Value, #md-remise-row .Label, #md-remise-row .Value {color: var(--Sucess); font-weight: 700;}
 }
 
 @keyframes fadeIn {
