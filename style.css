@@ -18,8 +18,8 @@
     --PureWhite: #fff; --PureWhiteRGB: 255, 255, 255;
     --Background: #e8e2d8; --BackgroundRGB: 232, 226, 216;
 
-    --Muted: #6C8293; --MutedRGB: 108, 130, 147;
-    --MinMuted: #A0B3C1; --MinMutedRGB: 160, 179, 193;
+    --Muted: #3B3B3B; --MutedRGB: 108, 130, 147;
+    --MinMuted: #777777; --MinMutedRGB: 160, 179, 193;
 
 /* --- Infos --- */
     --Online: #4ade80; --OnlineRGB: 74, 222, 128;
