@@ -1816,7 +1816,7 @@ main.Simu {
         z-index: 0;
     }
 
-    .price-gradient {
+    .PriceGradient {
         background: linear-gradient(135deg, var(--Primary), var(--DarkPrimary));
         background-clip: text;
         -webkit-background-clip: text;
@@ -2025,6 +2025,11 @@ main.Simu {
                         display: flex;
                         flex-direction: column;
                         gap: 12px;
+
+                        &.ChoiceListGrid {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                        }
 
                         .ChoiceCard {
                             position: relative;
@@ -2446,8 +2451,7 @@ main.Simu {
             .PriceTable {
                 padding: 16px;
                 border-radius: 12px;
-                background: var(--PureWhite);
-                border: 1px solid var(--Border);
+                border: 1px solid var(--Primary);
                 margin-bottom: 16px;
 
                 .PriceRow {
