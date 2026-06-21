@@ -33,8 +33,8 @@
     --Gap: 30px;
     --Scale: 0.9;
 /* --- Simu Page --- */
-    --Border: #d4cdc4;
-    --DarkBorder: #b8b1a8;
+    --Borders: #d4cdc4;
+    --DarkBorders: #b8b1a8;
 }
 
 * {
@@ -1891,7 +1891,7 @@ main.Simu {
                     width: 30px;
                     height: 30px;
                     border-radius: 50%;
-                    border: 1.5px solid var(--Border);
+                    border: 1.5px solid var(--Borders);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1922,7 +1922,7 @@ main.Simu {
                 .Lines {
                     flex: 1;
                     height: 1px;
-                    background: var(--Border);
+                    background: var(--Borders);
                     transition: background 0.4s ease;
 
                     &.Done {background: var(--Primary);}
@@ -1983,7 +1983,7 @@ main.Simu {
                         .Input {
                             width: 100%;
                             background: var(--PureWhite);
-                            border: 1px solid var(--Border);
+                            border: 1px solid var(--Borders);
                             border-radius: 8px;
                             padding: 11px 14px;
                             color: var(--Charcoal);
@@ -2081,7 +2081,7 @@ main.Simu {
                                 align-items: center;
                                 gap: 14px;
                                 padding: 14px 18px;
-                                border: 1px solid var(--Border);
+                                border: 1px solid var(--Borders);
                                 border-radius: 10px;
                                 cursor: pointer;
                                 transition: all 0.2s ease;
@@ -2164,7 +2164,7 @@ main.Simu {
                     .UrgenceCard {
                         padding: 20px;
                         border-radius: 12px;
-                        border: 1px solid var(--Border);
+                        border: 1px solid var(--Borders);
                         background: var(--PureWhite);
                         margin-bottom: 20px;
 
@@ -2191,7 +2191,7 @@ main.Simu {
                                 width: 50px;
                                 height: 26px;
                                 appearance: none;
-                                background: var(--Border);
+                                background: var(--Borders);
                                 border-radius: 13px;
                                 cursor: pointer;
                                 transition: background 0.3s;
@@ -2237,7 +2237,7 @@ main.Simu {
                                 line-height: 1;
 
                                 &.Standard {
-                                    border: 1px solid var(--Border);
+                                    border: 1px solid var(--Borders);
                                     color: var(--SuperMuted);
                                 }
 
@@ -2266,7 +2266,7 @@ main.Simu {
                         .Input {
                             width: 100%;
                             background: var(--PureWhite);
-                            border: 1px solid var(--Border);
+                            border: 1px solid var(--Borders);
                             border-radius: 8px;
                             padding: 11px 14px;
                             color: var(--Charcoal);
@@ -2288,7 +2288,7 @@ main.Simu {
                     .RadioBlock {
                         padding: 20px;
                         border-radius: 12px;    
-                        border: 1px solid var(--Border);
+                        border: 1px solid var(--Borders);
                         background: var(--PureWhite);
 
                         .Title {
@@ -2345,7 +2345,7 @@ main.Simu {
                 justify-content: space-between;
                 margin-top: 40px;
                 padding-top: 24px;
-                border-top: 1px solid var(--Border);
+                border-top: 1px solid var(--Borders);
 
                 .BtnMain {
                     background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
@@ -2375,12 +2375,12 @@ main.Simu {
                     font-size: 14px;
                     padding: 13px 22px;
                     border-radius: 10px;
-                    border: 1px solid var(--Border);
+                    border: 1px solid var(--Borders);
                     cursor: pointer;
                     transition: all 0.15s;
 
                     &:hover {
-                        border-color: var(--DarkBorder);
+                        border-color: var(--DarkBorders);
                         color: var(--Charcoal);
                         background: var(--PureWhite);
                     }
@@ -2391,7 +2391,7 @@ main.Simu {
         #PriceSidebar {
             width: 360px;
             flex-shrink: 0;
-            border-left: 1px solid var(--Border);
+            border-left: 1px solid var(--Primary);
             position: fixed;
             right: 0;
             top: 0;
@@ -2446,6 +2446,23 @@ main.Simu {
                     color: var(--Muted);
                     font-style: italic;
                 }
+
+                .Details {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 7px 0;
+                    border-bottom: 1px solid rgba(var(--PrimaryRGB), 0.2);
+                    font-size: 12px;
+
+                    &:last-child {border-bottom: none;}
+
+                    .DetailsLabel {color: var(--SuperMuted);}
+                    .DetailsValue {font-weight: 500; color: var(--SuperMuted);}
+                    .DetailsValue--multiplicateur {color: #E8A020;}
+                    .DetailsValue--urgence {color: #F56565;}
+                    .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
+                }
             }
 
             .PriceTable {
@@ -2473,7 +2490,7 @@ main.Simu {
 
                 .Separator {
                     height: 1px;
-                    background: var(--Border);
+                    background: var(--Borders);
                     margin: 8px 0;
                 }
 
@@ -2526,7 +2543,7 @@ main.Simu {
         left: 0;
         right: 0;
         background: var(--PureWhite);
-        border-top: 1px solid var(--Border);
+        border-top: 1px solid var(--Borders);
         border-radius: 20px 20px 0 0;
         z-index: 49;
         transform: translateY(100%);
@@ -2557,7 +2574,7 @@ main.Simu {
                 width: 36px;
                 height: 4px;
                 border-radius: 2px;
-                background: var(--DarkBorder);
+                background: var(--DarkBorders);
                 transition: background 0.2s;
             }
         }
@@ -2571,7 +2588,7 @@ main.Simu {
             .DrawerHeader {
                 margin-bottom: 18px;
                 padding-bottom: 16px;
-                border-bottom: 1px solid var(--Border);
+                border-bottom: 1px solid var(--Borders);
 
                 .Estimation {
                     font-size: 10px;
@@ -2608,31 +2625,30 @@ main.Simu {
                 font-size: 12px;
                 color: var(--Muted);
                 font-style: italic;
+            }
 
-                .Details {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 7px 0;
-                    border-bottom: 1px solid var(--PureWhite);
-                    font-size: 12px;
+            .Details {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 7px 0;
+                border-bottom: 1px solid var(--PureWhite);
+                font-size: 12px;
 
-                    &:last-child {border-bottom: none;}
+                &:last-child {border-bottom: none;}
 
-                    .DetailsLabel{color: var(--SuperMuted);}
-                    .DetailsValue {font-weight: 500; color: var(--Charcoal);}
-                    .DetailsValue--urgence {color: #F56565;}
-                    .DetailsValue--multiplicateur {color: #E8A020;}
-                    .DetailsValue--livrable {color: var(--SuperMuted);}
-                    .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
-                }
+                .DetailsLabel {color: var(--SuperMuted);}
+                .DetailsValue {font-weight: 500; color: var(--SuperMuted);}
+                .DetailsValue--multiplicateur {color: #E8A020;}
+                .DetailsValue--urgence {color: #F56565;}
+                .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
             }
 
             .PriceTable {
                 padding: 16px;
                 border-radius: 12px;
                 background: var(--PureWhite);
-                border: 1px solid var(--Border);
+                border: 1px solid var(--Borders);
                 margin-bottom: 16px;
 
                 .PriceRow {
@@ -2654,7 +2670,7 @@ main.Simu {
 
                 .Separator {
                     height: 1px;
-                    background: var(--Border);
+                    background: var(--Borders);
                     margin: 8px 0;
                 }
 
@@ -2693,7 +2709,7 @@ main.Simu {
         left: 0;
         right: 0;
         background: var(--PureWhite);
-        border-top: 1px solid var(--Border);
+        border-top: 1px solid var(--Borders);
         padding: 14px 16px;
         z-index: 50;
         user-select: none;
@@ -2777,7 +2793,7 @@ main.Simu {
 
         .Card {
             background: var(--PureWhite);
-            border: 1px solid var(--Border);
+            border: 1px solid var(--Borders);
             border-radius: 20px;
             padding: 40px 36px;
             max-width: 440px;
@@ -2845,12 +2861,12 @@ main.Simu {
                     font-size: 14px;
                     padding: 13px 22px;
                     border-radius: 10px;
-                    border: 1px solid var(--Border);
+                    border: 1px solid var(--Borders);
                     cursor: pointer;
                     transition: all 0.15s;
 
                     &:hover {
-                        border-color: var(--DarkBorder);
+                        border-color: var(--DarkBorders);
                         color: var(--Charcoal);
                         background: var(--PureWhite);
                     }
