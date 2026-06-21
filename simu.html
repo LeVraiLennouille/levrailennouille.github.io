@@ -241,7 +241,7 @@
                                     </div>
                                 </label>
                             </div>
-                            <div class="ChoiceCard Locked">
+                            <div class="ChoiceCard Locked" id="card-l-ui">
                                 <input type="checkbox" name="livrables" id="l-ui" value="maquettes" checked>
                                 <label for="l-ui">
                                     <div class="LabelIcon">◉</div>
@@ -477,7 +477,7 @@
     <script>
         const CONFIG = {
 // ► Taux Journalier Moyen (HT)
-            TJM: 150,
+            TJM: 100,
 // ► TVA applicable
             TVA: 0.00,
 // ► Validité du devis
@@ -495,10 +495,10 @@
             },
 // ► Estimated days
             JOURS_NATURE: {
-                'creation': {min: 10, max: 20, label: 'Création de A à Z'},
-                'refonte': {min: 7, max: 10, label: 'Refonte complète'},
+                'creation': {min: 15, max: 21, label: 'Création de A à Z'},
+                'refonte': {min: 10, max: 14, label: 'Refonte complète'},
                 'design-system': {min: 15, max: 30, label: 'Design System'},
-                'features': {min: 3, max: 8, label: 'Ajout de fonctionnalités'},
+                'features': {min: 5, max: 10, label: 'Ajout de fonctionnalités'},
                 'audit': {min: 2, max: 5, label: 'Audit UX'},
             },
 // ► Multipliers
@@ -516,12 +516,13 @@
 // ► Deliverables
             JOURS_LIVRABLES: {
                 'wireframes': {min: 1, max: 2, label: 'Wireframes'},
-                'maquettes': {min: 2, max: 4, label: 'Maquettes UI'},
+                'maquettes': {min: 0, max: 0, label: 'Maquettes UI'},
                 'prototype': {min: 2, max: 4, label: 'Prototype Interactif'},
                 'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
                 'userflows': {min: 1, max: 2, label: 'User Flows'},
                 'handoff': {min: 1, max: 2, label: 'Developer Handoff'},
             },
+            NATURES_MAQUETTE_INCLUSE: ['creation', 'refonte', 'design-system'],
 // ► Partial | Effect : TJM ÷ 2 —— durée estimée × 2
             TRAVAIL_PARTIEL: true,
 // ► Referral codes
@@ -576,6 +577,25 @@
             },
         };
 
+        function syncMaquetteInclusion() {
+            const card = document.getElementById('card-l-ui');
+            const checkbox = document.getElementById('l-ui');
+            if (!card || !checkbox) return;
+
+            const inclus = CONFIG.NATURES_MAQUETTE_INCLUSE.includes(STATE.data.nature);
+            card.classList.toggle('Hidden', !inclus);
+
+            if (inclus) {
+                checkbox.checked = true;
+                if (!STATE.data.livrables.includes('maquettes')) {
+                    STATE.data.livrables.push('maquettes');
+                }
+            } else {
+                checkbox.checked = false;
+                STATE.data.livrables = STATE.data.livrables.filter(l => l !== 'maquettes');
+            }
+        }
+
         function recalculate() {
             const d = STATE.data;
             let joursMin = 0;
@@ -608,7 +628,9 @@
                     const lMax = cfg.max * multPartiel;
                     joursMin += lMin;
                     joursMax += lMax;
-                    details.push({label: cfg.label, valeur: `+${lMin}–${lMax} j`, type: 'livrable'});
+
+                    if (liv === 'maquettes') {details.push({label: cfg.label, valeur: 'inclus', type: 'livrable'});}
+                    else {details.push({label: cfg.label, valeur: `+${lMin}–${lMax} j`, type: 'livrable'});}
                 }
             });
 // ► Multipliers
@@ -1334,9 +1356,8 @@
 
             document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {el.checked = false;});
 
-            const maquettesEl = document.getElementById('l-ui');
-            if (maquettesEl) maquettesEl.checked = true;
-            STATE.data.livrables = ['maquettes'];
+            STATE.data.livrables = [];
+            syncMaquetteInclusion();
 
             const defRadio = document.querySelector('input[name="type_demande"][value="estimation"]');
             if (defRadio) defRadio.checked = true;
@@ -1386,10 +1407,12 @@
         setText('md-tjm-val', initTJM);
 
         STATE.data.livrables = [...document.querySelectorAll('input[name="livrables"]:checked')].map(e => e.value);
+        syncMaquetteInclusion();
 
         document.querySelectorAll('input[name="nature"]').forEach(el =>
             el.addEventListener('change', () => {
                 STATE.data.nature = el.value;
+                syncMaquetteInclusion();
                 recalculate();
             })
         );
