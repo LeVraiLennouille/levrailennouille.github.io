@@ -1595,7 +1595,9 @@ main.Contact {
                         transition: all 0.3s ease;
 
                         &:focus~.Label,
-                        &:valid~.Label {
+                        &:valid~.Label,
+                        &:autofill~.Label,
+                        &:-webkit-autofill~.Label {
                             top: 0;
                             background-color: var(--Primary);
                             color: var(--PureWhite);
@@ -1620,7 +1622,7 @@ main.Contact {
                     textarea.Input+.Label {top: 22px;}
 
                     input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
-                    input[type="text"].has-value, input[type="email"].has-value, textarea.has-value,
+                    input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
                     input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
                     input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
                 }
@@ -1968,36 +1970,58 @@ main.Simu {
                         grid-template-columns: 1fr 1fr;
                         gap: 16px;
 
-                        .ColFull {grid-column: 1 / -1;}
-
-                        .Label {
-                            display: block;
-                            font-size: 11px;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                            letter-spacing: 0.8px;
-                            color: var(--Muted);
-                            margin-bottom: 7px;
-                        }
-
-                        .Input {
+                        .InputGroup {
+                            position: relative;
+                            margin-bottom: 6px;
                             width: 100%;
-                            background: var(--PureWhite);
-                            border: 1px solid var(--Borders);
-                            border-radius: 8px;
-                            padding: 11px 14px;
-                            color: var(--Charcoal);
-                            font-size: 14px;
-                            transition: border-color 0.2s, box-shadow 0.2s;
-                            outline: none;
-                            appearance: none;
+                            color: var(--Primary);
+                            background: transparent;
 
-                            &:focus {
-                                border-color: var(--Primary);
-                                box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.10);
+                            &.ColFull {grid-column: 1 / -1;}
+
+                            .Input {
+                                width: 100%;
+                                box-sizing: border-box;
+                                padding: 12px 15px;
+                                border: 1px solid var(--Muted);
+                                border-radius: 8px;
+                                background: transparent;
+                                color: var(--PureBlack);
+                                font-size: 1rem;
+                                outline: none;
+                                transition: all 0.3s ease;
+
+                                &:focus~.Label,
+                                &.HasValue~.Label {
+                                    top: 0;
+                                    background-color: var(--Primary);
+                                    color: var(--PureWhite);
+                                    border-radius: 4px;
+                                    font-size: 0.8rem;
+                                    font-weight: bold;
+
+                                    .Accent {color: var(--PureWhite);}
+                                }
                             }
 
-                            &::placeholder {color: var(--MinMuted);}
+                            .Label {
+                                position: absolute;
+                                left: 15px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: var(--PureBlack);
+                                background-color: transparent;
+                                padding: 0 5px;
+                                pointer-events: none;
+                                transition: all 0.3s ease;
+                            }
+
+                            textarea.Input+.Label {top: 22px;}
+
+                            input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
+                            input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
+                            input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
+                            input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
                         }
                     } 
 

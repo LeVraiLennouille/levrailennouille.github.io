@@ -55,28 +55,28 @@
                             <p class="StepDesc">Pour personnaliser et te transmettre ton devis.</p>
                         </div>
                         <div class="FormGrid">
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="prenom" name="prenom" autocomplete="given-name">
                                 <label class="Label" for="prenom">Ton prénom</label>
-                                <input class="Input" type="text" id="prenom" autocomplete="given-name">
                                 <span class="Error" id="err-prenom">Ce champ est requis.</span>
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="nom" name="nom" autocomplete="family-name">
                                 <label class="Label" for="nom">Ton nom</label>
-                                <input class="Input" type="text" id="nom" autocomplete="family-name">
                                 <span class="Error" id="err-nom">Ce champ est requis.</span>
                             </div>
-                            <div class="ColFull">
+                            <div class="InputGroup ColFull">
+                                <input class="Input" type="email" id="email" name="email" autocomplete="email">
                                 <label class="Label" for="email">Ton email</label>
-                                <input class="Input" type="email" id="email" autocomplete="email">
                                 <span class="Error" id="err-email">Saisis un email valide.</span>
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="entreprise" name="entreprise" autocomplete="organization">
                                 <label class="Label" for="entreprise">Ton entreprise <span class="Accent">*</span></label>
-                                <input class="Input" type="text" id="entreprise" autocomplete="organization">
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="role" name="role" autocomplete="organization-title">
                                 <label class="Label" for="role">Ton rôle <span class="Accent">*</span></label>
-                                <input class="Input" type="text" id="role" autocomplete="organization-title">
                             </div>
                         </div>
                     </div>
@@ -1359,6 +1359,7 @@
             document.querySelectorAll('.Input').forEach(el => {
                 if (el.tagName === 'SELECT') el.value = '';
                 else el.value = '';
+                el.classList.remove('HasValue');
             });
 
             document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {el.checked = false;});
@@ -1408,6 +1409,16 @@
 
         document.addEventListener('DOMContentLoaded', () => {buildProgressBar();
         showStep(1);
+
+        function syncHasValue(el) {
+            el.classList.toggle('HasValue', el.value.trim() !== '');
+        }
+
+        document.querySelectorAll('.InputGroup .Input').forEach(el => {
+            syncHasValue(el);
+            el.addEventListener('input', () => syncHasValue(el));
+            el.addEventListener('blur', () => syncHasValue(el));
+        });
 
         const initTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
         setText('s-tjm-val', initTJM);
