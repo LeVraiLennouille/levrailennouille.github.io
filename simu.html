@@ -995,30 +995,32 @@
             const dateValidite = new Date(now.getTime() + CONFIG.VALIDITE_DEVIS_JOURS * 86400000).toLocaleDateString('fr-FR');
 
             const C = {
-                NOIR: [15, 15, 18],
-                BLANC: [245, 245, 240],
-                AMBER: [232, 160, 32],
-                GRIS: [100, 100, 110],
-                LGRIS: [238, 238, 236],
+                NOIR: [0, 0, 0],
+                CHARCOAL: [28, 28, 30],
+                BLANC: [255, 255, 255],
+                PRIMARY: [32, 126, 222],
+                MUTED: [108, 130, 147],
+                BG: [232, 226, 216],
             };
 
             const fill = (c) => doc.setFillColor(...c);
             const stroke = (c) => doc.setDrawColor(...c);
             const color = (c) => doc.setTextColor(...c);
             const font = (s, sz) => {doc.setFont('helvetica', s); doc.setFontSize(sz);};
+            const sanitize = (text) => String(text).replace(/\u202F|\u00A0/g, ' ').replace(/−|–/g, '-');
 
-            fill(C.NOIR);
+            fill(C.PRIMARY);
             doc.rect(0, 0, W, 48, 'F');
 
             color(C.BLANC);
             font('bold', 18);
             doc.text(fl.nom, 14, 18);
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('normal', 9);
             doc.text(fl.titre.toUpperCase(), 14, 25);
 
-            color([160, 160, 165]);
+            color(C.BLANC);
             font('normal', 8);
             doc.text(fl.email, 14, 32);
             doc.text(fl.tel, 14, 38);
@@ -1027,39 +1029,39 @@
             font('bold', 22);
             doc.text('DEVIS', W - 14, 18, {align: 'right'});
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('bold', 9);
             doc.text(numDevis, W - 14, 26, {align: 'right'});
 
-            color([160, 160, 165]);
+            color(C.BLANC);
             font('normal', 8);
             doc.text(`Émis le ${dateEmission}`, W - 14, 33, {align: 'right'});
             doc.text(`Valable jusqu'au ${dateValidite}`, W - 14, 39, {align: 'right'});
 
             let y = 58;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('CLIENT', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
-            color(C.NOIR);
+            color(C.CHARCOAL);
             font('bold', 12);
             doc.text(`${d.prenom} ${d.nom}`, 14, y);
 
             y += 5;
             font('normal', 9);
-            color(C.GRIS);
+            color(C.MUTED);
             if (d.entreprise) {doc.text(d.entreprise, 14, y); y += 5;}
             if (d.role) {doc.text(d.role, 14, y); y += 5;}
             doc.text(d.email, 14, y);
 
             y += 14;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('DÉTAIL DE LA MISSION', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
@@ -1069,17 +1071,17 @@
                 ['Plateformes', d.plateformes.map(p => CONFIG.MULTI_PLATEFORME[p]?.label || p).join(', ')],
                 ['Périmètre', CONFIG.JOURS_PERIMETRE[d.perimetre]?.label || d.perimetre],
                 ['Livrables inclus', d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l).join(', ')],
-                ['Délai', d.urgence ? '⚡ Urgent (+20% prix / −40% délai)' : 'Standard'],
+                ['Délai', d.urgence ? 'Urgent (+20% prix / −40% délai)' : 'Standard'],
                 // ['Budget client', d.budget || 'Non précisé'],
             ];
 
             rowsProjet.forEach(([label, valeur], i) => {
                 const ry = y + i * 9;
-                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
-                color(C.GRIS);
+                if (i % 2 === 0) {fill(C.BG); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.MUTED);
                 font('bold', 8);
                 doc.text(label, 17, ry);
-                color(C.NOIR);
+                color(C.CHARCOAL);
                 font('normal', 9);
 
                 const wrapped = doc.splitTextToSize(String(valeur), 105);
@@ -1087,61 +1089,61 @@
             });
 
             y += rowsProjet.length * 9 + 12;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('ESTIMATION FINANCIÈRE', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
 
             const rowsPrix = [
-                ['Taux Journalier Moyen (TJM)', `${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`],
-                ['Durée estimée', `${est.joursMin} à ${est.joursMax} jours`],
+                ['Taux Journalier Moyen (TJM)', sanitize(`${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`)],
+                ['Durée estimée', sanitize(`${est.joursMin} à ${est.joursMax} jours`)],
             ];
 
             if (est.codeValide) {
-                rowsPrix.push(['Sous-total HT — fourchette', `${euros(est.sousTotalHtMin)} – ${euros(est.sousTotalHtMax)}`]);
-                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`]);
+                rowsPrix.push(['Sous-total HT — fourchette', sanitize(`${euros(est.sousTotalHtMin)} - ${euros(est.sousTotalHtMax)}`)]);
+                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, sanitize(`-${euros(est.remiseMin)} - -${euros(est.remiseMax)}`)]);
             }
 
-            rowsPrix.push(['Montant HT — fourchette basse', euros(est.prixHtMin)]);
-            rowsPrix.push(['Montant HT — fourchette haute', euros(est.prixHtMax)]);
+            rowsPrix.push(['Montant HT — fourchette basse', sanitize(euros(est.prixHtMin))]);
+            rowsPrix.push(['Montant HT — fourchette haute', sanitize(euros(est.prixHtMax))]);
 
-            if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', `${(CONFIG.TVA * 100).toFixed(0)}%`]);}
+            if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', sanitize(`${(CONFIG.TVA * 100).toFixed(0)}%`)]);}
 
             rowsPrix.forEach(([label, valeur], i) => {
                 const ry = y + i * 9;
-                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
-                color(C.GRIS);
+                if (i % 2 === 0) {fill(C.BG); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.MUTED);
                 font('bold', 8);
                 doc.text(label, 17, ry);
-                color(C.NOIR);
+                color(C.CHARCOAL);
                 font('normal', 9);
                 doc.text(String(valeur), W - 17, ry, {align: 'right'});
             });
 
             y += rowsPrix.length * 9 + 5;
 
-            fill(C.NOIR);
+            fill(C.PRIMARY);
             doc.rect(14, y, W - 28, 15, 'F');
 
             color(C.BLANC);
             font('bold', 10);
             doc.text('ESTIMATION TOTALE TTC', 19, y + 7);
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('bold', 12);
-            const ttcStr = CONFIG.TVA > 0
-                ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)}`
-                : `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)} HT`;
+            const ttcStr = sanitize(CONFIG.TVA > 0
+                ? `${euros(est.prixTtcMin)} - ${euros(est.prixTtcMax)}`
+                : `${euros(est.prixHtMin)} - ${euros(est.prixHtMax)} HT`);
             doc.text(ttcStr, W - 19, y + 8, {align: 'right'});
 
             const fyBase = 270;
-            stroke([200, 200, 200]);
+            stroke(C.BG);
             doc.line(14, fyBase, W - 14, fyBase);
 
-            color(C.GRIS);
+            color(C.MUTED);
             font('normal', 7);
             doc.text(
                 `SIRET : ${fl.siret} · ${fl.adresse} · ${fl.site}`,
