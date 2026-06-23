@@ -3288,8 +3288,33 @@ main.Terms {
    # Responsive Design
 ========================================================================== */
 
-@media (min-width: 1024px) {#MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}}
-@media (max-width: 1023px) {#PriceSidebar {display: none !important;}}
+@media (min-width: 1024px) {
+    main.Simu {
+        #MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}
+    }
+}
+
+@media (max-width: 1023px) {
+    main.Simu {
+        .Layout {padding-right: 0;}
+
+        .Layout {
+            .Form {
+                padding-top: 44px;
+                padding-right: 32px;
+                padding-bottom: 130px;
+                padding-left: 32px;
+
+                .Steps .Panel .FormGroup .Input {font-size: 16px;}
+            }
+            
+            #PriceSidebar {display: none !important;}
+        }
+
+
+        #MobileBar {padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));}
+    }
+}
 
 @media (min-width: 951px) {
     .HamburgerBtn {display: none !important;}
@@ -3370,6 +3395,45 @@ main.Terms {
 }
 
 @media (max-width: 768px) {
+    main.Simu .Layout .Form {
+        padding-top: 32px;
+        padding-right: 20px;
+        padding-bottom: 130px;
+        padding-left: 20px;
+
+        .Brand {
+            margin-bottom: 28px;
+
+            .LogoRow {margin-bottom: 18px;}
+            .MainTitle {font-size: 24px;}
+            .MainDesc  {font-size: 13px;}
+        }
+
+        .Steps .Panel {
+            .StepHead {margin-bottom: 22px;}
+            .FormGrid {grid-template-columns: 1fr;}
+            .ChoiceList.ChoiceListGrid {grid-template-columns: 1fr;}
+        }
+
+        .FormNav {
+            gap: 10px;
+
+            .BtnGhost {
+                flex: 0 0 auto;
+                padding: 13px 16px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .BtnMain {
+                flex: 1;
+                padding: 13px 14px;
+                font-size: 13px;
+                text-align: center;
+            }
+        }
+    }
+
     main.Terms {
         .TermsHero {
             padding: 130px 24px 60px;
@@ -3478,6 +3542,17 @@ main.Terms {
         gap: 4px;
 
         .Label {width: auto;}
+    }
+}
+
+@media (max-width: 420px) {
+    main.Simu .Layout .Form {
+        padding-top: 28px;
+        padding-right: 16px;
+        padding-left: 16px;
+
+        .Brand .LogoRow .LogoName {font-size: 12px;}
+        .ProgressBar .Dots {width: 26px; height: 26px; font-size: 12px;}
     }
 }
 
