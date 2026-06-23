@@ -31,7 +31,7 @@ const headerHTML = `
             <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
         <div class="NavCTA">
-            <a class="SimBtn CursorHover" href="/simulateur" data-hover="de devis">Simulateur</a>
+            <a class="SimBtn CursorHover" href="/simu" data-hover="de devis">Simulateur</a>
             <a class="SwitchBtn CursorHover" href="/contact">
                 <span class="BtnTexts">
                     <span class="DefaultText">Me contacter</span>
