@@ -2041,7 +2041,7 @@ main.Simu {
                         display: none;
 
                         &.Show {display: block;}
-                        &.Valid {color: var(--Ok);}
+                        &.Valid {color: var(--Success);}
                         &.Invalid {color: var(--Danger);}
                     }
 
@@ -3307,7 +3307,7 @@ main.Terms {
 
                 .Steps .Panel .FormGroup .Input {font-size: 16px;}
             }
-            
+
             #PriceSidebar {display: none !important;}
         }
 
