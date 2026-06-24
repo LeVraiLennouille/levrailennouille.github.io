@@ -1290,7 +1290,7 @@ section.Me {
 
             &:before {
                 content: '';
-                background: linear-gradient(45deg, #ff0000, #ff7300, var(--PureWhite)b00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+                background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
                 position: absolute;
                 top: -2px;
                 left:-2px;
@@ -2371,48 +2371,25 @@ main.Simu {
                 padding-top: 24px;
                 border-top: 1px solid var(--Borders);
 
-                .BorderBtn {
-                    position: relative;
-                    cursor: pointer;
-                    border-radius: 10px;
-                    font-weight: 600;
-                    letter-spacing: 1px;
-                    border: none;
-                    padding: 14px 32px;
-                    background: var(--Primary);
+                .BtnMain {
+                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
                     color: var(--PureWhite);
-                    font-size: 20px;
-                    text-transform: uppercase;    
+                    font-weight: 700;
+                    font-size: 14px;
+                    letter-spacing: 0.3px;
+                    padding: 13px 28px;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                    transition: transform 0.15s, box-shadow 0.15s;
 
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        width: 30px;
-                        height: 30px;
-                        top: -10px;
-                        left: -10px;
-                        border-top: 3px solid var(--Primary);
-                        border-left: 3px solid var(--Primary);
-                        transition: all 0.5s;
-                    }
-  
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        width: 30px;
-                        height: 30px;
-                        bottom: -10px;
-                        right: -10px;
-                        border-bottom: 3px solid var(--Primary);
-                        border-right: 3px solid var(--Primary);
-                        transition: all 0.5s; 
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 24px rgba(var(--PrimaryRGB), 0.30);
                     }
 
-                    &:hover:before,
-                    &:hover:after {
-                        height: 100%;
-                        width: 100%;
-                    }
+                    &:active  {transform: translateY(0);}
+                    &:disabled {opacity: 0.5; cursor: not-allowed; transform: none;}
                 }
 
                 .BtnGhost {
