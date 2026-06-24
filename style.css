@@ -2385,7 +2385,7 @@ main.Simu {
 
                     &:hover {
                         transform: translateY(-2px);
-                        box-shadow: 0 8px 24px rgba(var(--PrimaryRGB), 0.30);
+                        box-shadow: 0 4px 24px rgba(var(--PrimaryRGB), 0.30);
                     }
 
                     &:active  {transform: translateY(0);}
@@ -2404,9 +2404,9 @@ main.Simu {
                     transition: all 0.15s;
 
                     &:hover {
-                        border-color: var(--DarkBorders);
-                        color: var(--Charcoal);
-                        background: var(--PureWhite);
+                        border-color: var(--Primary);
+                        color: var(--Primary);
+                        background: rgba(var(--PrimaryRGB) 0.2);
                     }
                 }   
             }
