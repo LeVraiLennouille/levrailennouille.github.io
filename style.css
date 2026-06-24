@@ -348,7 +348,8 @@ html, body {
         top: 100%;
         left: 0;
         width: 100%;
-        max-width: calc(100vw - 32px);
+        box-sizing: border-box;
+        max-width: 100vw;
         background-color: var(--PureWhite);
         box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.12);
         z-index: 999;
