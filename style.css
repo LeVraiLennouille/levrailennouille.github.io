@@ -2561,7 +2561,7 @@ main.Simu {
 
     #MobileDrawer {
         position: fixed;
-        bottom: 0;
+        bottom: 62px;
         left: 0;
         right: 0;
         background: var(--PureWhite);
@@ -2613,15 +2613,15 @@ main.Simu {
                 border-bottom: 1px solid var(--Borders);
 
                 .Estimation {
-                    font-size: 10px;
-                    font-weight: 700;
-                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: 900;
                     letter-spacing: 2px;
                     color: var(--Muted);
                     margin-bottom: 4px;
                 }
 
                 .Title {
+                    color: var(--Primary);
                     font-size: 26px;
                     font-weight: 700;
                     line-height: 1.15;
@@ -2629,15 +2629,14 @@ main.Simu {
 
                 .PriceNote {
                     font-size: 11px;
-                    color: var(--MinMuted);
+                    color: var(--Muted);
                     margin-top: 3px;
                 }
             }
 
             .SectionLabel {
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 900;
                 letter-spacing: 2px;
                 color: var(--Muted);
                 margin: 20px 0 10px;
@@ -2704,7 +2703,7 @@ main.Simu {
 
                     .TotalLabel {
                         font-size: 12px;
-                        font-weight: 700;
+                        font-weight: 900;
                         color: var(--Charcoal);
                     }
 
@@ -2719,7 +2718,7 @@ main.Simu {
             .DaysNote {
                 text-align: center;
                 font-size: 11px;
-                color: var(--MinMuted);
+                color: var(--Muted);
                 margin-top:12px;
             }
         }
