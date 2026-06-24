@@ -1524,7 +1524,6 @@ main.Contact {
             .ContactTitle {
                 font-size: clamp(2.8rem, 5vw, 4.5rem);
                 font-weight: 800;
-                text-transform: uppercase;
                 letter-spacing: 0.04em;
                 color: var(--Charcoal);
                 line-height: 1;
@@ -3524,12 +3523,22 @@ main.Terms {
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
 
     main.Contact {
-        max-width: calc(100% - 40px);
+        max-width: 100%;
 
         .SocialSidebar {display: none}
         .ContactLayout {
+            max-width: calc(100% - 40px);
+            min-height: 100%;
+            
             .ContactLeft {
                 padding: 40px 20px 40px;
+
+                .Form .FormActions {width: 100%;}
+                .ContactCoords {
+                    justify-content: space-between;
+
+                    .CoordDot {display: none;}
+                }
 
                 .ContactTitle {font-size: 2rem;}
             }
