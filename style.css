@@ -1595,7 +1595,9 @@ main.Contact {
                         transition: all 0.3s ease;
 
                         &:focus~.Label,
-                        &:valid~.Label {
+                        &:valid~.Label,
+                        &:autofill~.Label,
+                        &:-webkit-autofill~.Label {
                             top: 0;
                             background-color: var(--Primary);
                             color: var(--PureWhite);
@@ -1620,7 +1622,7 @@ main.Contact {
                     textarea.Input+.Label {top: 22px;}
 
                     input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
-                    input[type="text"].has-value, input[type="email"].has-value, textarea.has-value,
+                    input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
                     input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
                     input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
                 }
@@ -1968,36 +1970,58 @@ main.Simu {
                         grid-template-columns: 1fr 1fr;
                         gap: 16px;
 
-                        .ColFull {grid-column: 1 / -1;}
-
-                        .Label {
-                            display: block;
-                            font-size: 11px;
-                            font-weight: 600;
-                            text-transform: uppercase;
-                            letter-spacing: 0.8px;
-                            color: var(--Muted);
-                            margin-bottom: 7px;
-                        }
-
-                        .Input {
+                        .InputGroup {
+                            position: relative;
+                            margin-bottom: 6px;
                             width: 100%;
-                            background: var(--PureWhite);
-                            border: 1px solid var(--Borders);
-                            border-radius: 8px;
-                            padding: 11px 14px;
-                            color: var(--Charcoal);
-                            font-size: 14px;
-                            transition: border-color 0.2s, box-shadow 0.2s;
-                            outline: none;
-                            appearance: none;
+                            color: var(--Primary);
+                            background: transparent;
 
-                            &:focus {
-                                border-color: var(--Primary);
-                                box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.10);
+                            &.ColFull {grid-column: 1 / -1;}
+
+                            .Input {
+                                width: 100%;
+                                box-sizing: border-box;
+                                padding: 12px 15px;
+                                border: 1px solid var(--Muted);
+                                border-radius: 8px;
+                                background: transparent;
+                                color: var(--PureBlack);
+                                font-size: 1rem;
+                                outline: none;
+                                transition: all 0.3s ease;
+
+                                &:focus~.Label,
+                                &.HasValue~.Label {
+                                    top: 0;
+                                    background-color: var(--Primary);
+                                    color: var(--PureWhite);
+                                    border-radius: 4px;
+                                    font-size: 0.8rem;
+                                    font-weight: bold;
+
+                                    .Accent {color: var(--PureWhite);}
+                                }
                             }
 
-                            &::placeholder {color: var(--MinMuted);}
+                            .Label {
+                                position: absolute;
+                                left: 15px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                color: var(--PureBlack);
+                                background-color: transparent;
+                                padding: 0 5px;
+                                pointer-events: none;
+                                transition: all 0.3s ease;
+                            }
+
+                            textarea.Input+.Label {top: 22px;}
+
+                            input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
+                            input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
+                            input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
+                            input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
                         }
                     } 
 
@@ -2017,7 +2041,7 @@ main.Simu {
                         display: none;
 
                         &.Show {display: block;}
-                        &.Valid {color: var(--Ok);}
+                        &.Valid {color: var(--Success);}
                         &.Invalid {color: var(--Danger);}
                     }
 
@@ -2361,7 +2385,7 @@ main.Simu {
 
                     &:hover {
                         transform: translateY(-2px);
-                        box-shadow: 0 8px 24px rgba(var(--PrimaryRGB), 0.30);
+                        box-shadow: 0 4px 24px rgba(var(--PrimaryRGB), 0.30);
                     }
 
                     &:active  {transform: translateY(0);}
@@ -2380,9 +2404,9 @@ main.Simu {
                     transition: all 0.15s;
 
                     &:hover {
-                        border-color: var(--DarkBorders);
-                        color: var(--Charcoal);
-                        background: var(--PureWhite);
+                        border-color: var(--Primary);
+                        color: var(--Primary);
+                        background: rgba(var(--PrimaryRGB) 0.2);
                     }
                 }   
             }
@@ -2537,7 +2561,7 @@ main.Simu {
 
     #MobileDrawer {
         position: fixed;
-        bottom: 0;
+        bottom: 62px;
         left: 0;
         right: 0;
         background: var(--PureWhite);
@@ -2589,15 +2613,15 @@ main.Simu {
                 border-bottom: 1px solid var(--Borders);
 
                 .Estimation {
-                    font-size: 10px;
-                    font-weight: 700;
-                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: 900;
                     letter-spacing: 2px;
                     color: var(--Muted);
                     margin-bottom: 4px;
                 }
 
                 .Title {
+                    color: var(--Primary);
                     font-size: 26px;
                     font-weight: 700;
                     line-height: 1.15;
@@ -2605,15 +2629,14 @@ main.Simu {
 
                 .PriceNote {
                     font-size: 11px;
-                    color: var(--MinMuted);
+                    color: var(--Muted);
                     margin-top: 3px;
                 }
             }
 
             .SectionLabel {
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 900;
                 letter-spacing: 2px;
                 color: var(--Muted);
                 margin: 20px 0 10px;
@@ -2680,7 +2703,7 @@ main.Simu {
 
                     .TotalLabel {
                         font-size: 12px;
-                        font-weight: 700;
+                        font-weight: 900;
                         color: var(--Charcoal);
                     }
 
@@ -2695,7 +2718,7 @@ main.Simu {
             .DaysNote {
                 text-align: center;
                 font-size: 11px;
-                color: var(--MinMuted);
+                color: var(--Muted);
                 margin-top:12px;
             }
         }
@@ -3264,8 +3287,33 @@ main.Terms {
    # Responsive Design
 ========================================================================== */
 
-@media (min-width: 1024px) {#MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}}
-@media (max-width: 1023px) {#PriceSidebar {display: none !important;}}
+@media (min-width: 1024px) {
+    main.Simu {
+        #MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}
+    }
+}
+
+@media (max-width: 1023px) {
+    main.Simu {
+        .Layout {padding-right: 0;}
+
+        .Layout {
+            .Form {
+                padding-top: 44px;
+                padding-right: 32px;
+                padding-bottom: 130px;
+                padding-left: 32px;
+
+                .Steps .Panel .FormGroup .Input {font-size: 16px;}
+            }
+
+            #PriceSidebar {display: none !important;}
+        }
+
+
+        #MobileBar {padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));}
+    }
+}
 
 @media (min-width: 951px) {
     .HamburgerBtn {display: none !important;}
@@ -3346,6 +3394,45 @@ main.Terms {
 }
 
 @media (max-width: 768px) {
+    main.Simu .Layout .Form {
+        padding-top: 32px;
+        padding-right: 20px;
+        padding-bottom: 130px;
+        padding-left: 20px;
+
+        .Brand {
+            margin-bottom: 28px;
+
+            .LogoRow {margin-bottom: 18px;}
+            .MainTitle {font-size: 24px;}
+            .MainDesc  {font-size: 13px;}
+        }
+
+        .Steps .Panel {
+            .StepHead {margin-bottom: 22px;}
+            .FormGrid {grid-template-columns: 1fr;}
+            .ChoiceList.ChoiceListGrid {grid-template-columns: 1fr;}
+        }
+
+        .FormNav {
+            gap: 10px;
+
+            .BtnGhost {
+                flex: 0 0 auto;
+                padding: 13px 16px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .BtnMain {
+                flex: 1;
+                padding: 13px 14px;
+                font-size: 13px;
+                text-align: center;
+            }
+        }
+    }
+
     main.Terms {
         .TermsHero {
             padding: 130px 24px 60px;
@@ -3454,6 +3541,17 @@ main.Terms {
         gap: 4px;
 
         .Label {width: auto;}
+    }
+}
+
+@media (max-width: 420px) {
+    main.Simu .Layout .Form {
+        padding-top: 28px;
+        padding-right: 16px;
+        padding-left: 16px;
+
+        .Brand .LogoRow .LogoName {font-size: 12px;}
+        .ProgressBar .Dots {width: 26px; height: 26px; font-size: 12px;}
     }
 }
 

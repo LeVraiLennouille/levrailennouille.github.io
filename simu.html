@@ -55,28 +55,28 @@
                             <p class="StepDesc">Pour personnaliser et te transmettre ton devis.</p>
                         </div>
                         <div class="FormGrid">
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="prenom" name="prenom" autocomplete="given-name">
                                 <label class="Label" for="prenom">Ton prénom</label>
-                                <input class="Input" type="text" id="prenom" autocomplete="given-name">
-                                <span class="Error" id="err-prenom">Ce champ est requis.</span>
+                                <span class="Error" id="err-prenom" aria-describedby="err-prenom">Ce champ est requis.</span>
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="nom" name="nom" autocomplete="family-name">
                                 <label class="Label" for="nom">Ton nom</label>
-                                <input class="Input" type="text" id="nom" autocomplete="family-name">
-                                <span class="Error" id="err-nom">Ce champ est requis.</span>
+                                <span class="Error" id="err-nom" aria-describedby="err-nom">Ce champ est requis.</span>
                             </div>
-                            <div class="ColFull">
+                            <div class="InputGroup ColFull">
+                                <input class="Input" type="email" id="email" name="email" autocomplete="email">
                                 <label class="Label" for="email">Ton email</label>
-                                <input class="Input" type="email" id="email" autocomplete="email">
-                                <span class="Error" id="err-email">Saisis un email valide.</span>
+                                <span class="Error" id="err-email" aria-describedby="err-prenom">Saisis un email valide.</span>
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="entreprise" name="entreprise" autocomplete="organization">
                                 <label class="Label" for="entreprise">Ton entreprise <span class="Accent">*</span></label>
-                                <input class="Input" type="text" id="entreprise" autocomplete="organization">
                             </div>
-                            <div>
+                            <div class="InputGroup">
+                                <input class="Input" type="text" id="role" name="role" autocomplete="organization-title">
                                 <label class="Label" for="role">Ton rôle <span class="Accent">*</span></label>
-                                <input class="Input" type="text" id="role" autocomplete="organization-title">
                             </div>
                         </div>
                     </div>
@@ -92,8 +92,8 @@
                                 <label for="n-creation">
                                     <div class="LabelIcon">✦</div>
                                     <div>
-                                        <div class="LabelMain">Création de A à Z</div>
-                                        <div class="LabelSub">Nouveau produit, partir de zéro</div>
+                                        <div class="LabelMain">Product Design : création de A à Z</div>
+                                        <div class="LabelSub">Conception UX/UI complète d'un nouveau produit digital</div>
                                     </div>
                                 </label>
                             </div>
@@ -102,8 +102,8 @@
                                 <label for="n-refonte">
                                     <div class="LabelIcon">↻</div>
                                     <div>
-                                        <div class="LabelMain">Refonte complète</div>
-                                        <div class="LabelSub">Redesign d'un produit existant</div>
+                                        <div class="LabelMain">Refonte UI / UX complète</div>
+                                        <div class="LabelSub">Optimisation ergonomique et refonte visuelle d'une interface existante.</div>
                                     </div>
                                 </label>
                             </div>
@@ -112,8 +112,8 @@
                                 <label for="n-ds">
                                     <div class="LabelIcon">⊞</div>
                                     <div>
-                                        <div class="LabelMain">Design System</div>
-                                        <div class="LabelSub">Bibliothèque de composants UI scalable</div>
+                                        <div class="LabelMain">Design System & UI Kit</div>
+                                        <div class="LabelSub">Création d'une bibliothèque de composants visuels scalables et documentés.</div>
                                     </div>
                                 </label>
                             </div>
@@ -122,8 +122,8 @@
                                 <label for="n-features">
                                     <div class="LabelIcon">＋</div>
                                     <div>
-                                        <div class="LabelMain">Ajout de fonctionnalités</div>
-                                        <div class="LabelSub">Extension d'un produit en place</div>
+                                        <div class="LabelMain">Conception de nouvelles features</div>
+                                        <div class="LabelSub">Intégration de nouveaux parcours utilisateurs sur un produit en production.</div>
                                     </div>
                                 </label>
                             </div>
@@ -132,13 +132,13 @@
                                 <label for="n-audit">
                                     <div class="LabelIcon">◎</div>
                                     <div>
-                                        <div class="LabelMain">Audit UX</div>
-                                        <div class="LabelSub">Analyse critique et recommandations</div>
+                                        <div class="LabelMain">Audit UX & Évaluation heuristique</div>
+                                        <div class="LabelSub">Analyse des frictions, tests des parcours et recommandations expertes.</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        <span class="Error" id="err-nature">Sélectionnes une option.</span>
+                        <span class="Error" id="err-nature" aria-describedby="err-nature">Sélectionnes une option.</span>
                     </div>
                     <div class="Panel" data-step="3">
                         <div class="StepHead">
@@ -148,14 +148,14 @@
                                 <span class="Accent">Tu peux en choisir plusieurs</span>
                             </p>
                         </div>
-                        <div class="ChoiceList ChoiceListGrid">
+                        <div class="ChoiceList">
                             <div class="ChoiceCard">
                                 <input type="checkbox" name="plateformes" id="p-vitrine" value="vitrine">
                                 <label for="p-vitrine">
                                     <div class="LabelIcon">⬡</div>
                                     <div>
-                                        <div class="LabelMain">Site vitrine</div>
-                                        <div class="LabelSub">Présence web institutionnelle</div>
+                                        <div class="LabelMain">Site vitrine / Landing page</div>
+                                        <div class="LabelSub">Présence web institutionnelle ou page optimisée pour la conversion.</div>
                                     </div>
                                 </label>
                             </div>
@@ -164,8 +164,8 @@
                                 <label for="p-ecom">
                                     <div class="LabelIcon">⊙</div>
                                     <div>
-                                        <div class="LabelMain">E-commerce</div>
-                                        <div class="LabelSub">Boutique en ligne</div>
+                                        <div class="LabelMain">Plateforme E-commerce</div>
+                                        <div class="LabelSub">Parcours d'achat, catalogue et tunnel de conversion (Checkout).</div>
                                     </div>
                                 </label>
                             </div>
@@ -174,13 +174,13 @@
                                 <label for="p-mobile">
                                     <div class="LabelIcon">📱</div>
                                     <div>
-                                        <div class="LabelMain">Application mobile</div>
-                                        <div class="LabelSub">iOS / Android</div>
+                                        <div class="LabelMain">Application Mobile (Native / PWA)</div>
+                                        <div class="LabelSub">Design respectant les guidelines iOS (Human Interface) et Android (Material Design).</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        <span class="Error" id="err-plateformes">Sélectionnes au moins une option.</span>
+                        <span class="Error" id="err-plateformes" aria-describedby="err-plateformes">Sélectionnes au moins une option.</span>
                     </div>
                     <div class="Panel" data-step="4">
                         <div class="StepHead">
@@ -188,14 +188,14 @@
                             <h2 class="StepTitle">Périmètre du projet</h2>
                             <p class="StepDesc">Combien d'écrans / vues sont à concevoir ?</p>
                         </div>
-                        <div class="ChoiceList ChoiceListGrid">
+                        <div class="ChoiceList">
                             <div class="ChoiceCard">
                                 <input type="radio" name="perimetre" id="per-small" value="small">
                                 <label for="per-small">
                                     <div class="LabelIcon LabelIconText">S</div>
                                     <div>
-                                        <div class="LabelMain">1 à 5 écrans</div>
-                                        <div class="LabelSub">MVP, landing page, micro-app</div>
+                                        <div class="LabelMain">1 à 5 écrans (Scope réduit)</div>
+                                        <div class="LabelSub">Minimum Viable Product (MVP), flux simple ou micro-application.</div>
                                     </div>
                                 </label>
                             </div>
@@ -204,8 +204,8 @@
                                 <label for="per-medium">
                                     <div class="LabelIcon LabelIconText">M</div>
                                     <div>
-                                        <div class="LabelMain">5 à 15 écrans</div>
-                                        <div class="LabelSub">Application de taille standard</div>
+                                        <div class="LabelMain">5 à 15 écrans (Produit standard)</div>
+                                        <div class="LabelSub">Application ou plateforme avec plusieurs User Flows croisés.</div>
                                     </div>
                                 </label>
                             </div>
@@ -214,13 +214,13 @@
                                 <label for="per-large">
                                     <div class="LabelIcon LabelIconText">L</div>
                                     <div>
-                                        <div class="LabelMain">15 écrans et plus</div>
-                                        <div class="LabelSub">Produit / service complexe</div>
+                                        <div class="LabelMain">+15 vues (Écosystème complexe)</div>
+                                        <div class="LabelSub">Produit complet, logiciel métier, SaaS ou Dashboard approfondi.</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        <span class="Error" id="err-perimetre">Sélectionnes une option.</span>
+                        <span class="Error" id="err-perimetre" aria-describedby="err-perimetre">Sélectionnes une option.</span>
                     </div>
                     <div class="Panel" data-step="5">
                         <div class="StepHead">
@@ -237,7 +237,7 @@
                                     <div class="LabelIcon">⬜</div>
                                     <div>
                                         <div class="LabelMain">Wireframes</div>
-                                        <div class="LabelSub">Zoning et structure des écrans</div>
+                                        <div class="LabelSub">Définition de l'architecture de l'information et du zoning des vues.</div>
                                     </div>
                                 </label>
                             </div>
@@ -246,8 +246,8 @@
                                 <label for="l-ui">
                                     <div class="LabelIcon">◉</div>
                                     <div>
-                                        <div class="LabelMain">Maquettes UI haute-fidélité <span class="LockBadge">Compris</span></div>
-                                        <div class="LabelSub">Designs finaux pixel-perfect</div>
+                                        <div class="LabelMain">Maquettes UI (haute-fidélité) <span class="LockBadge">Compris</span></div>
+                                        <div class="LabelSub">Interfaces "pixel-perfect", application de la typographie, grille et couleurs.</div>
                                     </div>
                                 </label>
                             </div>
@@ -257,7 +257,7 @@
                                     <div class="LabelIcon">▶</div>
                                     <div>
                                         <div class="LabelMain">Prototype interactif</div>
-                                        <div class="LabelSub">Figma clickable et testable</div>
+                                        <div class="LabelSub">Câblage des parcours et micro-interactions sur Figma pour tests utilisateurs.</div>
                                     </div>
                                 </label>
                             </div>
@@ -266,8 +266,8 @@
                                 <label for="l-recherche">
                                     <div class="LabelIcon">🔍</div>
                                     <div>
-                                        <div class="LabelMain">Recherche & Personas</div>
-                                        <div class="LabelSub">Interviews, synthèse, profils utilisateurs</div>
+                                        <div class="LabelMain">UX Research</div>
+                                        <div class="LabelSub">Entretiens utilisateurs, création de Personas et Customer Journey Maps.</div>
                                     </div>
                                 </label>
                             </div>
@@ -276,8 +276,8 @@
                                 <label for="l-flows">
                                     <div class="LabelIcon">→</div>
                                     <div>
-                                        <div class="LabelMain">User Flows</div>
-                                        <div class="LabelSub">Parcours et arborescences</div>
+                                        <div class="LabelMain">User Flows & Arborescence</div>
+                                        <div class="LabelSub">Cartographie logique des étapes de navigation de l'utilisateur.</div>
                                     </div>  
                                 </label>
                             </div>
@@ -286,13 +286,13 @@
                                 <label for="l-handoff">
                                     <div class="LabelIcon">⌥</div>
                                     <div>
-                                        <div class="LabelMain">Developer Handoff</div>
-                                        <div class="LabelSub">Specs et assets pour les développeurs</div>
+                                        <div class="LabelMain">Documentation & Handoff Développeurs</div>
+                                        <div class="LabelSub">Spécifications UI, Design Tokens et export des assets pour l'intégration tech.</div>
                                     </div>
                                 </label>
                             </div>
                         </div>
-                        <span class="Error" id="err-livrables">Sélectionnes au moins un livrable.</span>
+                        <span class="Error" id="err-livrables" aria-describedby="err-livrables">Sélectionnes au moins un livrable.</span>
                     </div>
                     <div class="Panel" data-step="6">
                         <div class="StepHead">
@@ -301,8 +301,8 @@
                             <p class="StepDesc">Dernière étape — définis tes contraintes.</p>
                         </div>
                         <div class="FormGroup">
-                            <label class="Label" for="description_projet">Décris ton projet (optionnel, mais très important)</label>
-                            <textarea id="description_projet" name="description_projet" class="Input" rows="5" maxlength="2000"></textarea>
+                            <label class="Label" for="description_projet">Décris ton projet</label>
+                            <textarea class="Input" id="description_projet" name="description_projet" placeholder="Ex: Nous cherchons à réduire le taux d'abandon lors de l'onboarding de notre application FinTech..." rows="5" maxlength="2000"></textarea>
                         </div>
                         <div class="UrgenceCard">
                             <div class="UrgenceRow">
@@ -336,7 +336,7 @@
                         </div> -->
                         <div class="FormGroup">
                             <label class="Label" for="code_parrainage">Code de parrainage (optionnel)</label>
-                            <input type="text" id="code_parrainage" name="code_parrainage" class="Input" autocomplete="off" maxlength="20">
+                            <input class="Input" type="text" id="code_parrainage" name="code_parrainage" placeholder="Saisis ton code pour appliquer ta remise" autocomplete="off" maxlength="20">
                             <div class="CodeFeedback" id="code-feedback"></div>
                         </div>
                         <div class="RadioBlock">
@@ -499,30 +499,30 @@
             },
 // ► Estimated days
             JOURS_NATURE: {
-                'creation': {min: 15, max: 21, label: 'Création de A à Z'},
-                'refonte': {min: 10, max: 14, label: 'Refonte complète'},
+                'creation': {min: 15, max: 21, label: 'Product Design'},
+                'refonte': {min: 10, max: 14, label: 'Refonte UI / UX complète'},
                 'design-system': {min: 15, max: 30, label: 'Design System'},
-                'features': {min: 5, max: 10, label: 'Ajout de fonctionnalités'},
+                'features': {min: 5, max: 10, label: 'Nouvelles fetures'},
                 'audit': {min: 2, max: 5, label: 'Audit UX'},
             },
 // ► Multipliers
             MULTI_PLATEFORME: {
-                'vitrine': {valeur: 1.00, label: 'Site Vitrine'},
-                'ecommerce': {valeur: 1.20, label: 'E-commerce'},
+                'vitrine': {valeur: 1.00, label: 'Site Vitrine / Landing page'},
+                'ecommerce': {valeur: 1.20, label: 'Plateforme e-commerce'},
                 'mobile': {valeur: 1.10, label: 'App Mobile'},
             },
 // ► Extra days
             JOURS_PERIMETRE: {
-                'small': {min: 0, max: 0, label: '1–5 écrans'},
-                'medium': {min: 1, max: 4, label: '5–15 écrans'},
-                'large': {min: 5, max: 10, label: '15+ écrans'},
+                'small': {min: 0, max: 0, label: '1–5 vues'},
+                'medium': {min: 1, max: 4, label: '5–15 vues'},
+                'large': {min: 5, max: 10, label: '+15 vues'},
             },
 // ► Deliverables
             JOURS_LIVRABLES: {
                 'wireframes': {min: 1, max: 2, label: 'Wireframes'},
-                'maquettes': {min: 0, max: 0, label: 'Maquettes UI'},
+                'maquettes': {min: 0, max: 0, label: 'Maquettes UI (HF)'},
                 'prototype': {min: 2, max: 4, label: 'Prototype Interactif'},
-                'recherche': {min: 1, max: 3, label: 'Recherche & Personas'},
+                'recherche': {min: 1, max: 3, label: 'UX Research'},
                 'userflows': {min: 1, max: 2, label: 'User Flows'},
                 'handoff': {min: 1, max: 2, label: 'Developer Handoff'},
             },
@@ -531,6 +531,7 @@
             TRAVAIL_PARTIEL: true,
 // ► Referral codes
             CODES_PARRAINAGE: [
+                'STUDIOPAPOU',
                 'MUETRE',
                 'PRIMAIRE',
                 'SCORCONE',
@@ -559,7 +560,7 @@
                 perimetre: '',
                 livrables: [],
                 urgence: false,
-                budget: '',
+                // budget: '',
                 type_demande: 'estimation',
                 code_parrainage: '',
             },
@@ -972,7 +973,7 @@
 
                 case 6:
                     d.urgence = document.getElementById('urgence').checked;
-                    d.budget = document.getElementById('budget').value;
+                    // d.budget = document.getElementById('budget').value;
                     d.type_demande = document.querySelector('input[name="type_demande"]:checked')?.value || 'estimation';
                     d.code_parrainage = v('code_parrainage');
                     d.description_projet = v('description_projet');
@@ -995,30 +996,32 @@
             const dateValidite = new Date(now.getTime() + CONFIG.VALIDITE_DEVIS_JOURS * 86400000).toLocaleDateString('fr-FR');
 
             const C = {
-                NOIR: [15, 15, 18],
-                BLANC: [245, 245, 240],
-                AMBER: [232, 160, 32],
-                GRIS: [100, 100, 110],
-                LGRIS: [238, 238, 236],
+                NOIR: [0, 0, 0],
+                CHARCOAL: [28, 28, 30],
+                BLANC: [255, 255, 255],
+                PRIMARY: [32, 126, 222],
+                MUTED: [108, 130, 147],
+                BG: [232, 226, 216],
             };
 
             const fill = (c) => doc.setFillColor(...c);
             const stroke = (c) => doc.setDrawColor(...c);
             const color = (c) => doc.setTextColor(...c);
             const font = (s, sz) => {doc.setFont('helvetica', s); doc.setFontSize(sz);};
+            const sanitize = (text) => String(text).replace(/\u202F|\u00A0/g, ' ').replace(/−|–/g, '-');
 
-            fill(C.NOIR);
+            fill(C.PRIMARY);
             doc.rect(0, 0, W, 48, 'F');
 
             color(C.BLANC);
             font('bold', 18);
             doc.text(fl.nom, 14, 18);
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('normal', 9);
             doc.text(fl.titre.toUpperCase(), 14, 25);
 
-            color([160, 160, 165]);
+            color(C.BLANC);
             font('normal', 8);
             doc.text(fl.email, 14, 32);
             doc.text(fl.tel, 14, 38);
@@ -1027,39 +1030,39 @@
             font('bold', 22);
             doc.text('DEVIS', W - 14, 18, {align: 'right'});
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('bold', 9);
             doc.text(numDevis, W - 14, 26, {align: 'right'});
 
-            color([160, 160, 165]);
+            color(C.BLANC);
             font('normal', 8);
             doc.text(`Émis le ${dateEmission}`, W - 14, 33, {align: 'right'});
             doc.text(`Valable jusqu'au ${dateValidite}`, W - 14, 39, {align: 'right'});
 
             let y = 58;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('CLIENT', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
-            color(C.NOIR);
+            color(C.CHARCOAL);
             font('bold', 12);
             doc.text(`${d.prenom} ${d.nom}`, 14, y);
 
             y += 5;
             font('normal', 9);
-            color(C.GRIS);
+            color(C.MUTED);
             if (d.entreprise) {doc.text(d.entreprise, 14, y); y += 5;}
             if (d.role) {doc.text(d.role, 14, y); y += 5;}
             doc.text(d.email, 14, y);
 
             y += 14;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('DÉTAIL DE LA MISSION', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
@@ -1069,17 +1072,17 @@
                 ['Plateformes', d.plateformes.map(p => CONFIG.MULTI_PLATEFORME[p]?.label || p).join(', ')],
                 ['Périmètre', CONFIG.JOURS_PERIMETRE[d.perimetre]?.label || d.perimetre],
                 ['Livrables inclus', d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l).join(', ')],
-                ['Délai', d.urgence ? '⚡ Urgent (+20% prix / −40% délai)' : 'Standard'],
-                ['Budget client', d.budget || 'Non précisé'],
+                ['Délai', d.urgence ? 'Urgent (+20% prix / −40% délai)' : 'Standard'],
+                // ['Budget client', d.budget || 'Non précisé'],
             ];
 
             rowsProjet.forEach(([label, valeur], i) => {
                 const ry = y + i * 9;
-                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
-                color(C.GRIS);
+                if (i % 2 === 0) {fill(C.BG); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.MUTED);
                 font('bold', 8);
                 doc.text(label, 17, ry);
-                color(C.NOIR);
+                color(C.CHARCOAL);
                 font('normal', 9);
 
                 const wrapped = doc.splitTextToSize(String(valeur), 105);
@@ -1087,61 +1090,61 @@
             });
 
             y += rowsProjet.length * 9 + 12;
-            color(C.GRIS);
+            color(C.MUTED);
             font('bold', 8);
             doc.text('ESTIMATION FINANCIÈRE', 14, y);
-            stroke([210, 210, 210]);
+            stroke(C.BG);
             doc.line(14, y + 2, W - 14, y + 2);
 
             y += 9;
 
             const rowsPrix = [
-                ['Taux Journalier Moyen (TJM)', `${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`],
-                ['Durée estimée', `${est.joursMin} à ${est.joursMax} jours`],
+                ['Taux Journalier Moyen (TJM)', sanitize(`${CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM} €/jour`)],
+                ['Durée estimée', sanitize(`${est.joursMin} à ${est.joursMax} jours`)],
             ];
 
             if (est.codeValide) {
-                rowsPrix.push(['Sous-total HT — fourchette', `${euros(est.sousTotalHtMin)} – ${euros(est.sousTotalHtMax)}`]);
-                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, `−${euros(est.remiseMin)} – −${euros(est.remiseMax)}`]);
+                rowsPrix.push(['Sous-total HT — fourchette', sanitize(`${euros(est.sousTotalHtMin)} - ${euros(est.sousTotalHtMax)}`)]);
+                rowsPrix.push([`Remise parrainage (${est.codeUtilise})`, sanitize(`-${euros(est.remiseMin)} - -${euros(est.remiseMax)}`)]);
             }
 
-            rowsPrix.push(['Montant HT — fourchette basse', euros(est.prixHtMin)]);
-            rowsPrix.push(['Montant HT — fourchette haute', euros(est.prixHtMax)]);
+            rowsPrix.push(['Montant HT — fourchette basse', sanitize(euros(est.prixHtMin))]);
+            rowsPrix.push(['Montant HT — fourchette haute', sanitize(euros(est.prixHtMax))]);
 
-            if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', `${(CONFIG.TVA * 100).toFixed(0)}%`]);}
+            if (CONFIG.TVA > 0) {rowsPrix.push(['TVA applicable', sanitize(`${(CONFIG.TVA * 100).toFixed(0)}%`)]);}
 
             rowsPrix.forEach(([label, valeur], i) => {
                 const ry = y + i * 9;
-                if (i % 2 === 0) {fill(C.LGRIS); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
-                color(C.GRIS);
+                if (i % 2 === 0) {fill(C.BG); doc.rect(14, ry - 4.5, W - 28, 8, 'F');}
+                color(C.MUTED);
                 font('bold', 8);
                 doc.text(label, 17, ry);
-                color(C.NOIR);
+                color(C.CHARCOAL);
                 font('normal', 9);
                 doc.text(String(valeur), W - 17, ry, {align: 'right'});
             });
 
             y += rowsPrix.length * 9 + 5;
 
-            fill(C.NOIR);
+            fill(C.PRIMARY);
             doc.rect(14, y, W - 28, 15, 'F');
 
             color(C.BLANC);
             font('bold', 10);
             doc.text('ESTIMATION TOTALE TTC', 19, y + 7);
 
-            color(C.AMBER);
+            color(C.BLANC);
             font('bold', 12);
-            const ttcStr = CONFIG.TVA > 0
-                ? `${euros(est.prixTtcMin)} – ${euros(est.prixTtcMax)}`
-                : `${euros(est.prixHtMin)} – ${euros(est.prixHtMax)} HT`;
+            const ttcStr = sanitize(CONFIG.TVA > 0
+                ? `${euros(est.prixTtcMin)} - ${euros(est.prixTtcMax)}`
+                : `${euros(est.prixHtMin)} - ${euros(est.prixHtMax)} HT`);
             doc.text(ttcStr, W - 19, y + 8, {align: 'right'});
 
             const fyBase = 270;
-            stroke([200, 200, 200]);
+            stroke(C.BG);
             doc.line(14, fyBase, W - 14, fyBase);
 
-            color(C.GRIS);
+            color(C.MUTED);
             font('normal', 7);
             doc.text(
                 `SIRET : ${fl.siret} · ${fl.adresse} · ${fl.site}`,
@@ -1210,7 +1213,7 @@
                 perimetre:      p.perimetre_label,
                 livrables:      p.livrables_labels.join(', '),
                 urgent:         p.urgent ? 'Oui (+20%)' : 'Non',
-                budget_client:  p.budget_client || 'Non renseigné',
+                // budget_client:  p.budget_client || 'Non renseigné',
                 description_projet: p.description || 'Non renseigné',
                 code_parrainage: e.code_parrainage_valide ? `${e.code_parrainage} (−${(e.remise_taux * 100).toFixed(0)}%)` : '—',
                 estimation_ht:  e.fourchette_ht,
@@ -1272,7 +1275,7 @@
                     livrables: d.livrables,
                     livrables_labels: d.livrables.map(l => CONFIG.JOURS_LIVRABLES[l]?.label || l),
                     urgent: d.urgence,
-                    budget_client: d.budget,
+                    // budget_client: d.budget,
                     description: d.description_projet || '',
                 },
 
@@ -1340,9 +1343,18 @@
 
             STATE.currentStep = 1;
             STATE.data = {
-                prenom: '', nom: '', email: '', entreprise: '', role: '',
-                nature: '', plateformes: [], perimetre: '',
-                livrables: [], urgence: false, budget: '', type_demande: 'estimation',
+                prenom: '',
+                nom: '',
+                email: '',
+                entreprise: '',
+                role: '',
+                nature: '',
+                plateformes: [],
+                perimetre: '',
+                livrables: [],
+                urgence: false,
+                // budget: '',
+                type_demande: 'estimation',
                 code_parrainage: '',
             };
 
@@ -1359,6 +1371,7 @@
             document.querySelectorAll('.Input').forEach(el => {
                 if (el.tagName === 'SELECT') el.value = '';
                 else el.value = '';
+                el.classList.remove('HasValue');
             });
 
             document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {el.checked = false;});
@@ -1408,6 +1421,16 @@
 
         document.addEventListener('DOMContentLoaded', () => {buildProgressBar();
         showStep(1);
+
+        function syncHasValue(el) {
+            el.classList.toggle('HasValue', el.value.trim() !== '');
+        }
+
+        document.querySelectorAll('.InputGroup .Input').forEach(el => {
+            syncHasValue(el);
+            el.addEventListener('input', () => syncHasValue(el));
+            el.addEventListener('blur', () => syncHasValue(el));
+        });
 
         const initTJM = CONFIG.TRAVAIL_PARTIEL ? CONFIG.TJM / 2 : CONFIG.TJM;
         setText('s-tjm-val', initTJM);
