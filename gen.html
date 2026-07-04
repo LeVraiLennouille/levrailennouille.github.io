@@ -1,808 +1,1133 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Générateur de documents client — Lennouille</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-  :root{
-    --ink:#14181C;
-    --ink-70:rgba(20,24,28,.72);
-    --ink-50:rgba(20,24,28,.5);
-    --paper:#EFEAE0;
-    --surface:#FBF9F4;
-    --surface-2:#FFFFFF;
-    --accent:#2F5CFF;
-    --accent-deep:#1E3FCC;
-    --accent-soft:#E3E9FF;
-    --muted:#8A8578;
-    --line:#D8D0BF;
-    --warn:#B3452F;
-    --font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  }
-  *{ box-sizing:border-box; }
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:var(--font-body); line-height:1.45;
-  }
-  .wrap{ max-width:880px; margin:0 auto; padding:48px 24px 96px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Générateur de documents — Lennouille</title>
+    <link rel="canonical" href="https://levrailennouille.github.io/">
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        html, body{ background:var(--Background); color:var(--Charcoal); font-family:"Syne", sans-serif; }
 
-  .eyebrow{ font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-deep); margin-bottom:10px; }
-  h1{ font-family:var(--font-display); font-size:clamp(26px,4vw,38px); font-weight:600; line-height:1.15; margin:0 0 14px; }
-  .lede{ color:var(--ink-70); font-size:15px; max-width:62ch; margin:0; }
-  .privacy-note{ margin-top:16px; font-size:12.5px; color:var(--muted); }
+        nav.NavBar {display:none;}
 
-  .parts{ margin-top:40px; display:flex; flex-direction:column; gap:2px; background:var(--line); border-radius:16px; overflow:hidden; border:1px solid var(--line); }
-  .part{ background:var(--surface-2); padding:28px 28px 30px; }
-  .part-head{ display:flex; align-items:center; gap:12px; margin-bottom:20px; }
-  .part-num{ font-family:var(--font-mono); font-size:12px; color:var(--accent-deep); border:1px solid var(--accent-soft); background:var(--accent-soft); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .part-title{ font-family:var(--font-display); font-size:19px; font-weight:600; }
+        main.Gen{ position:relative; min-height:100vh; overflow-x:hidden; }
+        .GridBG{
+            position:fixed; inset:0; pointer-events:none; z-index:0;
+            background-image:
+            linear-gradient(rgba(32,126,222,.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(32,126,222,.05) 1px, transparent 1px);
+            background-size:60px 60px;
+        }
+        .Glow{
+            position:fixed; inset:0; pointer-events:none; z-index:0;
+            background:radial-gradient(ellipse 700px 500px at 85% 15%, rgba(32,126,222,.18) 0%, transparent 70%);
+        }
 
-  .field-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px 20px; }
-  .field{ display:flex; flex-direction:column; gap:6px; }
-  .field.full{ grid-column:1/-1; }
-  label{ font-size:12.5px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:6px; }
-  label .req{ color:var(--warn); }
-  label .auto{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-deep); background:var(--accent-soft); padding:2px 6px; border-radius:20px; font-weight:600; }
-  .field .hint{ font-size:11.5px; color:var(--muted); }
-  input, select, textarea{
-    font-family:var(--font-body); font-size:14px; padding:10px 12px;
-    border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink);
-    width:100%;
-  }
-  input:focus, select:focus, textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); background:var(--surface-2); }
-  textarea{ resize:vertical; min-height:60px; font-family:var(--font-body); }
+        .Layout{ position:relative; z-index:10; min-height:100vh; display:flex; justify-content:center; padding-right:360px; }
+        .Form{ flex:1; max-width:760px; width:100%; padding:56px 48px 80px; margin:0 auto; }
 
-  .recap{ margin-top:22px; border:1px dashed var(--line); border-radius:12px; padding:16px 18px; background:var(--paper); display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-  .recap div{ display:flex; flex-direction:column; gap:4px; }
-  .recap .k{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-family:var(--font-mono); }
-  .recap .v{ font-family:var(--font-display); font-size:19px; font-weight:600; }
+        .Brand{ margin-bottom:36px; }
+        .LogoRow{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
+        .LogoIcon{ width:36px; height:36px; border-radius:10px; background:var(--Primary); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .LogoName{ font-size:14px; font-weight:700; color:var(--Primary); }
+        .MainTitle{ font-size:30px; font-weight:800; line-height:1.2; margin-bottom:12px; }
+        .MainDesc{ color:var(--Muted); font-size:14px; line-height:1.65; max-width:54ch; }
 
-  .toolbar{ display:flex; justify-content:flex-end; margin-top:16px; }
+        .ProgressBar{ display:flex; align-items:center; margin-bottom:36px; }
+        .Dots{
+            width:30px; height:30px; border-radius:50%; border:1.5px solid var(--Borders);
+            display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;
+            color:var(--MinMuted); flex-shrink:0; transition:all .3s ease; background:var(--PureWhite);
+        }
+        .Dots.Active{ border-color:var(--Primary); color:var(--Primary); box-shadow:0 0 0 4px rgba(32,126,222,.12); }
+        .Dots.Done{ background:var(--Primary); border-color:var(--Primary); color:var(--PureWhite); }
+        .Lines{ flex:1; height:1px; background:var(--Borders); transition:background .4s ease; }
+        .Lines.Done{ background:var(--Primary); }
 
-  .docs-head{ margin-top:48px; margin-bottom:20px; }
-  .docs-head h2{ font-family:var(--font-display); font-size:24px; margin:0 0 6px; }
-  .docs-head p{ color:var(--ink-70); font-size:14px; max-width:60ch; margin:0; }
+        .Panel{ display:none; }
+        .Panel.Active{ display:block; animation:fadeUp .35s ease forwards; }
+        @keyframes fadeUp{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
-  .docs-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .doc-card{ position:relative; background:var(--surface-2); border:1px solid var(--line); border-radius:14px; padding:22px 20px 20px 26px; display:flex; flex-direction:column; gap:9px; }
-  .doc-card::before{ content:''; position:absolute; left:0; top:16px; bottom:16px; width:3px; background:var(--accent); border-radius:2px; }
-  .doc-num{ font-family:var(--font-mono); font-size:11px; color:var(--accent-deep); letter-spacing:.08em; }
-  .doc-title{ font-family:var(--font-display); font-size:18px; font-weight:600; }
-  .doc-desc{ font-size:13px; color:var(--ink-70); line-height:1.5; flex:1; margin:0; }
-  .doc-file{ font-family:var(--font-mono); font-size:11px; color:var(--muted); word-break:break-all; }
+        .StepHead{ margin-bottom:26px; }
+        .StepLabel{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--Primary); }
+        .StepTitle{ font-size:20px; font-weight:700; margin:4px 0 0; }
+        .StepDesc{ color:var(--Muted); font-size:14px; margin:6px 0 0; line-height:1.55; }
 
-  .btn{ appearance:none; border:none; cursor:pointer; font-family:var(--font-body); font-weight:600; font-size:13.5px; padding:11px 16px; border-radius:8px; background:var(--ink); color:var(--surface); display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:background .12s ease, transform .12s ease; }
-  .btn:hover{ background:var(--accent-deep); }
-  .btn:active{ transform:scale(.98); }
-  .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); }
-  .btn-ghost:hover{ background:var(--surface); border-color:var(--ink); }
+        .FormGrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .ColFull{ grid-column:1 / -1; }
 
-  footer{ margin-top:56px; font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:18px; }
+        .InputGroup{ position:relative; margin-bottom:6px; }
+        .InputGroup .Input{
+        width:100%; padding:14px 15px; border:1px solid var(--Muted); border-radius:8px;
+        background:transparent; color:var(--PureBlack); font-family:inherit; font-size:1rem;
+        outline:none; transition:all .3s ease;
+        }
+        .InputGroup textarea.Input{ resize:vertical; min-height:70px; }
+        .InputGroup .Label{
+            position:absolute; left:15px; top:50%; transform:translateY(-50%);
+            color:var(--PureBlack); background:transparent; padding:0 5px;
+            pointer-events:none; transition:all .3s ease; font-size:1rem;
+        }
+        .InputGroup textarea.Input + .Label{ top:22px; }
+        .InputGroup .Input:focus, .InputGroup .Input.HasValue{ border-color:var(--Primary); }
+        .InputGroup .Input:focus ~ .Label, .InputGroup .Input.HasValue ~ .Label{top:0; background:var(--Primary); color:var(--PureWhite); border-radius:4px; font-size:.75rem; font-weight:700;}
+        .InputGroup .Input:focus ~ .Label .Accent, .InputGroup .Input.HasValue ~ .Label .Accent{ color:var(--PureWhite); }
 
-  .toast-wrap{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:8px; z-index:999; align-items:center; }
-  .toast{ background:var(--ink); color:var(--surface); padding:12px 18px; border-radius:10px; font-size:13.5px; box-shadow:0 8px 24px rgba(0,0,0,.2); }
-  .toast.warn{ background:var(--warn); }
+        .FormGroup{ display:flex; flex-direction:column; gap:7px; }
+        .FormGroup .Label{
+            font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--Muted);
+            position:static; transform:none; padding:0; background:none;
+        }
+        .FormGroup .Input{
+            width:100%; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:8px;
+            padding:11px 14px; color:var(--Charcoal); font-size:14px; font-family:inherit; outline:none;
+            transition:border-color .2s, box-shadow .2s;
+        }
+        .FormGroup .Input:focus{ border-color:var(--Primary); box-shadow:0 0 0 3px rgba(32,126,222,.10); }
 
-  @media (max-width:640px){
-    .field-grid{ grid-template-columns:1fr; }
-    .docs-grid{ grid-template-columns:1fr; }
-    .recap{ grid-template-columns:1fr; }
-    .part{ padding:22px 18px 26px; }
-  }
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-</style>
+        .RadioBlock{ margin-top:18px; }
+        .RadioBlock .Title{ font-size:14px; font-weight:700; margin-bottom:14px; }
+        .ChoiceList.ChoiceListGrid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .ChoiceCard{ position:relative; }
+        .ChoiceCard input{ position:absolute; opacity:0; width:0; height:0; }
+        .ChoiceCard label{
+            display:flex; align-items:center; justify-content:space-between; gap:12px;
+            padding:14px 18px; border:1px solid var(--Borders); border-radius:10px; cursor:pointer;
+            background:var(--PureWhite); transition:all .2s ease; user-select:none;
+        }
+        .ChoiceCard label:hover{ border-color:var(--Primary); background:rgba(32,126,222,.06); }
+        .ChoiceCard label::after{
+            content:''; width:18px; height:18px; border-radius:50%; flex-shrink:0;
+            border:1.5px solid rgba(32,126,222,.4); transition:all .2s ease;
+        }
+        .ChoiceCard input:checked + label{ border-color:var(--Primary); background:rgba(32,126,222,.07); }
+        .ChoiceCard input:checked + label::after{
+            background:var(--Primary); border-color:var(--Primary);
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-repeat:no-repeat; background-position:center;
+        }
+        .ChoiceCard .LabelMain{ font-size:14px; font-weight:500; color:var(--Charcoal); }
+        .ChoiceCard input:checked + label .LabelMain{ color:var(--DarkPrimary); font-weight:700; }
+
+        .FormNav{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:36px; padding-top:22px; border-top:1px solid var(--Borders);}
+        .BtnMain{
+            background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+            color:#fff; font-weight:700; font-size:14px; font-family:inherit; letter-spacing:.3px;
+            padding:13px 26px; border-radius:10px; border:none; cursor:pointer;
+            transition:transform .15s, box-shadow .15s;
+        }
+        .BtnMain:hover{ transform:translateY(-2px); box-shadow:0 4px 24px rgba(32,126,222,.30); }
+        .BtnMain:active{ transform:translateY(0); }
+        .BtnMain:disabled{ opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
+        .BtnGhost{
+            background:transparent; color:var(--Muted); font-weight:500; font-size:14px; font-family:inherit;
+            padding:13px 20px; border-radius:10px; border:1px solid var(--Borders); cursor:pointer; transition:all .15s;
+        }
+        .BtnGhost:hover{ border-color:var(--Primary); color:var(--Primary); }
+        .BtnGhost:disabled{ opacity:.35; cursor:not-allowed; }
+
+        #RecapSidebar{
+            width:360px; flex-shrink:0; border-left:1px solid var(--Primary);
+            position:fixed; right:0; top:0; height:100vh; overflow-y:auto; padding:36px 28px; z-index:20;
+            background:linear-gradient(180deg, rgba(232,226,216,.55), rgba(232,226,216,.92));
+            backdrop-filter:blur(6px);
+        }
+        .SidebarEyebrow{ font-size:14px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+        .PriceDisplay{
+            font-size:34px; font-weight:800; line-height:1.15; color:var(--Primary);
+            background:linear-gradient(135deg, var(--Primary), var(--DarkPrimary));
+            background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        .PriceNote{ font-size:11px; color:var(--Muted); margin-top:4px; margin-bottom:28px; }
+        .BreakdownEyebrow{ font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+        .BreakdownPlaceholder{ font-size:12px; color:var(--Muted); font-style:italic; }
+        .Details{ display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(32,126,222,.15); font-size:12px; gap:10px; }
+        .Details:last-child{ border-bottom:none; }
+        .DetailsLabel{ color:var(--Muted); flex-shrink:0; }
+        .DetailsValue{ font-weight:600; color:var(--Charcoal); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .PriceTable{ margin-top:22px; padding:16px; border-radius:12px; border:1px solid var(--Primary); background:rgba(255,255,255,.5); }
+        .PriceRow{ display:flex; justify-content:space-between; font-size:12px; margin-bottom:10px; }
+        .PriceRow:last-of-type{ margin-bottom:0; }
+        .PriceRow .Label{ color:var(--Muted); }
+        .PriceRow .Value{ font-weight:600; color:var(--Charcoal); }
+        .Separator{ height:1px; background:var(--Borders); margin:10px 0; }
+        .PriceTotalRow{ display:flex; justify-content:space-between; align-items:center; margin-top:6px; }
+        .TotalLabel{ font-size:10px; font-weight:800; letter-spacing:1px; }
+        .TotalValue{ font-weight:800; font-size:16px; color:var(--Primary); }
+        .DaysNote{ text-align:center; font-size:11px; color:var(--Muted); margin-top:20px; }
+
+        .DocsGrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .DocCard{
+            position:relative; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:14px;
+            padding:22px 20px 20px 26px; display:flex; flex-direction:column; gap:9px;
+        }
+        .DocCard::before{ content:''; position:absolute; left:0; top:16px; bottom:16px; width:3px; background:var(--Primary); border-radius:2px; }
+        .DocNum{ font-size:11px; color:var(--DarkPrimary); letter-spacing:.08em; font-weight:700; }
+        .DocTitle{ font-size:18px; font-weight:800; }
+        .DocDesc{ font-size:13px; color:var(--Muted); line-height:1.5; flex:1; }
+        .DocFile{ font-size:11px; color:var(--MinMuted); word-break:break-all; }
+
+        .toast-wrap{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:8px; z-index:999; align-items:center; }
+        .toast{ background:var(--Charcoal); color:#fff; padding:12px 18px; border-radius:10px; font-size:13.5px; font-family:inherit; box-shadow:0 8px 24px rgba(0,0,0,.2); }
+        .toast.warn{ background:var(--Danger); }
+
+        .MobileBar{ display:none; position:fixed; bottom:0; left:0; right:0; background:var(--PureWhite); border-top:1px solid var(--Borders); padding:12px 20px; z-index:30; align-items:center; justify-content:space-between; }
+        .MobileBar .MLabel{ font-size:11px; color:var(--Muted); text-transform:uppercase; letter-spacing:.06em; }
+        .MobileBar .MTotal{ font-weight:800; font-size:16px; color:var(--Primary); }
+
+        @media (max-width:1024px){
+            .Layout{ padding-right:0; }
+            #RecapSidebar{ display:none; }
+            .MobileBar{ display:flex; }
+            .Form{ padding-bottom:96px; }
+        }
+        @media (max-width:640px){
+            .Form{ padding:36px 20px 96px; }
+            .FormGrid, .ChoiceList.ChoiceListGrid, .DocsGrid{ grid-template-columns:1fr; }
+            .MainTitle{ font-size:24px; }
+            .FormNav{ flex-wrap:wrap; }
+        }
+        @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+    </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <div class="eyebrow">Dossier — Lennouille · Lenny Gadroy</div>
-    <h1>Générateur de documents client</h1>
-    <p class="lede">Renseignez les informations du client et du projet une seule fois, puis générez les quatre documents à envoyer après la signature du devis : le contrat, la facture d'acompte, le mot de bienvenue et le brief stratégique.</p>
-    <p class="privacy-note">Tout se passe dans votre navigateur : aucune donnée n'est envoyée à un serveur.</p>
-  </header>
-
-  <form id="dossierForm" onsubmit="return false;">
-    <div class="parts">
-
-      <div class="part">
-        <div class="part-head"><span class="part-num">1</span><span class="part-title">Le client</span></div>
-        <div class="field-grid">
-          <div class="field">
-            <label for="clientName">Nom du client / de l'entreprise <span class="req">*</span></label>
-            <input id="clientName" required placeholder="ex. Atelier Verdier">
-          </div>
-          <div class="field">
-            <label for="clientContact">Nom du contact</label>
-            <input id="clientContact" placeholder="ex. Claire Verdier">
-          </div>
-          <div class="field">
-            <label for="clientPrenom">Prénom du client</label>
-            <input id="clientPrenom" placeholder="ex. Claire">
-            <span class="hint">Utilisé pour le mot de bienvenue.</span>
-          </div>
-          <div class="field">
-            <label for="clientEmail">Email du client</label>
-            <input id="clientEmail" type="email" placeholder="client@exemple.fr">
-          </div>
-          <div class="field full">
-            <label for="clientAddress">Adresse du client</label>
-            <textarea id="clientAddress" placeholder="Numéro, rue, code postal, ville"></textarea>
-          </div>
-          <div class="field">
-            <label for="clientSiret">SIRET du client (si applicable)</label>
-            <input id="clientSiret" placeholder="14 chiffres">
-          </div>
+    <main class="Gen">
+        <div id="HeaderPlaceHolder"></div><script src="js/header.js"></script>
+        <div class="GridBG"></div>
+        <div class="Glow"></div>
+        <div class="Layout">
+            <div class="Form">
+                <header class="Brand">
+                    <div class="LogoRow">
+                        <div class="LogoIcon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <path d="M14 2v6h6"></path>
+                                <path d="M9 13h6M9 17h6"></path>
+                            </svg>
+                        </div>
+                        <span class="LogoName">Lennouille — Génère tes documents en un clic</span>
+                    </div>
+                    <h1 class="MainTitle">Prépare tes documents<br><span class="Accent">en un clic après signature.</span></h1>
+                    <p class="MainDesc">Renseigne les informations du client et du projet, puis génère le contrat, la facture d'acompte, le mot de bienvenue et le brief stratégique.</p>
+                </header>
+                <div class="ProgressBar" id="ProgressBar">
+                    <div class="Dots Active" data-dot="1"><span class="Num">1</span></div>
+                    <div class="Lines" data-line="1"></div>
+                    <div class="Dots" data-dot="2"><span class="Num">2</span></div>
+                    <div class="Lines" data-line="2"></div>
+                    <div class="Dots" data-dot="3"><span class="Num">3</span></div>
+                    <div class="Lines" data-line="3"></div>
+                    <div class="Dots" data-dot="4"><span class="Num">4</span></div>
+                    <div class="Lines" data-line="4"></div>
+                    <div class="Dots" data-dot="5"><span class="Num">5</span></div>
+                </div>
+                <form id="dossierForm" onsubmit="return false;">
+                    <div class="Steps">
+                        <div class="Panel Active" data-step="1">
+                            <div class="StepHead">
+                                <div class="StepLabel">Étape 1 / 5</div>
+                                <div class="StepTitle">Le client</div>
+                                <div class="StepDesc">Les informations pour personnaliser les documents et facturer au bon endroit.</div>
+                            </div>
+                            <div class="FormGrid">
+                                <div class="InputGroup ColFull">
+                                    <input type="text" id="clientName" class="Input" required>
+                                    <label class="Label" for="clientName">Nom de l'entreprise</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="clientContact" class="Input">
+                                    <label class="Label" for="clientContact">Nom du client</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="clientPrenom" class="Input">
+                                    <label class="Label" for="clientPrenom">Prénom du client</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="email" id="clientEmail" class="Input">
+                                    <label class="Label" for="clientEmail">Email du client</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="clientSiret" class="Input">
+                                    <label class="Label" for="clientSiret">SIRET de l'entreprise</label>
+                                </div>
+                                <div class="InputGroup ColFull">
+                                    <textarea id="clientAddress" class="Input" rows="2"></textarea>
+                                    <label class="Label" for="clientAddress">Adresse de l'entreprise</label>
+                                </div>
+                            </div>
+                            <div class="FormNav">
+                                <button type="button" class="BtnGhost" disabled>← Retour</button>
+                                <button type="button" class="BtnMain" data-next>Continuer →</button>
+                            </div>
+                        </div>
+                        <div class="Panel" data-step="2">
+                            <div class="StepHead">
+                                <div class="StepLabel">Étape 2 / 5</div>
+                                <div class="StepTitle">Le projet</div>
+                                <div class="StepDesc">Le périmètre, le calendrier et l'accès à l'espace client.</div>
+                            </div>
+                            <div class="FormGrid">
+                                <div class="InputGroup ColFull">
+                                    <input type="text" id="nomProjet" class="Input">
+                                    <label class="Label" for="nomProjet">Nom du projet</label>
+                                </div>
+                            </div>
+                            <div class="RadioBlock">
+                                <div class="Title">CMS utilisé</div>
+                                <div class="ChoiceList ChoiceListGrid">
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="cmsRadio" id="cmsWordPress" value="WordPress">
+                                        <label for="cmsWordPress"><span class="LabelMain">WordPress</span></label>
+                                    </div>
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="cmsRadio" id="cmsWebflow" value="Webflow">
+                                        <label for="cmsWebflow"><span class="LabelMain">Webflow</span></label>
+                                    </div>
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="cmsRadio" id="cmsShopify" value="Shopify">
+                                        <label for="cmsShopify"><span class="LabelMain">Shopify</span></label>
+                                    </div>
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="cmsRadio" id="cmsAutreRadio" value="autre">
+                                        <label for="cmsAutreRadio"><span class="LabelMain">Autre</span></label>
+                                    </div>
+                                </div>
+                                <div class="InputGroup" id="cmsAutreWrap" style="display:none; margin-top:14px;">
+                                    <input type="text" id="cmsAutre" class="Input">
+                                    <label class="Label" for="cmsAutre">Précise le CMS</label>
+                                </div>
+                            </div>
+                            <div class="FormGrid" style="margin-top:22px;">
+                                <div class="FormGroup">
+                                    <label class="Label" for="dateDebut">Date de début</label>
+                                    <input type="date" id="dateDebut" class="Input">
+                                </div>
+                                <div class="FormGroup">
+                                    <label class="Label" for="dateLivraison">Date de livraison prévue</label>
+                                    <input type="date" id="dateLivraison" class="Input">
+                                </div>
+                                <div class="FormGroup">
+                                    <label class="Label" for="nbRevisions">Révisions incluses par phase</label>
+                                    <input type="number" min="0" id="nbRevisions" class="Input" value="2">
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="autreLivrable" class="Input">
+                                    <label class="Label" for="autreLivrable">Autre livrable (optionnel)</label>
+                                </div>
+                                <div class="InputGroup ColFull">
+                                    <input type="text" id="lienPortail" class="Input">
+                                    <label class="Label" for="lienPortail">Lien vers l'espace client</label>
+                                </div>
+                            </div>
+                            <div class="FormNav">
+                                <button type="button" class="BtnGhost" data-prev>← Retour</button>
+                                <button type="button" class="BtnMain" data-next>Continuer →</button>
+                            </div>
+                        </div>
+                        <div class="Panel" data-step="3">
+                            <div class="StepHead">
+                                <div class="StepLabel">Étape 3 / 5</div>
+                                <div class="StepTitle">Les finances</div>
+                                <div class="StepDesc">Le budget, l'acompte et les moyens de paiement.</div>
+                            </div>
+                            <div class="FormGrid">
+                                <div class="FormGroup">
+                                    <label class="Label" for="budgetTotal">Budget total HT (€) <span class="Accent">*</span></label>
+                                    <input type="number" min="0" step="0.01" id="budgetTotal" class="Input" placeholder="0,00">
+                                </div>
+                                <div class="FormGroup">
+                                    <label class="Label" for="acomptePct">Acompte (%)</label>
+                                    <input type="number" min="0" max="100" id="acomptePct" class="Input" value="30">
+                                </div>
+                            </div>
+                            <div class="RadioBlock">
+                                <div class="Title">Délai de paiement</div>
+                                <div class="ChoiceList ChoiceListGrid">
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="delaiPaiement" id="delai15" value="15">
+                                        <label for="delai15"><span class="LabelMain">15 jours</span></label>
+                                    </div>
+                                    <div class="ChoiceCard">
+                                        <input type="radio" name="delaiPaiement" id="delai30" value="30" checked>
+                                        <label for="delai30"><span class="LabelMain">30 jours</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="FormGrid" style="margin-top:22px;">
+                                <div class="InputGroup">
+                                    <input type="text" id="numeroDevis" class="Input">
+                                    <label class="Label" for="numeroDevis">Numéro du devis</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="numeroFacture" class="Input">
+                                    <label class="Label" for="numeroFacture">Numéro de facture</label>
+                                </div>
+                                <div class="FormGroup">
+                                    <label class="Label" for="dateEmission">Date d'émission</label>
+                                    <input type="date" id="dateEmission" class="Input">
+                                </div>
+                                <div class="FormGroup">
+                                    <label class="Label" for="dateEcheance">Date d'échéance</label>
+                                    <input type="date" id="dateEcheance" class="Input">
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="lienStripe" class="Input">
+                                    <label class="Label" for="lienStripe">Lien de paiement Stripe</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="iban" class="Input">
+                                    <label class="Label" for="iban">IBAN</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="bic" class="Input">
+                                    <label class="Label" for="bic">BIC</label>
+                                </div>
+                            </div>
+                            <div class="FormNav">
+                                <button type="button" class="BtnGhost" data-prev>← Retour</button>
+                                <button type="button" class="BtnMain" data-next>Continuer →</button>
+                            </div>
+                        </div>
+                        <div class="Panel" data-step="4">
+                            <div class="StepHead">
+                                <div class="StepLabel">Étape 4 / 5</div>
+                                <div class="StepTitle">Compléments</div>
+                                <div class="StepDesc">La date et le lieu de signature du contrat.</div>
+                            </div>
+                            <div class="FormGrid">
+                                <div class="FormGroup">
+                                    <label class="Label" for="dateJour">Date de signature</label>
+                                    <input type="date" id="dateJour" class="Input">
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="lieuSignature" class="Input" value="Cormontreuil">
+                                    <label class="Label" for="lieuSignature">Lieu de signature</label>
+                                </div>
+                            </div>
+                            <div class="FormNav">
+                                <button type="button" class="BtnGhost" data-prev>← Retour</button>
+                                <button type="button" class="BtnMain" data-next>Voir mes documents →</button>
+                            </div>
+                        </div>
+                        <div class="Panel" data-step="5">
+                            <div class="StepHead">
+                            <div class="StepLabel">Étape 5 / 5</div>
+                            <div class="StepTitle">Tes documents</div>
+                            <div class="StepDesc">Télécharge les 4 PDF, prêts à envoyer dans l'ordre ci-dessous.</div>
+                        </div>
+                        <div class="DocsGrid">
+                            <div class="DocCard">
+                                <span class="DocNum">01 — Juridique</span>
+                                <span class="DocTitle">Contrat de prestation</span>
+                                <p class="DocDesc">Objet, calendrier, paiement, révisions, propriété intellectuelle et résiliation.</p>
+                                <span class="DocFile" id="fileContrat">Contrat_client.pdf</span>
+                                <button class="BtnMain" id="btnContrat" type="button">Télécharger le PDF</button>
+                            </div>
+                            <div class="DocCard">
+                                <span class="DocNum">02 — Facturation</span>
+                                <span class="DocTitle">Facture d'acompte</span>
+                                <p class="DocDesc">Facture du pourcentage d'acompte choisi, à régler à la signature.</p>
+                                <span class="DocFile" id="fileFacture">Facture_AAAA-MM-001.pdf</span>
+                                <button class="BtnMain" id="btnFacture" type="button">Télécharger le PDF</button>
+                            </div>
+                            <div class="DocCard">
+                                <span class="DocNum">03 — Onboarding</span>
+                                <span class="DocTitle">Mot de bienvenue</span>
+                                <p class="DocDesc">Message d'accueil, accès à l'espace client et prochaines étapes.</p>
+                                <span class="DocFile" id="fileBienvenue">Bienvenue_client.pdf</span>
+                                <button class="BtnMain" id="btnBienvenue" type="button">Télécharger le PDF</button>
+                            </div>
+                            <div class="DocCard">
+                                <span class="DocNum">04 — Cadrage</span>
+                                <span class="DocTitle">Brief stratégique</span>
+                                <p class="DocDesc">Questionnaire à faire remplir par le client avant le kick-off.</p>
+                                <span class="DocFile" id="fileBrief">Brief_projet.pdf</span>
+                                <button class="BtnMain" id="btnBrief" type="button">Télécharger le PDF</button>
+                            </div>
+                        </div>
+                        <div class="FormNav">
+                            <button type="button" class="BtnGhost" data-prev>← Retour</button>
+                            <button type="button" class="BtnGhost" id="resetBtn">Recommencer</button>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <aside id="RecapSidebar">
+                <div class="SidebarEyebrow">Ton récapitulatif</div>
+                <div class="PriceDisplay" id="recapTotalDisplay">— €</div>
+                <div class="PriceNote">Budget total HT</div>
+                <div class="BreakdownEyebrow">Détail du dossier</div>
+                <p class="BreakdownPlaceholder" id="breakdownPlaceholder">Complète le formulaire…</p>
+                <div id="breakdownDetails" style="display:none;">
+                    <div class="Details"><span class="DetailsLabel">Client</span><span class="DetailsValue" id="dClient">—</span></div>
+                    <div class="Details"><span class="DetailsLabel">Projet</span><span class="DetailsValue" id="dProjet">—</span></div>
+                    <div class="Details"><span class="DetailsLabel">CMS</span><span class="DetailsValue" id="dCms">—</span></div>
+                </div>
+                <div class="PriceTable">
+                    <div class="PriceRow"><span class="Label">Acompte (<span id="recapPct">30</span>%)</span><span class="Value" id="recapAcompte">0,00 €</span></div>
+                    <div class="PriceRow"><span class="Label">Solde (<span id="recapPctReste">70</span>%)</span><span class="Value" id="recapSolde">0,00 €</span></div>
+                    <div class="Separator"></div>
+                    <div class="PriceTotalRow"><span class="TotalLabel">TOTAL HT</span><span class="TotalValue" id="recapTotal2">0,00 €</span></div>
+                </div>
+                <div class="DaysNote" id="recapNote">Facture — · échéance —</div>
+            </aside>
         </div>
-      </div>
-
-      <div class="part">
-        <div class="part-head"><span class="part-num">2</span><span class="part-title">Le projet</span></div>
-        <div class="field-grid">
-          <div class="field">
-            <label for="nomProjet">Nom du projet</label>
-            <input id="nomProjet" placeholder="ex. Refonte site vitrine">
-          </div>
-          <div class="field">
-            <label for="cms">CMS utilisé</label>
-            <input id="cms" list="cmsOptions" placeholder="WordPress, Webflow, Shopify…">
-            <datalist id="cmsOptions">
-              <option value="WordPress"></option>
-              <option value="Webflow"></option>
-              <option value="Shopify"></option>
-            </datalist>
-          </div>
-          <div class="field">
-            <label for="dateDebut">Date de début</label>
-            <input id="dateDebut" type="date">
-          </div>
-          <div class="field">
-            <label for="dateLivraison">Date de livraison prévue</label>
-            <input id="dateLivraison" type="date">
-          </div>
-          <div class="field">
-            <label for="nbRevisions">Révisions incluses par phase</label>
-            <input id="nbRevisions" type="number" min="0" value="2">
-          </div>
-          <div class="field">
-            <label for="autreLivrable">Autre livrable (optionnel)</label>
-            <input id="autreLivrable" placeholder="ex. charte graphique PDF">
-          </div>
-          <div class="field full">
-            <label for="lienPortail">Lien vers l'espace client</label>
-            <input id="lienPortail" placeholder="Notion, Google Drive, Trello…">
-          </div>
+        <div class="MobileBar">
+            <span class="MLabel">Total HT</span>
+            <span class="MTotal" id="mobileTotal">— €</span>
         </div>
-      </div>
+    </main>
+    <div class="toast-wrap" id="toastWrap"></div>
+    <script src="script.js"></script>
+    <script>
+        (function(){ "use strict";
 
-      <div class="part">
-        <div class="part-head"><span class="part-num">3</span><span class="part-title">Les finances</span></div>
-        <div class="field-grid">
-          <div class="field">
-            <label for="budgetTotal">Budget total HT (€) <span class="req">*</span></label>
-            <input id="budgetTotal" type="number" min="0" step="0.01" placeholder="0.00">
-          </div>
-          <div class="field">
-            <label for="acomptePct">Acompte (%)</label>
-            <input id="acomptePct" type="number" min="0" max="100" value="30">
-          </div>
-          <div class="field">
-            <label for="delaiPaiement">Délai de paiement</label>
-            <select id="delaiPaiement">
-              <option value="15">15 jours</option>
-              <option value="30" selected>30 jours</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="numeroDevis">Numéro du devis</label>
-            <input id="numeroDevis" placeholder="ex. 2026-06-014">
-          </div>
-          <div class="field">
-            <label for="numeroFacture">Numéro de facture <span class="auto">auto</span></label>
-            <input id="numeroFacture" placeholder="AAAA-MM-001">
-          </div>
-          <div class="field">
-            <label for="dateEmission">Date d'émission <span class="auto">auto</span></label>
-            <input id="dateEmission" type="date">
-          </div>
-          <div class="field">
-            <label for="dateEcheance">Date d'échéance <span class="auto">auto</span></label>
-            <input id="dateEcheance" type="date">
-          </div>
-          <div class="field">
-            <label for="lienStripe">Lien de paiement Stripe</label>
-            <input id="lienStripe" placeholder="https://…">
-          </div>
-          <div class="field">
-            <label for="iban">IBAN</label>
-            <input id="iban" placeholder="FR76 …">
-          </div>
-          <div class="field">
-            <label for="bic">BIC</label>
-            <input id="bic" placeholder="XXXXXXXX">
-          </div>
-        </div>
+            var PRESTATAIRE = {
+                nom: "Lenny Gadroy",
+                nomEntreprise: "Lennouille",
+                adresseLigne1: "Bld des Phéniciens",
+                adresseLigne2: "51350 Cormontreuil",
+                adresse: "Bld des Phéniciens, 51350 Cormontreuil",
+                siret: "94515279100022",
+                siren: "945152791",
+                email: "lennygadroy@gmail.com",
+                telephone: "06 52 51 49 19"
+            };
 
-        <div class="recap">
-          <div><span class="k">Total HT</span><span class="v" id="recapTotal">0,00&nbsp;€</span></div>
-          <div><span class="k">Acompte</span><span class="v" id="recapAcompte">0,00&nbsp;€</span></div>
-          <div><span class="k">Solde</span><span class="v" id="recapSolde">0,00&nbsp;€</span></div>
-        </div>
-      </div>
+            var currentStep = 1;
+            var totalSteps = 5;
+            var FIELD_STEP = {
+                clientName:1, clientContact:1, clientPrenom:1, clientEmail:1, clientAddress:1, clientSiret:1,
+                nomProjet:2, dateDebut:2, dateLivraison:2, nbRevisions:2, autreLivrable:2, lienPortail:2, cmsAutre:2,
+                budgetTotal:3, acomptePct:3, numeroDevis:3, numeroFacture:3, dateEmission:3, dateEcheance:3, lienStripe:3, iban:3, bic:3,
+                dateJour:4, lieuSignature:4
+            };
 
-      <div class="part">
-        <div class="part-head"><span class="part-num">4</span><span class="part-title">Compléments</span></div>
-        <div class="field-grid">
-          <div class="field">
-            <label for="dateJour">Date de signature <span class="auto">auto</span></label>
-            <input id="dateJour" type="date">
-          </div>
-          <div class="field">
-            <label for="lieuSignature">Lieu de signature</label>
-            <input id="lieuSignature" value="Cormontreuil">
-          </div>
-        </div>
-      </div>
+            function $(id){ return document.getElementById(id); }
+            function val(id){ var el = $(id); return el ? el.value : ""; }
 
-    </div>
+            function todayISO(){ var d = new Date(); return d.toISOString().slice(0,10); }
+                function addDays(iso, days){
+                var d = new Date(iso + "T00:00:00");
+                d.setDate(d.getDate() + Number(days || 0));
+                return d.toISOString().slice(0,10);
+            }
+        
+            function fmtDateFR(iso){
+                if(!iso) return null;
+                var d = new Date(iso + "T00:00:00");
+                if(isNaN(d.getTime())) return null;
+                return d.toLocaleDateString("fr-FR", {day:"2-digit", month:"2-digit", year:"numeric"});
+            }
 
-    <div class="toolbar">
-      <button type="button" class="btn btn-ghost" id="resetBtn">Réinitialiser le formulaire</button>
-    </div>
-  </form>
+            function orDate(iso){ return fmtDateFR(iso) || "à compléter"; }
+            function orText(v, fallback){
+                fallback = fallback === undefined ? "à compléter" : fallback;
+                return (v && v.toString().trim()) ? v.toString().trim() : fallback;
+            }
 
-  <div class="docs-head">
-    <div class="eyebrow">Prochaine étape</div>
-    <h2>Documents à générer</h2>
-    <p>Dans l'ordre où vous les enverrez à votre client, une fois le devis signé.</p>
-  </div>
+            function fmtEUR(n){
+                return new Intl.NumberFormat("fr-FR", {style:"currency", currency:"EUR"}).format(n || 0);
+            }
 
-  <div class="docs-grid">
-    <div class="doc-card">
-      <span class="doc-num">01 — Juridique</span>
-      <span class="doc-title">Contrat de prestation</span>
-      <p class="doc-desc">Objet, calendrier, paiement, révisions, propriété intellectuelle et résiliation.</p>
-      <span class="doc-file" id="fileContrat">Contrat_client.pdf</span>
-      <button class="btn" id="btnContrat" type="button">Télécharger le PDF</button>
-    </div>
-    <div class="doc-card">
-      <span class="doc-num">02 — Facturation</span>
-      <span class="doc-title">Facture d'acompte</span>
-      <p class="doc-desc">Facture du pourcentage d'acompte choisi, à régler à la signature.</p>
-      <span class="doc-file" id="fileFacture">Facture_AAAA-MM-001.pdf</span>
-      <button class="btn" id="btnFacture" type="button">Télécharger le PDF</button>
-    </div>
-    <div class="doc-card">
-      <span class="doc-num">03 — Onboarding</span>
-      <span class="doc-title">Mot de bienvenue</span>
-      <p class="doc-desc">Message d'accueil, accès à l'espace client et prochaines étapes.</p>
-      <span class="doc-file" id="fileBienvenue">Bienvenue_client.pdf</span>
-      <button class="btn" id="btnBienvenue" type="button">Télécharger le PDF</button>
-    </div>
-    <div class="doc-card">
-      <span class="doc-num">04 — Cadrage</span>
-      <span class="doc-title">Brief stratégique</span>
-      <p class="doc-desc">Questionnaire à faire remplir par le client avant le kick-off.</p>
-      <span class="doc-file" id="fileBrief">Brief_projet.pdf</span>
-      <button class="btn" id="btnBrief" type="button">Télécharger le PDF</button>
-    </div>
-  </div>
+            function slug(v){
+                return (v || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+                .replace(/[^a-zA-Z0-9]+/g,"_").replace(/^_+|_+$/g,"").toLowerCase() || "document";
+            }
 
-  <footer>Lennouille · Lenny Gadroy — Entrepreneur individuel · SIRET 94515279100022 · lennygadroy@gmail.com</footer>
-</div>
+            function defaultNumeroFacture(){
+                var d = new Date();
+                var y = d.getFullYear();
+                var m = String(d.getMonth()+1).padStart(2,"0");
+                return y + "-" + m + "-001";
+            }
 
-<div class="toast-wrap" id="toastWrap"></div>
+            function toast(msg, type){
+                var wrap = $("toastWrap");
+                var el = document.createElement("div");
+                el.className = "toast" + (type === "warn" ? " warn" : "");
+                el.textContent = msg;
+                wrap.appendChild(el);
+                setTimeout(function(){ el.remove(); }, 3200);
+            }
 
-<script>
-(function(){
-  "use strict";
+            function focusField(id){
+                var step = FIELD_STEP[id];
+                if(step && step !== currentStep) showStep(step);
+                var el = $(id);
+                if(el){
+                setTimeout(function(){
+                    el.focus();
+                    el.scrollIntoView({behavior:"smooth", block:"center"});
+                    }, 60);
+                }
+            }
+  
+            function requireOK(value, id, msg){
+                if(!value || !value.toString().trim()){
+                    toast(msg, "warn");
+                    focusField(id);
+                    return false;
+                }
+                return true;
+            }
 
-  var PRESTATAIRE = {
-    nom: "Lenny Gadroy",
-    nomEntreprise: "Lennouille",
-    adresseLigne1: "Bld des Phéniciens",
-    adresseLigne2: "51350 Cormontreuil",
-    adresse: "Bld des Phéniciens, 51350 Cormontreuil",
-    siret: "94515279100022",
-    siren: "945152791",
-    email: "lennygadroy@gmail.com",
-    telephone: "06 52 51 49 19"
-  };
+            function pdfReady(){
+                if(!window.jspdf){
+                    toast("La librairie PDF n'a pas pu se charger (vérifiez votre connexion internet).", "warn");
+                    return false;
+                }
+                return true;
+            }
 
-  function $(id){ return document.getElementById(id); }
-  function val(id){ var el = $(id); return el ? el.value : ""; }
+            function getCmsValue(){
+                var checked = document.querySelector('input[name="cmsRadio"]:checked');
+                if(!checked) return "";
+                if(checked.value === "autre") return val("cmsAutre");
+                return checked.value;
+            }
 
-  function todayISO(){ var d = new Date(); return d.toISOString().slice(0,10); }
-  function addDays(iso, days){
-    var d = new Date(iso + "T00:00:00");
-    d.setDate(d.getDate() + Number(days || 0));
-    return d.toISOString().slice(0,10);
-  }
-  function fmtDateFR(iso){
-    if(!iso) return null;
-    var d = new Date(iso + "T00:00:00");
-    if(isNaN(d.getTime())) return null;
-    return d.toLocaleDateString("fr-FR", {day:"2-digit", month:"2-digit", year:"numeric"});
-  }
-  function orDate(iso){ return fmtDateFR(iso) || "à compléter"; }
-  function orText(v, fallback){
-    fallback = fallback === undefined ? "à compléter" : fallback;
-    return (v && v.toString().trim()) ? v.toString().trim() : fallback;
-  }
-  function fmtEUR(n){
-    return new Intl.NumberFormat("fr-FR", {style:"currency", currency:"EUR"}).format(n || 0);
-  }
-  function slug(v){
-    return (v || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-      .replace(/[^a-zA-Z0-9]+/g,"_").replace(/^_+|_+$/g,"").toLowerCase() || "document";
-  }
-  function defaultNumeroFacture(){
-    var d = new Date();
-    var y = d.getFullYear();
-    var m = String(d.getMonth()+1).padStart(2,"0");
-    return y + "-" + m + "-001";
-  }
+            function getDelaiValue(){
+                var checked = document.querySelector('input[name="delaiPaiement"]:checked');
+                return checked ? checked.value : "30";
+            }
 
-  function toast(msg, type){
-    var wrap = $("toastWrap");
-    var el = document.createElement("div");
-    el.className = "toast" + (type === "warn" ? " warn" : "");
-    el.textContent = msg;
-    wrap.appendChild(el);
-    setTimeout(function(){ el.remove(); }, 3200);
-  }
-  function focusField(id){
-    var el = $(id);
-    if(el){ el.focus(); el.scrollIntoView({behavior:"smooth", block:"center"}); }
-  }
-  function requireOK(value, id, msg){
-    if(!value || !value.toString().trim()){
-      toast(msg, "warn");
-      focusField(id);
-      return false;
-    }
-    return true;
-  }
-  function pdfReady(){
-    if(!window.jspdf){
-      toast("La librairie PDF n'a pas pu se charger (vérifiez votre connexion internet).", "warn");
-      return false;
-    }
-    return true;
-  }
+            function collect(){
+                return {
+                    clientName: val("clientName"),
+                    clientContact: val("clientContact"),
+                    clientPrenom: val("clientPrenom"),
+                    clientEmail: val("clientEmail"),
+                    clientAddress: val("clientAddress"),
+                    clientSiret: val("clientSiret"),
+                    nomProjet: val("nomProjet"),
+                    cms: getCmsValue(),
+                    dateDebut: val("dateDebut"),
+                    dateLivraison: val("dateLivraison"),
+                    nbRevisions: val("nbRevisions") || "2",
+                    autreLivrable: val("autreLivrable"),
+                    lienPortail: val("lienPortail"),
+                    budgetTotal: parseFloat(val("budgetTotal")) || 0,
+                    acomptePct: parseFloat(val("acomptePct")) || 30,
+                    delaiPaiement: getDelaiValue(),
+                    numeroDevis: val("numeroDevis"),
+                    numeroFacture: val("numeroFacture") || defaultNumeroFacture(),
+                    dateEmission: val("dateEmission") || todayISO(),
+                    dateEcheance: val("dateEcheance"),
+                    iban: val("iban"),
+                    bic: val("bic"),
+                    lienStripe: val("lienStripe"),
+                    dateJour: val("dateJour") || todayISO(),
+                    lieuSignature: val("lieuSignature") || "Cormontreuil"
+                };
+            }
 
-  function collect(){
-    return {
-      clientName: val("clientName"),
-      clientContact: val("clientContact"),
-      clientPrenom: val("clientPrenom"),
-      clientEmail: val("clientEmail"),
-      clientAddress: val("clientAddress"),
-      clientSiret: val("clientSiret"),
-      nomProjet: val("nomProjet"),
-      cms: val("cms"),
-      dateDebut: val("dateDebut"),
-      dateLivraison: val("dateLivraison"),
-      nbRevisions: val("nbRevisions") || "2",
-      autreLivrable: val("autreLivrable"),
-      lienPortail: val("lienPortail"),
-      budgetTotal: parseFloat(val("budgetTotal")) || 0,
-      acomptePct: parseFloat(val("acomptePct")) || 30,
-      delaiPaiement: val("delaiPaiement") || "30",
-      numeroDevis: val("numeroDevis"),
-      numeroFacture: val("numeroFacture") || defaultNumeroFacture(),
-      dateEmission: val("dateEmission") || todayISO(),
-      dateEcheance: val("dateEcheance"),
-      iban: val("iban"),
-      bic: val("bic"),
-      lienStripe: val("lienStripe"),
-      dateJour: val("dateJour") || todayISO(),
-      lieuSignature: val("lieuSignature") || "Cormontreuil"
-    };
-  }
+            function PDFDoc(){
+                var jsPDF = window.jspdf.jsPDF;
+                this.doc = new jsPDF({unit:"mm", format:"a4"});
+                this.margin = 20;
+                this.pageW = 210;
+                this.pageH = 297;
+                this.maxW = this.pageW - this.margin*2;
+                this.y = this.margin;
+                this.doc.setFont("helvetica","normal");
+                this.doc.setFontSize(10.5);
+            }
 
-  // ---------- PDF builder ----------
-  function PDFDoc(){
-    var jsPDF = window.jspdf.jsPDF;
-    this.doc = new jsPDF({unit:"mm", format:"a4"});
-    this.margin = 20;
-    this.pageW = 210;
-    this.pageH = 297;
-    this.maxW = this.pageW - this.margin*2;
-    this.y = this.margin;
-    this.doc.setFont("helvetica","normal");
-    this.doc.setFontSize(10.5);
-  }
-  PDFDoc.prototype.break_ = function(h){
-    if(this.y + h > this.pageH - this.margin){
-      this.doc.addPage();
-      this.y = this.margin;
-    }
-  };
-  PDFDoc.prototype.gap = function(h){ this.y += (h === undefined ? 4 : h); };
-  PDFDoc.prototype.hr = function(){
-    this.break_(6);
-    this.doc.setDrawColor(216,208,191);
-    this.doc.line(this.margin, this.y, this.pageW - this.margin, this.y);
-    this.y += 7;
-  };
-  PDFDoc.prototype.title = function(text){
-    this.break_(16);
-    this.doc.setFont("helvetica","bold");
-    this.doc.setFontSize(15);
-    var lines = this.doc.splitTextToSize(text, this.maxW);
-    var self = this;
-    lines.forEach(function(l){
-      self.doc.text(l, self.pageW/2, self.y, {align:"center"});
-      self.y += 7;
-    });
-    this.y += 3;
-    this.doc.setFont("helvetica","normal");
-    this.doc.setFontSize(10.5);
-  };
-  PDFDoc.prototype.h2 = function(text){
-    this.break_(12);
-    this.gap(3);
-    this.doc.setFont("helvetica","bold");
-    this.doc.setFontSize(11.5);
-    this.doc.text(text, this.margin, this.y);
-    this.y += 6.5;
-    this.doc.setFont("helvetica","normal");
-    this.doc.setFontSize(10.5);
-  };
-  PDFDoc.prototype.p = function(text, opts){
-    opts = opts || {};
-    var size = opts.size || 10.5;
-    var bold = !!opts.bold;
-    this.doc.setFont("helvetica", bold ? "bold" : "normal");
-    this.doc.setFontSize(size);
-    var lines = this.doc.splitTextToSize(text, opts.maxW || this.maxW);
-    var self = this;
-    lines.forEach(function(line){
-      self.break_(6);
-      self.doc.text(line, self.margin, self.y);
-      self.y += size * 0.52;
-    });
-    this.doc.setFont("helvetica","normal");
-    this.doc.setFontSize(10.5);
-    var gapAfter = (opts.gapAfter === undefined) ? 2 : opts.gapAfter;
-    this.y += gapAfter;
-  };
-  PDFDoc.prototype.labelValue = function(label, value){
-    this.break_(6);
-    this.doc.setFont("helvetica","bold");
-    this.doc.setFontSize(10.5);
-    this.doc.text(label, this.margin, this.y);
-    var lw = this.doc.getTextWidth(label);
-    this.doc.setFont("helvetica","normal");
-    this.doc.text(value, this.margin + lw + 2, this.y);
-    this.y += 5.6;
-  };
-  PDFDoc.prototype.checkbox = function(label){
-    this.break_(7);
-    this.doc.setDrawColor(20,24,28);
-    this.doc.rect(this.margin, this.y - 3.2, 4, 4);
-    this.doc.setFontSize(10.5);
-    this.doc.text(label, this.margin + 7, this.y);
-    this.y += 6.5;
-  };
-  PDFDoc.prototype.blankLines = function(n){
-    n = n || 1;
-    for(var i=0;i<n;i++){
-      this.break_(9);
-      this.y += 7;
-      this.doc.setDrawColor(200,195,182);
-      this.doc.line(this.margin, this.y, this.pageW - this.margin, this.y);
-      this.y += 2;
-    }
-    this.y += 2;
-  };
-  PDFDoc.prototype.save = function(filename){ this.doc.save(filename); };
+            PDFDoc.prototype.break_ = function(h){
+                if(this.y + h > this.pageH - this.margin){
+                    this.doc.addPage();
+                    this.y = this.margin;
+                }
+            };
 
-  // ---------- Générateurs ----------
-  function generateContrat(){
-    if(!pdfReady()) return;
-    var d = collect();
-    if(!requireOK(d.clientName, "clientName", "Merci de renseigner le nom du client avant de générer le contrat.")) return;
-    var acompte = d.budgetTotal * d.acomptePct / 100;
-    var solde = d.budgetTotal - acompte;
-    var doc = new PDFDoc();
+            PDFDoc.prototype.gap = function(h){ this.y += (h === undefined ? 4 : h); };
+            PDFDoc.prototype.hr = function(){
+                this.break_(6);
+                this.doc.setDrawColor(216,208,191);
+                this.doc.line(this.margin, this.y, this.pageW - this.margin, this.y);
+                this.y += 7;
+            };
 
-    doc.title("CONTRAT DE PRESTATION DE SERVICES");
+            PDFDoc.prototype.title = function(text){
+                this.break_(16);
+                this.doc.setFont("helvetica","bold");
+                this.doc.setFontSize(15);
+                var lines = this.doc.splitTextToSize(text, this.maxW);
+                var self = this;
+                lines.forEach(function(l){
+                self.doc.text(l, self.pageW/2, self.y, {align:"center"});
+                self.y += 7;
+            });
 
-    doc.p("ENTRE LES SOUSSIGNÉS :", {bold:true, gapAfter:3});
-    doc.p("Nom de l'Entreprise : " + PRESTATAIRE.nomEntreprise, {bold:true, gapAfter:1});
-    doc.p(PRESTATAIRE.nom + " — Entrepreneur individuel");
-    doc.p("Adresse : " + PRESTATAIRE.adresse);
-    doc.p("SIRET : " + PRESTATAIRE.siret + "  |  SIREN : " + PRESTATAIRE.siren);
-    doc.p("E-mail : " + PRESTATAIRE.email);
-    doc.p("Ci-après désigné « Le Prestataire », d'une part,", {gapAfter:5});
+                this.y += 3;
+                this.doc.setFont("helvetica","normal");
+                this.doc.setFontSize(10.5);
+            };
 
-    doc.p("ET :", {bold:true, gapAfter:3});
-    doc.p(orText(d.clientName));
-    doc.p("Adresse : " + orText(d.clientAddress));
-    doc.p("SIRET (si applicable) : " + (d.clientSiret ? d.clientSiret : "Non applicable"));
-    doc.p("Représenté par : " + orText(d.clientContact));
-    doc.p("Ci-après désigné « Le Client », d'autre part.", {gapAfter:4});
-    doc.hr();
+            PDFDoc.prototype.h2 = function(text){
+                this.break_(12);
+                this.gap(3);
+                this.doc.setFont("helvetica","bold");
+                this.doc.setFontSize(11.5);
+                this.doc.text(text, this.margin, this.y);
+                this.y += 6.5;
+                this.doc.setFont("helvetica","normal");
+                this.doc.setFontSize(10.5);
+            };
 
-    doc.h2("ARTICLE 1 : OBJET DU CONTRAT");
-    doc.p("Le présent contrat a pour objet de définir les conditions dans lesquelles le Prestataire s'engage à réaliser pour le Client une prestation de design UI/UX et de développement/intégration sur un CMS (Système de Gestion de Contenu).");
+            PDFDoc.prototype.p = function(text, opts){
+                opts = opts || {};
+                var size = opts.size || 10.5;
+                var bold = !!opts.bold;
+                this.doc.setFont("helvetica", bold ? "bold" : "normal");
+                this.doc.setFontSize(size);
+                var lines = this.doc.splitTextToSize(text, opts.maxW || this.maxW);
+                var self = this;
+                lines.forEach(function(line){
+                    self.break_(6);
+                    self.doc.text(line, self.margin, self.y);
+                    self.y += size * 0.52;
+                });
 
-    doc.h2("ARTICLE 2 : ÉTENDUE DU TRAVAIL ET LIVRABLES");
-    doc.p("La prestation comprend les étapes et livrables suivants :");
-    doc.p("Phase 1 : Recherche UX et architecture de l'information (Wireframes).");
-    doc.p("Phase 2 : Design d'interface UI (Maquettes graphiques sur Figma).");
-    doc.p("Phase 3 : Intégration et développement sur le CMS " + orText(d.cms, "à définir avec le client") + ".");
-    doc.p("Phase 4 : Tests, recettage et mise en ligne.");
-    doc.p("Livrables finaux : Accès administrateur au site web finalisé, maquettes sources" + (d.autreLivrable ? ", " + d.autreLivrable : "") + ".");
+                this.doc.setFont("helvetica","normal");
+                this.doc.setFontSize(10.5);
+                var gapAfter = (opts.gapAfter === undefined) ? 2 : opts.gapAfter;
+                this.y += gapAfter;
+            };
 
-    doc.h2("ARTICLE 3 : CALENDRIER");
-    doc.p("Le projet débutera le " + orDate(d.dateDebut) + " sous réserve de la signature du présent contrat et de l'encaissement de l'acompte. La livraison finale est estimée au " + orDate(d.dateLivraison) + ", à condition que le Client fournisse les retours et les contenus (textes, images) dans les délais convenus.");
+            PDFDoc.prototype.labelValue = function(label, value){
+                this.break_(6);
+                this.doc.setFont("helvetica","bold");
+                this.doc.setFontSize(10.5);
+                this.doc.text(label, this.margin, this.y);
+                var lw = this.doc.getTextWidth(label);
+                this.doc.setFont("helvetica","normal");
+                this.doc.text(value, this.margin + lw + 2, this.y);
+                this.y += 5.6;
+            };
 
-    doc.h2("ARTICLE 4 : CONDITIONS DE PAIEMENT");
-    doc.p("Le budget total de la prestation est fixé à " + fmtEUR(d.budgetTotal) + " HT.");
-    doc.p("La facturation s'effectuera comme suit :");
-    doc.p("Acompte de " + d.acomptePct + "% : " + fmtEUR(acompte) + " HT, facturé à la signature de ce contrat, avant tout début d'exécution.");
-    doc.p("Solde de " + (100 - d.acomptePct) + "% : " + fmtEUR(solde) + " HT, facturé à la livraison finale du site web.");
-    doc.p("(TVA non applicable, art. 293 B du CGI).");
-    doc.p("Le délai de paiement est fixé à " + d.delaiPaiement + " jours à compter de la date de facturation.");
+            PDFDoc.prototype.checkbox = function(label){
+                this.break_(7);
+                this.doc.setDrawColor(20,24,28);
+                this.doc.rect(this.margin, this.y - 3.2, 4, 4);
+                this.doc.setFontSize(10.5);
+                this.doc.text(label, this.margin + 7, this.y);
+                this.y += 6.5;
+            };
 
-    doc.h2("ARTICLE 5 : POLITIQUE DE RÉVISION");
-    doc.p("Afin d'assurer le bon déroulement du projet, le Prestataire inclut " + d.nbRevisions + " allers-retours de modifications (révisions) par phase de validation (Wireframes, Maquettes UI, Site intégré). Toute demande de modification supplémentaire ou changement de périmètre fera l'objet d'un devis complémentaire.");
+            PDFDoc.prototype.blankLines = function(n){
+                n = n || 1;
+                for(var i=0;i<n;i++){
+                    this.break_(9);
+                    this.y += 7;
+                    this.doc.setDrawColor(200,195,182);
+                    this.doc.line(this.margin, this.y, this.pageW - this.margin, this.y);
+                    this.y += 2;
+                }
 
-    doc.h2("ARTICLE 6 : PROPRIÉTÉ INTELLECTUELLE");
-    doc.p("La totalité des droits de propriété intellectuelle liés à la création du site web (design et code spécifique) sera transférée au Client uniquement après le paiement intégral de la prestation.");
+                this.y += 2;
+            };
 
-    doc.h2("ARTICLE 7 : RÉSILIATION");
-    doc.p("En cas de rupture du contrat à l'initiative du Client avant son terme, l'acompte versé restera acquis au Prestataire à titre de dédommagement, et le travail déjà effectué au-delà du montant de l'acompte sera facturé.");
+            PDFDoc.prototype.save = function(filename){ this.doc.save(filename); };
 
-    doc.hr();
-    doc.p("Fait à " + orText(d.lieuSignature, "Cormontreuil") + ", le " + orDate(d.dateJour) + ", en deux exemplaires originaux.", {gapAfter:12});
-    doc.p("Le Prestataire (Signature précédée de la mention « Lu et approuvé ») :", {bold:true, gapAfter:18});
-    doc.p("Le Client (Signature précédée de la mention « Lu et approuvé ») :", {bold:true});
+            function generateContrat(){
+                if(!pdfReady()) return;
+                var d = collect();
+                if(!requireOK(d.clientName, "clientName", "Merci de renseigner le nom du client avant de générer le contrat.")) return;
+                var acompte = d.budgetTotal * d.acomptePct / 100;
+                var solde = d.budgetTotal - acompte;
+                var doc = new PDFDoc();
 
-    doc.save("Contrat_" + slug(d.clientName) + ".pdf");
-    toast("Contrat généré ✓");
-  }
+                doc.title("CONTRAT DE PRESTATION DE SERVICES");
+                doc.p("ENTRE LES SOUSSIGNÉS :", {bold:true, gapAfter:3});
+                doc.p("Nom de l'Entreprise : " + PRESTATAIRE.nomEntreprise, {bold:true, gapAfter:1});
+                doc.p(PRESTATAIRE.nom + " — Entrepreneur individuel");
+                doc.p("Adresse : " + PRESTATAIRE.adresse);
+                doc.p("SIRET : " + PRESTATAIRE.siret + "  |  SIREN : " + PRESTATAIRE.siren);
+                doc.p("E-mail : " + PRESTATAIRE.email);
+                doc.p("Ci-après désigné « Le Prestataire », d'une part,", {gapAfter:5});
 
-  function generateFacture(){
-    if(!pdfReady()) return;
-    var d = collect();
-    if(!requireOK(d.clientName, "clientName", "Merci de renseigner le nom du client avant de générer la facture.")) return;
-    if(!d.budgetTotal){
-      toast("Merci d'indiquer le budget total avant de générer la facture.", "warn");
-      focusField("budgetTotal");
-      return;
-    }
-    var acompte = d.budgetTotal * d.acomptePct / 100;
-    var doc = new PDFDoc();
-    var p = doc.doc;
+                doc.p("ET :", {bold:true, gapAfter:3});
+                doc.p(orText(d.clientName));
+                doc.p("Adresse : " + orText(d.clientAddress));
+                doc.p("SIRET (si applicable) : " + (d.clientSiret ? d.clientSiret : "Non applicable"));
+                doc.p("Représenté par : " + orText(d.clientContact));
+                doc.p("Ci-après désigné « Le Client », d'autre part.", {gapAfter:4});
+                doc.hr();
 
-    p.setFont("helvetica","bold"); p.setFontSize(13);
-    p.text(PRESTATAIRE.nomEntreprise, doc.margin, doc.y); doc.y += 6;
-    p.setFont("helvetica","normal"); p.setFontSize(10);
-    [PRESTATAIRE.nom + " — Entrepreneur individuel", PRESTATAIRE.adresseLigne1, PRESTATAIRE.adresseLigne2, "Téléphone : " + PRESTATAIRE.telephone, "Email : " + PRESTATAIRE.email, "SIRET : " + PRESTATAIRE.siret + "  ·  SIREN : " + PRESTATAIRE.siren].forEach(function(l){
-      p.text(l, doc.margin, doc.y); doc.y += 5;
-    });
+                doc.h2("ARTICLE 1 : OBJET DU CONTRAT");
+                doc.p("Le présent contrat a pour objet de définir les conditions dans lesquelles le Prestataire s'engage à réaliser pour le Client une prestation de design UI/UX et de développement/intégration sur un CMS (Système de Gestion de Contenu).");
 
-    var yRight = doc.margin;
-    p.setFont("helvetica","bold"); p.setFontSize(10);
-    p.text("Facturé à :", doc.pageW - doc.margin, yRight, {align:"right"}); yRight += 6;
-    p.setFont("helvetica","normal");
-    [orText(d.clientName), orText(d.clientAddress), d.clientEmail || ""].filter(Boolean).forEach(function(block){
-      var lines = p.splitTextToSize(block, 75);
-      lines.forEach(function(ln){ p.text(ln, doc.pageW - doc.margin, yRight, {align:"right"}); yRight += 5; });
-    });
+                doc.h2("ARTICLE 2 : ÉTENDUE DU TRAVAIL ET LIVRABLES");
+                doc.p("La prestation comprend les étapes et livrables suivants :");
+                doc.p("Phase 1 : Recherche UX et architecture de l'information (Wireframes).");
+                doc.p("Phase 2 : Design d'interface UI (Maquettes graphiques sur Figma).");
+                doc.p("Phase 3 : Intégration et développement sur le CMS " + orText(d.cms, "à définir avec le client") + ".");
+                doc.p("Phase 4 : Tests, recettage et mise en ligne.");
+                doc.p("Livrables finaux : Accès administrateur au site web finalisé, maquettes sources" + (d.autreLivrable ? ", " + d.autreLivrable : "") + ".");
 
-    doc.y = Math.max(doc.y, yRight) + 8;
-    doc.hr();
+                doc.h2("ARTICLE 3 : CALENDRIER");
+                doc.p("Le projet débutera le " + orDate(d.dateDebut) + " sous réserve de la signature du présent contrat et de l'encaissement de l'acompte. La livraison finale est estimée au " + orDate(d.dateLivraison) + ", à condition que le Client fournisse les retours et les contenus (textes, images) dans les délais convenus.");
 
-    p.setFont("helvetica","bold"); p.setFontSize(13);
-    p.text("FACTURE N° " + d.numeroFacture, doc.margin, doc.y); doc.y += 8;
-    p.setFont("helvetica","normal"); p.setFontSize(10.5);
-    doc.labelValue("Date d'émission : ", orDate(d.dateEmission));
-    doc.labelValue("Date d'échéance : ", orDate(d.dateEcheance));
-    doc.gap(4);
+                doc.h2("ARTICLE 4 : CONDITIONS DE PAIEMENT");
+                doc.p("Le budget total de la prestation est fixé à " + fmtEUR(d.budgetTotal) + " HT.");
+                doc.p("La facturation s'effectuera comme suit :");
+                doc.p("Acompte de " + d.acomptePct + "% : " + fmtEUR(acompte) + " HT, facturé à la signature de ce contrat, avant tout début d'exécution.");
+                doc.p("Solde de " + (100 - d.acomptePct) + "% : " + fmtEUR(solde) + " HT, facturé à la livraison finale du site web.");
+                doc.p("(TVA non applicable, art. 293 B du CGI).");
+                doc.p("Le délai de paiement est fixé à " + d.delaiPaiement + " jours à compter de la date de facturation.");
 
-    var tableY = doc.y;
-    var colX = [doc.margin, doc.margin+95, doc.margin+130, doc.margin+160];
-    var colW0 = 95;
-    var rowH = 9;
+                doc.h2("ARTICLE 5 : POLITIQUE DE RÉVISION");
+                doc.p("Afin d'assurer le bon déroulement du projet, le Prestataire inclut " + d.nbRevisions + " allers-retours de modifications (révisions) par phase de validation (Wireframes, Maquettes UI, Site intégré). Toute demande de modification supplémentaire ou changement de périmètre fera l'objet d'un devis complémentaire.");
 
-    p.setFillColor(20,24,28);
-    p.rect(doc.margin, tableY, doc.maxW, rowH, "F");
-    p.setTextColor(255,255,255);
-    p.setFont("helvetica","bold"); p.setFontSize(9.5);
-    p.text("Description", colX[0]+3, tableY+6);
-    p.text("Qté", colX[1]+3, tableY+6);
-    p.text("PU HT", colX[2]+3, tableY+6);
-    p.text("Total HT", colX[3]+3, tableY+6);
-    p.setTextColor(20,24,28);
+                doc.h2("ARTICLE 6 : PROPRIÉTÉ INTELLECTUELLE");
+                doc.p("La totalité des droits de propriété intellectuelle liés à la création du site web (design et code spécifique) sera transférée au Client uniquement après le paiement intégral de la prestation.");
 
-    var desc = "Acompte de " + d.acomptePct + "% sur la prestation : Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
-    p.setFont("helvetica","normal"); p.setFontSize(9.5);
-    var descLines = p.splitTextToSize(desc, colW0-6);
-    var dataRowH = Math.max(rowH, descLines.length*4.6 + 5);
-    p.setDrawColor(216,208,191);
-    p.rect(doc.margin, tableY+rowH, doc.maxW, dataRowH, "S");
-    var ty = tableY + rowH + 6;
-    descLines.forEach(function(l){ p.text(l, colX[0]+3, ty); ty += 4.6; });
-    p.text("1", colX[1]+3, tableY+rowH+6);
-    p.text(fmtEUR(acompte), colX[2]+3, tableY+rowH+6);
-    p.text(fmtEUR(acompte), colX[3]+3, tableY+rowH+6);
+                doc.h2("ARTICLE 7 : RÉSILIATION");
+                doc.p("En cas de rupture du contrat à l'initiative du Client avant son terme, l'acompte versé restera acquis au Prestataire à titre de dédommagement, et le travail déjà effectué au-delà du montant de l'acompte sera facturé.");
 
-    doc.y = tableY + rowH + dataRowH + 10;
+                doc.hr();
+                doc.p("Fait à " + orText(d.lieuSignature, "Cormontreuil") + ", le " + orDate(d.dateJour) + ", en deux exemplaires originaux.", {gapAfter:12});
+                doc.p("Le Prestataire (Signature précédée de la mention « Lu et approuvé ») :", {bold:true, gapAfter:18});
+                doc.p("Le Client (Signature précédée de la mention « Lu et approuvé ») :", {bold:true});
 
-    var totalsX = doc.pageW - doc.margin;
-    p.setFont("helvetica","normal"); p.setFontSize(10.5);
-    p.text("Total HT : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
-    p.text("TVA : 0,00 €", totalsX, doc.y, {align:"right"}); doc.y += 6;
-    p.setFont("helvetica","bold"); p.setFontSize(12);
-    p.text("TOTAL À PAYER : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
-    p.setFont("helvetica","normal"); p.setFontSize(9);
-    p.text("TVA non applicable, art. 293 B du CGI.", totalsX, doc.y, {align:"right"}); doc.y += 14;
-    p.setFontSize(10.5);
+                doc.save("Contrat_" + slug(d.clientName) + ".pdf");
+                toast("Contrat généré ✓");
+            }
 
-    doc.hr();
-    doc.h2("Modalités de paiement");
-    doc.p("Par carte bancaire (instantané) : " + orText(d.lienStripe, "lien à venir"));
-    doc.p("Par virement bancaire — IBAN : " + orText(d.iban, "à compléter") + "   ·   BIC : " + orText(d.bic, "à compléter"));
-    doc.gap(4);
-    doc.p("Conditions : en cas de retard de paiement, une pénalité de 3 fois le taux d'intérêt légal sera appliquée, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 €.", {size:9});
+            function generateFacture(){
+                if(!pdfReady()) return;
+                var d = collect();
+                if(!requireOK(d.clientName, "clientName", "Merci de renseigner le nom du client avant de générer la facture.")) return;
+                if(!d.budgetTotal){
+                    toast("Merci d'indiquer le budget total avant de générer la facture.", "warn");
+                    focusField("budgetTotal");
+                    return;
+                }
 
-    doc.save("Facture_" + d.numeroFacture + ".pdf");
-    toast("Facture générée ✓");
-  }
+                var acompte = d.budgetTotal * d.acomptePct / 100;
+                var doc = new PDFDoc();
+                var p = doc.doc;
+                    p.setFont("helvetica","bold"); p.setFontSize(13);
+                    p.text(PRESTATAIRE.nomEntreprise, doc.margin, doc.y); doc.y += 6;
+                    p.setFont("helvetica","normal"); p.setFontSize(10);
+                    [PRESTATAIRE.nom + " — Entrepreneur individuel", PRESTATAIRE.adresseLigne1, PRESTATAIRE.adresseLigne2, "Téléphone : " + PRESTATAIRE.telephone, "Email : " + PRESTATAIRE.email, "SIRET : " + PRESTATAIRE.siret + "  ·  SIREN : " + PRESTATAIRE.siren].forEach(function(l){
+                    p.text(l, doc.margin, doc.y); doc.y += 5;
+                });
 
-  function generateBienvenue(){
-    if(!pdfReady()) return;
-    var d = collect();
-    var prenom = orText(d.clientPrenom || d.clientName, "à compléter");
-    var doc = new PDFDoc();
+                var yRight = doc.margin;
+                p.setFont("helvetica","bold"); p.setFontSize(10);
+                p.text("Facturé à :", doc.pageW - doc.margin, yRight, {align:"right"}); yRight += 6;
+                p.setFont("helvetica","normal");
+                [orText(d.clientName), orText(d.clientAddress), d.clientEmail || ""].filter(Boolean).forEach(function(block){
+                    var lines = p.splitTextToSize(block, 75);
+                    lines.forEach(function(ln){ p.text(ln, doc.pageW - doc.margin, yRight, {align:"right"}); yRight += 5;});
+                });
 
-    doc.title("Bienvenue à bord !");
-    doc.p("Lancement de votre projet web", {bold:true, gapAfter:6});
-    doc.p("Bonjour " + prenom + ",");
-    doc.p("Je suis ravi de vous compter parmi mes clients et j'ai hâte de donner vie à votre projet" + (d.nomProjet ? " « " + d.nomProjet + " »" : "") + ". Ce document a pour but de vous guider dans nos premiers pas ensemble afin que tout se déroule de manière fluide et transparente.");
+                doc.y = Math.max(doc.y, yRight) + 8;
+                doc.hr();
 
-    doc.h2("Votre espace client");
-    doc.p("J'ai créé un espace dédié pour centraliser tous nos échanges, documents et validations :");
-    doc.p(orText(d.lienPortail, "lien à venir"), {bold:true});
-    doc.p("Dans cet espace, vous trouverez dès à présent :");
-    doc.p("–  Une copie de notre contrat de prestation signé.");
-    doc.p("–  Votre facture d'acompte (ainsi que les reçus futurs).");
-    doc.p("–  Le suivi d'avancement du projet.");
+                p.setFont("helvetica","bold"); p.setFontSize(13);
+                p.text("FACTURE N° " + d.numeroFacture, doc.margin, doc.y); doc.y += 8;
+                p.setFont("helvetica","normal"); p.setFontSize(10.5);
+                doc.labelValue("Date d'émission : ", orDate(d.dateEmission));
+                doc.labelValue("Date d'échéance : ", orDate(d.dateEcheance));
+                doc.gap(4);
 
-    doc.h2("Les prochaines étapes");
-    doc.p("–  Règlement de l'acompte : permet de bloquer ma disponibilité et de lancer officiellement la production.");
-    doc.p("–  Le document de travail stratégique : vous le trouverez ci-joint (ou sur le portail). Il va m'aider à rassembler vos contenus et comprendre vos attentes précises.");
-    doc.p("–  Réunion de lancement (kick-off) : dès réception du document stratégique rempli, nous fixerons un appel de 45 minutes pour valider ensemble la direction du projet.");
+                var tableY = doc.y;
+                var colX = [doc.margin, doc.margin+95, doc.margin+130, doc.margin+160];
+                var colW0 = 95;
+                var rowH = 9;
 
-    doc.h2("Me contacter");
-    doc.p("Pendant toute la durée du projet, je reste à votre disposition. La meilleure façon de me joindre pour des questions rapides est par email à " + PRESTATAIRE.email + " ou au " + PRESTATAIRE.telephone + ".");
+                p.setFillColor(20,24,28);
+                p.rect(doc.margin, tableY, doc.maxW, rowH, "F");
+                p.setTextColor(255,255,255);
+                p.setFont("helvetica","bold"); p.setFontSize(9.5);
+                p.text("Description", colX[0]+3, tableY+6);
+                p.text("Qté", colX[1]+3, tableY+6);
+                p.text("PU HT", colX[2]+3, tableY+6);
+                p.text("Total HT", colX[3]+3, tableY+6);
+                p.setTextColor(20,24,28);
 
-    doc.gap(6);
-    doc.p("Merci pour votre confiance, et à très vite pour le démarrage créatif !");
-    doc.p(PRESTATAIRE.nom, {bold:true});
+                var desc = "Acompte de " + d.acomptePct + "% sur la prestation : Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
+                p.setFont("helvetica","normal"); p.setFontSize(9.5);
+                var descLines = p.splitTextToSize(desc, colW0-6);
+                var dataRowH = Math.max(rowH, descLines.length*4.6 + 5);
+                p.setDrawColor(216,208,191);
+                p.rect(doc.margin, tableY+rowH, doc.maxW, dataRowH, "S");
+                var ty = tableY + rowH + 6;
+                descLines.forEach(function(l){ p.text(l, colX[0]+3, ty); ty += 4.6;});
+                p.text("1", colX[1]+3, tableY+rowH+6);
+                p.text(fmtEUR(acompte), colX[2]+3, tableY+rowH+6);
+                p.text(fmtEUR(acompte), colX[3]+3, tableY+rowH+6);
 
-    doc.save("Bienvenue_" + slug(d.clientName || prenom) + ".pdf");
-    toast("Document de bienvenue généré ✓");
-  }
+                doc.y = tableY + rowH + dataRowH + 10;
 
-  function generateBrief(){
-    if(!pdfReady()) return;
-    var d = collect();
-    var nomProjet = orText(d.nomProjet, "");
-    var doc = new PDFDoc();
+                var totalsX = doc.pageW - doc.margin;
+                p.setFont("helvetica","normal"); p.setFontSize(10.5);
+                p.text("Total HT : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.text("TVA : 0,00 €", totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.setFont("helvetica","bold"); p.setFontSize(12);
+                p.text("TOTAL À PAYER : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.setFont("helvetica","normal"); p.setFontSize(9);
+                p.text("TVA non applicable, art. 293 B du CGI.", totalsX, doc.y, {align:"right"}); doc.y += 14;
+                p.setFontSize(10.5);
 
-    doc.title("DOCUMENT DE TRAVAIL STRATÉGIQUE" + (nomProjet ? " — " + nomProjet : ""));
-    doc.p("Merci de prendre le temps de remplir ce document le plus précisément possible. Il servira de fondation à tout le travail de conception UI/UX.", {gapAfter:8});
+                doc.hr();
+                doc.h2("Modalités de paiement");
+                doc.p("Par carte bancaire (instantané) : " + orText(d.lienStripe, "lien à venir"));
+                doc.p("Par virement bancaire — IBAN : " + orText(d.iban, "à compléter") + "   ·   BIC : " + orText(d.bic, "à compléter"));
+                doc.gap(4);
+                doc.p("Conditions : en cas de retard de paiement, une pénalité de 3 fois le taux d'intérêt légal sera appliquée, ainsi qu'une indemnité forfaitaire pour frais de recouvrement de 40 €.", {size:9});
 
-    doc.h2("PARTIE 1 : L'entreprise & les objectifs");
-    doc.p("Pitch : pouvez-vous décrire votre activité en 2 ou 3 phrases simples ?");
-    doc.blankLines(2);
-    doc.p("Cible : qui sont vos clients idéaux (âge, profession, problématiques) ?");
-    doc.blankLines(2);
-    doc.p("Objectif n°1 du site : (vendre des produits ? générer des appels/devis ? informer ? récolter des emails ?)");
-    doc.blankLines(2);
-    doc.p("Concurrents : listez 2 ou 3 concurrents directs et indiquez ce que vous aimez ou n'aimez pas chez eux.");
-    doc.blankLines(2);
+                doc.save("Facture_" + d.numeroFacture + ".pdf");
+                toast("Facture générée ✓");
+            }
 
-    doc.h2("PARTIE 2 : Identité visuelle & inspirations (UI)");
-    doc.p("Charte graphique : possédez-vous déjà un logo, des couleurs définies et des typographies ? (si oui, merci de joindre les fichiers)");
-    doc.blankLines(2);
-    doc.p("Mots-clés créatifs : citez 3 mots qui doivent définir l'ambiance de votre site (ex. Moderne, Épuré, Ludique, Premium, Chaleureux…).");
-    doc.blankLines(2);
-    doc.p("Inspirations : avez-vous des liens vers des sites internet dont vous aimez le design ? Qu'aimez-vous spécifiquement chez eux ?");
-    doc.blankLines(2);
+            function generateBienvenue(){
+                if(!pdfReady()) return;
+                var d = collect();
+                var prenom = orText(d.clientPrenom || d.clientName, "à compléter");
+                var doc = new PDFDoc();
 
-    doc.h2("PARTIE 3 : L'arborescence & les contenus (UX)");
-    doc.p("Pages nécessaires : quelles sont les pages indispensables ? (ex. Accueil, À propos, Nos services, Blog, Contact…)");
-    doc.blankLines(2);
-    doc.p("Textes : les textes de ces pages sont-ils rédigés ?");
-    doc.blankLines(2);
-    doc.p("Images / médias : disposez-vous de photos professionnelles, vidéos ou illustrations, ou dois-je prévoir l'utilisation de banques d'images ?");
-    doc.blankLines(2);
+                doc.title("Bienvenue à bord !");
+                doc.p("Lancement de votre projet web", {bold:true, gapAfter:6});
+                doc.p("Bonjour " + prenom + ",");
+                doc.p("Je suis ravi de vous compter parmi mes clients et j'ai hâte de donner vie à votre projet" + (d.nomProjet ? " « " + d.nomProjet + " »" : "") + ". Ce document a pour but de vous guider dans nos premiers pas ensemble afin que tout se déroule de manière fluide et transparente.");
 
-    doc.h2("PARTIE 4 : Fonctionnalités spécifiques (CMS)");
-    doc.p("Avez-vous besoin de fonctionnalités particulières ? (cochez ou précisez)");
-    doc.gap(2);
-    doc.checkbox("Formulaire de contact complexe / demande de devis");
-    doc.checkbox("Prise de rendez-vous en ligne (Calendly, etc.)");
-    doc.checkbox("Inscription à une newsletter");
-    doc.checkbox("Site multilingue");
-    doc.checkbox("Autre : ......................................................");
+                doc.h2("Votre espace client");
+                doc.p("J'ai créé un espace dédié pour centraliser tous nos échanges, documents et validations :");
+                doc.p(orText(d.lienPortail, "lien à venir"), {bold:true});
+                doc.p("Dans cet espace, vous trouverez dès à présent :");
+                doc.p("–  Une copie de notre contrat de prestation signé.");
+                doc.p("–  Votre facture d'acompte (ainsi que les reçus futurs).");
+                doc.p("–  Le suivi d'avancement du projet.");
 
-    doc.hr();
-    doc.p("Une fois ce document rempli, nous le passerons en revue lors de notre appel de lancement !", {bold:true});
+                doc.h2("Les prochaines étapes");
+                doc.p("–  Règlement de l'acompte : permet de bloquer ma disponibilité et de lancer officiellement la production.");
+                doc.p("–  Le document de travail stratégique : vous le trouverez ci-joint (ou sur le portail). Il va m'aider à rassembler vos contenus et comprendre vos attentes précises.");
+                doc.p("–  Réunion de lancement (kick-off) : dès réception du document stratégique rempli, nous fixerons un appel de 45 minutes pour valider ensemble la direction du projet.");
 
-    doc.save("Brief_" + slug(d.nomProjet || d.clientName || "projet") + ".pdf");
-    toast("Brief stratégique généré ✓");
-  }
+                doc.h2("Me contacter");
+                doc.p("Pendant toute la durée du projet, je reste à votre disposition. La meilleure façon de me joindre pour des questions rapides est par email à " + PRESTATAIRE.email + " ou au " + PRESTATAIRE.telephone + ".");
 
-  // ---------- Interface ----------
-  function updateRecap(){
-    var budget = parseFloat(val("budgetTotal")) || 0;
-    var pct = parseFloat(val("acomptePct")) || 0;
-    var acompte = budget * pct / 100;
-    var solde = budget - acompte;
-    $("recapTotal").textContent = fmtEUR(budget);
-    $("recapAcompte").textContent = fmtEUR(acompte) + " (" + pct + "%)";
-    $("recapSolde").textContent = fmtEUR(solde) + " (" + (100 - pct) + "%)";
-  }
-  function updateFilePreviews(){
-    var clientName = val("clientName");
-    var numeroFacture = val("numeroFacture") || defaultNumeroFacture();
-    var nomProjet = val("nomProjet");
-    $("fileContrat").textContent = "Contrat_" + slug(clientName || "client") + ".pdf";
-    $("fileFacture").textContent = "Facture_" + numeroFacture + ".pdf";
-    $("fileBienvenue").textContent = "Bienvenue_" + slug(clientName || "client") + ".pdf";
-    $("fileBrief").textContent = "Brief_" + slug(nomProjet || clientName || "projet") + ".pdf";
-  }
-  function recomputeEcheance(){
-    var emission = val("dateEmission") || todayISO();
-    var delai = val("delaiPaiement") || "30";
-    $("dateEcheance").value = addDays(emission, delai);
-  }
-  function initDefaults(){
-    var iso = todayISO();
-    $("dateEmission").value = iso;
-    $("dateJour").value = iso;
-    $("numeroFacture").value = defaultNumeroFacture();
-    recomputeEcheance();
-  }
+                doc.gap(6);
+                doc.p("Merci pour votre confiance, et à très vite pour le démarrage créatif !");
+                doc.p(PRESTATAIRE.nom, {bold:true});
 
-  document.addEventListener("DOMContentLoaded", function(){
-    initDefaults();
-    updateRecap();
-    updateFilePreviews();
+                doc.save("Bienvenue_" + slug(d.clientName || prenom) + ".pdf");
+                toast("Document de bienvenue généré ✓");
+            }
 
-    $("budgetTotal").addEventListener("input", updateRecap);
-    $("acomptePct").addEventListener("input", updateRecap);
-    $("dateEmission").addEventListener("change", recomputeEcheance);
-    $("delaiPaiement").addEventListener("change", recomputeEcheance);
-    $("clientName").addEventListener("input", updateFilePreviews);
-    $("numeroFacture").addEventListener("input", updateFilePreviews);
-    $("nomProjet").addEventListener("input", updateFilePreviews);
+            function generateBrief(){
+                if(!pdfReady()) return;
+                var d = collect();
+                var nomProjet = orText(d.nomProjet, "");
+                var doc = new PDFDoc();
 
-    $("btnContrat").addEventListener("click", generateContrat);
-    $("btnFacture").addEventListener("click", generateFacture);
-    $("btnBienvenue").addEventListener("click", generateBienvenue);
-    $("btnBrief").addEventListener("click", generateBrief);
-    $("resetBtn").addEventListener("click", function(){
-      $("dossierForm").reset();
-      initDefaults();
-      updateRecap();
-      updateFilePreviews();
-      toast("Formulaire réinitialisé");
-    });
-  });
-})();
-</script>
+                doc.title("DOCUMENT DE TRAVAIL STRATÉGIQUE" + (nomProjet ? " — " + nomProjet : ""));
+                doc.p("Merci de prendre le temps de remplir ce document le plus précisément possible. Il servira de fondation à tout le travail de conception UI/UX.", {gapAfter:8});
+
+                doc.h2("PARTIE 1 : L'entreprise & les objectifs");
+                doc.p("Pitch : pouvez-vous décrire votre activité en 2 ou 3 phrases simples ?");
+                doc.blankLines(2);
+                doc.p("Cible : qui sont vos clients idéaux (âge, profession, problématiques) ?");
+                doc.blankLines(2);
+                doc.p("Objectif n°1 du site : (vendre des produits ? générer des appels/devis ? informer ? récolter des emails ?)");
+                doc.blankLines(2);
+                doc.p("Concurrents : listez 2 ou 3 concurrents directs et indiquez ce que vous aimez ou n'aimez pas chez eux.");
+                doc.blankLines(2);
+
+                doc.h2("PARTIE 2 : Identité visuelle & inspirations (UI)");
+                doc.p("Charte graphique : possédez-vous déjà un logo, des couleurs définies et des typographies ? (si oui, merci de joindre les fichiers)");
+                doc.blankLines(2);
+                doc.p("Mots-clés créatifs : citez 3 mots qui doivent définir l'ambiance de votre site (ex. Moderne, Épuré, Ludique, Premium, Chaleureux…).");
+                doc.blankLines(2);
+                doc.p("Inspirations : avez-vous des liens vers des sites internet dont vous aimez le design ? Qu'aimez-vous spécifiquement chez eux ?");
+                doc.blankLines(2);
+
+                doc.h2("PARTIE 3 : L'arborescence & les contenus (UX)");
+                doc.p("Pages nécessaires : quelles sont les pages indispensables ? (ex. Accueil, À propos, Nos services, Blog, Contact…)");
+                doc.blankLines(2);
+                doc.p("Textes : les textes de ces pages sont-ils rédigés ?");
+                doc.blankLines(2);
+                doc.p("Images / médias : disposez-vous de photos professionnelles, vidéos ou illustrations, ou dois-je prévoir l'utilisation de banques d'images ?");
+                doc.blankLines(2);
+
+                doc.h2("PARTIE 4 : Fonctionnalités spécifiques (CMS)");
+                doc.p("Avez-vous besoin de fonctionnalités particulières ? (cochez ou précisez)");
+                doc.gap(2);
+                doc.checkbox("Formulaire de contact complexe / demande de devis");
+                doc.checkbox("Prise de rendez-vous en ligne (Calendly, etc.)");
+                doc.checkbox("Inscription à une newsletter");
+                doc.checkbox("Site multilingue");
+                doc.checkbox("Autre : ......................................................");
+
+                doc.hr();
+                doc.p("Une fois ce document rempli, nous le passerons en revue lors de notre appel de lancement !", {bold:true});
+
+                doc.save("Brief_" + slug(d.nomProjet || d.clientName || "projet") + ".pdf");
+                toast("Brief stratégique généré ✓");
+            }
+
+            function showStep(n){
+                currentStep = n;
+                document.querySelectorAll(".Panel").forEach(function(p){
+                    p.classList.toggle("Active", Number(p.dataset.step) === n);
+                });
+
+                updateProgressBar(n);
+                window.scrollTo({top:0, behavior:"smooth"});
+            }
+
+            function updateProgressBar(n){
+                document.querySelectorAll(".Dots").forEach(function(dot){
+                    var num = Number(dot.dataset.dot);
+                    dot.classList.remove("Active","Done");
+                    if(num < n) dot.classList.add("Done");
+                    else if(num === n) dot.classList.add("Active");
+                });
+
+                document.querySelectorAll(".Lines").forEach(function(line){
+                    var num = Number(line.dataset.line);
+                    line.classList.toggle("Done", num < n);
+                });
+            }
+
+            function nextStep(){
+                if(currentStep === 1 && !requireOK(val("clientName"), "clientName", "Merci de renseigner le nom du client avant de continuer.")) return;
+                if(currentStep === 3 && !val("budgetTotal")){
+                    toast("Merci d'indiquer le budget total avant de continuer.", "warn");
+                    focusField("budgetTotal");
+                    return;
+                }
+
+                if(currentStep < totalSteps) showStep(currentStep + 1);
+            }
+
+            function prevStep(){ if(currentStep > 1) showStep(currentStep - 1); }
+
+            function updateSidebar(){
+                var clientName = val("clientName");
+                var nomProjet = val("nomProjet");
+                var cms = getCmsValue();
+                var budget = parseFloat(val("budgetTotal")) || 0;
+                var pct = parseFloat(val("acomptePct")) || 0;
+                var acompte = budget * pct / 100;
+                var solde = budget - acompte;
+
+                $("recapTotalDisplay").textContent = budget ? fmtEUR(budget) : "— €";
+                $("recapPct").textContent = pct;
+                $("recapPctReste").textContent = 100 - pct;
+                $("recapAcompte").textContent = fmtEUR(acompte);
+                $("recapSolde").textContent = fmtEUR(solde);
+                $("recapTotal2").textContent = fmtEUR(budget);
+
+                var hasAny = !!(clientName || nomProjet || cms);
+                $("breakdownPlaceholder").style.display = hasAny ? "none" : "block";
+                $("breakdownDetails").style.display = hasAny ? "block" : "none";
+                if(hasAny){
+                    $("dClient").textContent = clientName || "—";
+                    $("dProjet").textContent = nomProjet || "—";
+                    $("dCms").textContent = cms || "—";
+                }
+
+                var numeroFacture = val("numeroFacture") || defaultNumeroFacture();
+                $("recapNote").textContent = "Facture " + numeroFacture + " · échéance " + orDate(val("dateEcheance"));
+
+                var mtotal = $("mobileTotal");
+                if(mtotal) mtotal.textContent = budget ? fmtEUR(budget) : "— €";
+
+                updateFilePreviews();
+            }
+
+            function updateFilePreviews(){
+                var clientName = val("clientName");
+                var numeroFacture = val("numeroFacture") || defaultNumeroFacture();
+                var nomProjet = val("nomProjet");
+                $("fileContrat").textContent = "Contrat_" + slug(clientName || "client") + ".pdf";
+                $("fileFacture").textContent = "Facture_" + numeroFacture + ".pdf";
+                $("fileBienvenue").textContent = "Bienvenue_" + slug(clientName || "client") + ".pdf";
+                $("fileBrief").textContent = "Brief_" + slug(nomProjet || clientName || "projet") + ".pdf";
+            }
+
+            function recomputeEcheance(){
+                var emission = val("dateEmission") || todayISO();
+                var delai = getDelaiValue();
+                $("dateEcheance").value = addDays(emission, delai);
+            }
+
+            function initDefaults(){
+                var iso = todayISO();
+                $("dateEmission").value = iso;
+                $("dateJour").value = iso;
+                $("numeroFacture").value = defaultNumeroFacture();
+                recomputeEcheance();
+            }
+
+            function initFloatingLabels(){
+                document.querySelectorAll(".InputGroup .Input").forEach(function(el){
+                    function sync(){ el.classList.toggle("HasValue", !!(el.value && el.value.trim() !== "")); }
+                    el.addEventListener("input", sync);
+                    el.addEventListener("blur", sync);
+                    sync();
+                });
+            }
+
+            function resetAll(){
+                $("dossierForm").reset();
+                $("cmsAutreWrap").style.display = "none";
+                initDefaults();
+                document.querySelectorAll(".InputGroup .Input").forEach(function(el){
+                    el.classList.toggle("HasValue", !!(el.value && el.value.trim() !== ""));
+                });
+
+                updateSidebar();
+                showStep(1);
+                toast("Formulaire réinitialisé");
+            }
+
+            document.addEventListener("DOMContentLoaded", function(){
+                initDefaults();
+                initFloatingLabels();
+                updateSidebar();
+
+                document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", nextStep);});
+                document.querySelectorAll("[data-prev]").forEach(function(b){ b.addEventListener("click", prevStep);});
+
+                document.querySelectorAll('input[name="cmsRadio"]').forEach(function(r){
+                    r.addEventListener("change", function(){
+                    $("cmsAutreWrap").style.display = (this.value === "autre") ? "block" : "none";
+                    updateSidebar();
+                });
+            });
+
+            document.querySelectorAll('input[name="delaiPaiement"]').forEach(function(r){
+                r.addEventListener("change", function(){ recomputeEcheance(); updateSidebar();});
+            });
+
+            ["clientName","nomProjet","cmsAutre","budgetTotal","acomptePct","numeroFacture"].forEach(function(id){
+                var el = $(id);
+                if(el) el.addEventListener("input", updateSidebar);
+            });
+
+                $("dateEmission").addEventListener("change", function(){ recomputeEcheance(); updateSidebar();});
+                $("dateEcheance").addEventListener("change", updateSidebar);
+
+                $("btnContrat").addEventListener("click", generateContrat);
+                $("btnFacture").addEventListener("click", generateFacture);
+                $("btnBienvenue").addEventListener("click", generateBienvenue);
+                $("btnBrief").addEventListener("click", generateBrief);
+                $("resetBtn").addEventListener("click", resetAll);
+            });
+        })();
+    </script>
 </body>
 </html>
