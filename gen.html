@@ -492,6 +492,28 @@
                 bic: ""     // ex : "XXXXXXXX"
             };
 
+            var LOGO_URL = "assets/logo.png";
+            window.LOGO_DATA_URL = null;
+            window.LOGO_DIMS = null;
+            function preloadLogo(){
+                try{
+                    var img = new Image();
+                    img.crossOrigin = "anonymous";
+                    img.onload = function(){
+                        try{
+                            var canvas = document.createElement("canvas");
+                            canvas.width = img.naturalWidth;
+                            canvas.height = img.naturalHeight;
+                            canvas.getContext("2d").drawImage(img, 0, 0);
+                            window.LOGO_DATA_URL = canvas.toDataURL("image/png");
+                            window.LOGO_DIMS = {w: img.naturalWidth, h: img.naturalHeight};
+                        }catch(e){ window.LOGO_DATA_URL = null; }
+                    };
+                    img.onerror = function(){ window.LOGO_DATA_URL = null; };
+                    img.src = LOGO_URL;
+                }catch(e){ window.LOGO_DATA_URL = null; }
+            }
+
             var currentStep = 1;
             var totalSteps = 5;
             var FIELD_STEP = {
@@ -620,47 +642,134 @@
                 };
             }
 
-            function PDFDoc(){
+            var PDF_COLOR = {
+                primary: [32,126,222],
+                primaryDark: [19,76,133],
+                charcoal: [28,28,30],
+                muted: [119,119,119],
+                lightRule: [196,213,238]
+            };
+
+            function PDFDoc(docTitle){
                 var jsPDF = window.jspdf.jsPDF;
                 this.doc = new jsPDF({unit:"mm", format:"a4"});
                 this.margin = 20;
                 this.pageW = 210;
                 this.pageH = 297;
                 this.maxW = this.pageW - this.margin*2;
-                this.y = this.margin;
+                this.docTitle = docTitle || "";
                 this.doc.setFont("helvetica","normal");
                 this.doc.setFontSize(10.5);
+                this.doc.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
+                this.y = this.margin;
+                this.drawBanner();
             }
+
+            PDFDoc.prototype.drawBanner = function(){
+                var doc = this.doc;
+                var bannerH = 34;
+
+                doc.setFillColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
+                doc.rect(0, 0, this.pageW, bannerH, "F");
+                doc.setFillColor(PDF_COLOR.primaryDark[0], PDF_COLOR.primaryDark[1], PDF_COLOR.primaryDark[2]);
+                doc.rect(0, bannerH, this.pageW, 1.4, "F");
+
+                var logoW = 16, logoH = logoW * 4/3;
+                var logoX = this.margin, logoY = (bannerH - logoH) / 2;
+
+                if(window.LOGO_DATA_URL && window.LOGO_DIMS){
+                    var ratio = window.LOGO_DIMS.w / window.LOGO_DIMS.h;
+                    var boxRatio = logoW / logoH;
+                    var drawW, drawH;
+                    if(ratio > boxRatio){ drawW = logoW; drawH = logoW / ratio; }
+                    else { drawH = logoH; drawW = logoH * ratio; }
+                    var dx = logoX + (logoW - drawW) / 2;
+                    var dy = logoY + (logoH - drawH) / 2;
+                    try{ doc.addImage(window.LOGO_DATA_URL, "PNG", dx, dy, drawW, drawH); }
+                    catch(e){ this._drawLogoFallback(logoX, logoY, logoW, logoH); }
+                } else {
+                    this._drawLogoFallback(logoX, logoY, logoW, logoH);
+                }
+
+                var titleX = logoX + logoW + 9;
+                var titleMaxW = this.pageW - titleX - this.margin;
+
+                doc.setTextColor(255,255,255);
+                doc.setFont("helvetica","bold");
+                doc.setFontSize(8.5);
+                doc.text("LENNOUILLE", titleX, bannerH/2 - 6);
+
+                doc.setFontSize(14.5);
+                var lines = doc.splitTextToSize((this.docTitle || "").toUpperCase(), titleMaxW).slice(0,2);
+                var startY = bannerH/2 + (lines.length > 1 ? -1 : 2.5);
+                var self = this;
+                lines.forEach(function(l, i){ doc.text(l, titleX, startY + i*6.5); });
+
+                doc.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
+                doc.setFont("helvetica","normal");
+                doc.setFontSize(10.5);
+                this.y = bannerH + 14;
+            };
+
+            PDFDoc.prototype._drawLogoFallback = function(x, y, w, h){
+                var doc = this.doc;
+                doc.setFillColor(255,255,255);
+                doc.roundedRect(x, y, w, h, 2, 2, "F");
+                doc.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
+                doc.setFont("helvetica","bold");
+                doc.setFontSize(17);
+                doc.text("L", x + w/2, y + h/2 + 3, {align:"center"});
+            };
+
+            PDFDoc.prototype.drawMiniHeader = function(){
+                var doc = this.doc;
+                doc.setFillColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
+                doc.rect(0, 0, this.pageW, 12, "F");
+                doc.setTextColor(255,255,255);
+                doc.setFont("helvetica","bold");
+                doc.setFontSize(8.5);
+                doc.text("LENNOUILLE", this.margin, 7.5);
+                doc.setFont("helvetica","normal");
+                doc.setFontSize(8);
+                doc.text((this.docTitle || "").toUpperCase(), this.pageW - this.margin, 7.5, {align:"right", maxWidth:120});
+                doc.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
+                doc.setFont("helvetica","normal");
+                doc.setFontSize(10.5);
+            };
+
+            PDFDoc.prototype.drawFooter = function(){
+                var doc = this.doc;
+                var total = doc.internal.getNumberOfPages();
+                for(var i=1;i<=total;i++){
+                    doc.setPage(i);
+                    doc.setDrawColor(PDF_COLOR.lightRule[0], PDF_COLOR.lightRule[1], PDF_COLOR.lightRule[2]);
+                    doc.setLineWidth(0.3);
+                    doc.line(this.margin, this.pageH-14, this.pageW-this.margin, this.pageH-14);
+                    doc.setFont("helvetica","normal");
+                    doc.setFontSize(8);
+                    doc.setTextColor(PDF_COLOR.muted[0], PDF_COLOR.muted[1], PDF_COLOR.muted[2]);
+                    doc.text("Lennouille", this.margin, this.pageH-9);
+                    doc.text("Page " + i + " / " + total, this.pageW-this.margin, this.pageH-9, {align:"right"});
+                }
+                doc.setPage(total);
+            };
 
             PDFDoc.prototype.break_ = function(h){
                 if(this.y + h > this.pageH - this.margin){
                     this.doc.addPage();
-                    this.y = this.margin;
+                    this.drawMiniHeader();
+                    this.y = 22;
                 }
             };
 
             PDFDoc.prototype.gap = function(h){ this.y += (h === undefined ? 4 : h); };
             PDFDoc.prototype.hr = function(){
                 this.break_(6);
-                this.doc.setDrawColor(216,208,191);
+                this.doc.setDrawColor(PDF_COLOR.lightRule[0], PDF_COLOR.lightRule[1], PDF_COLOR.lightRule[2]);
+                this.doc.setLineWidth(0.5);
                 this.doc.line(this.margin, this.y, this.pageW - this.margin, this.y);
+                this.doc.setLineWidth(0.2);
                 this.y += 7;
-            };
-
-            PDFDoc.prototype.title = function(text){
-                this.break_(16);
-                this.doc.setFont("helvetica","bold");
-                this.doc.setFontSize(15);
-                var lines = this.doc.splitTextToSize(text, this.maxW);
-                var self = this;
-                lines.forEach(function(l){
-                self.doc.text(l, self.pageW/2, self.y, {align:"center"});
-                self.y += 7;
-            });
-
-                this.y += 3;
-                this.doc.setFont("helvetica","normal");
-                this.doc.setFontSize(10.5);
             };
 
             PDFDoc.prototype.h2 = function(text){
@@ -668,8 +777,10 @@
                 this.gap(3);
                 this.doc.setFont("helvetica","bold");
                 this.doc.setFontSize(11.5);
+                this.doc.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
                 this.doc.text(text, this.margin, this.y);
                 this.y += 6.5;
+                this.doc.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 this.doc.setFont("helvetica","normal");
                 this.doc.setFontSize(10.5);
             };
@@ -680,6 +791,7 @@
                 var bold = !!opts.bold;
                 this.doc.setFont("helvetica", bold ? "bold" : "normal");
                 this.doc.setFontSize(size);
+                if(opts.color) this.doc.setTextColor(opts.color[0], opts.color[1], opts.color[2]);
                 var lines = this.doc.splitTextToSize(text, opts.maxW || this.maxW);
                 var self = this;
                 lines.forEach(function(line){
@@ -688,6 +800,7 @@
                     self.y += size * 0.52;
                 });
 
+                this.doc.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 this.doc.setFont("helvetica","normal");
                 this.doc.setFontSize(10.5);
                 var gapAfter = (opts.gapAfter === undefined) ? 2 : opts.gapAfter;
@@ -707,8 +820,10 @@
 
             PDFDoc.prototype.checkbox = function(label){
                 this.break_(7);
-                this.doc.setDrawColor(20,24,28);
+                this.doc.setDrawColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
+                this.doc.setLineWidth(0.4);
                 this.doc.rect(this.margin, this.y - 3.2, 4, 4);
+                this.doc.setLineWidth(0.2);
                 this.doc.setFontSize(10.5);
                 this.doc.text(label, this.margin + 7, this.y);
                 this.y += 6.5;
@@ -727,7 +842,10 @@
                 this.y += 2;
             };
 
-            PDFDoc.prototype.save = function(filename){ this.doc.save(filename); };
+            PDFDoc.prototype.save = function(filename){
+                this.drawFooter();
+                this.doc.save(filename);
+            };
 
             function generateContrat(){
                 if(!pdfReady()) return;
@@ -735,9 +853,8 @@
                 if(!requireOK(d.clientName, "clientName", "Merci de renseigner le nom du client avant de générer le contrat.")) return;
                 var acompte = d.budgetTotal * d.acomptePct / 100;
                 var solde = d.budgetTotal - acompte;
-                var doc = new PDFDoc();
+                var doc = new PDFDoc("Contrat de prestation de services");
 
-                doc.title("CONTRAT DE PRESTATION DE SERVICES");
                 doc.p("ENTRE LES SOUSSIGNÉS :", {bold:true, gapAfter:3});
                 doc.p("Nom de l'Entreprise : " + PRESTATAIRE.nomEntreprise, {bold:true, gapAfter:1});
                 doc.p(PRESTATAIRE.nom + " — Entrepreneur individuel");
@@ -805,8 +922,9 @@
                 }
 
                 var acompte = d.budgetTotal * d.acomptePct / 100;
-                var doc = new PDFDoc();
+                var doc = new PDFDoc("Facture d'acompte");
                 var p = doc.doc;
+                var yStart = doc.y;
                     p.setFont("helvetica","bold"); p.setFontSize(13);
                     p.text(PRESTATAIRE.nomEntreprise, doc.margin, doc.y); doc.y += 6;
                     p.setFont("helvetica","normal"); p.setFontSize(10);
@@ -814,9 +932,11 @@
                     p.text(l, doc.margin, doc.y); doc.y += 5;
                 });
 
-                var yRight = doc.margin;
+                var yRight = yStart;
                 p.setFont("helvetica","bold"); p.setFontSize(10);
+                p.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
                 p.text("Facturé à :", doc.pageW - doc.margin, yRight, {align:"right"}); yRight += 6;
+                p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 p.setFont("helvetica","normal");
                 [orText(d.clientName), orText(d.clientAddress), d.clientEmail || ""].filter(Boolean).forEach(function(block){
                     var lines = p.splitTextToSize(block, 75);
@@ -827,7 +947,9 @@
                 doc.hr();
 
                 p.setFont("helvetica","bold"); p.setFontSize(13);
+                p.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
                 p.text("FACTURE N° " + d.numeroFacture, doc.margin, doc.y); doc.y += 8;
+                p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 p.setFont("helvetica","normal"); p.setFontSize(10.5);
                 doc.labelValue("Date d'émission : ", orDate(d.dateEmission));
                 doc.labelValue("Date d'échéance : ", orDate(d.dateEcheance));
@@ -838,7 +960,7 @@
                 var colW0 = 95;
                 var rowH = 9;
 
-                p.setFillColor(20,24,28);
+                p.setFillColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
                 p.rect(doc.margin, tableY, doc.maxW, rowH, "F");
                 p.setTextColor(255,255,255);
                 p.setFont("helvetica","bold"); p.setFontSize(9.5);
@@ -846,13 +968,13 @@
                 p.text("Qté", colX[1]+3, tableY+6);
                 p.text("PU HT", colX[2]+3, tableY+6);
                 p.text("Total HT", colX[3]+3, tableY+6);
-                p.setTextColor(20,24,28);
+                p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
 
                 var desc = "Acompte de " + d.acomptePct + "% sur la prestation : Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
                 p.setFont("helvetica","normal"); p.setFontSize(9.5);
                 var descLines = p.splitTextToSize(desc, colW0-6);
                 var dataRowH = Math.max(rowH, descLines.length*4.6 + 5);
-                p.setDrawColor(216,208,191);
+                p.setDrawColor(PDF_COLOR.lightRule[0], PDF_COLOR.lightRule[1], PDF_COLOR.lightRule[2]);
                 p.rect(doc.margin, tableY+rowH, doc.maxW, dataRowH, "S");
                 var ty = tableY + rowH + 6;
                 descLines.forEach(function(l){ p.text(l, colX[0]+3, ty); ty += 4.6;});
@@ -867,7 +989,9 @@
                 p.text("Total HT : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.text("TVA : 0,00 €", totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.setFont("helvetica","bold"); p.setFontSize(12);
+                p.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
                 p.text("TOTAL À PAYER : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 p.setFont("helvetica","normal"); p.setFontSize(9);
                 p.text("TVA non applicable, art. 293 B du CGI.", totalsX, doc.y, {align:"right"}); doc.y += 14;
                 p.setFontSize(10.5);
@@ -887,9 +1011,8 @@
                 if(!pdfReady()) return;
                 var d = collect();
                 var prenom = orText(d.clientPrenom || d.clientName, "à compléter");
-                var doc = new PDFDoc();
+                var doc = new PDFDoc("Bienvenue à bord !");
 
-                doc.title("Bienvenue à bord !");
                 doc.p("Lancement de votre projet web", {bold:true, gapAfter:6});
                 doc.p("Bonjour " + prenom + ",");
                 doc.p("Je suis ravi de vous compter parmi mes clients et j'ai hâte de donner vie à votre projet" + (d.nomProjet ? " « " + d.nomProjet + " »" : "") + ". Ce document a pour but de vous guider dans nos premiers pas ensemble afin que tout se déroule de manière fluide et transparente.");
@@ -922,9 +1045,8 @@
                 if(!pdfReady()) return;
                 var d = collect();
                 var nomProjet = orText(d.nomProjet, "");
-                var doc = new PDFDoc();
+                var doc = new PDFDoc("Document de travail stratégique" + (nomProjet ? " — " + nomProjet : ""));
 
-                doc.title("DOCUMENT DE TRAVAIL STRATÉGIQUE" + (nomProjet ? " — " + nomProjet : ""));
                 doc.p("Merci de prendre le temps de remplir ce document le plus précisément possible. Il servira de fondation à tout le travail de conception UI/UX.", {gapAfter:8});
 
                 doc.h2("PARTIE 1 : L'entreprise & les objectifs");
@@ -1090,6 +1212,7 @@
                 initDefaults();
                 initFloatingLabels();
                 updateSidebar();
+                preloadLogo();
 
                 document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", nextStep);});
                 document.querySelectorAll("[data-prev]").forEach(function(b){ b.addEventListener("click", prevStep);});
