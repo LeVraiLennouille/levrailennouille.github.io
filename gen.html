@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Générateur de documents — Lennouille</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://levrailennouille.github.io/">
     <link href="style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
@@ -133,7 +134,6 @@
         #RecapSidebar{
             width:360px; flex-shrink:0; border-left:1px solid var(--Primary);
             position:fixed; right:0; top:0; height:100vh; overflow-y:auto; padding:36px 28px; z-index:20;
-            background:linear-gradient(180deg, rgba(232,226,216,.55), rgba(232,226,216,.92));
             backdrop-filter:blur(6px);
         }
         .SidebarEyebrow{ font-size:14px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
@@ -149,7 +149,7 @@
         .Details:last-child{ border-bottom:none; }
         .DetailsLabel{ color:var(--Muted); flex-shrink:0; }
         .DetailsValue{ font-weight:600; color:var(--Charcoal); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .PriceTable{ margin-top:22px; padding:16px; border-radius:12px; border:1px solid var(--Primary); background:rgba(255,255,255,.5); }
+        .PriceTable{ margin-top:22px; padding:16px; border-radius:12px; border:1px solid var(--Primary);}
         .PriceRow{ display:flex; justify-content:space-between; font-size:12px; margin-bottom:10px; }
         .PriceRow:last-of-type{ margin-bottom:0; }
         .PriceRow .Label{ color:var(--Muted); }
@@ -236,28 +236,40 @@
                             </div>
                             <div class="FormGrid">
                                 <div class="InputGroup ColFull">
-                                    <input type="text" id="clientName" class="Input" required>
+                                    <input type="text" id="clientName" autocomplete="organization" class="Input" required>
                                     <label class="Label" for="clientName">Nom de l'entreprise</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="clientContact" class="Input">
+                                    <input type="text" id="clientContact" autocomplete="family-name" class="Input">
                                     <label class="Label" for="clientContact">Nom du client</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="clientPrenom" class="Input">
+                                    <input type="text" id="clientPrenom" autocomplete="given-name" class="Input">
                                     <label class="Label" for="clientPrenom">Prénom du client</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="email" id="clientEmail" class="Input">
+                                    <input type="email" id="clientEmail" autocomplete="email" class="Input">
                                     <label class="Label" for="clientEmail">Email du client</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="clientSiret" class="Input">
+                                    <input type="text" id="clientSiret" autocomplete="off" class="Input">
                                     <label class="Label" for="clientSiret">SIRET de l'entreprise</label>
                                 </div>
                                 <div class="InputGroup ColFull">
-                                    <textarea id="clientAddress" class="Input" rows="2"></textarea>
-                                    <label class="Label" for="clientAddress">Adresse de l'entreprise</label>
+                                    <input type="text" id="clientAddressRue" class="Input" autocomplete="address-line1">
+                                    <label class="Label" for="clientAddressRue">Rue</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="clientAddressVille" class="Input" autocomplete="address-level2">
+                                    <label class="Label" for="clientAddressVille">Ville</label>
+                                </div>
+                                <div class="InputGroup">
+                                    <input type="text" id="clientAddressCP" class="Input" autocomplete="postal-code">
+                                    <label class="Label" for="clientAddressCP">Code postal</label>
+                                </div>
+                                <div class="InputGroup ColFull">
+                                    <input type="text" id="clientAddressPays" class="Input" autocomplete="country-name" value="France">
+                                    <label class="Label" for="clientAddressPays">Pays</label>
                                 </div>
                             </div>
                             <div class="FormNav">
@@ -273,54 +285,29 @@
                             </div>
                             <div class="FormGrid">
                                 <div class="InputGroup ColFull">
-                                    <input type="text" id="nomProjet" class="Input">
+                                    <input type="text" id="nomProjet" autocomplete="off" class="Input">
                                     <label class="Label" for="nomProjet">Nom du projet</label>
-                                </div>
-                            </div>
-                            <div class="RadioBlock">
-                                <div class="Title">CMS utilisé</div>
-                                <div class="ChoiceList ChoiceListGrid">
-                                    <div class="ChoiceCard">
-                                        <input type="radio" name="cmsRadio" id="cmsWordPress" value="WordPress">
-                                        <label for="cmsWordPress"><span class="LabelMain">WordPress</span></label>
-                                    </div>
-                                    <div class="ChoiceCard">
-                                        <input type="radio" name="cmsRadio" id="cmsWebflow" value="Webflow">
-                                        <label for="cmsWebflow"><span class="LabelMain">Webflow</span></label>
-                                    </div>
-                                    <div class="ChoiceCard">
-                                        <input type="radio" name="cmsRadio" id="cmsShopify" value="Shopify">
-                                        <label for="cmsShopify"><span class="LabelMain">Shopify</span></label>
-                                    </div>
-                                    <div class="ChoiceCard">
-                                        <input type="radio" name="cmsRadio" id="cmsAutreRadio" value="autre">
-                                        <label for="cmsAutreRadio"><span class="LabelMain">Autre</span></label>
-                                    </div>
-                                </div>
-                                <div class="InputGroup" id="cmsAutreWrap" style="display:none; margin-top:14px;">
-                                    <input type="text" id="cmsAutre" class="Input">
-                                    <label class="Label" for="cmsAutre">Précise le CMS</label>
                                 </div>
                             </div>
                             <div class="FormGrid" style="margin-top:22px;">
                                 <div class="FormGroup">
                                     <label class="Label" for="dateDebut">Date de début</label>
-                                    <input type="date" id="dateDebut" class="Input">
+                                    <input type="date" id="dateDebut" autocomplete="off" class="Input">
                                 </div>
                                 <div class="FormGroup">
                                     <label class="Label" for="dateLivraison">Date de livraison prévue</label>
-                                    <input type="date" id="dateLivraison" class="Input">
+                                    <input type="date" id="dateLivraison" autocomplete="off" class="Input">
                                 </div>
                                 <div class="FormGroup">
                                     <label class="Label" for="nbRevisions">Révisions incluses par phase</label>
-                                    <input type="number" min="0" id="nbRevisions" class="Input" value="2">
+                                    <input type="number" min="0" id="nbRevisions" autocomplete="off" class="Input" value="2">
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="autreLivrable" class="Input">
+                                    <input type="text" id="autreLivrable" autocomplete="off" class="Input">
                                     <label class="Label" for="autreLivrable">Autre livrable (optionnel)</label>
                                 </div>
                                 <div class="InputGroup ColFull">
-                                    <input type="text" id="lienPortail" class="Input">
+                                    <input type="text" id="lienPortail" autocomplete="url" class="Input">
                                     <label class="Label" for="lienPortail">Lien vers l'espace client</label>
                                 </div>
                             </div>
@@ -338,53 +325,53 @@
                             <div class="FormGrid">
                                 <div class="FormGroup">
                                     <label class="Label" for="budgetTotal">Budget total HT (€) <span class="Accent">*</span></label>
-                                    <input type="number" min="0" step="0.01" id="budgetTotal" class="Input" placeholder="0,00">
+                                    <input type="number" min="0" step="0.01" id="budgetTotal" autocomplete="off" class="Input" placeholder="0,00">
                                 </div>
                                 <div class="FormGroup">
                                     <label class="Label" for="acomptePct">Acompte (%)</label>
-                                    <input type="number" min="0" max="100" id="acomptePct" class="Input" value="30">
+                                    <input type="number" min="0" max="100" id="acomptePct" autocomplete="off" class="Input" value="30">
                                 </div>
                             </div>
                             <div class="RadioBlock">
                                 <div class="Title">Délai de paiement</div>
                                 <div class="ChoiceList ChoiceListGrid">
                                     <div class="ChoiceCard">
-                                        <input type="radio" name="delaiPaiement" id="delai15" value="15">
+                                        <input type="radio" name="delaiPaiement" id="delai15" autocomplete="off" value="15">
                                         <label for="delai15"><span class="LabelMain">15 jours</span></label>
                                     </div>
                                     <div class="ChoiceCard">
-                                        <input type="radio" name="delaiPaiement" id="delai30" value="30" checked>
+                                        <input type="radio" name="delaiPaiement" id="delai30" autocomplete="off" value="30" checked>
                                         <label for="delai30"><span class="LabelMain">30 jours</span></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="FormGrid" style="margin-top:22px;">
                                 <div class="InputGroup">
-                                    <input type="text" id="numeroDevis" class="Input">
+                                    <input type="text" id="numeroDevis" autocomplete="off" class="Input">
                                     <label class="Label" for="numeroDevis">Numéro du devis</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="numeroFacture" class="Input">
+                                    <input type="text" id="numeroFacture" autocomplete="off" class="Input">
                                     <label class="Label" for="numeroFacture">Numéro de facture</label>
                                 </div>
                                 <div class="FormGroup">
                                     <label class="Label" for="dateEmission">Date d'émission</label>
-                                    <input type="date" id="dateEmission" class="Input">
+                                    <input type="date" id="dateEmission" autocomplete="off" class="Input">
                                 </div>
                                 <div class="FormGroup">
                                     <label class="Label" for="dateEcheance">Date d'échéance</label>
-                                    <input type="date" id="dateEcheance" class="Input">
+                                    <input type="date" id="dateEcheance" autocomplete="off" class="Input">
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="lienStripe" class="Input">
+                                    <input type="text" id="lienStripe" autocomplete="url" class="Input">
                                     <label class="Label" for="lienStripe">Lien de paiement Stripe</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="iban" class="Input">
+                                    <input type="text" id="iban" autocomplete="off" class="Input">
                                     <label class="Label" for="iban">IBAN</label>
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="bic" class="Input">
+                                    <input type="text" id="bic" autocomplete="off" class="Input">
                                     <label class="Label" for="bic">BIC</label>
                                 </div>
                             </div>
@@ -402,10 +389,10 @@
                             <div class="FormGrid">
                                 <div class="FormGroup">
                                     <label class="Label" for="dateJour">Date de signature</label>
-                                    <input type="date" id="dateJour" class="Input">
+                                    <input type="date" id="dateJour" autocomplete="off" class="Input">
                                 </div>
                                 <div class="InputGroup">
-                                    <input type="text" id="lieuSignature" class="Input" value="Cormontreuil">
+                                    <input type="text" id="lieuSignature" autocomplete="address-level2" class="Input" value="Cormontreuil">
                                     <label class="Label" for="lieuSignature">Lieu de signature</label>
                                 </div>
                             </div>
@@ -467,15 +454,14 @@
                 <div id="breakdownDetails" style="display:none;">
                     <div class="Details"><span class="DetailsLabel">Client</span><span class="DetailsValue" id="dClient">—</span></div>
                     <div class="Details"><span class="DetailsLabel">Projet</span><span class="DetailsValue" id="dProjet">—</span></div>
-                    <div class="Details"><span class="DetailsLabel">CMS</span><span class="DetailsValue" id="dCms">—</span></div>
                 </div>
+                <div class="DaysNote" id="recapNote">Facture — · échéance —</div>
                 <div class="PriceTable">
                     <div class="PriceRow"><span class="Label">Acompte (<span id="recapPct">30</span>%)</span><span class="Value" id="recapAcompte">0,00 €</span></div>
                     <div class="PriceRow"><span class="Label">Solde (<span id="recapPctReste">70</span>%)</span><span class="Value" id="recapSolde">0,00 €</span></div>
                     <div class="Separator"></div>
                     <div class="PriceTotalRow"><span class="TotalLabel">TOTAL HT</span><span class="TotalValue" id="recapTotal2">0,00 €</span></div>
                 </div>
-                <div class="DaysNote" id="recapNote">Facture — · échéance —</div>
             </aside>
         </div>
         <div class="MobileBar">
@@ -500,11 +486,18 @@
                 telephone: "06 52 51 49 19"
             };
 
+            var PAIEMENT = {
+                stripe: "", // ex : "https://buy.stripe.com/xxxxxxxx"
+                iban: "",   // ex : "FR76 XXXX XXXX XXXX XXXX XXXX XXX"
+                bic: ""     // ex : "XXXXXXXX"
+            };
+
             var currentStep = 1;
             var totalSteps = 5;
             var FIELD_STEP = {
-                clientName:1, clientContact:1, clientPrenom:1, clientEmail:1, clientAddress:1, clientSiret:1,
-                nomProjet:2, dateDebut:2, dateLivraison:2, nbRevisions:2, autreLivrable:2, lienPortail:2, cmsAutre:2,
+                clientName:1, clientContact:1, clientPrenom:1, clientEmail:1, clientSiret:1,
+                clientAddressRue:1, clientAddressVille:1, clientAddressCP:1, clientAddressPays:1,
+                nomProjet:2, dateDebut:2, dateLivraison:2, nbRevisions:2, autreLivrable:2, lienPortail:2,
                 budgetTotal:3, acomptePct:3, numeroDevis:3, numeroFacture:3, dateEmission:3, dateEcheance:3, lienStripe:3, iban:3, bic:3,
                 dateJour:4, lieuSignature:4
             };
@@ -586,28 +579,27 @@
                 return true;
             }
 
-            function getCmsValue(){
-                var checked = document.querySelector('input[name="cmsRadio"]:checked');
-                if(!checked) return "";
-                if(checked.value === "autre") return val("cmsAutre");
-                return checked.value;
-            }
-
             function getDelaiValue(){
                 var checked = document.querySelector('input[name="delaiPaiement"]:checked');
                 return checked ? checked.value : "30";
             }
 
             function collect(){
+                var addrRue = val("clientAddressRue");
+                var addrVille = val("clientAddressVille");
+                var addrCP = val("clientAddressCP");
+                var addrPays = val("clientAddressPays");
+                var addrLigne2 = [addrCP, addrVille].filter(Boolean).join(" ");
+                var clientAddress = [addrRue, addrLigne2, addrPays].filter(Boolean).join(", ");
+
                 return {
                     clientName: val("clientName"),
                     clientContact: val("clientContact"),
                     clientPrenom: val("clientPrenom"),
                     clientEmail: val("clientEmail"),
-                    clientAddress: val("clientAddress"),
+                    clientAddress: clientAddress,
                     clientSiret: val("clientSiret"),
                     nomProjet: val("nomProjet"),
-                    cms: getCmsValue(),
                     dateDebut: val("dateDebut"),
                     dateLivraison: val("dateLivraison"),
                     nbRevisions: val("nbRevisions") || "2",
@@ -769,7 +761,7 @@
                 doc.p("La prestation comprend les étapes et livrables suivants :");
                 doc.p("Phase 1 : Recherche UX et architecture de l'information (Wireframes).");
                 doc.p("Phase 2 : Design d'interface UI (Maquettes graphiques sur Figma).");
-                doc.p("Phase 3 : Intégration et développement sur le CMS " + orText(d.cms, "à définir avec le client") + ".");
+                doc.p("Phase 3 : Intégration et développement sur le CMS retenu avec le client.");
                 doc.p("Phase 4 : Tests, recettage et mise en ligne.");
                 doc.p("Livrables finaux : Accès administrateur au site web finalisé, maquettes sources" + (d.autreLivrable ? ", " + d.autreLivrable : "") + ".");
 
@@ -1017,7 +1009,6 @@
             function updateSidebar(){
                 var clientName = val("clientName");
                 var nomProjet = val("nomProjet");
-                var cms = getCmsValue();
                 var budget = parseFloat(val("budgetTotal")) || 0;
                 var pct = parseFloat(val("acomptePct")) || 0;
                 var acompte = budget * pct / 100;
@@ -1030,13 +1021,12 @@
                 $("recapSolde").textContent = fmtEUR(solde);
                 $("recapTotal2").textContent = fmtEUR(budget);
 
-                var hasAny = !!(clientName || nomProjet || cms);
+                var hasAny = !!(clientName || nomProjet);
                 $("breakdownPlaceholder").style.display = hasAny ? "none" : "block";
                 $("breakdownDetails").style.display = hasAny ? "block" : "none";
                 if(hasAny){
                     $("dClient").textContent = clientName || "—";
                     $("dProjet").textContent = nomProjet || "—";
-                    $("dCms").textContent = cms || "—";
                 }
 
                 var numeroFacture = val("numeroFacture") || defaultNumeroFacture();
@@ -1069,6 +1059,9 @@
                 $("dateEmission").value = iso;
                 $("dateJour").value = iso;
                 $("numeroFacture").value = defaultNumeroFacture();
+                if(!$("lienStripe").value) $("lienStripe").value = PAIEMENT.stripe;
+                if(!$("iban").value) $("iban").value = PAIEMENT.iban;
+                if(!$("bic").value) $("bic").value = PAIEMENT.bic;
                 recomputeEcheance();
             }
 
@@ -1083,7 +1076,6 @@
 
             function resetAll(){
                 $("dossierForm").reset();
-                $("cmsAutreWrap").style.display = "none";
                 initDefaults();
                 document.querySelectorAll(".InputGroup .Input").forEach(function(el){
                     el.classList.toggle("HasValue", !!(el.value && el.value.trim() !== ""));
@@ -1102,21 +1094,14 @@
                 document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", nextStep);});
                 document.querySelectorAll("[data-prev]").forEach(function(b){ b.addEventListener("click", prevStep);});
 
-                document.querySelectorAll('input[name="cmsRadio"]').forEach(function(r){
-                    r.addEventListener("change", function(){
-                    $("cmsAutreWrap").style.display = (this.value === "autre") ? "block" : "none";
-                    updateSidebar();
+                document.querySelectorAll('input[name="delaiPaiement"]').forEach(function(r){
+                    r.addEventListener("change", function(){ recomputeEcheance(); updateSidebar();});
                 });
-            });
 
-            document.querySelectorAll('input[name="delaiPaiement"]').forEach(function(r){
-                r.addEventListener("change", function(){ recomputeEcheance(); updateSidebar();});
-            });
-
-            ["clientName","nomProjet","cmsAutre","budgetTotal","acomptePct","numeroFacture"].forEach(function(id){
-                var el = $(id);
-                if(el) el.addEventListener("input", updateSidebar);
-            });
+                ["clientName","nomProjet","budgetTotal","acomptePct","numeroFacture"].forEach(function(id){
+                    var el = $(id);
+                    if(el) el.addEventListener("input", updateSidebar);
+                });
 
                 $("dateEmission").addEventListener("change", function(){ recomputeEcheance(); updateSidebar();});
                 $("dateEcheance").addEventListener("change", updateSidebar);
