@@ -1463,72 +1463,70 @@ section.Talk {
 main.Projets {
     margin-top: 10vh;
 
+    section.Why .Layout .Card:nth-of-type(2) {justify-content: flex-start;}
+
     .ProjectSection {
         max-width: 1200px;
         margin: 0 auto 100px;
         padding: 0 24px;
-    }
 
-    .ProjectGrid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 32px;
+        .ProjectGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
 
-        .ProjectCard {
-            position: relative;
-            display: block;
-            border-radius: 16px;
-            overflow: hidden;
-            background: var(--PureWhite);
-            text-decoration: none;
-            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-            &:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.12);
-
-                .ProjectImage img {transform: scale(1.05);}
-            }
-
-            .ProjectImage {
+            .ProjectCard {
                 position: relative;
-                width: 100%;
-                aspect-ratio: 4/3;
+                display: block;
+                border-radius: 16px;
                 overflow: hidden;
-                background-color: var(--Background);
+                background: var(--PureWhite);
+                text-decoration: none;
+                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: transform 0.5s ease;
+                &:hover {
+                    transform: translateY(-6px);
+                    box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.12);
+
+                    .ProjectImage img {transform: scale(1.05);}
                 }
 
-                .ProjectOverlay {
-                    position: absolute;
-                    inset: 0;
-                    background: linear-gradient(to top, rgba(var(--DarkPrimaryRGB), 0.85) 0%, rgba(var(--DarkPrimaryRGB), 0) 60%);
-                    display: flex;
-                    align-items: flex-end;
-                    padding: 24px;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
+                .ProjectImage {
+                    position: relative;
+                    width: 100%;
+                    aspect-ratio: 4/3;
+                    overflow: hidden;
+                    background-color: var(--Background);
 
-                    .ProjectCard:hover & {
-                        opacity: 1;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform 0.5s ease;
                     }
 
-                    p {
-                        color: var(--PureWhite);
-                        font-size: 1.25rem;
-                        font-weight: 700;
-                        margin: 0;
-                        transform: translateY(10px);
-                        transition: transform 0.3s ease;
+                    .ProjectOverlay {
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(to top, rgba(var(--DarkPrimaryRGB), 0.85) 0%, rgba(var(--DarkPrimaryRGB), 0) 60%);
+                        display: flex;
+                        align-items: flex-end;
+                        padding: 24px;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
 
-                        .ProjectCard:hover & {
-                            transform: translateY(0);
+                        .ProjectCard:hover & {opacity: 1;}
+
+                        p {
+                            color: var(--PureWhite);
+                            font-size: 1.25rem;
+                            font-weight: 700;
+                            margin: 0;
+                            transform: translateY(10px);
+                            transition: transform 0.3s ease;
+
+                            .ProjectCard:hover & {transform: translateY(0);}
                         }
                     }
                 }
