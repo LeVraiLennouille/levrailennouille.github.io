@@ -1461,7 +1461,7 @@ section.Talk {
 ========================================================================== */
 
 main.Projets {
-    .Spacer {height: 10vh;}
+    margin-top: 10vh;
 
     .ProjectSection {
         max-width: 1200px;
@@ -1489,11 +1489,6 @@ main.Projets {
                 box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.12);
 
                 .ProjectImage img {transform: scale(1.05);}
-                .ProjectOverlay {
-                    opacity: 1;
-
-                    p {transform: translateY(0);}
-                }
             }
 
             .ProjectImage {
@@ -1513,12 +1508,16 @@ main.Projets {
                 .ProjectOverlay {
                     position: absolute;
                     inset: 0;
-                    background: linear-gradient(to top, rgba(var(--CharcoalRGB), 0.85) 0%, rgba(var(--CharcoalRGB), 0) 60%);
+                    background: linear-gradient(to top, rgba(var(--DarkPrimaryRGB), 0.85) 0%, rgba(var(--DarkPrimaryRGB), 0) 60%);
                     display: flex;
                     align-items: flex-end;
                     padding: 24px;
                     opacity: 0;
                     transition: opacity 0.3s ease;
+
+                    .ProjectCard:hover & {
+                        opacity: 1;
+                    }
 
                     p {
                         color: var(--PureWhite);
@@ -1527,6 +1526,10 @@ main.Projets {
                         margin: 0;
                         transform: translateY(10px);
                         transition: transform 0.3s ease;
+
+                        .ProjectCard:hover & {
+                            transform: translateY(0);
+                        }
                     }
                 }
             }
