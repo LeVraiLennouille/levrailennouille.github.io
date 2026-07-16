@@ -111,12 +111,42 @@
         </section>
         <div id="MergePlaceHolder"></div><script src="js/merge.js"></script>
         <div id="TalkPlaceHolder"></div><script src="js/talk.js"></script>
+        <div id="ComingSoonModal" class="Hidden">
+            <div class="Card">
+                <p class="ModalTitle">En cours de réalisation</p>
+                <p class="ModalDesc">Le rendu final arrive très bientôt.</p>
+                <button type="button" class="BtnMain" id="ComingSoonClose">Fermer</button>
+            </div>
+        </div>
     </main>
     <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     <script src="script.js"></script><script src="script.js"></script>
-    <script src="anims.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="translate.js"></script>
+    <script>
+        (function () {
+            const link = document.getElementById('ComingSoonLink');
+            const modal = document.getElementById('ComingSoonModal');
+            const closeBtn = document.getElementById('ComingSoonClose');
+            if (!link || !modal || !closeBtn) return;
+
+            function openModal(e) {
+                e.preventDefault();
+                modal.classList.remove('Hidden');
+            }
+            function closeModal() {
+                modal.classList.add('Hidden');
+            }
+
+            link.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -1535,6 +1535,66 @@ main.Projets {
             }
         }
     }
+
+    #ComingSoonModal {
+        position: fixed;
+        inset: 0;
+        background: rgba(var(--CharcoalRGB), 0.88);
+        backdrop-filter: blur(10px);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+
+        &.Hidden {display: none !important;}
+
+        .Card {
+            background: var(--PureWhite);
+            border: 1px solid var(--Borders);
+            border-radius: 20px;
+            padding: 40px 36px;
+            max-width: 440px;
+            width: 90%;
+            text-align: center;
+            animation: zoomIn 0.3s ease;
+
+            .ModalTitle {
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--Charcoal);
+                margin: 0 0 8px;
+            }
+
+            .ModalDesc {
+                color: var(--Muted);
+                font-size: 14px;
+                line-height: 1.6;
+                margin: 0 0 28px;
+            }
+
+            .BtnMain {
+                width: 100%;
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                color: var(--PureWhite);
+                font-weight: 700;
+                font-size: 14px;
+                letter-spacing: 0.3px;
+                padding: 13px 28px;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                transition: transform 0.15s, box-shadow 0.15s;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 24px rgba(var(--PrimaryRGB), 0.30);
+                }
+
+                &:active {transform: translateY(0);}
+            }
+        }
+    }
 }
 
 /* ==========================================================================
