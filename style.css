@@ -1463,7 +1463,15 @@ section.Talk {
 main.Projets {
     margin-top: 10vh;
 
-    section.Why .Layout .Card:nth-of-type(2) {justify-content: flex-start;}
+    section.Why .Layout .Card {
+        hr {
+            height: 5px;
+            background-color: var(--Primary);
+            border: none;
+        }
+
+        :nth-of-type(2) {justify-content: flex-start;}
+    }
 
     .ProjectSection {
         max-width: 1200px;
