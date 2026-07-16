@@ -1539,7 +1539,7 @@ main.Projets {
     #ComingSoonModal {
         position: fixed;
         inset: 0;
-        background: rgba(var(--CharcoalRGB), 0.88);
+        background: rgba(var(--CharcoalRGB), 0.25);
         backdrop-filter: blur(10px);
         z-index: 200;
         display: flex;
@@ -1554,7 +1554,7 @@ main.Projets {
             border: 1px solid var(--Borders);
             border-radius: 20px;
             padding: 40px 36px;
-            max-width: 440px;
+            max-width: 550px;
             width: 90%;
             text-align: center;
             animation: zoomIn 0.3s ease;
