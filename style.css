@@ -3727,3 +3727,455 @@ main.Terms {
         }
     }
 }
+
+main.Projets.SubPage {color: var(--Charcoal);}
+
+main.Projets.SubPage .TopBanner,
+main.Projets.SubPage .BottomBanner {
+    position: relative;
+    width: calc(100% - 48px);
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
+}
+main.Projets.SubPage .TopBanner    {height: clamp(260px, 42vw, 520px);}
+main.Projets.SubPage .BottomBanner {height: clamp(220px, 36vw, 440px); margin: 100px auto 0;}
+
+main.Projets.SubPage .TopBanner img,
+main.Projets.SubPage .BottomBanner img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+main.Projets.SubPage .BannerWave {display: none;}
+
+main.Projets.SubPage .Title {
+    max-width: 760px;
+    margin: 0 auto 56px;
+    padding: 0 24px;
+    text-align: center;
+}
+main.Projets.SubPage .Title span {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--Primary);
+    margin-bottom: 20px;
+}
+main.Projets.SubPage .Title h1 {
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 900;
+    color: var(--Charcoal);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+}
+main.Projets.SubPage .Title hr {
+    width: 56px;
+    height: 4px;
+    border: none;
+    background: var(--Primary);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+main.Projets.SubPage .Intro {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+main.Projets.SubPage .Intro p {
+    background: var(--PureWhite);
+    border-radius: 16px;
+    padding: 26px 24px;
+    box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--Muted);
+    font-weight: 500;
+    margin: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+main.Projets.SubPage .Intro p:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.1);
+}
+main.Projets.SubPage .Intro p > b {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--Primary);
+    margin-bottom: 10px;
+}
+
+main.Projets.SubPage > hr {
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    border: none;
+    height: 1px;
+    background: var(--DarkBorders);
+}
+
+main.Projets.SubPage .ProjectSplit {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+main.Projets.SubPage .ProjectSplit > .SplitItem {width: 100%;}
+main.Projets.SubPage .ProjectSplit .ProjectBloc {
+    max-width: 100%;
+    padding: 0;
+    margin: 0 0 44px;
+}
+main.Projets.SubPage .ProjectSplit .ProjectBloc:last-child {margin-bottom: 0;}
+
+main.Projets.SubPage .ProjectBloc {
+    max-width: 1200px;
+    margin: 0 auto 90px;
+    padding: 0 24px;
+}
+main.Projets.SubPage .ProjectBloc h4 {
+    position: relative;
+    padding-left: 22px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 900;
+    color: var(--Charcoal);
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+}
+main.Projets.SubPage .ProjectBloc h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
+    background: var(--Primary);
+    border-radius: 2px;
+}
+main.Projets.SubPage .ProjectBloc p {
+    max-width: 820px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--Muted);
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+main.Projets.SubPage .ProjectBloc p:last-child {margin-bottom: 0;}
+main.Projets.SubPage .ProjectBloc ul {
+    list-style: none;
+    max-width: 820px;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+main.Projets.SubPage .ProjectBloc ul li {
+    position: relative;
+    padding-left: 26px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--Muted);
+}
+main.Projets.SubPage .ProjectBloc ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--Primary);
+    font-weight: 700;
+}
+main.Projets.SubPage .ProjectBloc ul li b {
+    color: var(--Charcoal);
+    font-weight: 800;
+}
+
+main.Projets.SubPage .Label {
+    max-width: 1200px;
+    margin: 0 auto 18px;
+    padding: 0 24px;
+}
+main.Projets.SubPage .Label span {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--DarkPrimary);
+}
+main.Projets.SubPage .Label span:last-child {color: var(--Primary);}
+
+main.Projets.SubPage .Comparaisons {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto 60px;
+    user-select: none;
+    background-color: var(--PureWhite);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+main.Projets.SubPage .Comparaisons:hover {
+    transform: scale(1.015);
+    box-shadow: 0 20px 50px rgba(var(--PureBlackRGB), 0.14);
+}
+main.Projets.SubPage .Overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-right: 2px solid var(--PureWhite);
+    background-color: var(--PureWhite);
+}
+main.Projets.SubPage .Comparaisons img.NewImage,
+main.Projets.SubPage .Overlay img.OldImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+main.Projets.SubPage .OldImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+}
+main.Projets.SubPage .Slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background-color: var(--Primary);
+    border: 3px solid var(--PureWhite);
+    border-radius: 50%;
+    cursor: ew-resize;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(var(--PrimaryRGB), 0.4);
+}
+main.Projets.SubPage .Slider::before {
+    content: '\25C0 \25B6';
+    color: var(--PureWhite);
+    font-size: 12px;
+    letter-spacing: -1px;
+}
+
+main.Projets.SubPage .FullWidthBanner {
+    max-width: 1200px;
+    margin: 0 auto 90px;
+    padding: 0 24px;
+}
+main.Projets.SubPage .FullWidthBanner .Label {padding: 0; margin: 0 0 20px;}
+main.Projets.SubPage .FullWidthBanner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 16px 50px rgba(var(--PureBlackRGB), 0.1);
+}
+
+main.Projets.SubPage .ProjectGallery {
+    max-width: 1200px;
+    margin: 0 auto 90px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+main.Projets.SubPage .ProjectGallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
+    transition: transform 0.4s ease;
+}
+main.Projets.SubPage .ProjectGallery img:hover {transform: translateY(-4px);}
+
+main.Projets.SubPage .ComparisonsGrid {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 56px 40px;
+}
+main.Projets.SubPage .ComparisonsGrid .CompItem {display: flex; flex-direction: column;}
+main.Projets.SubPage .ComparisonsGrid .Label {padding: 0; margin: 0 0 16px; text-align: left; max-width: 100%;}
+main.Projets.SubPage .ComparisonsGrid .Comparaisons {max-width: 100%; width: 100%; margin-bottom: 0;}
+
+main.Projets.SubPage .RelatedProjects {
+    max-width: 1200px;
+    margin: 120px auto 100px;
+    padding: 0 24px;
+}
+main.Projets.SubPage .RelatedHeader {text-align: center; margin-bottom: 48px;}
+main.Projets.SubPage .RelatedEyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--Primary);
+    margin-bottom: 14px;
+}
+main.Projets.SubPage .RelatedTitle {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--Charcoal);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+main.Projets.SubPage .RelatedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+}
+main.Projets.SubPage .RelatedCard {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+main.Projets.SubPage .RelatedImage {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+    background: var(--PureWhite);
+    box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+    transition: box-shadow 0.3s ease;
+}
+main.Projets.SubPage .RelatedCard:hover .RelatedImage {box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.12);}
+main.Projets.SubPage .RelatedImage img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+main.Projets.SubPage .RelatedCard:hover .RelatedImage img {transform: scale(1.05);}
+main.Projets.SubPage .RelatedOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(var(--DarkPrimaryRGB), 0.85) 0%, rgba(var(--DarkPrimaryRGB), 0) 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+main.Projets.SubPage .RelatedCard:hover .RelatedOverlay {opacity: 1;}
+main.Projets.SubPage .RelatedOverlay span {
+    color: var(--PureWhite);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transform: translateY(8px);
+    transition: transform 0.3s ease;
+}
+main.Projets.SubPage .RelatedCard:hover .RelatedOverlay span {transform: translateY(0);}
+main.Projets.SubPage .RelatedMeta {padding: 0 2px;}
+main.Projets.SubPage .RelatedCategory {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--Primary);
+    margin: 0 0 6px;
+}
+main.Projets.SubPage .RelatedName {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--Charcoal);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+main.Projets.SubPage .RelatedCard:hover .RelatedName {color: var(--Primary);}
+main.Projets.SubPage .RelatedFooter {text-align: center; margin-top: 44px;}
+main.Projets.SubPage .RelatedFooter .BtnOutline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border: 1.5px solid var(--Primary);
+    border-radius: 50px;
+    color: var(--Primary);
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+main.Projets.SubPage .RelatedFooter .BtnOutline:hover {
+    background: var(--Primary);
+    color: var(--PureWhite);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
+}
+
+main.Projets.SubPage a:focus-visible,
+main.Projets.SubPage .Slider:focus-visible {
+    outline: 2px solid var(--Primary);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main.Projets.SubPage .Comparaisons,
+    main.Projets.SubPage .Intro p,
+    main.Projets.SubPage .ProjectGallery img,
+    main.Projets.SubPage .RelatedImage,
+    main.Projets.SubPage .RelatedImage img,
+    main.Projets.SubPage .RelatedFooter .BtnOutline {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 900px) {
+    main.Projets.SubPage .ProjectSplit {grid-template-columns: 1fr; gap: 48px; margin-bottom: 70px;}
+}
+
+@media (max-width: 600px) {
+    main.Projets.SubPage .TopBanner,
+    main.Projets.SubPage .BottomBanner {border-radius: 18px;}
+    main.Projets.SubPage .BottomBanner {margin-top: 60px;}
+    main.Projets.SubPage .Title {margin-bottom: 40px;}
+    main.Projets.SubPage .Intro {margin-bottom: 56px; gap: 14px;}
+    main.Projets.SubPage > hr {margin-bottom: 56px;}
+    main.Projets.SubPage .ProjectBloc,
+    main.Projets.SubPage .FullWidthBanner,
+    main.Projets.SubPage .ProjectGallery {margin-bottom: 56px;}
+    main.Projets.SubPage .ComparisonsGrid {margin-bottom: 64px; gap: 40px;}
+    main.Projets.SubPage .RelatedProjects {margin: 72px auto 64px;}
+}
