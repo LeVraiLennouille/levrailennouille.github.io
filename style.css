@@ -1627,8 +1627,6 @@ main.Projets {
         .TopBanner {height: clamp(260px, 42vw, 520px);}
         .BottomBanner {height: clamp(220px, 36vw, 440px); margin: 100px auto 0;}
 
-        .BannerWave {display: none;}
-
         .Title {
             max-width: 760px;
             margin: 0 auto 56px;
