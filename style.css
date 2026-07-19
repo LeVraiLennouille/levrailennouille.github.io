@@ -1841,16 +1841,19 @@ main.Projets {
             background-color: var(--PureWhite);
 
             .OldImage {
+                display: block;
                 position: absolute;
                 top: 0;
                 left: 0;
+                width: 200%;
                 max-width: none;
                 height: 100%;
                 object-fit: cover;
+                object-position: left center;
             }
         }
 
-        .Comparaisons img.NewImage, .Overlay img.OldImage {
+        .Comparaisons img.NewImage {
             display: block;
             width: 100%;
             height: 100%;
