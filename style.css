@@ -1750,12 +1750,12 @@ main.Projets {
             }
 
             p {
-                max-width: 820px;
                 font-size: 1rem;
                 line-height: 1.75;
                 color: var(--Muted);
                 font-weight: 400;
                 margin-bottom: 16px;
+                text-align: justify;
 
                 &:last-child {margin-bottom: 0;}
             }
