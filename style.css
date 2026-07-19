@@ -1605,10 +1605,10 @@ main.Projets {
     &.SubPage {
         color: var(--Charcoal);
 
-        .TopBanner, .BottomBanner {
+        .TopBanner {
             position: relative;
-            width: calc(100% - 48px);
             max-width: 1200px;
+            height: 520px;
             margin: 0 auto 80px;
             overflow: hidden;
             border-radius: 28px;
@@ -1623,9 +1623,6 @@ main.Projets {
                 display: block;
             }
         }
-
-        .TopBanner {height: clamp(260px, 42vw, 520px);}
-        .BottomBanner {height: clamp(220px, 36vw, 440px); margin: 100px auto 0;}
 
         .Title {
             max-width: 760px;
