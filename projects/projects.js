@@ -8,9 +8,28 @@ var PROJECTS = [
         tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
         image: "/img/reals/portfolio/mockup.png",
         imageAlt: "Mon portfolio : v3",
-        date: "2026-01-01" // TODO : date réelle
-    },
-    {
+        date: "2026-03-01"
+    }, {
+        id: "scorsone",
+        url: "/projets/scorsone",
+        name: "Création Scorsone",
+        label: "Scorsone",
+        category: "Création · Product design & Branding",
+        tags: ["creation", "product-design", "branding"],
+        image: "/img/reals/scorsone/mockup.png",
+        imageAlt: "Création Scorsone",
+        date: "2026-07-31"
+    },{
+        id: "primaire",
+        url: "/projets/primaire",
+        name: "Création Primaire Média",
+        label: "Primaire Média",
+        category: "Création · Product design e-commerce",
+        tags: ["creation", "product-design", "ecommerce", "branding", "wordpress"],
+        image: "/img/reals/primaire/mockup.png",
+        imageAlt: "Création Primaire",
+        date: "2026-06-05"
+    },{
         id: "mu",
         url: "/projets/mu",
         name: "Refonte Mü v2",
@@ -19,20 +38,8 @@ var PROJECTS = [
         tags: ["refonte", "ui-ux", "branding", "design-system", "bien-etre"],
         image: "/img/reals/mu/mockup.png",
         imageAlt: "Refonte Mü-être v2",
-        date: "2025-11-01" // TODO : date réelle
-    },
-    {
-        id: "primaire",
-        url: "/projets/primaire",
-        name: "Création Primaire Média",
-        label: "Primaire Média",
-        category: "Création · Product design e-commerce",
-        tags: ["creation", "product-design", "ecommerce", "branding", "woocommerce"],
-        image: "/img/reals/primaire/mockup.png",
-        imageAlt: "Création Primaire",
-        date: "2025-10-01" // TODO : date réelle
-    },
-    {
+        date: "2026-04-20"
+    }, {
         id: "geoptime",
         url: "/projets/geoptime",
         name: "Création GeopTime",
@@ -41,9 +48,8 @@ var PROJECTS = [
         tags: ["creation", "ui-ux", "fullstack", "b2b", "branding"],
         image: "/img/reals/geoptime/mockup.png",
         imageAlt: "Création GeopTime",
-        date: "2025-05-01" // TODO : date réelle
-    },
-    {
+        date: "2025-12-10"
+    }, {
         id: "goon",
         url: "/projets/goon",
         name: "Refonte GOON v3",
@@ -52,7 +58,47 @@ var PROJECTS = [
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
         image: "/img/reals/goon/mockup.png",
         imageAlt: "Refonte GOON v3",
-        date: "2025-09-01" // TODO : date réelle
+        date: "2026-02-19"
+    }, {
+        id: "gymaddict",
+        url: "/projets/gymaddict",
+        name: "Création GymAddict",
+        label: "GymAddict",
+        category: "UI/UX Design · Webdesign · Identité visuelle",
+        tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
+        image: "/img/Projects/gymaddict.png",
+        imageAlt: "Création GymAddict",
+        date: "2026-04-15"
+    }, {
+        id: "habitstracker",
+        url: "/projets/habitstracker",
+        name: "Création HabitsTracker",
+        label: "HabitsTracker",
+        category: "UI/UX Design · Webdesign · Identité visuelle",
+        tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
+        image: "/img/Projects/habitstracker.png",
+        imageAlt: "Création HabitsTracker",
+        date: "2026-04-01"
+    }, {
+        id: "caradd",
+        url: "/projets/caradd",
+        name: "Création CarAdd Studio",
+        label: "CarAdd Studio",
+        category: "UI/UX Design · Webdesign · Identité visuelle",
+        tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
+        image: "/img/Projects/caradd.png",
+        imageAlt: "Création CarAdd Studio",
+        date: "2026-05-01"
+    }, {
+        id: "yligen",
+        url: "/projets/yligen",
+        name: "Refonte Yligen v2",
+        label: "Yligen",
+        category: "UI/UX Design · Webdesign · Identité visuelle",
+        tags: ["refonte", "ui-ux", "branding", "identite-visuelle", "migration-cms"],
+        image: "/img/Projects/yligen.png",
+        imageAlt: "Refonte Yligen v2",
+        date: "2025-09-01"
     },
 ];
 
