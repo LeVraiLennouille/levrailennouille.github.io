@@ -334,17 +334,19 @@ window.onload = () => {
 
 // * Scroll * //
 const textElement = document.getElementById('TextReveal');
-const textContent = textElement.innerText;
 
-textElement.innerHTML = textContent.split(' ').map(Word => {
-  	return `<span class="Word">${Word}</span>`;
-}).join(' ');
+if (textElement) {
+	const textContent = textElement.innerText;
+	textElement.innerHTML = textContent.split(' ').map(Word => {
+		return `<span class="Word">${Word}</span>`;
+	}).join(' ');
+}
 
 const Words = document.querySelectorAll('.Word');
 const Scroll = document.getElementById('Scroll');
 
 function handleScroll() {
-  	if (!Scroll) return;
+  	if (!Scroll || Words.length === 0) return;
 
   	const ScrollTop = Scroll.getBoundingClientRect().top;
   	const windowHeight = window.innerHeight;
@@ -577,7 +579,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var dragging = false;
 
         function syncWidth() {if (oldImg) oldImg.style.width = wrap.offsetWidth + "px";}
-
         function move(e) {
             if (!dragging) return;
             var rect = wrap.getBoundingClientRect();
@@ -586,25 +587,25 @@ document.addEventListener("DOMContentLoaded", function () {
             overlay.style.width = x + "px";
             slider.style.left = x + "px";
         }
+
         window.addEventListener("resize", syncWidth);
         syncWidth();
+
         if (!slider) return;
         slider.addEventListener("mousedown", function (e) {
             e.preventDefault();
             dragging = true;
         });
+
         slider.addEventListener("touchstart", function (e) {
             e.preventDefault();
             dragging = true;
         }, {
             passive: false
         });
-        window.addEventListener("mouseup", function () {
-            dragging = false;
-        });
-        window.addEventListener("touchend", function () {
-            dragging = false;
-        });
+
+        window.addEventListener("mouseup", function () {dragging = false;});
+        window.addEventListener("touchend", function () {dragging = false;});
         window.addEventListener("mousemove", move);
         window.addEventListener("touchmove", move, {
             passive: false
