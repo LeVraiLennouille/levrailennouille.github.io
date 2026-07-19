@@ -111,42 +111,20 @@
             <h4>Anticiper l'imprévisible (et les micro-interactions)</h4>
             <p>Plonger dans les rouages complexes d'une application temps réel demande une gymnastique mentale et technique bien particulière lors de la conception des maquettes. Ce projet intense m'a confronté à l'obligation stricte d'anticiper avec une grande précision chaque micro-état de l'interface : l'attente des joueurs, le déroulement du chronomètre, l'activation soudaine des bonus ou la révélation de fin de manche. J'ai dû apprendre à coordonner l'élégance de mon design avec des contraintes back-end concrètes, notamment l'utilisation de Socket.io et la gestion inévitable de la latence réseau. Cette expérience m'a forgé un pragmatisme à toute épreuve pour mes futurs projets d'interface.</p>
         </div>
-        <section class="RelatedProjects">
-            <div class="RelatedHeader">
-                <span class="RelatedEyebrow">Projets similaires</span>
-                <h2 class="RelatedTitle">Vous pourriez aussi aimer</h2>
+        <section class="RelatedProjects" data-related-projects>
+            <div class="RelatedBlock" data-related-block="similar">
+                <div class="RelatedHeader">
+                    <span class="RelatedEyebrow">Projets similaires</span>
+                    <h2 class="RelatedTitle">Vous pourriez aussi aimer</h2>
+                </div>
+                <div class="RelatedGrid" data-related-grid="similar"></div>
             </div>
-            <div class="RelatedGrid">
-                <a href="/projets/gymaddict" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/gymaddict/mockup.png" alt="Création GymAddict">
-                        <div class="RelatedOverlay"><span>GymAddict</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">UI/UX Design · Webdesign</p>
-                        <h3 class="RelatedName">Création GymAddict</h3>
-                    </div>
-                </a>
-                <a href="/projets/habitstracker" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/habitstracker/mockup.png" alt="Création HabitsTracker">
-                        <div class="RelatedOverlay"><span>HabitsTracker</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">UI/UX Design · Webdesign</p>
-                        <h3 class="RelatedName">Création HabitsTracker</h3>
-                    </div>
-                </a>
-                <a href="/projets/portfolio" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/portfolio/mockup.png" alt="Mon portfolio : v3">
-                        <div class="RelatedOverlay"><span>Portfolio v3</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">Audit & refonte UI / UX</p>
-                        <h3 class="RelatedName">Refonte Portfolio v3</h3>
-                    </div>
-                </a>
+            <div class="RelatedBlock" data-related-block="latest">
+                <div class="RelatedHeader">
+                    <span class="RelatedEyebrow">Nouveauté</span>
+                    <h2 class="RelatedTitle">Mes derniers travaux</h2>
+                </div>
+                <div class="RelatedGrid" data-related-grid="latest"></div>
             </div>
             <div class="RelatedFooter">
                 <a href="/projets" class="BtnOutline">Voir tous les projets →</a>
@@ -155,5 +133,7 @@
         <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
     </main>
     <script src="/script.js"></script>
+    <script src="/script.js"></script>
+    <script src="projects.js"></script>
 </body>
 </html>

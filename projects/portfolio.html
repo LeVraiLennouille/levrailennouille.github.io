@@ -134,42 +134,20 @@
         <div class="FullWidthBanner">
             <img src="/img/reals/portfolio/linkedin_banner.svg" alt="Bannière LinkedIn Reprenez le contrôle">
         </div>
-        <section class="RelatedProjects">
-            <div class="RelatedHeader">
-                <span class="RelatedEyebrow">Projets similaires</span>
-                <h2 class="RelatedTitle">Vous pourriez aussi aimer</h2>
+        <section class="RelatedProjects" data-related-projects>
+            <div class="RelatedBlock" data-related-block="similar">
+                <div class="RelatedHeader">
+                    <span class="RelatedEyebrow">Projets similaires</span>
+                    <h2 class="RelatedTitle">Vous pourriez aussi aimer</h2>
+                </div>
+                <div class="RelatedGrid" data-related-grid="similar"></div>
             </div>
-            <div class="RelatedGrid">
-                <a href="/projets/mu" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/mu/mockup.png" alt="Refonte Mü-être v2">
-                        <div class="RelatedOverlay"><span>Mü-Être</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">Audit & refonte UI / UX · Design System</p>
-                        <h3 class="RelatedName">Refonte Mü v2</h3>
-                    </div>
-                </a>
-                <a href="/projets/goon" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/goon/mockup.png" alt="Refonte GOON v3">
-                        <div class="RelatedOverlay"><span>GOON Blindtests</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">Product design · App Web temps réel</p>
-                        <h3 class="RelatedName">Refonte GOON v3</h3>
-                    </div>
-                </a>
-                <a href="/projets/geoptime" class="RelatedCard">
-                    <div class="RelatedImage">
-                        <img src="/img/reals/geoptime/mockup.png" alt="Création GeopTime">
-                        <div class="RelatedOverlay"><span>GeopTime</span></div>
-                    </div>
-                    <div class="RelatedMeta">
-                        <p class="RelatedCategory">Création · UI / UX & Full-stack</p>
-                        <h3 class="RelatedName">Création GeopTime</h3>
-                    </div>
-                </a>
+            <div class="RelatedBlock" data-related-block="latest">
+                <div class="RelatedHeader">
+                    <span class="RelatedEyebrow">Nouveauté</span>
+                    <h2 class="RelatedTitle">Mes derniers travaux</h2>
+                </div>
+                <div class="RelatedGrid" data-related-grid="latest"></div>
             </div>
             <div class="RelatedFooter">
                 <a href="/projets" class="BtnOutline">Voir tous les projets →</a>
@@ -178,5 +156,6 @@
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
     <script src="/script.js"></script>
+    <script src="projects.js"></script>
 </body>
 </html>
