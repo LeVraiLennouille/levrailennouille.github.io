@@ -2073,22 +2073,23 @@ main.Projets {
                 text-align: center;
                 margin-top: 44px;
 
-                .BtnOutline {
+                .BtnSolid {
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
                     padding: 14px 32px;
-                    border: 1.5px solid var(--Primary);
+                    background-color : var(--Primary);
                     border-radius: 50px;
-                    color: var(--Primary);
+                    color: var(--PureWhite);
                     font-weight: 800;
                     font-size: 0.95rem;
                     text-decoration: none;
                     transition: all 0.3s ease;
     
                     &:hover {
-                        background: var(--Primary);
-                        color: var(--PureWhite);
+                        background-color: var(--PureWhite);
+                        border: 1.5px solid var(--Primary);
+                        color: var(--Primary);
                         transform: translateY(-2px);
                         box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
                     }
