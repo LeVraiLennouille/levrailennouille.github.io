@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	})
 })
 
-// * Comparisons * //
+// * Comparaisons * //
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".Comparaisons").forEach(function (wrap) {
         var overlay = wrap.querySelector(".Overlay");
