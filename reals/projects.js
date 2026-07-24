@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function getCurrentProjectId() {
         var canonical = document.querySelector('link[rel="canonical"]');
         var href = canonical ? canonical.getAttribute("href") : window.location.pathname;
-        var match = href.match(/\/projets\/([^\/]+)\/?/);
+        var match = href.match(/\/reals\/([^\/]+)\/?/);
         return match ? match[1] : null;
     }
 });
