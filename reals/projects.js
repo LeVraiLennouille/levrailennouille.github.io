@@ -1,7 +1,7 @@
 var PROJECTS = [
     {
         id: "portfolio",
-        url: "/projets/portfolio",
+        url: "/reals/portfolio",
         name: "Refonte Portfolio v3",
         label: "Portfolio v3",
         category: "Audit & refonte UI / UX",
@@ -11,7 +11,7 @@ var PROJECTS = [
         date: "2026-03-01"
     }, {
         id: "scorsone",
-        url: "/projets/scorsone",
+        url: "/reals/scorsone",
         name: "Création Scorsone",
         label: "Scorsone",
         category: "Création · Product design & Branding",
@@ -21,7 +21,7 @@ var PROJECTS = [
         date: "2026-07-31"
     },{
         id: "primaire",
-        url: "/projets/primaire",
+        url: "/reals/primaire",
         name: "Création Primaire Média",
         label: "Primaire Média",
         category: "Création · Product design e-commerce",
@@ -31,7 +31,7 @@ var PROJECTS = [
         date: "2026-06-05"
     },{
         id: "mu",
-        url: "/projets/mu",
+        url: "/reals/mu",
         name: "Refonte Mü v2",
         label: "Mü-Être",
         category: "Audit & refonte UI / UX · Design System",
@@ -41,7 +41,7 @@ var PROJECTS = [
         date: "2026-04-20"
     }, {
         id: "geoptime",
-        url: "/projets/geoptime",
+        url: "/reals/geoptime",
         name: "Création GeopTime",
         label: "GeopTime",
         category: "Création · UI / UX & Full-stack",
@@ -51,7 +51,7 @@ var PROJECTS = [
         date: "2025-12-10"
     }, {
         id: "goon",
-        url: "/projets/goon",
+        url: "/reals/goon",
         name: "Refonte GOON v3",
         label: "GOON Blindtests",
         category: "Product design · App Web temps réel",
@@ -61,7 +61,7 @@ var PROJECTS = [
         date: "2026-02-19"
     }, {
         id: "gymaddict",
-        url: "/projets/gymaddict",
+        url: "/reals/gymaddict",
         name: "Création GymAddict",
         label: "GymAddict",
         category: "UI/UX Design · Webdesign · Identité visuelle",
@@ -71,7 +71,7 @@ var PROJECTS = [
         date: "2026-04-15"
     }, {
         id: "habitstracker",
-        url: "/projets/habitstracker",
+        url: "/reals/habitstracker",
         name: "Création HabitsTracker",
         label: "HabitsTracker",
         category: "UI/UX Design · Webdesign · Identité visuelle",
@@ -81,7 +81,7 @@ var PROJECTS = [
         date: "2026-04-01"
     }, {
         id: "caradd",
-        url: "/projets/caradd",
+        url: "/reals/caradd",
         name: "Création CarAdd Studio",
         label: "CarAdd Studio",
         category: "UI/UX Design · Webdesign · Identité visuelle",
@@ -91,7 +91,7 @@ var PROJECTS = [
         date: "2026-05-01"
     }, {
         id: "yligen",
-        url: "/projets/yligen",
+        url: "/reals/yligen",
         name: "Refonte Yligen v2",
         label: "Yligen",
         category: "UI/UX Design · Webdesign · Identité visuelle",
