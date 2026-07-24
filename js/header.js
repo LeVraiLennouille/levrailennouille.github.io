@@ -21,7 +21,7 @@ const headerHTML = `
     <div id="CursorBall"></div>
     <nav class="NavBar">
         <a class="NavLogo CursorHover" href="/index" aria-label="Retour à l'accueil">
-            <img src="assets/icon.svg" alt="Logo de Lenouille"/>
+            <img src="/assets/icon.svg" alt="Logo de Lenouille"/>
         </a>
         <ul class="NavLinks CursorHover">
             <li><a href="/index"><div data-text="Page principale">Accueil</div></a></li>
