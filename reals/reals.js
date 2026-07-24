@@ -1,4 +1,4 @@
-var PROJECTS = [
+var REALS = [
     {
         id: "portfolio",
         url: "/reals/portfolio",
@@ -103,7 +103,7 @@ var PROJECTS = [
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
-    var section = document.querySelector("[data-related-projects]");
+    var section = document.querySelector("[data-related-reals]");
     if (!section) return;
 
     var SIMILAR_COUNT = 3;
@@ -113,16 +113,16 @@ document.addEventListener("DOMContentLoaded", function () {
     var current = findProject(currentId);
     if (!current) return;
 
-    var others = PROJECTS.filter(function (p) { return p.id !== current.id; });
+    var others = REALS.filter(function (p) { return p.id !== current.id; });
 
     var ranked = others
-        .map(function (p) { return { project: p, score: similarityScore(current, p) }; })
+        .map(function (p) { return { reals: p, score: similarityScore(current, p) }; })
         .sort(function (a, b) {
             if (b.score !== a.score) return b.score - a.score;
-            return new Date(b.project.date) - new Date(a.project.date);
+            return new Date(b.reals.date) - new Date(a.reals.date);
         });
 
-    var similar = ranked.slice(0, SIMILAR_COUNT).map(function (r) { return r.project; });
+    var similar = ranked.slice(0, SIMILAR_COUNT).map(function (r) { return r.reals; });
     var usedIds = similar.map(function (p) { return p.id; });
 
     var latest = others
@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function findProject(id) {
-        for (var i = 0; i < PROJECTS.length; i++) {
-            if (PROJECTS[i].id === id) return PROJECTS[i];
+        for (var i = 0; i < REALS.length; i++) {
+            if (REALS[i].id === id) return REALS[i];
         }
         return null;
     }
