@@ -76,7 +76,7 @@ var PROJECTS = [
         label: "HabitsTracker",
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
-        image: "/img/Projects/habitstracker.png",
+        image: "/img/reals/habitstracker.png",
         imageAlt: "Création HabitsTracker",
         date: "2026-04-01"
     }, {
@@ -86,7 +86,7 @@ var PROJECTS = [
         label: "CarAdd Studio",
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
-        image: "/img/Projects/caradd.png",
+        image: "/img/reals/caradd.png",
         imageAlt: "Création CarAdd Studio",
         date: "2026-05-01"
     }, {
@@ -96,7 +96,7 @@ var PROJECTS = [
         label: "Yligen",
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["refonte", "ui-ux", "branding", "identite-visuelle", "migration-cms"],
-        image: "/img/Projects/yligen.png",
+        image: "/img/reals/yligen.png",
         imageAlt: "Refonte Yligen v2",
         date: "2025-09-01"
     },
