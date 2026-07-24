@@ -1461,7 +1461,7 @@ section.Talk {
    # Projects Page
 ========================================================================== */
 
-main.Projets {
+main.Reals {
     margin-top: 10vh;
 
     section.Why .Layout .Card {
@@ -4018,7 +4018,7 @@ main.Terms {
         }
     }
 
-    main.Projets {
+    main.Reals {
         &.SubPage .ProjectSplit {grid-template-columns: 1fr; gap: 48px; margin-bottom: 70px;}
     }
 
@@ -4175,7 +4175,7 @@ main.Terms {
 
     section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
 
-    main.Projets {
+    main.Reals {
         &.SubPage {
             .TopBanner, .BottomBanner {border-radius: 18px;}
             .BottomBanner {margin-top: 60px;}
@@ -4248,12 +4248,12 @@ main.Terms {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    main.Projets.SubPage .Comparaisons,
-    main.Projets.SubPage .Intro p,
-    main.Projets.SubPage .ProjectGallery img,
-    main.Projets.SubPage .RelatedImage,
-    main.Projets.SubPage .RelatedImage img,
-    main.Projets.SubPage .RelatedFooter .BtnOutline {
+    main.Reals.SubPage .Comparaisons,
+    main.Reals.SubPage .Intro p,
+    main.Reals.SubPage .ProjectGallery img,
+    main.Reals.SubPage .RelatedImage,
+    main.Reals.SubPage .RelatedImage img,
+    main.Reals.SubPage .RelatedFooter .BtnOutline {
         transition: none !important;
     }
 }
