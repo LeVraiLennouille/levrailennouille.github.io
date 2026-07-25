@@ -213,7 +213,7 @@
                         <span class="LogoName">Lennouille — Génère tes documents en un clic</span>
                     </div>
                     <h1 class="MainTitle">Prépare tes documents<br><span class="Accent">en un clic après signature.</span></h1>
-                    <p class="MainDesc">Renseigne les informations du client et du projet, puis génère le contrat, la facture d'acompte, le mot de bienvenue et le brief stratégique.</p>
+                    <p class="MainDesc">Renseigne les informations du client et du projet, puis génère le contrat, la facture, le mot de bienvenue et le brief stratégique.</p>
                 </header>
                 <div class="ProgressBar" id="ProgressBar">
                     <div class="Dots Active" data-dot="1"><span class="Num">1</span></div>
@@ -417,8 +417,8 @@
                             </div>
                             <div class="DocCard">
                                 <span class="DocNum">02 — Facturation</span>
-                                <span class="DocTitle">Facture d'acompte</span>
-                                <p class="DocDesc">Facture du pourcentage d'acompte choisi, à régler à la signature.</p>
+                                <span class="DocTitle">Facture totale</span>
+                                <p class="DocDesc">Facture unique détaillant l'acompte et le solde, chacun avec sa propre échéance (paiement en une seule fois si acompte à 0%).</p>
                                 <span class="DocFile" id="fileFacture">Facture_AAAA-MM-001.pdf</span>
                                 <button class="BtnMain" id="btnFacture" type="button">Télécharger le PDF</button>
                             </div>
@@ -492,7 +492,7 @@
                 bic: ""     // ex : "XXXXXXXX"
             };
 
-            var LOGO_URL = "assets/logo.png";
+            var LOGO_URL = "assets/logo.svg";
             window.LOGO_DATA_URL = null;
             window.LOGO_DIMS = null;
             function preloadLogo(){
@@ -613,6 +613,8 @@
                 var addrPays = val("clientAddressPays");
                 var addrLigne2 = [addrCP, addrVille].filter(Boolean).join(" ");
                 var clientAddress = [addrRue, addrLigne2, addrPays].filter(Boolean).join(", ");
+                var acomptePctVal = parseFloat(val("acomptePct"));
+                if(isNaN(acomptePctVal)) acomptePctVal = 30;
 
                 return {
                     clientName: val("clientName"),
@@ -628,7 +630,7 @@
                     autreLivrable: val("autreLivrable"),
                     lienPortail: val("lienPortail"),
                     budgetTotal: parseFloat(val("budgetTotal")) || 0,
-                    acomptePct: parseFloat(val("acomptePct")) || 30,
+                    acomptePct: acomptePctVal,
                     delaiPaiement: getDelaiValue(),
                     numeroDevis: val("numeroDevis"),
                     numeroFacture: val("numeroFacture") || defaultNumeroFacture(),
@@ -894,9 +896,13 @@
 
                 doc.h2("ARTICLE 4 : CONDITIONS DE PAIEMENT");
                 doc.p("Le budget total de la prestation est fixé à " + fmtEUR(d.budgetTotal) + " HT.");
-                doc.p("La facturation s'effectuera comme suit :");
-                doc.p("Acompte de " + d.acomptePct + "% : " + fmtEUR(acompte) + " HT, facturé à la signature de ce contrat, avant tout début d'exécution.");
-                doc.p("Solde de " + (100 - d.acomptePct) + "% : " + fmtEUR(solde) + " HT, facturé à la livraison finale du site web.");
+                if(d.acomptePct > 0 && d.acomptePct < 100){
+                    doc.p("La facturation s'effectuera comme suit :");
+                    doc.p("Acompte de " + d.acomptePct + "% : " + fmtEUR(acompte) + " HT, facturé à la signature de ce contrat, avant tout début d'exécution.");
+                    doc.p("Solde de " + (100 - d.acomptePct) + "% : " + fmtEUR(solde) + " HT, facturé à la livraison finale du site web.");
+                } else {
+                    doc.p("Le paiement s'effectue en une seule fois, pour la totalité du montant, facturé à la signature de ce contrat, avant tout début d'exécution.");
+                }
                 doc.p("(TVA non applicable, art. 293 B du CGI).");
                 doc.p("Le délai de paiement est fixé à " + d.delaiPaiement + " jours à compter de la date de facturation.");
 
@@ -929,7 +935,18 @@
                 }
 
                 var acompte = d.budgetTotal * d.acomptePct / 100;
-                var doc = new PDFDoc("Facture d'acompte");
+                var solde = d.budgetTotal - acompte;
+                var paiementUnique = !(d.acomptePct > 0 && d.acomptePct < 100);
+                var descPrestation = "Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
+
+                var lignes = paiementUnique ? [
+                    { label: "Prestation : " + descPrestation + " — paiement en une seule fois.", montant: d.budgetTotal }
+                ] : [
+                    { label: "Acompte de " + d.acomptePct + "% sur la prestation : " + descPrestation, montant: acompte },
+                    { label: "Solde de " + (100 - d.acomptePct) + "% sur la prestation (à régler à la fin du contrat)", montant: solde }
+                ];
+
+                var doc = new PDFDoc("Facture");
                 var p = doc.doc;
                 var yStart = doc.y;
                     p.setFont("Syne","bold"); p.setFontSize(13);
@@ -959,7 +976,12 @@
                 p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 p.setFont("Syne","normal"); p.setFontSize(10.5);
                 doc.labelValue("Date d'émission : ", orDate(d.dateEmission));
-                doc.labelValue("Date d'échéance : ", orDate(d.dateEcheance));
+                if(paiementUnique){
+                    doc.labelValue("Date d'échéance : ", orDate(d.dateEcheance));
+                } else {
+                    doc.labelValue("Échéance de l'acompte : ", orDate(d.dateEcheance));
+                    doc.labelValue("Échéance du solde (fin de contrat) : ", orDate(d.dateLivraison));
+                }
                 doc.gap(4);
 
                 var tableY = doc.y;
@@ -976,30 +998,33 @@
                 p.text("Total HT", colB[4]-3, tableY+6.5, {align:"right"});
                 p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
 
-                var desc = "Acompte de " + d.acomptePct + "% sur la prestation : Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
+                var rowY = tableY + rowH;
                 p.setFont("Syne","normal"); p.setFontSize(9.5);
-                var descLines = p.splitTextToSize(desc, (colB[1]-colB[0])-6);
-                var dataRowH = Math.max(rowH, descLines.length*4.6 + 5);
-                p.setDrawColor(PDF_COLOR.lightRule[0], PDF_COLOR.lightRule[1], PDF_COLOR.lightRule[2]);
-                p.rect(doc.margin, tableY+rowH, doc.maxW, dataRowH, "S");
-                [colB[1], colB[2], colB[3]].forEach(function(x){
-                    p.line(x, tableY+rowH, x, tableY+rowH+dataRowH);
+                lignes.forEach(function(ligne){
+                    var descLines = p.splitTextToSize(ligne.label, (colB[1]-colB[0])-6);
+                    var dataRowH = Math.max(rowH, descLines.length*4.6 + 5);
+                    p.setDrawColor(PDF_COLOR.lightRule[0], PDF_COLOR.lightRule[1], PDF_COLOR.lightRule[2]);
+                    p.rect(doc.margin, rowY, doc.maxW, dataRowH, "S");
+                    [colB[1], colB[2], colB[3]].forEach(function(x){
+                        p.line(x, rowY, x, rowY+dataRowH);
+                    });
+                    var ty = rowY + 6;
+                    descLines.forEach(function(l){ p.text(l, colB[0]+3, ty); ty += 4.6;});
+                    p.text("1", colB[2]-3, rowY+6, {align:"right"});
+                    p.text(fmtEUR(ligne.montant), colB[3]-3, rowY+6, {align:"right"});
+                    p.text(fmtEUR(ligne.montant), colB[4]-3, rowY+6, {align:"right"});
+                    rowY += dataRowH;
                 });
-                var ty = tableY + rowH + 6;
-                descLines.forEach(function(l){ p.text(l, colB[0]+3, ty); ty += 4.6;});
-                p.text("1", colB[2]-3, tableY+rowH+6, {align:"right"});
-                p.text(fmtEUR(acompte), colB[3]-3, tableY+rowH+6, {align:"right"});
-                p.text(fmtEUR(acompte), colB[4]-3, tableY+rowH+6, {align:"right"});
 
-                doc.y = tableY + rowH + dataRowH + 10;
+                doc.y = rowY + 10;
 
                 var totalsX = doc.pageW - doc.margin;
                 p.setFont("Syne","normal"); p.setFontSize(10.5);
-                p.text("Total HT : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.text("Total HT : " + fmtEUR(d.budgetTotal), totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.text("TVA : 0,00 €", totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.setFont("Syne","bold"); p.setFontSize(12);
                 p.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
-                p.text("TOTAL À PAYER : " + fmtEUR(acompte), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                p.text("TOTAL À PAYER : " + fmtEUR(d.budgetTotal), totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.setTextColor(PDF_COLOR.charcoal[0], PDF_COLOR.charcoal[1], PDF_COLOR.charcoal[2]);
                 p.setFont("Syne","normal"); p.setFontSize(9);
                 p.text("TVA non applicable, art. 293 B du CGI.", totalsX, doc.y, {align:"right"}); doc.y += 14;
@@ -1026,16 +1051,18 @@
                 doc.p("Bonjour " + prenom + ",");
                 doc.p("Je suis ravi de vous compter parmi mes clients et j'ai hâte de donner vie à votre projet" + (d.nomProjet ? " « " + d.nomProjet + " »" : "") + ". Ce document a pour but de vous guider dans nos premiers pas ensemble afin que tout se déroule de manière fluide et transparente.");
 
-                doc.h2("Votre espace client");
-                doc.p("J'ai créé un espace dédié pour centraliser tous nos échanges, documents et validations :");
-                doc.p(orText(d.lienPortail, "lien à venir"), {bold:true});
-                doc.p("Dans cet espace, vous trouverez dès à présent :");
-                doc.p("–  Une copie de notre contrat de prestation signé.");
-                doc.p("–  Votre facture d'acompte (ainsi que les reçus futurs).");
-                doc.p("–  Le suivi d'avancement du projet.");
+                if(d.lienPortail && d.lienPortail.trim()){
+                    doc.h2("Votre espace client");
+                    doc.p("J'ai créé un espace dédié pour centraliser tous nos échanges, documents et validations :");
+                    doc.p(d.lienPortail.trim(), {bold:true});
+                    doc.p("Dans cet espace, vous trouverez dès à présent :");
+                    doc.p("–  Une copie de notre contrat de prestation signé.");
+                    doc.p("–  Votre facture (avec les échéances de l'acompte et du solde, ainsi que les reçus futurs).");
+                    doc.p("–  Le suivi d'avancement du projet.");
+                }
 
                 doc.h2("Les prochaines étapes");
-                doc.p("–  Règlement de l'acompte : permet de bloquer ma disponibilité et de lancer officiellement la production.");
+                doc.p("–  " + ((d.acomptePct > 0 && d.acomptePct < 100) ? "Règlement de l'acompte" : "Règlement de la prestation") + " : permet de bloquer ma disponibilité et de lancer officiellement la production.");
                 doc.p("–  Le document de travail stratégique : vous le trouverez ci-joint (ou sur le portail). Il va m'aider à rassembler vos contenus et comprendre vos attentes précises.");
                 doc.p("–  Réunion de lancement (kick-off) : dès réception du document stratégique rempli, nous fixerons un appel de 45 minutes pour valider ensemble la direction du projet.");
 
