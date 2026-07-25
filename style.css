@@ -1905,8 +1905,11 @@ main.Reals {
             margin: 0 auto 90px;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
+
+            &Item2 {grid-template-columns: repeat(2, 1fr);}
+            &Row {grid-template-columns: none; grid-template-rows: repeat(1, 1fr);}
 
             img {
                 width: 100%;
