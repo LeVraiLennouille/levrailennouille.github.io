@@ -1908,8 +1908,8 @@ main.Reals {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
 
-            &Item2 {grid-template-columns: repeat(2, 1fr);}
-            &Row {grid-template-columns: none; grid-template-rows: repeat(1, 1fr);}
+            &.Item2 {grid-template-columns: repeat(2, 1fr);}
+            &.Row {grid-template-columns: none; grid-template-rows: repeat(1, 1fr);}
 
             img {
                 width: 100%;
