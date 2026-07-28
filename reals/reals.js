@@ -66,7 +66,7 @@ var REALS = [
         label: "GymAddict",
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
-        image: "/img/Projects/gymaddict/mockup.png",
+        image: "/img/reals/gymaddict/mockup.png",
         imageAlt: "Création GymAddict",
         date: "2026-04-15"
     }, {
