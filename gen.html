@@ -331,6 +331,10 @@
                                     <label class="Label" for="acomptePct">Acompte (%)</label>
                                     <input type="number" min="0" max="100" id="acomptePct" autocomplete="off" class="Input" value="30">
                                 </div>
+                                <div class="FormGroup ColFull">
+                                    <label class="Label" for="reductionMontant">Réduction accordée (€)</label>
+                                    <input type="number" min="0" step="0.01" id="reductionMontant" autocomplete="off" class="Input" placeholder="0,00">
+                                </div>
                             </div>
                             <div class="RadioBlock">
                                 <div class="Title">Délai de paiement</div>
@@ -630,6 +634,7 @@
                     autreLivrable: val("autreLivrable"),
                     lienPortail: val("lienPortail"),
                     budgetTotal: parseFloat(val("budgetTotal")) || 0,
+                    reductionMontant: parseFloat(val("reductionMontant")) || 0,
                     acomptePct: acomptePctVal,
                     delaiPaiement: getDelaiValue(),
                     numeroDevis: val("numeroDevis"),
@@ -937,6 +942,8 @@
                 var acompte = d.budgetTotal * d.acomptePct / 100;
                 var solde = d.budgetTotal - acompte;
                 var paiementUnique = !(d.acomptePct > 0 && d.acomptePct < 100);
+                var reduction = d.reductionMontant || 0;
+                var prixAvantReduction = d.budgetTotal + reduction;
                 var descPrestation = "Conception UI/UX et développement de site web CMS (Devis n°" + orText(d.numeroDevis, "à compléter") + ")";
 
                 var lignes = paiementUnique ? [
@@ -1020,7 +1027,13 @@
 
                 var totalsX = doc.pageW - doc.margin;
                 p.setFont("Syne","normal"); p.setFontSize(10.5);
-                p.text("Total HT : " + fmtEUR(d.budgetTotal), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                if(reduction > 0){
+                    p.text("Prix avant réduction : " + fmtEUR(prixAvantReduction), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                    p.text("Réduction : − " + fmtEUR(reduction), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                    p.text("Prix après réduction : " + fmtEUR(d.budgetTotal), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                } else {
+                    p.text("Total HT : " + fmtEUR(d.budgetTotal), totalsX, doc.y, {align:"right"}); doc.y += 6;
+                }
                 p.text("TVA : 0,00 €", totalsX, doc.y, {align:"right"}); doc.y += 6;
                 p.setFont("Syne","bold"); p.setFontSize(12);
                 p.setTextColor(PDF_COLOR.primary[0], PDF_COLOR.primary[1], PDF_COLOR.primary[2]);
