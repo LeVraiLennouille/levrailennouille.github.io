@@ -715,7 +715,7 @@ html, body {
         text-align: center;
         padding-top: 10px;
         font-size: 0.85rem;
-        color: var(--Muted);
+        color: var(--MinMuted);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -740,7 +740,7 @@ html, body {
                 pointer-events: auto;
 
                 li>a {
-                    color: var(--Muted);
+                    color: var(--MinMuted);
                     position: relative;
                     text-decoration: none;
                     font-size: 0.8rem;
