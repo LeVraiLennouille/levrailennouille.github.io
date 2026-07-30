@@ -1846,8 +1846,8 @@ main.Reals {
                 width: 200%;
                 max-width: none;
                 height: 100%;
-                object-fit: cover;
-                object-position: left center;
+                object-fit: contain;
+                object-position: center;
             }
         }
 
