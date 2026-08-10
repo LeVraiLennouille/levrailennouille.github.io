@@ -34,7 +34,8 @@
                     });
                 });
             },
-            { rootMargin: "-100px 0px -70% 0px", threshold: 0 }
+            
+            {rootMargin: "-100px 0px -70% 0px", threshold: 0}
         );
 
         headings.forEach((heading) => observer.observe(heading));
