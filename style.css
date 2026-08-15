@@ -3934,7 +3934,7 @@ main.Blog {
     }
 
     .BlogArticle {
-        max-width: 760px;
+        max-width: 800px;
 
         h2 {
             font-size: clamp(1.55rem, 2.6vw, 1.95rem);
