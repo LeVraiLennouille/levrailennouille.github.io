@@ -2,13 +2,48 @@
     const POSTS_PER_PAGE = 8;
 
     const BLOG_POSTS = [
-        {
+         {
+            title: "Gestion du Temps en Freelance : le Guide Complet pour les Créatifs Indépendants",
+            excerpt: "Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant.",
+            category: "Freelance",
+            date: "2027-02-01",
+            readingTime: "9 min",
+            url: "/blog/gestion-du-temps-freelance/"
+        }, {
             title: "Combien Coûte un Site Internet en 2027 ? Prix Réels et Complets",
-            excerpt: "Landing page, vitrine, e-commerce : les vrais prix pratiqués en France selon le prestataire choisi.",
-            category: "Guide Tarifs",
-            date: "2027-01-19",
+            excerpt: "Combien coûte un site internet en 2027 ? Landing page, vitrine, e-commerce : les vrais prix pratiqués en France selon le prestataire choisi.",
+            category: "Tarifs",
+            date: "2027-01-01",
             readingTime: "10 min",
             url: "/blog/combien-coute-un-site-internet-en-2027/"
+        }, {
+            title: "Pourquoi la Motivation ne Suffit pas pour Atteindre vos Objectifs",
+            excerpt: "La motivation ne suffit pas pour tenir ses objectifs sur la durée. Pourquoi l'action doit précéder la motivation, et comment construire un processus qui tient dans le temps.",
+            category: "Mindset",
+            date: "2026-12-01",
+            readingTime: "9 min",
+            url: "/blog/pourquoi-la-motivation-ne-suffit-pas/"
+        }, {
+            title: "Théorie des Couleurs : le Guide Complet pour Créer des Palettes Harmonieuses",
+            excerpt: "Roue chromatique, harmonies de couleurs, règle des 60-30-10, psychologie des couleurs : le guide complet pour composer une palette cohérente pour votre marque ou votre site.",
+            category: "Design",
+            date: "2026-11-01",
+            readingTime: "10 min",
+            url: "/blog/theorie-des-couleurs/"
+        }, {
+            title: "Avez-vous Vraiment Besoin des Réseaux Sociaux en Tant que Designer Freelance ?",
+            excerpt: "Faut-il être sur Instagram ou LinkedIn pour réussir en freelance ? Avantages, inconvénients et alternatives concrètes pour construire une présence qui vous correspond.",
+            category: "Freelance",
+            date: "2026-10-01",
+            readingTime: "8 min",
+            url: "/blog/reseaux-sociaux-freelance/"
+        }, {
+            title: "La Signification des Couleurs : Psychologie en Design",
+            excerpt: "Découvrez la théorie des couleurs, la psychologie cachée derrière chaque nuance et comment utiliser les couleurs efficacement dans vos designs et créations artistiques.",
+            category: "Design",
+            date: "2026-09-01",
+            readingTime: "8 min",
+            url: "/blog/signification-des-couleurs/"
         },
     ];
 
