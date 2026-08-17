@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Blog — Design, développement & stratégie web | Lennouille</title>
+
+    <meta name="description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://levrailennouille.github.io/blog/">
+    <meta property="og:title" content="Blog — Design, développement & stratégie web | Lennouille">
+    <meta property="og:description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Design, développement & stratégie web | Lennouille">
+    <meta name="twitter:description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/blog/">
+    <link href="/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    <main class="Blog Index">
+        <section class="BlogHero">
+            <div class="Decor" aria-hidden="true">
+                <span>BLOG</span>
+                <span>2026</span>
+            </div>
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Blog</span>
+                </nav>
+                <span class="Category">Le Blog</span>
+                <h1>Design, développement & stratégie web</h1>
+                <div class="Meta">
+                    <span id="PostCount">Chargement des articles…</span>
+                </div>
+            </div>
+        </section>
+        <section class="BlogListing">
+            <div class="Wrap">
+                <div class="BlogGrid" id="BlogGrid" aria-live="polite"></div>
+                <nav class="Pagination" id="Pagination" aria-label="Pagination du blog"></nav>
+            </div>
+        </section>
+        <div id="TalkPlaceHolder"></div><script src="/js/talk.js"></script>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/script.js"></script>
+    <script src="/blog/posts.js"></script>
+</body>
+</html>
