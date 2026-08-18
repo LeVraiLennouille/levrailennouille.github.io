@@ -4602,7 +4602,7 @@ main.About {
                 z-index: 0;
             }
 
-            &:first-child .Line {top: 50%;}
+            &:first-child .Line {top: 0;}
             &:last-child .Line {bottom: 50%;}
 
             .Circle {
