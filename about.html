@@ -247,5 +247,44 @@
         </section>
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
+<!-- Anim -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof gsap === "undefined") return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            document.querySelectorAll(".TimelineItem").forEach(function (item) {
+                gsap.from(item.querySelector(".Content"), {
+                    opacity: 0,
+                    y: 24,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    scrollTrigger: {trigger: item, start: "top 80%"}
+                });
+
+                gsap.from(item.querySelector(".Circle"), {
+                    scale: 0,
+                    duration: 0.5,
+                    ease: "back.out(2)",
+                    scrollTrigger: {trigger: item, start: "top 75%"}
+                });
+            });
+
+            gsap.utils.toArray(".Skills .Card, .Values .Card").forEach(function (card, i) {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 24,
+                    duration: 0.6,
+                    delay: (i % 2) * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {trigger: card, start: "top 85%"}
+                });
+            });
+        });
+    </script>
 </body>
 </html>
