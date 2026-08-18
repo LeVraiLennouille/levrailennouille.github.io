@@ -4531,7 +4531,7 @@ main.About {
 
     section.Timeline {
         position: relative;
-        background-color: var(--Charcoal);
+        background-color: var(--Background);
         overflow: hidden;
         padding: 160px 40px 160px;
 
@@ -4539,7 +4539,7 @@ main.About {
             content: "";
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(var(--DarkPrimaryRGB), 0.3) 0%, transparent 70%);
+            background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(var(--PrimaryRGB), 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -4562,7 +4562,7 @@ main.About {
             h2 {
                 font-size: clamp(2.2rem, 4.5vw, 3rem);
                 font-weight: 800;
-                color: var(--PureWhite);
+                color: var(--Charcoal);
                 letter-spacing: -0.01em;
             }
         }
@@ -4634,8 +4634,8 @@ main.About {
                 display: inline-block;
                 padding: 5px 16px;
                 border-radius: 50px;
-                background: rgba(var(--DarkPrimaryRGB), 0.55);
-                border: 1px solid rgba(var(--PrimaryRGB), 0.45);
+                background: rgba(var(--PrimaryRGB), 0.12);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
                 color: var(--Primary);
                 font-size: 0.8rem;
                 font-weight: 700;
@@ -4645,14 +4645,14 @@ main.About {
             h3 {
                 font-size: 1.5rem;
                 font-weight: 800;
-                color: var(--PureWhite);
+                color: var(--Charcoal);
                 margin-bottom: 10px;
             }
 
             p {
                 font-size: 0.98rem;
                 line-height: 1.6;
-                color: var(--LightMuted);
+                color: var(--Muted);
             }
 
             &:nth-child(odd) .Content {
@@ -4673,7 +4673,7 @@ main.About {
 
     section.Skills {
         position: relative;
-        background-color: var(--Charcoal);
+        background-color: var(--Background);
         padding: 100px 40px;
 
         .SectionHeader {
@@ -4694,14 +4694,14 @@ main.About {
             h2 {
                 font-size: clamp(2rem, 4vw, 2.75rem);
                 font-weight: 800;
-                color: var(--PureWhite);
+                color: var(--Charcoal);
                 letter-spacing: -0.01em;
                 margin-bottom: 16px;
             }
 
             .Subtitle {
                 font-size: 1.05rem;
-                color: var(--LightMuted);
+                color: var(--Muted);
                 line-height: 1.6;
             }
         }
@@ -4715,8 +4715,8 @@ main.About {
         }
 
         .Card {
-            background: rgba(var(--PureWhiteRGB), 0.03);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.1);
+            background: var(--PureWhite);
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
             border-radius: 20px;
             padding: 36px;
 
@@ -4731,7 +4731,7 @@ main.About {
                     width: 48px;
                     height: 48px;
                     border-radius: 14px;
-                    background: rgba(var(--DarkPrimaryRGB), 0.55);
+                    background: rgba(var(--PrimaryRGB), 0.12);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -4742,13 +4742,13 @@ main.About {
                 h3 {
                     font-size: 1.15rem;
                     font-weight: 800;
-                    color: var(--PureWhite);
+                    color: var(--Charcoal);
                     margin-bottom: 4px;
                 }
 
                 p {
                     font-size: 0.88rem;
-                    color: var(--LightMuted);
+                    color: var(--Muted);
                 }
             }
 
@@ -4761,9 +4761,9 @@ main.About {
                 li {
                     font-size: 0.8rem;
                     font-weight: 700;
-                    color: var(--PureWhite);
-                    background: rgba(var(--PureWhiteRGB), 0.06);
-                    border: 1px solid rgba(var(--PureWhiteRGB), 0.18);
+                    color: var(--DarkPrimary);
+                    background: rgba(var(--PrimaryRGB), 0.08);
+                    border: 1px solid rgba(var(--PrimaryRGB), 0.2);
                     padding: 6px 15px;
                     border-radius: 50px;
                 }
@@ -4772,7 +4772,7 @@ main.About {
 
         .Footnote {
             text-align: center;
-            color: var(--LightMuted);
+            color: var(--MinMuted);
             font-size: 0.95rem;
             max-width: 1200px;
             margin: 48px auto 0;
@@ -4781,7 +4781,7 @@ main.About {
 
     section.Values {
         position: relative;
-        background-color: var(--Charcoal);
+        background-color: var(--Background);
         padding: 40px 40px 120px;
 
         .SectionHeader {
@@ -4802,14 +4802,14 @@ main.About {
             h2 {
                 font-size: clamp(2rem, 4vw, 2.75rem);
                 font-weight: 800;
-                color: var(--PureWhite);
+                color: var(--Charcoal);
                 letter-spacing: -0.01em;
                 margin-bottom: 16px;
             }
 
             .Subtitle {
                 font-size: 1.05rem;
-                color: var(--LightMuted);
+                color: var(--Muted);
                 line-height: 1.6;
             }
         }
@@ -4823,8 +4823,8 @@ main.About {
         }
 
         .Card {
-            background: rgba(var(--PureWhiteRGB), 0.03);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.1);
+            background: var(--PureWhite);
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
             border-radius: 20px;
             padding: 36px;
 
@@ -4839,7 +4839,7 @@ main.About {
                     width: 48px;
                     height: 48px;
                     border-radius: 14px;
-                    background: rgba(var(--DarkPrimaryRGB), 0.55);
+                    background: rgba(var(--PrimaryRGB), 0.12);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -4850,14 +4850,14 @@ main.About {
                 h3 {
                     font-size: 1.15rem;
                     font-weight: 800;
-                    color: var(--PureWhite);
+                    color: var(--Charcoal);
                 }
             }
 
             p {
                 font-size: 0.95rem;
                 line-height: 1.6;
-                color: var(--LightMuted);
+                color: var(--Muted);
                 margin-left: 66px;
             }
         }
