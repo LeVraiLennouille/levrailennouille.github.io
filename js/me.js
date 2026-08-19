@@ -17,7 +17,10 @@ const MeHTML = `
             </text>
         </svg>
         <div class="Text">
-            <h4>Qui se cache derrière Lennouille ?</h4>
+            <div class="Header">
+                <span class="Eyebrow">Qui suis-je</span>
+                <h2>Qui se cache derrière Lennouille ?</h2>
+            </div>
             <div class="Desc">
                 <p>Salut ! Moi c'est Lenny, fondateur du studio Lennouille, ton partenaire créatif et technique.</p>
                 <p>Tout a commencé par une volonté de comprendre les mécaniques derrière les interfaces que nous utilisons chaque jour. De ma formation initiale centrée sur l'humain et la relation client à ma spécialisation web, cette curiosité s'est transformée en une véritable passion pour l'ergonomie, que j'ai forgée en grande partie en autodidacte.</p>
