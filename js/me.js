@@ -24,7 +24,7 @@ const MeHTML = `
                 <p>Aujourd'hui, je ne me contente pas de dessiner des maquettes ou de taper du code : je m'implique, je conseille et je t'accompagne de A à Z. Mon objectif ? Révéler l'essence de ton projet et créer une interface qui te ressemble à 100%.</p>
                 <p>Chaque projet est pensé de manière globale pour marquer les esprits et atteindre tes objectifs. Du Branding au Développement Web, en passant par l'UI/UX et la création de Design Systems pérennes, je conçois des produits fluides, performants et sans friction.</p>
             </div>
-            <a class="GlowingBtn" href="/about">Direction les coulisses →</a>
+            <a class="SlideBtn" href="/about"><span>Direction les coulisses</span><span class="Arrow">→</span></a>
         </div>
     </section>
 `;

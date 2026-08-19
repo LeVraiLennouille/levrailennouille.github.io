@@ -1278,8 +1278,11 @@ section.Me {
             p {text-align: justify ;}
         }
 
-        .GlowingBtn {
+        .SlideBtn {
             align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             padding: 16px 32px;
             border: none;
             outline: none;
@@ -1287,49 +1290,43 @@ section.Me {
             background: var(--DarkPrimary);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
             z-index: 0;
             border-radius: 10px;
             text-decoration: none;
+            box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.12);
+            transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
 
             &:before {
                 content: '';
-                background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
                 position: absolute;
-                top: -2px;
-                left:-2px;
-                background-size: 400%;
+                inset: 0;
+                background: var(--Primary);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform .45s cubic-bezier(.65,0,.35,1);
                 z-index: -1;
-                filter: blur(5px);
-                width: calc(100% + 4px);
-                height: calc(100% + 4px);
-                animation: Glowing 20s linear infinite;
-                opacity: 0;
-                transition: opacity .3s ease-in-out;
-                border-radius: 10px;
             }
 
-            &:active {color: var(--PureBlack)}
-            &:active:after {background: transparent;}
-            &:hover:before {opacity: 1;}
-            &:after {
-                z-index: -1;
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: var(--DarkPrimary);
-                left: 0;
-                top: 0;
-                border-radius: 10px;
+            .Arrow {
+                display: inline-block;
+                transition: transform .4s cubic-bezier(.22,1,.36,1);
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 28px rgba(var(--PrimaryRGB), 0.35);
+
+                &:before {transform: scaleX(1);}
+                .Arrow {transform: translateX(5px);}
+            }
+
+            &:active {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 16px rgba(var(--PrimaryRGB), 0.3);
             }
         }   
     }
-}
-
-@keyframes Glowing {
-    0% {background-position: 0 0;}
-    50% {background-position: 400% 0;}
-    100% {background-position: 0 0;}
 }
 
 /* --- Talk section --- */
@@ -4528,6 +4525,7 @@ main.Blog {
 ========================================================================== */
 
 main.About {
+    section.Me {margin-top: 164px}
 
     section.Timeline {
         position: relative;
@@ -5545,7 +5543,7 @@ main.Terms {
         svg {height: auto;}
         .Text {
             text-align: center;
-            .GlowingBtn {align-self: flex-start; margin: 0 auto;}
+            .SlideBtn {align-self: flex-start; margin: 0 auto;}
         }
     }
 
