@@ -1276,6 +1276,18 @@ section.Me {
             gap: 10px;
 
             p {text-align: justify ;}
+
+            ul {
+                margin-top: 10px;
+                list-style: disc;
+                padding-left: 20px;
+
+                li {
+                    margin-bottom: 5px;
+
+                    &::marker, strong {color: var(--DarkPrimary)}
+                }
+            }
         }
 
         .SlideBtn {

@@ -19,13 +19,18 @@ const MeHTML = `
         <div class="Text">
             <div class="Header">
                 <span class="Eyebrow">Qui suis-je</span>
-                <h2>Qui se cache derrière Lennouille ?</h2>
+                <h2>L'humain derrière l'interface.</h2>
             </div>
             <div class="Desc">
-                <p>Salut ! Moi c'est Lenny, fondateur du studio Lennouille, ton partenaire créatif et technique.</p>
-                <p>Tout a commencé par une volonté de comprendre les mécaniques derrière les interfaces que nous utilisons chaque jour. De ma formation initiale centrée sur l'humain et la relation client à ma spécialisation web, cette curiosité s'est transformée en une véritable passion pour l'ergonomie, que j'ai forgée en grande partie en autodidacte.</p>
-                <p>Aujourd'hui, je ne me contente pas de dessiner des maquettes ou de taper du code : je m'implique, je conseille et je t'accompagne de A à Z. Mon objectif ? Révéler l'essence de ton projet et créer une interface qui te ressemble à 100%.</p>
-                <p>Chaque projet est pensé de manière globale pour marquer les esprits et atteindre tes objectifs. Du Branding au Développement Web, en passant par l'UI/UX et la création de Design Systems pérennes, je conçois des produits fluides, performants et sans friction.</p>
+                <p><strong>Moi c'est Lenny, fondateur du studio Lennouille, ton partenaire créatif et technique.</strong></p>
+                <p>Passé de la relation client à la spécialisation web, j'ai transformé ma curiosité pour les interfaces en une véritable passion autodidacte pour l'ergonomie. Aujourd'hui, je ne me contente pas de dessiner des maquettes ou de taper du code : je m'implique, je conseille et je t'accompagne de A à Z.</p>
+                <p>Mon objectif ? Révéler l'essence de ton projet et créer une interface qui te ressemble à 100%.</p>
+                <p>Pour marquer les esprits et atteindre tes objectifs, je conçois des produits fluides, performants et sans friction à travers une approche globale :</p>
+                <ul>
+                    <li><strong>Branding :</strong> Création d'une identité visuelle forte.</li>
+                    <li><strong>UI/UX & Design Systems :</strong> Conception d'interfaces ergonomiques et pérennes.</li>
+                    <li><strong>Développement Web :</strong> Intégration technique sur mesure.</li>
+                </ul>
             </div>
             <a class="SlideBtn" href="/about"><span>Direction les coulisses</span><span class="Arrow">→</span></a>
         </div>
