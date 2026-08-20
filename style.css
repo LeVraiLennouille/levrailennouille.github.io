@@ -1342,6 +1342,16 @@ section.Me {
 }
 
 /* --- CTA section --- */
+.CTAWave {
+    display: block;
+    width: 100%;
+    height: 120px;
+}
+
+.CTAWaveBottom {transform: scaleX(-1) scaleY(-1);}
+.CTAWaveEcho {fill-opacity: 0.4;}
+.CTAWaveEchoNear {fill-opacity: 0.65;}
+
 section.CTA {
     position: relative;
     overflow: hidden;
