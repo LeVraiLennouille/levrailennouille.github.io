@@ -495,7 +495,6 @@ html, body {
                 color: var(--PureWhite);
                 font-size: 0.8rem;
                 font-weight: 600;
-                letter-spacing: 0.05em;
                 padding: 5px 12px;
                 border-radius: 50px;
                 margin-bottom: 16px;
@@ -745,7 +744,6 @@ html, body {
                     text-decoration: none;
                     font-size: 0.8rem;
                     line-height: 1.6;
-                    letter-spacing: 0.03em;
                     width: fit-content;
                     transition: all 0.3s ease;
 
@@ -1025,7 +1023,6 @@ section.Why {
             h4 {
                 font-size: 0.8rem;
                 font-weight: 800;
-                letter-spacing: 0.04em;
                 color: var(--DarkPrimary);
                 text-transform: uppercase;
                 line-height: 1.2;
@@ -1248,7 +1245,6 @@ section.Me {
         .TextContent {
     	    font-weight: 900; 
             font-size: 0.38rem;
-	        letter-spacing: 1.5px;
     	    fill: var(--Primary);
 	        mix-blend-mode: normal;
 	        transition: ease fill .5s;
@@ -1360,7 +1356,6 @@ section.Talk {
             color: var(--PureWhite);
             font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 0.09em;
             padding: 6px 16px;
             border-radius: 50px;
 
@@ -1381,7 +1376,6 @@ section.Talk {
             font-weight: 900;
             color: var(--PureWhite);
             line-height: 1.1;
-            letter-spacing: -0.02em;
         }
  
         .TalkSub {
@@ -1586,7 +1580,6 @@ main.Reals {
                 color: var(--PureWhite);
                 font-weight: 700;
                 font-size: 14px;
-                letter-spacing: 0.3px;
                 padding: 13px 28px;
                 border-radius: 10px;
                 border: none;
@@ -1635,7 +1628,6 @@ main.Reals {
                 display: inline-block;
                 font-size: 0.78rem;
                 font-weight: 800;
-                letter-spacing: 0.16em;
                 text-transform: uppercase;
                 color: var(--Primary);
                 margin-bottom: 20px;
@@ -1688,7 +1680,6 @@ main.Reals {
                     display: block;
                     font-size: 0.68rem;
                     font-weight: 800;
-                    letter-spacing: 0.14em;
                     text-transform: uppercase;
                     color: var(--Primary);
                     margin-bottom: 10px;
@@ -1801,7 +1792,6 @@ main.Reals {
             span {
                 font-size: 0.72rem;
                 font-weight: 800;
-                letter-spacing: 0.14em;
                 text-transform: uppercase;
                 color: var(--DarkPrimary);
 
@@ -1880,7 +1870,6 @@ main.Reals {
                 content: '\25C0 \25B6';
                 color: var(--PureWhite);
                 font-size: 12px;
-                letter-spacing: -1px;
             }
         }
 
@@ -1982,7 +1971,6 @@ main.Reals {
                         display: block;
                         font-size: 0.75rem;
                         font-weight: 800;
-                        letter-spacing: 0.16em;
                         text-transform: uppercase;
                         color: var(--Primary);
                         margin-bottom: 14px;
@@ -2056,7 +2044,6 @@ main.Reals {
                                     color: var(--PureWhite);
                                     font-size: 1rem;
                                     font-weight: 700;
-                                    letter-spacing: 0.08em;
                                     transform: translateY(8px);
                                     transition: transform 0.3s ease;
                                 }
@@ -2069,7 +2056,6 @@ main.Reals {
                             .RelatedCategory {
                                 font-size: 0.68rem;
                                 font-weight: 700;
-                                letter-spacing: 0.12em;
                                 text-transform: uppercase;
                                 color: var(--Primary);
                                 margin: 0 0 6px;
@@ -2190,7 +2176,6 @@ main.Contact {
             .ContactTitle {
                 font-size: clamp(2.8rem, 5vw, 4.5rem);
                 font-weight: 800;
-                letter-spacing: 0.04em;
                 color: var(--Charcoal);
                 line-height: 1;
                 margin-bottom: 18px;
@@ -2211,7 +2196,6 @@ main.Contact {
                     text-transform: uppercase;
                     color: rgba(var(--PureBlackRGB), 0.8);
                     line-height: 1.6;
-                    letter-spacing: 0.12em;
                     transition: color 0.3s ease;
                     padding: 0 2px 4px;
 
@@ -2324,7 +2308,7 @@ main.Contact {
                         border-radius: 50px;
                         font-size: 0.78rem;
                         font-weight: 700;
-                        letter-spacing: 0.12em;
+
                         text-transform: uppercase;
                         cursor: pointer;
                         transition: filter 0.25s ease, transform 0.2s ease;
@@ -2343,7 +2327,6 @@ main.Contact {
                         border-radius: 50px;
                         font-size: 0.78rem;
                         font-weight: 600;
-                        letter-spacing: 0.08em;
                         text-transform: uppercase;
                         cursor: pointer;
                         transition: border-color 0.25s ease, color 0.25s ease;
@@ -2368,7 +2351,6 @@ main.Contact {
                     font-size: 0.8rem;
                     color: rgba(var(--PureBlackRGB),0.45);
                     line-height: 1.6;
-                    letter-spacing: 0.03em;
                     width: fit-content;
                     transition: all 0.3s ease;
 
@@ -2419,7 +2401,6 @@ main.Contact {
                     font-size: 0.8rem;
                     color: rgba(var(--PureBlackRGB),0.45);
                     line-height: 1.6;
-                    letter-spacing: 0.03em;
                     text-decoration: none;
                     width: fit-content;
                     transition: all 0.3s ease;
@@ -2612,7 +2593,6 @@ main.Simu {
                             font-size: 10px;
                             font-weight: 700;
                             text-transform: uppercase;
-                            letter-spacing: 2px;
                             color: var(--Primary);
                         }
 
@@ -2829,7 +2809,6 @@ main.Simu {
                                         font-size: 9px;
                                         font-weight: 700;
                                         text-transform: uppercase;
-                                        letter-spacing: 0.7px;
                                         background: rgba(var(--PrimaryRGB), 0.14);
                                         color: var(--DarkPrimary);
                                         border: 1px solid rgba(var(--PrimaryRGB), 0.28);
@@ -2947,7 +2926,6 @@ main.Simu {
                             font-size: 11px;
                             font-weight: 600;
                             text-transform: uppercase;
-                            letter-spacing: 0.8px;
                             color: var(--Muted);
                             margin-bottom: 7px;
                         }
@@ -3041,7 +3019,6 @@ main.Simu {
                     color: var(--PureWhite);
                     font-weight: 700;
                     font-size: 14px;
-                    letter-spacing: 0.3px;
                     padding: 13px 28px;
                     border-radius: 10px;
                     border: none;
@@ -3098,7 +3075,6 @@ main.Simu {
                 .SidebarEyebrow {
                     font-size: 18px;
                     font-weight: 900;
-                    letter-spacing: 2px;
                     color: var(--Charcoal);
                     margin-bottom: 4px;
                 }
@@ -3123,7 +3099,6 @@ main.Simu {
                 .BreakdownEyebrow {
                     font-size: 14px;
                     font-weight: 900;
-                    letter-spacing: 2px;
                     color: var(--Charcoal);
                     margin-bottom: 12px;
                 }
@@ -3280,7 +3255,6 @@ main.Simu {
                 .Estimation {
                     font-size: 16px;
                     font-weight: 900;
-                    letter-spacing: 2px;
                     color: var(--Muted);
                     margin-bottom: 4px;
                 }
@@ -3302,7 +3276,6 @@ main.Simu {
             .SectionLabel {
                 font-size: 14px;
                 font-weight: 900;
-                letter-spacing: 2px;
                 color: var(--Muted);
                 margin: 20px 0 10px;
             }
@@ -3412,7 +3385,6 @@ main.Simu {
                 font-size: 10px;
                 color: var(--Muted);
                 text-transform: uppercase;
-                letter-spacing: 0.08em;
                 margin-bottom: 2px;
             }
 
@@ -3428,7 +3400,6 @@ main.Simu {
                     font-size: 10px;
                     color: var(--Muted);
                     text-transform: uppercase;
-                    letter-spacing: 0.08em;
                     margin-bottom: 2px;
                 }
 
@@ -3457,7 +3428,6 @@ main.Simu {
                     font-size: 9px;
                     color: var(--MinMuted);
                     text-transform: uppercase;
-                    letter-spacing: 0.7px;
                     white-space: nowrap;
                 }
             }
@@ -3523,7 +3493,6 @@ main.Simu {
                     color: var(--PureWhite);
                     font-weight: 700;
                     font-size: 14px;
-                    letter-spacing: 0.3px;
                     padding: 13px 28px;
                     border-radius: 10px;
                     border: none;
@@ -3643,7 +3612,6 @@ main.Blog {
                 .Category {
                     font-size: 0.68rem;
                     font-weight: 800;
-                    letter-spacing: 0.1em;
                     text-transform: uppercase;
                     color: var(--Primary);
                 }
@@ -3772,7 +3740,6 @@ main.Blog {
             span {
                 font-size: clamp(5rem, 12vw, 11rem);
                 font-weight: 900;
-                letter-spacing: -0.04em;
                 line-height: 0.9;
                 color: transparent;
                 -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
@@ -3795,7 +3762,6 @@ main.Blog {
                 font-size: 0.78rem;
                 font-weight: 700;
                 text-transform: uppercase;
-                letter-spacing: 0.1em;
                 color: var(--MinMuted);
                 margin-bottom: 24px;
 
@@ -3813,7 +3779,6 @@ main.Blog {
                 color: var(--Primary);
                 font-size: 0.72rem;
                 font-weight: 800;
-                letter-spacing: 0.1em;
                 text-transform: uppercase;
                 margin-bottom: 24px;
             }
@@ -3823,7 +3788,6 @@ main.Blog {
                 font-weight: 900;
                 color: var(--PureWhite);
                 line-height: 1.08;
-                letter-spacing: -0.02em;
                 margin-bottom: 28px;
             }
 
@@ -3865,7 +3829,6 @@ main.Blog {
                 .Title {
                     font-size: 0.7rem;
                     font-weight: 800;
-                    letter-spacing: 0.12em;
                     text-transform: uppercase;
                     color: var(--PureBlack);
                     margin-bottom: 16px;
@@ -3940,7 +3903,6 @@ main.Blog {
             font-size: clamp(1.55rem, 2.6vw, 1.95rem);
             font-weight: 900;
             color: var(--Charcoal);
-            letter-spacing: -0.01em;
             margin: 98px 0 22px;
             scroll-margin-top: 100px;
             position: relative;
@@ -4071,7 +4033,6 @@ main.Blog {
             color: var(--PureWhite);
             font-size: 0.72rem;
             font-weight: 800;
-            letter-spacing: 0.08em;
             text-transform: uppercase;
             text-align: left;
             padding: 14px 20px;
@@ -4099,7 +4060,6 @@ main.Blog {
     .TableCaption {
         font-size: 0.72rem;
         font-weight: 800;
-        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--Primary);
         margin: 28px 0 10px;
@@ -4287,7 +4247,6 @@ main.Blog {
             color: var(--PureWhite);
             font-size: 0.78rem;
             font-weight: 800;
-            letter-spacing: 0.02em;
         }
 
         .Dominant {background: var(--Primary);}
@@ -4499,7 +4458,6 @@ main.Blog {
                 border-radius: 50px;
                 font-size: 0.85rem;
                 font-weight: 800;
-                letter-spacing: 0.04em;
                 text-transform: uppercase;
                 transition: all 0.3s ease;
             }
@@ -4556,7 +4514,6 @@ main.Terms {
                 font-weight: 900;
                 color: var(--PureWhite);
                 line-height: 1;
-                letter-spacing: -0.03em;
                 margin-bottom: 20px;
             }
             .SubTitle {
@@ -4583,7 +4540,6 @@ main.Terms {
             span {
                 font-size: clamp(5rem, 12vw, 11rem);
                 font-weight: 900;
-                letter-spacing: -0.04em;
                 line-height: 0.9;
                 color: transparent;
                 -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
@@ -4615,7 +4571,6 @@ main.Terms {
                 .Title {
                     font-size: 0.7rem;
                     font-weight: 800;
-                    letter-spacing: 0.12em;
                     text-transform: uppercase;
                     color: var(--PureBlack);
                     margin-bottom: 16px;
@@ -4677,7 +4632,6 @@ main.Terms {
                     font-size: 1rem;
                     font-weight: 800;
                     color: var(--Primary);
-                    letter-spacing: 0.08em;
                     padding-top: 6px;
                 }
 
@@ -4687,7 +4641,6 @@ main.Terms {
                         font-weight: 800;
                         color: var(--Primary);
                         margin-bottom: 20px;
-                        letter-spacing: -0.02em;
                     }
 
                     h3 {
@@ -4757,7 +4710,6 @@ main.Terms {
                                 font-size: 0.78rem;
                                 font-weight: 800;
                                 text-transform: uppercase;
-                                letter-spacing: 0.07em;
                                 color: var(--Primary);
                                 flex-shrink: 0;
                                 width: 200px;
@@ -4839,7 +4791,6 @@ main.Terms {
                         color: var(--PureWhite);
                         text-transform: uppercase;
                         font-size: 1rem;
-                        letter-spacing: .15rem;
                         text-decoration: none;
                         transition: all .3s;
                         position: relative;
