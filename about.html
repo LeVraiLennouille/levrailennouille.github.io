@@ -34,6 +34,17 @@
     <main class="About">
         <div id="HeaderPlaceHolder"></div><script src="js/header.js"></script>
         <div id="MePlaceHolder"></div><script src="js/me.js"></script>
+        <section class="CTA">
+            <div class="CTAContent">
+                <span class="Badge">Disponible pour de nouveaux projets</span>
+                <h2>Un projet en tête ?</h2>
+                <p>Refonte, site vitrine ou simple avis extérieur sur votre interface : parlons-en. Vous pouvez aussi obtenir une estimation chiffrée en quelques clics.</p>
+                <div class="CTAButtons">
+                    <a href="contact.html" class="ButtonSolid">Me contacter</a>
+                    <a href="simu.html" class="ButtonGhost">Obtenir un devis</a>
+                </div>
+            </div>
+        </section>
         <section class="Timeline">
             <div class="TimelineHeader">
                 <span class="Eyebrow">Parcours</span>
@@ -277,6 +288,14 @@
         document.addEventListener("DOMContentLoaded", function () {
             if (typeof gsap === "undefined") return;
             gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from(".CTA", {
+                opacity: 0,
+                y: 24,
+                duration: 0.6,
+                ease: "power2.out",
+                scrollTrigger: {trigger: ".CTA", start: "top 85%"}
+            });
 
             document.querySelectorAll(".TimelineItem").forEach(function (item) {
                 gsap.from(item.querySelector(".Content"), {
