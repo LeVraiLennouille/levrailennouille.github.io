@@ -1351,9 +1351,30 @@ section.Me {
 
     .WaveEchos {
         fill-opacity: 0.4;
-        
-        &.WaveEchoNear {fill-opacity: 0.65;}
+
+        &.WaveEchoFar {
+            transform-origin: center bottom;
+            animation: waveDriftFar 7s ease-in-out infinite;
+        }
+
+        &.WaveEchoNear {
+            fill-opacity: 0.65;
+            transform-origin: center bottom;
+            animation: waveDriftNear 5s ease-in-out infinite;
+        }
     }
+}
+
+@keyframes waveDriftFar {
+    0% {transform: translate(0px, 0px) scale(1);}
+    50% {transform: translate(-12px, 2px) scale(1.01);}
+    100% {transform: translate(0px, 0px) scale(1);}
+}
+
+@keyframes waveDriftNear {
+    0% {transform: translate(0px, 0px) scale(1);}
+    50% {transform: translate(12px, -2px) scale(1.02);}
+    100% {transform: translate(0px, 0px) scale(1);}
 }
 
 section.CTA {
