@@ -1342,15 +1342,19 @@ section.Me {
 }
 
 /* --- CTA section --- */
-.CTAWave {
+.Waves {
     display: block;
     width: 100%;
     height: 120px;
-}
 
-.CTAWaveBottom {transform: scaleX(-1) scaleY(-1);}
-.CTAWaveEcho {fill-opacity: 0.4;}
-.CTAWaveEchoNear {fill-opacity: 0.65;}
+    &.WaveBottom {transform: scaleX(-1) scaleY(-1);}
+
+    .WaveEchos {
+        fill-opacity: 0.4;
+        
+        &.WaveEchoNear {fill-opacity: 0.65;}
+    }
+}
 
 section.CTA {
     position: relative;
