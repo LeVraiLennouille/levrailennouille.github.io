@@ -1352,6 +1352,7 @@ section.CallToAction {
 
         .WaveEchos {
             fill-opacity: 0.4;
+            transform-box: fill-box;
 
             &.WaveEchoFar {
                 transform-origin: center bottom;
@@ -1452,16 +1453,17 @@ section.CallToAction {
     }
 }
 
+
 @keyframes waveDriftFar {
-    0% {transform: translate(0px, 0px) scale(1);}
-    50% {transform: translate(-12px, 2px) scale(1.01);}
-    100% {transform: translate(0px, 0px) scale(1);}
+    0% {transform: translate(0px, 0px) scale(1.03);}
+    50% {transform: translate(-12px, 2px) scale(1.05);}
+    100% {transform: translate(0px, 0px) scale(1.03);}
 }
 
 @keyframes waveDriftNear {
-    0% {transform: translate(0px, 0px) scale(1);}
-    50% {transform: translate(12px, -2px) scale(1.02);}
-    100% {transform: translate(0px, 0px) scale(1);}
+    0% {transform: translate(0px, 0px) scale(1.03);}
+    50% {transform: translate(12px, -2px) scale(1.05);}
+    100% {transform: translate(0px, 0px) scale(1.03);}
 }
 
 /* --- Talk section --- */
