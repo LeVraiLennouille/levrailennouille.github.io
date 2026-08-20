@@ -1251,7 +1251,7 @@ section.Me {
     	    font-weight: 900; 
             font-size: 0.38rem;
 	        letter-spacing: 1.5px;
-    	    fill: var(--Primary);
+    	    fill: var(--DarkPrimary);
 	        mix-blend-mode: normal;
 	        transition: ease fill .5s;
         }
