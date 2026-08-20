@@ -1474,7 +1474,6 @@ main.Services {
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
             gap: 24px;
 
             .ServiceCard:nth-child(1) {grid-column: span 2; grid-row: span 2;}
@@ -1539,8 +1538,9 @@ main.Services {
                 font-size: 0.92rem;
                 line-height: 1.6;
                 color: var(--Muted);
-                flex: 1;
             }
+
+            > ul.FeatureList {flex: 1;}
 
             .CardFooter {
                 display: flex;
