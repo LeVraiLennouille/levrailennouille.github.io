@@ -1466,7 +1466,7 @@ section.Talk {
 main.Services {
 
     section.ServicesGrid {
-        background: var(--Charcoal);
+        background: var(--Backrgound);
         padding: 160px 40px 140px;
 
         .Grid {
@@ -1479,8 +1479,8 @@ main.Services {
         }
 
         .ServiceCard {
-            background: rgba(var(--PureWhiteRGB), 0.03);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.1);
+            background: rgba(var(--PureBlackRGB), 0.03);
+            border: 1px solid rgba(var(--PureBlackRGB), 0.1);
             border-radius: 20px;
             padding: 32px;
             display: flex;
@@ -1491,7 +1491,6 @@ main.Services {
                 grid-column: span 2;
                 grid-row: span 2;
                 border-color: rgba(var(--PrimaryRGB), 0.5);
-                box-shadow: 0 0 60px rgba(var(--PrimaryRGB), 0.14), inset 0 0 50px rgba(var(--DarkPrimaryRGB), 0.2);
             }
 
             .CardTop {
@@ -1507,36 +1506,36 @@ main.Services {
                 height: 48px;
                 flex-shrink: 0;
                 border-radius: 14px;
-                background: rgba(var(--DarkPrimaryRGB), 0.55);
+                background: var(--Primary);
                 display: flex;
                 align-items: center;
                 justify-content: center;
 
-                svg {width: 22px; height: 22px; stroke: var(--Primary);}
+                svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
             }
 
             .Badge {
                 font-size: 0.78rem;
                 font-weight: 600;
-                color: rgba(var(--PureWhiteRGB), 0.9);
-                background: rgba(var(--PureBlackRGB), 0.4);
-                border: 1px solid rgba(var(--PureWhiteRGB), 0.14);
+                color: var(--PureWhite);
+                background: var(--DarkPrimary);
                 padding: 6px 14px;
                 border-radius: 50px;
                 white-space: nowrap;
+                box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.12);
             }
 
             h3 {
                 font-size: 1.35rem;
                 font-weight: 800;
-                color: var(--PureWhite);
+                color: var(--PureBlack);
                 margin-bottom: 10px;
             }
 
             > p {
                 font-size: 0.92rem;
                 line-height: 1.6;
-                color: var(--MutedLight);
+                color: var(--Muted);
                 flex: 1;
             }
 
@@ -1547,17 +1546,17 @@ main.Services {
                 gap: 12px;
                 margin-top: 24px;
                 padding-top: 18px;
-                border-top: 1px solid rgba(var(--PureWhiteRGB), 0.08);
+                border-top: 1px solid rgba(var(--PureBlackRGB), 0.08);
 
                 .Meta {
                     font-size: 0.82rem;
-                    color: var(--MutedLight);
+                    color: var(--Primary);
                     display: flex;
                     align-items: baseline;
                     gap: 8px;
                     flex-wrap: wrap;
 
-                    strong {color: var(--PureWhite); font-weight: 700;}
+                    strong {color: var(--PureBlack); font-weight: 700;}
                 }
 
                 .SlideBtn {
@@ -1610,7 +1609,7 @@ main.Services {
                 }
             }
 
-            .ArrowLink, .DiscoverLink {
+            .ArrowLink {
                 color: var(--Primary);
                 flex-shrink: 0;
                 display: flex;
@@ -1620,8 +1619,6 @@ main.Services {
                 svg {width: 18px; height: 18px; stroke: currentColor;}
             }
 
-            .DiscoverLink {font-size: 0.85rem; font-weight: 700;}
-
             .FeaturedBody {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -1629,7 +1626,10 @@ main.Services {
                 flex: 1;
             }
 
-            &.Featured h3 {font-size: 1.7rem;}
+            &.Featured .FeaturedText {
+                h3 {color: var(--Charcoal); font-size: 1.7rem;}
+                p {color: var(--Muted);}
+            }
         }
 
         .FeatureList {
@@ -1645,7 +1645,7 @@ main.Services {
                 gap: 8px;
                 font-size: 0.85rem;
                 line-height: 1.4;
-                color: rgba(var(--PureWhiteRGB), 0.85);
+                color: var(--Muted);
 
                 svg {width: 15px; height: 15px; stroke: var(--Primary); flex-shrink: 0; margin-top: 2px;}
             }
@@ -1654,14 +1654,14 @@ main.Services {
         .BrowserMock {
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.08);
+            border: 1px solid rgba(var(--PureBlackRGB), 0.08);
 
             .Chrome {
                 display: flex;
                 align-items: center;
                 gap: 6px;
                 padding: 10px 14px;
-                background: rgba(var(--PureWhiteRGB), 0.04);
+                background: rgba(var(--PureBlackRGB), 0.04);
 
                 .Dot {width: 8px; height: 8px; border-radius: 50%;}
                 .Dot.Red {background: #e5534b;}
@@ -1672,7 +1672,7 @@ main.Services {
                     margin-left: 8px;
                     font-size: 0.7rem;
                     color: var(--MutedLight);
-                    background: rgba(var(--PureWhiteRGB), 0.06);
+                    background: rgba(var(--PureWhiteRGB), 0.5);
                     padding: 4px 10px;
                     border-radius: 50px;
                 }
@@ -1680,7 +1680,7 @@ main.Services {
 
             .MockBody {
                 padding: 16px;
-                background: rgba(0, 0, 0, 0.25);
+                background: rgba(var(--PureWhiteRGB), 0.25);
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
@@ -1694,18 +1694,18 @@ main.Services {
                 display: block;
                 height: 8px;
                 border-radius: 4px;
-                background: rgba(var(--PureWhiteRGB), 0.14);
+                background: rgba(var(--PureBlackRGB), 0.14);
             }
             .MockBar.Accent {width: 44px; height: 10px; background: var(--Primary);}
             .MockBar.Wide {width: 100%; height: 10px;}
             .MockBar.Medium {width: 65%; height: 10px;}
-            .MockBar.Nav {width: 18px; height: 8px; background: rgba(var(--PureWhiteRGB), 0.12);}
+            .MockBar.Nav {width: 18px; height: 8px; background: rgba(var(--PureBlackRGB), 0.12);}
 
             .MockBtn {
                 width: 56px;
                 height: 22px;
                 border-radius: 6px;
-                background: rgba(var(--PureWhiteRGB), 0.1);
+                background: rgba(var(--PureBlackRGB), 0.1);
             }
             .MockBtn.Accent {background: var(--Primary); width: 64px;}
 
@@ -1714,7 +1714,7 @@ main.Services {
                 flex: 1;
                 aspect-ratio: 1 / 0.7;
                 border-radius: 8px;
-                background: rgba(var(--PureWhiteRGB), 0.06);
+                background: rgba(var(--PureBlackRGB), 0.06);
             }
         }
 
@@ -1726,13 +1726,13 @@ main.Services {
         }
 
         .Stat {
-            background: rgba(var(--PureWhiteRGB), 0.04);
+            background: rgba(var(--PureBlackRGB), 0.04);
             border-radius: 10px;
             padding: 10px 8px;
             text-align: center;
         }
 
-        .StatValue {display: block; font-size: 1.1rem; font-weight: 800; color: var(--PureWhite);}
+        .StatValue {display: block; font-size: 1.1rem; font-weight: 800; color: var(--PureBlack);}
         .StatValue.Accent {color: var(--Primary);}
         .StatLabel {display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--MutedLight); margin-top: 2px;}
     }
