@@ -1356,13 +1356,15 @@ section.CallToAction {
 
             &.WaveEchoFar {
                 transform-origin: center bottom;
-                animation: waveDriftFar 7s ease-in-out infinite;
+                animation: waveDriftFar 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                animation-delay: -3.2s;
             }
 
             &.WaveEchoNear {
                 fill-opacity: 0.65;
                 transform-origin: center bottom;
-                animation: waveDriftNear 5s ease-in-out infinite;
+                animation: waveDriftNear 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+                animation-delay: -1.4s;
             }
         }
     }
@@ -1414,7 +1416,7 @@ section.CallToAction {
         }
 
         p {
-            color: var(--MinMuted);
+            color: var(--LightMuted);
             font-size: 1rem;
             line-height: 1.7;
             margin: 0 auto 34px;
@@ -1455,15 +1457,19 @@ section.CallToAction {
 
 
 @keyframes waveDriftFar {
-    0% {transform: translate(0px, 0px) scale(1.03);}
-    50% {transform: translate(-12px, 2px) scale(1.05);}
-    100% {transform: translate(0px, 0px) scale(1.03);}
+    0%   {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
+    25%  {transform: translate(-9px, -4px) scale(1.045) skewX(-0.5deg);}
+    50%  {transform: translate(-15px, 3px) scale(1.06) skewX(0deg);}
+    75%  {transform: translate(-6px, 5px) scale(1.045) skewX(0.5deg);}
+    100% {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
 }
 
 @keyframes waveDriftNear {
-    0% {transform: translate(0px, 0px) scale(1.03);}
-    50% {transform: translate(12px, -2px) scale(1.05);}
-    100% {transform: translate(0px, 0px) scale(1.03);}
+    0%   {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
+    25%  {transform: translate(9px, 4px) scale(1.05) skewX(0.5deg);}
+    50%  {transform: translate(16px, -3px) scale(1.07) skewX(0deg);}
+    75%  {transform: translate(6px, -5px) scale(1.05) skewX(-0.5deg);}
+    100% {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
 }
 
 /* --- Talk section --- */
@@ -5823,5 +5829,9 @@ main.Terms {
     main.Reals.SubPage .RelatedImage img,
     main.Reals.SubPage .RelatedFooter .BtnOutline {
         transition: none !important;
+    }
+
+    section.CallToAction .WaveEchos {
+        animation: none !important;
     }
 }
