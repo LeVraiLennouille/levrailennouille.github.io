@@ -267,6 +267,25 @@
                 </div>
             </div>
         </section>
+        <section class="Recommendations">
+            <div class="SectionHeader">
+                <span class="Eyebrow">Recommandations</span>
+                <h2>Ce que l'on dit de ma rigueur</h2>
+                <p class="Subtitle">Avant mes premiers clients, la confiance de celles et ceux qui ont suivi mon parcours de près.</p>
+            </div>
+            <div class="Grid">
+                <div class="Card">
+                    <p class="QuoteText Placeholder">« Espace réservé : à remplacer par la recommandation d'Étienne une fois obtenue — par exemple sur ton esprit de synthèse, ton sérieux et ta capacité à analyser les comportements. »</p>
+                    <div class="Author">
+                        <div class="Avatar">E</div>
+                        <div>
+                            <h3>Étienne</h3>
+                            <p>Ancien professeur de SES</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
 <!-- Anim -->
@@ -279,7 +298,7 @@
             if (typeof gsap === "undefined") return;
             gsap.registerPlugin(ScrollTrigger);
 
-            const animatedBlocks = gsap.utils.toArray(".TimelineItem, .Skills .Card, .Values .Card, .SectionHeader");
+            const animatedBlocks = gsap.utils.toArray(".TimelineItem, .Skills .Card, .Values .Card, .Recommendations .Card, .SectionHeader");
 
             animatedBlocks.forEach(function (block) {
                 gsap.from(block, {

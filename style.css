@@ -5166,6 +5166,114 @@ main.About {
             }
         }
     }
+
+    section.Recommendations {
+        position: relative;
+        background-color: var(--Background);
+        padding: 40px 40px 140px;
+
+        .SectionHeader {
+            text-align: center;
+            margin: 0 auto 64px;
+
+            .Eyebrow {
+                display: block;
+                font-size: 0.82rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: var(--Primary);
+                margin-bottom: 14px;
+            }
+
+            h2 {
+                font-size: clamp(2rem, 4vw, 2.75rem);
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 16px;
+            }
+
+            .Subtitle {
+                font-size: 1.05rem;
+                color: var(--Muted);
+                line-height: 1.6;
+            }
+        }
+
+        .Grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 460px));
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .Card {
+            position: relative;
+            background: var(--PureWhite);
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+            border-radius: 20px;
+            padding: 44px 40px 36px;
+            overflow: hidden;
+
+            &::before {
+                content: "\201C";
+                position: absolute;
+                top: 6px;
+                left: 24px;
+                font-family: Georgia, serif;
+                font-size: 5.5rem;
+                font-weight: 700;
+                line-height: 1;
+                color: rgba(var(--PrimaryRGB), 0.14);
+                pointer-events: none;
+            }
+
+            .QuoteText {
+                position: relative;
+                font-size: 1.05rem;
+                line-height: 1.6;
+                color: var(--Charcoal);
+                margin-bottom: 28px;
+            }
+
+            .QuoteText.Placeholder {
+                font-style: italic;
+                color: var(--MinMuted);
+            }
+
+            .Author {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+
+                .Avatar {
+                    flex-shrink: 0;
+                    width: 46px;
+                    height: 46px;
+                    border-radius: 50%;
+                    background: rgba(var(--PrimaryRGB), 0.12);
+                    color: var(--DarkPrimary);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 800;
+                    font-size: 1rem;
+                }
+
+                h3 {
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: var(--Charcoal);
+                }
+
+                p {
+                    font-size: 0.85rem;
+                    color: var(--Muted);
+                }
+            }
+        }
+    }
 }
 
 /* ==========================================================================
@@ -5783,7 +5891,7 @@ main.Terms {
         }
     }
 
-    main.About section.Skills, main.About section.Values {
+    main.About section.Skills, main.About section.Values, main.About section.Recommendations {
         padding: 70px 24px;
 
         .SectionHeader {margin-bottom: 44px;}
@@ -5795,6 +5903,12 @@ main.Terms {
     }
 
     main.About section.Values .Card p {margin-left: 0; margin-top: 4px;}
+
+    main.About section.Recommendations .Card {
+        padding-top: 40px;
+
+        &::before {font-size: 4rem;}
+    }
 }
 
 @media (max-width: 600px) {
