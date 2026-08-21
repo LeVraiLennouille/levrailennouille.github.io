@@ -16,11 +16,11 @@ const CTAHTML = `
         <section class="CTA">
             <div class="Content">
                 <span class="Badge">Disponible pour de nouveaux projets</span>
-                <h2>Un projet en tête ?</h2>
-                <p>Refonte, site vitrine ou simple avis extérieur sur votre interface : parlons-en. Vous pouvez aussi obtenir une estimation chiffrée en quelques clics.</p>
+                <h2>Prêt à accélérer votre croissance ?</h2>
+                <p>Création sur-mesure, refonte UX ou optimisation de vos conversions : ne laissez plus de place au hasard. Discutons de vos objectifs ou chiffrez votre projet en 2 minutes.</p>
                 <div class="Buttons">
-                    <a href="contact.html" class="ButtonSolid">Me contacter</a>
-                    <a href="simu.html" class="ButtonGhost">Obtenir un devis</a>
+                    <a href="/contact" class="ButtonSolid">Discuter de mon projet</a>
+                    <a href="/simu" class="ButtonGhost">Chiffrer mon budget</a>
                 </div>
             </div>
         </section>
