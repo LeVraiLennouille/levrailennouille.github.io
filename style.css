@@ -1426,7 +1426,7 @@ section.CallToAction {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
+            gap: 20px;
             flex-wrap: wrap;
 
             a {
@@ -1445,7 +1445,7 @@ section.CallToAction {
                 justify-content: space-between;
                 gap: 8px;
                 padding: 0 10px 0 32px;
-                height: 44px;
+                height: 52px;
                 border: none;
                 border-radius: 999px;
                 background: var(--PureWhite);
@@ -1556,16 +1556,17 @@ section.CallToAction {
                 display: inline-flex;
                 align-items: center;
                 gap: 12px;
-                padding: 16px 32px;
-                border: none;
+                height: 52px;
+                padding: 0 32px;
+                border-radius: 999px;
                 outline: none;
-                color: var(--PureWhite);
-                background: var(--DarkPrimary);
+                color: var(--Primary);
+                background: var(--PureWhite);
+                border: 2px solid var(--Primary);
                 cursor: pointer;
                 position: relative;
                 overflow: hidden;
                 z-index: 0;
-                border-radius: 10px;
                 text-decoration: none;
                 box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.12);
                 transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease;
@@ -1587,6 +1588,7 @@ section.CallToAction {
                 }
 
                 &:hover {
+                    color: var(--PureWhite);
                     transform: translateY(-3px);
                     box-shadow: 0 12px 28px rgba(var(--PrimaryRGB), 0.35);
 
