@@ -79,7 +79,7 @@
                     <div class="Content">
                         <span class="Badge">Depuis juillet 2026</span>
                         <h3>UI / UX Designer & Intégrateur</h3>
-                        <p>Lancement de mon activité indépendante. Mon quotidien : traquer le bruit visuel, réaliser des audits ergonomiques implacables et concevoir des systèmes de design sur-mesure. Je transforme vos concepts abstraits en parcours utilisateurs fluides, épurés et pensés pour l'action.</p>
+                        <p>Lancement de mon activité indépendante en tant que micro-entrepreneur. Mon quotidien : traquer le bruit visuel, réaliser des audits ergonomiques implacables et concevoir des systèmes de design sur-mesure. Je transforme vos concepts abstraits en parcours utilisateurs fluides, épurés et pensés pour l'action.</p>
                     </div>
                     <div class="Rail">
                         <div class="Line"></div>
@@ -94,7 +94,7 @@
                     <div class="Content">
                         <span class="Badge">2026 → 2028</span>
                         <h3>Master SIC</h3>
-                        <p>Une spécialisation pointue pour affûter ma vision stratégique de l'expérience utilisateur. L'objectif : maîtriser sur le bout des doigts l'architecture de l'information, l'accessibilité et les rouages cognitifs pour concevoir des produits digitaux toujours plus performants et durables.</p>
+                        <p>Université de Poitiers. Une spécialisation pointue pour affûter ma vision stratégique de l'expérience utilisateur. L'objectif : maîtriser sur le bout des doigts l'architecture de l'information, l'accessibilité et les rouages cognitifs pour concevoir des produits digitaux toujours plus performants et durables.</p>
                     </div>
                     <div class="Rail">
                         <div class="Line"></div>
@@ -286,6 +286,39 @@
                 </div>
             </div>
         </section>
+        <section class="Anchor">
+            <div class="SectionHeader">
+                <span class="Eyebrow">Ancrage &amp; Statut</span>
+                <h2>Basé à Poitiers, disponible partout en France</h2>
+                <p class="Subtitle">Les informations pratiques pour aborder notre collaboration en toute confiance.</p>
+            </div>
+            <div class="Grid">
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <h3>Basé à Poitiers</h3>
+                    </div>
+                    <p>Je me suis installé à Poitiers pour suivre mon Master SIC à l'Université de Poitiers. Cet ancrage me permet de proposer un rendez-vous en présentiel aux clients de la région, tout en accompagnant à distance des projets partout en France.</p>
+                </div>
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3>Micro-entrepreneur</h3>
+                    </div>
+                    <p>Mon activité, Lennouille, est déclarée sous le statut de micro-entrepreneur. Cela garantit une facturation simple, transparente et conforme pour chacune de nos collaborations.</p>
+                </div>
+            </div>
+        </section>
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
 <!-- Anim -->
@@ -298,7 +331,7 @@
             if (typeof gsap === "undefined") return;
             gsap.registerPlugin(ScrollTrigger);
 
-            const animatedBlocks = gsap.utils.toArray(".TimelineItem, .Skills .Card, .Values .Card, .Recommendations .Card, .SectionHeader");
+            const animatedBlocks = gsap.utils.toArray(".TimelineItem, .Anchor .Card, .Skills .Card, .Values .Card, .Recommendations .Card, .SectionHeader");
 
             animatedBlocks.forEach(function (block) {
                 gsap.from(block, {

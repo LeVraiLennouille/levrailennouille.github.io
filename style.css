@@ -4981,6 +4981,87 @@ main.About {
         }
     }
 
+    section.Anchor {
+        position: relative;
+        background-color: var(--Background);
+        padding: 40px 40px 100px;
+
+        .SectionHeader {
+            text-align: center;
+            margin: 0 auto 64px;
+
+            .Eyebrow {
+                display: block;
+                font-size: 0.82rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: var(--Primary);
+                margin-bottom: 14px;
+            }
+
+            h2 {
+                font-size: clamp(2rem, 4vw, 2.75rem);
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 16px;
+            }
+
+            .Subtitle {
+                font-size: 1.05rem;
+                color: var(--Muted);
+                line-height: 1.6;
+            }
+        }
+
+        .Grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .Card {
+            background: var(--PureWhite);
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+            border-radius: 20px;
+            padding: 36px;
+
+            .CardHead {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                margin-bottom: 14px;
+
+                .IconBox {
+                    flex-shrink: 0;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 14px;
+                    background: rgba(var(--PrimaryRGB), 0.12);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    svg {width: 22px; height: 22px; stroke: var(--Primary);}
+                }
+
+                h3 {
+                    font-size: 1.15rem;
+                    font-weight: 800;
+                    color: var(--Charcoal);
+                }
+            }
+
+            p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: var(--Muted);
+                margin-left: 66px;
+            }
+        }
+    }
+
     section.Skills {
         position: relative;
         background-color: var(--Background);
@@ -5891,7 +5972,7 @@ main.Terms {
         }
     }
 
-    main.About section.Skills, main.About section.Values, main.About section.Recommendations {
+    main.About section.Skills, main.About section.Values, main.About section.Recommendations, main.About section.Anchor {
         padding: 70px 24px;
 
         .SectionHeader {margin-bottom: 44px;}
