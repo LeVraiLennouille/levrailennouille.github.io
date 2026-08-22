@@ -5311,6 +5311,8 @@ main.About {
 
         .Card {
             position: relative;
+            display: flex;
+            flex-direction: column;
             flex: 0 0 420px;
             width: 420px;
             background: var(--PureWhite);
@@ -5350,6 +5352,7 @@ main.About {
                 display: flex;
                 align-items: center;
                 gap: 14px;
+                margin-top: auto;
 
                 .Avatar {
                     flex-shrink: 0;
