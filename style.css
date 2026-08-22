@@ -5280,17 +5280,32 @@ main.About {
             }
         }
 
-        .Grid {
+        .Marquee {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 460px));
-            justify-content: center;
+            overflow: hidden;
+            padding: 8px 0 24px;
+            mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+
+            &:hover .MarqueeTrack {
+                animation-play-state: paused;
+            }
+        }
+
+        .MarqueeTrack {
+            display: flex;
+            align-items: stretch;
             gap: 28px;
+            width: max-content;
+            animation: Strip 70s linear infinite;
+            will-change: transform;
         }
 
         .Card {
             position: relative;
+            flex: 0 0 420px;
+            width: 420px;
             background: var(--PureWhite);
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
             border-radius: 20px;
@@ -5972,7 +5987,7 @@ main.Terms {
         }
     }
 
-    main.About section.Skills, main.About section.Values, main.About section.Recommendations, main.About section.Anchor {
+    main.About section.Skills, main.About section.Values, main.About section.Anchor {
         padding: 70px 24px;
 
         .SectionHeader {margin-bottom: 44px;}
@@ -5985,10 +6000,20 @@ main.Terms {
 
     main.About section.Values .Card p {margin-left: 0; margin-top: 4px;}
 
-    main.About section.Recommendations .Card {
-        padding-top: 40px;
+    main.About section.Recommendations {
+        padding: 70px 24px;
 
-        &::before {font-size: 4rem;}
+        .SectionHeader {margin-bottom: 44px;}
+
+        .MarqueeTrack {gap: 20px;}
+
+        .Card {
+            width: 320px;
+            flex: 0 0 320px;
+            padding: 40px 28px 28px;
+
+            &::before {font-size: 4rem;}
+        }
     }
 }
 
@@ -6171,5 +6196,13 @@ main.Terms {
 
     section.CallToAction .WaveEchos {
         animation: none !important;
+    }
+
+    section.Recommendations .MarqueeTrack {
+        animation: none !important;
+    }
+
+    section.Recommendations .Marquee {
+        overflow-x: auto;
     }
 }
