@@ -1473,8 +1473,7 @@ main.Services {
 
     section.Why {
         max-width: 1400px;
-        margin: 0 auto;
-        padding: 160px 40px 80px;
+        margin: 100px auto;
 
         .Header {
             display: flex;
@@ -1591,7 +1590,8 @@ main.Services {
 
     section.Grid {
         background: var(--Background);
-        padding: 40px 40px 120px;
+        max-width: 1400px;
+        margin: 0 auto;
 
         .Grid {
             max-width: 1400px;
@@ -1867,8 +1867,7 @@ main.Services {
 
     section.CTA {
         max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px 160px;
+        margin: 100px auto;
 
         .Card {
             position: relative;
