@@ -1531,11 +1531,13 @@ main.Services {
                 display: flex;
                 flex-direction: column;
                 gap: 14px;
-                background: var(--PureWhite);
                 border-radius: 20px;
+                border: 1px solid rgba(var(--PureBlackRGB), 0.1);
                 padding: 32px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                &:first-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}
 
                 &:hover {
                     transform: translateY(-4px);
