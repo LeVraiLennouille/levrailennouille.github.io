@@ -4119,37 +4119,22 @@ main.Blog {
     }
 
     .BudgetGrid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
         margin: 12px 0 32px;
 
         .BudgetCard {
-            background: var(--PureWhite);
-            border-radius: 16px;
-            padding: 26px 24px;
-            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-            overflow: hidden;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-            &:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.12);
-
-                .CardImage img {transform: scale(1.05);}
-            }
-
             .CardImage {
                 aspect-ratio: 4/3;
                 overflow: hidden;
-                margin: -26px -24px 18px;
+                margin: 18px 0 0;
 
                 img {
                     display: block;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    transition: transform 0.5s ease;
                 }
             }
 
@@ -5045,7 +5030,7 @@ main.Terms {
             }
         }
 
-        .TrapGrid, .BudgetGrid, .HarmonyGrid {grid-template-columns: 1fr;}
+        .TrapGrid, .HarmonyGrid {grid-template-columns: 1fr;}
 
         .LoopFlow {
             flex-direction: column;
