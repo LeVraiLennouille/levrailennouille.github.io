@@ -1664,7 +1664,7 @@ main.Services {
 
             > ul.FeatureList {flex: 1;}
 
-            .Footer {
+            .SFooter {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
