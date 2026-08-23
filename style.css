@@ -1632,7 +1632,8 @@ main.Services {
                 height: 48px;
                 flex-shrink: 0;
                 border-radius: 14px;
-                background: var(--Primary);
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1695,7 +1696,7 @@ main.Services {
                     border: none;
                     outline: none;
                     color: var(--PureWhite);
-                    background: var(--DarkPrimary);
+                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
                     cursor: pointer;
                     position: relative;
                     overflow: hidden;
