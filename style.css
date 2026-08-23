@@ -1471,12 +1471,12 @@ section.Talk {
 
 main.Services {
 
-    section.ServicesWhy {
+    section.Why {
         max-width: 1400px;
         margin: 0 auto;
         padding: 160px 40px 80px;
 
-        .WhyHeader {
+        .Header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -1513,7 +1513,7 @@ main.Services {
                 line-height: 1.12;
             }
 
-            .WhyLead {
+            .Lead {
                 max-width: 380px;
                 font-size: 1rem;
                 line-height: 1.6;
@@ -1522,12 +1522,12 @@ main.Services {
             }
         }
 
-        .WhyGrid {
+        .Grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
 
-            .WhyCard {
+            .Card {
                 display: flex;
                 flex-direction: column;
                 gap: 14px;
@@ -1545,7 +1545,7 @@ main.Services {
                 &.Featured {margin-top: -32px;}
                 &:nth-child(2), &:nth-child(3) {margin-top: 16px;}
 
-                .WhyIcon {
+                .Icon {
                     width: 56px;
                     height: 56px;
                     border-radius: 16px;
@@ -1571,7 +1571,7 @@ main.Services {
                     color: var(--Muted);
                 }
 
-                .WhyLink {
+                .Link {
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
@@ -1587,7 +1587,7 @@ main.Services {
         }
     }
 
-    section.ServicesGrid {
+    section.Grid {
         background: var(--Background);
         padding: 40px 40px 120px;
 
@@ -1598,11 +1598,11 @@ main.Services {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
 
-            .ServiceCard:nth-child(1) {grid-column: span 2; grid-row: span 2;}
-            .ServiceCard:nth-child(2) {grid-column: 3 / 4; grid-row: span 2;}
+            .Card:nth-child(1) {grid-column: span 2; grid-row: span 2;}
+            .Card:nth-child(2) {grid-column: 3 / 4; grid-row: span 2;}
         }
 
-        .ServiceCard {
+        .Card {
             background: rgba(var(--PureBlackRGB), 0.03);
             border: 1px solid rgba(var(--PureBlackRGB), 0.1);
             border-radius: 20px;
@@ -1617,7 +1617,7 @@ main.Services {
                 border-color: rgba(var(--PrimaryRGB), 0.5);
             }
 
-            .CardTop {
+            .Top {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
@@ -1664,7 +1664,7 @@ main.Services {
 
             > ul.FeatureList {flex: 1;}
 
-            .CardFooter {
+            .Footer {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -1744,20 +1744,20 @@ main.Services {
                 svg {width: 18px; height: 18px; stroke: currentColor;}
             }
 
-            .FeaturedBody {
+            .Body {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 32px;
                 flex: 1;
             }
 
-            &.Featured .FeaturedText {
+            &.Featured .Text {
                 h3 {color: var(--Charcoal); font-size: 1.7rem;}
                 p {color: var(--Muted);}
             }
         }
 
-        .FeatureList {
+        .List {
             list-style: none;
             display: flex;
             flex-direction: column;
@@ -1862,12 +1862,12 @@ main.Services {
         .StatLabel {display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--MutedLight); margin-top: 2px;}
     }
 
-    section.ServicesCTA {
+    section.CTA {
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 40px 160px;
 
-        .CTACard {
+        .Card {
             position: relative;
             overflow: hidden;
             background: var(--Charcoal);
@@ -1889,12 +1889,12 @@ main.Services {
                 pointer-events: none;
             }
 
-            .CTAText, .CTAAction {
+            .Text, .Action {
                 position: relative;
                 z-index: 2;
             }
 
-            .CTAText h2 {
+            .Text h2 {
                 font-size: clamp(1.9rem, 3.6vw, 2.8rem);
                 font-weight: 900;
                 color: var(--PureWhite);
@@ -1909,7 +1909,7 @@ main.Services {
                 }
             }
 
-            .CTAAction {
+            .Action {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -1923,7 +1923,7 @@ main.Services {
                     color: rgba(var(--PureWhiteRGB), 0.7);
                 }
 
-                .CTABtn {
+                .Btn {
                     display: inline-flex;
                     align-items: center;
                     gap: 10px;
@@ -5544,7 +5544,7 @@ main.Terms {
         }
     }
 
-    main.Services section.ServicesWhy {
+    main.Services section.Why {
         padding: 130px 24px 50px;
 
         .WhyHeader {
@@ -5565,7 +5565,7 @@ main.Terms {
         }
     }
 
-    main.Services section.ServicesGrid {
+    main.Services section.Grid {
         padding: 40px 24px 80px;
 
         .Grid {grid-template-columns: 1fr; gap: 20px;}
@@ -5580,7 +5580,7 @@ main.Terms {
         .FeaturedBody .FeaturedPreview {margin-top: 24px;}
     }
 
-    main.Services section.ServicesCTA {
+    main.Services section.CTA {
         padding: 0 24px 70px;
 
         .CTACard {
