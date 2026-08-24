@@ -628,7 +628,7 @@ html, body {
             .FooterDesc {
                 font-size: 0.95rem;
                 line-height: 1.6;
-                color: var(--MinMuted);
+                color: var(--LightMuted);
                 text-transform: none;
                 margin-bottom: 20px;
             }
@@ -648,7 +648,7 @@ html, body {
                     margin-bottom: 12px;
 
                     >a {
-                        color: var(--MinMuted);
+                        color: var(--LightMuted);
                         text-decoration: none;
                         font-size: 0.95rem;
                         transition: color 0.3s ease, padding-left 0.3s ease;
