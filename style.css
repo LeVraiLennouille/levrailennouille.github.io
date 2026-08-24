@@ -815,7 +815,101 @@ html, body {
 }
 
 /* ==========================================================================
-   # Calls  To Action
+   # Global Styles
+========================================================================== */
+section {
+    max-width: 1400px;
+    margin: 100px auto 0;
+}
+
+.Card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: 20px;
+    background: rgba(var(--PrimaryRGB), 0.025);
+    border: 1px solid rgba(var(--PureBlackRGB), 0.1);
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.1);
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--PureBlack);
+    }
+
+    > p {
+        flex: 1;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--Muted);
+    }
+
+    .CardHead {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 22px;
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--Charcoal);
+            margin-bottom: 4px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--Muted);
+        }
+    }
+
+    .Link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--Primary);
+        text-decoration: none;
+
+        .Arrow {display: inline-block; transition: transform 0.3s cubic-bezier(.22,1,.36,1);}
+        &:hover .Arrow {transform: translateX(4px);}
+    }
+
+    .ArrowLink {
+        color: var(--Primary);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        svg {width: 18px; height: 18px; stroke: currentColor;}
+    }
+}
+
+.IconBox {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {width: 24px; height: 24px; stroke: var(--PureWhite);}
+}
+
+
+/* ==========================================================================
+   # Calls To Action
 ========================================================================== */
 section.CallToAction {
     max-width: 1400px;
@@ -1683,64 +1777,9 @@ main.Services {
             gap: 24px;
 
             .Card {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                border-radius: 20px;
-                background: rgba(var(--PrimaryRGB), 0.025);
-                border: 1px solid rgba(var(--PureBlackRGB), 0.1);
-                padding: 32px;
-                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-
                 &:first-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}
-
-                &:hover {
-                    transform: translateY(-4px);
-                    box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.1);
-                }
-
                 &.Featured {margin-top: -32px;}
                 &:nth-child(2), &:nth-child(3) {margin-top: 16px;}
-
-                .Icon {
-                    width: 56px;
-                    height: 56px;
-                    border-radius: 16px;
-                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    svg {width: 24px; height: 24px; stroke: var(--PureWhite);}
-                }
-
-                h3 {
-                    font-size: 1.2rem;
-                    font-weight: 800;
-                    color: var(--PureBlack);
-                }
-
-                > p {
-                    flex: 1;
-                    font-size: 0.92rem;
-                    line-height: 1.6;
-                    color: var(--Muted);
-                }
-
-                .Link {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 0.85rem;
-                    font-weight: 700;
-                    color: var(--Primary);
-                    text-decoration: none;
-
-                    .Arrow {display: inline-block; transition: transform 0.3s cubic-bezier(.22,1,.36,1);}
-                    &:hover .Arrow {transform: translateX(4px);}
-                }
             }
         }
     }
@@ -1762,14 +1801,6 @@ main.Services {
         }
 
         .Card {
-            background: rgba(var(--PrimaryRGB), 0.025);
-            border: 1px solid rgba(var(--PureBlackRGB), 0.1);
-            border-radius: 20px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-
             &.Featured {
                 grid-column: span 2;
                 grid-row: span 2;
@@ -1784,20 +1815,6 @@ main.Services {
                 margin-bottom: 20px;
             }
 
-            .IconBox {
-                width: 48px;
-                height: 48px;
-                flex-shrink: 0;
-                border-radius: 14px;
-                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
-            }
-
             .Badge {
                 font-size: 0.78rem;
                 font-weight: 600;
@@ -1807,19 +1824,6 @@ main.Services {
                 border-radius: 50px;
                 white-space: nowrap;
                 box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.12);
-            }
-
-            h3 {
-                font-size: 1.35rem;
-                font-weight: 800;
-                color: var(--PureBlack);
-                margin-bottom: 10px;
-            }
-
-            > p {
-                font-size: 0.92rem;
-                line-height: 1.6;
-                color: var(--Muted);
             }
 
             > ul.FeatureList {flex: 1;}
@@ -1892,16 +1896,6 @@ main.Services {
                         box-shadow: 0 6px 16px rgba(var(--PrimaryRGB), 0.3);
                     }
                 }
-            }
-
-            .ArrowLink {
-                color: var(--Primary);
-                flex-shrink: 0;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-
-                svg {width: 18px; height: 18px; stroke: currentColor;}
             }
 
             .Body {
@@ -3614,15 +3608,17 @@ main.Blog {
 }
 
 main.About {
-    section.Me {margin-top: 164px}
+    section.Me {
+        margin-top: 164px;
 
-    section.Me .Text .Header .Eyebrow {
-        display: block;
-        font-size: 0.82rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        color: var(--Primary);
-        margin-bottom: 14px;
+        .Text .Header .Eyebrow {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--Primary);
+            margin-bottom: 14px;
+        }
     }
 
     h2 {
@@ -3818,45 +3814,7 @@ main.About {
         }
 
         .Card {
-            background: rgba(var(--PrimaryRGB), 0.025);
-            border: 1px solid rgba(var(--PureBlackRGB), 0.1);
-            border-radius: 20px;
-            padding: 36px;
-
             &:nth-of-type(1), &:nth-of-type(2) {border-color: rgba(var(--PrimaryRGB), 0.5);}
-
-            .CardHead {
-                display: flex;
-                align-items: center;
-                gap: 18px;
-                margin-bottom: 22px;
-
-                .IconBox {
-                    flex-shrink: 0;
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 14px;
-                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
-                }
-
-                h3 {
-                    font-size: 1.15rem;
-                    font-weight: 800;
-                    color: var(--Charcoal);
-                    margin-bottom: 4px;
-                }
-
-                p {
-                    font-size: 0.88rem;
-                    color: var(--Muted);
-                }
-            }
 
             .Tags {
                 list-style: none;
@@ -3925,48 +3883,7 @@ main.About {
             gap: 28px;
         }
 
-        .Card {
-            background: rgba(var(--PrimaryRGB), 0.025);
-            border: 1px solid rgba(var(--PureBlackRGB), 0.1);
-            border-radius: 20px;
-            padding: 36px;
-
-            &:first-of-type, &:last-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}
-
-            .CardHead {
-                display: flex;
-                align-items: center;
-                gap: 18px;
-                margin-bottom: 14px;
-
-                .IconBox {
-                    flex-shrink: 0;
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 14px;
-                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
-                }
-
-                h3 {
-                    font-size: 1.15rem;
-                    font-weight: 800;
-                    color: var(--Charcoal);
-                }
-            }
-
-            p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-                color: var(--Muted);
-                margin-top: 10px;
-            }
-        }
+        .Card {&:first-of-type, &:last-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}}
     }
 
     section.Recommendations {
@@ -4140,47 +4057,6 @@ main.About {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 28px;
-        }
-
-        .Card {
-            background: rgba(var(--PrimaryRGB), 0.025);
-            border: 1px solid rgba(var(--PureBlackRGB), 0.1);
-            border-radius: 20px;
-            padding: 36px;
-
-            .CardHead {
-                display: flex;
-                align-items: center;
-                gap: 18px;
-                margin-bottom: 14px;
-
-                .IconBox {
-                    flex-shrink: 0;
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 14px;
-                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
-                }
-
-                h3 {
-                    font-size: 1.15rem;
-                    font-weight: 800;
-                    color: var(--Charcoal);
-                }
-            }
-
-            p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-                color: var(--Muted);
-                margin-top: 10px;
-            }
         }
     }
 }
