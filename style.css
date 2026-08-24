@@ -999,6 +999,9 @@ section.CallToAction {
 }
 
 section.DesignedCTA {
+    max-width: 100%;
+    margin: 0;
+
     .Waves {
         display: block;
         width: 100%;
@@ -1026,6 +1029,8 @@ section.DesignedCTA {
     }
 
     section.CTA {
+        max-width: 100%;
+        margin: 0;
         position: relative;
         overflow: hidden;
         background: linear-gradient(90deg, var(--Charcoal) 0%, var(--DarkPrimary) 100%);
@@ -1482,6 +1487,8 @@ section.Me {
 ========================================================================== */
 main.Index {
     section.Hero {
+        max-width: 100%;
+        margin: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2830,6 +2837,8 @@ main.Blog {
     }
 
     .BlogHero {
+        max-width: 100%;
+        margin: 0;
         position: relative;
         background-color: var(--Charcoal);
         overflow: hidden;
@@ -5493,6 +5502,8 @@ main.Simu {
 
 main.Terms {
     .TermsHero {
+        max-width: 100%;
+        margin: 0;
         position: relative;
         background-color: var(--Charcoal);
         overflow: hidden;
