@@ -106,9 +106,8 @@ html, body {
 }
 
 /* ==========================================================================
-   # NavBar
+   # NavBar / Footer
 ========================================================================== */
-
 .NavBar {
     position: fixed;
     top: 0;
@@ -453,10 +452,6 @@ html, body {
     from {opacity: 0; transform: translateY(-6px);}
     to   {opacity: 1; transform: translateY(0);}
 }
-
-/* ==========================================================================
-   # Footer
-========================================================================== */
 
 .Footer {
     background-color: #071C32;
@@ -820,9 +815,8 @@ html, body {
 }
 
 /* ==========================================================================
-   # JS Multiblocks
+   # Calls  To Action
 ========================================================================== */
-/* --- CTA sections --- */
 section.CallToAction {
     max-width: 1400px;
     margin: 100px auto;
@@ -1190,7 +1184,9 @@ section.DesignedCTA {
     100% {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
 }
 
-/* --- Prez sections --- */
+/* ==========================================================================
+   # JS Multiblocks
+========================================================================== */
 section.Merge {
     max-width: 1400px;
     margin: 10rem auto;
@@ -1388,7 +1384,7 @@ section.Me {
 }
 
 /* ==========================================================================
-   # Home page
+   # All Pages
 ========================================================================== */
 main.Index {
     section.Hero {
@@ -1628,16 +1624,6 @@ main.Index {
         }
     }
 }
-
-@keyframes ColorAnim {
-    0% {fill: var(--PureWhite);}
-    50% {fill: var(--Primary);}
-    100% {fill: var(--PureWhite);}
-}
-
-/* ==========================================================================
-   # Others Page
-========================================================================== */
 
 main.Services {
 
@@ -2687,324 +2673,6 @@ main.Reals {
             outline: 2px solid var(--Primary);
             outline-offset: 3px;
         }    
-    }
-}
-
-main.Contact {
-    position: relative;
-    margin: 100px 0 0;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: var(--Background);
-
-    .SocialSidebar {
-        position: absolute;
-        left: 28px;
-        top: 30%;
-        transform: translateY(-50%);
-        z-index: 20;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        align-items: center;
-        pointer-events: auto;
-    
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            color: var(--Primary);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            text-decoration: none;
-
-            &:hover {
-                opacity: 0.75;
-                transform: scale(1.2);
-            }
-        }
-
-        svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-    }
-
-    .ContactLayout {
-        position: relative;
-        inset: 0;
-        z-index: 10;
-        display: flex;
-        min-height: 91vh;
-        pointer-events: none;
-    
-        .ContactLeft {
-            width: 58%;
-            min-width: 500px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 64px 60px 100px;
-            pointer-events: auto;
-            position: relative;
-
-            .ContactTitle {
-                font-size: clamp(2.8rem, 5vw, 4.5rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-                line-height: 1;
-                margin-bottom: 18px;
-            }
-
-            .ContactSubtitle {
-                display: inline-flex;
-                align-items: center;
-                gap: 0;
-                margin-bottom: 36px;
-            
-                span {
-                    position: relative;
-                    display: inline-block;
-                    text-decoration: none;
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    color: rgba(var(--PureBlackRGB), 0.8);
-                    line-height: 1.6;
-                    transition: color 0.3s ease;
-                    padding: 0 2px 4px;
-
-                    &:hover::before {transform: scaleX(0);}
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 100%;
-                        height: 2px;
-                        bottom: 0;
-                        left: 0;
-                        background-color: var(--Primary);
-                        transform: scaleX(1); 
-                        transform-origin: left; 
-                        transition: transform 0.3s ease;
-                    }
-                }
-            }
-
-            .Form {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-                width: 100%;
-                max-width: 600px;
-
-                .InputGroup {
-                    position: relative;
-                    margin-bottom: 6px;
-                    width: 100%;
-                    color: var(--Primary);
-                    background: transparent;
-
-                    .Input {
-                        width: 100%;
-                        box-sizing: border-box;
-                        padding: 12px 15px;
-                        border: 1px solid var(--PureBlack);
-                        border-radius: 8px;
-                        background: transparent;
-                        color: var(--PureBlack);
-                        font-size: 1rem;
-                        outline: none;
-                        transition: all 0.3s ease;
-
-                        &:focus~.Label,
-                        &:valid~.Label,
-                        &:autofill~.Label,
-                        &:-webkit-autofill~.Label {
-                            top: 0;
-                            background-color: var(--Primary);
-                            color: var(--PureWhite);
-                            border-radius: 4px;
-                            font-size: 0.8rem;
-                            font-weight: bold;
-                        }
-                    }
-
-                    .Label {
-                        position: absolute;
-                        left: 15px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        color: var(--PureBlack);
-                        background-color: transparent;
-                        padding: 0 5px;
-                        pointer-events: none;
-                        transition: all 0.3s ease;
-                    }
-
-                    textarea.Input+.Label {top: 22px;}
-
-                    input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
-                    input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
-                    input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
-                    input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
-                }
-
-                .FormRow {
-                    display: flex;
-                    gap: 14px;
-                    width: 100%;
-
-                    .InputGroup {
-                        margin-bottom: 0;
-                        flex: 1;
-                    }
-                }
-
-                .FormActions {
-                    display: flex;
-                    justify-content: space-between;
-                    width: 600px;
-                    gap: 1rem;
-                    margin-top: 1rem;
-                    flex-wrap: wrap;
-                    top: -10px;
-                    font-size: 0.85rem;
-                    color: var(--Primary);
-
-                    button[type="submit"] {
-                        flex: 1;
-                        min-width: 160px;
-                        padding: 14px 28px;
-                        background: var(--Primary);
-                        color: var(--PureWhite);
-                        border: none;
-                        border-radius: 50px;
-                        font-size: 0.78rem;
-                        font-weight: 700;
-
-                        text-transform: uppercase;
-                        cursor: pointer;
-                        transition: filter 0.25s ease, transform 0.2s ease;
-
-                        &:hover {
-                            filter: brightness(0.88);
-                            transform: translateY(-2px);
-                        }
-                    }
-
-                    button[type="reset"] {
-                        padding: 14px 24px;
-                        background: transparent;
-                        color: rgba(var(--PureBlackRGB),0.4);
-                        border: 1px solid rgba(var(--PureBlackRGB),0.18);
-                        border-radius: 50px;
-                        font-size: 0.78rem;
-                        font-weight: 600;
-                        text-transform: uppercase;
-                        cursor: pointer;
-                        transition: border-color 0.25s ease, color 0.25s ease;
-    
-                        &:hover {
-                            border-color: var(--Primary);
-                            color: var(--Primary);
-                        }
-                    }
-                }
-            }
-
-            .ContactCoords {
-                margin-top: 28px;
-                display: flex;
-                gap: 24px;
-                flex-wrap: wrap;
-
-                a {
-                    position: relative;
-                    text-decoration: none;
-                    font-size: 0.8rem;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                    line-height: 1.6;
-                    width: fit-content;
-                    transition: all 0.3s ease;
-
-                    &:hover {
-                        color: var(--Primary);
-
-                        &::before {transform: scaleX(1);}
-                    }
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 100%;
-                        height: 2px;
-                        bottom: 0;
-                        left: 0;
-                        background-color: var(--Primary);
-                        transform: scaleX(0);
-                        transform-origin: top left;
-                        transition: transform 0.3s ease;
-                    }
-                }
-    
-                .CoordDot {color: var(--Primary); font-size: 0.8rem;}
-            }
-        }
-
-        .ContactRight {
-            flex: 1;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 40px 48px;
-            pointer-events: none;
-
-            .Terms {
-                text-align: right;
-                pointer-events: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-            
-                a {
-                    position: relative;
-                    text-decoration: none;
-                    font-size: 0.8rem;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                    line-height: 1.6;
-                    text-decoration: none;
-                    width: fit-content;
-                    transition: all 0.3s ease;
-
-                    &:hover {
-                        color: var(--PureBlack);
-
-                        &::before {transform: scaleX(1);}
-                    }
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 100%;
-                        height: 2px;
-                        bottom: 0;
-                        left: 0;
-                        background-color: var(--Primary);
-                        transform: scaleX(0);
-                        transform-origin: top right;
-                        transition: transform 0.3s ease;
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -4512,6 +4180,324 @@ main.About {
                 line-height: 1.6;
                 color: var(--Muted);
                 margin-top: 10px;
+            }
+        }
+    }
+}
+
+main.Contact {
+    position: relative;
+    margin: 100px 0 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--Background);
+
+    .SocialSidebar {
+        position: absolute;
+        left: 28px;
+        top: 30%;
+        transform: translateY(-50%);
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        pointer-events: auto;
+    
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            color: var(--Primary);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            text-decoration: none;
+
+            &:hover {
+                opacity: 0.75;
+                transform: scale(1.2);
+            }
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    }
+
+    .ContactLayout {
+        position: relative;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        min-height: 91vh;
+        pointer-events: none;
+    
+        .ContactLeft {
+            width: 58%;
+            min-width: 500px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 64px 60px 100px;
+            pointer-events: auto;
+            position: relative;
+
+            .ContactTitle {
+                font-size: clamp(2.8rem, 5vw, 4.5rem);
+                font-weight: 800;
+                color: var(--Charcoal);
+                line-height: 1;
+                margin-bottom: 18px;
+            }
+
+            .ContactSubtitle {
+                display: inline-flex;
+                align-items: center;
+                gap: 0;
+                margin-bottom: 36px;
+            
+                span {
+                    position: relative;
+                    display: inline-block;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    color: rgba(var(--PureBlackRGB), 0.8);
+                    line-height: 1.6;
+                    transition: color 0.3s ease;
+                    padding: 0 2px 4px;
+
+                    &:hover::before {transform: scaleX(0);}
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(1); 
+                        transform-origin: left; 
+                        transition: transform 0.3s ease;
+                    }
+                }
+            }
+
+            .Form {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                width: 100%;
+                max-width: 600px;
+
+                .InputGroup {
+                    position: relative;
+                    margin-bottom: 6px;
+                    width: 100%;
+                    color: var(--Primary);
+                    background: transparent;
+
+                    .Input {
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 12px 15px;
+                        border: 1px solid var(--PureBlack);
+                        border-radius: 8px;
+                        background: transparent;
+                        color: var(--PureBlack);
+                        font-size: 1rem;
+                        outline: none;
+                        transition: all 0.3s ease;
+
+                        &:focus~.Label,
+                        &:valid~.Label,
+                        &:autofill~.Label,
+                        &:-webkit-autofill~.Label {
+                            top: 0;
+                            background-color: var(--Primary);
+                            color: var(--PureWhite);
+                            border-radius: 4px;
+                            font-size: 0.8rem;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .Label {
+                        position: absolute;
+                        left: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: var(--PureBlack);
+                        background-color: transparent;
+                        padding: 0 5px;
+                        pointer-events: none;
+                        transition: all 0.3s ease;
+                    }
+
+                    textarea.Input+.Label {top: 22px;}
+
+                    input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
+                    input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
+                    input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
+                    input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
+                }
+
+                .FormRow {
+                    display: flex;
+                    gap: 14px;
+                    width: 100%;
+
+                    .InputGroup {
+                        margin-bottom: 0;
+                        flex: 1;
+                    }
+                }
+
+                .FormActions {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 600px;
+                    gap: 1rem;
+                    margin-top: 1rem;
+                    flex-wrap: wrap;
+                    top: -10px;
+                    font-size: 0.85rem;
+                    color: var(--Primary);
+
+                    button[type="submit"] {
+                        flex: 1;
+                        min-width: 160px;
+                        padding: 14px 28px;
+                        background: var(--Primary);
+                        color: var(--PureWhite);
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 700;
+
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: filter 0.25s ease, transform 0.2s ease;
+
+                        &:hover {
+                            filter: brightness(0.88);
+                            transform: translateY(-2px);
+                        }
+                    }
+
+                    button[type="reset"] {
+                        padding: 14px 24px;
+                        background: transparent;
+                        color: rgba(var(--PureBlackRGB),0.4);
+                        border: 1px solid rgba(var(--PureBlackRGB),0.18);
+                        border-radius: 50px;
+                        font-size: 0.78rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                        transition: border-color 0.25s ease, color 0.25s ease;
+    
+                        &:hover {
+                            border-color: var(--Primary);
+                            color: var(--Primary);
+                        }
+                    }
+                }
+            }
+
+            .ContactCoords {
+                margin-top: 28px;
+                display: flex;
+                gap: 24px;
+                flex-wrap: wrap;
+
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    width: fit-content;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--Primary);
+
+                        &::before {transform: scaleX(1);}
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(0);
+                        transform-origin: top left;
+                        transition: transform 0.3s ease;
+                    }
+                }
+    
+                .CoordDot {color: var(--Primary); font-size: 0.8rem;}
+            }
+        }
+
+        .ContactRight {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 40px 48px;
+            pointer-events: none;
+
+            .Terms {
+                text-align: right;
+                pointer-events: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            
+                a {
+                    position: relative;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    color: rgba(var(--PureBlackRGB),0.45);
+                    line-height: 1.6;
+                    text-decoration: none;
+                    width: fit-content;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--PureBlack);
+
+                        &::before {transform: scaleX(1);}
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: var(--Primary);
+                        transform: scaleX(0);
+                        transform-origin: top right;
+                        transition: transform 0.3s ease;
+                    }
+                }
             }
         }
     }
@@ -6060,7 +6046,7 @@ main.Terms {
         }
     }
 
-    section.Why {
+    main.Index section.Why {
         padding: 60px 20px 80px;
 
         .Layout {
@@ -6082,6 +6068,8 @@ main.Terms {
         &.SubPage .ProjectSplit {grid-template-columns: 1fr; gap: 48px; margin-bottom: 70px;}
     }
 
+    main.Blog .BlogContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
+
     main.Contact {
         .SocialSidebar {left: 16px}
         .ContactLayout {
@@ -6102,12 +6090,143 @@ main.Terms {
         }
     }
 
-    main.Blog .BlogContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
-
     main.Terms .TermsContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
 }
 
 @media (max-width: 768px) {
+    main.Services {
+        section.Why {
+            padding: 130px 24px 50px;
+
+            .WhyHeader {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+
+                h2 {font-size: 2.1rem;}
+
+                .WhyLead {max-width: 100%;}
+            }
+
+            .WhyGrid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+
+                .WhyCard.Featured, .WhyCard:nth-child(2), .WhyCard:nth-child(3) {margin-top: 0;}
+            }
+        }
+
+        section.Grid {
+            padding: 40px 24px 80px;
+
+            .Grid {grid-template-columns: 1fr; gap: 20px;}
+
+            .Card {
+                padding: 26px;
+
+                &.Featured {grid-column: span 1; grid-row: span 1;}
+            }
+
+            .FeaturedBody {grid-template-columns: 1fr !important;}
+            .FeaturedBody .FeaturedPreview {margin-top: 24px;}
+        }
+
+        section.CTA {
+            padding: 0 24px 70px;
+
+            .CTACard {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 32px;
+                padding: 48px 32px;
+                border-radius: 24px;
+            }
+
+            .CTAAction {max-width: 100%;}
+        }
+    }
+
+    main.Blog {
+        .BlogHero {
+            padding: 130px 24px 60px;
+
+            .Decor {display: none;}
+        }
+
+        .BlogContent {
+            padding: 48px 24px 80px;
+
+            .Container {
+                grid-template-columns: 1fr;
+                gap: 0;
+
+                .Nav {
+                    position: static;
+                    margin-bottom: 40px;
+                }
+            }
+        }
+
+        .TrapGrid, .HarmonyGrid {grid-template-columns: 1fr;}
+
+        .LoopFlow {
+            flex-direction: column;
+
+            .Arrow {transform: rotate(90deg);}
+        }
+    }
+
+    main.About {
+        section.Timeline {
+            padding: 130px 24px 100px;
+
+            .TimelineHeader {margin-bottom: 64px;}
+            .TimelineList {max-width: 440px;}
+
+            .TimelineItem {
+                grid-template-columns: 56px 1fr;
+                column-gap: 24px;
+
+                .Rail {grid-column: 1;}
+                .Line {left: 50%;}
+
+                .Circle {width: 48px; height: 48px;}
+
+                &:nth-child(odd) .Content, &:nth-child(even) .Content {
+                grid-column: 2;
+                text-align: left;
+                margin: 0;
+                max-width: none;
+                }
+            }
+        }
+
+        section.Skills, section.Values, section.Anchor {
+            padding: 70px 24px;
+
+            .SectionHeader {margin-bottom: 44px;}
+            .Grid {grid-template-columns: 1fr; gap: 20px;}
+            .Card {padding: 28px;}
+            .Card .CardHead {align-items: flex-start;}
+        }
+
+        section.Values .Card p {margin-left: 0; margin-top: 4px;}
+
+        section.Recommendations {
+            padding: 70px 24px;
+
+            .SectionHeader {margin-bottom: 44px;}
+            .MarqueeTrack {gap: 20px;}
+            .Card {
+                width: 320px;
+                flex: 0 0 320px;
+                padding: 40px 28px 28px;
+
+                &::before {font-size: 4rem;}
+            }
+        }
+    }
+
     main.Simu .Layout .Form {
         padding-top: 32px;
         padding-right: 20px;
@@ -6147,86 +6266,6 @@ main.Terms {
         }
     }
 
-    main.Services section.Why {
-        padding: 130px 24px 50px;
-
-        .WhyHeader {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 20px;
-
-            h2 {font-size: 2.1rem;}
-
-            .WhyLead {max-width: 100%;}
-        }
-
-        .WhyGrid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-
-            .WhyCard.Featured, .WhyCard:nth-child(2), .WhyCard:nth-child(3) {margin-top: 0;}
-        }
-    }
-
-    main.Services section.Grid {
-        padding: 40px 24px 80px;
-
-        .Grid {grid-template-columns: 1fr; gap: 20px;}
-
-        .ServiceCard {
-            padding: 26px;
-
-            &.Featured {grid-column: span 1; grid-row: span 1;}
-        }
-
-        .FeaturedBody {grid-template-columns: 1fr !important;}
-        .FeaturedBody .FeaturedPreview {margin-top: 24px;}
-    }
-
-    main.Services section.CTA {
-        padding: 0 24px 70px;
-
-        .CTACard {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 32px;
-            padding: 48px 32px;
-            border-radius: 24px;
-        }
-
-        .CTAAction {max-width: 100%;}
-    }
-
-    main.Blog {
-        .BlogHero {
-            padding: 130px 24px 60px;
-
-            .Decor {display: none;}
-        }
-
-        .BlogContent {
-            padding: 48px 24px 80px;
-
-            .Container {
-                grid-template-columns: 1fr;
-                gap: 0;
-
-                .Nav {
-                    position: static;
-                    margin-bottom: 40px;
-                }
-            }
-        }
-
-        .TrapGrid, .HarmonyGrid {grid-template-columns: 1fr;}
-
-        .LoopFlow {
-            flex-direction: column;
-
-            .Arrow {transform: rotate(90deg);}
-        }
-    }
-
     main.Terms {
         .TermsHero {
             padding: 130px 24px 60px;
@@ -6257,60 +6296,6 @@ main.Terms {
             }
         }
     }
-
-    main.About section.Timeline {
-        padding: 130px 24px 100px;
-
-        .TimelineHeader {margin-bottom: 64px;}
-
-        .TimelineList {max-width: 440px;}
-
-        .TimelineItem {
-            grid-template-columns: 56px 1fr;
-            column-gap: 24px;
-
-            .Rail {grid-column: 1;}
-            .Line {left: 50%;}
-
-            .Circle {width: 48px; height: 48px;}
-
-            &:nth-child(odd) .Content, &:nth-child(even) .Content {
-                grid-column: 2;
-                text-align: left;
-                margin: 0;
-                max-width: none;
-            }
-        }
-    }
-
-    main.About section.Skills, main.About section.Values, main.About section.Anchor {
-        padding: 70px 24px;
-
-        .SectionHeader {margin-bottom: 44px;}
-
-        .Grid {grid-template-columns: 1fr; gap: 20px;}
-
-        .Card {padding: 28px;}
-        .Card .CardHead {align-items: flex-start;}
-    }
-
-    main.About section.Values .Card p {margin-left: 0; margin-top: 4px;}
-
-    main.About section.Recommendations {
-        padding: 70px 24px;
-
-        .SectionHeader {margin-bottom: 44px;}
-
-        .MarqueeTrack {gap: 20px;}
-
-        .Card {
-            width: 320px;
-            flex: 0 0 320px;
-            padding: 40px 28px 28px;
-
-            &::before {font-size: 4rem;}
-        }
-    }
 }
 
 @media (max-width: 600px) {
@@ -6319,22 +6304,6 @@ main.Terms {
         --Thickness: 10px;
         --Border:    5px;
         --Gap:       28px;
-    }
-
-    section.Hero {
-        .Box {transform: translate(-2vw, -40px);}
-        img {max-width: 225px;}
-    }
-
-    section.Work .Container .Card .CardImg {
-        img:first-child {display: none !important;}
-        img:last-child {display: flex !important;}
-    }
-
-    section.Why {
-        padding: 40px 16px 60px;
-
-        .Layout {grid-template-columns: 1fr;}
     }
 
     section.Merge {
@@ -6369,7 +6338,18 @@ main.Terms {
         }
     }
 
-    section.Talk .TalkContainer .NextWrapper .NextBtn {padding: 10px 30px;}
+    main.Index {
+        section.Hero {
+            .Box {transform: translate(-2vw, -40px);}
+            img {max-width: 225px;}
+        }
+
+        section.Why {
+            padding: 40px 16px 60px;
+
+            .Layout {grid-template-columns: 1fr;}
+        }
+    }
 
     main.Reals {
         &.SubPage {
@@ -6381,29 +6361,6 @@ main.Terms {
             .ProjectBloc, .FullWidthBanner, .ProjectGallery {margin-bottom: 56px;}
             .ComparisonsGrid {margin-bottom: 64px; gap: 40px;}
             .RelatedProjects {margin: 72px auto 64px;}
-        }
-    }
-
-    main.Contact {
-        max-width: 100%;
-
-        .SocialSidebar {display: none}
-        .ContactLayout {
-            max-width: calc(100% - 40px);
-            min-height: 100%;
-            
-            .ContactLeft {
-                padding: 40px 20px 40px;
-
-                .Form .FormActions {width: 100%;}
-                .ContactCoords {
-                    justify-content: space-between;
-
-                    .CoordDot {display: none;}
-                }
-
-                .ContactTitle {font-size: 2rem;}
-            }
         }
     }
 
@@ -6444,6 +6401,29 @@ main.Terms {
         .FAQList details {padding: 4px 16px;}
     }
 
+    main.Contact {
+        max-width: 100%;
+
+        .SocialSidebar {display: none}
+        .ContactLayout {
+            max-width: calc(100% - 40px);
+            min-height: 100%;
+            
+            .ContactLeft {
+                padding: 40px 20px 40px;
+
+                .Form .FormActions {width: 100%;}
+                .ContactCoords {
+                    justify-content: space-between;
+
+                    .CoordDot {display: none;}
+                }
+
+                .ContactTitle {font-size: 2rem;}
+            }
+        }
+    }
+
     main.Terms .TermsContent .Container.TermsArticles .TermsArticle .SecondContainer .Card .CardRow {
         flex-direction: column;
         gap: 4px;
@@ -6463,31 +6443,11 @@ main.Terms {
     }
 }
 
-@media (hover: none) {
-    section.Talk .TalkContainer .NextWrapper {
-        .NextBtn {
-            box-shadow: 10px 10px 0 var(--PureWhite);
- 
-            span:nth-child(2) {
-                margin-right: 45px;
- 
-                path.One {transform: translateX(0%); animation: ColorAnim 1s infinite 0.6s;}
-                path.Two {transform: translateX(0%); animation: ColorAnim 1s infinite 0.4s;}
-            }
- 
-            path.Three {animation: ColorAnim 1s infinite 0.2s;}
-        }
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
-    main.Reals.SubPage .Comparaisons,
-    main.Reals.SubPage .Intro p,
-    main.Reals.SubPage .ProjectGallery img,
-    main.Reals.SubPage .RelatedImage,
-    main.Reals.SubPage .RelatedImage img,
-    main.Reals.SubPage .RelatedFooter .BtnOutline {transition: none !important;}
-    section.CallToAction .WaveEchos {animation: none !important;}
-    section.Recommendations .MarqueeTrack {animation: none !important;}
-    section.Recommendations .Marquee {overflow-x: auto;}
+    section.DesignedCTA .WaveEchos {animation: none !important;}
+    main.Reals .SubPage .Comparaisons, .Intro p, .ProjectGallery img, .RelatedImage, .RelatedImage img, .RelatedFooter .BtnOutline {transition: none !important;}
+    section.Recommendations {
+        .MarqueeTrack {animation: none !important;}
+        .Marquee {overflow-x: auto;}
+    }
 }
