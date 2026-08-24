@@ -912,10 +912,10 @@ section {
    # Calls To Action
 ========================================================================== */
 section.CallToAction {
-    max-width: 1400px;
     margin: 100px auto;
 
     .Card {
+        flex-direction: row;
         position: relative;
         overflow: hidden;
         background: var(--Charcoal);
@@ -1664,7 +1664,6 @@ main.Index {
 
     section.Why {
         background-color: var(--Background);
-        max-width: 1400px;
         display: flex;
         flex-direction: column;
         margin: 100px auto;
@@ -2027,14 +2026,35 @@ main.Services {
 main.Reals {
     margin-top: 10vh;
 
-    section.Why .Layout .Card {
-        hr {
-            height: 5px;
-            background-color: var(--Primary);
-            border: none;
+    section.Why {
+        background-color: var(--Background);
+        display: flex;
+        flex-direction: column;
+        margin: 100px auto;
+
+        h2 {
+            display: block;
+            font-size: clamp(2rem, 4.5vw, 4rem);;
+            font-weight: 900;
+            color: var(--Charcoal);
+            line-height: 1.10;
+            margin-bottom: 36px;
         }
 
-        :nth-of-type(2) {justify-content: flex-start;}
+        .Layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 50px;
+            justify-content: space-between;
+
+            .Card hr {
+                height: 5px;
+                background-color: var(--Primary);
+                border: none;
+            }
+
+            :nth-of-type(2) {justify-content: flex-start;}
+        }
     }
 
     .ProjectSection {
