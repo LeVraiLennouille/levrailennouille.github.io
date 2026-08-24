@@ -1,5 +1,5 @@
 const CTAHTML = `
-    <section class="DesignedCTA">
+    <section class="CallToAction">
         <div class="Card">
             <div class="Text">
                 <h2>Un site qui vous ressemble,<br><em>qui convertit vraiment.</em></h2>

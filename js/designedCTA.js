@@ -1,5 +1,5 @@
 const DesignedCTAHTML = `
-    <section class="CallToAction">
+    <section class="DesignedCTA">
         <svg class="Waves WaveTop" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><defs>
             <linearGradient id="WaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="var(--Charcoal)"/>
