@@ -18,7 +18,8 @@ var REALS = [
         tags: ["creation", "product-design", "branding"],
         image: "/img/reals/scorsone/mockup.png",
         imageAlt: "Création Scorsone",
-        date: "2026-07-31"
+        date: "2026-07-31",
+        comingSoon: true
     },{
         id: "primaire",
         url: "/reals/primaire",
@@ -101,6 +102,17 @@ var REALS = [
         date: "2025-09-01"
     },
 ];
+
+function renderProjectCard(p) {
+    var attrs = p.comingSoon ? ' id="ComingSoonLink"' : "";
+    return "" +
+        '<a href="' + p.url + '" class="ProjectCard"' + attrs + '>' +
+            '<div class="ProjectImage">' +
+                '<img src="' + p.image + '" alt="' + p.imageAlt + '">' +
+                '<div class="ProjectOverlay"><p>' + p.label + "</p></div>" +
+            "</div>" +
+        "</a>";
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     var section = document.querySelector("[data-related-reals]");
