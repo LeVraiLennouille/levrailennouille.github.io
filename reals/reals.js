@@ -6,7 +6,7 @@ var REALS = [
         label: "La Repoussse",
         category: "Création · Product design & Branding",
         tags: ["creation", "ui-ux", "branding", "design-system"],
-        image: "/img/reals/larepousse/mockup.png",
+        image: "/img/reals/larepousse/mockup.webp",
         imageAlt: "Création La Repousse",
         date: "2026-09-01"
     },{
@@ -16,7 +16,7 @@ var REALS = [
         label: "Scorsone",
         category: "Création · Product design & Branding",
         tags: ["creation", "product-design", "branding"],
-        image: "/img/reals/scorsone/mockup.png",
+        image: "/img/reals/scorsone/mockup.webp",
         imageAlt: "Création Scorsone",
         date: "2026-07-31",
         comingSoon: true
@@ -27,7 +27,7 @@ var REALS = [
         label: "Primaire Média",
         category: "Création · Product design e-commerce",
         tags: ["creation", "product-design", "ecommerce", "branding", "wordpress"],
-        image: "/img/reals/primaire/mockup.png",
+        image: "/img/reals/primaire/mockup.webp",
         imageAlt: "Création Primaire",
         date: "2026-06-05"
     },{
@@ -37,7 +37,7 @@ var REALS = [
         label: "Mü-Être",
         category: "Audit & refonte UI / UX · Design System",
         tags: ["refonte", "ui-ux", "branding", "design-system", "bien-etre"],
-        image: "/img/reals/mu/mockup.png",
+        image: "/img/reals/mu/mockup.webp",
         imageAlt: "Refonte Mü-être v2",
         date: "2026-04-20"
     },{
@@ -47,7 +47,7 @@ var REALS = [
         label: "Portfolio v3",
         category: "Audit & refonte UI / UX",
         tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
-        image: "/img/reals/portfolio/mockup.png",
+        image: "/img/reals/portfolio/mockup.webp",
         imageAlt: "Mon portfolio : v3",
         date: "2026-03-01"
     },{
@@ -57,7 +57,7 @@ var REALS = [
         label: "GOON Blindtests",
         category: "Product design · App Web temps réel",
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
-        image: "/img/reals/goon/mockup.png",
+        image: "/img/reals/goon/mockup.webp",
         imageAlt: "Refonte GOON v3",
         date: "2026-02-19"
     },{
@@ -67,7 +67,7 @@ var REALS = [
         label: "GeopTime",
         category: "Création · UI / UX & Full-stack",
         tags: ["creation", "ui-ux", "fullstack", "b2b", "branding"],
-        image: "/img/reals/geoptime/mockup.png",
+        image: "/img/reals/geoptime/mockup.webp",
         imageAlt: "Création GeopTime",
         date: "2025-12-10"
     },{
@@ -77,7 +77,7 @@ var REALS = [
         label: "Yligen",
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["refonte", "ui-ux", "branding", "identite-visuelle", "migration-cms"],
-        image: "/img/reals/yligen/mockup.png",
+        image: "/img/reals/yligen/mockup.webp",
         imageAlt: "Refonte Yligen v2",
         date: "2025-09-01"
     },
@@ -88,7 +88,7 @@ var REALS = [
     //     label: "CarAdd Studio",
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
-    //     image: "/img/reals/caradd/mockup.png",
+    //     image: "/img/reals/caradd/mockup.webp",
     //     imageAlt: "Création CarAdd Studio",
     //     date: "2026-05-01"
     // },{
@@ -98,7 +98,7 @@ var REALS = [
     //     label: "GymAddict",
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
-    //     image: "/img/reals/gymaddict/mockup.png",
+    //     image: "/img/reals/gymaddict/mockup.webp",
     //     imageAlt: "Création GymAddict",
     //     date: "2026-04-15"
     // },{
@@ -108,7 +108,7 @@ var REALS = [
     //     label: "HabitsTracker",
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
-    //     image: "/img/reals/habitstracker/mockup.png",
+    //     image: "/img/reals/habitstracker/mockup.webp",
     //     imageAlt: "Création HabitsTracker",
     //     date: "2026-04-01"
     // },
