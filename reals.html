@@ -54,88 +54,7 @@
             </div>
         </section>
         <section class="ProjectSection">
-            <div class="ProjectGrid">
-                <a href="/reals/portfolio" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/portfolio/mockup.png" alt="Aperçu du projet Portfolio">
-                        <div class="ProjectOverlay">
-                            <p>Mon portfolio</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/mu" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/mu/mockup.png" alt="Aperçu du projet Mu">
-                        <div class="ProjectOverlay">
-                            <p>Mü Être</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/scorsone" class="ProjectCard" id="ComingSoonLink">
-                    <div class="ProjectImage">
-                        <img src="img/reals/scorsone/mockup.png" alt="Aperçu du projet Scorsone">
-                        <div class="ProjectOverlay">
-                            <p>Scorsone</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/goon" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/goon/mockup.png" alt="Aperçu du projet Goon">
-                        <div class="ProjectOverlay">
-                            <p>GOON Blindtests </p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/primaire" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/primaire/mockup.png" alt="Aperçu du projet Primaire">
-                        <div class="ProjectOverlay">
-                            <p>Primaire média</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/habitstracker" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/habitstracker/mockup.png" alt="Aperçu du projet HabitsTracker">
-                        <div class="ProjectOverlay">
-                            <p>HabitsTracker</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/geoptime" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/geoptime/mockup.png" alt="Aperçu du projet Geoptime">
-                        <div class="ProjectOverlay">
-                            <p>Geoptime</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/gymaddict" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/gymaddict/mockup.png" alt="Aperçu du projet Gymaddict">
-                        <div class="ProjectOverlay">
-                            <p>Gymaddict</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/caradd" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/caradd/mockup.png" alt="Aperçu du projet CarAdd">
-                        <div class="ProjectOverlay">
-                            <p>CarAdd</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/reals/yligen" class="ProjectCard">
-                    <div class="ProjectImage">
-                        <img src="img/reals/yligen/mockup.png" alt="Aperçu du projet Yligen">
-                        <div class="ProjectOverlay">
-                            <p>Yligen</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <div class="ProjectGrid" data-reals-grid></div>
         </section>
         <div id="CTAPlaceHolder"></div><script src="js/CTA.js"></script>
         <div id="MergePlaceHolder"></div><script src="js/merge.js"></script>
@@ -149,10 +68,11 @@
         <div id="FooterPlaceHolder"></div><script src="js/footer.js"></script>
     </main>
     <script src="script.js"></script>
+    <script src="reals.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script>
-        (function () {
+        document.addEventListener('DOMContentLoaded', function () {
             const link = document.getElementById('ComingSoonLink');
             const modal = document.getElementById('ComingSoonModal');
             const closeBtn = document.getElementById('ComingSoonClose');
@@ -174,7 +94,7 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') closeModal();
             });
-        })();
+        });
     </script>
 </body>
 </html>

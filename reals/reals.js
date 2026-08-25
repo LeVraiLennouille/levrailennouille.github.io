@@ -103,16 +103,27 @@ var REALS = [
     },
 ];
 
-function renderProjectCard(p) {
-    var attrs = p.comingSoon ? ' id="ComingSoonLink"' : "";
-    return "" +
-        '<a href="' + p.url + '" class="ProjectCard"' + attrs + '>' +
-            '<div class="ProjectImage">' +
-                '<img src="' + p.image + '" alt="' + p.imageAlt + '">' +
-                '<div class="ProjectOverlay"><p>' + p.label + "</p></div>" +
-            "</div>" +
-        "</a>";
-}
+document.addEventListener("DOMContentLoaded", function () {
+    var grid = document.querySelector("[data-reals-grid]");
+    if (!grid) return;
+
+    var sorted = REALS.slice().sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+    });
+
+    grid.innerHTML = sorted.map(renderProjectCard).join("");
+
+    function renderProjectCard(p) {
+        var attrs = p.comingSoon ? ' id="ComingSoonLink"' : "";
+        return "" +
+            '<a href="' + p.url + '" class="ProjectCard"' + attrs + '>' +
+                '<div class="ProjectImage">' +
+                    '<img src="' + p.image + '" alt="' + p.imageAlt + '">' +
+                    '<div class="ProjectOverlay"><p>' + p.label + "</p></div>" +
+                "</div>" +
+            "</a>";
+    }
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     var section = document.querySelector("[data-related-reals]");
