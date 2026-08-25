@@ -1723,6 +1723,154 @@ main.Index {
             }
         }
     }
+
+    section.LatestPosts {
+        max-width: 1400px;
+        margin: 0 auto 100px;
+
+        .SectionHeader {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+
+            .HeaderText {
+                .Eyebrow {
+                    display: block;
+                    font-size: 0.82rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    color: var(--Primary);
+                    margin-bottom: 14px;
+                }
+
+                h2 {
+                    font-size: clamp(2rem, 4vw, 2.75rem);
+                    font-weight: 800;
+                    color: var(--Charcoal);
+                }
+            }
+
+            .BtnSolid {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 14px 32px;
+                background-color: var(--Primary);
+                border-radius: 50px;
+                color: var(--PureWhite);
+                font-weight: 800;
+                font-size: 0.95rem;
+                text-decoration: none;
+                white-space: nowrap;
+                flex-shrink: 0;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    background-color: var(--PureWhite);
+                    border: 1.5px solid var(--Primary);
+                    color: var(--Primary);
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
+                }
+
+                &:focus-visible {
+                    outline: 2px solid var(--Primary);
+                    outline-offset: 3px;
+                }
+            }
+        }
+
+        .BlogGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .BlogCard {
+            display: flex;
+            flex-direction: column;
+            background: var(--PureWhite);
+            border-radius: 18px;
+            padding: 28px 26px;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: var(--Primary);
+            }
+
+            &:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 16px 40px rgba(var(--PureBlackRGB), 0.12);
+
+                .CardFooter .Arrow {transform: translateX(4px);}
+            }
+
+            .CardTop {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                margin-bottom: 16px;
+
+                .Category {
+                    font-size: 0.68rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    color: var(--Primary);
+                }
+
+                .ReadTime {
+                    font-size: 0.72rem;
+                    font-weight: 600;
+                    color: var(--MinMuted);
+                    flex-shrink: 0;
+                }
+            }
+
+            h3 {
+                font-size: 1.15rem;
+                font-weight: 800;
+                color: var(--Charcoal);
+                line-height: 1.35;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 0.86rem;
+                line-height: 1.6;
+                color: var(--Muted);
+                margin-bottom: 20px;
+                flex-grow: 1;
+                overflow: hidden;
+            }
+
+            .CardFooter {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 0.78rem;
+                font-weight: 700;
+                color: var(--DarkPrimary);
+                margin-top: auto;
+
+                time {color: inherit;}
+
+                .Arrow {transition: transform 0.25s ease;}
+            }
+        }
+    }
 }
 
 main.Services {
