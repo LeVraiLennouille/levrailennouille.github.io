@@ -56,7 +56,28 @@
 
     const posts = [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    window.LennouilleBlog = { posts: posts, cardHTML: cardHTML, formatDateLabel: formatDateLabel };
+    window.LennouilleBlog = { posts: posts, cardHTML: cardHTML, comingSoonCardHTML: comingSoonCardHTML, formatDateLabel: formatDateLabel };
+
+    function comingSoonCardHTML(options) {
+        options = options || {};
+        return (
+            '<div class="BlogCard ComingSoon' + (options.wide ? " Wide" : "") + '">' +
+                '<div class="CardTop">' +
+                    '<span class="Category">Bientôt disponible</span>' +
+                "</div>" +
+                "<h3>" + (options.title || "Un nouvel article arrive") + "</h3>" +
+                "<p>" + (options.text || "De nouveaux contenus sur le design, le développement et la stratégie web sont en préparation. Revenez bientôt !") + "</p>" +
+            "</div>"
+        );
+    }
+
+    const latestGrid = document.getElementById("LatestPostsGrid");
+    if (latestGrid) {
+        const LATEST_COUNT = 3;
+        const latestCards = posts.slice(0, LATEST_COUNT).map(function (post, i) { return cardHTML(post, false); });
+        while (latestCards.length < LATEST_COUNT) {latestCards.push(comingSoonCardHTML());}
+        latestGrid.innerHTML = latestCards.join("");
+    }
 
     const grid = document.getElementById("BlogGrid");
     const pagination = document.getElementById("Pagination");
@@ -96,6 +117,17 @@
 
     function renderPage(page, options) {
         options = options || {};
+
+        if (posts.length === 0) {
+            grid.innerHTML = comingSoonCardHTML({
+                wide: true,
+                title: "Le blog arrive bientôt",
+                text: "Les premiers articles sur le design, le développement et la stratégie web sont en cours d'écriture. Revenez très vite !"
+            });
+            pagination.innerHTML = "";
+            return;
+        }
+
         currentPage = Math.min(Math.max(1, page), totalPages);
 
         const start = (currentPage - 1) * POSTS_PER_PAGE;
@@ -116,7 +148,11 @@
         renderPage(Number(btn.dataset.page), { scroll: true });
     });
 
-    if (countEl) {countEl.textContent = posts.length + (posts.length > 1 ? " articles publiés" : " article publié");}
+    if (countEl) {
+        countEl.textContent = posts.length === 0
+            ? "Bientôt de nouveaux articles"
+            : posts.length + (posts.length > 1 ? " articles publiés" : " article publié");
+    }
 
     renderPage(1);
 })();
