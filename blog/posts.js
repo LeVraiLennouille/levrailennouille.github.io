@@ -47,12 +47,6 @@
         // },
     ];
 
-    const grid = document.getElementById("BlogGrid");
-    const pagination = document.getElementById("Pagination");
-    const countEl = document.getElementById("PostCount");
-
-    if (!grid || !pagination) return;
-
     const dateFormatter = new Intl.DateTimeFormat("fr-FR", {day: "numeric", month: "long", year: "numeric"});
 
     function formatDateLabel(isoDate) {
@@ -61,6 +55,15 @@
     }
 
     const posts = [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    window.LennouilleBlog = { posts: posts, cardHTML: cardHTML, formatDateLabel: formatDateLabel };
+
+    const grid = document.getElementById("BlogGrid");
+    const pagination = document.getElementById("Pagination");
+    const countEl = document.getElementById("PostCount");
+
+    if (!grid || !pagination) return;
+
     const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
     let currentPage = 1;
 
