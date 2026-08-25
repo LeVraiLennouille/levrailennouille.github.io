@@ -10,16 +10,6 @@ var REALS = [
         imageAlt: "Création La Repousse",
         date: "2026-09-01"
     },{
-        id: "portfolio",
-        url: "/reals/portfolio",
-        name: "Refonte Portfolio v3",
-        label: "Portfolio v3",
-        category: "Audit & refonte UI / UX",
-        tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
-        image: "/img/reals/portfolio/mockup.png",
-        imageAlt: "Mon portfolio : v3",
-        date: "2026-03-01"
-    }, {
         id: "scorsone",
         url: "/reals/scorsone",
         name: "Création Scorsone",
@@ -50,17 +40,17 @@ var REALS = [
         image: "/img/reals/mu/mockup.png",
         imageAlt: "Refonte Mü-être v2",
         date: "2026-04-20"
-    }, {
-        id: "geoptime",
-        url: "/reals/geoptime",
-        name: "Création GeopTime",
-        label: "GeopTime",
-        category: "Création · UI / UX & Full-stack",
-        tags: ["creation", "ui-ux", "fullstack", "b2b", "branding"],
-        image: "/img/reals/geoptime/mockup.png",
-        imageAlt: "Création GeopTime",
-        date: "2025-12-10"
-    }, {
+    },{
+        id: "portfolio",
+        url: "/reals/portfolio",
+        name: "Refonte Portfolio v3",
+        label: "Portfolio v3",
+        category: "Audit & refonte UI / UX",
+        tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
+        image: "/img/reals/portfolio/mockup.png",
+        imageAlt: "Mon portfolio : v3",
+        date: "2026-03-01"
+    },{
         id: "goon",
         url: "/reals/goon",
         name: "Refonte GOON v3",
@@ -70,37 +60,17 @@ var REALS = [
         image: "/img/reals/goon/mockup.png",
         imageAlt: "Refonte GOON v3",
         date: "2026-02-19"
-    }, {
-        id: "gymaddict",
-        url: "/reals/gymaddict",
-        name: "Création GymAddict",
-        label: "GymAddict",
-        category: "UI/UX Design · Webdesign · Identité visuelle",
-        tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
-        image: "/img/reals/gymaddict/mockup.png",
-        imageAlt: "Création GymAddict",
-        date: "2026-04-15"
-    }, {
-        id: "habitstracker",
-        url: "/reals/habitstracker",
-        name: "Création HabitsTracker",
-        label: "HabitsTracker",
-        category: "UI/UX Design · Webdesign · Identité visuelle",
-        tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
-        image: "/img/reals/habitstracker/mockup.png",
-        imageAlt: "Création HabitsTracker",
-        date: "2026-04-01"
-    }, {
-        id: "caradd",
-        url: "/reals/caradd",
-        name: "Création CarAdd Studio",
-        label: "CarAdd Studio",
-        category: "UI/UX Design · Webdesign · Identité visuelle",
-        tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
-        image: "/img/reals/caradd/mockup.png",
-        imageAlt: "Création CarAdd Studio",
-        date: "2026-05-01"
-    }, {
+    },{
+        id: "geoptime",
+        url: "/reals/geoptime",
+        name: "Création GeopTime",
+        label: "GeopTime",
+        category: "Création · UI / UX & Full-stack",
+        tags: ["creation", "ui-ux", "fullstack", "b2b", "branding"],
+        image: "/img/reals/geoptime/mockup.png",
+        imageAlt: "Création GeopTime",
+        date: "2025-12-10"
+    },{
         id: "yligen",
         url: "/reals/yligen",
         name: "Refonte Yligen v2",
@@ -111,6 +81,37 @@ var REALS = [
         imageAlt: "Refonte Yligen v2",
         date: "2025-09-01"
     },
+    // {
+    //     id: "caradd",
+    //     url: "/reals/caradd",
+    //     name: "Création CarAdd Studio",
+    //     label: "CarAdd Studio",
+    //     category: "UI/UX Design · Webdesign · Identité visuelle",
+    //     tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
+    //     image: "/img/reals/caradd/mockup.png",
+    //     imageAlt: "Création CarAdd Studio",
+    //     date: "2026-05-01"
+    // },{
+    //     id: "gymaddict",
+    //     url: "/reals/gymaddict",
+    //     name: "Création GymAddict",
+    //     label: "GymAddict",
+    //     category: "UI/UX Design · Webdesign · Identité visuelle",
+    //     tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
+    //     image: "/img/reals/gymaddict/mockup.png",
+    //     imageAlt: "Création GymAddict",
+    //     date: "2026-04-15"
+    // },{
+    //     id: "habitstracker",
+    //     url: "/reals/habitstracker",
+    //     name: "Création HabitsTracker",
+    //     label: "HabitsTracker",
+    //     category: "UI/UX Design · Webdesign · Identité visuelle",
+    //     tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
+    //     image: "/img/reals/habitstracker/mockup.png",
+    //     imageAlt: "Création HabitsTracker",
+    //     date: "2026-04-01"
+    // },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
