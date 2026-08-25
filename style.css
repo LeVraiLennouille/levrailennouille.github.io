@@ -1750,6 +1750,74 @@ main.Index {
         }
     }
 
+    section.Benefits {
+        max-width: 1400px;
+        margin: 0 auto 100px;
+        background-color: var(--Background);
+
+        h2 {
+            font-size: clamp(2rem, 4.5vw, 4rem);
+            font-weight: 900;
+            color: var(--Charcoal);
+            line-height: 1.10;
+            margin-bottom: 56px;
+        }
+
+        .Layout {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            column-gap: 60px;
+            align-items: start;
+        }
+
+        .Column {
+            max-width: 340px;
+
+            .Eyebrow {
+                display: block;
+                font-size: 0.82rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: var(--Primary);
+                margin-bottom: 14px;
+            }
+
+            p {
+                font-size: 0.95rem;
+                font-weight: 400;
+                line-height: 1.6;
+                color: var(--Charcoal);
+                text-align: justify;
+            }
+
+            &:last-child {
+                justify-self: end;
+                text-align: left;
+            }
+        }
+
+        .Stat {
+            text-align: center;
+            padding-top: 6px;
+
+            .Number {
+                font-size: clamp(2.4rem, 4vw, 3.2rem);
+                font-weight: 900;
+                color: var(--Primary);
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            .Label {
+                font-size: 0.9rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: var(--Charcoal);
+                margin-top: 10px;
+            }
+        }
+    }
+
     section.LatestPosts {
         max-width: 1400px;
         margin: 0 auto 100px;
