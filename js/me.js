@@ -17,9 +17,9 @@ const MeHTML = `
             </text>
         </svg>
         <div class="Text">
-            <div class="Header">
+            <div class="SectionTitle Left">
                 <span class="Eyebrow">Qui suis-je</span>
-                <h2>L'humain derrière l'interface.</h2>
+                <h2 class="Title">L'humain derrière l'interface.</h2>
             </div>
             <div class="Desc">
                 <p><strong>Moi c'est Lenny, fondateur du studio Lennouille, ton partenaire créatif et technique.</strong></p>

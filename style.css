@@ -517,7 +517,7 @@ html, body {
                 height: 44px;
                 border: none;
                 border-radius: 999px;
-                background: var(--Primary);
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
                 cursor: pointer;
                 overflow: hidden;
                 outline: none;
@@ -820,6 +820,38 @@ html, body {
 section {
     max-width: 1400px;
     margin: 100px auto 0;
+}
+
+.SectionTitle {
+    text-align: center;
+    margin: 0 auto 64px;
+
+    &.Left {
+        text-align: left;
+        margin: 0 0 36px;
+    }
+
+    span.Eyebrow {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--Primary);
+        margin-bottom: 12px;
+    }
+
+    h2.Title {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        color: var(--Charcoal);
+    }
+
+    p.Subtitle {
+        font-size: 1.05rem;
+        color: var(--Muted);
+        line-height: 1.6;
+        margin-top: 12px;
+    }
 }
 
 .Card {
@@ -1405,12 +1437,6 @@ section.Me {
         font-weight: 400; 
         font-size: 1.1em;
 
-        h4 {
-            color: var(--DarkPrimary);
-            font-weight: 900; 
-            font-size: 1.5em;
-        }
-
         .Desc {
             display: flex;
             flex-direction: column;
@@ -1440,7 +1466,7 @@ section.Me {
             border: none;
             outline: none;
             color: var(--PureWhite);
-            background: var(--DarkPrimary);
+            background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -1728,60 +1754,6 @@ main.Index {
         max-width: 1400px;
         margin: 0 auto 100px;
 
-        .SectionHeader {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 40px;
-
-            .HeaderText {
-                .Eyebrow {
-                    display: block;
-                    font-size: 0.82rem;
-                    font-weight: 800;
-                    text-transform: uppercase;
-                    color: var(--Primary);
-                    margin-bottom: 14px;
-                }
-
-                h2 {
-                    font-size: clamp(2rem, 4vw, 2.75rem);
-                    font-weight: 800;
-                    color: var(--Charcoal);
-                }
-            }
-
-            .BtnSolid {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 14px 32px;
-                background-color: var(--Primary);
-                border-radius: 50px;
-                color: var(--PureWhite);
-                font-weight: 800;
-                font-size: 0.95rem;
-                text-decoration: none;
-                white-space: nowrap;
-                flex-shrink: 0;
-                transition: all 0.3s ease;
-
-                &:hover {
-                    background-color: var(--PureWhite);
-                    border: 1.5px solid var(--Primary);
-                    color: var(--Primary);
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
-                }
-
-                &:focus-visible {
-                    outline: 2px solid var(--Primary);
-                    outline-offset: 3px;
-                }
-            }
-        }
-
         .BlogGrid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1902,7 +1874,7 @@ main.Services {
 
     section.Why {
         max-width: 1400px;
-        margin: 100px auto 0;
+        margin: 200px auto 0;
 
         .Header {
             display: flex;
@@ -1910,36 +1882,6 @@ main.Services {
             align-items: flex-end;
             gap: 60px;
             margin-bottom: 56px;
-
-            .Eyebrow {
-                display: inline-flex;
-                align-items: center;
-                gap: 9px;
-                font-size: 0.78rem;
-                font-weight: 800;
-                letter-spacing: 0.16em;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 18px;
-
-                &::before {
-                    content: "";
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 50%;
-                    background-color: var(--Primary);
-                    box-shadow: 0 0 0 0 rgba(var(--PrimaryRGB), 0.5);
-                    animation: PulsePrimary 2s infinite;
-                    flex-shrink: 0;
-                }
-            }
-
-            h2 {
-                font-size: clamp(2rem, 4.2vw, 3.4rem);
-                font-weight: 900;
-                color: var(--Charcoal);
-                line-height: 1.12;
-            }
 
             .Lead {
                 max-width: 380px;
@@ -1966,7 +1908,7 @@ main.Services {
     section.Grid {
         background: var(--Background);
         max-width: 1400px;
-        margin: 100px auto 0;
+        margin: 200px auto 0;
 
         .Grid {
             max-width: 1400px;
@@ -1998,7 +1940,7 @@ main.Services {
                 font-size: 0.78rem;
                 font-weight: 600;
                 color: var(--PureWhite);
-                background: var(--DarkPrimary);
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
                 padding: 6px 14px;
                 border-radius: 50px;
                 white-space: nowrap;
@@ -2203,16 +2145,7 @@ main.Reals {
         background-color: var(--Background);
         display: flex;
         flex-direction: column;
-        margin: 100px auto;
-
-        h2 {
-            display: block;
-            font-size: clamp(2rem, 4.5vw, 4rem);
-            font-weight: 900;
-            color: var(--Charcoal);
-            line-height: 1.10;
-            margin-bottom: 48px;
-        }
+        margin: 200px auto 100px;
 
         .Layout {
             display: grid;
@@ -3878,12 +3811,6 @@ main.About {
         }
     }
 
-    h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
-        font-weight: 800;
-        margin-bottom: 16px;
-    }
-
     .Subtitle {
         font-size: 1.05rem;
         color: var(--Muted);
@@ -3903,28 +3830,6 @@ main.About {
             background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(var(--PrimaryRGB), 0.12) 0%, transparent 70%);
             pointer-events: none;
         } */
-
-        .TimelineHeader {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            margin-bottom: 88px;
-
-            .Eyebrow {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 14px;
-            }
-
-            h2 {
-                font-size: clamp(2.2rem, 4.5vw, 3rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-            }
-        }
 
         .TimelineList {
             position: relative;
@@ -4035,33 +3940,6 @@ main.About {
         background-color: var(--Background);
         padding: 100px 40px;
 
-        .SectionHeader {
-            text-align: center;
-            margin: 0 auto 64px;
-
-            .Eyebrow {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 14px;
-            }
-
-            h2 {
-                font-size: clamp(2rem, 4vw, 2.75rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-                margin-bottom: 16px;
-            }
-
-            .Subtitle {
-                font-size: 1.05rem;
-                color: var(--Muted);
-                line-height: 1.6;
-            }
-        }
-
         .Grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -4105,33 +3983,6 @@ main.About {
         background-color: var(--Background);
         padding: 40px 40px 120px;
 
-        .SectionHeader {
-            text-align: center;
-            margin: 0 auto 64px;
-
-            .Eyebrow {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 14px;
-            }
-
-            h2 {
-                font-size: clamp(2rem, 4vw, 2.75rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-                margin-bottom: 16px;
-            }
-
-            .Subtitle {
-                font-size: 1.05rem;
-                color: var(--Muted);
-                line-height: 1.6;
-            }
-        }
-
         .Grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -4147,33 +3998,6 @@ main.About {
         position: relative;
         background-color: var(--Background);
         padding: 40px 40px 140px;
-
-        .SectionHeader {
-            text-align: center;
-            margin: 0 auto 64px;
-
-            .Eyebrow {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 14px;
-            }
-
-            h2 {
-                font-size: clamp(2rem, 4vw, 2.75rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-                margin-bottom: 16px;
-            }
-
-            .Subtitle {
-                font-size: 1.05rem;
-                color: var(--Muted);
-                line-height: 1.6;
-            }
-        }
 
         .Marquee {
             width: 100vw;
@@ -4280,33 +4104,6 @@ main.About {
         position: relative;
         background-color: var(--Background);
         padding: 40px 40px 100px;
-
-        .SectionHeader {
-            text-align: center;
-            margin: 0 auto 64px;
-
-            .Eyebrow {
-                display: block;
-                font-size: 0.82rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                color: var(--Primary);
-                margin-bottom: 14px;
-            }
-
-            h2 {
-                font-size: clamp(2rem, 4vw, 2.75rem);
-                font-weight: 800;
-                color: var(--Charcoal);
-                margin-bottom: 16px;
-            }
-
-            .Subtitle {
-                font-size: 1.05rem;
-                color: var(--Muted);
-                line-height: 1.6;
-            }
-        }
 
         .Grid {
             max-width: 1200px;
