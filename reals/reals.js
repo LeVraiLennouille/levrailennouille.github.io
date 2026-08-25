@@ -1,5 +1,15 @@
 var REALS = [
     {
+        id: "larepousse",
+        url: "/reals/larepousse",
+        name: "Création La Repousse",
+        label: "La Repoussse",
+        category: "Création · Product design & Branding",
+        tags: ["creation", "ui-ux", "branding", "design-system"],
+        image: "/img/reals/larepousse/mockup.png",
+        imageAlt: "Création La Repousse",
+        date: "2026-09-01"
+    },{
         id: "portfolio",
         url: "/reals/portfolio",
         name: "Refonte Portfolio v3",
