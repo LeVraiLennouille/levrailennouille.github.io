@@ -1755,14 +1755,6 @@ main.Index {
         margin: 0 auto 100px;
         background-color: var(--Background);
 
-        h2 {
-            font-size: clamp(2rem, 4.5vw, 4rem);
-            font-weight: 900;
-            color: var(--Charcoal);
-            line-height: 1.10;
-            margin-bottom: 56px;
-        }
-
         .Layout {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -1821,6 +1813,14 @@ main.Index {
     section.LatestPosts {
         max-width: 1400px;
         margin: 0 auto 100px;
+
+        .SectionHeader {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
         .BlogGrid {
             display: grid;
