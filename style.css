@@ -1748,9 +1748,17 @@ main.Services {
             gap: 24px;
 
             .Card {
+                position: relative;
                 &:first-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}
                 &.Featured {margin-top: -32px;}
                 &:nth-child(2), &:nth-child(3) {margin-top: 16px;}
+
+                .Link::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    z-index: 1;
+                }
             }
         }
     }
@@ -1772,10 +1780,20 @@ main.Services {
         }
 
         .Card {
+            position: relative;
+
             &.Featured {
                 grid-column: span 2;
                 grid-row: span 2;
                 border-color: rgba(var(--PrimaryRGB), 0.5);
+            }
+
+            .SlideBtn::after,
+            .ArrowLink::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 1;
             }
 
             .Top {
