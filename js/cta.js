@@ -6,7 +6,7 @@ const CTAHTML = `
             </div>
             <div class="Action">
                 <p>Premier échange offert. Réponse sous 24h. Devis clair avant tout engagement.</p>
-                <a href="contact.html" class="Btn">Discutons de votre projet <span class="Arrow">↗</span></a>
+                <a href="/contact" class="ArrowBtn">Discutons de votre projet <span class="Arrow">↗</span></a>
             </div>
         </div>
     </section>

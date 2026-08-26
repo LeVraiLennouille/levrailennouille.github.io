@@ -19,17 +19,8 @@ const DesignedCTAHTML = `
                 <h2>Prêt à accélérer votre croissance ?</h2>
                 <p>Création sur-mesure, refonte UX ou optimisation de vos conversions : ne laissez plus de place au hasard. Discutons de vos objectifs ou chiffrez votre projet en 2 minutes.</p>
                 <div class="Buttons">
-                    <a class="SwitchBtn CursorHover" href="/contact">
-                        <span class="BtnTexts">
-                            <span class="DefaultText">Discuter de mon projet</span>
-                            <span class="HoverText">Discuter de mon projet</span>
-                        </span>
-                        <span class="BtnIcon">
-                            <span class="Dot"></span>
-                            <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-                        </span>
-                    </a>
-                    <a class="SlideBtn" href="/simu"><span>Chiffrer mon budget</span><span class="Arrow">→</span></a>
+                    <a href="/contact" class="ArrowBtn">Discutons de votre projet <span class="Arrow">↗</span></a>
+                    <a href="/contact" class="ArrowBtn">Chiffrons votre projet <span class="Arrow">↗</span></a>
                 </div>
             </div>
         </section>
