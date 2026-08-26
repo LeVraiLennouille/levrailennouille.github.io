@@ -618,6 +618,8 @@ section {
     &:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.1);
+
+        .ArrowLink svg {transform: rotate(360deg);}
     }
 
     h3 {
@@ -672,7 +674,7 @@ section {
         align-items: center;
         gap: 6px;
 
-        svg {width: 18px; height: 18px; stroke: currentColor;}
+        svg {width: 18px; height: 18px; stroke: currentColor; transition: transform 0.5s cubic-bezier(.22,1,.36,1);}
     }
 }
 
