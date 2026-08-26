@@ -208,7 +208,7 @@ function loop(now) {
         const mx = Math.round(mouse.x);
         const my = Math.round(mouse.y);
         const topEl = document.elementsFromPoint(mx, my).find(el => el !== dot && el !== ball);
-        if (topEl && topEl.closest('.ChoiceCard, .Input')) {
+        if (topEl && topEl.closest('.Card, .ChoiceCard, .Input')) {
             applyTheme(true);
         } else {
             const bgRGB = getEffectiveBgRGB(mx, my);

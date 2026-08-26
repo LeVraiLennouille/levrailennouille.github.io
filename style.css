@@ -965,7 +965,7 @@ section {
 section.CallToAction {
     margin: 100px auto;
 
-    .Card {
+    .Design {
         flex-direction: row;
         position: relative;
         overflow: hidden;
