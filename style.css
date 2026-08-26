@@ -1788,7 +1788,6 @@ main.Services {
                 border-color: rgba(var(--PrimaryRGB), 0.5);
             }
 
-            .SlideBtn::after,
             .ArrowLink::after {
                 content: "";
                 position: absolute;
