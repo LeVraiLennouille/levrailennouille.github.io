@@ -1959,14 +1959,6 @@ main.Services {
 }
 
 main.UX {
-    #definir {
-        padding-bottom:clamp(40px,6vw,64px);
-
-        .Intro {text-align:left;}
-    }
-
-    #ux-ui {margin-top:56px;}
-
     .Hero {
         max-width: 100%;
         margin: 0;
@@ -2075,6 +2067,14 @@ main.UX {
         padding:clamp(56px,9vw,96px) 0;
         border-top:1px solid rgba(var(--PureBlackRGB),0.06);
 
+        &#definir {
+            padding-bottom:clamp(40px,6vw,64px);
+
+            .Intro {text-align:left;}
+        }
+
+        &#ux-ui {margin-top:56px;}
+
         &:first-of-type {border-top:none;}
 
         &.Alt {
@@ -2164,7 +2164,7 @@ main.UX {
                     background:var(--Primary);
                 }
 
-                &:last-of-type::before {background:var(--Charcoal);}
+                &:last-of-type::before {background:var(--DarkPrimary);}
 
                 h3 {
                     font-size:1.12rem;
@@ -6061,18 +6061,6 @@ main.Terms {
 ========================================================================== */
 
 @media (min-width: 1024px) {
-    main.UX .Block .DisciplineMap::before {
-        content:"";
-        position:absolute;
-        left:14px;
-        right:14px;
-        top:50%;
-        height:2px;
-        transform:translateY(-50%);
-        z-index:0;
-        background:linear-gradient(to right, rgba(var(--PrimaryRGB),0.45), rgba(var(--PrimaryRGB),0.12) 92%, transparent);
-    }
-    
     main.Simu {
         #MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}
     }
