@@ -1472,68 +1472,6 @@ main.Index {
         }
     }
 
-    section.Why {
-        background-color: var(--Background);
-        display: flex;
-        flex-direction: column;
-        margin: 100px auto;
-
-        h2 {
-            display: block;
-            font-size: clamp(2rem, 4.5vw, 4rem);;
-            font-weight: 900;
-            color: var(--Charcoal);
-            line-height: 1.10;
-            margin-bottom: 36px;
-        }
-
-        .Layout {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            column-gap: 50px;
-            justify-content: space-between;
-
-            .Card {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-
-                h4 {
-                    font-size: 0.8rem;
-                    font-weight: 800;
-                    color: var(--DarkPrimary);
-                    text-transform: uppercase;
-                    line-height: 1.2;
-                }
-
-                p {
-                    font-size: 1rem;
-                    font-weight: 400;
-                    color: var(--Charcoal);
-                    line-height: 1.5;
-                    text-align: justify;
-                }
-
-                .CardImg {
-                    overflow: hidden;
-                    background-color: var(--Background);
-                    border: 3px solid var(--Primary);
-
-                    img {
-                        width: 100%;
-                        height: auto;
-                        object-fit: cover;
-                        display: block;
-                        transition: filter 0.4s ease;
-                    }
-                }
-
-                &:nth-of-type(2) {justify-content: center;}
-                &:nth-of-type(3) {justify-content: flex-end;}
-            }
-        }
-    }
-
     section.Impact {
         position: relative;
         overflow: hidden;
@@ -1593,6 +1531,67 @@ main.Index {
                     color: var(--Charcoal);
                     margin-top: 4px;
                 }
+            }
+        }
+    }
+
+    section.Why {
+        background-color: var(--Background);
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            display: block;
+            font-size: clamp(2rem, 4.5vw, 4rem);;
+            font-weight: 900;
+            color: var(--Charcoal);
+            line-height: 1.10;
+            margin-bottom: 36px;
+        }
+
+        .Layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 50px;
+            justify-content: space-between;
+
+            .Card {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                h4 {
+                    font-size: 0.8rem;
+                    font-weight: 800;
+                    color: var(--DarkPrimary);
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                }
+
+                p {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: var(--Charcoal);
+                    line-height: 1.5;
+                    text-align: justify;
+                }
+
+                .CardImg {
+                    overflow: hidden;
+                    background-color: var(--Background);
+                    border: 3px solid var(--Primary);
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                        display: block;
+                        transition: filter 0.4s ease;
+                    }
+                }
+
+                &:nth-of-type(2) {justify-content: center;}
+                &:nth-of-type(3) {justify-content: flex-end;}
             }
         }
     }
