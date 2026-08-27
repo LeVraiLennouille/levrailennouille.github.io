@@ -1594,10 +1594,29 @@ main.Index {
         }
     }
 
-    section.LatestPosts {
-        max-width: 1400px;
-        margin: 0 auto 100px;
+    section.Gallery {
+        .SectionTitle h2.Title {font-size: 2.71rem;}
+        
+        .Grid {
+            column-count: 3;
+            column-gap: 24px;
 
+            img {
+                display: block;
+                width: 100%;
+                margin-bottom: 24px;
+                border-radius: 16px;
+                object-fit: cover;
+                box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
+                break-inside: avoid;
+                transition: transform 0.4s ease;
+
+                &:hover {transform: translateY(-4px);}
+            }
+        }
+    }
+
+    section.LatestPosts {
         .SectionHeader {
             display: flex;
             align-items: flex-end;
@@ -5696,6 +5715,10 @@ main.Terms {
         }
     }
 
+    main.Index section.TeamGallery {
+        .GalleryGrid {column-count: 2;}
+    }
+
     main.Reals {
         section.Why {
             padding: 0 20px;
@@ -5989,6 +6012,11 @@ main.Terms {
             padding: 40px 16px 60px;
 
             .Layout {grid-template-columns: 1fr;}
+        }
+
+        section.TeamGallery {
+            .GalleryTitle {font-size: 2rem; margin-bottom: 24px;}
+            .GalleryGrid {column-count: 1;}
         }
     }
 
