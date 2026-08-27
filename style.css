@@ -1958,6 +1958,389 @@ main.Services {
     }
 }
 
+main.UX {
+    .Hero {
+        max-width: 100%;
+        margin: 0;
+        position:relative;
+        overflow:hidden;
+        background-color:var(--Charcoal);
+        padding:clamp(120px,20vw,168px) 40px clamp(70px,10vw,100px);
+
+        &::before {
+            content:"";
+            position:absolute;
+            inset:0;
+            background:
+                radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
+            pointer-events:none;
+        }
+
+        .Decor {
+            position:absolute;
+            right:-10px;
+            top:50%;
+            transform:translateY(-50%);
+            z-index:1;
+            pointer-events:none;
+            user-select:none;
+
+            span {
+                font-size:clamp(6rem,16vw,13rem);
+                font-weight:800;
+                line-height:.85;
+                color:transparent;
+                -webkit-text-stroke:1.5px rgba(var(--PrimaryRGB),0.18);
+                white-space:nowrap;
+            }
+        }
+
+        .HeroInner {
+            position:relative;
+            z-index:2;
+            max-width:740px;
+            margin:0 auto;
+            text-align:center;
+
+            .Category {
+                display:inline-block;
+                padding:6px 18px;
+                border-radius:50px;
+                background:rgba(var(--PrimaryRGB),0.16);
+                color:var(--Primary);
+                font-size:.72rem;
+                font-weight:800;
+                text-transform:uppercase;
+                margin-bottom:24px;
+            }
+
+            h1 {
+                font-size:clamp(2.4rem,5.5vw,3.8rem);
+                font-weight:800;
+                color:var(--PureWhite);
+                margin-bottom:22px;
+
+                em {
+                    font-style:italic;
+                    color:var(--Primary);
+                }
+            }
+
+            .Lede {
+                font-size:1.05rem; line-height:1.65; color:rgba(var(--PureWhiteRGB),0.72);
+                max-width:52ch; margin:0 auto 34px;
+            }
+
+            .HeroCta {
+                display:inline-flex;
+                align-items:center;
+                gap:8px;
+                font-size:.85rem;
+                font-weight:800;
+                text-decoration:none;
+                color:var(--PureWhite);
+                background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                padding:14px 28px;
+                border-radius:50px;
+                box-shadow:0 10px 26px rgba(var(--PrimaryRGB),0.35);
+                transition:transform .2s ease, box-shadow .2s ease;
+
+                &:hover {transform:translateY(-2px); box-shadow:0 14px 32px rgba(var(--PrimaryRGB),0.4);}
+            }
+        }
+    }
+
+    .Block {
+        padding:clamp(56px,9vw,96px) 0;
+        border-top:1px solid rgba(var(--PureBlackRGB),0.06);
+
+        &:first-of-type {border-top:none;}
+
+        .Alt {
+            background:var(--PureWhite);
+            border-radius:28px;
+            border-top:none;
+            padding:clamp(48px,8vw,64px) clamp(24px,6vw,60px);
+            box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.05);
+        }
+
+        .Intro {
+            max-width:68ch;
+            font-size:.98rem;
+            color:var(--Muted);
+            font-weight:500;
+            text-align:justify;
+            margin-bottom:16px;
+
+            &:last-of-type{margin-bottom:0;}
+
+            a {
+                color:var(--Primary);
+                font-weight:700;
+                text-decoration:none;
+                box-shadow:0 1.5px 0 0 currentColor;
+
+                &:hover{color:var(--DarkPrimary);}
+            }
+        }
+
+        .DisciplineMap {
+            margin-top:32px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            align-items:center;
+
+            .Core{
+                font-size:.85rem;
+                font-weight:800;
+                color:var(--PureWhite);
+                background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                padding:9px 18px;
+                border-radius:50px;
+            }
+
+            .Chip{
+                font-size:.8rem;
+                font-weight:700;
+                color:var(--Charcoal);
+                background:rgba(var(--PrimaryRGB),0.08);
+                border:1px solid rgba(var(--PrimaryRGB),0.18);
+                padding:8px 16px;
+                border-radius:50px;
+            }
+        }
+
+        .CompareGrid {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-top:8px;
+            max-width:900px;
+
+            .Card {
+                border-radius:20px;
+                background:rgba(var(--PrimaryRGB),0.025);
+                border:1px solid rgba(var(--PureBlackRGB),0.1);
+                padding:30px;
+                box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06);
+
+                h3 {
+                    font-size:1.12rem;
+                    font-weight:800;
+                    color:var(--Charcoal);
+                    margin-bottom:10px;
+                }
+
+                p {
+                    font-size:.92rem;
+                    color:var(--Muted);
+                    margin:0;
+                }
+            }
+        }
+
+        .CompareNote {
+            margin-top:24px;
+            max-width:70ch;
+            font-size:.95rem;
+            color:var(--Muted);
+        }
+
+        .Controls {
+            margin-top:36px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:16px;
+            align-items:center;
+            justify-content:space-between;
+
+            .Tabs {
+                display:flex;
+                flex-wrap:wrap;
+                gap:8px;
+
+                .Tab {
+                    font-size:.78rem;
+                    font-weight:700;
+                    background:var(--PureWhite);
+                    border:none;
+                    color:var(--Charcoal);
+                    padding:10px 16px;
+                    border-radius:50px;
+                    cursor:pointer;
+                    box-shadow:0 2px 12px rgba(var(--PureBlackRGB),0.06);
+                    transition:all .2s ease;
+
+                    &:hover {
+                        background:rgba(var(--PrimaryRGB),0.1);
+                        color:var(--Primary);
+                    }
+
+                    &.active {
+                        background:var(--Primary);
+                        color:var(--PureWhite);
+                    }
+
+                    span {
+                        opacity:.5;
+                        margin-left:.4em;
+
+                        &.active span{opacity:.7;}
+                    }
+                }
+            }
+
+            .SearchDraw {
+                display:flex;
+                gap:10px;
+                flex-wrap:wrap;
+
+                #search {
+                    font-size:.85rem;
+                    font-weight:600;
+                    background:var(--PureWhite);
+                    color:var(--Charcoal);
+                    border:1px solid var(--Borders);
+                    border-radius:50px;
+                    padding:10px 18px;
+                    width:190px;
+
+                    &::placeholder{color:var(--LightMuted);}
+                }
+
+                #draw {
+                    font-size:.78rem;
+                    font-weight:800;
+                    text-transform:uppercase;
+                    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                    color:var(--PureWhite);
+                    border:none;
+                    border-radius:50px;
+                    padding:10px 20px;
+                    cursor:pointer;
+                    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+                    transition:transform .15s ease, box-shadow .15s ease;
+
+                    &:hover {
+                        transform:translateY(-2px);
+                        box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);
+                    }
+                }
+            }
+        }
+
+        .Count {
+            font-size:.8rem;
+            font-weight:600;
+            color:var(--MinMuted);
+            margin:28px 0 20px;
+        }
+
+        .Grid {
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:22px;
+            padding-bottom:8px;
+
+            .LawCard {
+                all:unset;
+                box-sizing:border-box;
+                display:flex;
+                flex-direction:column;
+                cursor:pointer;
+                background:var(--PureWhite);
+                color:var(--Charcoal);
+                border-radius:18px;
+                padding:26px 24px;
+                position:relative;
+                overflow:hidden;
+                box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06);
+                opacity:0; transform:translateY(14px);
+                transition:transform .35s ease, box-shadow .35s ease, opacity .5s ease;
+
+                &.in-view {opacity:1; transform:translateY(0);}
+
+                &::before {
+                    content:"";
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    right:0;
+                    height:4px;
+                    background:var(--Primary);
+                }
+
+                &:hover, &:focus-visible {
+                    transform:translateY(-6px);
+                    box-shadow:0 16px 40px rgba(var(--PureBlackRGB),0.12);
+                }
+
+                &:hover .CardFooter .Arrow, &:focus-visible .CardFooter .Arrow {transform:translateX(4px);}
+
+                .CardTop {
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    gap:10px;
+                    margin-bottom:14px;
+
+                    .Category {
+                        font-size:.66rem;
+                        font-weight:800;
+                        text-transform:uppercase;
+                        color:var(--Primary);
+                    }
+
+                    .Code {
+                        font-size:.72rem;
+                        font-weight:700;
+                        color:var(--MinMuted);
+                        flex-shrink:0;
+                    }
+                }
+
+                h3 {
+                    font-size:1.08rem;
+                    font-weight:800;
+                    color:var(--Charcoal);
+                    margin-bottom:8px;
+                }
+
+                p {
+                    font-size:.85rem;
+                    color:var(--Muted);
+                    margin:0 0 16px;
+                    display:-webkit-box;
+                    line-clamp: 3;
+                    -webkit-line-clamp:3;
+                    -webkit-box-orient:vertical;
+                    overflow:hidden;
+                }
+
+                .CardFooter {
+                    display:flex;
+                    align-items:center;
+                    gap:6px;
+                    font-size:.76rem;
+                    font-weight:700;
+                    color:var(--DarkPrimary);
+                    margin-top:auto;
+
+                    .Arrow {transition:transform .25s ease;}
+                }
+            }
+
+            .Empty{
+                font-size:.85rem;
+                color:var(--MinMuted);
+                padding:32px 0;
+            }
+        }
+    }
+}
+
 main.Reals {
     margin-top: 10vh;
 
@@ -5696,6 +6079,11 @@ main.Terms {
         }
     }
 
+    main.UX {
+        .Hero .Decor {display:none;}
+        .Block .CompareGrid {grid-template-columns:1fr;}
+    }
+
     main.Reals {
         section.Why {
             padding: 0 20px;
@@ -5992,6 +6380,8 @@ main.Terms {
         }
     }
 
+    main.UX .Block .Controls .SearchDraw #search {width:140px;}
+
     main.Reals {
         &.SubPage {
             .TopBanner, .BottomBanner {border-radius: 18px;}
@@ -6085,7 +6475,15 @@ main.Terms {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    html {scroll-behavior:auto;}
     section.DesignedCTA .WaveEchos {animation: none !important;}
+    main.UX .Block .Grid .LawCard {
+        opacity:1;
+        transform:none;
+        transition:none;
+
+        &:hover, &:focus-visible{transform:none;}
+    }
     main.Reals .SubPage .Comparaisons, .Intro p, .ProjectGallery img, .RelatedImage, .RelatedImage img, .RelatedFooter .BtnOutline {transition: none !important;}
     section.Recommendations {
         .MarqueeTrack {animation: none !important;}

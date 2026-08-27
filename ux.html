@@ -40,6 +40,372 @@
     </style>
 </head>
 <body>
-    
+    <main class="UX" id="top">
+        <section class="Hero" id="hero">
+            <div class="Decor" aria-hidden="true"><span>UX</span></div>
+            <div class="HeroInner">
+                <span class="Category">30 lois cataloguées</span>
+                <h1>Qu’est-ce que <em>l’UX</em>&nbsp;?</h1>
+                <p class="Lede">L’UX, ou expérience utilisateur, regroupe tout ce qu’une personne perçoit, comprend et ressent en utilisant un produit — bien avant qu’elle n’en juge le design. Cette page réunit trente principes de psychologie cognitive et de design d’interaction pour comprendre ce qui rend une expérience facile, ou pénible, à vivre.</p>
+                <a href="#definir" class="HeroCta">Consulter le fichier ↓</a>
+            </div>
+        </section>
+        <section class="Block" id="definir">
+            <div class="SectionTitle">
+                <span class="Eyebrow">01 — Définition</span>
+                <h2>Concevoir une expérience, pas un écran</h2>
+            </div>
+            <p class="Intro">L’expression « expérience utilisateur » se popularise dans les années 1990, portée par le chercheur Don Norman alors chez Apple, pour désigner tout ce qui entoure l’usage d’un produit&nbsp;: la façon dont on le découvre, dont on le comprend, dont on s’y repère, et ce qu’on en retient une fois l’écran éteint.</p>
+            <p class="Intro">Dans la pratique, l’UX est un travail à plusieurs mains. Elle s’appuie sur la recherche utilisateur pour comprendre les besoins réels, sur l’architecture de l’information pour organiser le contenu, sur le design d’interaction pour construire des parcours clairs, sur le design visuel pour donner une forme cohérente à l’ensemble, et sur l’écriture pour que chaque mot guide plutôt qu’il n’égare.</p>
+            <p class="Intro">Les trente fiches réunies plus bas ne sont pas des règles absolues&nbsp;: ce sont des constats, empruntés à la psychologie cognitive et à la conception d’interfaces, qui reviennent assez souvent pour mériter d’être gardés à portée de main.</p>
+            <div class="DisciplineMap" aria-hidden="true">
+                <span class="Core">UX</span>
+                <span class="Chip">Recherche utilisateur</span>
+                <span class="Chip">Architecture de l’information</span>
+                <span class="Chip">Design d’interaction</span>
+                <span class="Chip">Design visuel</span>
+                <span class="Chip">Contenu &amp; UX writing</span>
+                <span class="Chip">Accessibilité</span>
+            </div>
+        </section>
+        <section class="Block Alt" id="ux-ui">
+            <div class="SectionTitle">
+                <span class="Eyebrow">02 — Distinction</span>
+                <h2>UX et UI ne sont pas la même chose</h2>
+            </div>
+            <div class="CompareGrid">
+                <div class="Card">
+                    <h3>UX — le pourquoi et le comment</h3>
+                    <p>L’UX s’intéresse au parcours dans son ensemble&nbsp;: est-ce que la personne trouve ce qu’elle cherche, comprend ce qu’on lui propose, atteint son objectif sans effort superflu&nbsp;? Elle se mesure autant en dehors de l’écran qu’à l’intérieur.</p>
+                </div>
+                <div class="Card">
+                    <h3>UI — le quoi, à l’écran</h3>
+                    <p>L’UI est la couche visuelle et sonore du produit&nbsp;: couleurs, typographies, icônes, espacements — tout ce avec quoi on interagit concrètement du bout des doigts. C’est un des outils au service de l’UX, pas son synonyme.</p>
+                </div>
+            </div>
+            <p class="CompareNote">Une interface peut être esthétique — une UI réussie — et pourtant perdre son utilisateur au bout de trois clics — une UX manquée. Les deux se construisent ensemble, mais elles répondent à des questions différentes.</p>
+        </section>
+        <section class="Block" id="catalogue">
+            <div class="SectionTitle">
+                <span class="Eyebrow">03 — Le fichier</span>
+                <h2>30 lois pour appuyer chaque décision</h2>
+            </div>
+            <p class="Intro">Ce classement s’inspire du travail de recherche mené par le designer Jon Yablonski dans son projet <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a>, une référence largement utilisée dans le design d’interface. Chaque fiche ci-dessous en propose une lecture reformulée, avec un exemple concret d’application.</p>
+            <div class="Controls">
+                <div class="Tabs" role="group" aria-label="Filtrer le fichier par catégorie">
+                    <button class="Tab active" data-cat="all" aria-pressed="true">Toutes <span>30</span></button>
+                    <button class="Tab" data-cat="percept" aria-pressed="false">Perception &amp; Gestalt <span>6</span></button>
+                    <button class="Tab" data-cat="memoire" aria-pressed="false">Mémoire &amp; charge cognitive <span>7</span></button>
+                    <button class="Tab" data-cat="decision" aria-pressed="false">Décision &amp; comportement <span>9</span></button>
+                    <button class="Tab" data-cat="principes" aria-pressed="false">Principes de conception <span>8</span></button>
+                </div>
+                <div class="SearchDraw">
+                    <input type="search" id="search" placeholder="Chercher une loi…" aria-label="Chercher une loi dans le fichier">
+                    <button id="draw" type="button">Piocher une carte</button>
+                </div>
+            </div>
+            <p class="Count" id="count" aria-live="polite"></p>
+            <div class="Grid" id="grid"></div>
+        </section>
+    </main>
+    <script>
+        (function(){ "use strict";
+
+            var CATS = {
+                percept: {label:"Perception & Gestalt"},
+                memoire: {label:"Mémoire & charge cognitive"},
+                decision: {label:"Décision & comportement"},
+                principes: {label:"Principes de conception"}
+            };
+
+            var LAWS = [
+                {
+                    code:"01",
+                    name:"Effet Esthétique-Utilisabilité",
+                    cat:"percept",
+                    slug:"effet-esthetique-usabilite",
+                    def:"Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.",
+                    ex:"Un formulaire bien aligné semble plus simple à remplir qu’un formulaire brouillon, à champs identiques."
+                }, {
+                    code:"02",
+                    name:"Surcharge de choix",
+                    cat:"decision",
+                    slug:"surcharge-de-choix",
+                    def:"Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.",
+                    ex:"Une carte de restaurant de 80 plats fatigue plus qu’une sélection de 12 suggestions du chef."
+                }, {
+                    code:"03",
+                    name:"Chunking",
+                    cat:"memoire",
+                    slug:"chunking",
+                    def:"Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.",
+                    ex:"Un numéro de téléphone se lit mieux en blocs (06 12 34 56 78) que sous la forme d’un bloc de dix chiffres."
+                }, {
+                    code:"04",
+                    name:"Biais cognitif",
+                    cat:"decision",
+                    slug:"biais-cognitif",
+                    def:"Nos jugements suivent des raccourcis mentaux systématiques, pas toujours rationnels, qui influencent nos décisions.",
+                    ex:"Un utilisateur garde les réglages par défaut simplement parce qu’ils sont déjà cochés — le biais du statu quo."
+                }, {
+                    code:"05",
+                    name:"Charge cognitive",
+                    cat:"memoire",
+                    slug:"charge-cognitive",
+                    def:"C’est l’effort mental nécessaire pour comprendre une interface&nbsp;; au-delà d’un certain seuil, l’utilisateur décroche.",
+                    ex:"Un tableau de bord qui affiche 40 indicateurs d’un coup demande plus d’effort qu’un tri par priorité."
+                }, {
+                    code:"06",
+                    name:"Seuil de Doherty",
+                    cat:"principes",
+                    slug:"seuil-de-doherty",
+                    def:"Un système qui répond en moins de 400 ms maintient l’attention&nbsp;; au-delà, la productivité et l’engagement chutent.",
+                    ex:"Un indicateur de frappe instantané garde une conversation fluide, contrairement à un chat qui traîne à charger."
+                }, {
+                    code:"07",
+                    name:"Loi de Fitts",
+                    cat:"principes",
+                    slug:"loi-de-fitts",
+                    def:"Le temps pour atteindre une cible dépend de sa distance et de sa taille&nbsp;: plus elle est loin ou petite, plus c’est lent.",
+                    ex:"Un bouton d’action principal, large et proche du pouce, se touche plus vite qu’un lien minuscule en coin d’écran."
+                }, {
+                    code:"08",
+                    name:"Flow",
+                    cat:"decision",
+                    slug:"flow",
+                    def:"C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent.",
+                    ex:"Un jeu qui ajuste sa difficulté à mesure que le joueur progresse entretient cet état sans le rompre."
+                }, {
+                    code:"09",
+                    name:"Effet de gradient d’objectif",
+                    cat:"decision",
+                    slug:"effet-gradient-objectif",
+                    def:"La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.",
+                    ex:"Une barre de fidélité déjà remplie à 80&nbsp;% pousse à finir ses achats pour débloquer la récompense."
+                }, {
+                    code:"10",
+                    name:"Loi de Hick",
+                    cat:"decision",
+                    slug:"loi-de-hick",
+                    def:"Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.",
+                    ex:"Un menu de navigation à 5 rubriques claires se parcourt plus vite qu’un menu à 20 entrées mélangées."
+                }, {
+                    code:"11",
+                    name:"Loi de Jakob",
+                    cat:"principes",
+                    slug:"loi-de-jakob",
+                    def:"Les utilisateurs passent le plus clair de leur temps sur d’autres sites&nbsp;: ils attendent que le vôtre fonctionne pareil.",
+                    ex:"Un logo cliquable en haut à gauche qui ramène à l’accueil, comme partout ailleurs, évite toute confusion."
+                }, {
+                    code:"12",
+                    name:"Loi de la région commune",
+                    cat:"percept",
+                    slug:"loi-region-commune",
+                    def:"Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.",
+                    ex:"Un encadré autour d’un formulaire indique d’un coup d’œil que ces champs forment un même bloc."
+                }, {
+                    code:"13",
+                    name:"Loi de proximité", cat:"percept", slug:"loi-de-proximite",
+                    def:"Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.",
+                    ex:"Un label collé à son champ de saisie est lu comme sa légende, pas comme un élément séparé."
+                }, {
+                    code:"14",
+                    name:"Loi de Prägnanz",
+                    cat:"percept",
+                    slug:"loi-de-pragnanz",
+                    def:"Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.",
+                    ex:"Cinq points alignés en arc sont perçus comme une courbe unique plutôt que cinq points isolés."
+                }, {
+                    code:"15",
+                    name:"Loi de similarité",
+                    cat:"percept",
+                    slug:"loi-de-similarite",
+                    def:"Des éléments qui se ressemblent par leur couleur, leur forme ou leur taille sont perçus comme appartenant au même ensemble.",
+                    ex:"Tous les liens en bleu souligné sont reconnus comme cliquables, même répartis dans toute la page."
+                }, {
+                    code:"16",
+                    name:"Loi de connexion uniforme",
+                    cat:"percept",
+                    slug:"loi-connexion-uniforme",
+                    def:"Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.",
+                    ex:"Une frise chronologique où une ligne traverse chaque étape rend la progression plus lisible qu’une simple liste."
+                }, {
+                    code:"17",
+                    name:"Modèle mental",
+                    cat:"decision",
+                    slug:"modele-mental",
+                    def:"C’est la représentation simplifiée qu’un utilisateur se fait du fonctionnement d’un système, à partir de son expérience passée.",
+                    ex:"Une corbeille à l’écran pour supprimer un fichier s’appuie sur un modèle mental déjà connu du bureau physique."
+                }, {
+                    code:"18",
+                    name:"Loi de Miller",
+                    cat:"memoire",
+                    slug:"loi-de-miller",
+                    def:"La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.",
+                    ex:"Un parcours de commande découpé en 4 étapes claires reste gérable, contrairement à un formulaire de 20 champs d’un bloc."
+                }, {
+                    code:"19",
+                    name:"Rasoir d’Occam",
+                    cat:"principes",
+                    slug:"rasoir-doccam",
+                    def:"Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.",
+                    ex:"Un formulaire d’inscription à 3 champs convertit mieux qu’un formulaire à 10 champs pour le même objectif."
+                }, {
+                    code:"20",
+                    name:"Paradoxe de l’utilisateur actif",
+                    cat:"decision",
+                    slug:"paradoxe-utilisateur-actif",
+                    def:"Personne ne lit le mode d’emploi&nbsp;: les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.",
+                    ex:"Une interface doit rester compréhensible sans notice, avec des indices visibles directement à l’écran."
+                }, {
+                    code:"21",
+                    name:"Principe de Pareto",
+                    cat:"principes",
+                    slug:"principe-de-pareto",
+                    def:"Environ 80&nbsp;% des usages viennent de 20&nbsp;% des fonctionnalités&nbsp;: mieux vaut soigner l’essentiel que tout traiter à égalité.",
+                    ex:"Optimiser en priorité le tunnel d’achat plutôt qu’une page FAQ peu consultée rapporte davantage de résultats."
+                }, {
+                    code:"22",
+                    name:"Loi de Parkinson",
+                    cat:"principes",
+                    slug:"loi-de-parkinson",
+                    def:"Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.",
+                    ex:"Fixer un délai de session de 10 minutes plutôt que 60 pousse à remplir un formulaire sans traîner."
+                }, {
+                    code:"23",
+                    name:"Règle du pic et de la fin",
+                    cat:"decision",
+                    slug:"regle-pic-et-fin",
+                    def:"On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.",
+                    ex:"Un message de confirmation soigné après un achat laisse un bon souvenir, même si le parcours avant l’était moins."
+                }, {
+                    code:"24",
+                    name:"Loi de Postel",
+                    cat:"principes",
+                    slug:"loi-de-postel",
+                    def:"Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.",
+                    ex:"Un champ de téléphone qui accepte espaces, points ou tirets évite de bloquer l’utilisateur pour une erreur de format."
+                }, {
+                    code:"25",
+                    name:"Attention sélective",
+                    cat:"decision",
+                    slug:"attention-selective",
+                    def:"On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.",
+                    ex:"Un habitué du web ignore instinctivement tout ce qui ressemble à une bannière publicitaire, même utile."
+                }, {
+                    code:"26",
+                    name:"Effet de position sérielle",
+                    cat:"memoire",
+                    slug:"effet-position-serielle",
+                    def:"Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.",
+                    ex:"Les options les plus importantes d’un menu déroulant gagnent à être placées en tête ou en fin de liste."
+                }, {
+                    code:"27",
+                    name:"Loi de Tesler",
+                    cat:"principes",
+                    slug:"loi-de-tesler",
+                    def:"Toute tâche a un niveau de complexité incompressible&nbsp;: elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.",
+                    ex:"Un correcteur d’adresse automatique déplace la complexité du côté du système plutôt que de la laisser à l’utilisateur."
+                }, {
+                    code:"28",
+                    name:"Effet Von Restorff",
+                    cat:"memoire",
+                    slug:"effet-von-restorff",
+                    def:"Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.",
+                    ex:"Le seul bouton coloré au milieu de boutons gris capte l’œil et reste en mémoire après la visite."
+                }, {
+                    code:"29",
+                    name:"Mémoire de travail",
+                    cat:"memoire",
+                    slug:"memoire-de-travail",
+                    def:"C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours.",
+                    ex:"Garder le récapitulatif de commande visible évite à l’utilisateur de devoir se souvenir de ses choix précédents."
+                }, {
+                    code:"30",
+                    name:"Effet Zeigarnik",
+                    cat:"memoire",
+                    slug:"effet-zeigarnik",
+                    def:"Une tâche interrompue ou inachevée reste plus longtemps en mémoire qu’une tâche terminée.",
+                    ex:"Une barre de progression de profil à 70&nbsp;% donne envie de revenir compléter les 30&nbsp;% restants."
+                }
+            ];
+
+            var grid = document.getElementById('grid');
+            var countEl = document.getElementById('count');
+            var searchInput = document.getElementById('search');
+            var tabs = Array.prototype.slice.call(document.querySelectorAll('.Tab'));
+            var activeCat = 'all';
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function filtered(){
+                var term = searchInput.value.trim().toLowerCase();
+                return LAWS.filter(function(law){
+                    var catOk = activeCat === 'all' || law.cat === activeCat;
+                    var textOk = !term || law.name.toLowerCase().indexOf(term) !== -1 ||
+                    law.def.toLowerCase().indexOf(term) !== -1;
+                    return catOk && textOk;
+                });
+            }
+
+            function cardHTML(law){
+                var cat = CATS[law.cat];
+                return '' +
+                    '<a class="LawCard" href="laws/'+law.slug+'.html">' +
+                        '<span class="CardTop"><span class="Category">'+cat.label+'</span><span class="Code">UX·'+law.code+'</span></span>' +
+                        '<h3>'+law.name+'</h3>' +
+                        '<p>'+law.def+'</p>' +
+                        '<span class="CardFooter">Voir la fiche <span class="Arrow">→</span></span>' +
+                    '</a>';
+            }
+
+            function render(){
+                var list = filtered();
+                grid.innerHTML = list.length
+                ? list.map(cardHTML).join('')
+                    : '<p class="Empty">Aucune fiche ne correspond à cette recherche.</p>';
+                countEl.textContent = list.length + ' fiche' + (list.length>1?'s':'') + ' affichée' + (list.length>1?'s':'') + ' sur ' + LAWS.length;
+                observeCards();
+            }
+
+            var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if(entry.isIntersecting){
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, {threshold: 0.12}) : null;
+
+            function observeCards(){
+                var cards = grid.querySelectorAll('.LawCard');
+                cards.forEach(function(card){
+                    if(reduceMotion || !io){
+                        card.classList.add('in-view');
+                    } else {
+                        io.observe(card);
+                    }
+                });
+            }
+
+            tabs.forEach(function(tab){
+                tab.addEventListener('click', function(){
+                    tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-pressed','false'); });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-pressed','true');
+                    activeCat = tab.getAttribute('data-cat');
+                    render();
+                });
+            });
+
+            searchInput.addEventListener('input', render);
+
+            document.getElementById('draw').addEventListener('click', function(){
+                var pick = LAWS[Math.floor(Math.random() * LAWS.length)];
+                window.location.href = 'laws/' + pick.slug + '.html';
+            });
+
+            render();
+        })();
+    </script>
 </body>
 </html>
