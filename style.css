@@ -1959,6 +1959,14 @@ main.Services {
 }
 
 main.UX {
+    #definir {
+        padding-bottom:clamp(40px,6vw,64px);
+
+        .Intro {text-align:left;}
+    }
+
+    #ux-ui {margin-top:56px;}
+
     .Hero {
         max-width: 100%;
         margin: 0;
@@ -1974,6 +1982,17 @@ main.UX {
             background:
                 radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
                 radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
+            pointer-events:none;
+        }
+
+        &::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            background-image:
+                radial-gradient(ellipse 70% 60% at 50% 35%, transparent 20%, var(--Charcoal) 78%),
+                radial-gradient(rgba(var(--PureWhiteRGB),0.06) 1px, transparent 1.2px);
+            background-size:100% 100%, 26px 26px;
             pointer-events:none;
         }
 
@@ -2002,6 +2021,7 @@ main.UX {
             max-width:740px;
             margin:0 auto;
             text-align:center;
+            animation:uxHeroRise .7s ease both;
 
             .Category {
                 display:inline-block;
@@ -2057,7 +2077,7 @@ main.UX {
 
         &:first-of-type {border-top:none;}
 
-        .Alt {
+        &.Alt {
             background:var(--PureWhite);
             border-radius:28px;
             border-top:none;
@@ -2086,22 +2106,29 @@ main.UX {
         }
 
         .DisciplineMap {
-            margin-top:32px;
+            margin-top:40px;
             display:flex;
             flex-wrap:wrap;
-            gap:10px;
+            gap:16px 10px;
             align-items:center;
+            position:relative;
 
             .Core{
+                position:relative;
+                z-index:1;
+                flex-shrink:0;
                 font-size:.85rem;
                 font-weight:800;
                 color:var(--PureWhite);
                 background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
                 padding:9px 18px;
                 border-radius:50px;
+                box-shadow:0 0 0 6px rgba(var(--PrimaryRGB),0.12);
             }
 
             .Chip{
+                position:relative;
+                z-index:1;
                 font-size:.8rem;
                 font-weight:700;
                 color:var(--Charcoal);
@@ -2116,15 +2143,28 @@ main.UX {
             display:grid;
             grid-template-columns:1fr 1fr;
             gap:22px;
-            margin-top:8px;
+            margin:8px auto 0;
             max-width:900px;
+            position:relative;
 
             .Card {
                 border-radius:20px;
-                background:rgba(var(--PrimaryRGB),0.025);
-                border:1px solid rgba(var(--PureBlackRGB),0.1);
-                padding:30px;
-                box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06);
+                background:rgba(var(--BackgroundRGB),0.5);
+                border:1px solid rgba(var(--PureBlackRGB),0.08);
+                padding:32px 30px 30px;
+                box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.05);
+                position:relative;
+                overflow:hidden;
+
+                &::before {
+                    content:"";
+                    position:absolute;
+                    top:0; left:0; right:0;
+                    height:4px;
+                    background:var(--Primary);
+                }
+
+                &:last-of-type::before {background:var(--Charcoal);}
 
                 h3 {
                     font-size:1.12rem;
@@ -2139,13 +2179,34 @@ main.UX {
                     margin:0;
                 }
             }
+
+            .Versus {
+                position:absolute;
+                left:50%;
+                top:50%;
+                transform:translate(-50%,-50%);
+                z-index:2;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:38px;
+                height:38px;
+                border-radius:50%;
+                background:var(--Background);
+                border:1px solid var(--Borders);
+                color:var(--DarkPrimary);
+                font-size:.95rem;
+                font-weight:800;
+                box-shadow:0 4px 14px rgba(var(--PureBlackRGB),0.1);
+            }
         }
 
         .CompareNote {
-            margin-top:24px;
+            margin:24px auto 0;
             max-width:70ch;
             font-size:.95rem;
             color:var(--Muted);
+            text-align:center;
         }
 
         .Controls {
@@ -2339,6 +2400,11 @@ main.UX {
             }
         }
     }
+}
+
+@keyframes uxHeroRise {
+    from {opacity:0; transform:translateY(16px);}
+    to {opacity:1; transform:translateY(0);}
 }
 
 main.Reals {
@@ -5995,6 +6061,18 @@ main.Terms {
 ========================================================================== */
 
 @media (min-width: 1024px) {
+    main.UX .Block .DisciplineMap::before {
+        content:"";
+        position:absolute;
+        left:14px;
+        right:14px;
+        top:50%;
+        height:2px;
+        transform:translateY(-50%);
+        z-index:0;
+        background:linear-gradient(to right, rgba(var(--PrimaryRGB),0.45), rgba(var(--PrimaryRGB),0.12) 92%, transparent);
+    }
+    
     main.Simu {
         #MobileBar, #MobileDrawer, #MobileDrawerOverlay {display: none !important;}
     }
@@ -6082,6 +6160,7 @@ main.Terms {
     main.UX {
         .Hero .Decor {display:none;}
         .Block .CompareGrid {grid-template-columns:1fr;}
+        .Block .CompareGrid .Versus {display:none;}
     }
 
     main.Reals {
@@ -6477,13 +6556,18 @@ main.Terms {
 @media (prefers-reduced-motion: reduce) {
     html {scroll-behavior:auto;}
     section.DesignedCTA .WaveEchos {animation: none !important;}
-    main.UX .Block .Grid .LawCard {
-        opacity:1;
-        transform:none;
-        transition:none;
+    main.UX {
+        .Hero .HeroInner {animation:none;}
 
-        &:hover, &:focus-visible{transform:none;}
+        .Block .Grid .LawCard {
+            opacity:1;
+            transform:none;
+            transition:none;
+
+            &:hover, &:focus-visible{transform:none;}
+        }
     }
+
     main.Reals .SubPage .Comparaisons, .Intro p, .ProjectGallery img, .RelatedImage, .RelatedImage img, .RelatedFooter .BtnOutline {transition: none !important;}
     section.Recommendations {
         .MarqueeTrack {animation: none !important;}
