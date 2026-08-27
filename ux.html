@@ -328,7 +328,6 @@
             ];
 
             var grid = document.getElementById('grid');
-            var countEl = document.getElementById('count');
             var searchInput = document.getElementById('search');
             var tabs = Array.prototype.slice.call(document.querySelectorAll('.Tab'));
             var activeCat = 'all';
@@ -360,7 +359,6 @@
                 grid.innerHTML = list.length
                 ? list.map(cardHTML).join('')
                     : '<p class="Empty">Aucune fiche ne correspond à cette recherche.</p>';
-                countEl.textContent = list.length + ' fiche' + (list.length>1?'s':'') + ' affichée' + (list.length>1?'s':'') + ' sur ' + LAWS.length;
                 observeCards();
             }
 
@@ -395,11 +393,6 @@
             });
 
             searchInput.addEventListener('input', render);
-
-            document.getElementById('draw').addEventListener('click', function(){
-                var pick = LAWS[Math.floor(Math.random() * LAWS.length)];
-                window.location.href = 'laws/' + pick.slug + '.html';
-            });
 
             render();
         })();
