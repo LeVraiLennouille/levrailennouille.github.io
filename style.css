@@ -1534,9 +1534,70 @@ main.Index {
         }
     }
 
+    section.Impact {
+        position: relative;
+        overflow: hidden;
+        padding: 56px 48px;
+        text-align: center;
+        border-radius: 28px;
+        background: var(--Charcoal);
+        box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 80% at 12% 20%, rgba(var(--PrimaryRGB), 0.35) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 65% at 95% 90%, rgba(var(--DarkPrimaryRGB), 0.45) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .SectionTitle .Title {color: var(--PureWhite);}
+
+        .StatsGrid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+
+        .Card {
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            background: var(--PureWhite);
+
+            .Deco {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 68px;
+                height: 68px;
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                border-radius: 0 20px 0 100%;
+            }
+
+            .Stat {
+                .Number {
+                    font-size: clamp(1.7rem, 2.6vw, 2.1rem);
+                    font-weight: 900;
+                    color: var(--Primary);
+                    line-height: 1;
+                }
+
+                .StatLabel {
+                    display: block;
+                    font-size: 0.95rem;
+                    font-weight: 800;
+                    color: var(--Charcoal);
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+
     section.Benefits {
-        max-width: 1400px;
-        margin: 0 auto 100px;
         background-color: var(--Background);
 
         .Layout {
