@@ -959,6 +959,116 @@ section {
     }
 }
 
+.SecondaryHero {
+    max-width: 100%;
+    min-height: 400px;
+    margin: 0;
+    display: flex;
+    position: relative;
+    background-color: var(--Charcoal);
+    overflow: hidden;
+    padding: 160px 40px 90px;
+    align-items: center;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB), 0.2) 0%, transparent 70%),
+            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB), 0.28) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .Decor {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        span {
+            font-size: clamp(5rem, 12vw, 11rem);
+            font-weight: 900;
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
+            white-space: nowrap;
+        }
+    }
+
+    .HeroInner {
+        position: relative;
+        z-index: 2;
+        max-width: 1400px;
+        margin: 0 auto;
+        text-align: center;
+
+        .Breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--MinMuted);
+            margin-bottom: 24px;
+
+            a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
+            a:hover {color: var(--Primary);}
+            .Sep {opacity: 0.5;}
+            .Current {color: var(--Primary);}
+        }
+
+        .Category {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: rgba(var(--PrimaryRGB), 0.14);
+            color: var(--Primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1.Title {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 900;
+            color: var(--PureWhite);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        p.SubTitle {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--MinMuted);
+            line-height: 1.65;
+            text-transform: none;
+        }
+
+        .Meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--MinMuted);
+
+            .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
+        }
+    }
+}
+
 /* ==========================================================================
    # Calls To Action
 ========================================================================== */
@@ -2870,105 +2980,6 @@ main.Blog {
                 &.active {background: var(--Primary); color: var(--PureWhite);}
 
                 &:disabled {opacity: 0.35; cursor: not-allowed;}
-            }
-        }
-    }
-
-    .BlogHero {
-        max-width: 100%;
-        margin: 0;
-        position: relative;
-        background-color: var(--Charcoal);
-        overflow: hidden;
-        padding: 160px 40px 90px;
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB), 0.2) 0%, transparent 70%),
-                radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB), 0.28) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .Decor {
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-            pointer-events: none;
-            user-select: none;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-
-            span {
-                font-size: clamp(5rem, 12vw, 11rem);
-                font-weight: 900;
-                line-height: 0.9;
-                color: transparent;
-                -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
-                white-space: nowrap;
-            }
-        }
-
-        .HeroInner {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-
-            .Breadcrumb {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                font-size: 0.78rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                color: var(--MinMuted);
-                margin-bottom: 24px;
-
-                a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
-                a:hover {color: var(--Primary);}
-                .Sep {opacity: 0.5;}
-                .Current {color: var(--Primary);}
-            }
-
-            .Category {
-                display: inline-block;
-                padding: 6px 18px;
-                border-radius: 50px;
-                background: rgba(var(--PrimaryRGB), 0.14);
-                color: var(--Primary);
-                font-size: 0.72rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                margin-bottom: 24px;
-            }
-
-            h1 {
-                font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-                font-weight: 900;
-                color: var(--PureWhite);
-                line-height: 1.08;
-                margin-bottom: 28px;
-            }
-
-            .Meta {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 14px;
-                font-size: 0.88rem;
-                font-weight: 600;
-                color: var(--MinMuted);
-
-                .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
             }
         }
     }
@@ -5340,72 +5351,6 @@ main.Simu {
 }
 
 main.Terms {
-    .TermsHero {
-        max-width: 100%;
-        margin: 0;
-        position: relative;
-        background-color: var(--Charcoal);
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        min-height: 400px;
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 80% at 80% 50%, rgba(var(--PrimaryRGB), 0.18) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 60% at 10% 80%, rgba(var(--DarkPrimaryRGB), 0.25) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .HeroInner {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            width: 100%;
-            margin: 64px auto 0;
-
-            .Title {
-                font-size: clamp(2.8rem, 7vw, 5.5rem);
-                font-weight: 900;
-                color: var(--PureWhite);
-                line-height: 1;
-                margin-bottom: 20px;
-            }
-            .SubTitle {
-                font-size: 0.95rem;
-                font-weight: 500;
-                color: var(--MinMuted);
-                line-height: 1.65;
-                text-transform: none;
-            }
-        }
-
-        .Decor {
-            position: absolute;
-            right: -20px;
-            top: 58%;
-            transform: translateY(-50%);
-            z-index: 1;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            user-select: none;
-            align-items: flex-end;
-
-            span {
-                font-size: clamp(5rem, 12vw, 11rem);
-                font-weight: 900;
-                line-height: 0.9;
-                color: transparent;
-                -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
-                white-space: nowrap;
-            }
-        }
-    }
-
     .TermsContent {
         background-color: var(--Background);
         padding: 80px 40px 120px;
