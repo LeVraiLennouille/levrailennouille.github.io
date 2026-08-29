@@ -4298,22 +4298,12 @@ main.Simu {
     min-height: 100vh;
     overflow-x: Hidden;
 
-    &::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image:
-            linear-gradient(rgba(var(--PrimaryRGB), 0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(var(--PrimaryRGB), 0.04) 1px, transparent 1px);
-        background-size: 60px 60px;
-        pointer-events: none;
-        z-index: 0;
-    }
-
     nav.NavBar {display: none !important;}
 
     .Glow {
-        background: radial-gradient(ellipse 700px 500px at 85% 15%, rgba(var(--PrimaryRGB), 0.2) 0%, transparent 70%);
+        background:
+            radial-gradient(ellipse 700px 500px at 85% 15%, rgba(var(--PrimaryRGB), 0.16) 0%, transparent 70%),
+            radial-gradient(ellipse 520px 420px at 8% 95%, rgba(var(--DarkPrimaryRGB), 0.10) 0%, transparent 72%);
         position: fixed;
         inset: 0;
         pointer-events: none;
@@ -4356,7 +4346,8 @@ main.Simu {
                         width: 36px;
                         height: 36px;
                         border-radius: 10px;
-                        background: var(--Primary);
+                        background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                        box-shadow: 0 4px 14px rgba(var(--PrimaryRGB), 0.35);
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -4365,7 +4356,7 @@ main.Simu {
 
                     .LogoName {
                         font-size: 14px;
-                        font-weight: 700;
+                        font-weight: 800;
                         color: var(--Primary);
                     }
                 }
@@ -4408,13 +4399,14 @@ main.Simu {
                     &.Active {
                         border-color: var(--Primary);
                         color: var(--Primary);
-                        box-shadow: 0 0 0 4px rgba(var(--PrimaryRGB), 0.12);
+                        box-shadow: 0 0 0 5px rgba(var(--PrimaryRGB), 0.14), 0 0 16px 2px rgba(var(--PrimaryRGB), 0.25);
                     }
 
                     &.Done {
                         background: var(--Primary);
                         border-color: var(--Primary);
                         color: var(--PureWhite);
+                        box-shadow: 0 2px 8px rgba(var(--PrimaryRGB), 0.3);
                     }
 
                     .Num {
@@ -4454,7 +4446,7 @@ main.Simu {
 
                         .StepTitle {
                             font-size: 20px;
-                            font-weight: 700;
+                            font-weight: 800;
                             color: var(--Charcoal);
                             margin: 4px 0 0;
                         }
@@ -4484,8 +4476,8 @@ main.Simu {
                                 width: 100%;
                                 box-sizing: border-box;
                                 padding: 12px 15px;
-                                border: 1px solid var(--Muted);
-                                border-radius: 8px;
+                                border: 1px solid var(--Borders);
+                                border-radius: 10px;
                                 background: transparent;
                                 color: var(--PureBlack);
                                 font-size: 1rem;
@@ -4497,7 +4489,7 @@ main.Simu {
                                     top: 0;
                                     background-color: var(--Primary);
                                     color: var(--PureWhite);
-                                    border-radius: 4px;
+                                    border-radius: 6px;
                                     font-size: 0.8rem;
                                     font-weight: bold;
 
@@ -4510,7 +4502,7 @@ main.Simu {
                                 left: 15px;
                                 top: 50%;
                                 transform: translateY(-50%);
-                                color: var(--PureBlack);
+                                color: var(--Muted);
                                 background-color: transparent;
                                 padding: 0 5px;
                                 pointer-events: none;
@@ -4522,7 +4514,10 @@ main.Simu {
                             input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
                             input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
                             input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
-                            input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
+                            input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {
+                                border-color: var(--Primary);
+                                box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.10);
+                            }
                         }
                     } 
 
@@ -4583,8 +4578,15 @@ main.Simu {
                             input[type="checkbox"] + label::after {border-radius: 4px;}
 
                             input {
-                                &:hover + label .LabelIcon, &:checked + label .LabelIcon {background: rgba(var(--PrimaryRGB), 0.14);}
-                                
+                                &:hover + label .LabelIcon {background: rgba(var(--PrimaryRGB), 0.14);}
+
+                                &:checked + label .LabelIcon {
+                                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                                    border-color: transparent;
+                                    color: var(--PureWhite);
+                                    box-shadow: 0 4px 14px rgba(var(--PrimaryRGB), 0.35);
+                                }
+
                                 &:checked + label {
                                     border-color: var(--Primary);
                                     background: rgba(var(--PrimaryRGB), 0.07);
@@ -4607,15 +4609,18 @@ main.Simu {
                                 gap: 14px;
                                 padding: 14px 18px;
                                 border: 1px solid var(--Borders);
-                                border-radius: 10px;
+                                border-radius: 14px;
                                 cursor: pointer;
-                                transition: all 0.2s ease;
+                                transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
                                 background: var(--PureWhite);
+                                box-shadow: 0 2px 10px rgba(var(--PureBlackRGB), 0.04);
                                 user-select: none;
 
                                 &:hover {
                                     border-color: var(--Primary);
                                     background: rgba(var(--PrimaryRGB), 0.1);
+                                    transform: translateY(-2px);
+                                    box-shadow: 0 8px 20px rgba(var(--PureBlackRGB), 0.08);
 
                                     &::after {border-color: var(--Primary);}
                                 }
@@ -4634,7 +4639,7 @@ main.Simu {
                                 .LabelIcon {
                                     width: 36px;
                                     height: 36px;
-                                    border-radius: 8px;
+                                    border-radius: 10px;
                                     background: var(--PureWhite);
                                     border: 1px solid var(--Primary);
                                     color: var(--Primary);
@@ -4643,13 +4648,13 @@ main.Simu {
                                     justify-content: center;
                                     flex-shrink: 0;
                                     font-size: 15px;
-                                    transition: background 0.2s ease;
+                                    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
                                 }
 
                                 .LabelIconText {
-                                    font-size: 10px;
-                                    font-weight: 700;
-                                    color: var(--Muted);
+                                    font-size: 16px;
+                                    font-weight: 800;
+                                    color: inherit;
                                 }
 
                                 .LabelMain {
@@ -4687,9 +4692,10 @@ main.Simu {
 
                     .UrgenceCard {
                         padding: 20px;
-                        border-radius: 12px;
+                        border-radius: 16px;
                         border: 1px solid var(--Borders);
                         background: var(--PureWhite);
+                        box-shadow: 0 4px 20px rgba(var(--PureBlackRGB), 0.05);
                         margin-bottom: 20px;
 
                         .UrgenceRow {
@@ -4790,7 +4796,7 @@ main.Simu {
                             width: 100%;
                             background: var(--PureWhite);
                             border: 1px solid var(--Borders);
-                            border-radius: 8px;
+                            border-radius: 10px;
                             padding: 11px 14px;
                             color: var(--Charcoal);
                             font-size: 14px;
@@ -4810,13 +4816,14 @@ main.Simu {
 
                     .RadioBlock {
                         padding: 20px;
-                        border-radius: 12px;    
+                        border-radius: 16px;    
                         border: 1px solid var(--Borders);
                         background: var(--PureWhite);
+                        box-shadow: 0 4px 20px rgba(var(--PureBlackRGB), 0.05);
 
                         .Title {
                             font-size: 14px;
-                            font-weight: 700;
+                            font-weight: 800;
                             color: var(--Charcoal);
                             margin-bottom: 16px;
                         }
@@ -4875,7 +4882,8 @@ main.Simu {
         #PriceSidebar {
             width: 360px;
             flex-shrink: 0;
-            border-left: 1px solid var(--Primary);
+            background: var(--PureWhite);
+            box-shadow: -16px 0 40px rgba(var(--PureBlackRGB), 0.05);
             position: fixed;
             right: 0;
             top: 0;
@@ -4884,22 +4892,23 @@ main.Simu {
             padding: 28px;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(6px);
             z-index: 20;
 
             .PriceHeader {
                 margin-bottom: 24px;
 
                 .SidebarEyebrow {
-                    font-size: 18px;
-                    font-weight: 900;
-                    color: var(--Charcoal);
-                    margin-bottom: 4px;
+                    font-size: 0.78rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.02em;
+                    color: var(--Primary);
+                    margin-bottom: 8px;
                 }
 
                 .PriceDisplay {
                     font-size: 30px;
-                    font-weight: 700;
+                    font-weight: 800;
                     line-height: 1.2;
                 }
 
@@ -4915,9 +4924,11 @@ main.Simu {
                 flex: 1;
 
                 .BreakdownEyebrow {
-                    font-size: 14px;
-                    font-weight: 900;
-                    color: var(--Charcoal);
+                    font-size: 0.72rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.02em;
+                    color: var(--Primary);
                     margin-bottom: 12px;
                 }
 
@@ -4941,14 +4952,15 @@ main.Simu {
                     .DetailsValue {font-weight: 500; color: var(--Muted);}
                     .DetailsValue--multiplicateur {color: #E8A020;}
                     .DetailsValue--urgence {color: #F56565;}
-                    .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
+                    .DetailsValue--remise {color: var(--Success); font-weight: 700;}
                 }
             }
 
             .PriceTable {
                 padding: 16px;
-                border-radius: 12px;
-                border: 1px solid var(--Primary);
+                border-radius: 16px;
+                background: rgba(var(--PrimaryRGB), 0.03);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.25);
                 margin-bottom: 16px;
 
                 .PriceRow {
@@ -5023,7 +5035,7 @@ main.Simu {
         left: 0;
         right: 0;
         background: var(--PureWhite);
-        border-top: 1px solid var(--Borders);
+        box-shadow: 0 -12px 40px rgba(var(--PureBlackRGB), 0.08);
         border-radius: 20px 20px 0 0;
         z-index: 49;
         transform: translateY(100%);
@@ -5071,16 +5083,21 @@ main.Simu {
                 border-bottom: 1px solid var(--Borders);
 
                 .Estimation {
-                    font-size: 16px;
-                    font-weight: 900;
-                    color: var(--Muted);
-                    margin-bottom: 4px;
+                    font-size: 0.72rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 0.02em;
+                    color: var(--Primary);
+                    margin-bottom: 6px;
                 }
 
                 .Title {
-                    color: var(--Primary);
+                    background: linear-gradient(135deg, var(--Primary), var(--DarkPrimary));
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
                     font-size: 26px;
-                    font-weight: 700;
+                    font-weight: 800;
                     line-height: 1.15;
                 }
 
@@ -5092,9 +5109,11 @@ main.Simu {
             }
 
             .SectionLabel {
-                font-size: 14px;
-                font-weight: 900;
-                color: var(--Muted);
+                font-size: 0.72rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.02em;
+                color: var(--Primary);
                 margin: 20px 0 10px;
             }
 
@@ -5109,7 +5128,7 @@ main.Simu {
                 justify-content: space-between;
                 align-items: center;
                 padding: 7px 0;
-                border-bottom: 1px solid var(--PureWhite);
+                border-bottom: 1px solid rgba(var(--PrimaryRGB), 0.15);
                 font-size: 12px;
 
                 &:last-child {border-bottom: none;}
@@ -5118,14 +5137,14 @@ main.Simu {
                 .DetailsValue {font-weight: 500; color: var(--Muted);}
                 .DetailsValue--multiplicateur {color: #E8A020;}
                 .DetailsValue--urgence {color: #F56565;}
-                .DetailsValue--remise {color: var(--Sucess); font-weight: 700;}
+                .DetailsValue--remise {color: var(--Success); font-weight: 700;}
             }
 
             .PriceTable {
                 padding: 16px;
-                border-radius: 12px;
-                background: var(--PureWhite);
-                border: 1px solid var(--Borders);
+                border-radius: 16px;
+                background: rgba(var(--PrimaryRGB), 0.04);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.18);
                 margin-bottom: 16px;
 
                 .PriceRow {
@@ -5186,7 +5205,7 @@ main.Simu {
         left: 0;
         right: 0;
         background: var(--PureWhite);
-        border-top: 1px solid var(--Borders);
+        box-shadow: 0 -6px 24px rgba(var(--PureBlackRGB), 0.08);
         padding: 14px 16px;
         z-index: 50;
         user-select: none;
@@ -5207,7 +5226,7 @@ main.Simu {
             }
 
             .Price {
-                font-weight: 700;
+                font-weight: 800;
                 font-size: 16px;
             }
 
@@ -5269,6 +5288,7 @@ main.Simu {
             background: var(--PureWhite);
             border: 1px solid var(--Borders);
             border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(var(--PureBlackRGB), 0.25);
             padding: 40px 36px;
             max-width: 440px;
             width: 90%;
@@ -5279,7 +5299,7 @@ main.Simu {
                 width: 56px;
                 height: 56px;
                 border-radius: 50%;
-                background: rgba(74, 222, 128, 0.12);
+                background: rgba(var(--OnlineRGB), 0.12);
                 margin: 0 auto 24px;
                 display: flex;
                 align-items: center;
@@ -5288,7 +5308,7 @@ main.Simu {
 
             .ModalTitle {
                 font-size: 20px;
-                font-weight: 700;
+                font-weight: 800;
                 color: var(--Charcoal);
                 margin: 0 0 8px;
             }
@@ -5311,7 +5331,7 @@ main.Simu {
     .Accent {color: var(--Primary);}
     .Hidden {display: none !important;}
 
-    #s-remise-row .Label, #s-remise-row .Value, #md-remise-row .Label, #md-remise-row .Value {color: var(--Sucess); font-weight: 700;}
+    #s-remise-row .Label, #s-remise-row .Value, #md-remise-row .Label, #md-remise-row .Value {color: var(--Success); font-weight: 700;}
 }
 
 @keyframes fadeIn {
