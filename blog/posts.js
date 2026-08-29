@@ -7,7 +7,7 @@
         //     excerpt: "Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant.",
         //     category: "Freelance",
         //     date: "2027-02-01",
-        //     readingTime: "9 min",
+        //     readingTime: "10 min",
         //     url: "/blog/gestion-du-temps-freelance"
         // }, {
         //     title: "Combien Coûte un Site Internet en 2027 ? Prix Réels et Complets",
@@ -21,7 +21,7 @@
         //     excerpt: "La motivation ne suffit pas pour tenir ses objectifs sur la durée. Pourquoi l'action doit précéder la motivation, et comment construire un processus qui tient dans le temps.",
         //     category: "Mindset",
         //     date: "2026-12-01",
-        //     readingTime: "9 min",
+        //     readingTime: "10 min",
         //     url: "/blog/pourquoi-la-motivation-ne-suffit-pas"
         // }, {
         //     title: "Théorie des Couleurs : le Guide Complet pour Créer des Palettes Harmonieuses",
@@ -35,16 +35,24 @@
         //     excerpt: "Faut-il être sur Instagram ou LinkedIn pour réussir en freelance ? Avantages, inconvénients et alternatives concrètes pour construire une présence qui vous correspond.",
         //     category: "Freelance",
         //     date: "2026-10-01",
-        //     readingTime: "8 min",
+        //     readingTime: "10 min",
         //     url: "/blog/reseaux-sociaux-freelance"
-        // }, {
-        //     title: "La Signification des Couleurs : Psychologie en Design",
-        //     excerpt: "Découvrez la théorie des couleurs, la psychologie cachée derrière chaque nuance et comment utiliser les couleurs efficacement dans vos designs et créations artistiques.",
-        //     category: "Design",
-        //     date: "2026-09-01",
-        //     readingTime: "8 min",
-        //     url: "/blog/signification-des-couleurs"
-        // },
+        // }, 
+        {
+            title: "La Signification des Couleurs : Psychologie en Design",
+            excerpt: "Découvrez la théorie des couleurs, la psychologie cachée derrière chaque nuance et comment utiliser les couleurs efficacement dans vos designs et créations artistiques.",
+            category: "Design",
+            date: "2026-09-01",
+            readingTime: "10 min",
+            url: "/blog/signification-des-couleurs"
+        }, {
+            title: "L'UX Design pour les Nuls : le Guide Complet et Accessible",
+            excerpt: "Qu'est-ce que l'UX design ? Découvrez une définition simple, la différence avec l'UI, 5 grands principes de psychologie cognitive et les pièges à éviter, sans jargon.",
+            category: "Design",
+            date: "2026-08-01",
+            readingTime: "10 min",
+            url: "/blog/ux-design-pour-les-nuls"
+        },
     ];
 
     const dateFormatter = new Intl.DateTimeFormat("fr-FR", {day: "numeric", month: "long", year: "numeric"});
