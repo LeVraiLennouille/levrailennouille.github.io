@@ -2071,6 +2071,27 @@ main.UX {
             padding-bottom:clamp(40px,6vw,64px);
 
             .Intro {text-align:left;}
+
+            .DefinirLayout {
+                display:flex;
+                align-items:center;
+                gap:clamp(32px,5vw,64px);
+            }
+
+            .DefinirContent {flex:1; min-width:0;}
+
+            .DefinirVisual {
+                flex-shrink:0;
+                width:clamp(200px,24vw,300px);
+
+                img {
+                    width:100%;
+                    aspect-ratio:4/5;
+                    object-fit:cover;
+                    border-radius:20px;
+                    box-shadow:0 12px 32px rgba(var(--PureBlackRGB),0.1);
+                }
+            }
         }
 
         &#ux-ui {margin-top:56px;}
@@ -6117,6 +6138,8 @@ main.Terms {
         .Hero .Decor {display:none;}
         .Block .CompareGrid {grid-template-columns:1fr;}
         .Block .CompareGrid .Versus {display:none;}
+        .Block .DefinirLayout {flex-direction:column;}
+        .Block .DefinirVisual {width:min(260px,70%); align-self:center;}
     }
 
     main.Reals {
