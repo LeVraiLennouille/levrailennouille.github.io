@@ -4288,6 +4288,46 @@ main.Contact {
             }
         }
     }
+
+    section.ContactBooking {
+        position: relative;
+        background-color: var(--Background);
+        padding: 0 40px 120px;
+
+        .Container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .SectionTitle {margin-bottom: 40px;}
+
+        .ContactBookingFrame {
+            position: relative;
+            background-color: var(--PureWhite);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
+
+            iframe {
+                display: block;
+                width: 100%;
+                height: 650px;
+                border: 0;
+                border-radius: 10px;
+            }
+        }
+
+        .ContactBookingFallback {
+            display: inline-block;
+            margin-top: 16px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            color: rgba(var(--PureBlackRGB), 0.45);
+            transition: color 0.3s ease;
+
+            &:hover {color: var(--Primary);}
+        }
+    }
 }
 
 main.Simu {
@@ -6149,6 +6189,16 @@ main.Terms {
                 }
 
                 .ContactTitle {font-size: 2rem;}
+            }
+        }
+
+        section.ContactBooking {
+            padding: 0 20px 80px;
+
+            .ContactBookingFrame {
+                padding: 10px;
+
+                iframe {height: 560px;}
             }
         }
     }
