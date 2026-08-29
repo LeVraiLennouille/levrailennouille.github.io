@@ -3985,41 +3985,6 @@ main.Contact {
     min-height: 100vh;
     background-color: var(--Background);
 
-    .SocialSidebar {
-        position: absolute;
-        left: 28px;
-        top: 30%;
-        transform: translateY(-50%);
-        z-index: 20;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        align-items: center;
-        pointer-events: auto;
-    
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            color: var(--Primary);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            text-decoration: none;
-
-            &:hover {
-                opacity: 0.75;
-                transform: scale(1.2);
-            }
-        }
-
-        svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-    }
-
     .ContactLayout {
         position: relative;
         inset: 0;
@@ -4027,7 +3992,39 @@ main.Contact {
         display: flex;
         min-height: 91vh;
         pointer-events: none;
-    
+
+        .SocialSidebar {
+            align-self: center;
+            margin-left: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            pointer-events: auto;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                color: var(--Primary);
+                transition: opacity 0.25s ease, transform 0.25s ease;
+                text-decoration: none;
+
+                &:hover {
+                    opacity: 0.75;
+                    transform: scale(1.2);
+                }
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: currentColor;
+            }
+        }
+
         .ContactLeft {
             width: 58%;
             min-width: 500px;
@@ -4035,7 +4032,7 @@ main.Contact {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 60px 64px 60px 100px;
+            padding: 60px 64px 60px 64px;
             pointer-events: auto;
             position: relative;
 
@@ -4244,54 +4241,40 @@ main.Contact {
                 .CoordDot {color: var(--Primary); font-size: 0.8rem;}
             }
         }
+    }
 
-        .ContactRight {
-            flex: 1;
+    section.ContactBooking {
+        position: relative;
+        background-color: var(--Background);
+        margin: 0 auto 100px;
+
+        .SectionTitle {margin-bottom: 40px;}
+
+        .ContactBookingFrame {
             position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 40px 48px;
-            pointer-events: none;
+            background-color: var(--PureWhite);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
 
-            .Terms {
-                text-align: right;
-                pointer-events: auto;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-            
-                a {
-                    position: relative;
-                    text-decoration: none;
-                    font-size: 0.8rem;
-                    color: rgba(var(--PureBlackRGB),0.45);
-                    line-height: 1.6;
-                    text-decoration: none;
-                    width: fit-content;
-                    transition: all 0.3s ease;
-
-                    &:hover {
-                        color: var(--PureBlack);
-
-                        &::before {transform: scaleX(1);}
-                    }
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 100%;
-                        height: 2px;
-                        bottom: 0;
-                        left: 0;
-                        background-color: var(--Primary);
-                        transform: scaleX(0);
-                        transform-origin: top right;
-                        transition: transform 0.3s ease;
-                    }
-                }
+            iframe {
+                display: block;
+                width: 100%;
+                height: 700px;
+                border: 0;
+                border-radius: 10px;
             }
+        }
+
+        .ContactBookingFallback {
+            display: inline-block;
+            margin-top: 16px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            color: rgba(var(--PureBlackRGB), 0.45);
+            transition: color 0.3s ease;
+
+            &:hover {color: var(--Primary);}
         }
     }
 }
@@ -5817,9 +5800,10 @@ main.Terms {
     main.Blog .BlogContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
 
     main.Contact {
-        .SocialSidebar {left: 16px}
         .ContactLayout {
             flex-direction: column;
+
+            .SocialSidebar {margin-left: 16px}
 
             .ContactLeft {
                 width: 100%;
@@ -6171,6 +6155,16 @@ main.Terms {
                 }
 
                 .ContactTitle {font-size: 2rem;}
+            }
+        }
+
+        section.ContactBooking {
+            padding: 0 20px 80px;
+
+            .ContactBookingFrame {
+                padding: 10px;
+
+                iframe {height: 560px;}
             }
         }
     }
