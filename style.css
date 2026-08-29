@@ -4240,12 +4240,7 @@ main.Contact {
     section.ContactBooking {
         position: relative;
         background-color: var(--Background);
-        padding: 0 40px 120px;
-
-        .Container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        margin: 0 auto 100px;
 
         .SectionTitle {margin-bottom: 40px;}
 
@@ -4259,7 +4254,7 @@ main.Contact {
             iframe {
                 display: block;
                 width: 100%;
-                height: 650px;
+                height: 700px;
                 border: 0;
                 border-radius: 10px;
             }
