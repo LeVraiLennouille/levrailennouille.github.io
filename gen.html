@@ -15,17 +15,19 @@
 
         nav.NavBar {display:none;}
 
-        main.Gen{ position:relative; min-height:100vh; overflow-x:hidden; }
+        main.Gen{ position:relative; min-height:100vh; overflow-x:hidden; background-color:var(--Background); color:var(--Charcoal); }
         .GridBG{
             position:fixed; inset:0; pointer-events:none; z-index:0;
             background-image:
-            linear-gradient(rgba(32,126,222,.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(32,126,222,.05) 1px, transparent 1px);
+            linear-gradient(rgba(var(--PrimaryRGB),.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(var(--PrimaryRGB),.05) 1px, transparent 1px);
             background-size:60px 60px;
         }
         .Glow{
             position:fixed; inset:0; pointer-events:none; z-index:0;
-            background:radial-gradient(ellipse 700px 500px at 85% 15%, rgba(32,126,222,.18) 0%, transparent 70%);
+            background:
+                radial-gradient(ellipse 700px 500px at 85% 15%, rgba(var(--PrimaryRGB),.16) 0%, transparent 70%),
+                radial-gradient(ellipse 520px 420px at 8% 95%, rgba(var(--DarkPrimaryRGB),.10) 0%, transparent 72%);
         }
 
         .Layout{ position:relative; z-index:10; min-height:100vh; display:flex; justify-content:center; padding-right:360px; }
@@ -33,9 +35,9 @@
 
         .Brand{ margin-bottom:36px; }
         .LogoRow{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
-        .LogoIcon{ width:36px; height:36px; border-radius:10px; background:var(--Primary); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        .LogoIcon{ width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%); box-shadow:0 4px 14px rgba(var(--PrimaryRGB),.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
         .LogoName{ font-size:14px; font-weight:700; color:var(--Primary); }
-        .MainTitle{ font-size:30px; font-weight:800; line-height:1.2; margin-bottom:12px; }
+        .MainTitle{ font-size:30px; font-weight:900; color:var(--Charcoal); line-height:1.2; margin-bottom:12px; }
         .MainDesc{ color:var(--Muted); font-size:14px; line-height:1.65; max-width:54ch; }
 
         .ProgressBar{ display:flex; align-items:center; margin-bottom:36px; }
@@ -44,8 +46,9 @@
             display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;
             color:var(--MinMuted); flex-shrink:0; transition:all .3s ease; background:var(--PureWhite);
         }
-        .Dots.Active{ border-color:var(--Primary); color:var(--Primary); box-shadow:0 0 0 4px rgba(32,126,222,.12); }
-        .Dots.Done{ background:var(--Primary); border-color:var(--Primary); color:var(--PureWhite); }
+        .Dots .Num{ display:inline-block; transform:translateY(-1px); }
+        .Dots.Active{ border-color:var(--Primary); color:var(--Primary); box-shadow:0 0 0 5px rgba(var(--PrimaryRGB),.14), 0 0 16px 2px rgba(var(--PrimaryRGB),.25); }
+        .Dots.Done{ background:var(--Primary); border-color:var(--Primary); color:var(--PureWhite); box-shadow:0 2px 8px rgba(var(--PrimaryRGB),.3); }
         .Lines{ flex:1; height:1px; background:var(--Borders); transition:background .4s ease; }
         .Lines.Done{ background:var(--Primary); }
 
@@ -54,7 +57,7 @@
         @keyframes fadeUp{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
         .StepHead{ margin-bottom:26px; }
-        .StepLabel{ font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--Primary); }
+        .StepLabel{ font-size:10px; font-weight:700; text-transform:uppercase; color:var(--Primary); }
         .StepTitle{ font-size:20px; font-weight:700; margin:4px 0 0; }
         .StepDesc{ color:var(--Muted); font-size:14px; margin:6px 0 0; line-height:1.55; }
 
@@ -63,32 +66,32 @@
 
         .InputGroup{ position:relative; margin-bottom:6px; }
         .InputGroup .Input{
-        width:100%; padding:14px 15px; border:1px solid var(--Muted); border-radius:8px;
+        width:100%; padding:12px 15px; border:1px solid var(--Borders); border-radius:10px;
         background:transparent; color:var(--PureBlack); font-family:inherit; font-size:1rem;
         outline:none; transition:all .3s ease;
         }
         .InputGroup textarea.Input{ resize:vertical; min-height:70px; }
         .InputGroup .Label{
             position:absolute; left:15px; top:50%; transform:translateY(-50%);
-            color:var(--PureBlack); background:transparent; padding:0 5px;
+            color:var(--Muted); background:transparent; padding:0 5px;
             pointer-events:none; transition:all .3s ease; font-size:1rem;
         }
         .InputGroup textarea.Input + .Label{ top:22px; }
-        .InputGroup .Input:focus, .InputGroup .Input.HasValue{ border-color:var(--Primary); }
-        .InputGroup .Input:focus ~ .Label, .InputGroup .Input.HasValue ~ .Label{top:0; background:var(--Primary); color:var(--PureWhite); border-radius:4px; font-size:.75rem; font-weight:700;}
+        .InputGroup .Input:focus, .InputGroup .Input.HasValue{ border-color:var(--Primary); box-shadow:0 0 0 3px rgba(var(--PrimaryRGB),.10); }
+        .InputGroup .Input:focus ~ .Label, .InputGroup .Input.HasValue ~ .Label{top:0; background:var(--Primary); color:var(--PureWhite); border-radius:6px; font-size:.8rem; font-weight:700;}
         .InputGroup .Input:focus ~ .Label .Accent, .InputGroup .Input.HasValue ~ .Label .Accent{ color:var(--PureWhite); }
 
         .FormGroup{ display:flex; flex-direction:column; gap:7px; }
         .FormGroup .Label{
-            font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.8px; color:var(--Muted);
+            font-size:11px; font-weight:600; text-transform:uppercase; color:var(--Muted);
             position:static; transform:none; padding:0; background:none;
         }
         .FormGroup .Input{
-            width:100%; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:8px;
+            width:100%; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:10px;
             padding:11px 14px; color:var(--Charcoal); font-size:14px; font-family:inherit; outline:none;
             transition:border-color .2s, box-shadow .2s;
         }
-        .FormGroup .Input:focus{ border-color:var(--Primary); box-shadow:0 0 0 3px rgba(32,126,222,.10); }
+        .FormGroup .Input:focus{ border-color:var(--Primary); box-shadow:0 0 0 3px rgba(var(--PrimaryRGB),.10); }
 
         .RadioBlock{ margin-top:18px; }
         .RadioBlock .Title{ font-size:14px; font-weight:700; margin-bottom:14px; }
@@ -98,14 +101,16 @@
         .ChoiceCard label{
             display:flex; align-items:center; justify-content:space-between; gap:12px;
             padding:14px 18px; border:1px solid var(--Borders); border-radius:10px; cursor:pointer;
-            background:var(--PureWhite); transition:all .2s ease; user-select:none;
+            background:var(--PureWhite); box-shadow:0 2px 10px rgba(var(--PureBlackRGB),.04);
+            transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease; user-select:none;
         }
-        .ChoiceCard label:hover{ border-color:var(--Primary); background:rgba(32,126,222,.06); }
+        .ChoiceCard label:hover{ border-color:var(--Primary); background:rgba(var(--PrimaryRGB),.1); transform:translateY(-2px); box-shadow:0 8px 20px rgba(var(--PureBlackRGB),.08); }
         .ChoiceCard label::after{
             content:''; width:18px; height:18px; border-radius:50%; flex-shrink:0;
-            border:1.5px solid rgba(32,126,222,.4); transition:all .2s ease;
+            border:1.5px solid rgba(var(--PrimaryRGB),.4); transition:all .2s ease;
         }
-        .ChoiceCard input:checked + label{ border-color:var(--Primary); background:rgba(32,126,222,.07); }
+        .ChoiceCard label:hover::after{ border-color:var(--Primary); }
+        .ChoiceCard input:checked + label{ border-color:var(--Primary); background:rgba(var(--PrimaryRGB),.07); }
         .ChoiceCard input:checked + label::after{
             background:var(--Primary); border-color:var(--Primary);
             background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
@@ -121,7 +126,7 @@
             padding:13px 26px; border-radius:10px; border:none; cursor:pointer;
             transition:transform .15s, box-shadow .15s;
         }
-        .BtnMain:hover{ transform:translateY(-2px); box-shadow:0 4px 24px rgba(32,126,222,.30); }
+        .BtnMain:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(var(--PrimaryRGB),.25); }
         .BtnMain:active{ transform:translateY(0); }
         .BtnMain:disabled{ opacity:.5; cursor:not-allowed; transform:none; box-shadow:none; }
         .BtnGhost{
@@ -132,39 +137,43 @@
         .BtnGhost:disabled{ opacity:.35; cursor:not-allowed; }
 
         #RecapSidebar{
-            width:360px; flex-shrink:0; border-left:1px solid var(--Primary);
-            position:fixed; right:0; top:0; height:100vh; overflow-y:auto; padding:36px 28px; z-index:20;
-            backdrop-filter:blur(6px);
+            width:360px; flex-shrink:0; background:var(--PureWhite);
+            box-shadow:-16px 0 40px rgba(var(--PureBlackRGB),.05);
+            position:fixed; right:0; top:0; height:100vh; overflow-y:auto; padding:28px; z-index:20;
+            display:flex; flex-direction:column;
         }
-        .SidebarEyebrow{ font-size:14px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+        .SidebarEyebrow{ font-size:14px; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--Primary); margin-bottom:10px; }
         .PriceDisplay{
             font-size:34px; font-weight:800; line-height:1.15; color:var(--Primary);
             background:linear-gradient(135deg, var(--Primary), var(--DarkPrimary));
             background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
         .PriceNote{ font-size:11px; color:var(--Muted); margin-top:4px; margin-bottom:28px; }
-        .BreakdownEyebrow{ font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+        .BreakdownEyebrow{ font-size:12px; font-weight:800; letter-spacing:.02em; text-transform:uppercase; color:var(--Primary); margin-bottom:12px; }
         .BreakdownPlaceholder{ font-size:12px; color:var(--Muted); font-style:italic; }
-        .Details{ display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(32,126,222,.15); font-size:12px; gap:10px; }
+        .Details{ display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid rgba(var(--PrimaryRGB),.2); font-size:12px; gap:10px; }
         .Details:last-child{ border-bottom:none; }
         .DetailsLabel{ color:var(--Muted); flex-shrink:0; }
         .DetailsValue{ font-weight:600; color:var(--Charcoal); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-        .PriceTable{ margin-top:22px; padding:16px; border-radius:12px; border:1px solid var(--Primary);}
+        .PriceTable{ margin-top:22px; padding:16px; border-radius:16px; background:rgba(var(--PrimaryRGB),.03); border:1px solid rgba(var(--PrimaryRGB),.25); }
         .PriceRow{ display:flex; justify-content:space-between; font-size:12px; margin-bottom:10px; }
         .PriceRow:last-of-type{ margin-bottom:0; }
         .PriceRow .Label{ color:var(--Muted); }
         .PriceRow .Value{ font-weight:600; color:var(--Charcoal); }
         .Separator{ height:1px; background:var(--Borders); margin:10px 0; }
         .PriceTotalRow{ display:flex; justify-content:space-between; align-items:center; margin-top:6px; }
-        .TotalLabel{ font-size:10px; font-weight:800; letter-spacing:1px; }
+        .TotalLabel{ font-size:10px; font-weight:900; color:var(--Charcoal); }
         .TotalValue{ font-weight:800; font-size:16px; color:var(--Primary); }
         .DaysNote{ text-align:center; font-size:11px; color:var(--Muted); margin-top:20px; }
 
         .DocsGrid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
         .DocCard{
-            position:relative; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:14px;
+            position:relative; background:var(--PureWhite); border:1px solid var(--Borders); border-radius:16px;
             padding:22px 20px 20px 26px; display:flex; flex-direction:column; gap:9px;
+            box-shadow:0 4px 20px rgba(var(--PureBlackRGB),.05);
+            transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
         }
+        .DocCard:hover{ transform:translateY(-3px); box-shadow:0 10px 28px rgba(var(--PureBlackRGB),.08); border-color:rgba(var(--PrimaryRGB),.3); }
         .DocCard::before{ content:''; position:absolute; left:0; top:16px; bottom:16px; width:3px; background:var(--Primary); border-radius:2px; }
         .DocNum{ font-size:11px; color:var(--DarkPrimary); letter-spacing:.08em; font-weight:700; }
         .DocTitle{ font-size:18px; font-weight:800; }
@@ -172,24 +181,36 @@
         .DocFile{ font-size:11px; color:var(--MinMuted); word-break:break-all; }
 
         .toast-wrap{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:8px; z-index:999; align-items:center; }
-        .toast{ background:var(--Charcoal); color:#fff; padding:12px 18px; border-radius:10px; font-size:13.5px; font-family:inherit; box-shadow:0 8px 24px rgba(0,0,0,.2); }
+        .toast{ background:var(--Charcoal); color:#fff; padding:12px 18px; border-radius:10px; font-size:13.5px; font-family:inherit; box-shadow:0 8px 24px rgba(var(--PureBlackRGB),.2); }
         .toast.warn{ background:var(--Danger); }
 
-        .MobileBar{ display:none; position:fixed; bottom:0; left:0; right:0; background:var(--PureWhite); border-top:1px solid var(--Borders); padding:12px 20px; z-index:30; align-items:center; justify-content:space-between; }
+        .MobileBar{ display:none; position:fixed; bottom:0; left:0; right:0; background:var(--PureWhite); box-shadow:0 -6px 24px rgba(var(--PureBlackRGB),.08); padding:14px 16px; z-index:50; align-items:center; justify-content:space-between; }
         .MobileBar .MLabel{ font-size:11px; color:var(--Muted); text-transform:uppercase; letter-spacing:.06em; }
         .MobileBar .MTotal{ font-weight:800; font-size:16px; color:var(--Primary); }
 
         @media (max-width:1024px){
             .Layout{ padding-right:0; }
             #RecapSidebar{ display:none; }
-            .MobileBar{ display:flex; }
+            .MobileBar{ display:flex; padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px)); }
             .Form{ padding-bottom:96px; }
+            .Steps .Panel .FormGroup .Input,
+            .Steps .Panel .InputGroup .Input{ font-size:16px; }
         }
-        @media (max-width:640px){
-            .Form{ padding:36px 20px 96px; }
-            .FormGrid, .ChoiceList.ChoiceListGrid, .DocsGrid{ grid-template-columns:1fr; }
+        @media (max-width:768px){
             .MainTitle{ font-size:24px; }
-            .FormNav{ flex-wrap:wrap; }
+            .StepHead{ margin-bottom:22px; }
+            .FormGrid, .ChoiceList.ChoiceListGrid{ grid-template-columns:1fr; }
+            .FormNav{ gap:10px; }
+            .FormNav .BtnGhost{ flex:0 0 auto; padding:13px 16px; font-size:13px; white-space:nowrap; }
+            .FormNav .BtnMain{ flex:1; padding:13px 14px; font-size:13px; text-align:center; }
+        }
+        @media (max-width:600px){
+            .Form{ padding:36px 20px 96px; }
+            .DocsGrid{ grid-template-columns:1fr; }
+        }
+        @media (max-width:420px){
+            .Brand .LogoRow .LogoName{ font-size:12px; }
+            .ProgressBar .Dots{ width:26px; height:26px; font-size:12px; }
         }
         @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
     </style>
