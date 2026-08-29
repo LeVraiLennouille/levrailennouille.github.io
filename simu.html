@@ -320,7 +320,7 @@
                             </div>
                             <div class="BadgeRow">
                                 <span id="Standard" class="Badge Standard">Standard</span>
-                                <span id="Urgent" class="Badge Urgent Hidden">⚡ Urgent</span>
+                                <span id="Urgent" class="Badge Urgent Hidden"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Urgent</span>
                             </div>
                         </div>
                         <!-- <div class="FormGroup">
@@ -365,6 +365,7 @@
                     <button class="BtnGhost" type="button" id="btn-prev" onclick="navigate(-1)"><span class="Arrow">←</span> Précédent</button>
                     <button class="BtnMain" type="button" id="btn-next" onclick="navigate(1)">Continuer <span class="Arrow">→</span></button>
                 </div>
+                <p class="NavError" id="nav-error" role="alert">Complète les champs surlignés ci-dessus pour continuer.</p>
             </section>
             <aside id="PriceSidebar">
                 <div class="PriceHeader">
@@ -756,11 +757,16 @@
         }
 
         function navigate(direction) {
+            const navError = document.getElementById('nav-error');
             if (direction > 0) {
-                if (!validateStep(STATE.currentStep)) return;
+                if (!validateStep(STATE.currentStep)) {
+                    if (navError) navError.classList.add('Show');
+                    return;
+                }
                 collectStep(STATE.currentStep);
                 recalculate();
             }
+            if (navError) navError.classList.remove('Show');
 
             const next = STATE.currentStep + direction;
             if (next >= 1 && next <= STATE.totalSteps) {showStep(next);}
