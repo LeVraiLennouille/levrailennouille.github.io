@@ -3985,38 +3985,6 @@ main.Contact {
     min-height: 100vh;
     background-color: var(--Background);
 
-    .SocialSidebar {
-        align-self: center;
-        margin-left: 28px;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        align-items: center;
-        pointer-events: auto;
-
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            color: var(--Primary);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            text-decoration: none;
-
-            &:hover {
-                opacity: 0.75;
-                transform: scale(1.2);
-            }
-        }
-
-        svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-    }
-
     .ContactLayout {
         position: relative;
         inset: 0;
@@ -4024,6 +3992,38 @@ main.Contact {
         display: flex;
         min-height: 91vh;
         pointer-events: none;
+
+        .SocialSidebar {
+            align-self: center;
+            margin-left: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            pointer-events: auto;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                color: var(--Primary);
+                transition: opacity 0.25s ease, transform 0.25s ease;
+                text-decoration: none;
+
+                &:hover {
+                    opacity: 0.75;
+                    transform: scale(1.2);
+                }
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: currentColor;
+            }
+        }
 
         .ContactLeft {
             width: 58%;
