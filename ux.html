@@ -354,6 +354,7 @@
                 var cat = CATS[law.cat];
                 return '' +
                     '<a class="LawCard" href="laws/'+law.slug+'.html">' +
+                        '<img class="CardCover" src="img/laws/'+law.slug+'.png" alt="'+law.name+'" loading="lazy">' +
                         '<span class="CardTop"><span class="Category">'+cat.label+'</span><span class="Code">UX·'+law.code+'</span></span>' +
                         '<h3>'+law.name+'</h3>' +
                         '<p>'+law.def+'</p>' +

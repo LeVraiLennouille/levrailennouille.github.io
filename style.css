@@ -2328,6 +2328,16 @@ main.UX {
 
                 &:hover .CardFooter .Arrow, &:focus-visible .CardFooter .Arrow {transform:translateX(4px);}
 
+                &:hover .CardCover, &:focus-visible .CardCover {transform:scale(1.05);}
+
+                .CardCover {
+                    margin:-26px -24px 16px;
+                    aspect-ratio:16/9;
+                    object-fit:cover;
+                    border-radius:18px 18px 0 0;
+                    transition:transform .4s ease;
+                }
+
                 .CardTop {
                     display:flex;
                     align-items:center;
@@ -6543,6 +6553,9 @@ main.Terms {
             transition:none;
 
             &:hover, &:focus-visible{transform:none;}
+
+            .CardCover {transition:none;}
+            &:hover .CardCover, &:focus-visible .CardCover {transform:none;}
         }
     }
 
