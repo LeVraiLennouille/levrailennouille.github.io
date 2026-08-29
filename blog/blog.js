@@ -15,7 +15,7 @@
         progress.style.width = percent + "%";
     }
 
-    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("scroll", updateProgress, {passive: true});
     window.addEventListener("resize", updateProgress);
     updateProgress();
 
@@ -34,10 +34,8 @@
                     });
                 });
             },
-            
             {rootMargin: "-100px 0px -70% 0px", threshold: 0}
         );
-
         headings.forEach((heading) => observer.observe(heading));
     }
 })()

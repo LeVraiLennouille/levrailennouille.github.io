@@ -2975,11 +2975,8 @@ main.Blog {
 
     .BlogContent {
         background-color: var(--Background);
-        padding: 80px 40px 120px;
 
         .Container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: 240px 1fr;
             column-gap: 70px;
@@ -3064,8 +3061,6 @@ main.Blog {
     }
 
     .BlogArticle {
-        max-width: 800px;
-
         h2 {
             font-size: clamp(1.55rem, 2.6vw, 1.95rem);
             font-weight: 900;
@@ -3564,7 +3559,7 @@ main.Blog {
     .BlogCTA {
         position: relative;
         max-width: 800px;
-        margin: 100px auto 0;
+        margin: 100px auto;
         padding: 48px 40px;
         border-radius: 24px;
         background: linear-gradient(135deg, var(--Charcoal) 0%, var(--DarkPrimary) 130%);

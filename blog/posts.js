@@ -63,8 +63,7 @@
     }
 
     const posts = [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    window.LennouilleBlog = { posts: posts, cardHTML: cardHTML, comingSoonCardHTML: comingSoonCardHTML, formatDateLabel: formatDateLabel };
+    window.LennouilleBlog = {posts: posts, cardHTML: cardHTML, comingSoonCardHTML: comingSoonCardHTML, formatDateLabel: formatDateLabel};
 
     function comingSoonCardHTML(options) {
         options = options || {};
@@ -82,7 +81,7 @@
     const latestGrid = document.getElementById("LatestPostsGrid");
     if (latestGrid) {
         const LATEST_COUNT = 3;
-        const latestCards = posts.slice(0, LATEST_COUNT).map(function (post, i) { return cardHTML(post, false); });
+        const latestCards = posts.slice(0, LATEST_COUNT).map(function (post, i) {return cardHTML(post, false);});
         while (latestCards.length < LATEST_COUNT) {latestCards.push(comingSoonCardHTML());}
         latestGrid.innerHTML = latestCards.join("");
     }
@@ -92,7 +91,6 @@
     const countEl = document.getElementById("PostCount");
 
     if (!grid || !pagination) return;
-
     const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
     let currentPage = 1;
 
@@ -118,7 +116,6 @@
         for (let i = 1; i <= totalPages; i++) {
             html += '<button data-page="' + i + '" class="' + (i === currentPage ? "active" : "") + '" aria-current="' + (i === currentPage ? "page" : "false") + '">' + i + "</button>";
         }
-
         html += '<button class="Arrow" data-page="' + (currentPage + 1) + '" aria-label="Page suivante"' + (currentPage === totalPages ? " disabled" : "") + ">→</button>";
         pagination.innerHTML = html;
     }
@@ -135,25 +132,23 @@
             pagination.innerHTML = "";
             return;
         }
-
         currentPage = Math.min(Math.max(1, page), totalPages);
 
         const start = (currentPage - 1) * POSTS_PER_PAGE;
         const pagePosts = posts.slice(start, start + POSTS_PER_PAGE);
 
         grid.innerHTML = pagePosts
-            .map(function (post, i) { return cardHTML(post, currentPage === 1 && i === 0); })
+            .map(function (post, i) {return cardHTML(post, currentPage === 1 && i === 0);})
             .join("");
 
         renderPagination();
-
-        if (options.scroll) {grid.scrollIntoView({ behavior: "smooth", block: "start" });}
+        if (options.scroll) {grid.scrollIntoView({behavior: "smooth", block: "start"});}
     }
 
     pagination.addEventListener("click", function (e) {
         const btn = e.target.closest("button[data-page]");
         if (!btn || btn.disabled) return;
-        renderPage(Number(btn.dataset.page), { scroll: true });
+        renderPage(Number(btn.dataset.page), {scroll: true});
     });
 
     if (countEl) {
