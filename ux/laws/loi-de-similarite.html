@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,37 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de similarité */
+  .SiText{margin-top:20px; font-size:.95rem; line-height:1.9; color:var(--Charcoal); text-align:justify;}
+  .SiLink{color:#2563eb; text-decoration:underline; cursor:pointer; font-weight:600;}
+  .SiDecoy{color:#c2410c; font-weight:800; cursor:pointer;}
+  .SiLink.picked, .SiDecoy.picked{background:rgba(var(--PrimaryRGB),.18); border-radius:4px;}
 
 </style>
 </head>
@@ -387,6 +419,22 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Repérez les liens, dispersés dans le texte</h2>
+    </div>
+    <p class="Intro">Cliquez sur tous les mots qui vous semblent cliquables dans le paragraphe ci-dessous, puis validez.</p>
+
+    <div class="DemoBox">
+      <p class="SiText" id="siText">Lorsqu’on parcourt une page web, l’œil ne lit pas chaque mot un par un&nbsp;: il repère d’abord les formes qui se distinguent du texte courant. Ce <span class="SiLink">principe</span> explique pourquoi une barre de <span class="SiLink">navigation</span> garde toujours le même style, pourquoi les <span class="SiDecoy">boutons</span> d’action partagent une <span class="SiDecoy">couleur</span> unique, ou pourquoi un <span class="SiLink">tableau</span> utilise des lignes alternées pour guider la lecture. Cette <span class="SiLink">cohérence</span> visuelle devient alors un <span class="SiLink">langage</span> à part entière, compris sans <span class="SiDecoy">effort</span>.</p>
+      <div class="DemoActions">
+        <button class="DemoBtn" id="siCheck" type="button">Valider ma sélection</button>
+      </div>
+      <div class="DemoResult" id="siResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +475,34 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var text = document.getElementById('siText');
+  var checkBtn = document.getElementById('siCheck');
+  var result = document.getElementById('siResult');
+
+  text.addEventListener('click', function(e){
+    var span = e.target.closest('.SiLink, .SiDecoy');
+    if(span){ span.classList.toggle('picked'); }
+  });
+
+  checkBtn.addEventListener('click', function(){
+    var links = text.querySelectorAll('.SiLink');
+    var decoys = text.querySelectorAll('.SiDecoy');
+    var linksHit = Array.prototype.filter.call(links, function(s){ return s.classList.contains('picked'); }).length;
+    var decoysHit = Array.prototype.filter.call(decoys, function(s){ return s.classList.contains('picked'); }).length;
+
+    result.className = 'DemoResult show';
+    if(linksHit === links.length && decoysHit === 0){
+      result.innerHTML = 'Les <strong>'+links.length+'/'+links.length+'</strong> mots soulignés en bleu repérés, et aucun des mots en gras orangé. Ces mots sont dispersés partout dans le paragraphe, sans être regroupés ni proches les uns des autres&nbsp;: seul leur style partagé a suffi à signaler leur appartenance à une même catégorie. C’est la loi de similarité.';
+    } else {
+      result.innerHTML = 'Liens repérés&nbsp;: <strong>'+linksHit+'/'+links.length+'</strong> — mots en gras orangé cliqués par erreur&nbsp;: <strong>'+decoysHit+'/'+decoys.length+'</strong>. Le style bleu souligné suffit à signaler « ceci est cliquable », dispersé dans tout le texte&nbsp;; un style différent (le gras orangé) signale une tout autre catégorie.';
+    }
+    checkBtn.disabled = true;
+  });
 })();
 </script>
 </body>

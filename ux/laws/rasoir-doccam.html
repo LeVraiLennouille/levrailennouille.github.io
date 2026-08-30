@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .OcButton{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,52 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — rasoir d’Occam */
+  .OcPreview{margin-top:20px; padding:30px; background:#f1efe9; border-radius:14px; text-align:center;}
+  .OcButton{
+    display:inline-flex; align-items:center; gap:8px; font-family:"Syne",sans-serif; font-weight:800;
+    font-size:.95rem; padding:16px 28px; border-radius:50px; cursor:default; color:#fff;
+    background:linear-gradient(135deg, var(--Primary), var(--DarkPrimary), #f7971e);
+    border:4px solid #ffd200; box-shadow:0 14px 30px rgba(var(--PrimaryRGB),.4);
+    position:relative;
+  }
+  .OcButton.no-gradient{background:var(--Primary);}
+  .OcButton.no-border{border-color:transparent; border-width:0;}
+  .OcButton.no-shadow{box-shadow:none;}
+  .OcBadge{
+    position:absolute; top:-10px; right:-10px; background:#e53e3e; color:#fff; font-size:.6rem;
+    font-weight:800; padding:3px 8px; border-radius:20px;
+  }
+  .OcSubtitle{margin-top:12px; font-size:.78rem; color:var(--MinMuted); font-weight:600;}
+  .OcToggles{display:flex; flex-wrap:wrap; gap:10px 20px; margin-top:20px;}
+  .OcToggleRow{display:flex; align-items:center; gap:8px; font-size:.82rem; font-weight:600; color:var(--Charcoal); cursor:pointer;}
+  .OcToggleRow input{width:15px; height:15px; accent-color:var(--Primary); cursor:pointer;}
 
 </style>
 </head>
@@ -387,6 +435,37 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Jusqu’où peut-on simplifier ce bouton&nbsp;?</h2>
+    </div>
+    <p class="Intro">Décochez tout ce qui vous semble superflu, sans rendre le bouton inutilisable.</p>
+
+    <div class="DemoBox">
+      <div class="OcPreview">
+        <button class="OcButton" id="ocButton" type="button">
+          <span data-el="icon">🎉</span>
+          <span>S’inscrire</span>
+          <span class="OcBadge" data-el="badge">NOUVEAU</span>
+        </button>
+        <p class="OcSubtitle" data-el="subtitle">Cliquez ici pour vous inscrire dès maintenant</p>
+      </div>
+      <div class="OcToggles">
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="icon"> Icône décorative</label>
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="badge"> Badge « Nouveau »</label>
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="subtitle"> Sous-titre redondant</label>
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="shadow"> Ombre portée</label>
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="gradient"> Dégradé de fond</label>
+        <label class="OcToggleRow"><input type="checkbox" checked data-target="border"> Bordure épaisse</label>
+      </div>
+      <div class="DemoActions">
+        <button class="DemoBtn" id="ocDone" type="button">J’ai terminé</button>
+      </div>
+      <div class="DemoResult" id="ocResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +506,43 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var toggles = document.querySelectorAll('.OcToggles input');
+  var button = document.getElementById('ocButton');
+  var result = document.getElementById('ocResult');
+  var TOTAL = toggles.length;
+
+  toggles.forEach(function(input){
+    input.addEventListener('change', function(){
+      var target = input.getAttribute('data-target');
+      if(target === 'icon' || target === 'badge' || target === 'subtitle'){
+        var el = document.querySelector('[data-el="' + target + '"]');
+        if(el){ el.style.display = input.checked ? '' : 'none'; }
+      } else if(target === 'shadow'){
+        button.classList.toggle('no-shadow', !input.checked);
+      } else if(target === 'gradient'){
+        button.classList.toggle('no-gradient', !input.checked);
+      } else if(target === 'border'){
+        button.classList.toggle('no-border', !input.checked);
+      }
+    });
+  });
+
+  document.getElementById('ocDone').addEventListener('click', function(){
+    var removed = Array.prototype.filter.call(toggles, function(t){ return !t.checked; }).length;
+    result.className = 'DemoResult show';
+    if(removed === TOTAL){
+      result.innerHTML = 'Vous avez tout retiré&nbsp;: il ne reste que le bouton et son texte — strictement ce qui est nécessaire pour comprendre et agir. C’est exactement le rasoir d’Occam&nbsp;: une conception n’est terminée que lorsque plus rien ne peut en être retiré.';
+    } else if(removed >= TOTAL / 2){
+      result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments superflus. Le bouton fonctionne toujours aussi bien&nbsp;— la différence, c’est tout ce qui ne servait à rien.';
+    } else {
+      result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments. Continuez&nbsp;: aucun d’entre eux n’était nécessaire pour comprendre ou utiliser ce bouton.';
+    }
+  });
 })();
 </script>
 </body>

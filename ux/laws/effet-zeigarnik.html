@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,51 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoBtnGhost{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:700;
+    background:transparent; color:var(--Charcoal); border:1.5px solid var(--Borders); border-radius:50px;
+    padding:12px 22px; cursor:pointer; transition:all .15s ease;
+  }
+  .DemoBtnGhost:hover{border-color:var(--Primary); color:var(--Primary);}
+  .DemoBtnGhost:disabled{opacity:.45; cursor:not-allowed;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — effet Zeigarnik */
+  .ZgGrid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:20px;}
+  .ZgList{background:#f1efe9; border-radius:14px; padding:20px;}
+  .ZgLabel{display:block; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--Primary); margin-bottom:10px;}
+  .ZgItem{display:flex; align-items:center; gap:10px; font-size:.88rem; font-weight:600; color:var(--Charcoal); padding:6px 0; cursor:pointer;}
+  .ZgItem input{width:16px; height:16px; accent-color:var(--Primary); cursor:pointer;}
+  .ZgItem--locked{opacity:.55; cursor:not-allowed;}
+  .ZgItem--locked input{cursor:not-allowed;}
+  .ZgAsk{margin-top:24px;}
+  .ZgAskLabel{font-size:.9rem; font-weight:700; color:var(--Charcoal); margin-bottom:12px;}
+  @media (max-width:600px){.ZgGrid{grid-template-columns:1fr;}}
 
 </style>
 </head>
@@ -387,6 +433,41 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Laquelle des deux listes vous trotte encore dans la tête&nbsp;?</h2>
+    </div>
+    <p class="Intro">Cochez les cases des deux listes ci-dessous. La Liste B a une étape verrouillée exprès&nbsp;: impossible de la finir complètement.</p>
+
+    <div class="DemoBox">
+      <div class="ZgGrid">
+        <div class="ZgList">
+          <span class="ZgLabel">Liste A</span>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="A"> Étape 1</label>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="A"> Étape 2</label>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="A"> Étape 3</label>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="A"> Étape 4</label>
+        </div>
+        <div class="ZgList">
+          <span class="ZgLabel">Liste B</span>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="B"> Étape 1</label>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="B"> Étape 2</label>
+          <label class="ZgItem"><input type="checkbox" class="ZgCheck" data-list="B"> Étape 3</label>
+          <label class="ZgItem ZgItem--locked"><input type="checkbox" class="ZgCheck" data-list="B" disabled> Étape 4 🔒</label>
+        </div>
+      </div>
+      <div class="ZgAsk" id="zgAsk" hidden>
+        <p class="ZgAskLabel">Les deux listes sont allées aussi loin qu’elles pouvaient. Laquelle continue de vous trotter dans la tête&nbsp;?</p>
+        <div class="DemoActions">
+          <button class="DemoBtnGhost" data-pick="A" type="button">Liste A</button>
+          <button class="DemoBtnGhost" data-pick="B" type="button">Liste B</button>
+        </div>
+      </div>
+      <div class="DemoResult" id="zgResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +508,37 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var checks = document.querySelectorAll('.ZgCheck:not([disabled])');
+  var ask = document.getElementById('zgAsk');
+  var result = document.getElementById('zgResult');
+
+  function checkDone(){
+    var aDone = Array.prototype.every.call(document.querySelectorAll('.ZgCheck[data-list="A"]'), function(b){ return b.checked; });
+    var bDone = Array.prototype.every.call(document.querySelectorAll('.ZgCheck[data-list="B"]:not([disabled])'), function(b){ return b.checked; });
+    if(aDone && bDone && ask.hidden){ ask.hidden = false; }
+  }
+
+  checks.forEach(function(box){
+    box.addEventListener('change', checkDone);
+  });
+
+  ask.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pick = btn.getAttribute('data-pick');
+      result.className = 'DemoResult show';
+      if(pick === 'B'){
+        result.innerHTML = 'Vous avez désigné la <strong>liste incomplète</strong>. C’est exactement ce que prédit l’effet Zeigarnik&nbsp;: une tâche laissée inachevée continue de mobiliser l’attention, bien plus qu’une tâche menée à son terme — même pour un exercice aussi anodin que cocher des cases.';
+      } else {
+        result.innerHTML = 'Vous avez désigné la liste terminée — la majorité des gens répondent l’inverse. L’effet Zeigarnik est une tendance statistique, pas une règle universelle&nbsp;: certains referment mentalement une tâche interrompue dès qu’elle sort de leur vue.';
+      }
+      ask.querySelectorAll('button').forEach(function(b){ b.disabled = true; });
+    });
+  });
 })();
 </script>
 </body>

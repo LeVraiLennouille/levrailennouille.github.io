@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -319,6 +320,82 @@
   @media (max-width: 760px){
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
+  }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoBtnGhost{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:700;
+    background:transparent; color:var(--Charcoal); border:1.5px solid var(--Borders); border-radius:50px;
+    padding:12px 22px; cursor:pointer; transition:all .15s ease; width:100%;
+  }
+  .DemoBtnGhost:hover{border-color:var(--Primary); color:var(--Primary);}
+  .DemoBtnGhost:disabled{opacity:.45; cursor:not-allowed;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — effet esthétique-utilisabilité */
+  .AuGrid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:8px;}
+  .AuPanel{position:relative; border-radius:16px; padding:26px;}
+  .AuTag{position:absolute; top:16px; right:18px; font-size:.66rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--MinMuted);}
+  .AuPanel.picked{outline:3px solid var(--Primary); outline-offset:4px;}
+
+  #panelA{background:#f2f1ee; border:1px solid #ccc7bd;}
+  #panelA .AuFormA{display:flex; flex-direction:column; font-family:"Times New Roman", Times, serif;}
+  #panelA label{font-size:13px; color:#555; margin-top:10px; display:block;}
+  #panelA input{
+    font-family:inherit; font-size:14px; padding:3px 4px; border:1px solid #999; border-radius:0;
+    background:#fff; margin-top:3px; width:100%; display:block;
+  }
+  #panelA button[type="submit"]{
+    margin-top:16px; font-family:inherit; font-size:13px; padding:5px 12px;
+    background:#e2e2e2; border:1px solid #999; border-radius:0; cursor:pointer; color:#333;
+  }
+  #panelA button[type="submit"]:hover{background:#d5d5d5;}
+
+  #panelB{background:var(--PureWhite); box-shadow:0 8px 30px rgba(var(--PureBlackRGB),0.08); border:1px solid rgba(var(--PureBlackRGB),0.06);}
+  #panelB .AuFormB{display:flex; flex-direction:column; gap:14px; margin-top:8px;}
+  #panelB label{font-size:.78rem; font-weight:700; color:var(--Charcoal); display:flex; flex-direction:column; gap:6px;}
+  #panelB input{
+    font-family:"Syne", sans-serif; font-size:.88rem; padding:11px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:#faf9f7; transition:border-color .2s ease;
+  }
+  #panelB input:focus{border-color:var(--Primary); outline:none;}
+  #panelB button[type="submit"]{
+    margin-top:6px; font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:.02em; padding:13px; border:none; border-radius:50px; cursor:pointer; color:var(--PureWhite);
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25); transition:transform .15s ease;
+  }
+  #panelB button[type="submit"]:hover{transform:translateY(-2px);}
+
+  .AuMsg{font-size:.78rem; font-weight:700; margin-top:10px; min-height:1.2em;}
+  .AuMsg.error{color:#e53e3e;}
+  .AuMsg.success{color:#22c55e;}
+  .AuVote{margin-top:18px;}
+  @media (max-width: 760px){
+    .AuGrid{grid-template-columns:1fr;}
   }
 
 </style>
@@ -387,6 +464,42 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Laquelle vous semble la plus simple&nbsp;?</h2>
+    </div>
+    <p class="Intro">Les deux formulaires ci-dessous ont exactement les mêmes champs, la même validation et la même action au clic — un seul détail change entre eux. Remplissez celui que vous préférez, puis votez pour celui qui vous a semblé le plus simple à remplir.</p>
+
+    <div class="AuGrid">
+      <div class="AuPanel" id="panelA">
+        <span class="AuTag">Interface A</span>
+        <form class="AuFormA" data-form="A" novalidate>
+          <label>Nom<input type="text" data-field="nom"></label>
+          <label>Email<input type="email" data-field="email"></label>
+          <label>Mot de passe<input type="password" data-field="pass"></label>
+          <button type="submit">valider</button>
+        </form>
+        <p class="AuMsg" data-msg="A" aria-live="polite"></p>
+        <button class="DemoBtnGhost AuVote" data-vote="A">Celle-ci me semble plus simple →</button>
+      </div>
+
+      <div class="AuPanel" id="panelB">
+        <span class="AuTag">Interface B</span>
+        <form class="AuFormB" data-form="B" novalidate>
+          <label>Nom<input type="text" data-field="nom"></label>
+          <label>Email<input type="email" data-field="email"></label>
+          <label>Mot de passe<input type="password" data-field="pass"></label>
+          <button type="submit">Créer mon compte</button>
+        </form>
+        <p class="AuMsg" data-msg="B" aria-live="polite"></p>
+        <button class="DemoBtnGhost AuVote" data-vote="B">Celle-ci me semble plus simple →</button>
+      </div>
+    </div>
+
+    <div class="DemoResult" id="auResult" aria-live="polite"></div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +540,40 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var forms = document.querySelectorAll('.AuGrid form');
+  forms.forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var which = form.getAttribute('data-form');
+      var msg = document.querySelector('.AuMsg[data-msg="'+which+'"]');
+      var inputs = form.querySelectorAll('input');
+      var allFilled = Array.prototype.every.call(inputs, function(i){ return i.value.trim() !== ''; });
+      if(allFilled){
+        msg.textContent = '✓ Compte créé (démo — rien n’est envoyé).';
+        msg.className = 'AuMsg success';
+      } else {
+        msg.textContent = 'Merci de remplir les 3 champs.';
+        msg.className = 'AuMsg error';
+      }
+    });
+  });
+
+  var voteButtons = document.querySelectorAll('.AuVote');
+  var result = document.getElementById('auResult');
+  voteButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var choice = btn.getAttribute('data-vote');
+      voteButtons.forEach(function(b){ b.disabled = true; });
+      document.getElementById('panel'+choice).classList.add('picked');
+      result.className = 'DemoResult show';
+      result.innerHTML = 'Vous avez choisi l’<strong>Interface '+choice+'</strong>. Regardez à nouveau les deux formulaires&nbsp;: mêmes champs, même validation, même action au clic — le code qui les traite est rigoureusement identique. Seul le CSS diffère. C’est exactement l’effet esthétique-utilisabilité&nbsp;: le jugement sur la simplicité s’est joué sur l’apparence, pas sur la fonction.';
+    });
+  });
 })();
 </script>
 </body>

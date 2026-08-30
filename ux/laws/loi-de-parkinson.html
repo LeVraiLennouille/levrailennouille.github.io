@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,42 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .DemoScores{display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; font-size:.85rem; font-weight:700; color:var(--Charcoal);}
+  .DemoTextarea{
+    width:100%; font-family:"Syne", sans-serif; font-size:.9rem; padding:12px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:#faf9f7; resize:vertical; margin-bottom:14px;
+  }
+  .DemoTextarea:focus{border-color:var(--Primary); outline:none;}
+
+  /* démo — loi de Parkinson */
+  .PkStage{margin-top:20px;}
+  .PkPrompt{font-size:.9rem; font-weight:700; color:var(--Charcoal); margin-bottom:12px;}
 
 </style>
 </head>
@@ -387,6 +424,31 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>La même phrase prend-elle plus de temps selon le budget annoncé&nbsp;?</h2>
+    </div>
+    <p class="Intro">Décrivez votre plat préféré en une phrase, deux fois de suite, avec un temps suggéré différent à chaque fois. On chronomètre le temps que vous prenez réellement.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="pkStartLong" type="button">Essayer avec « environ 5 minutes »</button>
+        <button class="DemoBtn" id="pkStartShort" type="button">Essayer avec « environ 20 secondes »</button>
+      </div>
+      <div class="PkStage" id="pkStage" hidden>
+        <p class="PkPrompt" id="pkPrompt"></p>
+        <textarea class="DemoTextarea" id="pkInput" rows="2" placeholder="Votre phrase…"></textarea>
+        <button class="DemoBtn" id="pkSubmit" type="button">J’ai terminé</button>
+      </div>
+      <div class="DemoScores">
+        <span>« 5 minutes »&nbsp;: <strong id="pkScoreLong">—</strong></span>
+        <span>« 20 secondes »&nbsp;: <strong id="pkScoreShort">—</strong></span>
+      </div>
+      <div class="DemoResult" id="pkResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +489,56 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var stage = document.getElementById('pkStage');
+  var prompt = document.getElementById('pkPrompt');
+  var input = document.getElementById('pkInput');
+  var submitBtn = document.getElementById('pkSubmit');
+  var scoreLong = document.getElementById('pkScoreLong');
+  var scoreShort = document.getElementById('pkScoreShort');
+  var result = document.getElementById('pkResult');
+  var btnLong = document.getElementById('pkStartLong');
+  var btnShort = document.getElementById('pkStartShort');
+
+  var mode = null, startTime = 0;
+
+  function start(m, promptText){
+    mode = m;
+    btnLong.disabled = true; btnShort.disabled = true;
+    prompt.textContent = promptText;
+    input.value = '';
+    result.className = 'DemoResult';
+    stage.hidden = false;
+    input.focus();
+    startTime = performance.now();
+  }
+
+  btnLong.addEventListener('click', function(){ start('long', 'Vous avez environ 5 minutes — décrivez votre plat préféré en une phrase.'); });
+  btnShort.addEventListener('click', function(){ start('short', 'Vous avez environ 20 secondes — décrivez votre plat préféré en une phrase.'); });
+
+  submitBtn.addEventListener('click', function(){
+    if(!mode) return;
+    var elapsed = (performance.now() - startTime) / 1000;
+    var label = elapsed.toFixed(1) + 's';
+    if(mode === 'long'){ scoreLong.textContent = label; }
+    else { scoreShort.textContent = label; }
+    stage.hidden = true;
+    btnLong.disabled = false; btnShort.disabled = false;
+    mode = null;
+
+    var l = scoreLong.textContent, s = scoreShort.textContent;
+    result.className = 'DemoResult show';
+    if(l !== '—' && s !== '—'){
+      var lf = parseFloat(l), sf = parseFloat(s);
+      result.innerHTML = 'Avec « 5&nbsp;minutes » suggérées&nbsp;: <strong>'+l+'</strong> — avec « 20&nbsp;secondes » suggérées&nbsp;: <strong>'+s+'</strong>. '+(lf > sf ? 'La même phrase à écrire vous a pris plus de temps quand le budget annoncé était plus large&nbsp;: c’est la loi de Parkinson en action.' : 'Sur cet essai l’écart ne va pas dans le sens attendu&nbsp;; la tendance générale reste qu’un délai plus généreux pousse à en faire usage, même sans besoin réel.');
+    } else {
+      result.innerHTML = 'Rédigé en <strong>'+label+'</strong>. Essayez maintenant l’autre budget de temps annoncé pour comparer.';
+    }
+  });
 })();
 </script>
 </body>

@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,51 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .DemoScores{display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; font-size:.85rem; font-weight:700; color:var(--Charcoal);}
+  .DemoStudyList{margin-top:20px; text-align:center; padding:26px 20px; background:#f1efe9; border-radius:14px;}
+  .SpList{list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; font-size:1.05rem; font-weight:800; color:var(--Charcoal);}
+  .SpList li{background:var(--PureWhite); border-radius:8px; padding:8px 14px; box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .DemoRecall{margin-top:20px;}
+  .DemoRecallLabel{display:block; font-size:.82rem; font-weight:700; color:var(--Charcoal); margin-bottom:8px;}
+  .DemoTextarea{
+    width:100%; font-family:"Syne", sans-serif; font-size:.9rem; padding:12px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:#faf9f7; resize:vertical; margin-bottom:14px;
+  }
+  .DemoTextarea:focus{border-color:var(--Primary); outline:none;}
+
+  /* démo — mémoire de travail */
+  .WmChips{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px;}
+  .WmChip{
+    font-family:"Syne", sans-serif; font-size:.85rem; font-weight:700; padding:9px 16px; border-radius:50px;
+    border:1.5px solid var(--Borders); background:var(--PureWhite); color:var(--Charcoal); cursor:pointer;
+  }
+  .WmChip.picked{border-color:var(--Primary); background:rgba(var(--PrimaryRGB),.12); color:var(--Primary);}
 
 </style>
 </head>
@@ -387,6 +433,38 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Rappel libre ou reconnaissance&nbsp;: lequel gagne&nbsp;?</h2>
+    </div>
+    <p class="Intro">6 mots s’affichent 5 secondes. On teste ensuite votre rappel libre, puis votre reconnaissance sur la même liste — pour comparer les deux.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="wmStart" type="button">Commencer</button>
+      </div>
+      <div class="DemoStudyList" id="wmStage" hidden>
+        <ol class="SpList" id="wmList"></ol>
+      </div>
+      <div class="DemoRecall" id="wmRecall" hidden>
+        <label for="wmInput" class="DemoRecallLabel">Rappel libre — tapez ce dont vous vous souvenez&nbsp;:</label>
+        <textarea class="DemoTextarea" id="wmInput" rows="2" placeholder="ex : tasse, ballon…"></textarea>
+        <button class="DemoBtn" id="wmRecallCheck" type="button">Valider mon rappel</button>
+      </div>
+      <div class="DemoRecall" id="wmRecog" hidden>
+        <p class="DemoRecallLabel">Reconnaissance — cliquez sur tous les mots déjà vus&nbsp;:</p>
+        <div class="WmChips" id="wmChips"></div>
+        <button class="DemoBtn" id="wmRecogCheck" type="button">Valider ma reconnaissance</button>
+      </div>
+      <div class="DemoScores">
+        <span>Rappel libre&nbsp;: <strong id="wmScoreRecall">—</strong></span>
+        <span>Reconnaissance&nbsp;: <strong id="wmScoreRecog">—</strong></span>
+      </div>
+      <div class="DemoResult" id="wmResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +505,86 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var WORDS = ["corde","tasse","échelle","ballon","miroir","bougie"];
+  var DECOYS = ["brosse","casque","ancre","ruban","tambour","valise"];
+  var listEl = document.getElementById('wmList');
+  var stage = document.getElementById('wmStage');
+  var startBtn = document.getElementById('wmStart');
+  var recallBox = document.getElementById('wmRecall');
+  var input = document.getElementById('wmInput');
+  var recallCheck = document.getElementById('wmRecallCheck');
+  var recogBox = document.getElementById('wmRecog');
+  var chipsEl = document.getElementById('wmChips');
+  var recogCheck = document.getElementById('wmRecogCheck');
+  var scoreRecall = document.getElementById('wmScoreRecall');
+  var scoreRecog = document.getElementById('wmScoreRecog');
+  var result = document.getElementById('wmResult');
+
+  function normalize(s){
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  }
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  startBtn.addEventListener('click', function(){
+    startBtn.disabled = true;
+    recallBox.hidden = true;
+    recogBox.hidden = true;
+    result.className = 'DemoResult';
+    input.value = '';
+    listEl.innerHTML = WORDS.map(function(w){ return '<li>'+w+'</li>'; }).join('');
+    stage.hidden = false;
+    setTimeout(function(){
+      stage.hidden = true;
+      recallBox.hidden = false;
+      input.focus();
+    }, 5000);
+  });
+
+  recallCheck.addEventListener('click', function(){
+    var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+    var hits = WORDS.filter(function(w){ return typed.indexOf(normalize(w)) !== -1; }).length;
+    scoreRecall.textContent = hits + '/6';
+    recallBox.hidden = true;
+
+    var pool = shuffle(WORDS.concat(DECOYS));
+    chipsEl.innerHTML = pool.map(function(w){ return '<span class="WmChip" data-word="'+w+'">'+w+'</span>'; }).join('');
+    recogBox.hidden = false;
+  });
+
+  chipsEl.addEventListener('click', function(e){
+    var chip = e.target.closest('.WmChip');
+    if(chip){ chip.classList.toggle('picked'); }
+  });
+
+  recogCheck.addEventListener('click', function(){
+    var picked = Array.prototype.map.call(chipsEl.querySelectorAll('.WmChip.picked'), function(c){ return c.getAttribute('data-word'); });
+    var hits = WORDS.filter(function(w){ return picked.indexOf(w) !== -1; }).length;
+    scoreRecog.textContent = hits + '/6';
+    recogBox.hidden = true;
+
+    result.className = 'DemoResult show';
+    var r = scoreRecall.textContent, g = scoreRecog.textContent;
+    var rn = parseInt(r, 10), gn = parseInt(g, 10);
+    if(gn > rn){
+      result.innerHTML = 'Rappel libre&nbsp;: <strong>'+r+'</strong> — reconnaissance&nbsp;: <strong>'+g+'</strong>. Reconnaître était plus facile que se rappeler sans aide&nbsp;: c’est pour cela qu’une interface gagne à garder les choses visibles (historique, liens visités) plutôt que de compter sur la mémoire pure de l’utilisateur.';
+    } else {
+      result.innerHTML = 'Rappel libre&nbsp;: <strong>'+r+'</strong> — reconnaissance&nbsp;: <strong>'+g+'</strong>. Sur une liste aussi courte, l’écart ne se voit pas toujours&nbsp;; sur des listes plus longues, la reconnaissance dépasse presque systématiquement le rappel libre.';
+    }
+    startBtn.disabled = false;
+    startBtn.textContent = 'Réessayer';
+  });
 })();
 </script>
 </body>

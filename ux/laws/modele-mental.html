@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .MmTrash{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,33 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — modèle mental */
+  .MmDesk{position:relative; height:180px; background:#f1efe9; border-radius:14px; margin-top:20px; overflow:hidden;}
+  .MmFile{
+    position:absolute; top:24px; left:24px; width:84px; text-align:center; font-size:2.2rem;
+    cursor:grab; user-select:none; touch-action:none;
+  }
+  .MmFile span{display:block; font-size:.65rem; font-weight:700; color:var(--Charcoal); margin-top:4px;}
+  .MmFile.dragging{cursor:grabbing; opacity:.85; z-index:5;}
+  .MmTrash{position:absolute; bottom:20px; right:28px; font-size:2.6rem; transition:transform .15s ease;}
+  .MmTrash.hover{transform:scale(1.2);}
 
 </style>
 </head>
@@ -387,6 +416,22 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Aucune instruction — et pourtant vous saurez quoi faire</h2>
+    </div>
+    <p class="Intro">Débarrassez-vous simplement du fichier « rapport.pdf » comme vous le feriez naturellement.</p>
+
+    <div class="DemoBox">
+      <div class="MmDesk" id="mmDesk">
+        <div class="MmFile" id="mmFile">📄<span>rapport.pdf</span></div>
+        <div class="MmTrash" id="mmTrash">🗑️</div>
+      </div>
+      <div class="DemoResult" id="mmResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +472,77 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var desk = document.getElementById('mmDesk');
+  var file = document.getElementById('mmFile');
+  var trash = document.getElementById('mmTrash');
+  var result = document.getElementById('mmResult');
+  var dragging = false;
+  var offsetX = 0, offsetY = 0;
+  var done = false;
+
+  function pointerPos(e){
+    if(e.touches && e.touches.length){ return { x: e.touches[0].clientX, y: e.touches[0].clientY }; }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  function overlaps(a, b){
+    return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+  }
+
+  function onDown(e){
+    if(done) return;
+    dragging = true;
+    file.classList.add('dragging');
+    var p = pointerPos(e);
+    var rect = file.getBoundingClientRect();
+    offsetX = p.x - rect.left;
+    offsetY = p.y - rect.top;
+    e.preventDefault();
+  }
+
+  function onMove(e){
+    if(!dragging) return;
+    var p = pointerPos(e);
+    var deskRect = desk.getBoundingClientRect();
+    var x = p.x - deskRect.left - offsetX;
+    var y = p.y - deskRect.top - offsetY;
+    file.style.left = x + 'px';
+    file.style.top = y + 'px';
+
+    var fileRect = file.getBoundingClientRect();
+    var trashRect = trash.getBoundingClientRect();
+    trash.classList.toggle('hover', overlaps(fileRect, trashRect));
+    e.preventDefault();
+  }
+
+  function onUp(){
+    if(!dragging) return;
+    dragging = false;
+    file.classList.remove('dragging');
+    var fileRect = file.getBoundingClientRect();
+    var trashRect = trash.getBoundingClientRect();
+    if(overlaps(fileRect, trashRect)){
+      done = true;
+      file.style.display = 'none';
+      trash.classList.remove('hover');
+      result.className = 'DemoResult show';
+      result.innerHTML = 'Vous avez glissé le fichier vers la corbeille — sans qu’aucune instruction ne vous l’indique. C’est votre modèle mental du bureau physique, où l’on jette un document à la poubelle, qui a directement guidé le geste sur un écran.';
+    } else {
+      trash.classList.remove('hover');
+    }
+  }
+
+  file.addEventListener('mousedown', onDown);
+  file.addEventListener('touchstart', onDown, { passive:false });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, { passive:false });
+  window.addEventListener('mouseup', onUp);
+  window.addEventListener('touchend', onUp);
 })();
 </script>
 </body>

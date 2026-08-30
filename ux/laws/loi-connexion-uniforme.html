@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .UcGroupBg{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,42 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de connexion uniforme */
+  .UcRow{position:relative; display:flex; gap:24px; padding:30px 20px; background:#f1efe9; border-radius:14px; margin-top:20px; flex-wrap:wrap;}
+  .UcItem{font-size:1.6rem; color:var(--Primary); position:relative; z-index:2;}
+  .UcGroupBg{
+    position:absolute; top:14px; bottom:14px; border-radius:12px;
+    background:rgba(var(--PrimaryRGB),.14); border:2px solid var(--Primary);
+    z-index:1; opacity:0; transition:opacity .3s ease; pointer-events:none;
+  }
+  .UcGroupBg.on{opacity:1;}
 
 </style>
 </head>
@@ -387,6 +425,30 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Rien ne bouge, pourtant tout change</h2>
+    </div>
+    <p class="Intro">Les 6 icônes ci-dessous sont espacées de façon parfaitement régulière. Activez l’encadré et observez ce qui change dans votre perception.</p>
+
+    <div class="DemoBox">
+      <div class="UcRow" id="ucRow">
+        <span class="UcGroupBg" id="ucGroupBg" aria-hidden="true"></span>
+        <span class="UcItem">●</span>
+        <span class="UcItem">●</span>
+        <span class="UcItem">●</span>
+        <span class="UcItem">●</span>
+        <span class="UcItem">●</span>
+        <span class="UcItem">●</span>
+      </div>
+      <div class="DemoActions">
+        <button class="DemoBtn" id="ucToggle" type="button">Ajouter l’encadré</button>
+      </div>
+      <div class="DemoResult" id="ucResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +489,43 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var row = document.getElementById('ucRow');
+  var bg = document.getElementById('ucGroupBg');
+  var toggle = document.getElementById('ucToggle');
+  var result = document.getElementById('ucResult');
+  var items = row.querySelectorAll('.UcItem');
+  var on = false;
+
+  function positionBg(){
+    var rowRect = row.getBoundingClientRect();
+    var first = items[0].getBoundingClientRect();
+    var third = items[2].getBoundingClientRect();
+    var pad = 16;
+    bg.style.left = (first.left - rowRect.left - pad) + 'px';
+    bg.style.width = (third.right - first.left + pad * 2) + 'px';
+  }
+
+  toggle.addEventListener('click', function(){
+    on = !on;
+    if(on){
+      positionBg();
+      bg.classList.add('on');
+      toggle.textContent = 'Retirer l’encadré';
+      result.className = 'DemoResult show';
+      result.innerHTML = 'Rien n’a bougé&nbsp;: l’espacement entre les 6 icônes est resté strictement identique. Pourtant, entourer les 3 premières d’un simple fond commun suffit à les faire percevoir comme un groupe à part, séparé des 3 autres. C’est la loi de connexion uniforme&nbsp;: un fond ou une bordure partagée relie plus fort que la seule proximité.';
+    } else {
+      bg.classList.remove('on');
+      toggle.textContent = 'Ajouter l’encadré';
+      result.className = 'DemoResult';
+    }
+  });
+
+  window.addEventListener('resize', function(){ if(on) positionBg(); });
 })();
 </script>
 </body>

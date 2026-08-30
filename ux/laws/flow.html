@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -319,6 +320,42 @@
   @media (max-width: 760px){
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
+  }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .DemoScores{display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; font-size:.85rem; font-weight:700; color:var(--Charcoal);}
+
+  /* démo — flow */
+  .FlArena{margin-top:20px;}
+  .FlStatus{font-size:.85rem; font-weight:800; color:var(--Primary); margin-bottom:10px;}
+  .FlZone{position:relative; height:180px; background:#f1efe9; border-radius:14px; overflow:hidden;}
+  .FlTarget{
+    position:absolute; border-radius:50%; background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    cursor:pointer; box-shadow:0 8px 20px rgba(var(--PrimaryRGB),.35); border:none;
   }
 
 </style>
@@ -387,6 +424,30 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Une difficulté figée, ou calée sur vous&nbsp;?</h2>
+    </div>
+    <p class="Intro">Cliquez sur la cible dès qu’elle apparaît. Essayez d’abord en difficulté fixe, puis en difficulté qui s’ajuste à vos réussites.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="flStartFixed" type="button">Essayer en difficulté fixe</button>
+        <button class="DemoBtn" id="flStartAdapt" type="button">Essayer en difficulté ajustée</button>
+      </div>
+      <div class="FlArena" id="flArena" hidden>
+        <p class="FlStatus" id="flStatus"></p>
+        <div class="FlZone" id="flZone"></div>
+      </div>
+      <div class="DemoScores">
+        <span>Difficulté fixe&nbsp;: <strong id="flScoreFixed">—</strong></span>
+        <span>Difficulté ajustée&nbsp;: <strong id="flScoreAdapt">—</strong></span>
+      </div>
+      <div class="DemoResult" id="flResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +488,93 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var arena = document.getElementById('flArena');
+  var status = document.getElementById('flStatus');
+  var zone = document.getElementById('flZone');
+  var scoreFixed = document.getElementById('flScoreFixed');
+  var scoreAdapt = document.getElementById('flScoreAdapt');
+  var result = document.getElementById('flResult');
+  var btnFixed = document.getElementById('flStartFixed');
+  var btnAdapt = document.getElementById('flStartAdapt');
+
+  var ROUNDS = 6;
+  var mode = null;
+  var round = 0;
+  var hits = 0;
+  var windowMs = 900;
+  var targetTimer = null;
+  var shownAt = 0;
+
+  function placeTarget(){
+    var size = mode === 'adapt' ? Math.max(30, Math.min(70, windowMs / 12)) : 40;
+    var w = zone.clientWidth, h = zone.clientHeight;
+    var x = Math.random() * (w - size);
+    var y = Math.random() * (h - size);
+    zone.innerHTML = '<button class="FlTarget" style="width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px;" type="button"></button>';
+    shownAt = performance.now();
+    var target = zone.querySelector('.FlTarget');
+    target.addEventListener('click', onHit);
+    clearTimeout(targetTimer);
+    targetTimer = setTimeout(onMiss, mode === 'fixed' ? 550 : windowMs);
+  }
+
+  function nextOrEnd(){
+    round++;
+    if(round >= ROUNDS){ endRound(); }
+    else { placeTarget(); }
+  }
+
+  function onHit(){
+    clearTimeout(targetTimer);
+    hits++;
+    if(mode === 'adapt'){ windowMs = Math.max(350, windowMs - 80); }
+    nextOrEnd();
+  }
+
+  function onMiss(){
+    zone.innerHTML = '';
+    if(mode === 'adapt'){ windowMs = Math.min(1400, windowMs + 120); }
+    nextOrEnd();
+  }
+
+  function startRound(m){
+    mode = m;
+    round = 0;
+    hits = 0;
+    windowMs = 900;
+    btnFixed.disabled = true;
+    btnAdapt.disabled = true;
+    status.textContent = mode === 'fixed' ? 'Difficulté fixe — cliquez vite !' : 'Difficulté ajustée';
+    arena.hidden = false;
+    placeTarget();
+  }
+
+  function endRound(){
+    clearTimeout(targetTimer);
+    zone.innerHTML = '';
+    arena.hidden = true;
+    var pct = Math.round((hits / ROUNDS) * 100);
+    if(mode === 'fixed'){ scoreFixed.textContent = pct + '%'; }
+    else { scoreAdapt.textContent = pct + '%'; }
+    btnFixed.disabled = false;
+    btnAdapt.disabled = false;
+
+    var f = scoreFixed.textContent, a = scoreAdapt.textContent;
+    result.className = 'DemoResult show';
+    if(f !== '—' && a !== '—'){
+      result.innerHTML = 'Difficulté fixe&nbsp;: <strong>'+f+'</strong> de cibles touchées — difficulté ajustée&nbsp;: <strong>'+a+'</strong>. Le mode ajusté a resserré ou élargi la fenêtre de temps selon vos réussites, pour vous maintenir juste à la limite de vos capacités&nbsp;: c’est exactement l’équilibre challenge/compétence qui déclenche le flow.';
+    } else {
+      result.innerHTML = 'Score&nbsp;: <strong>'+pct+'%</strong> de cibles touchées. Essayez maintenant l’autre mode pour comparer.';
+    }
+  }
+
+  btnFixed.addEventListener('click', function(){ startRound('fixed'); });
+  btnAdapt.addEventListener('click', function(){ startRound('adapt'); });
 })();
 </script>
 </body>

@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .JkIcon{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,32 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de Jakob */
+  .JkRow{display:flex; flex-wrap:wrap; gap:14px; margin-top:20px; padding:24px; background:#f1efe9; border-radius:14px;}
+  .JkIcon{
+    width:56px; height:56px; border-radius:14px; border:1.5px solid var(--Borders); background:var(--PureWhite);
+    font-size:1.5rem; cursor:pointer; transition:border-color .15s ease, transform .15s ease;
+  }
+  .JkIcon:hover{border-color:var(--Primary); transform:translateY(-2px);}
+  .JkIcon.picked{border-color:var(--Primary); background:rgba(var(--PrimaryRGB),.12);}
+  .JkIcon:disabled{cursor:not-allowed;}
 
 </style>
 </head>
@@ -387,6 +415,26 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Où cliqueriez-vous par réflexe&nbsp;?</h2>
+    </div>
+    <p class="Intro">Imaginez un site un peu particulier. Cliquez sur l’icône qui, selon vous, sert à rechercher quelque chose.</p>
+
+    <div class="DemoBox">
+      <div class="JkRow" id="jkRow">
+        <button class="JkIcon" data-icon="home" type="button" aria-label="Accueil">🏠</button>
+        <button class="JkIcon" data-icon="settings" type="button" aria-label="Paramètres">⚙️</button>
+        <button class="JkIcon" data-icon="search" type="button" aria-label="Recherche">🔍</button>
+        <button class="JkIcon" data-icon="heart" type="button" aria-label="Favoris">❤️</button>
+        <button class="JkIcon" data-icon="bell" type="button" aria-label="Notifications">🔔</button>
+        <button class="JkIcon" data-icon="user" type="button" aria-label="Profil">👤</button>
+      </div>
+      <div class="DemoResult" id="jkResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +475,30 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var icons = document.querySelectorAll('.JkIcon');
+  var result = document.getElementById('jkResult');
+  var answered = false;
+
+  icons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(answered) return;
+      answered = true;
+      btn.classList.add('picked');
+      icons.forEach(function(b){ b.disabled = true; });
+      var choice = btn.getAttribute('data-icon');
+      result.className = 'DemoResult show';
+      if(choice === 'search'){
+        result.innerHTML = 'Vous avez cliqué sur la loupe — le réflexe presque universel. C’est exactement ce que prédit la loi de Jakob&nbsp;: sans même y réfléchir, vous avez transposé une convention apprise sur des dizaines d’autres sites.';
+      } else {
+        result.innerHTML = 'Vous avez résisté au réflexe de la loupe 🔍 — plus rare&nbsp;! Peut-être que l’annonce d’un site « particulier » vous a mis en alerte. Cela confirme la force de cette convention par l’exception&nbsp;: il a fallu un signal explicite pour la contourner.';
+      }
+    });
+  });
 })();
 </script>
 </body>

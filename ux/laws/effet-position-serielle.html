@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,53 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoBtnGhost{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:700;
+    background:transparent; color:var(--Charcoal); border:1.5px solid var(--Borders); border-radius:50px;
+    padding:12px 22px; cursor:pointer; transition:all .15s ease;
+  }
+  .DemoBtnGhost:hover{border-color:var(--Primary); color:var(--Primary);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — effet de position sérielle */
+  .DemoStudyList{margin-top:20px; text-align:center; padding:26px 20px; background:#f1efe9; border-radius:14px;}
+  .SpList{list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; font-size:1.05rem; font-weight:800; color:var(--Charcoal);}
+  .SpList li{background:var(--PureWhite); border-radius:8px; padding:8px 14px; box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .DemoRecall{margin-top:20px;}
+  .DemoRecallLabel{display:block; font-size:.82rem; font-weight:700; color:var(--Charcoal); margin-bottom:8px;}
+  .DemoTextarea{
+    width:100%; font-family:"Syne", sans-serif; font-size:.9rem; padding:12px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:#faf9f7; resize:vertical; margin-bottom:14px;
+  }
+  .DemoTextarea:focus{border-color:var(--Primary); outline:none;}
+  .DemoReview{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+  .DemoWordChip{font-size:.82rem; font-weight:700; padding:8px 14px; border-radius:8px; background:#f1efe9; color:var(--MinMuted);}
+  .DemoWordChip.hit{background:rgba(var(--PrimaryRGB),.12); color:var(--Primary);}
 
 </style>
 </head>
@@ -387,6 +435,30 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Quels mots retenez-vous le mieux&nbsp;?</h2>
+    </div>
+    <p class="Intro">Une liste de 9 mots s’affiche 6 secondes. Mémorisez-en le plus possible, dans l’ordre que vous voulez.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="spStart" type="button">Afficher la liste</button>
+      </div>
+      <div class="DemoStudyList" id="spStage" hidden>
+        <ol class="SpList" id="spList"></ol>
+      </div>
+      <div class="DemoRecall" id="spRecall" hidden>
+        <label for="spInput" class="DemoRecallLabel">Tapez les mots dont vous vous souvenez, séparés par des virgules&nbsp;:</label>
+        <textarea class="DemoTextarea" id="spInput" rows="2" placeholder="ex : tigre, lampe, nuage…"></textarea>
+        <button class="DemoBtn" id="spCheck" type="button">Voir mon score</button>
+      </div>
+      <div class="DemoReview" id="spReview" hidden></div>
+      <div class="DemoResult" id="spResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +499,74 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var WORDS = ["citron","montagne","clé","robot","tambour","orange","fusée","chapeau","rivière"];
+  var listEl = document.getElementById('spList');
+  var stage = document.getElementById('spStage');
+  var startBtn = document.getElementById('spStart');
+  var recallBox = document.getElementById('spRecall');
+  var input = document.getElementById('spInput');
+  var checkBtn = document.getElementById('spCheck');
+  var review = document.getElementById('spReview');
+  var result = document.getElementById('spResult');
+  var currentOrder = WORDS.slice();
+
+  function normalize(s){
+    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  }
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  startBtn.addEventListener('click', function(){
+    startBtn.disabled = true;
+    recallBox.hidden = true;
+    review.hidden = true;
+    result.className = 'DemoResult';
+    input.value = '';
+    currentOrder = shuffle(WORDS);
+    listEl.innerHTML = currentOrder.map(function(w){ return '<li>'+w+'</li>'; }).join('');
+    stage.hidden = false;
+    setTimeout(function(){
+      stage.hidden = true;
+      recallBox.hidden = false;
+      input.focus();
+    }, 6000);
+  });
+
+  checkBtn.addEventListener('click', function(){
+    var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+    var hits = currentOrder.map(function(w){ return typed.indexOf(normalize(w)) !== -1; });
+
+    review.hidden = false;
+    review.innerHTML = currentOrder.map(function(w, i){
+      return '<span class="DemoWordChip'+(hits[i] ? ' hit' : '')+'">'+(i+1)+'. '+w+'</span>';
+    }).join('');
+
+    var third = Math.ceil(currentOrder.length / 3);
+    var start = hits.slice(0, third).filter(Boolean).length;
+    var middle = hits.slice(third, currentOrder.length - third).filter(Boolean).length;
+    var end = hits.slice(currentOrder.length - third).filter(Boolean).length;
+
+    result.className = 'DemoResult show';
+    if(start + end > middle * 2){
+      result.innerHTML = 'Vous avez retrouvé <strong>'+start+'/3</strong> mots du début, <strong>'+middle+'/3</strong> du milieu et <strong>'+end+'/3</strong> de la fin. Le milieu de la liste est bien le point faible&nbsp;: c’est la courbe de position sérielle — effet de primauté au début, effet de récence à la fin.';
+    } else {
+      result.innerHTML = 'Vous avez retrouvé '+start+'/3 mots du début, '+middle+'/3 du milieu et '+end+'/3 de la fin. Sur un seul essai le résultat peut varier, mais à grande échelle c’est presque toujours le milieu d’une liste qui se retient le moins bien.';
+    }
+    checkBtn.disabled = true;
+    startBtn.disabled = false;
+    startBtn.textContent = 'Réessayer avec un nouvel ordre';
+  });
 })();
 </script>
 </body>

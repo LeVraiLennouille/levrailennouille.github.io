@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .PxDot{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,37 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de proximité */
+  .PxRow{display:flex; padding:34px 20px; background:#f1efe9; border-radius:14px; margin-top:20px;}
+  .PxDot{width:28px; height:28px; border-radius:50%; background:var(--Primary); margin-right:14px; transition:margin .4s ease;}
+  .PxDot:last-child{margin-right:0;}
+  .PxRow.grouped .PxDot:nth-child(2n){margin-right:38px;}
 
 </style>
 </head>
@@ -387,6 +420,25 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Seul l’espacement change — regardez ce que ça fait</h2>
+    </div>
+    <p class="Intro">Aucune couleur, aucune bordure ne change ci-dessous. Seuls les écarts entre les points bougent.</p>
+
+    <div class="DemoBox">
+      <div class="PxRow" id="pxRow">
+        <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+        <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+      </div>
+      <div class="DemoActions">
+        <button class="DemoBtn" id="pxToggle" type="button">Regrouper par paires</button>
+      </div>
+      <div class="DemoResult" id="pxResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +479,27 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var row = document.getElementById('pxRow');
+  var toggle = document.getElementById('pxToggle');
+  var result = document.getElementById('pxResult');
+  var on = false;
+
+  toggle.addEventListener('click', function(){
+    on = !on;
+    row.classList.toggle('grouped', on);
+    toggle.textContent = on ? 'Revenir à un espacement régulier' : 'Regrouper par paires';
+    result.className = 'DemoResult show';
+    if(on){
+      result.innerHTML = 'Les points n’ont ni changé de couleur ni de taille&nbsp;: seuls les écarts entre eux ont bougé. Pourtant, vous voyez désormais 4 paires distinctes là où il n’y avait qu’une rangée continue. C’est la loi de proximité&nbsp;: la distance seule suffit à créer un groupe perçu.';
+    } else {
+      result.innerHTML = 'Retour à un espacement parfaitement régulier&nbsp;: les 8 points se lisent à nouveau comme un seul ensemble continu.';
+    }
+  });
 })();
 </script>
 </body>

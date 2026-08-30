@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -319,6 +320,43 @@
   @media (max-width: 760px){
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
+  }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .DemoScores{display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; font-size:.85rem; font-weight:700; color:var(--Charcoal);}
+
+  /* démo — loi de Fitts */
+  .FtZone{margin-top:20px;}
+  .FtStatus{font-size:.85rem; font-weight:800; color:var(--Primary); margin-bottom:10px;}
+  .FtArea{position:relative; height:200px; background:#f1efe9; border-radius:14px; overflow:hidden;}
+  .FtBtn{
+    position:absolute; border-radius:50%; border:none; cursor:pointer;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%); color:#fff;
+    font-family:"Syne", sans-serif; font-weight:800; font-size:.72rem; box-shadow:0 8px 20px rgba(var(--PrimaryRGB),.35);
   }
 
 </style>
@@ -387,6 +425,30 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Chronométrez la loi de Fitts sur vous-même</h2>
+    </div>
+    <p class="Intro">Cliquez sur « Départ », puis sur la cible dès qu’elle apparaît. Trois essais par condition, on calcule votre temps moyen.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="ftStartNear" type="button">Cible grande & proche</button>
+        <button class="DemoBtn" id="ftStartFar" type="button">Cible petite & loin</button>
+      </div>
+      <div class="FtZone" id="ftZone" hidden>
+        <p class="FtStatus" id="ftStatus"></p>
+        <div class="FtArea" id="ftArea"></div>
+      </div>
+      <div class="DemoScores">
+        <span>Grande & proche&nbsp;: <strong id="ftScoreNear">—</strong></span>
+        <span>Petite & loin&nbsp;: <strong id="ftScoreFar">—</strong></span>
+      </div>
+      <div class="DemoResult" id="ftResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +489,83 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var zone = document.getElementById('ftZone');
+  var status = document.getElementById('ftStatus');
+  var area = document.getElementById('ftArea');
+  var scoreNear = document.getElementById('ftScoreNear');
+  var scoreFar = document.getElementById('ftScoreFar');
+  var result = document.getElementById('ftResult');
+  var btnNear = document.getElementById('ftStartNear');
+  var btnFar = document.getElementById('ftStartFar');
+
+  var REPS = 3;
+  var mode = null;
+  var rep = 0;
+  var times = [];
+  var startedAt = 0;
+
+  function showStart(){
+    status.textContent = 'Essai '+(rep+1)+'/'+REPS+' — cliquez sur Départ';
+    area.innerHTML = '<button class="FtBtn" id="ftGo" type="button" style="width:56px;height:56px;left:16px;bottom:16px;">Départ</button>';
+    document.getElementById('ftGo').addEventListener('click', showTarget);
+  }
+
+  function showTarget(){
+    startedAt = performance.now();
+    var w = area.clientWidth, h = area.clientHeight;
+    var size, x, y;
+    if(mode === 'near'){
+      size = 72;
+      x = 40 + Math.random() * Math.max(10, Math.min(80, w - size - 40));
+      y = Math.max(10, h - size - 20 - Math.random() * 30);
+    } else {
+      size = 26;
+      x = Math.max(10, w - size - 10 - Math.random() * 20);
+      y = 10 + Math.random() * 20;
+    }
+    area.innerHTML = '<button class="FtBtn" id="ftTarget" type="button" style="width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px;"></button>';
+    document.getElementById('ftTarget').addEventListener('click', function(){
+      times.push(performance.now() - startedAt);
+      rep++;
+      if(rep >= REPS){ finish(); } else { showStart(); }
+    });
+  }
+
+  function finish(){
+    var avg = times.reduce(function(s,v){ return s+v; }, 0) / times.length;
+    if(mode === 'near'){ scoreNear.textContent = Math.round(avg) + ' ms'; }
+    else { scoreFar.textContent = Math.round(avg) + ' ms'; }
+    zone.hidden = true;
+    btnNear.disabled = false;
+    btnFar.disabled = false;
+
+    var n = scoreNear.textContent, f = scoreFar.textContent;
+    result.className = 'DemoResult show';
+    if(n !== '—' && f !== '—'){
+      var nf = parseInt(n, 10), ff = parseInt(f, 10);
+      result.innerHTML = 'Cible grande & proche&nbsp;: <strong>'+n+'</strong> en moyenne — cible petite & loin&nbsp;: <strong>'+f+'</strong>. '+(ff > nf ? 'Comme le prédit la loi de Fitts, la cible plus petite et plus éloignée a pris plus de temps à atteindre.' : 'Sur un petit nombre d’essais, l’écart peut varier, mais la tendance générale — plus petit et plus loin, plus lent — est l’une des plus solides de l’ergonomie.');
+    } else {
+      result.innerHTML = 'Temps moyen&nbsp;: <strong>'+Math.round(avg)+' ms</strong>. Essayez maintenant l’autre condition pour comparer.';
+    }
+  }
+
+  function start(m){
+    mode = m;
+    rep = 0;
+    times = [];
+    btnNear.disabled = true;
+    btnFar.disabled = true;
+    zone.hidden = false;
+    showStart();
+  }
+
+  btnNear.addEventListener('click', function(){ start('near'); });
+  btnFar.addEventListener('click', function(){ start('far'); });
 })();
 </script>
 </body>

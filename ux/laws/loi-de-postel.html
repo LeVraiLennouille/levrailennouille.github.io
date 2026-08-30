@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,34 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de Postel */
+  .PoField{margin-top:20px;}
+  .PoLabel{display:block; font-size:.78rem; font-weight:700; color:var(--Charcoal); margin-bottom:8px;}
+  .PoField input{
+    width:100%; font-family:"Syne", sans-serif; font-size:.9rem; padding:12px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:#faf9f7;
+  }
+  .PoField input:focus{border-color:var(--Primary); outline:none;}
+  .PoMsg{font-size:.78rem; font-weight:700; margin-top:8px; min-height:1.2em;}
+  .PoMsg.error{color:#e53e3e;}
+  .PoMsg.success{color:#22c55e;}
 
 </style>
 </head>
@@ -387,6 +416,28 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Le même numéro, accepté ou rejeté selon le champ</h2>
+    </div>
+    <p class="Intro">Tapez votre numéro de téléphone comme vous l’écririez naturellement, dans les deux champs ci-dessous.</p>
+
+    <div class="DemoBox">
+      <div class="PoField">
+        <label class="PoLabel" for="poStrict">Champ strict — chiffres uniquement, sans espace</label>
+        <input type="text" id="poStrict" placeholder="0612345678">
+        <p class="PoMsg" id="poStrictMsg"></p>
+      </div>
+      <div class="PoField">
+        <label class="PoLabel" for="poLenient">Champ tolérant</label>
+        <input type="text" id="poLenient" placeholder="06 12 34 56 78">
+        <p class="PoMsg" id="poLenientMsg"></p>
+      </div>
+      <div class="DemoResult" id="poResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +478,53 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var strict = document.getElementById('poStrict');
+  var lenient = document.getElementById('poLenient');
+  var strictMsg = document.getElementById('poStrictMsg');
+  var lenientMsg = document.getElementById('poLenientMsg');
+  var result = document.getElementById('poResult');
+  var shown = false;
+
+  function maybeReveal(){
+    if(shown) return;
+    if(strictMsg.classList.contains('error') && lenientMsg.classList.contains('success')){
+      shown = true;
+      result.className = 'DemoResult show';
+      result.innerHTML = 'Le même numéro, écrit naturellement avec des espaces, est rejeté par le champ strict mais accepté par le champ tolérant. C’est la loi de Postel&nbsp;: accepter large en entrée, tout en normalisant proprement en sortie.';
+    }
+  }
+
+  strict.addEventListener('input', function(){
+    var v = strict.value.trim();
+    if(v === ''){ strictMsg.textContent = ''; strictMsg.className = 'PoMsg'; return; }
+    if(/^\d{10}$/.test(v)){
+      strictMsg.textContent = '✓ Accepté';
+      strictMsg.className = 'PoMsg success';
+    } else {
+      strictMsg.textContent = '✗ Format invalide — chiffres uniquement, sans espace';
+      strictMsg.className = 'PoMsg error';
+    }
+    maybeReveal();
+  });
+
+  lenient.addEventListener('input', function(){
+    var v = lenient.value.trim();
+    if(v === ''){ lenientMsg.textContent = ''; lenientMsg.className = 'PoMsg'; return; }
+    var digits = v.replace(/[\s.\-()]/g, '');
+    if(/^\d{10}$/.test(digits)){
+      lenientMsg.textContent = '✓ Accepté et normalisé en ' + digits;
+      lenientMsg.className = 'PoMsg success';
+    } else {
+      lenientMsg.textContent = '✗ Ça ne ressemble toujours pas à un numéro';
+      lenientMsg.className = 'PoMsg error';
+    }
+    maybeReveal();
+  });
 })();
 </script>
 </body>

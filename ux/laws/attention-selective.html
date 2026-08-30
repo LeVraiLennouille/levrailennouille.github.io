@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .SaBanner{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,53 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — attention sélective */
+  .SaField{display:flex; flex-wrap:wrap; gap:14px; padding:10px 0 6px;}
+  .SaBanner{
+    font-family:"Syne", sans-serif; font-weight:800; font-size:.8rem; text-transform:uppercase;
+    letter-spacing:.02em; color:#fff; border:none; border-radius:10px; padding:16px 20px; cursor:pointer;
+    background:linear-gradient(135deg, #ff5f6d, #ffc371);
+    box-shadow:0 10px 24px rgba(255,95,109,.35);
+    animation:SaPulse 1.6s ease-in-out infinite;
+  }
+  .SaBanner:nth-of-type(2n){background:linear-gradient(135deg, #f857a6, #ff5858); box-shadow:0 10px 24px rgba(248,87,166,.35);}
+  .SaBanner:nth-of-type(3n){background:linear-gradient(135deg, #ffd200, #f7971e); box-shadow:0 10px 24px rgba(247,151,30,.35); color:#3a2600;}
+  @keyframes SaPulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.035);}}
+  .SaReal{
+    font-family:"Syne", sans-serif; font-size:.82rem; font-weight:600; color:var(--Muted);
+    background:#eceae6; border:1px solid var(--Borders); border-radius:6px; padding:9px 18px; cursor:pointer;
+  }
+  .SaReal:hover{border-color:var(--Primary); color:var(--Primary);}
+  .SaCounter{margin-top:18px; font-size:.82rem; font-weight:700; color:var(--MinMuted);}
+  .SaField.done .SaBanner{opacity:.3; pointer-events:none; animation:none;}
+  .SaField.done .SaReal{opacity:.5; pointer-events:none;}
 
 </style>
 </head>
@@ -387,6 +436,27 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Retrouvez le bouton qui fonctionne vraiment</h2>
+    </div>
+    <p class="Intro">Un seul de ces éléments effectue réellement une action. Les autres ne sont que de fausses publicités. Cliquez sur celui qui permet de continuer.</p>
+
+    <div class="DemoBox">
+      <div class="SaField" id="saField">
+        <button class="SaBanner" data-fake="1" type="button">🎁 Gagnez un cadeau maintenant</button>
+        <button class="SaBanner" data-fake="2" type="button">🔥 Offre folle -70% aujourd’hui</button>
+        <button class="SaReal" data-real="1" type="button">Continuer</button>
+        <button class="SaBanner" data-fake="3" type="button">⚡ Ne manquez pas ça</button>
+        <button class="SaBanner" data-fake="4" type="button">📢 Cliquez ici vite</button>
+        <button class="SaBanner" data-fake="5" type="button">🏆 Vous avez été sélectionné</button>
+      </div>
+      <p class="SaCounter">Distractions cliquées&nbsp;: <strong id="saCount">0</strong></p>
+      <div class="DemoResult" id="saResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +497,41 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var field = document.getElementById('saField');
+  var counterEl = document.getElementById('saCount');
+  var result = document.getElementById('saResult');
+  var count = 0;
+  var finished = false;
+
+  var items = Array.prototype.slice.call(field.children);
+  for(var i = items.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  }
+  items.forEach(function(el){ field.appendChild(el); });
+
+  field.addEventListener('click', function(e){
+    var btn = e.target.closest('button');
+    if(!btn || finished) return;
+    if(btn.hasAttribute('data-fake')){
+      count++;
+      counterEl.textContent = count;
+    } else if(btn.hasAttribute('data-real')){
+      finished = true;
+      field.classList.add('done');
+      result.className = 'DemoResult show';
+      if(count === 0){
+        result.innerHTML = 'Trouvé dès le premier clic, sans passer par une seule publicité&nbsp;: c’est rare. La plupart des visiteurs cliquent sur au moins une bannière avant de repérer le vrai bouton.';
+      } else {
+        result.innerHTML = 'Trouvé après <strong>'+count+' distraction'+(count > 1 ? 's' : '')+'</strong> cliquée'+(count > 1 ? 's' : '')+'. Ce bouton était le seul à ne pas chercher à attirer l’attention — c’est justement ce qui le rend facile à ignorer par réflexe. L’attention sélective filtre en priorité ce qui ressemble à une publicité, utile ou non.';
+      }
+    }
+  });
 })();
 </script>
 </body>

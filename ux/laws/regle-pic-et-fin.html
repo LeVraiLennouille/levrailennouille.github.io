@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .PeBar{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,47 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoBtn:disabled{opacity:.45; cursor:not-allowed; transform:none; box-shadow:none;}
+  .DemoBtnGhost{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:700;
+    background:transparent; color:var(--Charcoal); border:1.5px solid var(--Borders); border-radius:50px;
+    padding:12px 22px; cursor:pointer; transition:all .15s ease;
+  }
+  .DemoBtnGhost:hover{border-color:var(--Primary); color:var(--Primary);}
+  .DemoBtnGhost:disabled{opacity:.45; cursor:not-allowed;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — règle du pic et de la fin */
+  .PeStage{margin-top:20px;}
+  .PeLabel{font-size:.85rem; font-weight:800; color:var(--Primary); margin-bottom:10px;}
+  .PeBarTrack{height:120px; background:#f1efe9; border-radius:14px; display:flex; align-items:flex-end; padding:10px; overflow:hidden;}
+  .PeBar{width:100%; border-radius:8px 8px 0 0; background:linear-gradient(180deg, #e53e3e, #ff9d5c); transition:height .35s ease;}
+  .PeAsk{margin-top:24px;}
+  .PeAskLabel{font-size:.9rem; font-weight:700; color:var(--Charcoal); margin-bottom:12px;}
 
 </style>
 </head>
@@ -387,6 +430,33 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Laquelle accepteriez-vous de revivre&nbsp;?</h2>
+    </div>
+    <p class="Intro">Deux séquences d’inconfort simulé, comme dans l’étude de Kahneman. Regardez-les toutes les deux, puis choisissez.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="peShowA" type="button">Lire la séquence A</button>
+        <button class="DemoBtn" id="peShowB" type="button">Lire la séquence B</button>
+      </div>
+      <div class="PeStage" id="peStage" hidden>
+        <p class="PeLabel" id="peLabel"></p>
+        <div class="PeBarTrack"><div class="PeBar" id="peBar"></div></div>
+      </div>
+      <div class="PeAsk" id="peAsk" hidden>
+        <p class="PeAskLabel">Laquelle accepteriez-vous de revivre&nbsp;?</p>
+        <div class="DemoActions">
+          <button class="DemoBtnGhost" data-pick="A" type="button">Séquence A</button>
+          <button class="DemoBtnGhost" data-pick="B" type="button">Séquence B</button>
+        </div>
+      </div>
+      <div class="DemoResult" id="peResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +497,75 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var SEQ_A = [20, 45, 70, 85, 80];
+  var SEQ_B = [20, 45, 70, 85, 80, 65, 50, 35, 20];
+  var STEP_MS = 400;
+
+  var stage = document.getElementById('peStage');
+  var label = document.getElementById('peLabel');
+  var bar = document.getElementById('peBar');
+  var ask = document.getElementById('peAsk');
+  var result = document.getElementById('peResult');
+  var btnA = document.getElementById('peShowA');
+  var btnB = document.getElementById('peShowB');
+  var seenA = false, seenB = false;
+
+  function playSequence(seq, labelText, cb){
+    stage.hidden = false;
+    label.textContent = labelText;
+    var i = 0;
+    bar.style.height = seq[0] + '%';
+    var timer = setInterval(function(){
+      bar.style.height = seq[i] + '%';
+      i++;
+      if(i >= seq.length){
+        clearInterval(timer);
+        setTimeout(function(){
+          stage.hidden = true;
+          if(cb) cb();
+        }, 500);
+      }
+    }, STEP_MS);
+  }
+
+  function maybeAsk(){
+    if(seenA && seenB && ask.hidden){ ask.hidden = false; }
+  }
+
+  btnA.addEventListener('click', function(){
+    btnA.disabled = true; btnB.disabled = true;
+    playSequence(SEQ_A, 'Séquence A en cours…', function(){
+      seenA = true;
+      btnA.disabled = false; btnB.disabled = false;
+      maybeAsk();
+    });
+  });
+  btnB.addEventListener('click', function(){
+    btnA.disabled = true; btnB.disabled = true;
+    playSequence(SEQ_B, 'Séquence B en cours…', function(){
+      seenB = true;
+      btnA.disabled = false; btnB.disabled = false;
+      maybeAsk();
+    });
+  });
+
+  ask.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pick = btn.getAttribute('data-pick');
+      result.className = 'DemoResult show';
+      if(pick === 'B'){
+        result.innerHTML = 'Vous avez choisi la séquence B — pourtant plus longue, donc avec strictement plus d’inconfort cumulé. Mais elle se terminait en douceur, alors que A s’arrêtait à son pic. C’est exactement l’expérience de Kahneman&nbsp;: on juge sur le pic et la fin, pas sur la somme.';
+      } else {
+        result.innerHTML = 'Vous avez choisi la séquence A — la plus courte, mais aussi celle qui se termine au plus fort de l’inconfort. C’est le choix le plus « rationnel » sur le plan de la durée totale&nbsp;; la majorité des participants de l’étude de Kahneman choisissaient pourtant l’inverse.';
+      }
+      ask.querySelectorAll('button').forEach(function(b){ b.disabled = true; });
+    });
+  });
 })();
 </script>
 </body>

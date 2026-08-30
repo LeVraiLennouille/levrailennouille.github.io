@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,43 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .DemoScores{display:flex; gap:24px; flex-wrap:wrap; margin-top:20px; font-size:.85rem; font-weight:700; color:var(--Charcoal);}
+
+  /* démo — loi de Tesler */
+  .TlBox{margin-top:20px; padding:20px; background:#f1efe9; border-radius:14px;}
+  .TlLabel{display:block; font-size:.8rem; font-weight:700; color:var(--Charcoal); margin-bottom:10px;}
+  .TlLabel code{background:rgba(var(--PureBlackRGB),.08); padding:2px 6px; border-radius:4px; font-size:.85em;}
+  .TlInputRow, .TlSelectRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  .TlInputRow input, .TlSelectRow select{
+    font-family:"Syne", sans-serif; font-size:.9rem; padding:10px 14px; border:1.5px solid var(--Borders);
+    border-radius:10px; background:var(--PureWhite);
+  }
+  .TlInputRow input:focus, .TlSelectRow select:focus{border-color:var(--Primary); outline:none;}
 
 </style>
 </head>
@@ -387,6 +425,41 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>La complexité n’a pas disparu, elle a changé de camp</h2>
+    </div>
+    <p class="Intro">Entrez une date de votre choix, de deux façons différentes. On regarde où se loge la difficulté.</p>
+
+    <div class="DemoBox">
+      <div class="DemoActions">
+        <button class="DemoBtn" id="tlShowRaw" type="button">Essayer le mode brut</button>
+        <button class="DemoBtn" id="tlShowGuided" type="button">Essayer le mode assisté</button>
+      </div>
+      <div class="TlBox" id="tlRaw" hidden>
+        <label class="TlLabel" for="tlRawInput">Format exact attendu&nbsp;: <code>JJ.MM.AAAA</code></label>
+        <div class="TlInputRow">
+          <input type="text" id="tlRawInput" placeholder="ex : 05.03.1998">
+          <button class="DemoBtn" id="tlRawCheck" type="button">Valider</button>
+        </div>
+      </div>
+      <div class="TlBox" id="tlGuided" hidden>
+        <div class="TlSelectRow">
+          <select id="tlDay" aria-label="Jour"></select>
+          <select id="tlMonth" aria-label="Mois"></select>
+          <select id="tlYear" aria-label="Année"></select>
+          <button class="DemoBtn" id="tlGuidedCheck" type="button">Valider</button>
+        </div>
+      </div>
+      <div class="DemoScores">
+        <span>Mode brut&nbsp;: <strong id="tlScoreRaw">—</strong></span>
+        <span>Mode assisté&nbsp;: <strong id="tlScoreGuided">—</strong></span>
+      </div>
+      <div class="DemoResult" id="tlResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +500,75 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var rawBox = document.getElementById('tlRaw');
+  var guidedBox = document.getElementById('tlGuided');
+  var rawInput = document.getElementById('tlRawInput');
+  var rawCheck = document.getElementById('tlRawCheck');
+  var guidedCheck = document.getElementById('tlGuidedCheck');
+  var scoreRaw = document.getElementById('tlScoreRaw');
+  var scoreGuided = document.getElementById('tlScoreGuided');
+  var result = document.getElementById('tlResult');
+  var daySel = document.getElementById('tlDay');
+  var monthSel = document.getElementById('tlMonth');
+  var yearSel = document.getElementById('tlYear');
+  var showRawBtn = document.getElementById('tlShowRaw');
+  var showGuidedBtn = document.getElementById('tlShowGuided');
+  var rawAttempts = 0;
+
+  function fillSelect(sel, from, to){
+    var html = '';
+    for(var i = from; i <= to; i++){ html += '<option value="'+i+'">'+i+'</option>'; }
+    sel.innerHTML = html;
+  }
+  fillSelect(daySel, 1, 31);
+  fillSelect(monthSel, 1, 12);
+  fillSelect(yearSel, 1950, 2026);
+
+  function checkComparison(){
+    var r = scoreRaw.textContent, g = scoreGuided.textContent;
+    if(r !== '—' && g !== '—'){
+      result.className = 'DemoResult show';
+      result.innerHTML = 'Mode brut&nbsp;: <strong>'+r+'</strong> — mode assisté&nbsp;: <strong>'+g+'</strong>. La difficulté de respecter un format n’a pas disparu dans le mode assisté&nbsp;: elle a été absorbée par le système, qui ne propose que des valeurs valides. C’est la loi de Tesler&nbsp;: la complexité se déplace, elle ne s’annule jamais vraiment.';
+    }
+  }
+
+  showRawBtn.addEventListener('click', function(){
+    rawBox.hidden = false;
+    rawAttempts = 0;
+    rawInput.value = '';
+    rawInput.placeholder = 'ex : 05.03.1998';
+    rawInput.style.borderColor = '';
+    rawInput.focus();
+  });
+  showGuidedBtn.addEventListener('click', function(){
+    guidedBox.hidden = false;
+  });
+
+  rawCheck.addEventListener('click', function(){
+    rawAttempts++;
+    var v = rawInput.value.trim();
+    var m = v.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+    if(m){
+      scoreRaw.textContent = rawAttempts + ' essai' + (rawAttempts > 1 ? 's' : '');
+      rawBox.hidden = true;
+      checkComparison();
+    } else {
+      rawInput.style.borderColor = '#e53e3e';
+      rawInput.placeholder = 'Format incorrect, réessayez : JJ.MM.AAAA';
+      rawInput.value = '';
+    }
+  });
+
+  guidedCheck.addEventListener('click', function(){
+    scoreGuided.textContent = '1 essai';
+    guidedBox.hidden = true;
+    checkComparison();
+  });
 })();
 </script>
 </body>

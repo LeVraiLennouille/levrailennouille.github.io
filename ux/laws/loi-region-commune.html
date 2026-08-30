@@ -285,6 +285,8 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
+    .RcBoxOutline{transition:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +322,40 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoBtn{
+    font-family:"Syne", sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    background:linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+    color:var(--PureWhite); border:none; border-radius:50px; padding:13px 24px; cursor:pointer;
+    box-shadow:0 8px 20px rgba(var(--PrimaryRGB),0.25);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .DemoBtn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(var(--PrimaryRGB),0.32);}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — loi de la région commune */
+  .RcGrid{position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; padding:34px; background:#f1efe9; border-radius:14px; margin-top:20px; max-width:340px;}
+  .RcItem{font-size:1.8rem; color:var(--Primary); text-align:center;}
+  .RcBoxOutline{
+    position:absolute; border-radius:12px; border:2px solid var(--Primary); background:rgba(var(--PrimaryRGB),.1);
+    opacity:0; transition:opacity .3s ease; pointer-events:none;
+  }
+  .RcBoxOutline.on{opacity:1;}
 
 </style>
 </head>
@@ -387,6 +423,26 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>2 lignes de 3, ou 3 colonnes de 2&nbsp;?</h2>
+    </div>
+    <p class="Intro">Ces 6 icônes sont espacées à l’identique, horizontalement et verticalement — impossible de trancher. Encadrez la première ligne et regardez ce qui se passe.</p>
+
+    <div class="DemoBox">
+      <div class="RcGrid" id="rcGrid">
+        <span class="RcBoxOutline" id="rcBoxOutline" aria-hidden="true"></span>
+        <div class="RcItem">★</div><div class="RcItem">★</div><div class="RcItem">★</div>
+        <div class="RcItem">★</div><div class="RcItem">★</div><div class="RcItem">★</div>
+      </div>
+      <div class="DemoActions">
+        <button class="DemoBtn" id="rcToggle" type="button">Encadrer la 1ère ligne</button>
+      </div>
+      <div class="DemoResult" id="rcResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +483,45 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var grid = document.getElementById('rcGrid');
+  var outline = document.getElementById('rcBoxOutline');
+  var toggle = document.getElementById('rcToggle');
+  var result = document.getElementById('rcResult');
+  var items = grid.querySelectorAll('.RcItem');
+  var on = false;
+
+  function positionOutline(){
+    var gridRect = grid.getBoundingClientRect();
+    var first = items[0].getBoundingClientRect();
+    var third = items[2].getBoundingClientRect();
+    var pad = 14;
+    outline.style.left = (first.left - gridRect.left - pad) + 'px';
+    outline.style.top = (first.top - gridRect.top - pad) + 'px';
+    outline.style.width = (third.right - first.left + pad * 2) + 'px';
+    outline.style.height = (first.bottom - first.top + pad * 2) + 'px';
+  }
+
+  toggle.addEventListener('click', function(){
+    on = !on;
+    if(on){
+      positionOutline();
+      outline.classList.add('on');
+      toggle.textContent = 'Retirer l’encadré';
+      result.className = 'DemoResult show';
+      result.innerHTML = 'L’espacement n’a pas bougé d’un pixel, horizontalement comme verticalement. Mais dès qu’un encadré délimite une zone, l’ambiguïté disparaît&nbsp;: ces 3 icônes se lisent instantanément comme un groupe à part. C’est la loi de la région commune&nbsp;: une frontière visuelle règle une ambiguïté que le seul espacement ne pouvait pas trancher.';
+    } else {
+      outline.classList.remove('on');
+      toggle.textContent = 'Encadrer la 1ère ligne';
+      result.className = 'DemoResult';
+    }
+  });
+
+  window.addEventListener('resize', function(){ if(on) positionOutline(); });
 })();
 </script>
 </body>

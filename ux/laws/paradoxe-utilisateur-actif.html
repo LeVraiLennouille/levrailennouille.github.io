@@ -285,6 +285,7 @@
     .LawCard:hover, .LawCard:focus-visible{transform:none;}
     .LawCard.picked{animation:none;}
     .Modal, .ModalBackdrop{transition:none;}
+    .DemoResult{animation:none;}
   }
 
   .LawHero{padding:clamp(112px,17vw,150px) 40px clamp(56px,9vw,76px);}
@@ -320,6 +321,36 @@
     .RelatedGrid{grid-template-columns:1fr;}
     .PageNavLink{max-width:100%;}
   }
+
+  /* ============================================
+     Démonstration interactive
+  ============================================ */
+  .DemoBox{
+    background:var(--PureWhite); border-radius:20px; padding:clamp(24px,4vw,36px);
+    box-shadow:0 4px 24px rgba(var(--PureBlackRGB),0.06); border:1px solid rgba(var(--PureBlackRGB),0.06);
+  }
+  .DemoActions{display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .DemoResult{
+    margin-top:22px; padding:16px 20px; border-radius:0 10px 10px 0;
+    background:rgba(var(--PrimaryRGB),0.07); border-left:3px solid var(--Primary);
+    font-size:.92rem; line-height:1.65; color:var(--Charcoal); font-weight:600;
+    display:none;
+  }
+  .DemoResult.show{display:block; animation:DemoFadeIn .4s ease;}
+  @keyframes DemoFadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* démo — paradoxe de l’utilisateur actif */
+  .PaInstructions{padding:18px 20px; background:#f1efe9; border-radius:12px; margin-top:20px;}
+  .PaInstructions p{font-size:.86rem; line-height:1.6; color:var(--Charcoal); font-weight:600; margin:0;}
+  .PaBtn{
+    font-family:"Syne", sans-serif; font-size:.85rem; font-weight:800; text-transform:uppercase; letter-spacing:.02em;
+    border:none; border-radius:50px; padding:14px 30px; cursor:pointer; color:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.18); transition:transform .15s ease, opacity .15s ease;
+  }
+  .PaBtn:hover{transform:translateY(-2px);}
+  .PaBtn:disabled{opacity:.4; cursor:not-allowed; transform:none;}
+  .PaBtn--blue{background:#2563eb;}
+  .PaBtn--green{background:#16a34a;}
 
 </style>
 </head>
@@ -387,6 +418,25 @@
     </div>
   </section>
 
+  <section class="Block" id="demo">
+    <div class="SectionTitle">
+      <span class="Eyebrow">Démonstration</span>
+      <h2>Avez-vous lu le mode d’emploi&nbsp;?</h2>
+    </div>
+    <p class="Intro">Le résultat ci-dessous dépend entièrement de ce que vous faites, pas de ce que vous répondez.</p>
+
+    <div class="DemoBox">
+      <div class="PaInstructions">
+        <p>Mode d’emploi&nbsp;: pour valider, cliquez d’abord sur le bouton <strong>bleu</strong>, puis sur le bouton <strong>vert</strong>. Cliquer sur le vert en premier fonctionne aussi, mais ne suit pas l’ordre indiqué.</p>
+      </div>
+      <div class="DemoActions">
+        <button class="PaBtn PaBtn--green" id="paGreen" type="button">Vert</button>
+        <button class="PaBtn PaBtn--blue" id="paBlue" type="button">Bleu</button>
+      </div>
+      <div class="DemoResult" id="paResult" aria-live="polite"></div>
+    </div>
+  </section>
+
   <section class="Block" id="liees">
     <div class="SectionTitle">
       <span class="Eyebrow">Lois liées</span>
@@ -427,6 +477,35 @@
   }
   document.addEventListener('scroll', updateProgress, { passive:true });
   updateProgress();
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var blueBtn = document.getElementById('paBlue');
+  var greenBtn = document.getElementById('paGreen');
+  var result = document.getElementById('paResult');
+  var blueClickedFirst = false;
+  var done = false;
+
+  blueBtn.addEventListener('click', function(){
+    if(done) return;
+    blueClickedFirst = true;
+    blueBtn.disabled = true;
+  });
+
+  greenBtn.addEventListener('click', function(){
+    if(done) return;
+    done = true;
+    blueBtn.disabled = true;
+    greenBtn.disabled = true;
+    result.className = 'DemoResult show';
+    if(blueClickedFirst){
+      result.innerHTML = 'Vous avez suivi l’ordre indiqué (bleu puis vert) — plutôt rare&nbsp;! La plupart des visiteurs cliquent directement, sans lire le mode d’emploi au-dessus. C’est précisément le paradoxe de l’utilisateur actif&nbsp;: foncer dans l’interface, quitte à devoir corriger après coup si besoin.';
+    } else {
+      result.innerHTML = 'Vous avez cliqué sur le bouton vert sans passer par le bleu — exactement ce que prédit ce paradoxe&nbsp;: la plupart des gens se lancent directement dans l’interface plutôt que de lire les instructions au-dessus, même quand la réponse y était clairement écrite.';
+    }
+  });
 })();
 </script>
 </body>
