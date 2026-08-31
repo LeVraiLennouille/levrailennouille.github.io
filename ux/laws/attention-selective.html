@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attention sélective | Le fichier UX</title>
-<meta name="description" content="On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -369,170 +364,124 @@
   .SaCounter{margin-top:18px; font-size:.82rem; font-weight:700; color:var(--MinMuted);}
   .SaField.done .SaBanner{opacity:.3; pointer-events:none; animation:none;}
   .SaField.done .SaReal{opacity:.5; pointer-events:none;}
-
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>25</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Décision & comportement · UX·01</span>
+                <h1>Attention sélective</h1>
+                <p class="Lede">On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>L’esprit filtre naturellement les informations non pertinentes pour rester concentré sur l’objectif du moment.</li>\n
+                <li>La « cécité aux bannières » pousse à ignorer, consciemment ou non, tout ce qui ressemble à de la publicité — mieux vaut donc éviter de donner ce même aspect à un contenu important.</li>\n
+                <li>La « cécité au changement » fait qu’un changement important dans une interface peut passer totalement inaperçu s’il n’est pas suffisamment signalé.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">La théorie de l’attention sélective se construit au milieu du XXe siècle à travers plusieurs modèles successifs — le filtre de Broadbent en 1958, l’effet « cocktail party » de Cherry en 1953, puis les modèles d’atténuation et de sélection tardive proposés dans les années 1960.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un habitué du web ignore instinctivement tout ce qui ressemble à une bannière publicitaire, même utile.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Retrouvez le bouton qui fonctionne vraiment</h2>
+            </div>
+            <p class="Intro">Un seul de ces éléments effectue réellement une action. Les autres ne sont que de fausses publicités. Cliquez sur celui qui permet de continuer.</p>
+            <div class="DemoBox">
+                <div class="SaField" id="saField">
+                    <button class="SaBanner" data-fake="1" type="button">🎁 Gagnez un cadeau maintenant</button>
+                    <button class="SaBanner" data-fake="2" type="button">🔥 Offre folle -70% aujourd’hui</button>
+                    <button class="SaReal" data-real="1" type="button">Continuer</button>
+                    <button class="SaBanner" data-fake="3" type="button">⚡ Ne manquez pas ça</button>
+                    <button class="SaBanner" data-fake="4" type="button">📢 Cliquez ici vite</button>
+                    <button class="SaBanner" data-fake="5" type="button">🏆 Vous avez été sélectionné</button>
+                </div>
+                <p class="SaCounter">Distractions cliquées&nbsp;: <strong id="saCount">0</strong></p>
+                <div class="DemoResult" id="saResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2>À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid">
+                <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>\n      <a class="Card RelatedCard" href="charge-cognitive.html"><span class="RelatedCode">UX·05</span><h3>Charge cognitive</h3><p>C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p></a>\n      <a class="Card RelatedCard" href="effet-von-restorff.html"><span class="RelatedCode">UX·28</span><h3>Effet Von Restorff</h3><p>Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p></a>
+            </div>
+        </section>
+        <nav class="PageNav">
+            <a href="loi-de-postel.html" class="PageNavLink Prev">← Loi de Postel</a>
+            <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
+            <a href="effet-position-serielle.html" class="PageNavLink Next">Effet de position sérielle →</a>
+        </nav>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var field = document.getElementById('saField');
+            var counterEl = document.getElementById('saCount');
+            var result = document.getElementById('saResult');
+            var count = 0;
+            var finished = false;
 
-<div class="ReadingProgress" id="progress"></div>
+            var items = Array.prototype.slice.call(field.children);
+            for(var i = items.length - 1; i > 0; i--){
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+            }
+            items.forEach(function(el){ field.appendChild(el); });
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>25</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Décision & comportement · UX·01</span>
-      <h1>Attention sélective</h1>
-      <p class="Lede">On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>L’esprit filtre naturellement les informations non pertinentes pour rester concentré sur l’objectif du moment.</li>\n      <li>La « cécité aux bannières » pousse à ignorer, consciemment ou non, tout ce qui ressemble à de la publicité — mieux vaut donc éviter de donner ce même aspect à un contenu important.</li>\n      <li>La « cécité au changement » fait qu’un changement important dans une interface peut passer totalement inaperçu s’il n’est pas suffisamment signalé.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">La théorie de l’attention sélective se construit au milieu du XXe siècle à travers plusieurs modèles successifs — le filtre de Broadbent en 1958, l’effet « cocktail party » de Cherry en 1953, puis les modèles d’atténuation et de sélection tardive proposés dans les années 1960.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un habitué du web ignore instinctivement tout ce qui ressemble à une bannière publicitaire, même utile.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Retrouvez le bouton qui fonctionne vraiment</h2>
-    </div>
-    <p class="Intro">Un seul de ces éléments effectue réellement une action. Les autres ne sont que de fausses publicités. Cliquez sur celui qui permet de continuer.</p>
-
-    <div class="DemoBox">
-      <div class="SaField" id="saField">
-        <button class="SaBanner" data-fake="1" type="button">🎁 Gagnez un cadeau maintenant</button>
-        <button class="SaBanner" data-fake="2" type="button">🔥 Offre folle -70% aujourd’hui</button>
-        <button class="SaReal" data-real="1" type="button">Continuer</button>
-        <button class="SaBanner" data-fake="3" type="button">⚡ Ne manquez pas ça</button>
-        <button class="SaBanner" data-fake="4" type="button">📢 Cliquez ici vite</button>
-        <button class="SaBanner" data-fake="5" type="button">🏆 Vous avez été sélectionné</button>
-      </div>
-      <p class="SaCounter">Distractions cliquées&nbsp;: <strong id="saCount">0</strong></p>
-      <div class="DemoResult" id="saResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>\n      <a class="Card RelatedCard" href="charge-cognitive.html"><span class="RelatedCode">UX·05</span><h3>Charge cognitive</h3><p>C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p></a>\n      <a class="Card RelatedCard" href="effet-von-restorff.html"><span class="RelatedCode">UX·28</span><h3>Effet Von Restorff</h3><p>Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-postel.html" class="PageNavLink Prev">← Loi de Postel</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="effet-position-serielle.html" class="PageNavLink Next">Effet de position sérielle →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/selective-attention/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var field = document.getElementById('saField');
-  var counterEl = document.getElementById('saCount');
-  var result = document.getElementById('saResult');
-  var count = 0;
-  var finished = false;
-
-  var items = Array.prototype.slice.call(field.children);
-  for(var i = items.length - 1; i > 0; i--){
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
-  }
-  items.forEach(function(el){ field.appendChild(el); });
-
-  field.addEventListener('click', function(e){
-    var btn = e.target.closest('button');
-    if(!btn || finished) return;
-    if(btn.hasAttribute('data-fake')){
-      count++;
-      counterEl.textContent = count;
-    } else if(btn.hasAttribute('data-real')){
-      finished = true;
-      field.classList.add('done');
-      result.className = 'DemoResult show';
-      if(count === 0){
-        result.innerHTML = 'Trouvé dès le premier clic, sans passer par une seule publicité&nbsp;: c’est rare. La plupart des visiteurs cliquent sur au moins une bannière avant de repérer le vrai bouton.';
-      } else {
-        result.innerHTML = 'Trouvé après <strong>'+count+' distraction'+(count > 1 ? 's' : '')+'</strong> cliquée'+(count > 1 ? 's' : '')+'. Ce bouton était le seul à ne pas chercher à attirer l’attention — c’est justement ce qui le rend facile à ignorer par réflexe. L’attention sélective filtre en priorité ce qui ressemble à une publicité, utile ou non.';
-      }
-    }
-  });
-})();
-</script>
+            field.addEventListener('click', function(e){
+                var btn = e.target.closest('button');
+                if(!btn || finished) return;
+                if(btn.hasAttribute('data-fake')){
+                    count++;
+                    counterEl.textContent = count;
+                } else if(btn.hasAttribute('data-real')){
+                    finished = true;
+                    field.classList.add('done');
+                    result.className = 'DemoResult show';
+                    if(count === 0){
+                        result.innerHTML = 'Trouvé dès le premier clic, sans passer par une seule publicité&nbsp;: c’est rare. La plupart des visiteurs cliquent sur au moins une bannière avant de repérer le vrai bouton.';
+                    } else {
+                        result.innerHTML = 'Trouvé après <strong>'+count+' distraction'+(count > 1 ? 's' : '')+'</strong> cliquée'+(count > 1 ? 's' : '')+'. Ce bouton était le seul à ne pas chercher à attirer l’attention — c’est justement ce qui le rend facile à ignorer par réflexe. L’attention sélective filtre en priorité ce qui ressemble à une publicité, utile ou non.';
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

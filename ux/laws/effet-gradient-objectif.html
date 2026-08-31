@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Effet de gradient d’objectif | Le fichier UX</title>
-<meta name="description" content="La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -369,183 +364,124 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>09</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Décision & comportement · UX·06</span>
+                <h1>Effet de gradient d’objectif</h1>
+                <p class="Lede">La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Plus les utilisateurs se rapprochent de la fin d’une tâche, plus ils progressent rapidement vers son accomplissement.</li>\n
+                <li>Donner une impression de progrès, même artificielle, renforce la motivation à terminer une tâche.</li>\n
+                <li>Un indicateur de progression clair encourage à aller jusqu’au bout.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">L’hypothèse du gradient d’objectif est proposée par le psychologue comportementaliste Clark Hull en 1932, à partir d’une expérience où des rats couraient de plus en plus vite à mesure qu’ils se rapprochaient de la nourriture dans un couloir.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Une barre de fidélité déjà remplie à 80 % pousse à finir ses achats pour débloquer la récompense.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Vos clics accélèrent-ils en approchant du but&nbsp;?</h2>
+            </div>
+            <p class="Intro">Cliquez sur « Ajouter un tampon » pour remplir la carte. On regarde ensuite si vos clics se sont resserrés à l’approche de la fin.</p>
+            <div class="DemoBox">
+                <div class="GgCard">
+                    <div class="GgStamps" id="ggStamps"></div>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ggStamp" type="button">Ajouter un tampon</button>
+                    <button class="DemoBtnGhost" id="ggReset" type="button" hidden>Recommencer</button>
+                </div>
+                <div class="DemoResult" id="ggResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var TOTAL = 10;
+            var stampsEl = document.getElementById('ggStamps');
+            var btn = document.getElementById('ggStamp');
+            var resetBtn = document.getElementById('ggReset');
+            var result = document.getElementById('ggResult');
+            var times = [];
+            var count = 0;
 
-<div class="ReadingProgress" id="progress"></div>
+            function render(){
+                var html = '';
+                for(var i = 0; i < TOTAL; i++){
+                    html += '<div class="GgSlot'+(i < count ? ' filled' : '')+'">'+(i < count ? '✓' : '')+'</div>';
+                }
+                stampsEl.innerHTML = html;
+            }
+            render();
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function avg(arr){ return arr.reduce(function(s,v){return s+v; }, 0) / arr.length;}
 
-<main id="top">
+            btn.addEventListener('click', function(){
+                times.push(performance.now());
+                count++;
+                render();
+                if(count >= TOTAL){
+                    btn.disabled = true;
+                    var deltas = [];
+                    for(var i = 1; i < times.length; i++){deltas.push(times[i] - times[i-1]);}
+                    var mid = Math.floor(deltas.length / 2);
+                    var avgFirst = avg(deltas.slice(0, mid));
+                    var avgSecond = avg(deltas.slice(mid));
+                    result.className = 'DemoResult show';
+                    if(avgSecond < avgFirst){
+                        result.innerHTML = 'Vos clics sont passés de <strong>'+Math.round(avgFirst)+' ms</strong> d’écart en moyenne au début à <strong>'+Math.round(avgSecond)+' ms</strong> en fin de carte&nbsp;: vous avez accéléré à l’approche de l’objectif. C’est le gradient d’objectif&nbsp;: remplir chaque case demande le même effort, mais la proximité du but pousse à s’y précipiter.';
+                    } else {
+                        result.innerHTML = 'Cette fois vos clics n’ont pas franchement accéléré ('+Math.round(avgFirst)+' ms puis '+Math.round(avgSecond)+' ms) — la mesure est sensible aux à-coups d’un seul essai. L’effet reste l’un des plus robustes de la littérature marketing, du café fidélité aux barres de progression.';
+                    }
+                    resetBtn.hidden = false;
+                }
+            });
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>09</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Décision & comportement · UX·06</span>
-      <h1>Effet de gradient d’objectif</h1>
-      <p class="Lede">La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">La motivation à atteindre un but augmente à mesure qu’on s’en rapproche, même si l’effort réel reste constant.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Plus les utilisateurs se rapprochent de la fin d’une tâche, plus ils progressent rapidement vers son accomplissement.</li>\n      <li>Donner une impression de progrès, même artificielle, renforce la motivation à terminer une tâche.</li>\n      <li>Un indicateur de progression clair encourage à aller jusqu’au bout.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">L’hypothèse du gradient d’objectif est proposée par le psychologue comportementaliste Clark Hull en 1932, à partir d’une expérience où des rats couraient de plus en plus vite à mesure qu’ils se rapprochaient de la nourriture dans un couloir.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Une barre de fidélité déjà remplie à 80 % pousse à finir ses achats pour débloquer la récompense.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Vos clics accélèrent-ils en approchant du but&nbsp;?</h2>
-    </div>
-    <p class="Intro">Cliquez sur « Ajouter un tampon » pour remplir la carte. On regarde ensuite si vos clics se sont resserrés à l’approche de la fin.</p>
-
-    <div class="DemoBox">
-      <div class="GgCard">
-        <div class="GgStamps" id="ggStamps"></div>
-      </div>
-      <div class="DemoActions">
-        <button class="DemoBtn" id="ggStamp" type="button">Ajouter un tampon</button>
-        <button class="DemoBtnGhost" id="ggReset" type="button" hidden>Recommencer</button>
-      </div>
-      <div class="DemoResult" id="ggResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>\n      <a class="Card RelatedCard" href="loi-region-commune.html"><span class="RelatedCode">UX·12</span><h3>Loi de la région commune</h3><p>Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p></a>\n      <a class="Card RelatedCard" href="loi-de-proximite.html"><span class="RelatedCode">UX·13</span><h3>Loi de proximité</h3><p>Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="flow.html" class="PageNavLink Prev">← Flow</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-de-hick.html" class="PageNavLink Next">Loi de Hick →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/goal-gradient-effect/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var TOTAL = 10;
-  var stampsEl = document.getElementById('ggStamps');
-  var btn = document.getElementById('ggStamp');
-  var resetBtn = document.getElementById('ggReset');
-  var result = document.getElementById('ggResult');
-  var times = [];
-  var count = 0;
-
-  function render(){
-    var html = '';
-    for(var i = 0; i < TOTAL; i++){
-      html += '<div class="GgSlot'+(i < count ? ' filled' : '')+'">'+(i < count ? '✓' : '')+'</div>';
-    }
-    stampsEl.innerHTML = html;
-  }
-  render();
-
-  function avg(arr){ return arr.reduce(function(s,v){ return s+v; }, 0) / arr.length; }
-
-  btn.addEventListener('click', function(){
-    times.push(performance.now());
-    count++;
-    render();
-    if(count >= TOTAL){
-      btn.disabled = true;
-      var deltas = [];
-      for(var i = 1; i < times.length; i++){ deltas.push(times[i] - times[i-1]); }
-      var mid = Math.floor(deltas.length / 2);
-      var avgFirst = avg(deltas.slice(0, mid));
-      var avgSecond = avg(deltas.slice(mid));
-      result.className = 'DemoResult show';
-      if(avgSecond < avgFirst){
-        result.innerHTML = 'Vos clics sont passés de <strong>'+Math.round(avgFirst)+' ms</strong> d’écart en moyenne au début à <strong>'+Math.round(avgSecond)+' ms</strong> en fin de carte&nbsp;: vous avez accéléré à l’approche de l’objectif. C’est le gradient d’objectif&nbsp;: remplir chaque case demande le même effort, mais la proximité du but pousse à s’y précipiter.';
-      } else {
-        result.innerHTML = 'Cette fois vos clics n’ont pas franchement accéléré ('+Math.round(avgFirst)+' ms puis '+Math.round(avgSecond)+' ms) — la mesure est sensible aux à-coups d’un seul essai. L’effet reste l’un des plus robustes de la littérature marketing, du café fidélité aux barres de progression.';
-      }
-      resetBtn.hidden = false;
-    }
-  });
-
-  resetBtn.addEventListener('click', function(){
-    times = [];
-    count = 0;
-    render();
-    btn.disabled = false;
-    resetBtn.hidden = true;
-    result.className = 'DemoResult';
-    result.innerHTML = '';
-  });
-})();
+            resetBtn.addEventListener('click', function(){
+                times = [];
+                count = 0;
+                render();
+                btn.disabled = false;
+                resetBtn.hidden = true;
+                result.className = 'DemoResult';
+                result.innerHTML = '';
+            });
+        })();
 </script>
 </body>
 </html>

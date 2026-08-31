@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Charge cognitive | Le fichier UX</title>
-<meta name="description" content="C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -370,238 +365,176 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>05</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Mémoire & charge cognitive · UX·03</span>
+                <h1>Charge cognitive</h1>
+                <p class="Lede">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Quand la quantité d’information à traiter dépasse ce que l’esprit peut gérer, les tâches deviennent plus difficiles et des détails sont manqués.</li>\n
+                <li>La charge cognitive intrinsèque correspond à l’effort nécessaire pour comprendre une information et suivre ses propres objectifs.</li>\n
+                <li>La charge cognitive extrinsèque correspond aux éléments d’interface superflus, qui mobilisent de l’attention sans aider à la compréhension.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">La théorie de la charge cognitive est développée à la fin des années 1980 par John Sweller, qui prolonge les travaux de George Miller sur le traitement de l’information, avec l’idée que la conception pédagogique peut être utilisée pour la réduire chez l’apprenant.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un tableau de bord qui affiche 40 indicateurs d’un coup demande plus d’effort qu’un tri par priorité.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Chronométrez votre propre recherche</h2>
+            </div>
+            <p class="Intro">Deux tableaux de bord, une seule mission&nbsp;: trouver le <strong>taux de conversion</strong> le plus vite possible. Essayez d’abord la version surchargée, puis la version triée par priorité, et comparez vos deux temps.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ccStartOverload" type="button">Essayer la vue surchargée</button>
+                    <button class="DemoBtn" id="ccStartClean" type="button">Essayer la vue allégée</button>
+                </div>
+                <div class="CcStage" id="ccStage" hidden>
+                    <p class="CcTimer">⏱ <span id="ccTime">0.0</span>s — cliquez sur « Taux de conversion »</p>
+                    <div class="CcGrid" id="ccGrid"></div>
+                </div>
+                <div class="DemoScores">
+                    <span>Vue surchargée&nbsp;: <strong id="ccScoreOverload">—</strong></span>
+                    <span>Vue allégée&nbsp;: <strong id="ccScoreClean">—</strong></span>
+                </div>
+                <div class="DemoResult" id="ccResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var KPIS = [
+                "Utilisateurs actifs : 1 204", "Taux de rebond : 42%", "Sessions : 8 391",
+                "Durée moyenne : 3m12", "Pages vues : 15 293", "Nouveaux inscrits : 87",
+                "Taux d’ouverture : 24%", "Paniers abandonnés : 156", "Temps de chargement : 1.8s",
+                "Requêtes support : 32", "Taux de clic : 3.1%", "Visiteurs uniques : 6 720",
+                "Erreurs serveur : 4", "Taux de churn : 2.4%", "Note moyenne : 4.3/5",
+                "Partages sociaux : 211", "Abonnés newsletter : 3 980", "Temps sur page : 2m05",
+                "Taux de retour : 38%", "Coût par clic : 0.42€", "Impressions : 44 120",
+                "Taux d’erreur : 0.6%", "Ventes du jour : 312", "Trafic mobile : 61%"
+            ];
+            var TARGET = "Taux de conversion : 4.8%";
 
-<div class="ReadingProgress" id="progress"></div>
+            var stage = document.getElementById('ccStage');
+            var grid = document.getElementById('ccGrid');
+            var timeEl = document.getElementById('ccTime');
+            var scoreOverload = document.getElementById('ccScoreOverload');
+            var scoreClean = document.getElementById('ccScoreClean');
+            var result = document.getElementById('ccResult');
+            var btnOverload = document.getElementById('ccStartOverload');
+            var btnClean = document.getElementById('ccStartClean');
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            var startTime = null;
+            var rafId = null;
+            var currentMode = null;
 
-<main id="top">
+            function shuffle(arr){
+                for(var i = arr.length - 1; i > 0; i--){
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+                }
+                return arr;
+            }
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>05</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Mémoire & charge cognitive · UX·03</span>
-      <h1>Charge cognitive</h1>
-      <p class="Lede">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
-    </div>
-  </section>
+            function tick(){
+                var elapsed = (performance.now() - startTime) / 1000;
+                timeEl.textContent = elapsed.toFixed(1);
+                rafId = requestAnimationFrame(tick);
+            }
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
-  </section>
+            function tileHTML(txt){
+                return '<div class="CcTile" data-target="'+(txt === TARGET ? '1' : '0')+'">'+txt+'</div>';
+            }
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Quand la quantité d’information à traiter dépasse ce que l’esprit peut gérer, les tâches deviennent plus difficiles et des détails sont manqués.</li>\n      <li>La charge cognitive intrinsèque correspond à l’effort nécessaire pour comprendre une information et suivre ses propres objectifs.</li>\n      <li>La charge cognitive extrinsèque correspond aux éléments d’interface superflus, qui mobilisent de l’attention sans aider à la compréhension.</li>
-    </ul>
-  </section>
+            function startRound(mode){
+                currentMode = mode;
+                btnOverload.disabled = true;
+                btnClean.disabled = true;
 
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">La théorie de la charge cognitive est développée à la fin des années 1980 par John Sweller, qui prolonge les travaux de George Miller sur le traitement de l’information, avec l’idée que la conception pédagogique peut être utilisée pour la réduire chez l’apprenant.</p>
-  </section>
+                if(mode === 'overload'){
+                    var all = shuffle(KPIS.slice());
+                    all.splice(Math.floor(Math.random() * (all.length + 1)), 0, TARGET);
+                    grid.className = 'CcGrid';
+                    grid.innerHTML = all.map(tileHTML).join('');
+                } else {
+                    var picks = shuffle(KPIS.slice()).slice(0, 3);
+                    var mix = shuffle([TARGET].concat(picks));
+                    grid.className = 'CcGrid clean';
+                    grid.innerHTML = mix.map(tileHTML).join('') + '<div class="CcTile more">+ 20 autres indicateurs</div>';
+                }
 
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un tableau de bord qui affiche 40 indicateurs d’un coup demande plus d’effort qu’un tri par priorité.</p>
-      </div>
-    </div>
-  </section>
+                stage.hidden = false;
+                result.className = 'DemoResult';
+                startTime = performance.now();
+                tick();
+            }
 
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Chronométrez votre propre recherche</h2>
-    </div>
-    <p class="Intro">Deux tableaux de bord, une seule mission&nbsp;: trouver le <strong>taux de conversion</strong> le plus vite possible. Essayez d’abord la version surchargée, puis la version triée par priorité, et comparez vos deux temps.</p>
+            btnOverload.addEventListener('click', function(){startRound('overload');});
+            btnClean.addEventListener('click', function(){startRound('clean');});
 
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="ccStartOverload" type="button">Essayer la vue surchargée</button>
-        <button class="DemoBtn" id="ccStartClean" type="button">Essayer la vue allégée</button>
-      </div>
+            grid.addEventListener('click', function(e){
+                var tile = e.target.closest('.CcTile');
+                if(!tile || !currentMode) return;
+                if(tile.getAttribute('data-target') !== '1') return;
 
-      <div class="CcStage" id="ccStage" hidden>
-        <p class="CcTimer">⏱ <span id="ccTime">0.0</span>s — cliquez sur « Taux de conversion »</p>
-        <div class="CcGrid" id="ccGrid"></div>
-      </div>
+                cancelAnimationFrame(rafId);
+                var elapsed = (performance.now() - startTime) / 1000;
+                if(currentMode === 'overload'){scoreOverload.textContent = elapsed.toFixed(1) + 's';}
+                else { scoreClean.textContent = elapsed.toFixed(1) + 's'; }
+                stage.hidden = true;
+                currentMode = null;
+                btnOverload.disabled = false;
+                btnClean.disabled = false;
 
-      <div class="DemoScores">
-        <span>Vue surchargée&nbsp;: <strong id="ccScoreOverload">—</strong></span>
-        <span>Vue allégée&nbsp;: <strong id="ccScoreClean">—</strong></span>
-      </div>
-
-      <div class="DemoResult" id="ccResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>\n      <a class="Card RelatedCard" href="memoire-de-travail.html"><span class="RelatedCode">UX·29</span><h3>Mémoire de travail</h3><p>C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours.</p></a>\n      <a class="Card RelatedCard" href="loi-de-miller.html"><span class="RelatedCode">UX·18</span><h3>Loi de Miller</h3><p>La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="biais-cognitif.html" class="PageNavLink Prev">← Biais cognitif</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="seuil-de-doherty.html" class="PageNavLink Next">Seuil de Doherty →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/cognitive-load/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var KPIS = [
-    "Utilisateurs actifs : 1 204", "Taux de rebond : 42%", "Sessions : 8 391",
-    "Durée moyenne : 3m12", "Pages vues : 15 293", "Nouveaux inscrits : 87",
-    "Taux d’ouverture : 24%", "Paniers abandonnés : 156", "Temps de chargement : 1.8s",
-    "Requêtes support : 32", "Taux de clic : 3.1%", "Visiteurs uniques : 6 720",
-    "Erreurs serveur : 4", "Taux de churn : 2.4%", "Note moyenne : 4.3/5",
-    "Partages sociaux : 211", "Abonnés newsletter : 3 980", "Temps sur page : 2m05",
-    "Taux de retour : 38%", "Coût par clic : 0.42€", "Impressions : 44 120",
-    "Taux d’erreur : 0.6%", "Ventes du jour : 312", "Trafic mobile : 61%"
-  ];
-  var TARGET = "Taux de conversion : 4.8%";
-
-  var stage = document.getElementById('ccStage');
-  var grid = document.getElementById('ccGrid');
-  var timeEl = document.getElementById('ccTime');
-  var scoreOverload = document.getElementById('ccScoreOverload');
-  var scoreClean = document.getElementById('ccScoreClean');
-  var result = document.getElementById('ccResult');
-  var btnOverload = document.getElementById('ccStartOverload');
-  var btnClean = document.getElementById('ccStartClean');
-
-  var startTime = null;
-  var rafId = null;
-  var currentMode = null;
-
-  function shuffle(arr){
-    for(var i = arr.length - 1; i > 0; i--){
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
-    }
-    return arr;
-  }
-
-  function tick(){
-    var elapsed = (performance.now() - startTime) / 1000;
-    timeEl.textContent = elapsed.toFixed(1);
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function tileHTML(txt){
-    return '<div class="CcTile" data-target="'+(txt === TARGET ? '1' : '0')+'">'+txt+'</div>';
-  }
-
-  function startRound(mode){
-    currentMode = mode;
-    btnOverload.disabled = true;
-    btnClean.disabled = true;
-
-    if(mode === 'overload'){
-      var all = shuffle(KPIS.slice());
-      all.splice(Math.floor(Math.random() * (all.length + 1)), 0, TARGET);
-      grid.className = 'CcGrid';
-      grid.innerHTML = all.map(tileHTML).join('');
-    } else {
-      var picks = shuffle(KPIS.slice()).slice(0, 3);
-      var mix = shuffle([TARGET].concat(picks));
-      grid.className = 'CcGrid clean';
-      grid.innerHTML = mix.map(tileHTML).join('') + '<div class="CcTile more">+ 20 autres indicateurs</div>';
-    }
-
-    stage.hidden = false;
-    result.className = 'DemoResult';
-    startTime = performance.now();
-    tick();
-  }
-
-  btnOverload.addEventListener('click', function(){ startRound('overload'); });
-  btnClean.addEventListener('click', function(){ startRound('clean'); });
-
-  grid.addEventListener('click', function(e){
-    var tile = e.target.closest('.CcTile');
-    if(!tile || !currentMode) return;
-    if(tile.getAttribute('data-target') !== '1') return;
-
-    cancelAnimationFrame(rafId);
-    var elapsed = (performance.now() - startTime) / 1000;
-    if(currentMode === 'overload'){ scoreOverload.textContent = elapsed.toFixed(1) + 's'; }
-    else { scoreClean.textContent = elapsed.toFixed(1) + 's'; }
-    stage.hidden = true;
-    currentMode = null;
-    btnOverload.disabled = false;
-    btnClean.disabled = false;
-
-    var o = scoreOverload.textContent, c = scoreClean.textContent;
-    result.className = 'DemoResult show';
-    if(o !== '—' && c !== '—'){
-      var of = parseFloat(o), cf = parseFloat(c);
-      if(of > cf && cf > 0){
-        result.innerHTML = 'Vous avez mis <strong>'+(of / cf).toFixed(1)+'&times; plus de temps</strong> dans la vue surchargée que dans la vue allégée ('+o+' contre '+c+'). Trier l’information par priorité réduit directement l’effort mental nécessaire pour trouver ce qui compte.';
-      } else {
-        result.innerHTML = 'Vue surchargée&nbsp;: '+o+' — Vue allégée&nbsp;: '+c+'. Sur un seul essai, le hasard joue aussi son rôle&nbsp;; à grande échelle, c’est presque toujours la version triée par priorité qui l’emporte.';
-      }
-    } else {
-      result.innerHTML = 'Temps enregistré. Essayez maintenant l’autre version pour comparer.';
-    }
-  });
-})();
-</script>
+                var o = scoreOverload.textContent, c = scoreClean.textContent;
+                result.className = 'DemoResult show';
+                if(o !== '—' && c !== '—'){
+                    var of = parseFloat(o), cf = parseFloat(c);
+                    if(of > cf && cf > 0){
+                        result.innerHTML = 'Vous avez mis <strong>'+(of / cf).toFixed(1)+'&times; plus de temps</strong> dans la vue surchargée que dans la vue allégée ('+o+' contre '+c+'). Trier l’information par priorité réduit directement l’effort mental nécessaire pour trouver ce qui compte.';
+                    } else {
+                        result.innerHTML = 'Vue surchargée&nbsp;: '+o+' — Vue allégée&nbsp;: '+c+'. Sur un seul essai, le hasard joue aussi son rôle&nbsp;; à grande échelle, c’est presque toujours la version triée par priorité qui l’emporte.';
+                    }
+                } else {
+                    result.innerHTML = 'Temps enregistré. Essayez maintenant l’autre version pour comparer.';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

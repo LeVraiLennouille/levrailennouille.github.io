@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Effet de position sérielle | Le fichier UX</title>
-<meta name="description" content="Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -372,202 +367,145 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>26</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Mémoire & charge cognitive · UX·07</span>
+                <h1>Effet de position sérielle</h1>
+                <p class="Lede">Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Les éléments les moins importants d’une liste gagnent à être placés au milieu, là où ils sont le moins bien mémorisés.</li>\n
+                <li>Positionner les actions clés aux extrémités d’un ensemble, par exemple dans une navigation, en améliore la mémorisation.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le terme est proposé par Herman Ebbinghaus pour décrire comment la position d’un élément dans une séquence affecte sa mémorisation, à travers deux effets : l’effet de primauté, pour le début, et l’effet de récence, pour la fin — les éléments du milieu étant les moins bien retenus.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Les options les plus importantes d’un menu déroulant gagnent à être placées en tête ou en fin de liste.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Quels mots retenez-vous le mieux&nbsp;?</h2>
+            </div>
+            <p class="Intro">Une liste de 9 mots s’affiche 6 secondes. Mémorisez-en le plus possible, dans l’ordre que vous voulez.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="spStart" type="button">Afficher la liste</button>
+                </div>
+                <div class="DemoStudyList" id="spStage" hidden>
+                    <ol class="SpList" id="spList"></ol>
+                </div>
+                <div class="DemoRecall" id="spRecall" hidden>
+                    <label for="spInput" class="DemoRecallLabel">Tapez les mots dont vous vous souvenez, séparés par des virgules&nbsp;:</label>
+                    <textarea class="DemoTextarea" id="spInput" rows="2" placeholder="ex : tigre, lampe, nuage…"></textarea>
+                    <button class="DemoBtn" id="spCheck" type="button">Voir mon score</button>
+                </div>
+                <div class="DemoReview" id="spReview" hidden></div>
+                <div class="DemoResult" id="spResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var WORDS = ["citron","montagne","clé","robot","tambour","orange","fusée","chapeau","rivière"];
+            var listEl = document.getElementById('spList');
+            var stage = document.getElementById('spStage');
+            var startBtn = document.getElementById('spStart');
+            var recallBox = document.getElementById('spRecall');
+            var input = document.getElementById('spInput');
+            var checkBtn = document.getElementById('spCheck');
+            var review = document.getElementById('spReview');
+            var result = document.getElementById('spResult');
+            var currentOrder = WORDS.slice();
 
-<div class="ReadingProgress" id="progress"></div>
+            function normalize(s){
+                return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+            }
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function shuffle(arr){
+                var a = arr.slice();
+                for(var i = a.length - 1; i > 0; i--){
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var t = a[i]; a[i] = a[j]; a[j] = t;
+                }
+                return a;
+            }
 
-<main id="top">
+            startBtn.addEventListener('click', function(){
+                startBtn.disabled = true;
+                recallBox.hidden = true;
+                review.hidden = true;
+                result.className = 'DemoResult';
+                input.value = '';
+                currentOrder = shuffle(WORDS);
+                listEl.innerHTML = currentOrder.map(function(w){ return '<li>'+w+'</li>'; }).join('');
+                stage.hidden = false;
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>26</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Mémoire & charge cognitive · UX·07</span>
-      <h1>Effet de position sérielle</h1>
-      <p class="Lede">Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.</p>
-    </div>
-  </section>
+                setTimeout(function(){
+                    stage.hidden = true;
+                    recallBox.hidden = false;
+                    input.focus();
+                }, 6000);
+            });
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Dans une liste, on retient mieux les premiers et les derniers éléments que ceux du milieu.</p>
-  </section>
+            checkBtn.addEventListener('click', function(){
+                var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+                var hits = currentOrder.map(function(w){return typed.indexOf(normalize(w)) !== -1;});
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Les éléments les moins importants d’une liste gagnent à être placés au milieu, là où ils sont le moins bien mémorisés.</li>\n      <li>Positionner les actions clés aux extrémités d’un ensemble, par exemple dans une navigation, en améliore la mémorisation.</li>
-    </ul>
-  </section>
+                review.hidden = false;
+                review.innerHTML = currentOrder.map(function(w, i){
+                    return '<span class="DemoWordChip'+(hits[i] ? ' hit' : '')+'">'+(i+1)+'. '+w+'</span>';
+                }).join('');
 
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Le terme est proposé par Herman Ebbinghaus pour décrire comment la position d’un élément dans une séquence affecte sa mémorisation, à travers deux effets : l’effet de primauté, pour le début, et l’effet de récence, pour la fin — les éléments du milieu étant les moins bien retenus.</p>
-  </section>
+                var third = Math.ceil(currentOrder.length / 3);
+                var start = hits.slice(0, third).filter(Boolean).length;
+                var middle = hits.slice(third, currentOrder.length - third).filter(Boolean).length;
+                var end = hits.slice(currentOrder.length - third).filter(Boolean).length;
 
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Les options les plus importantes d’un menu déroulant gagnent à être placées en tête ou en fin de liste.</p>
-      </div>
-    </div>
-  </section>
+                result.className = 'DemoResult show';
+                if(start + end > middle * 2){
+                    result.innerHTML = 'Vous avez retrouvé <strong>'+start+'/3</strong> mots du début, <strong>'+middle+'/3</strong> du milieu et <strong>'+end+'/3</strong> de la fin. Le milieu de la liste est bien le point faible&nbsp;: c’est la courbe de position sérielle — effet de primauté au début, effet de récence à la fin.';
+                } else {
+                    result.innerHTML = 'Vous avez retrouvé '+start+'/3 mots du début, '+middle+'/3 du milieu et '+end+'/3 de la fin. Sur un seul essai le résultat peut varier, mais à grande échelle c’est presque toujours le milieu d’une liste qui se retient le moins bien.';
+                }
 
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Quels mots retenez-vous le mieux&nbsp;?</h2>
-    </div>
-    <p class="Intro">Une liste de 9 mots s’affiche 6 secondes. Mémorisez-en le plus possible, dans l’ordre que vous voulez.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="spStart" type="button">Afficher la liste</button>
-      </div>
-      <div class="DemoStudyList" id="spStage" hidden>
-        <ol class="SpList" id="spList"></ol>
-      </div>
-      <div class="DemoRecall" id="spRecall" hidden>
-        <label for="spInput" class="DemoRecallLabel">Tapez les mots dont vous vous souvenez, séparés par des virgules&nbsp;:</label>
-        <textarea class="DemoTextarea" id="spInput" rows="2" placeholder="ex : tigre, lampe, nuage…"></textarea>
-        <button class="DemoBtn" id="spCheck" type="button">Voir mon score</button>
-      </div>
-      <div class="DemoReview" id="spReview" hidden></div>
-      <div class="DemoResult" id="spResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="biais-cognitif.html"><span class="RelatedCode">UX·04</span><h3>Biais cognitif</h3><p>Nos jugements suivent des raccourcis mentaux systématiques, pas toujours rationnels, qui influencent nos décisions.</p></a>\n      <a class="Card RelatedCard" href="regle-pic-et-fin.html"><span class="RelatedCode">UX·23</span><h3>Règle du pic et de la fin</h3><p>On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.</p></a>\n      <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="attention-selective.html" class="PageNavLink Prev">← Attention sélective</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-de-tesler.html" class="PageNavLink Next">Loi de Tesler →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/serial-position-effect/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var WORDS = ["citron","montagne","clé","robot","tambour","orange","fusée","chapeau","rivière"];
-  var listEl = document.getElementById('spList');
-  var stage = document.getElementById('spStage');
-  var startBtn = document.getElementById('spStart');
-  var recallBox = document.getElementById('spRecall');
-  var input = document.getElementById('spInput');
-  var checkBtn = document.getElementById('spCheck');
-  var review = document.getElementById('spReview');
-  var result = document.getElementById('spResult');
-  var currentOrder = WORDS.slice();
-
-  function normalize(s){
-    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  }
-  function shuffle(arr){
-    var a = arr.slice();
-    for(var i = a.length - 1; i > 0; i--){
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
-  }
-
-  startBtn.addEventListener('click', function(){
-    startBtn.disabled = true;
-    recallBox.hidden = true;
-    review.hidden = true;
-    result.className = 'DemoResult';
-    input.value = '';
-    currentOrder = shuffle(WORDS);
-    listEl.innerHTML = currentOrder.map(function(w){ return '<li>'+w+'</li>'; }).join('');
-    stage.hidden = false;
-    setTimeout(function(){
-      stage.hidden = true;
-      recallBox.hidden = false;
-      input.focus();
-    }, 6000);
-  });
-
-  checkBtn.addEventListener('click', function(){
-    var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
-    var hits = currentOrder.map(function(w){ return typed.indexOf(normalize(w)) !== -1; });
-
-    review.hidden = false;
-    review.innerHTML = currentOrder.map(function(w, i){
-      return '<span class="DemoWordChip'+(hits[i] ? ' hit' : '')+'">'+(i+1)+'. '+w+'</span>';
-    }).join('');
-
-    var third = Math.ceil(currentOrder.length / 3);
-    var start = hits.slice(0, third).filter(Boolean).length;
-    var middle = hits.slice(third, currentOrder.length - third).filter(Boolean).length;
-    var end = hits.slice(currentOrder.length - third).filter(Boolean).length;
-
-    result.className = 'DemoResult show';
-    if(start + end > middle * 2){
-      result.innerHTML = 'Vous avez retrouvé <strong>'+start+'/3</strong> mots du début, <strong>'+middle+'/3</strong> du milieu et <strong>'+end+'/3</strong> de la fin. Le milieu de la liste est bien le point faible&nbsp;: c’est la courbe de position sérielle — effet de primauté au début, effet de récence à la fin.';
-    } else {
-      result.innerHTML = 'Vous avez retrouvé '+start+'/3 mots du début, '+middle+'/3 du milieu et '+end+'/3 de la fin. Sur un seul essai le résultat peut varier, mais à grande échelle c’est presque toujours le milieu d’une liste qui se retient le moins bien.';
-    }
-    checkBtn.disabled = true;
-    startBtn.disabled = false;
-    startBtn.textContent = 'Réessayer avec un nouvel ordre';
-  });
-})();
-</script>
+                checkBtn.disabled = true;
+                startBtn.disabled = false;
+                startBtn.textContent = 'Réessayer avec un nouvel ordre';
+            });
+        })();
+    </script>
 </body>
 </html>

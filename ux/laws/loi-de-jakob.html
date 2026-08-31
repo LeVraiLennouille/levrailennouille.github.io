@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Jakob | Le fichier UX</title>
-<meta name="description" content="Les utilisateurs passent le plus clair de leur temps sur d’autres sites : ils attendent que le vôtre fonctionne pareil.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -352,154 +347,95 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+                <div class="Decor" aria-hidden="true"><span>11</span></div>
+                <div class="HeroInner">
+                    <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                    <span class="Category">Principes de conception · UX·14</span>
+                    <h1>Loi de Jakob</h1>
+                    <p class="Lede">Les utilisateurs passent le plus clair de leur temps sur d’autres sites : ils attendent que le vôtre fonctionne pareil.</p>
+                </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Les utilisateurs passent le plus clair de leur temps sur d’autres sites : ils attendent que le vôtre fonctionne pareil.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Les utilisateurs transposent d’un produit à l’autre les attentes qu’ils ont construites ailleurs, dès que les deux se ressemblent.</li>\n
+                <li>S’appuyer sur des modèles mentaux déjà connus permet aux utilisateurs de se concentrer sur leur tâche plutôt que d’apprendre un nouveau système.</li>\n
+                <li>Lors d’un changement d’interface, laisser un temps de transition — par exemple un accès temporaire à l’ancienne version — limite le sentiment de rupture.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Cette loi doit son nom à Jakob Nielsen, cofondateur du Nielsen Norman Group avec Don Norman, et pionnier du mouvement de l’évaluation heuristique en ergonomie logicielle.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un logo cliquable en haut à gauche qui ramène à l’accueil, comme partout ailleurs, évite toute confusion.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Où cliqueriez-vous par réflexe&nbsp;?</h2>
+            </div>
+            <p class="Intro">Imaginez un site un peu particulier. Cliquez sur l’icône qui, selon vous, sert à rechercher quelque chose.</p>
+            <div class="DemoBox">
+                <div class="JkRow" id="jkRow">
+                    <button class="JkIcon" data-icon="home" type="button" aria-label="Accueil">🏠</button>
+                    <button class="JkIcon" data-icon="settings" type="button" aria-label="Paramètres">⚙️</button>
+                    <button class="JkIcon" data-icon="search" type="button" aria-label="Recherche">🔍</button>
+                    <button class="JkIcon" data-icon="heart" type="button" aria-label="Favoris">❤️</button>
+                    <button class="JkIcon" data-icon="bell" type="button" aria-label="Notifications">🔔</button>
+                    <button class="JkIcon" data-icon="user" type="button" aria-label="Profil">👤</button>
+                </div>
+                <div class="DemoResult" id="jkResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var icons = document.querySelectorAll('.JkIcon');
+            var result = document.getElementById('jkResult');
+            var answered = false;
 
-<div class="ReadingProgress" id="progress"></div>
-
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>11</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Principes de conception · UX·14</span>
-      <h1>Loi de Jakob</h1>
-      <p class="Lede">Les utilisateurs passent le plus clair de leur temps sur d’autres sites : ils attendent que le vôtre fonctionne pareil.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Les utilisateurs passent le plus clair de leur temps sur d’autres sites : ils attendent que le vôtre fonctionne pareil.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Les utilisateurs transposent d’un produit à l’autre les attentes qu’ils ont construites ailleurs, dès que les deux se ressemblent.</li>\n      <li>S’appuyer sur des modèles mentaux déjà connus permet aux utilisateurs de se concentrer sur leur tâche plutôt que d’apprendre un nouveau système.</li>\n      <li>Lors d’un changement d’interface, laisser un temps de transition — par exemple un accès temporaire à l’ancienne version — limite le sentiment de rupture.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Cette loi doit son nom à Jakob Nielsen, cofondateur du Nielsen Norman Group avec Don Norman, et pionnier du mouvement de l’évaluation heuristique en ergonomie logicielle.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un logo cliquable en haut à gauche qui ramène à l’accueil, comme partout ailleurs, évite toute confusion.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Où cliqueriez-vous par réflexe&nbsp;?</h2>
-    </div>
-    <p class="Intro">Imaginez un site un peu particulier. Cliquez sur l’icône qui, selon vous, sert à rechercher quelque chose.</p>
-
-    <div class="DemoBox">
-      <div class="JkRow" id="jkRow">
-        <button class="JkIcon" data-icon="home" type="button" aria-label="Accueil">🏠</button>
-        <button class="JkIcon" data-icon="settings" type="button" aria-label="Paramètres">⚙️</button>
-        <button class="JkIcon" data-icon="search" type="button" aria-label="Recherche">🔍</button>
-        <button class="JkIcon" data-icon="heart" type="button" aria-label="Favoris">❤️</button>
-        <button class="JkIcon" data-icon="bell" type="button" aria-label="Notifications">🔔</button>
-        <button class="JkIcon" data-icon="user" type="button" aria-label="Profil">👤</button>
-      </div>
-      <div class="DemoResult" id="jkResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="modele-mental.html"><span class="RelatedCode">UX·17</span><h3>Modèle mental</h3><p>C’est la représentation simplifiée qu’un utilisateur se fait du fonctionnement d’un système, à partir de son expérience passée.</p></a>\n      <a class="Card RelatedCard" href="effet-esthetique-usabilite.html"><span class="RelatedCode">UX·01</span><h3>Effet Esthétique-Utilisabilité</h3><p>Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p></a>\n      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-hick.html" class="PageNavLink Prev">← Loi de Hick</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-region-commune.html" class="PageNavLink Next">Loi de la région commune →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/jakobs-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var icons = document.querySelectorAll('.JkIcon');
-  var result = document.getElementById('jkResult');
-  var answered = false;
-
-  icons.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if(answered) return;
-      answered = true;
-      btn.classList.add('picked');
-      icons.forEach(function(b){ b.disabled = true; });
-      var choice = btn.getAttribute('data-icon');
-      result.className = 'DemoResult show';
-      if(choice === 'search'){
-        result.innerHTML = 'Vous avez cliqué sur la loupe — le réflexe presque universel. C’est exactement ce que prédit la loi de Jakob&nbsp;: sans même y réfléchir, vous avez transposé une convention apprise sur des dizaines d’autres sites.';
-      } else {
-        result.innerHTML = 'Vous avez résisté au réflexe de la loupe 🔍 — plus rare&nbsp;! Peut-être que l’annonce d’un site « particulier » vous a mis en alerte. Cela confirme la force de cette convention par l’exception&nbsp;: il a fallu un signal explicite pour la contourner.';
-      }
-    });
-  });
-})();
-</script>
+            icons.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    if(answered) return;
+                    answered = true;
+                    btn.classList.add('picked');
+                    icons.forEach(function(b){b.disabled = true;});
+                    var choice = btn.getAttribute('data-icon');
+                    result.className = 'DemoResult show';
+                    if(choice === 'search'){
+                        result.innerHTML = 'Vous avez cliqué sur la loupe — le réflexe presque universel. C’est exactement ce que prédit la loi de Jakob&nbsp;: sans même y réfléchir, vous avez transposé une convention apprise sur des dizaines d’autres sites.';
+                    } else {
+                        result.innerHTML = 'Vous avez résisté au réflexe de la loupe 🔍 — plus rare&nbsp;! Peut-être que l’annonce d’un site « particulier » vous a mis en alerte. Cela confirme la force de cette convention par l’exception&nbsp;: il a fallu un signal explicite pour la contourner.';
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

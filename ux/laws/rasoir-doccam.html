@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rasoir d’Occam | Le fichier UX</title>
-<meta name="description" content="Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -372,178 +367,119 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>19</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Principes de conception · UX·27</span>
+                <h1>Rasoir d’Occam</h1>
+                <p class="Lede">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>La meilleure façon de réduire la complexité est encore de l’éviter dès la conception.</li>\n
+                <li>Chaque élément doit être examiné, et supprimé s’il n’est pas indispensable à la fonction globale.</li>\n
+                <li>Une conception n’est vraiment terminée que lorsque plus rien ne peut en être retiré.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le principe est attribué à Guillaume d’Ockham, moine franciscain et philosophe anglais du XIVe siècle, selon qui, entre deux explications qui se valent, celle qui repose sur le moins d’hypothèses doit être préférée.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un formulaire d’inscription à 3 champs convertit mieux qu’un formulaire à 10 champs pour le même objectif.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Jusqu’où peut-on simplifier ce bouton&nbsp;?</h2>
+            </div>
+            <p class="Intro">Décochez tout ce qui vous semble superflu, sans rendre le bouton inutilisable.</p>
+            <div class="DemoBox">
+                <div class="OcPreview">
+                    <button class="OcButton" id="ocButton" type="button">
+                        <span data-el="icon">🎉</span>
+                        <span>S’inscrire</span>
+                        <span class="OcBadge" data-el="badge">NOUVEAU</span>
+                    </button>
+                    <p class="OcSubtitle" data-el="subtitle">Cliquez ici pour vous inscrire dès maintenant</p>
+                </div>
+                <div class="OcToggles">
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="icon"> Icône décorative</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="badge"> Badge « Nouveau »</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="subtitle"> Sous-titre redondant</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="shadow"> Ombre portée</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="gradient"> Dégradé de fond</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="border"> Bordure épaisse</label>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ocDone" type="button">J’ai terminé</button>
+                </div>
+                <div class="DemoResult" id="ocResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var toggles = document.querySelectorAll('.OcToggles input');
+            var button = document.getElementById('ocButton');
+            var result = document.getElementById('ocResult');
+            var TOTAL = toggles.length;
 
-<div class="ReadingProgress" id="progress"></div>
+            toggles.forEach(function(input){
+                input.addEventListener('change', function(){
+                    var target = input.getAttribute('data-target');
+                    if(target === 'icon' || target === 'badge' || target === 'subtitle'){
+                        var el = document.querySelector('[data-el="' + target + '"]');
+                        if(el){el.style.display = input.checked ? '' : 'none';}
+                    } else if(target === 'shadow'){
+                        button.classList.toggle('no-shadow', !input.checked);
+                    } else if(target === 'gradient'){
+                        button.classList.toggle('no-gradient', !input.checked);
+                    } else if(target === 'border'){
+                        button.classList.toggle('no-border', !input.checked);
+                    }
+                });
+            });
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>19</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Principes de conception · UX·27</span>
-      <h1>Rasoir d’Occam</h1>
-      <p class="Lede">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>La meilleure façon de réduire la complexité est encore de l’éviter dès la conception.</li>\n      <li>Chaque élément doit être examiné, et supprimé s’il n’est pas indispensable à la fonction globale.</li>\n      <li>Une conception n’est vraiment terminée que lorsque plus rien ne peut en être retiré.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Le principe est attribué à Guillaume d’Ockham, moine franciscain et philosophe anglais du XIVe siècle, selon qui, entre deux explications qui se valent, celle qui repose sur le moins d’hypothèses doit être préférée.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un formulaire d’inscription à 3 champs convertit mieux qu’un formulaire à 10 champs pour le même objectif.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Jusqu’où peut-on simplifier ce bouton&nbsp;?</h2>
-    </div>
-    <p class="Intro">Décochez tout ce qui vous semble superflu, sans rendre le bouton inutilisable.</p>
-
-    <div class="DemoBox">
-      <div class="OcPreview">
-        <button class="OcButton" id="ocButton" type="button">
-          <span data-el="icon">🎉</span>
-          <span>S’inscrire</span>
-          <span class="OcBadge" data-el="badge">NOUVEAU</span>
-        </button>
-        <p class="OcSubtitle" data-el="subtitle">Cliquez ici pour vous inscrire dès maintenant</p>
-      </div>
-      <div class="OcToggles">
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="icon"> Icône décorative</label>
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="badge"> Badge « Nouveau »</label>
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="subtitle"> Sous-titre redondant</label>
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="shadow"> Ombre portée</label>
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="gradient"> Dégradé de fond</label>
-        <label class="OcToggleRow"><input type="checkbox" checked data-target="border"> Bordure épaisse</label>
-      </div>
-      <div class="DemoActions">
-        <button class="DemoBtn" id="ocDone" type="button">J’ai terminé</button>
-      </div>
-      <div class="DemoResult" id="ocResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="effet-esthetique-usabilite.html"><span class="RelatedCode">UX·01</span><h3>Effet Esthétique-Utilisabilité</h3><p>Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p></a>\n      <a class="Card RelatedCard" href="paradoxe-utilisateur-actif.html"><span class="RelatedCode">UX·20</span><h3>Paradoxe de l’utilisateur actif</h3><p>Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.</p></a>\n      <a class="Card RelatedCard" href="principe-de-pareto.html"><span class="RelatedCode">UX·21</span><h3>Principe de Pareto</h3><p>Environ 80 % des usages viennent de 20 % des fonctionnalités : mieux vaut soigner l’essentiel que tout traiter à égalité.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-miller.html" class="PageNavLink Prev">← Loi de Miller</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="paradoxe-utilisateur-actif.html" class="PageNavLink Next">Paradoxe de l’utilisateur actif →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/occams-razor/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var toggles = document.querySelectorAll('.OcToggles input');
-  var button = document.getElementById('ocButton');
-  var result = document.getElementById('ocResult');
-  var TOTAL = toggles.length;
-
-  toggles.forEach(function(input){
-    input.addEventListener('change', function(){
-      var target = input.getAttribute('data-target');
-      if(target === 'icon' || target === 'badge' || target === 'subtitle'){
-        var el = document.querySelector('[data-el="' + target + '"]');
-        if(el){ el.style.display = input.checked ? '' : 'none'; }
-      } else if(target === 'shadow'){
-        button.classList.toggle('no-shadow', !input.checked);
-      } else if(target === 'gradient'){
-        button.classList.toggle('no-gradient', !input.checked);
-      } else if(target === 'border'){
-        button.classList.toggle('no-border', !input.checked);
-      }
-    });
-  });
-
-  document.getElementById('ocDone').addEventListener('click', function(){
-    var removed = Array.prototype.filter.call(toggles, function(t){ return !t.checked; }).length;
-    result.className = 'DemoResult show';
-    if(removed === TOTAL){
-      result.innerHTML = 'Vous avez tout retiré&nbsp;: il ne reste que le bouton et son texte — strictement ce qui est nécessaire pour comprendre et agir. C’est exactement le rasoir d’Occam&nbsp;: une conception n’est terminée que lorsque plus rien ne peut en être retiré.';
-    } else if(removed >= TOTAL / 2){
-      result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments superflus. Le bouton fonctionne toujours aussi bien&nbsp;— la différence, c’est tout ce qui ne servait à rien.';
-    } else {
-      result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments. Continuez&nbsp;: aucun d’entre eux n’était nécessaire pour comprendre ou utiliser ce bouton.';
-    }
-  });
-})();
-</script>
+            document.getElementById('ocDone').addEventListener('click', function(){
+                var removed = Array.prototype.filter.call(toggles, function(t){return !t.checked;}).length;
+                result.className = 'DemoResult show';
+                if(removed === TOTAL){
+                    result.innerHTML = 'Vous avez tout retiré&nbsp;: il ne reste que le bouton et son texte — strictement ce qui est nécessaire pour comprendre et agir. C’est exactement le rasoir d’Occam&nbsp;: une conception n’est terminée que lorsque plus rien ne peut en être retiré.';
+                } else if(removed >= TOTAL / 2){
+                    result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments superflus. Le bouton fonctionne toujours aussi bien&nbsp;— la différence, c’est tout ce qui ne servait à rien.';
+                } else {
+                    result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments. Continuez&nbsp;: aucun d’entre eux n’était nécessaire pour comprendre ou utiliser ce bouton.';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

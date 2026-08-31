@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Effet Esthétique-Utilisabilité | Le fichier UX</title>
-<meta name="description" content="Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -401,180 +396,119 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>01</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Perception & Gestalt · UX·05</span>
+                <h1>Effet Esthétique-Utilisabilité</h1>
+                <p class="Lede">Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Un design agréable déclenche une réaction positive qui pousse à croire qu’un produit fonctionne mieux qu’il ne fonctionne réellement.</li>\n
+                <li>Les utilisateurs tolèrent plus facilement de petits problèmes d’usabilité quand l’interface est esthétiquement soignée.</li>\n
+                <li>Un rendu visuel plaisant peut masquer des problèmes réels, au point de les faire passer inaperçus lors de tests utilisateurs.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">En 1995, les chercheurs Masaaki Kurosu et Kaori Kashimura du centre de design Hitachi ont testé 26 variantes d’une interface de distributeur bancaire auprès de 252 participants. La note d’esthétique attribuée par les utilisateurs s’est révélée plus fortement corrélée à leur perception de la facilité d’usage qu’à la facilité d’usage réellement mesurée — preuve que l’apparence influence le jugement plus que la fonction elle-même.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un formulaire bien aligné semble plus simple à remplir qu’un formulaire brouillon, à champs identiques.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Laquelle vous semble la plus simple&nbsp;?</h2>
+            </div>
+            <p class="Intro">Les deux formulaires ci-dessous ont exactement les mêmes champs, la même validation et la même action au clic — un seul détail change entre eux. Remplissez celui que vous préférez, puis votez pour celui qui vous a semblé le plus simple à remplir.</p>
+            <div class="AuGrid">
+                <div class="AuPanel" id="panelA">
+                    <span class="AuTag">Interface A</span>
+                    <form class="AuFormA" data-form="A" novalidate>
+                        <label>Nom<input type="text" data-field="nom"></label>
+                        <label>Email<input type="email" data-field="email"></label>
+                        <label>Mot de passe<input type="password" data-field="pass"></label>
+                        <button type="submit">valider</button>
+                    </form>
+                    <p class="AuMsg" data-msg="A" aria-live="polite"></p>
+                    <button class="DemoBtnGhost AuVote" data-vote="A">Celle-ci me semble plus simple →</button>
+                </div>
+                <div class="AuPanel" id="panelB">
+                    <span class="AuTag">Interface B</span>
+                    <form class="AuFormB" data-form="B" novalidate>
+                        <label>Nom<input type="text" data-field="nom"></label>
+                        <label>Email<input type="email" data-field="email"></label>
+                        <label>Mot de passe<input type="password" data-field="pass"></label>
+                        <button type="submit">Créer mon compte</button>
+                    </form>
+                    <p class="AuMsg" data-msg="B" aria-live="polite"></p>
+                    <button class="DemoBtnGhost AuVote" data-vote="B">Celle-ci me semble plus simple →</button>
+                </div>
+            </div>
+            <div class="DemoResult" id="auResult" aria-live="polite"></div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var forms = document.querySelectorAll('.AuGrid form');
+            forms.forEach(function(form){
+                form.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    var which = form.getAttribute('data-form');
+                    var msg = document.querySelector('.AuMsg[data-msg="'+which+'"]');
+                    var inputs = form.querySelectorAll('input');
+                    var allFilled = Array.prototype.every.call(inputs, function(i){return i.value.trim() !== '';});
+                    if(allFilled){
+                        msg.textContent = '✓ Compte créé (démo — rien n’est envoyé).';
+                        msg.className = 'AuMsg success';
+                    } else {
+                        msg.textContent = 'Merci de remplir les 3 champs.';
+                        msg.className = 'AuMsg error';
+                    }
+                });
+            });
 
-<div class="ReadingProgress" id="progress"></div>
-
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>01</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Perception & Gestalt · UX·05</span>
-      <h1>Effet Esthétique-Utilisabilité</h1>
-      <p class="Lede">Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Un design agréable déclenche une réaction positive qui pousse à croire qu’un produit fonctionne mieux qu’il ne fonctionne réellement.</li>\n      <li>Les utilisateurs tolèrent plus facilement de petits problèmes d’usabilité quand l’interface est esthétiquement soignée.</li>\n      <li>Un rendu visuel plaisant peut masquer des problèmes réels, au point de les faire passer inaperçus lors de tests utilisateurs.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">En 1995, les chercheurs Masaaki Kurosu et Kaori Kashimura du centre de design Hitachi ont testé 26 variantes d’une interface de distributeur bancaire auprès de 252 participants. La note d’esthétique attribuée par les utilisateurs s’est révélée plus fortement corrélée à leur perception de la facilité d’usage qu’à la facilité d’usage réellement mesurée — preuve que l’apparence influence le jugement plus que la fonction elle-même.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un formulaire bien aligné semble plus simple à remplir qu’un formulaire brouillon, à champs identiques.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Laquelle vous semble la plus simple&nbsp;?</h2>
-    </div>
-    <p class="Intro">Les deux formulaires ci-dessous ont exactement les mêmes champs, la même validation et la même action au clic — un seul détail change entre eux. Remplissez celui que vous préférez, puis votez pour celui qui vous a semblé le plus simple à remplir.</p>
-
-    <div class="AuGrid">
-      <div class="AuPanel" id="panelA">
-        <span class="AuTag">Interface A</span>
-        <form class="AuFormA" data-form="A" novalidate>
-          <label>Nom<input type="text" data-field="nom"></label>
-          <label>Email<input type="email" data-field="email"></label>
-          <label>Mot de passe<input type="password" data-field="pass"></label>
-          <button type="submit">valider</button>
-        </form>
-        <p class="AuMsg" data-msg="A" aria-live="polite"></p>
-        <button class="DemoBtnGhost AuVote" data-vote="A">Celle-ci me semble plus simple →</button>
-      </div>
-
-      <div class="AuPanel" id="panelB">
-        <span class="AuTag">Interface B</span>
-        <form class="AuFormB" data-form="B" novalidate>
-          <label>Nom<input type="text" data-field="nom"></label>
-          <label>Email<input type="email" data-field="email"></label>
-          <label>Mot de passe<input type="password" data-field="pass"></label>
-          <button type="submit">Créer mon compte</button>
-        </form>
-        <p class="AuMsg" data-msg="B" aria-live="polite"></p>
-        <button class="DemoBtnGhost AuVote" data-vote="B">Celle-ci me semble plus simple →</button>
-      </div>
-    </div>
-
-    <div class="DemoResult" id="auResult" aria-live="polite"></div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="seuil-de-doherty.html"><span class="RelatedCode">UX·06</span><h3>Seuil de Doherty</h3><p>Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.</p></a>\n      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="effet-zeigarnik.html" class="PageNavLink Prev">← Effet Zeigarnik</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="surcharge-de-choix.html" class="PageNavLink Next">Surcharge de choix →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/aesthetic-usability-effect/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var forms = document.querySelectorAll('.AuGrid form');
-  forms.forEach(function(form){
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var which = form.getAttribute('data-form');
-      var msg = document.querySelector('.AuMsg[data-msg="'+which+'"]');
-      var inputs = form.querySelectorAll('input');
-      var allFilled = Array.prototype.every.call(inputs, function(i){ return i.value.trim() !== ''; });
-      if(allFilled){
-        msg.textContent = '✓ Compte créé (démo — rien n’est envoyé).';
-        msg.className = 'AuMsg success';
-      } else {
-        msg.textContent = 'Merci de remplir les 3 champs.';
-        msg.className = 'AuMsg error';
-      }
-    });
-  });
-
-  var voteButtons = document.querySelectorAll('.AuVote');
-  var result = document.getElementById('auResult');
-  voteButtons.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var choice = btn.getAttribute('data-vote');
-      voteButtons.forEach(function(b){ b.disabled = true; });
-      document.getElementById('panel'+choice).classList.add('picked');
-      result.className = 'DemoResult show';
-      result.innerHTML = 'Vous avez choisi l’<strong>Interface '+choice+'</strong>. Regardez à nouveau les deux formulaires&nbsp;: mêmes champs, même validation, même action au clic — le code qui les traite est rigoureusement identique. Seul le CSS diffère. C’est exactement l’effet esthétique-utilisabilité&nbsp;: le jugement sur la simplicité s’est joué sur l’apparence, pas sur la fonction.';
-    });
-  });
-})();
-</script>
+            var voteButtons = document.querySelectorAll('.AuVote');
+            var result = document.getElementById('auResult');
+            voteButtons.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var choice = btn.getAttribute('data-vote');
+                    voteButtons.forEach(function(b){b.disabled = true;});
+                    document.getElementById('panel'+choice).classList.add('picked');
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'Vous avez choisi l’<strong>Interface '+choice+'</strong>. Regardez à nouveau les deux formulaires&nbsp;: mêmes champs, même validation, même action au clic — le code qui les traite est rigoureusement identique. Seul le CSS diffère. C’est exactement l’effet esthétique-utilisabilité&nbsp;: le jugement sur la simplicité s’est joué sur l’apparence, pas sur la fonction.';
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

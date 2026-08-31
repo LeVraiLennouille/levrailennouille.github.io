@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de connexion uniforme | Le fichier UX</title>
-<meta name="description" content="Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -362,171 +357,112 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>16</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Perception & Gestalt · UX·11</span>
+                <h1>Loi de connexion uniforme</h1>
+                <p class="Lede">Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Regrouper visuellement des fonctions similaires — par la couleur, une ligne ou un cadre — les fait percevoir comme liées.</li>\n
+                <li>Une ligne ou une flèche reliant deux éléments crée aussi une connexion visuelle directe entre eux.</li>\n
+                <li>Cette connexion peut servir à donner du contexte ou à souligner un lien entre des éléments similaires.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Cette loi complète les principes de regroupement de la Gestalt, qui décrivent comment l’esprit perçoit des éléments reliés visuellement comme davantage liés que des éléments isolés.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Sur une page de résultats Google, un encadré autour d’une vidéo ou d’un extrait mis en avant relie visuellement ce contenu tout en le distinguant du reste des résultats.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Rien ne bouge, pourtant tout change</h2>
+            </div>
+            <p class="Intro">Les 6 icônes ci-dessous sont espacées de façon parfaitement régulière. Activez l’encadré et observez ce qui change dans votre perception.</p>
+            <div class="DemoBox">
+                <div class="UcRow" id="ucRow">
+                    <span class="UcGroupBg" id="ucGroupBg" aria-hidden="true"></span>
+                    <span class="UcItem">●</span>
+                    <span class="UcItem">●</span>
+                    <span class="UcItem">●</span>
+                    <span class="UcItem">●</span>
+                    <span class="UcItem">●</span>
+                    <span class="UcItem">●</span>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ucToggle" type="button">Ajouter l’encadré</button>
+                </div>
+                <div class="DemoResult" id="ucResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var row = document.getElementById('ucRow');
+            var bg = document.getElementById('ucGroupBg');
+            var toggle = document.getElementById('ucToggle');
+            var result = document.getElementById('ucResult');
+            var items = row.querySelectorAll('.UcItem');
+            var on = false;
 
-<div class="ReadingProgress" id="progress"></div>
+            function positionBg(){
+                var rowRect = row.getBoundingClientRect();
+                var first = items[0].getBoundingClientRect();
+                var third = items[2].getBoundingClientRect();
+                var pad = 16;
+                bg.style.left = (first.left - rowRect.left - pad) + 'px';
+                bg.style.width = (third.right - first.left + pad * 2) + 'px';
+            }
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            toggle.addEventListener('click', function(){
+                on = !on;
+                if(on){
+                    positionBg();
+                    bg.classList.add('on');
+                    toggle.textContent = 'Retirer l’encadré';
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'Rien n’a bougé&nbsp;: l’espacement entre les 6 icônes est resté strictement identique. Pourtant, entourer les 3 premières d’un simple fond commun suffit à les faire percevoir comme un groupe à part, séparé des 3 autres. C’est la loi de connexion uniforme&nbsp;: un fond ou une bordure partagée relie plus fort que la seule proximité.';
+                } else {
+                    bg.classList.remove('on');
+                    toggle.textContent = 'Ajouter l’encadré';
+                    result.className = 'DemoResult';
+                }
+            });
 
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>16</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Perception & Gestalt · UX·11</span>
-      <h1>Loi de connexion uniforme</h1>
-      <p class="Lede">Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Regrouper visuellement des fonctions similaires — par la couleur, une ligne ou un cadre — les fait percevoir comme liées.</li>\n      <li>Une ligne ou une flèche reliant deux éléments crée aussi une connexion visuelle directe entre eux.</li>\n      <li>Cette connexion peut servir à donner du contexte ou à souligner un lien entre des éléments similaires.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Cette loi complète les principes de regroupement de la Gestalt, qui décrivent comment l’esprit perçoit des éléments reliés visuellement comme davantage liés que des éléments isolés.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Sur une page de résultats Google, un encadré autour d’une vidéo ou d’un extrait mis en avant relie visuellement ce contenu tout en le distinguant du reste des résultats.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Rien ne bouge, pourtant tout change</h2>
-    </div>
-    <p class="Intro">Les 6 icônes ci-dessous sont espacées de façon parfaitement régulière. Activez l’encadré et observez ce qui change dans votre perception.</p>
-
-    <div class="DemoBox">
-      <div class="UcRow" id="ucRow">
-        <span class="UcGroupBg" id="ucGroupBg" aria-hidden="true"></span>
-        <span class="UcItem">●</span>
-        <span class="UcItem">●</span>
-        <span class="UcItem">●</span>
-        <span class="UcItem">●</span>
-        <span class="UcItem">●</span>
-        <span class="UcItem">●</span>
-      </div>
-      <div class="DemoActions">
-        <button class="DemoBtn" id="ucToggle" type="button">Ajouter l’encadré</button>
-      </div>
-      <div class="DemoResult" id="ucResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="loi-region-commune.html"><span class="RelatedCode">UX·12</span><h3>Loi de la région commune</h3><p>Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p></a>\n      <a class="Card RelatedCard" href="loi-de-proximite.html"><span class="RelatedCode">UX·13</span><h3>Loi de proximité</h3><p>Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p></a>\n      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-similarite.html" class="PageNavLink Prev">← Loi de similarité</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="modele-mental.html" class="PageNavLink Next">Modèle mental →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/law-of-uniform-connectedness/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var row = document.getElementById('ucRow');
-  var bg = document.getElementById('ucGroupBg');
-  var toggle = document.getElementById('ucToggle');
-  var result = document.getElementById('ucResult');
-  var items = row.querySelectorAll('.UcItem');
-  var on = false;
-
-  function positionBg(){
-    var rowRect = row.getBoundingClientRect();
-    var first = items[0].getBoundingClientRect();
-    var third = items[2].getBoundingClientRect();
-    var pad = 16;
-    bg.style.left = (first.left - rowRect.left - pad) + 'px';
-    bg.style.width = (third.right - first.left + pad * 2) + 'px';
-  }
-
-  toggle.addEventListener('click', function(){
-    on = !on;
-    if(on){
-      positionBg();
-      bg.classList.add('on');
-      toggle.textContent = 'Retirer l’encadré';
-      result.className = 'DemoResult show';
-      result.innerHTML = 'Rien n’a bougé&nbsp;: l’espacement entre les 6 icônes est resté strictement identique. Pourtant, entourer les 3 premières d’un simple fond commun suffit à les faire percevoir comme un groupe à part, séparé des 3 autres. C’est la loi de connexion uniforme&nbsp;: un fond ou une bordure partagée relie plus fort que la seule proximité.';
-    } else {
-      bg.classList.remove('on');
-      toggle.textContent = 'Ajouter l’encadré';
-      result.className = 'DemoResult';
-    }
-  });
-
-  window.addEventListener('resize', function(){ if(on) positionBg(); });
-})();
-</script>
+            window.addEventListener('resize', function(){ if(on) positionBg(); });
+        })();
+    </script>
 </body>
 </html>

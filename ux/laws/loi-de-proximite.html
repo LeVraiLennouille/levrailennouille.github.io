@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de proximité | Le fichier UX</title>
-<meta name="description" content="Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -357,150 +352,91 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>13</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Perception & Gestalt · UX·19</span>
+                <h1>Loi de proximité</h1>
+                <p class="Lede">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>La proximité entre deux éléments suffit à créer un lien perçu entre eux.</li>\n
+                <li>Des éléments proches sont supposés partager une fonction ou une caractéristique commune.</li>\n
+                <li>Une bonne gestion de la proximité aide à organiser et à comprendre l’information plus vite.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Comme la loi de la région commune, elle fait partie des principes de regroupement de la Gestalt, formulés pour expliquer pourquoi l’œil organise naturellement les éléments visuels en ensembles cohérents.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>L’espacement entre chaque résultat d’une page de recherche Google aide à regrouper visuellement les informations d’un même résultat, tout en le séparant clairement des autres.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Seul l’espacement change — regardez ce que ça fait</h2>
+            </div>
+            <p class="Intro">Aucune couleur, aucune bordure ne change ci-dessous. Seuls les écarts entre les points bougent.</p>
+            <div class="DemoBox">
+                <div class="PxRow" id="pxRow">
+                    <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+                    <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="pxToggle" type="button">Regrouper par paires</button>
+                </div>
+                <div class="DemoResult" id="pxResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var row = document.getElementById('pxRow');
+            var toggle = document.getElementById('pxToggle');
+            var result = document.getElementById('pxResult');
+            var on = false;
 
-<div class="ReadingProgress" id="progress"></div>
-
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>13</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Perception & Gestalt · UX·19</span>
-      <h1>Loi de proximité</h1>
-      <p class="Lede">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>La proximité entre deux éléments suffit à créer un lien perçu entre eux.</li>\n      <li>Des éléments proches sont supposés partager une fonction ou une caractéristique commune.</li>\n      <li>Une bonne gestion de la proximité aide à organiser et à comprendre l’information plus vite.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Comme la loi de la région commune, elle fait partie des principes de regroupement de la Gestalt, formulés pour expliquer pourquoi l’œil organise naturellement les éléments visuels en ensembles cohérents.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>L’espacement entre chaque résultat d’une page de recherche Google aide à regrouper visuellement les informations d’un même résultat, tout en le séparant clairement des autres.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Seul l’espacement change — regardez ce que ça fait</h2>
-    </div>
-    <p class="Intro">Aucune couleur, aucune bordure ne change ci-dessous. Seuls les écarts entre les points bougent.</p>
-
-    <div class="DemoBox">
-      <div class="PxRow" id="pxRow">
-        <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
-        <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
-      </div>
-      <div class="DemoActions">
-        <button class="DemoBtn" id="pxToggle" type="button">Regrouper par paires</button>
-      </div>
-      <div class="DemoResult" id="pxResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="loi-region-commune.html"><span class="RelatedCode">UX·12</span><h3>Loi de la région commune</h3><p>Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p></a>\n      <a class="Card RelatedCard" href="loi-connexion-uniforme.html"><span class="RelatedCode">UX·16</span><h3>Loi de connexion uniforme</h3><p>Des éléments reliés visuellement, par une ligne ou un fond commun, paraissent plus liés que des éléments isolés.</p></a>\n      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-region-commune.html" class="PageNavLink Prev">← Loi de la région commune</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-de-pragnanz.html" class="PageNavLink Next">Loi de Prägnanz →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/law-of-proximity/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var row = document.getElementById('pxRow');
-  var toggle = document.getElementById('pxToggle');
-  var result = document.getElementById('pxResult');
-  var on = false;
-
-  toggle.addEventListener('click', function(){
-    on = !on;
-    row.classList.toggle('grouped', on);
-    toggle.textContent = on ? 'Revenir à un espacement régulier' : 'Regrouper par paires';
-    result.className = 'DemoResult show';
-    if(on){
-      result.innerHTML = 'Les points n’ont ni changé de couleur ni de taille&nbsp;: seuls les écarts entre eux ont bougé. Pourtant, vous voyez désormais 4 paires distinctes là où il n’y avait qu’une rangée continue. C’est la loi de proximité&nbsp;: la distance seule suffit à créer un groupe perçu.';
-    } else {
-      result.innerHTML = 'Retour à un espacement parfaitement régulier&nbsp;: les 8 points se lisent à nouveau comme un seul ensemble continu.';
-    }
-  });
-})();
-</script>
+            toggle.addEventListener('click', function(){
+                on = !on;
+                row.classList.toggle('grouped', on);
+                toggle.textContent = on ? 'Revenir à un espacement régulier' : 'Regrouper par paires';
+                result.className = 'DemoResult show';
+                if(on){
+                    result.innerHTML = 'Les points n’ont ni changé de couleur ni de taille&nbsp;: seuls les écarts entre eux ont bougé. Pourtant, vous voyez désormais 4 paires distinctes là où il n’y avait qu’une rangée continue. C’est la loi de proximité&nbsp;: la distance seule suffit à créer un groupe perçu.';
+                } else {
+                    result.innerHTML = 'Retour à un espacement parfaitement régulier&nbsp;: les 8 points se lisent à nouveau comme un seul ensemble continu.';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Prägnanz | Le fichier UX</title>
-<meta name="description" content="Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -354,166 +349,107 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>14</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Perception & Gestalt · UX·18</span>
+                <h1>Loi de Prägnanz</h1>
+                <p class="Lede">Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>L’œil cherche instinctivement la simplicité et l’ordre dans des formes complexes, pour éviter d’être submergé d’information.</li>\n
+                <li>Les formes simples sont mieux mémorisées et plus faciles à traiter visuellement que les formes complexes.</li>\n
+                <li>Face à l’ambiguïté, l’esprit transforme spontanément une forme complexe en une forme unique et simplifiée.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">En 1910, le psychologue Max Wertheimer observe des lumières clignotant successivement à un passage à niveau, donnant l’illusion d’un mouvement continu — une observation à l’origine des principes de perception visuelle de la Gestalt.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Cinq points alignés en arc sont perçus comme une courbe unique plutôt que cinq points isolés.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Qu’est-ce qui est vraiment dessiné ici&nbsp;?</h2>
+            </div>
+            <p class="Intro">Regardez l’image ci-dessous quelques secondes avant de répondre.</p>
+            <div class="DemoBox">
+                <div class="PgStage">
+                    <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trois formes évoquant un triangle">
+                        <g transform="translate(150,50) rotate(90)">
+                            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
+                            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
+                        </g>
+                        <g transform="translate(70,190) rotate(-30)">
+                            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
+                            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
+                        </g>
+                        <g transform="translate(230,190) rotate(210)">
+                            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
+                            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
+                        </g>
+                    </svg>
+                </div>
+                <p class="PgAskLabel">Qu’avez-vous vu en premier&nbsp;?</p>
+                <div class="DemoActions">
+                    <button class="DemoBtnGhost" data-pick="triangle" type="button">Un triangle</button>
+                    <button class="DemoBtnGhost" data-pick="shapes" type="button">Trois formes en « Pac-Man »</button>
+                </div>
+                <div class="DemoResult" id="pgResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var buttons = document.querySelectorAll('[data-pick]');
+            var result = document.getElementById('pgResult');
+            var answered = false;
 
-<div class="ReadingProgress" id="progress"></div>
-
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>14</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Perception & Gestalt · UX·18</span>
-      <h1>Loi de Prägnanz</h1>
-      <p class="Lede">Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>L’œil cherche instinctivement la simplicité et l’ordre dans des formes complexes, pour éviter d’être submergé d’information.</li>\n      <li>Les formes simples sont mieux mémorisées et plus faciles à traiter visuellement que les formes complexes.</li>\n      <li>Face à l’ambiguïté, l’esprit transforme spontanément une forme complexe en une forme unique et simplifiée.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">En 1910, le psychologue Max Wertheimer observe des lumières clignotant successivement à un passage à niveau, donnant l’illusion d’un mouvement continu — une observation à l’origine des principes de perception visuelle de la Gestalt.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Cinq points alignés en arc sont perçus comme une courbe unique plutôt que cinq points isolés.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Qu’est-ce qui est vraiment dessiné ici&nbsp;?</h2>
-    </div>
-    <p class="Intro">Regardez l’image ci-dessous quelques secondes avant de répondre.</p>
-
-    <div class="DemoBox">
-      <div class="PgStage">
-        <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Trois formes évoquant un triangle">
-          <g transform="translate(150,50) rotate(90)">
-            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
-            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
-          </g>
-          <g transform="translate(70,190) rotate(-30)">
-            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
-            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
-          </g>
-          <g transform="translate(230,190) rotate(210)">
-            <circle cx="0" cy="0" r="40" fill="var(--Charcoal)"/>
-            <polygon points="0,0 51.96,-30 51.96,30" fill="#f1efe9"/>
-          </g>
-        </svg>
-      </div>
-      <p class="PgAskLabel">Qu’avez-vous vu en premier&nbsp;?</p>
-      <div class="DemoActions">
-        <button class="DemoBtnGhost" data-pick="triangle" type="button">Un triangle</button>
-        <button class="DemoBtnGhost" data-pick="shapes" type="button">Trois formes en « Pac-Man »</button>
-      </div>
-      <div class="DemoResult" id="pgResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="loi-de-hick.html"><span class="RelatedCode">UX·10</span><h3>Loi de Hick</h3><p>Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p></a>\n      <a class="Card RelatedCard" href="loi-region-commune.html"><span class="RelatedCode">UX·12</span><h3>Loi de la région commune</h3><p>Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-proximite.html" class="PageNavLink Prev">← Loi de proximité</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-de-similarite.html" class="PageNavLink Next">Loi de similarité →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/law-of-prägnanz/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var buttons = document.querySelectorAll('[data-pick]');
-  var result = document.getElementById('pgResult');
-  var answered = false;
-
-  buttons.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if(answered) return;
-      answered = true;
-      buttons.forEach(function(b){ b.disabled = true; });
-      var pick = btn.getAttribute('data-pick');
-      result.className = 'DemoResult show';
-      if(pick === 'triangle'){
-        result.innerHTML = 'Vous avez vu un triangle — comme la grande majorité des gens. Pourtant, aucun triangle n’est dessiné&nbsp;: seules 3 formes ajourées existent réellement dans le code. Votre œil a complété la forme la plus simple possible plutôt que de percevoir trois éléments disjoints. C’est très exactement la loi de Prägnanz.';
-      } else {
-        result.innerHTML = 'Vous avez identifié les trois formes distinctes — plus analytique que la moyenne. Mais regardez à nouveau&nbsp;: la plupart des gens voient d’abord un triangle net là où seules 3 formes ajourées sont réellement dessinées. L’œil préfère toujours l’interprétation la plus simple, quitte à inventer des contours qui n’existent pas.';
-      }
-    });
-  });
-})();
-</script>
+            buttons.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    if(answered) return;
+                    answered = true;
+                    buttons.forEach(function(b){b.disabled = true;});
+                    var pick = btn.getAttribute('data-pick');
+                    result.className = 'DemoResult show';
+                    if(pick === 'triangle'){
+                        result.innerHTML = 'Vous avez vu un triangle — comme la grande majorité des gens. Pourtant, aucun triangle n’est dessiné&nbsp;: seules 3 formes ajourées existent réellement dans le code. Votre œil a complété la forme la plus simple possible plutôt que de percevoir trois éléments disjoints. C’est très exactement la loi de Prägnanz.';
+                    } else {
+                        result.innerHTML = 'Vous avez identifié les trois formes distinctes — plus analytique que la moyenne. Mais regardez à nouveau&nbsp;: la plupart des gens voient d’abord un triangle net là où seules 3 formes ajourées sont réellement dessinées. L’œil préfère toujours l’interprétation la plus simple, quitte à inventer des contours qui n’existent pas.';
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

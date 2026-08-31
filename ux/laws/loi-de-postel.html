@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Postel | Le fichier UX</title>
-<meta name="description" content="Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -353,179 +348,120 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>24</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Principes de conception · UX·17</span>
+                <h1>Loi de Postel</h1>
+                <p class="Lede">Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Faire preuve de souplesse face à tout ce qu’un utilisateur peut saisir ou tenter, tout en restant rigoureux dans ce que le système renvoie en retour.</li>\n
+                <li>Anticiper un maximum de cas de figure en matière de saisie, d’accès et de capacité, tout en gardant une interface fiable.</li>\n
+                <li>Accepter une saisie variable, la convertir selon ses propres règles, et donner un retour clair à l’utilisateur en cas de besoin.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Cette loi, aussi appelée principe de robustesse, est formulée par Jon Postel, une figure pionnière d’internet, à l’origine pour les protocoles réseau : rester rigoureux dans ce que l’on transmet, mais tolérant sur ce que l’on accepte de recevoir.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un champ de téléphone qui accepte espaces, points ou tirets évite de bloquer l’utilisateur pour une erreur de format.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Le même numéro, accepté ou rejeté selon le champ</h2>
+            </div>
+            <p class="Intro">Tapez votre numéro de téléphone comme vous l’écririez naturellement, dans les deux champs ci-dessous.</p>
+            <div class="DemoBox">
+                <div class="PoField">
+                    <label class="PoLabel" for="poStrict">Champ strict — chiffres uniquement, sans espace</label>
+                    <input type="text" id="poStrict" placeholder="0612345678">
+                    <p class="PoMsg" id="poStrictMsg"></p>
+                </div>
+                <div class="PoField">
+                    <label class="PoLabel" for="poLenient">Champ tolérant</label>
+                    <input type="text" id="poLenient" placeholder="06 12 34 56 78">
+                    <p class="PoMsg" id="poLenientMsg"></p>
+                </div>
+                <div class="DemoResult" id="poResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var strict = document.getElementById('poStrict');
+            var lenient = document.getElementById('poLenient');
+            var strictMsg = document.getElementById('poStrictMsg');
+            var lenientMsg = document.getElementById('poLenientMsg');
+            var result = document.getElementById('poResult');
+            var shown = false;
 
-<div class="ReadingProgress" id="progress"></div>
+            function maybeReveal(){
+                if(shown) return;
+                if(strictMsg.classList.contains('error') && lenientMsg.classList.contains('success')){
+                    shown = true;
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'Le même numéro, écrit naturellement avec des espaces, est rejeté par le champ strict mais accepté par le champ tolérant. C’est la loi de Postel&nbsp;: accepter large en entrée, tout en normalisant proprement en sortie.';
+                }
+            }
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            strict.addEventListener('input', function(){
+                var v = strict.value.trim();
+                if(v === ''){strictMsg.textContent = ''; strictMsg.className = 'PoMsg'; return;}
+                if(/^\d{10}$/.test(v)){
+                    strictMsg.textContent = '✓ Accepté';
+                    strictMsg.className = 'PoMsg success';
+                } else {
+                    strictMsg.textContent = '✗ Format invalide — chiffres uniquement, sans espace';
+                    strictMsg.className = 'PoMsg error';
+                }
+                maybeReveal();
+            });
 
-<main id="top">
-
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>24</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Principes de conception · UX·17</span>
-      <h1>Loi de Postel</h1>
-      <p class="Lede">Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.</p>
-    </div>
-  </section>
-
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Soyez tolérant sur ce que vous acceptez en entrée, rigoureux sur ce que vous produisez en sortie.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Faire preuve de souplesse face à tout ce qu’un utilisateur peut saisir ou tenter, tout en restant rigoureux dans ce que le système renvoie en retour.</li>\n      <li>Anticiper un maximum de cas de figure en matière de saisie, d’accès et de capacité, tout en gardant une interface fiable.</li>\n      <li>Accepter une saisie variable, la convertir selon ses propres règles, et donner un retour clair à l’utilisateur en cas de besoin.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Cette loi, aussi appelée principe de robustesse, est formulée par Jon Postel, une figure pionnière d’internet, à l’origine pour les protocoles réseau : rester rigoureux dans ce que l’on transmet, mais tolérant sur ce que l’on accepte de recevoir.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un champ de téléphone qui accepte espaces, points ou tirets évite de bloquer l’utilisateur pour une erreur de format.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Le même numéro, accepté ou rejeté selon le champ</h2>
-    </div>
-    <p class="Intro">Tapez votre numéro de téléphone comme vous l’écririez naturellement, dans les deux champs ci-dessous.</p>
-
-    <div class="DemoBox">
-      <div class="PoField">
-        <label class="PoLabel" for="poStrict">Champ strict — chiffres uniquement, sans espace</label>
-        <input type="text" id="poStrict" placeholder="0612345678">
-        <p class="PoMsg" id="poStrictMsg"></p>
-      </div>
-      <div class="PoField">
-        <label class="PoLabel" for="poLenient">Champ tolérant</label>
-        <input type="text" id="poLenient" placeholder="06 12 34 56 78">
-        <p class="PoMsg" id="poLenientMsg"></p>
-      </div>
-      <div class="DemoResult" id="poResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="loi-de-hick.html"><span class="RelatedCode">UX·10</span><h3>Loi de Hick</h3><p>Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p></a>\n      <a class="Card RelatedCard" href="loi-de-pragnanz.html"><span class="RelatedCode">UX·14</span><h3>Loi de Prägnanz</h3><p>Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="regle-pic-et-fin.html" class="PageNavLink Prev">← Règle du pic et de la fin</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="attention-selective.html" class="PageNavLink Next">Attention sélective →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/postels-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var strict = document.getElementById('poStrict');
-  var lenient = document.getElementById('poLenient');
-  var strictMsg = document.getElementById('poStrictMsg');
-  var lenientMsg = document.getElementById('poLenientMsg');
-  var result = document.getElementById('poResult');
-  var shown = false;
-
-  function maybeReveal(){
-    if(shown) return;
-    if(strictMsg.classList.contains('error') && lenientMsg.classList.contains('success')){
-      shown = true;
-      result.className = 'DemoResult show';
-      result.innerHTML = 'Le même numéro, écrit naturellement avec des espaces, est rejeté par le champ strict mais accepté par le champ tolérant. C’est la loi de Postel&nbsp;: accepter large en entrée, tout en normalisant proprement en sortie.';
-    }
-  }
-
-  strict.addEventListener('input', function(){
-    var v = strict.value.trim();
-    if(v === ''){ strictMsg.textContent = ''; strictMsg.className = 'PoMsg'; return; }
-    if(/^\d{10}$/.test(v)){
-      strictMsg.textContent = '✓ Accepté';
-      strictMsg.className = 'PoMsg success';
-    } else {
-      strictMsg.textContent = '✗ Format invalide — chiffres uniquement, sans espace';
-      strictMsg.className = 'PoMsg error';
-    }
-    maybeReveal();
-  });
-
-  lenient.addEventListener('input', function(){
-    var v = lenient.value.trim();
-    if(v === ''){ lenientMsg.textContent = ''; lenientMsg.className = 'PoMsg'; return; }
-    var digits = v.replace(/[\s.\-()]/g, '');
-    if(/^\d{10}$/.test(digits)){
-      lenientMsg.textContent = '✓ Accepté et normalisé en ' + digits;
-      lenientMsg.className = 'PoMsg success';
-    } else {
-      lenientMsg.textContent = '✗ Ça ne ressemble toujours pas à un numéro';
-      lenientMsg.className = 'PoMsg error';
-    }
-    maybeReveal();
-  });
-})();
-</script>
+            lenient.addEventListener('input', function(){
+                var v = lenient.value.trim();
+                if(v === ''){lenientMsg.textContent = ''; lenientMsg.className = 'PoMsg'; return;}
+                var digits = v.replace(/[\s.\-()]/g, '');
+                if(/^\d{10}$/.test(digits)){
+                    lenientMsg.textContent = '✓ Accepté et normalisé en ' + digits;
+                    lenientMsg.className = 'PoMsg success';
+                } else {
+                    lenientMsg.textContent = '✗ Ça ne ressemble toujours pas à un numéro';
+                    lenientMsg.className = 'PoMsg error';
+                }
+                maybeReveal();
+            });
+        })();
+    </script>
 </body>
 </html>

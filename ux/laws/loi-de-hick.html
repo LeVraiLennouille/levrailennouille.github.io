@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Hick | Le fichier UX</title>
-<meta name="description" content="Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -363,210 +358,151 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>10</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Décision & comportement · UX·13</span>
+                <h1>Loi de Hick</h1>
+                <p class="Lede">Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Réduire le nombre d’options disponibles diminue le temps de décision, surtout quand la rapidité de réponse est importante.</li>\n
+                <li>Découper une tâche complexe en étapes plus simples réduit la charge cognitive.</li>\n
+                <li>Mettre en avant les options recommandées évite de submerger l’utilisateur face à un choix trop ouvert.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">La loi de Hick, ou loi de Hick-Hyman, doit son nom au psychologue britannique William Edmund Hick et à l’Américain Ray Hyman, qui étudient en 1952 la relation entre le nombre de stimuli proposés et le temps de réaction nécessaire pour choisir parmi eux.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un menu de navigation à 5 rubriques claires se parcourt plus vite qu’un menu à 20 entrées mélangées.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Combien de temps pour choisir, selon le nombre d’options&nbsp;?</h2>
+            </div>
+            <p class="Intro">Cliquez sur le bouton qui s’allume, le plus vite possible. Essayez avec 2 options, puis avec 8.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="hkStart2" type="button">Essayer avec 2 options</button>
+                    <button class="DemoBtn" id="hkStart8" type="button">Essayer avec 8 options</button>
+                </div>
+                <div class="HkZone" id="hkZone" hidden>
+                    <p class="HkStatus" id="hkStatus"></p>
+                    <div class="HkRow" id="hkRow"></div>
+                </div>
+                <div class="DemoScores">
+                    <span>2 options&nbsp;: <strong id="hkScore2">—</strong></span>
+                    <span>8 options&nbsp;: <strong id="hkScore8">—</strong></span>
+                </div>
+                <div class="DemoResult" id="hkResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var zone = document.getElementById('hkZone');
+            var status = document.getElementById('hkStatus');
+            var row = document.getElementById('hkRow');
+            var score2 = document.getElementById('hkScore2');
+            var score8 = document.getElementById('hkScore8');
+            var result = document.getElementById('hkResult');
+            var btn2 = document.getElementById('hkStart2');
+            var btn8 = document.getElementById('hkStart8');
 
-<div class="ReadingProgress" id="progress"></div>
+            var TRIALS = 5;
+            var n = 0, trial = 0, times = [], shownAt = 0, delayTimer = null;
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function render(){
+                var html = '';
+                for(var i = 0; i < n; i++){html += '<button class="HkBtn" data-i="'+i+'" type="button"></button>';}
+                row.innerHTML = html;
+            }
 
-<main id="top">
+            function playTrial(){
+                render();
+                status.textContent = 'Essai '+(trial+1)+'/'+TRIALS+' — attendez le bouton allumé…';
+                var delay = 600 + Math.random() * 1200;
+                delayTimer = setTimeout(function(){
+                    var target = Math.floor(Math.random() * n);
+                    var btns = row.querySelectorAll('.HkBtn');
+                    btns[target].classList.add('lit');
+                    shownAt = performance.now();
+                    status.textContent = 'Cliquez maintenant !';
+                    btns.forEach(function(b){
+                        b.addEventListener('click', function(){
+                            if(parseInt(b.getAttribute('data-i'), 10) === target){
+                                times.push(performance.now() - shownAt);
+                                trial++;
+                                if(trial >= TRIALS){ finish(); } else { playTrial();}
+                            }
+                        }, {once:true});
+                    });
+                }, delay);
+            }
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>10</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Décision & comportement · UX·13</span>
-      <h1>Loi de Hick</h1>
-      <p class="Lede">Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p>
-    </div>
-  </section>
+            function finish(){
+                clearTimeout(delayTimer);
+                var avg = times.reduce(function(s,v){ return s+v; }, 0) / times.length;
+                if(n === 2){score2.textContent = Math.round(avg) + ' ms';}
+                else {score8.textContent = Math.round(avg) + ' ms';}
+                zone.hidden = true;
+                btn2.disabled = false;
+                btn8.disabled = false;
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p>
-  </section>
+                var s2 = score2.textContent, s8 = score8.textContent;
+                result.className = 'DemoResult show';
+                if(s2 !== '—' && s8 !== '—'){
+                    var v2 = parseInt(s2, 10), v8 = parseInt(s8, 10);
+                    result.innerHTML = 'Avec 2 options&nbsp;: <strong>'+s2+'</strong> en moyenne — avec 8 options&nbsp;: <strong>'+s8+'</strong>. '+(v8 > v2 ? 'Choisir parmi 8 possibilités a pris plus de temps que parmi seulement 2&nbsp;: c’est la loi de Hick en action.' : 'L’écart n’est pas toujours net sur un petit nombre d’essais, mais statistiquement, le temps de décision augmente avec le nombre d’options.');
+                } else {
+                    result.innerHTML = 'Temps moyen&nbsp;: <strong>'+Math.round(avg)+' ms</strong>. Essayez maintenant l’autre condition pour comparer.';
+                }
+            }
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Réduire le nombre d’options disponibles diminue le temps de décision, surtout quand la rapidité de réponse est importante.</li>\n      <li>Découper une tâche complexe en étapes plus simples réduit la charge cognitive.</li>\n      <li>Mettre en avant les options recommandées évite de submerger l’utilisateur face à un choix trop ouvert.</li>
-    </ul>
-  </section>
+            function start(count){
+                n = count;
+                trial = 0;
+                times = [];
+                btn2.disabled = true;
+                btn8.disabled = true;
+                zone.hidden = false;
+                playTrial();
+            }
 
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">La loi de Hick, ou loi de Hick-Hyman, doit son nom au psychologue britannique William Edmund Hick et à l’Américain Ray Hyman, qui étudient en 1952 la relation entre le nombre de stimuli proposés et le temps de réaction nécessaire pour choisir parmi eux.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un menu de navigation à 5 rubriques claires se parcourt plus vite qu’un menu à 20 entrées mélangées.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Combien de temps pour choisir, selon le nombre d’options&nbsp;?</h2>
-    </div>
-    <p class="Intro">Cliquez sur le bouton qui s’allume, le plus vite possible. Essayez avec 2 options, puis avec 8.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="hkStart2" type="button">Essayer avec 2 options</button>
-        <button class="DemoBtn" id="hkStart8" type="button">Essayer avec 8 options</button>
-      </div>
-      <div class="HkZone" id="hkZone" hidden>
-        <p class="HkStatus" id="hkStatus"></p>
-        <div class="HkRow" id="hkRow"></div>
-      </div>
-      <div class="DemoScores">
-        <span>2 options&nbsp;: <strong id="hkScore2">—</strong></span>
-        <span>8 options&nbsp;: <strong id="hkScore8">—</strong></span>
-      </div>
-      <div class="DemoResult" id="hkResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="seuil-de-doherty.html"><span class="RelatedCode">UX·06</span><h3>Seuil de Doherty</h3><p>Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.</p></a>\n      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="effet-gradient-objectif.html" class="PageNavLink Prev">← Effet de gradient d’objectif</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="loi-de-jakob.html" class="PageNavLink Next">Loi de Jakob →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/hicks-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var zone = document.getElementById('hkZone');
-  var status = document.getElementById('hkStatus');
-  var row = document.getElementById('hkRow');
-  var score2 = document.getElementById('hkScore2');
-  var score8 = document.getElementById('hkScore8');
-  var result = document.getElementById('hkResult');
-  var btn2 = document.getElementById('hkStart2');
-  var btn8 = document.getElementById('hkStart8');
-
-  var TRIALS = 5;
-  var n = 0, trial = 0, times = [], shownAt = 0, delayTimer = null;
-
-  function render(){
-    var html = '';
-    for(var i = 0; i < n; i++){ html += '<button class="HkBtn" data-i="'+i+'" type="button"></button>'; }
-    row.innerHTML = html;
-  }
-
-  function playTrial(){
-    render();
-    status.textContent = 'Essai '+(trial+1)+'/'+TRIALS+' — attendez le bouton allumé…';
-    var delay = 600 + Math.random() * 1200;
-    delayTimer = setTimeout(function(){
-      var target = Math.floor(Math.random() * n);
-      var btns = row.querySelectorAll('.HkBtn');
-      btns[target].classList.add('lit');
-      shownAt = performance.now();
-      status.textContent = 'Cliquez maintenant !';
-      btns.forEach(function(b){
-        b.addEventListener('click', function(){
-          if(parseInt(b.getAttribute('data-i'), 10) === target){
-            times.push(performance.now() - shownAt);
-            trial++;
-            if(trial >= TRIALS){ finish(); } else { playTrial(); }
-          }
-        }, { once:true });
-      });
-    }, delay);
-  }
-
-  function finish(){
-    clearTimeout(delayTimer);
-    var avg = times.reduce(function(s,v){ return s+v; }, 0) / times.length;
-    if(n === 2){ score2.textContent = Math.round(avg) + ' ms'; }
-    else { score8.textContent = Math.round(avg) + ' ms'; }
-    zone.hidden = true;
-    btn2.disabled = false;
-    btn8.disabled = false;
-
-    var s2 = score2.textContent, s8 = score8.textContent;
-    result.className = 'DemoResult show';
-    if(s2 !== '—' && s8 !== '—'){
-      var v2 = parseInt(s2, 10), v8 = parseInt(s8, 10);
-      result.innerHTML = 'Avec 2 options&nbsp;: <strong>'+s2+'</strong> en moyenne — avec 8 options&nbsp;: <strong>'+s8+'</strong>. '+(v8 > v2 ? 'Choisir parmi 8 possibilités a pris plus de temps que parmi seulement 2&nbsp;: c’est la loi de Hick en action.' : 'L’écart n’est pas toujours net sur un petit nombre d’essais, mais statistiquement, le temps de décision augmente avec le nombre d’options.');
-    } else {
-      result.innerHTML = 'Temps moyen&nbsp;: <strong>'+Math.round(avg)+' ms</strong>. Essayez maintenant l’autre condition pour comparer.';
-    }
-  }
-
-  function start(count){
-    n = count;
-    trial = 0;
-    times = [];
-    btn2.disabled = true;
-    btn8.disabled = true;
-    zone.hidden = false;
-    playTrial();
-  }
-
-  btn2.addEventListener('click', function(){ start(2); });
-  btn8.addEventListener('click', function(){ start(8); });
-})();
-</script>
+            btn2.addEventListener('click', function(){ start(2); });
+            btn8.addEventListener('click', function(){ start(8); });
+        })();
+    </script>
 </body>
 </html>

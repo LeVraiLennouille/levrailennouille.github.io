@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Miller | Le fichier UX</title>
-<meta name="description" content="La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -365,202 +360,144 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>18</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Mémoire & charge cognitive · UX·15</span>
+                <h1>Loi de Miller</h1>
+                <p class="Lede">La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Le fameux « nombre magique sept » ne doit pas être utilisé comme prétexte pour s’imposer des limites de conception artificielles.</li>\n
+                <li>Organiser le contenu en petits groupes aide à le traiter, le comprendre et le mémoriser plus facilement.</li>\n
+                <li>La capacité réelle de la mémoire à court terme varie d’une personne à l’autre, selon ses connaissances et le contexte.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">En 1956, George Miller montre que la mémoire immédiate et la capacité de jugement sont toutes deux limitées à environ sept éléments à la fois — une observation devenue l’un des repères les plus cités de la psychologie cognitive.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un parcours de commande découpé en 4 étapes claires reste gérable, contrairement à un formulaire de 20 champs d’un bloc.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Quel est votre empan de mémoire immédiate&nbsp;?</h2>
+            </div>
+            <p class="Intro">Une suite de chiffres s’affiche, de plus en plus longue. Retapez-la à chaque fois&nbsp;: on s’arrête à la première erreur.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="mlStart" type="button">Commencer le test</button>
+                </div>
+                <div class="MlStage" id="mlStage" hidden>
+                    <p class="MlLevel" id="mlLevel"></p>
+                    <p class="MlNumber" id="mlNumber"></p>
+                    <div class="MlInputRow" id="mlInputRow" hidden>
+                        <input type="text" inputmode="numeric" id="mlInput" placeholder="Retapez la suite…">
+                        <button class="DemoBtn" id="mlSubmit" type="button">Valider</button>
+                    </div>
+                </div>
+                <div class="DemoResult" id="mlResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var stage = document.getElementById('mlStage');
+            var level = document.getElementById('mlLevel');
+            var numberEl = document.getElementById('mlNumber');
+            var inputRow = document.getElementById('mlInputRow');
+            var input = document.getElementById('mlInput');
+            var startBtn = document.getElementById('mlStart');
+            var submitBtn = document.getElementById('mlSubmit');
+            var result = document.getElementById('mlResult');
 
-<div class="ReadingProgress" id="progress"></div>
+            var length = 3;
+            var current = '';
+            var MAX_LEN = 12;
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function randomDigits(n){
+                var s = '';
+                for(var i = 0; i < n; i++){s += Math.floor(Math.random() * 10);}
+                return s;
+            }
 
-<main id="top">
+            function playLevel(){
+                current = randomDigits(length);
+                level.textContent = length + ' chiffres';
+                numberEl.textContent = current;
+                inputRow.hidden = true;
+                input.value = '';
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>18</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Mémoire & charge cognitive · UX·15</span>
-      <h1>Loi de Miller</h1>
-      <p class="Lede">La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.</p>
-    </div>
-  </section>
+                setTimeout(function(){
+                    numberEl.textContent = '· · · · ·';
+                    inputRow.hidden = false;
+                    input.focus();
+                }, 600 + length * 350);
+            }
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">La mémoire de travail ne retient en moyenne que 7 éléments à la fois, à deux près.</p>
-  </section>
+            startBtn.addEventListener('click', function(){
+                length = 3;
+                startBtn.disabled = true;
+                startBtn.hidden = true;
+                stage.hidden = false;
+                result.className = 'DemoResult';
+                playLevel();    
+            });
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Le fameux « nombre magique sept » ne doit pas être utilisé comme prétexte pour s’imposer des limites de conception artificielles.</li>\n      <li>Organiser le contenu en petits groupes aide à le traiter, le comprendre et le mémoriser plus facilement.</li>\n      <li>La capacité réelle de la mémoire à court terme varie d’une personne à l’autre, selon ses connaissances et le contexte.</li>
-    </ul>
-  </section>
+            function submit(){
+                if(inputRow.hidden) return;
+                var typed = input.value.replace(/\D/g, '');
+                if(typed === current){
+                    length++;
+                    if(length > MAX_LEN){endTest(MAX_LEN); return;}
+                    playLevel();
+                } else {
+                    endTest(length - 1);
+                }
+            }
 
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">En 1956, George Miller montre que la mémoire immédiate et la capacité de jugement sont toutes deux limitées à environ sept éléments à la fois — une observation devenue l’un des repères les plus cités de la psychologie cognitive.</p>
-  </section>
+            function endTest(span){
+                stage.hidden = true;
+                startBtn.hidden = false;
+                startBtn.disabled = false;
+                startBtn.textContent = 'Refaire le test';
+                result.className = 'DemoResult show';
+                result.innerHTML = 'Votre empan de mémoire immédiate&nbsp;: <strong>'+span+' chiffre'+(span > 1 ? 's' : '')+'</strong>. George Miller situait la moyenne à 7, à deux chiffres près — entre 5 et 9. '+(span >= 5 && span <= 9 ? 'Vous êtes pile dans cette fourchette.' : (span > 9 ? 'Vous êtes au-dessus de la moyenne&nbsp;!' : 'C’est en dessous de la moyenne habituelle — un essai supplémentaire donne souvent un meilleur résultat.'));
+            }
 
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un parcours de commande découpé en 4 étapes claires reste gérable, contrairement à un formulaire de 20 champs d’un bloc.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Quel est votre empan de mémoire immédiate&nbsp;?</h2>
-    </div>
-    <p class="Intro">Une suite de chiffres s’affiche, de plus en plus longue. Retapez-la à chaque fois&nbsp;: on s’arrête à la première erreur.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="mlStart" type="button">Commencer le test</button>
-      </div>
-      <div class="MlStage" id="mlStage" hidden>
-        <p class="MlLevel" id="mlLevel"></p>
-        <p class="MlNumber" id="mlNumber"></p>
-        <div class="MlInputRow" id="mlInputRow" hidden>
-          <input type="text" inputmode="numeric" id="mlInput" placeholder="Retapez la suite…">
-          <button class="DemoBtn" id="mlSubmit" type="button">Valider</button>
-        </div>
-      </div>
-      <div class="DemoResult" id="mlResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>\n      <a class="Card RelatedCard" href="charge-cognitive.html"><span class="RelatedCode">UX·05</span><h3>Charge cognitive</h3><p>C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="modele-mental.html" class="PageNavLink Prev">← Modèle mental</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="rasoir-doccam.html" class="PageNavLink Next">Rasoir d’Occam →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/millers-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var stage = document.getElementById('mlStage');
-  var level = document.getElementById('mlLevel');
-  var numberEl = document.getElementById('mlNumber');
-  var inputRow = document.getElementById('mlInputRow');
-  var input = document.getElementById('mlInput');
-  var startBtn = document.getElementById('mlStart');
-  var submitBtn = document.getElementById('mlSubmit');
-  var result = document.getElementById('mlResult');
-
-  var length = 3;
-  var current = '';
-  var MAX_LEN = 12;
-
-  function randomDigits(n){
-    var s = '';
-    for(var i = 0; i < n; i++){ s += Math.floor(Math.random() * 10); }
-    return s;
-  }
-
-  function playLevel(){
-    current = randomDigits(length);
-    level.textContent = length + ' chiffres';
-    numberEl.textContent = current;
-    inputRow.hidden = true;
-    input.value = '';
-    setTimeout(function(){
-      numberEl.textContent = '· · · · ·';
-      inputRow.hidden = false;
-      input.focus();
-    }, 600 + length * 350);
-  }
-
-  startBtn.addEventListener('click', function(){
-    length = 3;
-    startBtn.disabled = true;
-    startBtn.hidden = true;
-    stage.hidden = false;
-    result.className = 'DemoResult';
-    playLevel();
-  });
-
-  function submit(){
-    if(inputRow.hidden) return;
-    var typed = input.value.replace(/\D/g, '');
-    if(typed === current){
-      length++;
-      if(length > MAX_LEN){ endTest(MAX_LEN); return; }
-      playLevel();
-    } else {
-      endTest(length - 1);
-    }
-  }
-
-  function endTest(span){
-    stage.hidden = true;
-    startBtn.hidden = false;
-    startBtn.disabled = false;
-    startBtn.textContent = 'Refaire le test';
-    result.className = 'DemoResult show';
-    result.innerHTML = 'Votre empan de mémoire immédiate&nbsp;: <strong>'+span+' chiffre'+(span > 1 ? 's' : '')+'</strong>. George Miller situait la moyenne à 7, à deux chiffres près — entre 5 et 9. '+(span >= 5 && span <= 9 ? 'Vous êtes pile dans cette fourchette.' : (span > 9 ? 'Vous êtes au-dessus de la moyenne&nbsp;!' : 'C’est en dessous de la moyenne habituelle — un essai supplémentaire donne souvent un meilleur résultat.'));
-  }
-
-  submitBtn.addEventListener('click', submit);
-  input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); submit(); } });
-})();
-</script>
+            submitBtn.addEventListener('click', submit);
+            input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); submit(); } });
+        })();
+    </script>
 </body>
 </html>

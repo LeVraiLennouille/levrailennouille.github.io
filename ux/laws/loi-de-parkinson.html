@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Parkinson | Le fichier UX</title>
-<meta name="description" content="Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -361,185 +356,126 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>22</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Principes de conception · UX·16</span>
+                <h1>Loi de Parkinson</h1>
+                <p class="Lede">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Une tâche a tendance à s’étirer pour occuper tout le temps qu’on lui accorde.</li>\n
+                <li>Réduire la durée perçue d’une tâche, par rapport à ce que l’utilisateur en attend, améliore son expérience.</li>\n
+                <li>Des fonctions comme le remplissage automatique font gagner du temps et évitent que la tâche ne s’éternise inutilement.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Formulée par Cyril Northcote Parkinson dans un essai humoristique publié dans The Economist en 1955, cette loi s’appuie sur son expérience de la fonction publique britannique, où le travail administratif s’étendait toujours pour occuper l’intégralité du temps disponible.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Fixer un délai de session de 10 minutes plutôt que 60 pousse à remplir un formulaire sans traîner.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>La même phrase prend-elle plus de temps selon le budget annoncé&nbsp;?</h2>
+            </div>
+            <p class="Intro">Décrivez votre plat préféré en une phrase, deux fois de suite, avec un temps suggéré différent à chaque fois. On chronomètre le temps que vous prenez réellement.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="pkStartLong" type="button">Essayer avec « environ 5 minutes »</button>
+                    <button class="DemoBtn" id="pkStartShort" type="button">Essayer avec « environ 20 secondes »</button>
+                </div>
+                <div class="PkStage" id="pkStage" hidden>
+                    <p class="PkPrompt" id="pkPrompt"></p>
+                    <textarea class="DemoTextarea" id="pkInput" rows="2" placeholder="Votre phrase…"></textarea>
+                    <button class="DemoBtn" id="pkSubmit" type="button">J’ai terminé</button>
+                </div>
+                <div class="DemoScores">
+                    <span>« 5 minutes »&nbsp;: <strong id="pkScoreLong">—</strong></span>
+                    <span>« 20 secondes »&nbsp;: <strong id="pkScoreShort">—</strong></span>
+                </div>
+                <div class="DemoResult" id="pkResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var stage = document.getElementById('pkStage');
+            var prompt = document.getElementById('pkPrompt');
+            var input = document.getElementById('pkInput');
+            var submitBtn = document.getElementById('pkSubmit');
+            var scoreLong = document.getElementById('pkScoreLong');
+            var scoreShort = document.getElementById('pkScoreShort');
+            var result = document.getElementById('pkResult');
+            var btnLong = document.getElementById('pkStartLong');
+            var btnShort = document.getElementById('pkStartShort');
 
-<div class="ReadingProgress" id="progress"></div>
+            var mode = null, startTime = 0;
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function start(m, promptText){
+                mode = m;
+                btnLong.disabled = true; btnShort.disabled = true;
+                prompt.textContent = promptText;
+                input.value = '';
+                result.className = 'DemoResult';
+                stage.hidden = false;
+                input.focus();
+                startTime = performance.now();
+            }
 
-<main id="top">
+            btnLong.addEventListener('click', function(){start('long', 'Vous avez environ 5 minutes — décrivez votre plat préféré en une phrase.');});
+            btnShort.addEventListener('click', function(){start('short', 'Vous avez environ 20 secondes — décrivez votre plat préféré en une phrase.');});
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>22</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Principes de conception · UX·16</span>
-      <h1>Loi de Parkinson</h1>
-      <p class="Lede">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
-    </div>
-  </section>
+            submitBtn.addEventListener('click', function(){
+                if(!mode) return;
+                var elapsed = (performance.now() - startTime) / 1000;
+                var label = elapsed.toFixed(1) + 's';
+                if(mode === 'long'){scoreLong.textContent = label;}
+                else {scoreShort.textContent = label;}
+                stage.hidden = true;
+                btnLong.disabled = false; btnShort.disabled = false;
+                mode = null;
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Une tâche a tendance à s’étirer pour occuper tout le temps qu’on lui accorde.</li>\n      <li>Réduire la durée perçue d’une tâche, par rapport à ce que l’utilisateur en attend, améliore son expérience.</li>\n      <li>Des fonctions comme le remplissage automatique font gagner du temps et évitent que la tâche ne s’éternise inutilement.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Formulée par Cyril Northcote Parkinson dans un essai humoristique publié dans The Economist en 1955, cette loi s’appuie sur son expérience de la fonction publique britannique, où le travail administratif s’étendait toujours pour occuper l’intégralité du temps disponible.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Fixer un délai de session de 10 minutes plutôt que 60 pousse à remplir un formulaire sans traîner.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>La même phrase prend-elle plus de temps selon le budget annoncé&nbsp;?</h2>
-    </div>
-    <p class="Intro">Décrivez votre plat préféré en une phrase, deux fois de suite, avec un temps suggéré différent à chaque fois. On chronomètre le temps que vous prenez réellement.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="pkStartLong" type="button">Essayer avec « environ 5 minutes »</button>
-        <button class="DemoBtn" id="pkStartShort" type="button">Essayer avec « environ 20 secondes »</button>
-      </div>
-      <div class="PkStage" id="pkStage" hidden>
-        <p class="PkPrompt" id="pkPrompt"></p>
-        <textarea class="DemoTextarea" id="pkInput" rows="2" placeholder="Votre phrase…"></textarea>
-        <button class="DemoBtn" id="pkSubmit" type="button">J’ai terminé</button>
-      </div>
-      <div class="DemoScores">
-        <span>« 5 minutes »&nbsp;: <strong id="pkScoreLong">—</strong></span>
-        <span>« 20 secondes »&nbsp;: <strong id="pkScoreShort">—</strong></span>
-      </div>
-      <div class="DemoResult" id="pkResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="effet-esthetique-usabilite.html"><span class="RelatedCode">UX·01</span><h3>Effet Esthétique-Utilisabilité</h3><p>Une interface soignée visuellement est perçue comme plus facile à utiliser, même quand ses fonctionnalités réelles n’ont pas changé.</p></a>\n      <a class="Card RelatedCard" href="rasoir-doccam.html"><span class="RelatedCode">UX·19</span><h3>Rasoir d’Occam</h3><p>Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p></a>\n      <a class="Card RelatedCard" href="paradoxe-utilisateur-actif.html"><span class="RelatedCode">UX·20</span><h3>Paradoxe de l’utilisateur actif</h3><p>Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="principe-de-pareto.html" class="PageNavLink Prev">← Principe de Pareto</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="regle-pic-et-fin.html" class="PageNavLink Next">Règle du pic et de la fin →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/parkinsons-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var stage = document.getElementById('pkStage');
-  var prompt = document.getElementById('pkPrompt');
-  var input = document.getElementById('pkInput');
-  var submitBtn = document.getElementById('pkSubmit');
-  var scoreLong = document.getElementById('pkScoreLong');
-  var scoreShort = document.getElementById('pkScoreShort');
-  var result = document.getElementById('pkResult');
-  var btnLong = document.getElementById('pkStartLong');
-  var btnShort = document.getElementById('pkStartShort');
-
-  var mode = null, startTime = 0;
-
-  function start(m, promptText){
-    mode = m;
-    btnLong.disabled = true; btnShort.disabled = true;
-    prompt.textContent = promptText;
-    input.value = '';
-    result.className = 'DemoResult';
-    stage.hidden = false;
-    input.focus();
-    startTime = performance.now();
-  }
-
-  btnLong.addEventListener('click', function(){ start('long', 'Vous avez environ 5 minutes — décrivez votre plat préféré en une phrase.'); });
-  btnShort.addEventListener('click', function(){ start('short', 'Vous avez environ 20 secondes — décrivez votre plat préféré en une phrase.'); });
-
-  submitBtn.addEventListener('click', function(){
-    if(!mode) return;
-    var elapsed = (performance.now() - startTime) / 1000;
-    var label = elapsed.toFixed(1) + 's';
-    if(mode === 'long'){ scoreLong.textContent = label; }
-    else { scoreShort.textContent = label; }
-    stage.hidden = true;
-    btnLong.disabled = false; btnShort.disabled = false;
-    mode = null;
-
-    var l = scoreLong.textContent, s = scoreShort.textContent;
-    result.className = 'DemoResult show';
-    if(l !== '—' && s !== '—'){
-      var lf = parseFloat(l), sf = parseFloat(s);
-      result.innerHTML = 'Avec « 5&nbsp;minutes » suggérées&nbsp;: <strong>'+l+'</strong> — avec « 20&nbsp;secondes » suggérées&nbsp;: <strong>'+s+'</strong>. '+(lf > sf ? 'La même phrase à écrire vous a pris plus de temps quand le budget annoncé était plus large&nbsp;: c’est la loi de Parkinson en action.' : 'Sur cet essai l’écart ne va pas dans le sens attendu&nbsp;; la tendance générale reste qu’un délai plus généreux pousse à en faire usage, même sans besoin réel.');
-    } else {
-      result.innerHTML = 'Rédigé en <strong>'+label+'</strong>. Essayez maintenant l’autre budget de temps annoncé pour comparer.';
-    }
-  });
-})();
-</script>
+                var l = scoreLong.textContent, s = scoreShort.textContent;
+                result.className = 'DemoResult show';
+                if(l !== '—' && s !== '—'){
+                    var lf = parseFloat(l), sf = parseFloat(s);
+                    result.innerHTML = 'Avec « 5&nbsp;minutes » suggérées&nbsp;: <strong>'+l+'</strong> — avec « 20&nbsp;secondes » suggérées&nbsp;: <strong>'+s+'</strong>. '+(lf > sf ? 'La même phrase à écrire vous a pris plus de temps quand le budget annoncé était plus large&nbsp;: c’est la loi de Parkinson en action.' : 'Sur cet essai l’écart ne va pas dans le sens attendu&nbsp;; la tendance générale reste qu’un délai plus généreux pousse à en faire usage, même sans besoin réel.');
+                } else {
+                    result.innerHTML = 'Rédigé en <strong>'+label+'</strong>. Essayez maintenant l’autre budget de temps annoncé pour comparer.';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

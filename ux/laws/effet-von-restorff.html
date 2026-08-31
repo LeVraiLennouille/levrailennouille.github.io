@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Effet Von Restorff | Le fichier UX</title>
-<meta name="description" content="Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -375,184 +370,127 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>28</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Mémoire & charge cognitive · UX·08</span>
+                <h1>Effet Von Restorff</h1>
+                <p class="Lede">Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Rendre une information ou une action clé visuellement distincte du reste augmente ses chances d’être remarquée et mémorisée.</li>\n
+                <li>Utiliser cette mise en avant avec parcimonie, pour éviter que plusieurs éléments ne se fassent concurrence ou ne soient confondus avec de la publicité.</li>\n
+                <li>Ne jamais s’appuyer uniquement sur la couleur pour signaler un contraste important, au risque d’exclure les personnes daltoniennes ou malvoyantes.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">La psychiatre allemande Hedwig von Restorff démontre en 1933 que, dans une liste d’éléments similaires, celui qui se distingue des autres est bien mieux mémorisé que le reste de la liste.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Le seul bouton coloré au milieu de boutons gris capte l’œil et reste en mémoire après la visite.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Le mot qui sort du lot reste-t-il en mémoire&nbsp;?</h2>
+            </div>
+            <p class="Intro">11 mots s’affichent 5 secondes. Un seul se distingue visuellement des autres. Mémorisez-en le plus possible.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="vrStart" type="button">Afficher la liste</button>
+                </div>
+                <div class="VrGrid" id="vrStage" hidden></div>
+                <div class="DemoRecall" id="vrRecall" hidden>
+                    <label for="vrInput" class="DemoRecallLabel">Tapez les mots dont vous vous souvenez, séparés par des virgules&nbsp;:</label>
+                    <textarea class="DemoTextarea" id="vrInput" rows="2" placeholder="ex : arbre, valise…"></textarea>
+                    <button class="DemoBtn" id="vrCheck" type="button">Voir mon score</button>
+                </div>
+                <div class="DemoResult" id="vrResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var WORDS = ["valise","arbre","montre","stylo","tapis","échelle","miroir","bouteille","tambour","planche","fromage"];
+            var ODD_INDEX = 5;
+            var stage = document.getElementById('vrStage');
+            var startBtn = document.getElementById('vrStart');
+            var recallBox = document.getElementById('vrRecall');
+            var input = document.getElementById('vrInput');
+            var checkBtn = document.getElementById('vrCheck');
+            var result = document.getElementById('vrResult');
 
-<div class="ReadingProgress" id="progress"></div>
+            function normalize(s){
+                return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+            }
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            startBtn.addEventListener('click', function(){
+                startBtn.disabled = true;
+                recallBox.hidden = true;
+                input.value = '';
+                result.className = 'DemoResult';
+                stage.innerHTML = WORDS.map(function(w, i){
+                    return '<div class="VrItem'+(i === ODD_INDEX ? ' odd' : '')+'">'+w+'</div>';
+                }).join('');
 
-<main id="top">
+                stage.hidden = false;
+                setTimeout(function(){
+                    stage.hidden = true;
+                    recallBox.hidden = false;
+                    input.focus();
+                }, 5000);
+            });
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>28</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Mémoire & charge cognitive · UX·08</span>
-      <h1>Effet Von Restorff</h1>
-      <p class="Lede">Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p>
-    </div>
-  </section>
+            checkBtn.addEventListener('click', function(){
+                var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+                var hits = WORDS.map(function(w){ return typed.indexOf(normalize(w)) !== -1; });
+                var oddHit = hits[ODD_INDEX];
+                var othersHit = hits.filter(function(h, i){ return i !== ODD_INDEX && h; }).length;
+                var othersTotal = WORDS.length - 1;
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Dans un ensemble d’éléments similaires, celui qui se distingue est celui dont on se souvient le mieux.</p>
-  </section>
+                result.className = 'DemoResult show';
+                if(oddHit && othersHit <= othersTotal / 2){
+                    result.innerHTML = 'Vous avez retrouvé le mot mis en avant («&nbsp;'+WORDS[ODD_INDEX]+'&nbsp;») mais seulement <strong>'+othersHit+'/'+othersTotal+'</strong> mots ordinaires. C’est l’effet Von Restorff&nbsp;: au milieu d’éléments similaires, celui qui se distingue capte l’attention et reste en mémoire.';
+                } else if(oddHit){
+                    result.innerHTML = 'Vous avez retrouvé le mot mis en avant («&nbsp;'+WORDS[ODD_INDEX]+'&nbsp;») et <strong>'+othersHit+'/'+othersTotal+'</strong> mots ordinaires. Sur un seul essai les résultats varient, mais à grande échelle, c’est presque toujours l’élément distinctif qui ressort en tête des scores de mémorisation.';
+                } else {
+                    result.innerHTML = 'Vous n’avez pas retrouvé le mot mis en avant cette fois-ci ('+othersHit+'/'+othersTotal+' mots ordinaires retrouvés) — un seul essai ne suffit pas à conclure, mais l’effet Von Restorff est l’un des plus reproduits en psychologie de la mémoire.';
+                }
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Rendre une information ou une action clé visuellement distincte du reste augmente ses chances d’être remarquée et mémorisée.</li>\n      <li>Utiliser cette mise en avant avec parcimonie, pour éviter que plusieurs éléments ne se fassent concurrence ou ne soient confondus avec de la publicité.</li>\n      <li>Ne jamais s’appuyer uniquement sur la couleur pour signaler un contraste important, au risque d’exclure les personnes daltoniennes ou malvoyantes.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">La psychiatre allemande Hedwig von Restorff démontre en 1933 que, dans une liste d’éléments similaires, celui qui se distingue des autres est bien mieux mémorisé que le reste de la liste.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Le seul bouton coloré au milieu de boutons gris capte l’œil et reste en mémoire après la visite.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Le mot qui sort du lot reste-t-il en mémoire&nbsp;?</h2>
-    </div>
-    <p class="Intro">11 mots s’affichent 5 secondes. Un seul se distingue visuellement des autres. Mémorisez-en le plus possible.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="vrStart" type="button">Afficher la liste</button>
-      </div>
-      <div class="VrGrid" id="vrStage" hidden></div>
-      <div class="DemoRecall" id="vrRecall" hidden>
-        <label for="vrInput" class="DemoRecallLabel">Tapez les mots dont vous vous souvenez, séparés par des virgules&nbsp;:</label>
-        <textarea class="DemoTextarea" id="vrInput" rows="2" placeholder="ex : arbre, valise…"></textarea>
-        <button class="DemoBtn" id="vrCheck" type="button">Voir mon score</button>
-      </div>
-      <div class="DemoResult" id="vrResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="attention-selective.html"><span class="RelatedCode">UX·25</span><h3>Attention sélective</h3><p>On ne remarque qu’une partie des stimuli d’un écran, en général ceux liés à ce qu’on cherche à faire.</p></a>\n      <a class="Card RelatedCard" href="chunking.html"><span class="RelatedCode">UX·03</span><h3>Chunking</h3><p>Découper une masse d’information en petits groupes cohérents la rend plus facile à retenir et à traiter.</p></a>\n      <a class="Card RelatedCard" href="biais-cognitif.html"><span class="RelatedCode">UX·04</span><h3>Biais cognitif</h3><p>Nos jugements suivent des raccourcis mentaux systématiques, pas toujours rationnels, qui influencent nos décisions.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="loi-de-tesler.html" class="PageNavLink Prev">← Loi de Tesler</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="memoire-de-travail.html" class="PageNavLink Next">Mémoire de travail →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/von-restorff-effect/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var WORDS = ["valise","arbre","montre","stylo","tapis","échelle","miroir","bouteille","tambour","planche","fromage"];
-  var ODD_INDEX = 5;
-  var stage = document.getElementById('vrStage');
-  var startBtn = document.getElementById('vrStart');
-  var recallBox = document.getElementById('vrRecall');
-  var input = document.getElementById('vrInput');
-  var checkBtn = document.getElementById('vrCheck');
-  var result = document.getElementById('vrResult');
-
-  function normalize(s){
-    return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  }
-
-  startBtn.addEventListener('click', function(){
-    startBtn.disabled = true;
-    recallBox.hidden = true;
-    input.value = '';
-    result.className = 'DemoResult';
-    stage.innerHTML = WORDS.map(function(w, i){
-      return '<div class="VrItem'+(i === ODD_INDEX ? ' odd' : '')+'">'+w+'</div>';
-    }).join('');
-    stage.hidden = false;
-    setTimeout(function(){
-      stage.hidden = true;
-      recallBox.hidden = false;
-      input.focus();
-    }, 5000);
-  });
-
-  checkBtn.addEventListener('click', function(){
-    var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
-    var hits = WORDS.map(function(w){ return typed.indexOf(normalize(w)) !== -1; });
-    var oddHit = hits[ODD_INDEX];
-    var othersHit = hits.filter(function(h, i){ return i !== ODD_INDEX && h; }).length;
-    var othersTotal = WORDS.length - 1;
-
-    result.className = 'DemoResult show';
-    if(oddHit && othersHit <= othersTotal / 2){
-      result.innerHTML = 'Vous avez retrouvé le mot mis en avant («&nbsp;'+WORDS[ODD_INDEX]+'&nbsp;») mais seulement <strong>'+othersHit+'/'+othersTotal+'</strong> mots ordinaires. C’est l’effet Von Restorff&nbsp;: au milieu d’éléments similaires, celui qui se distingue capte l’attention et reste en mémoire.';
-    } else if(oddHit){
-      result.innerHTML = 'Vous avez retrouvé le mot mis en avant («&nbsp;'+WORDS[ODD_INDEX]+'&nbsp;») et <strong>'+othersHit+'/'+othersTotal+'</strong> mots ordinaires. Sur un seul essai les résultats varient, mais à grande échelle, c’est presque toujours l’élément distinctif qui ressort en tête des scores de mémorisation.';
-    } else {
-      result.innerHTML = 'Vous n’avez pas retrouvé le mot mis en avant cette fois-ci ('+othersHit+'/'+othersTotal+' mots ordinaires retrouvés) — un seul essai ne suffit pas à conclure, mais l’effet Von Restorff est l’un des plus reproduits en psychologie de la mémoire.';
-    }
-    checkBtn.disabled = true;
-    startBtn.disabled = false;
-    startBtn.textContent = 'Réessayer';
-  });
-})();
-</script>
+                checkBtn.disabled = true;
+                startBtn.disabled = false;
+                startBtn.textContent = 'Réessayer';
+            });
+        })();
+    </script>
 </body>
 </html>

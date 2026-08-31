@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loi de Tesler | Le fichier UX</title>
-<meta name="description" content="Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -362,214 +357,156 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>27</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Principes de conception · UX·21</span>
+                <h1>Loi de Tesler</h1>
+                <p class="Lede">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Toute application possède un noyau de complexité qui ne peut être supprimé — seulement déplacé, du système vers l’utilisateur ou inversement.</li>\n
+                <li>Le rôle du concepteur est d’absorber un maximum de cette complexité en amont, plutôt que de la reporter sur chaque utilisateur.</li>\n
+                <li>Il ne faut pas concevoir pour un utilisateur idéalisé et parfaitement rationnel : dans la réalité, les comportements sont souvent plus complexes que prévu.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Alors qu’il travaillait chez Xerox PARC au milieu des années 1980, Larry Tesler observe que la façon dont les utilisateurs interagissent avec une application compte autant que l’application elle-même, formulant ainsi la loi de conservation de la complexité.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un correcteur d’adresse automatique déplace la complexité du côté du système plutôt que de la laisser à l’utilisateur.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>La complexité n’a pas disparu, elle a changé de camp</h2>
+            </div>
+            <p class="Intro">Entrez une date de votre choix, de deux façons différentes. On regarde où se loge la difficulté.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="tlShowRaw" type="button">Essayer le mode brut</button>
+                    <button class="DemoBtn" id="tlShowGuided" type="button">Essayer le mode assisté</button>
+                </div>
+                <div class="TlBox" id="tlRaw" hidden>
+                    <label class="TlLabel" for="tlRawInput">Format exact attendu&nbsp;: <code>JJ.MM.AAAA</code></label>
+                    <div class="TlInputRow">
+                        <input type="text" id="tlRawInput" placeholder="ex : 05.03.1998">
+                        <button class="DemoBtn" id="tlRawCheck" type="button">Valider</button>
+                    </div>
+                </div>
+                <div class="TlBox" id="tlGuided" hidden>
+                    <div class="TlSelectRow">
+                        <select id="tlDay" aria-label="Jour"></select>
+                        <select id="tlMonth" aria-label="Mois"></select>
+                        <select id="tlYear" aria-label="Année"></select>
+                        <button class="DemoBtn" id="tlGuidedCheck" type="button">Valider</button>
+                    </div>
+                </div>
+                <div class="DemoScores">
+                    <span>Mode brut&nbsp;: <strong id="tlScoreRaw">—</strong></span>
+                    <span>Mode assisté&nbsp;: <strong id="tlScoreGuided">—</strong></span>
+                </div>
+                <div class="DemoResult" id="tlResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var rawBox = document.getElementById('tlRaw');
+            var guidedBox = document.getElementById('tlGuided');
+            var rawInput = document.getElementById('tlRawInput');
+            var rawCheck = document.getElementById('tlRawCheck');
+            var guidedCheck = document.getElementById('tlGuidedCheck');
+            var scoreRaw = document.getElementById('tlScoreRaw');
+            var scoreGuided = document.getElementById('tlScoreGuided');
+            var result = document.getElementById('tlResult');
+            var daySel = document.getElementById('tlDay');
+            var monthSel = document.getElementById('tlMonth');
+            var yearSel = document.getElementById('tlYear');
+            var showRawBtn = document.getElementById('tlShowRaw');
+            var showGuidedBtn = document.getElementById('tlShowGuided');
+            var rawAttempts = 0;
 
-<div class="ReadingProgress" id="progress"></div>
+            function fillSelect(sel, from, to){
+                var html = '';
+                for(var i = from; i <= to; i++){html += '<option value="'+i+'">'+i+'</option>';}
+                sel.innerHTML = html;
+            }
+            fillSelect(daySel, 1, 31);
+            fillSelect(monthSel, 1, 12);
+            fillSelect(yearSel, 1950, 2026);
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            function checkComparison(){
+                var r = scoreRaw.textContent, g = scoreGuided.textContent;
+                if(r !== '—' && g !== '—'){
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'Mode brut&nbsp;: <strong>'+r+'</strong> — mode assisté&nbsp;: <strong>'+g+'</strong>. La difficulté de respecter un format n’a pas disparu dans le mode assisté&nbsp;: elle a été absorbée par le système, qui ne propose que des valeurs valides. C’est la loi de Tesler&nbsp;: la complexité se déplace, elle ne s’annule jamais vraiment.';
+                }
+            }
 
-<main id="top">
+            showRawBtn.addEventListener('click', function(){
+                rawBox.hidden = false;
+                rawAttempts = 0;
+                rawInput.value = '';
+                rawInput.placeholder = 'ex : 05.03.1998';
+                rawInput.style.borderColor = '';
+                rawInput.focus();
+            });
+            
+            showGuidedBtn.addEventListener('click', function(){
+                guidedBox.hidden = false;
+            });
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>27</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Principes de conception · UX·21</span>
-      <h1>Loi de Tesler</h1>
-      <p class="Lede">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
-    </div>
-  </section>
+            rawCheck.addEventListener('click', function(){
+                rawAttempts++;
+                var v = rawInput.value.trim();
+                var m = v.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+                if(m){
+                    scoreRaw.textContent = rawAttempts + ' essai' + (rawAttempts > 1 ? 's' : '');
+                    rawBox.hidden = true;
+                    checkComparison();
+                } else {
+                    rawInput.style.borderColor = '#e53e3e';
+                    rawInput.placeholder = 'Format incorrect, réessayez : JJ.MM.AAAA';
+                    rawInput.value = '';
+                }
+            });
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
-  </section>
-
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Toute application possède un noyau de complexité qui ne peut être supprimé — seulement déplacé, du système vers l’utilisateur ou inversement.</li>\n      <li>Le rôle du concepteur est d’absorber un maximum de cette complexité en amont, plutôt que de la reporter sur chaque utilisateur.</li>\n      <li>Il ne faut pas concevoir pour un utilisateur idéalisé et parfaitement rationnel : dans la réalité, les comportements sont souvent plus complexes que prévu.</li>
-    </ul>
-  </section>
-
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Alors qu’il travaillait chez Xerox PARC au milieu des années 1980, Larry Tesler observe que la façon dont les utilisateurs interagissent avec une application compte autant que l’application elle-même, formulant ainsi la loi de conservation de la complexité.</p>
-  </section>
-
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Un correcteur d’adresse automatique déplace la complexité du côté du système plutôt que de la laisser à l’utilisateur.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>La complexité n’a pas disparu, elle a changé de camp</h2>
-    </div>
-    <p class="Intro">Entrez une date de votre choix, de deux façons différentes. On regarde où se loge la difficulté.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="tlShowRaw" type="button">Essayer le mode brut</button>
-        <button class="DemoBtn" id="tlShowGuided" type="button">Essayer le mode assisté</button>
-      </div>
-      <div class="TlBox" id="tlRaw" hidden>
-        <label class="TlLabel" for="tlRawInput">Format exact attendu&nbsp;: <code>JJ.MM.AAAA</code></label>
-        <div class="TlInputRow">
-          <input type="text" id="tlRawInput" placeholder="ex : 05.03.1998">
-          <button class="DemoBtn" id="tlRawCheck" type="button">Valider</button>
-        </div>
-      </div>
-      <div class="TlBox" id="tlGuided" hidden>
-        <div class="TlSelectRow">
-          <select id="tlDay" aria-label="Jour"></select>
-          <select id="tlMonth" aria-label="Mois"></select>
-          <select id="tlYear" aria-label="Année"></select>
-          <button class="DemoBtn" id="tlGuidedCheck" type="button">Valider</button>
-        </div>
-      </div>
-      <div class="DemoScores">
-        <span>Mode brut&nbsp;: <strong id="tlScoreRaw">—</strong></span>
-        <span>Mode assisté&nbsp;: <strong id="tlScoreGuided">—</strong></span>
-      </div>
-      <div class="DemoResult" id="tlResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="surcharge-de-choix.html"><span class="RelatedCode">UX·02</span><h3>Surcharge de choix</h3><p>Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p></a>\n      <a class="Card RelatedCard" href="loi-de-hick.html"><span class="RelatedCode">UX·10</span><h3>Loi de Hick</h3><p>Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p></a>\n      <a class="Card RelatedCard" href="loi-de-pragnanz.html"><span class="RelatedCode">UX·14</span><h3>Loi de Prägnanz</h3><p>Face à une forme ambiguë, l’œil retient toujours l’interprétation la plus simple possible.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="effet-position-serielle.html" class="PageNavLink Prev">← Effet de position sérielle</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="effet-von-restorff.html" class="PageNavLink Next">Effet Von Restorff →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/teslers-law/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var rawBox = document.getElementById('tlRaw');
-  var guidedBox = document.getElementById('tlGuided');
-  var rawInput = document.getElementById('tlRawInput');
-  var rawCheck = document.getElementById('tlRawCheck');
-  var guidedCheck = document.getElementById('tlGuidedCheck');
-  var scoreRaw = document.getElementById('tlScoreRaw');
-  var scoreGuided = document.getElementById('tlScoreGuided');
-  var result = document.getElementById('tlResult');
-  var daySel = document.getElementById('tlDay');
-  var monthSel = document.getElementById('tlMonth');
-  var yearSel = document.getElementById('tlYear');
-  var showRawBtn = document.getElementById('tlShowRaw');
-  var showGuidedBtn = document.getElementById('tlShowGuided');
-  var rawAttempts = 0;
-
-  function fillSelect(sel, from, to){
-    var html = '';
-    for(var i = from; i <= to; i++){ html += '<option value="'+i+'">'+i+'</option>'; }
-    sel.innerHTML = html;
-  }
-  fillSelect(daySel, 1, 31);
-  fillSelect(monthSel, 1, 12);
-  fillSelect(yearSel, 1950, 2026);
-
-  function checkComparison(){
-    var r = scoreRaw.textContent, g = scoreGuided.textContent;
-    if(r !== '—' && g !== '—'){
-      result.className = 'DemoResult show';
-      result.innerHTML = 'Mode brut&nbsp;: <strong>'+r+'</strong> — mode assisté&nbsp;: <strong>'+g+'</strong>. La difficulté de respecter un format n’a pas disparu dans le mode assisté&nbsp;: elle a été absorbée par le système, qui ne propose que des valeurs valides. C’est la loi de Tesler&nbsp;: la complexité se déplace, elle ne s’annule jamais vraiment.';
-    }
-  }
-
-  showRawBtn.addEventListener('click', function(){
-    rawBox.hidden = false;
-    rawAttempts = 0;
-    rawInput.value = '';
-    rawInput.placeholder = 'ex : 05.03.1998';
-    rawInput.style.borderColor = '';
-    rawInput.focus();
-  });
-  showGuidedBtn.addEventListener('click', function(){
-    guidedBox.hidden = false;
-  });
-
-  rawCheck.addEventListener('click', function(){
-    rawAttempts++;
-    var v = rawInput.value.trim();
-    var m = v.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
-    if(m){
-      scoreRaw.textContent = rawAttempts + ' essai' + (rawAttempts > 1 ? 's' : '');
-      rawBox.hidden = true;
-      checkComparison();
-    } else {
-      rawInput.style.borderColor = '#e53e3e';
-      rawInput.placeholder = 'Format incorrect, réessayez : JJ.MM.AAAA';
-      rawInput.value = '';
-    }
-  });
-
-  guidedCheck.addEventListener('click', function(){
-    scoreGuided.textContent = '1 essai';
-    guidedBox.hidden = true;
-    checkComparison();
-  });
-})();
-</script>
+            guidedCheck.addEventListener('click', function(){
+                scoreGuided.textContent = '1 essai';
+                guidedBox.hidden = true;
+                checkComparison();
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surcharge de choix | Le fichier UX</title>
-<meta name="description" content="Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.">
-<meta name="theme-color" content="#1c1c1e">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
 
   :root{
     --Primary:#207EDE; --PrimaryRGB:32,126,222;
@@ -368,195 +363,137 @@
 </style>
 </head>
 <body>
+    <main id="top">
+        <section class="Hero LawHero">
+            <div class="Decor" aria-hidden="true"><span>02</span></div>
+            <div class="HeroInner">
+                <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
+                <span class="Category">Décision & comportement · UX·30</span>
+                <h1>Surcharge de choix</h1>
+                <p class="Lede">Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2>Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2>Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Un trop grand nombre d’options nuit à la capacité de décision et peut détériorer le ressenti global de l’expérience.</li>\n
+                <li>Permettre une comparaison côte à côte, par exemple entre plusieurs formules tarifaires, aide à limiter cette surcharge.</li>\n
+                <li>Prioriser ce qui est montré à un instant donné, et proposer des outils de filtrage, réduit le risque de submerger l’utilisateur.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2>D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le terme est introduit par le futurologue Alvin Toffler dans son ouvrage de 1970 « Future Shock », pour décrire ce paradoxe : au-delà d’un certain nombre d’options, la capacité de décision se détériore plutôt que de s’améliorer.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2>Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Une carte de restaurant de 80 plats fatigue plus qu’une sélection de 12 suggestions du chef.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2>Choisirez-vous, ou abandonnerez-vous&nbsp;?</h2>
+            </div>
+            <p class="Intro">Deux cartes de restaurant. Choisissez un plat dans chacune, ou abandonnez si ça devient trop long.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="scStart80" type="button">Carte à 30 plats</button>
+                    <button class="DemoBtn" id="scStart12" type="button">Carte à 6 suggestions</button>
+                </div>
+                <div class="ScStage" id="scStage" hidden>
+                    <p class="ScTimer">⏱ <span id="scTime">0.0</span>s</p>
+                    <div class="ScGrid" id="scGrid"></div>
+                    <button class="DemoBtnGhost" id="scGiveUp" type="button">Je craque, choisissez pour moi</button>
+                </div>
+                <div class="DemoScores">
+                    <span>Carte à 30&nbsp;: <strong id="scScore80">—</strong></span>
+                    <span>Carte à 6&nbsp;: <strong id="scScore12">—</strong></span>
+                </div>
+                <div class="DemoResult" id="scResult" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var DISHES_30 = ["Velouté","Tartare","Risotto","Ceviche","Burrata","Carpaccio","Gratin","Tajine","Paella","Curry","Gyoza","Falafel","Ramen","Poke","Tacos","Croquettes","Feuilleté","Cassoulet","Bibimbap","Moussaka","Quiche","Tourte","Wok","Chili","Gnocchi","Rôti","Bruschetta","Empanada","Samoussa","Pho"];
+            var DISHES_6 = ["Velouté du chef","Risotto truffe","Tacos poisson","Poke bowl","Cassoulet maison","Gyoza croustillants"];
 
-<div class="ReadingProgress" id="progress"></div>
+            var stage = document.getElementById('scStage');
+            var timeEl = document.getElementById('scTime');
+            var grid = document.getElementById('scGrid');
+            var giveUpBtn = document.getElementById('scGiveUp');
+            var score80 = document.getElementById('scScore80');
+            var score12 = document.getElementById('scScore12');
+            var result = document.getElementById('scResult');
+            var btn80 = document.getElementById('scStart80');
+            var btn12 = document.getElementById('scStart12');
 
-<header class="NavBar">
-  <a class="NavLogo" href="../comprendre-ux.html">UX<span>·</span>Catalogue</a>
-  <nav class="NavLinks">
-    <a href="../comprendre-ux.html#definir">Définir</a>
-    <a href="../comprendre-ux.html#ux-ui">UX / UI</a>
-    <a href="../comprendre-ux.html#catalogue">Le fichier</a>
-  </nav>
-</header>
+            var mode = null, startTime = 0, rafId = null;
 
-<main id="top">
+            function tick(){
+                timeEl.textContent = ((performance.now() - startTime) / 1000).toFixed(1);
+                rafId = requestAnimationFrame(tick);
+            }
 
-  <section class="Hero LawHero">
-    <div class="Decor" aria-hidden="true"><span>02</span></div>
-    <div class="HeroInner">
-      <a class="Breadcrumb" href="../comprendre-ux.html#catalogue">← Retour au catalogue</a>
-      <span class="Category">Décision & comportement · UX·30</span>
-      <h1>Surcharge de choix</h1>
-      <p class="Lede">Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p>
-    </div>
-  </section>
+            function start(m, dishes){
+                mode = m;
+                btn80.disabled = true; btn12.disabled = true;
+                grid.innerHTML = dishes.map(function(d){return '<div class="ScDish">' + d + '</div>';}).join('');
+                stage.hidden = false;
+                result.className = 'DemoResult';
+                startTime = performance.now();
+                tick();
+            }
 
-  <section class="Block" id="principe">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Le principe</span>
-      <h2>Ce que dit cette loi</h2>
-    </div>
-    <p class="Intro">Trop d’options présentées à la fois ralentit la décision et peut pousser à l’abandon plutôt qu’au choix.</p>
-  </section>
+            function finish(gaveUp){
+                cancelAnimationFrame(rafId);
+                var elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
+                var label = gaveUp ? 'abandon à ' + elapsed + 's' : elapsed + 's';
+                if(mode === '80'){score80.textContent = label;}
+                else {score12.textContent = label;}
+                stage.hidden = true;
+                btn80.disabled = false; btn12.disabled = false;
+                mode = null;
 
-  <section class="Block Alt" id="cles">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Points clés</span>
-      <h2>Ce qu’il faut retenir</h2>
-    </div>
-    <ul class="Takeaways">
-      <li>Un trop grand nombre d’options nuit à la capacité de décision et peut détériorer le ressenti global de l’expérience.</li>\n      <li>Permettre une comparaison côte à côte, par exemple entre plusieurs formules tarifaires, aide à limiter cette surcharge.</li>\n      <li>Prioriser ce qui est montré à un instant donné, et proposer des outils de filtrage, réduit le risque de submerger l’utilisateur.</li>
-    </ul>
-  </section>
+                var s80 = score80.textContent, s12 = score12.textContent;
+                result.className = 'DemoResult show';
+                if(s80 !== '—' && s12 !== '—'){
+                    result.innerHTML = 'Carte à 30 plats&nbsp;: <strong>' + s80 + '</strong> — carte à 6 suggestions&nbsp;: <strong>' + s12 + '</strong>. ' + (s80.indexOf('abandon') !== -1 ? 'Vous avez renoncé face à la carte la plus fournie&nbsp;: exactement le risque que décrit la surcharge de choix.' : 'Même sans abandon, remarquez l’écart de temps&nbsp;: plus d’options ne veut pas dire plus de plaisir à choisir.');
+                } else {
+                    result.innerHTML = (gaveUp ? 'Vous avez craqué après ' + elapsed + 's. ' : 'Choisi en ' + elapsed + 's. ') + 'Essayez maintenant l’autre carte pour comparer.';
+                }
+            }
 
-  <section class="Block" id="origines">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Origines</span>
-      <h2>D’où vient ce principe</h2>
-    </div>
-    <p class="Intro">Le terme est introduit par le futurologue Alvin Toffler dans son ouvrage de 1970 « Future Shock », pour décrire ce paradoxe : au-delà d’un certain nombre d’options, la capacité de décision se détériore plutôt que de s’améliorer.</p>
-  </section>
+            btn80.addEventListener('click', function(){start('80', DISHES_30);});
+            btn12.addEventListener('click', function(){start('12', DISHES_6);});
+            grid.addEventListener('click', function(e){
+                if(e.target.closest('.ScDish') && mode){finish(false);}
+            });
 
-  <section class="Block Alt" id="pratique">
-    <div class="SectionTitle">
-      <span class="Eyebrow">En pratique</span>
-      <h2>Un exemple concret</h2>
-    </div>
-    <div class="Highlight">
-      <div>
-        <p class="HighlightLabel">Exemple</p>
-        <p>Une carte de restaurant de 80 plats fatigue plus qu’une sélection de 12 suggestions du chef.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="Block" id="demo">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Démonstration</span>
-      <h2>Choisirez-vous, ou abandonnerez-vous&nbsp;?</h2>
-    </div>
-    <p class="Intro">Deux cartes de restaurant. Choisissez un plat dans chacune, ou abandonnez si ça devient trop long.</p>
-
-    <div class="DemoBox">
-      <div class="DemoActions">
-        <button class="DemoBtn" id="scStart80" type="button">Carte à 30 plats</button>
-        <button class="DemoBtn" id="scStart12" type="button">Carte à 6 suggestions</button>
-      </div>
-      <div class="ScStage" id="scStage" hidden>
-        <p class="ScTimer">⏱ <span id="scTime">0.0</span>s</p>
-        <div class="ScGrid" id="scGrid"></div>
-        <button class="DemoBtnGhost" id="scGiveUp" type="button">Je craque, choisissez pour moi</button>
-      </div>
-      <div class="DemoScores">
-        <span>Carte à 30&nbsp;: <strong id="scScore80">—</strong></span>
-        <span>Carte à 6&nbsp;: <strong id="scScore12">—</strong></span>
-      </div>
-      <div class="DemoResult" id="scResult" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="Block" id="liees">
-    <div class="SectionTitle">
-      <span class="Eyebrow">Lois liées</span>
-      <h2>À explorer ensuite</h2>
-    </div>
-    <div class="CompareGrid RelatedGrid">
-      <a class="Card RelatedCard" href="loi-de-hick.html"><span class="RelatedCode">UX·10</span><h3>Loi de Hick</h3><p>Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p></a>\n      <a class="Card RelatedCard" href="seuil-de-doherty.html"><span class="RelatedCode">UX·06</span><h3>Seuil de Doherty</h3><p>Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.</p></a>\n      <a class="Card RelatedCard" href="loi-de-fitts.html"><span class="RelatedCode">UX·07</span><h3>Loi de Fitts</h3><p>Le temps pour atteindre une cible dépend de sa distance et de sa taille : plus elle est loin ou petite, plus c’est lent.</p></a>
-    </div>
-  </section>
-
-  <nav class="PageNav">
-    <a href="effet-esthetique-usabilite.html" class="PageNavLink Prev">← Effet Esthétique-Utilisabilité</a>
-    <a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>
-    <a href="chunking.html" class="PageNavLink Next">Chunking →</a>
-  </nav>
-
-  <p class="SourceNote">Cette fiche est une synthèse reformulée à partir de la page consacrée à ce principe sur <a href="https://lawsofux.com/choice-overload/" target="_blank" rel="noopener">lawsofux.com</a> (Jon Yablonski), qui propose des ressources complémentaires en anglais.</p>
-
-</main>
-
-<footer class="Footer">
-  <div class="FooterAccent"></div>
-  <div class="FooterInner">
-    <p>Définitions et exemples reformulés pour ce catalogue, à des fins pédagogiques, à partir du référentiel <a href="https://lawsofux.com/" target="_blank" rel="noopener">Laws of UX</a> de Jon Yablonski.</p>
-    <a class="BackTop" href="#top">↑ Haut de page</a>
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-  var progress = document.getElementById('progress');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrolled = h.scrollTop;
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
-  }
-  document.addEventListener('scroll', updateProgress, { passive:true });
-  updateProgress();
-})();
-</script>
-<script>
-(function(){
-  "use strict";
-  var DISHES_30 = ["Velouté","Tartare","Risotto","Ceviche","Burrata","Carpaccio","Gratin","Tajine","Paella","Curry","Gyoza","Falafel","Ramen","Poke","Tacos","Croquettes","Feuilleté","Cassoulet","Bibimbap","Moussaka","Quiche","Tourte","Wok","Chili","Gnocchi","Rôti","Bruschetta","Empanada","Samoussa","Pho"];
-  var DISHES_6 = ["Velouté du chef","Risotto truffe","Tacos poisson","Poke bowl","Cassoulet maison","Gyoza croustillants"];
-
-  var stage = document.getElementById('scStage');
-  var timeEl = document.getElementById('scTime');
-  var grid = document.getElementById('scGrid');
-  var giveUpBtn = document.getElementById('scGiveUp');
-  var score80 = document.getElementById('scScore80');
-  var score12 = document.getElementById('scScore12');
-  var result = document.getElementById('scResult');
-  var btn80 = document.getElementById('scStart80');
-  var btn12 = document.getElementById('scStart12');
-
-  var mode = null, startTime = 0, rafId = null;
-
-  function tick(){
-    timeEl.textContent = ((performance.now() - startTime) / 1000).toFixed(1);
-    rafId = requestAnimationFrame(tick);
-  }
-
-  function start(m, dishes){
-    mode = m;
-    btn80.disabled = true; btn12.disabled = true;
-    grid.innerHTML = dishes.map(function(d){ return '<div class="ScDish">' + d + '</div>'; }).join('');
-    stage.hidden = false;
-    result.className = 'DemoResult';
-    startTime = performance.now();
-    tick();
-  }
-
-  function finish(gaveUp){
-    cancelAnimationFrame(rafId);
-    var elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
-    var label = gaveUp ? 'abandon à ' + elapsed + 's' : elapsed + 's';
-    if(mode === '80'){ score80.textContent = label; }
-    else { score12.textContent = label; }
-    stage.hidden = true;
-    btn80.disabled = false; btn12.disabled = false;
-    mode = null;
-
-    var s80 = score80.textContent, s12 = score12.textContent;
-    result.className = 'DemoResult show';
-    if(s80 !== '—' && s12 !== '—'){
-      result.innerHTML = 'Carte à 30 plats&nbsp;: <strong>' + s80 + '</strong> — carte à 6 suggestions&nbsp;: <strong>' + s12 + '</strong>. ' + (s80.indexOf('abandon') !== -1 ? 'Vous avez renoncé face à la carte la plus fournie&nbsp;: exactement le risque que décrit la surcharge de choix.' : 'Même sans abandon, remarquez l’écart de temps&nbsp;: plus d’options ne veut pas dire plus de plaisir à choisir.');
-    } else {
-      result.innerHTML = (gaveUp ? 'Vous avez craqué après ' + elapsed + 's. ' : 'Choisi en ' + elapsed + 's. ') + 'Essayez maintenant l’autre carte pour comparer.';
-    }
-  }
-
-  btn80.addEventListener('click', function(){ start('80', DISHES_30); });
-  btn12.addEventListener('click', function(){ start('12', DISHES_6); });
-  grid.addEventListener('click', function(e){
-    if(e.target.closest('.ScDish') && mode){ finish(false); }
-  });
-  giveUpBtn.addEventListener('click', function(){ if(mode){ finish(true); } });
-})();
-</script>
+            giveUpBtn.addEventListener('click', function(){ if(mode){ finish(true); } });
+        })();
+    </script>
 </body>
 </html>
