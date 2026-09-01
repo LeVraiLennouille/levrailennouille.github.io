@@ -1,9 +1,9 @@
 (function () {
     const CATS = {
-        percept: {label: "Perception & Gestalt"},
-        memoire: {label: "Mémoire & charge cognitive"},
-        decision: {label: "Décision & comportement"},
-        principes: {label: "Principes de conception"}
+        percept: { label: "Perception & Gestalt" },
+        memoire: { label: "Mémoire & charge cognitive" },
+        decision: { label: "Décision & comportement" },
+        principes: { label: "Principes de conception" }
     };
 
     const LAWS = [
@@ -240,7 +240,13 @@
         "</a>";
     }
 
-    window.LennouilleUX = {laws: LAWS, cats: CATS, cardHTML: cardHTML, relatedCardHTML: relatedCardHTML};
+    function pageNavHTML(prevLaw, nextLaw) {
+        return '<a href="' + prevLaw.slug + '.html" class="PageNavLink Prev">← ' + prevLaw.name + '</a>' +
+            '<a href="../comprendre-ux.html#catalogue" class="PageNavLink Home">Toutes les lois</a>' +
+            '<a href="' + nextLaw.slug + '.html" class="PageNavLink Next">' + nextLaw.name + ' →</a>';
+    }
+
+    window.LennouilleUX = {laws: LAWS, cats: CATS, cardHTML: cardHTML, relatedCardHTML: relatedCardHTML, pageNavHTML: pageNavHTML};
 
     const grid = document.getElementById("grid");
 
@@ -303,17 +309,24 @@
         render();
     }
 
-    const relatedGrid = document.querySelector(".RelatedGrid");
+    const currentSlug = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
+    const currentLaw = LAWS.find(function (law) { return law.slug === currentSlug; });
 
-    if (relatedGrid) {
-        const slug = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
-        const current = LAWS.find(function (law) { return law.slug === slug; });
-
-        if (current) {
-            const sameCat = LAWS.filter(function (law) { return law.cat === current.cat; });
-            const idx = sameCat.indexOf(current);
-            const picks = [1, 2, 3].map(function (offset) { return sameCat[(idx + offset) % sameCat.length]; });
+    if (currentLaw) {
+        const relatedGrid = document.querySelector(".RelatedGrid");
+        if (relatedGrid) {
+            const sameCat = LAWS.filter(function (law) {return law.cat === currentLaw.cat;});
+            const idx = sameCat.indexOf(currentLaw);
+            const picks = [1, 2, 3].map(function (offset) {return sameCat[(idx + offset) % sameCat.length];});
             relatedGrid.innerHTML = picks.map(relatedCardHTML).join("");
+        }
+
+        const pageNav = document.querySelector(".PageNav");
+        if (pageNav) {
+            const idx = LAWS.indexOf(currentLaw);
+            const prevLaw = LAWS[(idx - 1 + LAWS.length) % LAWS.length];
+            const nextLaw = LAWS[(idx + 1) % LAWS.length];
+            pageNav.innerHTML = pageNavHTML(prevLaw, nextLaw);
         }
     }
 })();
