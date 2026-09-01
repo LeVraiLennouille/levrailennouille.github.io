@@ -547,6 +547,9 @@
 // ► Send
             WEBHOOK_URL: '',
             FORMSPREE_URL: 'https://formspree.io/f/mbdeoqrq',
+// ► Rate limiting
+            RATE_LIMIT_MAX: 3,
+            RATE_LIMIT_WINDOW_MS: 15 * 60 * 1000,
         };
 
         let STATE = {
@@ -999,6 +1002,38 @@
             return null;
         }
 
+        const RATE_LIMIT_KEY = 'lennouilleDevisEnvois';
+
+        function getRecentSubmissions() {
+            let timestamps;
+            try {
+                timestamps = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY)) || [];
+            } catch {
+                timestamps = [];
+            }
+            const now = Date.now();
+            const recent = timestamps.filter((t) => now - t < CONFIG.RATE_LIMIT_WINDOW_MS);
+            try {
+                localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+            } catch {}
+            return recent;
+        }
+
+        function isRateLimited() {
+            const recent = getRecentSubmissions();
+            if (recent.length < CONFIG.RATE_LIMIT_MAX) return null;
+            const oldest = Math.min(...recent);
+            return Math.ceil((CONFIG.RATE_LIMIT_WINDOW_MS - (Date.now() - oldest)) / 60000);
+        }
+
+        function recordSubmission() {
+            const recent = getRecentSubmissions();
+            recent.push(Date.now());
+            try {
+                localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+            } catch {}
+        }
+
         function showToast(message, title = 'Devis non envoyé') {
             const toastContainer = document.getElementById('ToastContainer');
             if (!toastContainer) return;
@@ -1250,6 +1285,13 @@
                 showStep(banned.step);
                 return;
             }
+
+            const waitMinutes = isRateLimited();
+            if (waitMinutes !== null) {
+                showToast(`Tu as atteint la limite de ${CONFIG.RATE_LIMIT_MAX} demandes. Merci de réessayer dans ${waitMinutes} minute${waitMinutes > 1 ? 's' : ''}.`, 'Trop de demandes');
+                return;
+            }
+            recordSubmission();
 
             recalculate();
 

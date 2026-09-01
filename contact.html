@@ -132,6 +132,10 @@
 
             const FIELDS_TO_CHECK = ["prenom", "nom", "objet", "message"];
 
+            const RATE_LIMIT_KEY = "lennouilleContactEnvois";
+            const RATE_LIMIT_MAX = 3;
+            const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+
             const form = document.querySelector(".Form");
             const toastContainer = document.getElementById("ToastContainer");
             if (!form || !toastContainer) return;
@@ -154,6 +158,36 @@
                     }
                 }
                 return null;
+            };
+
+            const getRecentSubmissions = () => {
+                let timestamps;
+                try {
+                    timestamps = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY)) || [];
+                } catch {
+                    timestamps = [];
+                }
+                const now = Date.now();
+                const recent = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+                try {
+                    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+                } catch {}
+                return recent;
+            };
+
+            const isRateLimited = () => {
+                const recent = getRecentSubmissions();
+                if (recent.length < RATE_LIMIT_MAX) return null;
+                const oldest = Math.min(...recent);
+                return Math.ceil((RATE_LIMIT_WINDOW_MS - (Date.now() - oldest)) / 60000);
+            };
+
+            const recordSubmission = () => {
+                const recent = getRecentSubmissions();
+                recent.push(Date.now());
+                try {
+                    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+                } catch {}
             };
 
             const showToast = (message, title = "Message non envoyé") => {
@@ -187,11 +221,21 @@
 
             form.addEventListener("submit", (event) => {
                 const found = findBannedWord();
-                if (!found) return;
+                if (found) {
+                    event.preventDefault();
+                    showToast(`Le mot « ${found.word} » n'est pas autorisé. Merci de reformuler ton message avant de l'envoyer.`);
+                    found.field.focus();
+                    return;
+                }
 
-                event.preventDefault();
-                showToast(`Le mot « ${found.word} » n'est pas autorisé. Merci de reformuler ton message avant de l'envoyer.`);
-                found.field.focus();
+                const waitMinutes = isRateLimited();
+                if (waitMinutes !== null) {
+                    event.preventDefault();
+                    showToast(`Tu as atteint la limite de ${RATE_LIMIT_MAX} envois. Merci de réessayer dans ${waitMinutes} minute${waitMinutes > 1 ? "s" : ""}.`, "Trop d'envois");
+                    return;
+                }
+
+                recordSubmission();
             });
         })();
     </script>
