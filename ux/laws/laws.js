@@ -1,9 +1,9 @@
 (function () {
     const CATS = {
-        percept: { label: "Perception & Gestalt" },
-        memoire: { label: "Mémoire & charge cognitive" },
-        decision: { label: "Décision & comportement" },
-        principes: { label: "Principes de conception" }
+        percept: {label: "Perception & Gestalt"},
+        memoire: {label: "Mémoire & charge cognitive"},
+        decision: {label: "Décision & comportement"},
+        principes: {label: "Principes de conception"}
     };
 
     const LAWS = [
@@ -223,8 +223,8 @@
     function cardHTML(law) {
         const cat = CATS[law.cat];
         return "" +
-            '<a class="LawCard" href="laws/' + law.slug + '.html">' +
-                '<img class="CardCover" src="img/laws/' + law.slug + '.png" alt="' + law.name + '" loading="lazy">' +
+            '<a class="LawCard" href="ux/laws/' + law.slug + '/">' +
+                '<img class="CardCover" src="img/ux/laws/' + law.slug + '.png" alt="' + law.name + '" loading="lazy">' +
                 '<span class="CardTop"><span class="Category">' + cat.label + '</span><span class="Code">UX·' + law.code + '</span></span>' +
                 "<h3>" + law.name + "</h3>" +
                 "<p>" + law.def + "</p>" +
@@ -233,7 +233,7 @@
     }
 
     function relatedCardHTML(law) {
-        return '<a class="Card RelatedCard" href="' + law.slug + '.html">' +
+        return '<a class="Card RelatedCard" href="' + law.slug + '/">' +
             '<span class="RelatedCode">UX·' + law.code + '</span>' +
             "<h3>" + law.name + "</h3>" +
             "<p>" + law.def + "</p>" +
