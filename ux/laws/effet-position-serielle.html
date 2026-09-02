@@ -63,7 +63,7 @@
                 <h2 class="Title">Ce qu’il faut retenir</h2>
             </div>
             <ul class="Takeaways">
-                <li>Les éléments les moins importants d’une liste gagnent à être placés au milieu, là où ils sont le moins bien mémorisés.</li>\n
+                <li>Les éléments les moins importants d’une liste gagnent à être placés au milieu, là où ils sont le moins bien mémorisés.</li>
                 <li>Positionner les actions clés aux extrémités d’un ensemble, par exemple dans une navigation, en améliore la mémorisation.</li>
             </ul>
         </section>
@@ -163,7 +163,7 @@
             });
 
             checkBtn.addEventListener('click', function(){
-                var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+                var typed = input.value.split(/[,;]/).map(normalize).filter(Boolean);
                 var hits = currentOrder.map(function(w){return typed.indexOf(normalize(w)) !== -1;});
 
                 review.hidden = false;

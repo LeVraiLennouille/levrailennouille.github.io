@@ -63,8 +63,8 @@
                 <h2 class="Title">Ce qu’il faut retenir</h2>
             </div>
             <ul class="Takeaways">
-                <li>La mémoire de travail ne retient que 4 à 7 éléments à la fois, chacun s’effaçant en 20 à 30 secondes environ.</li>\n
-                <li>L’esprit reconnaît bien mieux une information déjà vue qu’il ne parvient à la garder disponible en mémoire — d’où l’intérêt de rendre visible ce qui a déjà été consulté, comme les liens visités ou un fil d’Ariane.</li>\n
+                <li>La mémoire de travail ne retient que 4 à 7 éléments à la fois, chacun s’effaçant en 20 à 30 secondes environ.</li>
+                <li>L’esprit reconnaît bien mieux une information déjà vue qu’il ne parvient à la garder disponible en mémoire — d’où l’intérêt de rendre visible ce qui a déjà été consulté, comme les liens visités ou un fil d’Ariane.</li>
                 <li>Mieux vaut faire porter l’effort de mémorisation par le système que par l’utilisateur, en conservant les informations importantes d’un écran à l’autre.</li>
             </ul>
         </section>
@@ -175,7 +175,7 @@
             });
 
             recallCheck.addEventListener('click', function(){
-                var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+                var typed = input.value.split(/[,;]/).map(normalize).filter(Boolean);
                 var hits = WORDS.filter(function(w){return typed.indexOf(normalize(w)) !== -1;}).length;
                 scoreRecall.textContent = hits + '/6';
                 recallBox.hidden = true;

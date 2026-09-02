@@ -63,8 +63,8 @@
                 <h2 class="Title">Ce qu’il faut retenir</h2>
             </div>
             <ul class="Takeaways">
-                <li>Rendre une information ou une action clé visuellement distincte du reste augmente ses chances d’être remarquée et mémorisée.</li>\n
-                <li>Utiliser cette mise en avant avec parcimonie, pour éviter que plusieurs éléments ne se fassent concurrence ou ne soient confondus avec de la publicité.</li>\n
+                <li>Rendre une information ou une action clé visuellement distincte du reste augmente ses chances d’être remarquée et mémorisée.</li>
+                <li>Utiliser cette mise en avant avec parcimonie, pour éviter que plusieurs éléments ne se fassent concurrence ou ne soient confondus avec de la publicité.</li>
                 <li>Ne jamais s’appuyer uniquement sur la couleur pour signaler un contraste important, au risque d’exclure les personnes daltoniennes ou malvoyantes.</li>
             </ul>
         </section>
@@ -150,7 +150,7 @@
             });
 
             checkBtn.addEventListener('click', function(){
-                var typed = input.value.split(/[,;\n]/).map(normalize).filter(Boolean);
+                var typed = input.value.split(/[,;]/).map(normalize).filter(Boolean);
                 var hits = WORDS.map(function(w){ return typed.indexOf(normalize(w)) !== -1; });
                 var oddHit = hits[ODD_INDEX];
                 var othersHit = hits.filter(function(h, i){ return i !== ODD_INDEX && h; }).length;
