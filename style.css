@@ -2398,6 +2398,287 @@ main.UX {
             }
         }
     }
+
+    &.SubPage {
+        .Block {
+            padding: clamp(56px, 9vw, 96px) 0;
+            border-top: 1px solid rgba(var(--PureBlackRGB), 0.06);
+
+            &:first-of-type {border-top: none;}
+
+            &.Alt {
+                background: var(--PureWhite);
+                border-radius: 28px;
+                border-top: none;
+                padding: clamp(48px, 8vw, 64px) clamp(24px, 6vw, 60px);
+                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.05);
+            }
+
+            p.Intro {
+                max-width: 68ch;
+                font-size: 1rem;
+                line-height: 1.8;
+                color: var(--Muted);
+                font-weight: 500;
+                text-align: justify;
+                margin-bottom: 16px;
+
+                &:last-of-type {margin-bottom: 0;}
+
+                a {
+                    color: var(--Primary);
+                    font-weight: 700;
+                    text-decoration: none;
+                    box-shadow: 0 1.5px 0 0 currentColor;
+
+                  &:hover {color: var(--DarkPrimary);}
+                }
+            }
+
+            .Takeaways {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                max-width: 70ch;
+
+                li {
+                    position: relative;
+                    padding-left: 32px;
+                    font-size: 1rem;
+                    line-height: 1.75;
+                    color: var(--Muted);
+                    font-weight: 500;
+
+                    &::before {
+                        content: "→";
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        color: var(--Primary);
+                        font-weight: 800;
+                    }
+                }
+            }
+
+            .Highlight {
+                display: flex;
+                gap: 14px;
+                align-items: flex-start;
+                background: rgba(var(--PrimaryRGB), 0.07);
+                border-left: 3px solid var(--Primary);
+                border-radius: 0 10px 10px 0;
+                padding: 18px 20px;
+
+                p {
+                    margin: 0;
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    color: var(--Charcoal);
+                    font-weight: 600;
+                }
+
+                .HighlightLabel {
+                    font-size: .68rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    color: var(--Primary);
+                    margin-bottom: 6px;
+                }
+            }
+
+            .DemoBox {
+                background: var(--PureWhite);
+                border-radius: 20px;
+                padding: clamp(24px, 4vw, 36px);
+                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+                border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+
+                .DemoActions {
+                    display: flex;
+                    gap: 12px;
+                    margin-top: 20px;
+                    flex-wrap: wrap;
+
+                    .DemoBtn {
+                        font-size: .8rem;
+                        font-weight: 800;
+                        text-transform: uppercase;
+                        background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                        color: var(--PureWhite);
+                        border: none;
+                        border-radius: 50px;
+                        padding: 13px 24px;
+                        cursor: pointer;
+                        box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.25);
+                        transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 10px 24px rgba(var(--PrimaryRGB), 0.32);
+                        }
+
+                        &:disabled {
+                            opacity: .45;
+                            cursor: not-allowed;
+                            transform: none;
+                            box-shadow: none;
+                        }
+                    }
+
+                    .DemoBtnGhost {
+                        font-size: .8rem;
+                        font-weight: 700;
+                        background: transparent;
+                        color: var(--Charcoal);
+                        border: 1.5px solid var(--Borders);
+                        border-radius: 50px;
+                        padding: 12px 22px;
+                        cursor: pointer;
+                        transition: all .15s ease;
+                        width: 100%;
+
+                        &:hover {
+                            border-color: var(--Primary);
+                            color: var(--Primary);
+                        }
+
+                        &:disabled {
+                            opacity: .45;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+
+                .DemoStudyList {
+                    margin-top: 20px;
+                    text-align: center;
+                    padding: 26px 20px;
+                    background: #f1efe9;
+                    border-radius: 14px;
+
+                    .SpList {
+                        list-style: none;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 10px;
+                        font-size: 1rem;
+                        font-weight: 800;
+                        color: var(--Charcoal);
+
+                        li {
+                            background: var(--PureWhite);
+                            border-radius: 8px;
+                            padding: 8px 14px;
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+                        }
+                    }
+                }
+
+                .DemoRecall {
+                    margin-top: 20px;
+
+                    .DemoRecallLabel {
+                        display: block;
+                        font-size: .82rem;
+                        font-weight: 700;
+                        color: var(--Charcoal);
+                        margin-bottom: 8px;
+
+                        .DemoTextarea {
+                            width: 100%;
+                            font-size: 1rem;
+                            padding: 12px 14px;
+                            border: 1.5px solid var(--Borders);
+                            border-radius: 10px;
+                            background: #faf9f7;
+                            resize: vertical;
+                            margin-bottom: 14px;
+
+                            &:focus {
+                                border-color: var(--Primary);
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+
+
+                .DemoScores {
+                    display: flex;
+                    gap: 24px;
+                    flex-wrap: wrap;
+                    margin-top: 20px;
+                    font-size: .85rem;
+                    font-weight: 700;
+                    color: var(--Charcoal);
+                }
+
+                .DemoResult {
+                    margin-top: 22px;
+                    padding: 16px 20px;
+                    border-radius: 0 10px 10px 0;
+                    background: rgba(var(--PrimaryRGB), 0.07);
+                    border-left: 3px solid var(--Primary);
+                    font-size: 1rem;
+                    line-height: 1.65;
+                    color: var(--Charcoal);
+                    font-weight: 600;
+                    display: none;
+
+                    &.show {
+                        display: block;
+                        animation: DemoFadeIn .4s ease;
+                    }
+                }
+            }
+
+            .RelatedGrid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: none;
+            }
+        }
+
+        .PageNav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 8px;
+            margin-top: 8px;
+
+            .PageNavLink {
+                font-size: .8rem;
+                font-weight: 700;
+                text-decoration: none;
+                color: var(--Charcoal);
+                padding: 11px 20px;
+                border-radius: 50px;
+                background: var(--PureWhite);
+                box-shadow: 0 2px 12px rgba(var(--PureBlackRGB), 0.06);
+                transition: all .2s ease;
+                max-width: 40%;
+
+                &:hover {color: var(--Primary);}
+
+                &.Home {
+                    background: transparent;
+                    box-shadow: none;
+                    color: var(--MinMuted);
+                    max-width: none;
+
+                    &:hover {color: var(--Primary);}
+                }
+            }
+        }
+    }
+}
+
+@keyframes DemoFadeIn {
+  from {opacity: 0; transform: translateY(6px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 @keyframes uxHeroRise {
@@ -6242,6 +6523,11 @@ main.Terms {
         }
     }
 
+    main.UX.SubPage {
+        .Block .RelatedGrid {grid-template-columns: 1fr;}
+        .PageNav .PageNavLink {max-width: 100%;}
+    }
+
     main.Blog {
         .BlogHero {
             padding: 130px 24px 60px;
@@ -6557,6 +6843,8 @@ main.Terms {
             .CardCover {transition:none;}
             &:hover .CardCover, &:focus-visible .CardCover {transform:none;}
         }
+
+        &.SubPage .Block .DemoBox .DemoResult {animation: none;}
     }
 
     main.Reals .SubPage .Comparaisons, .Intro p, .ProjectGallery img, .RelatedImage, .RelatedImage img, .RelatedFooter .BtnOutline {transition: none !important;}
