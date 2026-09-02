@@ -30,17 +30,10 @@
     <meta name="theme-color" content="#1c1c1e">
     <link href="style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
-
-    <style>
-        a{color:inherit;}
-        button, input{font-family:inherit;}
-        img, svg{display:block; max-width:100%;}
-        ::selection{background:var(--Primary); color:var(--PureWhite);}
-        :focus-visible{outline:2px solid var(--Primary); outline-offset:3px;}
-    </style>
 </head>
 <body>
     <main class="UX" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
         <section class="Hero" id="hero">
             <div class="Decor" aria-hidden="true"><span>UX</span></div>
             <div class="HeroInner">
@@ -62,7 +55,7 @@
                     <p class="Intro">Les trente fiches réunies plus bas ne sont pas des règles absolues&nbsp;: ce sont des constats, empruntés à la psychologie cognitive et à la conception d’interfaces, qui reviennent assez souvent pour mériter d’être gardés à portée de main.</p>
                 </div>
                 <div class="DefinirVisual">
-                    <img src="/img/me.png" alt="Lenny Gadroy, designer UX/UI">
+                    <img src="/img/me.jpg" alt="Lenny Gadroy, designer UX/UI">
                 </div>
             </div>
             <div class="DisciplineMap" aria-hidden="true">
@@ -111,6 +104,7 @@
             </div>
             <div class="Grid" id="grid"></div>
         </section>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
     </main>
     <script src="ux/laws/laws.js"></script>
 </body>
