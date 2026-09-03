@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loi de la région commune : Gestalt en UX | Le fichier UX</title>
+    
+    <meta name="description" content="Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice — un encadré de formulaire en est un bon exemple.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/loi-region-commune/">
+    <meta property="og:title" content="Loi de la région commune : Gestalt en UX | Le fichier UX">
+    <meta property="og:description" content="Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice — un encadré de formulaire en est un bon exemple.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Perception & Gestalt">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loi de la région commune : Gestalt en UX | Le fichier UX">
+    <meta name="twitter:description" content="Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice — un encadré de formulaire en est un bon exemple.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/loi-region-commune/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Loi de la région commune</span>
+                </nav>
+                <span class="Category">Perception & Gestalt · UX n°22</span>
+                <h1 class="Title">Loi de la région commune</h1>
+                <p class="Lede">Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Des éléments regroupés dans une zone visuellement délimitée sont perçus comme liés, même sans autre indice.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Une frontière visuelle claire aide à comprendre rapidement la relation entre des éléments et des sections.</li>
+                <li>Ajouter une bordure autour d’un groupe d’éléments est un moyen simple de créer une région commune.</li>
+                <li>Un fond de couleur partagé peut produire le même effet de regroupement qu’une bordure.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Cette loi fait partie des principes de regroupement des psychologues de la Gestalt, qui décrivent la tendance naturelle de l’esprit à organiser les stimuli visuels selon des règles précises — proximité, similarité, continuité, clôture et connexion.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un encadré autour d’un formulaire indique d’un coup d’œil que ces champs forment un même bloc.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">2 lignes de 3, ou 3 colonnes de 2&nbsp;?</h2>
+            </div>
+            <p class="Intro">Ces 6 icônes sont espacées à l’identique, horizontalement et verticalement — impossible de trancher. Encadrez la première ligne et regardez ce qui se passe.</p>
+            <div class="DemoBox">
+                <div class="RcGrid" id="rcGrid">
+                    <span class="RcBoxOutline" id="rcBoxOutline" aria-hidden="true"></span>
+                    <div class="RcItem">★</div><div class="RcItem">★</div><div class="RcItem">★</div>
+                    <div class="RcItem">★</div><div class="RcItem">★</div><div class="RcItem">★</div>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="rcToggle" type="button">Encadrer la 1ère ligne</button>
+                </div>
+                <div class="DemoResult" id="rcResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var grid = document.getElementById('rcGrid');
+            var outline = document.getElementById('rcBoxOutline');
+            var toggle = document.getElementById('rcToggle');
+            var result = document.getElementById('rcResult');
+            var items = grid.querySelectorAll('.RcItem');
+            var on = false;
+
+            function positionOutline(){
+                var gridRect = grid.getBoundingClientRect();
+                var first = items[0].getBoundingClientRect();
+                var third = items[2].getBoundingClientRect();
+                var pad = 14;
+
+                outline.style.left = (first.left - gridRect.left - pad) + 'px';
+                outline.style.top = (first.top - gridRect.top - pad) + 'px';
+                outline.style.width = (third.right - first.left + pad * 2) + 'px';
+                outline.style.height = (first.bottom - first.top + pad * 2) + 'px';
+            }
+
+            toggle.addEventListener('click', function(){
+                on = !on;
+                if(on){
+                    positionOutline();
+                    outline.classList.add('on');
+                    toggle.textContent = 'Retirer l’encadré';
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'L’espacement n’a pas bougé d’un pixel, horizontalement comme verticalement. Mais dès qu’un encadré délimite une zone, l’ambiguïté disparaît&nbsp;: ces 3 icônes se lisent instantanément comme un groupe à part. C’est la loi de la région commune&nbsp;: une frontière visuelle règle une ambiguïté que le seul espacement ne pouvait pas trancher.';
+                } else {
+                    outline.classList.remove('on');
+                    toggle.textContent = 'Encadrer la 1ère ligne';
+                    result.className = 'DemoResult';
+                }   
+            });
+
+            window.addEventListener('resize', function(){ if(on) positionOutline(); });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

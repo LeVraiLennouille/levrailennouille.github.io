@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Règle du pic et de la fin : mémoire d’expérience | Le fichier UX</title>
+    
+    <meta name="description" content="On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/regle-pic-et-fin/">
+    <meta property="og:title" content="Règle du pic et de la fin : mémoire d’expérience | Le fichier UX">
+    <meta property="og:description" content="On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Décision & comportement">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Règle du pic et de la fin : mémoire d’expérience | Le fichier UX">
+    <meta name="twitter:description" content="On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/regle-pic-et-fin/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Règle du pic et de la fin</span>
+                </nav>
+                <span class="Category">Décision & comportement · UX n°28</span>
+                <h1 class="Title">Règle du pic et de la fin</h1>
+                <p class="Lede">On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">On juge une expérience surtout sur son moment le plus fort et sur la façon dont elle se termine, pas sur sa moyenne.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Le souvenir d’une expérience se construit surtout autour de son moment le plus intense et de ses derniers instants.</li>
+                <li>Repérer les moments où un produit est le plus utile, agréable ou surprenant permet de concentrer l’effort de conception là où il compte le plus.</li>
+                <li>Les expériences négatives laissent un souvenir plus marquant que les expériences positives, à intensité égale.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Une étude de 1993 menée par Daniel Kahneman et ses collègues a soumis des participants à deux versions d’une même épreuve inconfortable, la main immergée dans de l’eau froide ; contre toute logique, les participants préféraient revivre la version la plus longue, dont la fin était légèrement moins désagréable — la mémoire de l’expérience comptant davantage que sa durée réelle.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un écran de confirmation soigné après un achat, ou une réduction du temps d’attente perçu comme chez Uber, transforment un moment potentiellement stressant en un souvenir positif.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Laquelle accepteriez-vous de revivre&nbsp;?</h2>
+            </div>
+            <p class="Intro">Deux séquences d’inconfort simulé, comme dans l’étude de Kahneman. Regardez-les toutes les deux, puis choisissez.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="peShowA" type="button">Lire la séquence A</button>
+                    <button class="DemoBtn" id="peShowB" type="button">Lire la séquence B</button>
+                </div>
+                <div class="PeStage" id="peStage" hidden>
+                    <p class="PeLabel" id="peLabel"></p>
+                    <div class="PeBarTrack"><div class="PeBar" id="peBar"></div></div>
+                </div>
+                <div class="PeAsk" id="peAsk" hidden>
+                    <p class="PeAskLabel">Laquelle accepteriez-vous de revivre&nbsp;?</p>
+                    <div class="DemoActions">
+                        <button class="DemoBtnGhost" data-pick="A" type="button">Séquence A</button>
+                        <button class="DemoBtnGhost" data-pick="B" type="button">Séquence B</button>
+                    </div>
+                </div>
+                <div class="DemoResult" id="peResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var SEQ_A = [20, 45, 70, 85, 80];
+            var SEQ_B = [20, 45, 70, 85, 80, 65, 50, 35, 20];
+            var STEP_MS = 400;
+
+            var stage = document.getElementById('peStage');
+            var label = document.getElementById('peLabel');
+            var bar = document.getElementById('peBar');
+            var ask = document.getElementById('peAsk');
+            var result = document.getElementById('peResult');
+            var btnA = document.getElementById('peShowA');
+            var btnB = document.getElementById('peShowB');
+            var seenA = false, seenB = false;
+
+            function playSequence(seq, labelText, cb){
+                stage.hidden = false;
+                label.textContent = labelText;
+                var i = 0;
+                bar.style.height = seq[0] + '%';
+                var timer = setInterval(function(){
+                    bar.style.height = seq[i] + '%';
+                    i++;
+                    if(i >= seq.length){
+                        clearInterval(timer);
+                        setTimeout(function(){
+                            stage.hidden = true;
+                            if(cb) cb();
+                        }, 500);
+                    }
+                }, STEP_MS);
+            }
+
+            function maybeAsk(){
+                if(seenA && seenB && ask.hidden){ask.hidden = false;}
+            }
+
+            btnA.addEventListener('click', function(){
+                btnA.disabled = true; btnB.disabled = true;
+                playSequence(SEQ_A, 'Séquence A en cours…', function(){
+                    seenA = true;
+                    btnA.disabled = false; btnB.disabled = false;
+                    maybeAsk();
+                });
+            });
+            
+            btnB.addEventListener('click', function(){
+                btnA.disabled = true; btnB.disabled = true;
+                playSequence(SEQ_B, 'Séquence B en cours…', function(){
+                    seenB = true;
+                    btnA.disabled = false; btnB.disabled = false;
+                    maybeAsk();
+                });
+            });
+
+            ask.querySelectorAll('button').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var pick = btn.getAttribute('data-pick');
+                    result.className = 'DemoResult show';
+                    if(pick === 'B'){
+                        result.innerHTML = 'Vous avez choisi la séquence B — pourtant plus longue, donc avec strictement plus d’inconfort cumulé. Mais elle se terminait en douceur, alors que A s’arrêtait à son pic. C’est exactement l’expérience de Kahneman&nbsp;: on juge sur le pic et la fin, pas sur la somme.';
+                    } else {
+                        result.innerHTML = 'Vous avez choisi la séquence A — la plus courte, mais aussi celle qui se termine au plus fort de l’inconfort. C’est le choix le plus « rationnel » sur le plan de la durée totale&nbsp;; la majorité des participants de l’étude de Kahneman choisissaient pourtant l’inverse.';
+                    }
+                    ask.querySelectorAll('button').forEach(function(b){b.disabled = true;});
+                });
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

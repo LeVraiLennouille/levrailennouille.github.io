@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loi de proximité : regrouper les éléments en UX | Le fichier UX</title>
+    
+    <meta name="description" content="Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur — un principe Gestalt clé.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/loi-de-proximite/">
+    <meta property="og:title" content="Loi de proximité : regrouper les éléments en UX | Le fichier UX">
+    <meta property="og:description" content="Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur — un principe Gestalt clé.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Perception & Gestalt">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loi de proximité : regrouper les éléments en UX | Le fichier UX">
+    <meta name="twitter:description" content="Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur — un principe Gestalt clé.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/loi-de-proximite/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Loi de proximité</span>
+                </nav>
+                <span class="Category">Perception & Gestalt · UX n°19</span>
+                <h1 class="Title">Loi de proximité</h1>
+                <p class="Lede">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>La proximité entre deux éléments suffit à créer un lien perçu entre eux.</li>
+                <li>Des éléments proches sont supposés partager une fonction ou une caractéristique commune.</li>
+                <li>Une bonne gestion de la proximité aide à organiser et à comprendre l’information plus vite.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Comme la loi de la région commune, elle fait partie des principes de regroupement de la Gestalt, formulés pour expliquer pourquoi l’œil organise naturellement les éléments visuels en ensembles cohérents.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>L’espacement entre chaque résultat d’une page de recherche Google aide à regrouper visuellement les informations d’un même résultat, tout en le séparant clairement des autres.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Seul l’espacement change — regardez ce que ça fait</h2>
+            </div>
+            <p class="Intro">Aucune couleur, aucune bordure ne change ci-dessous. Seuls les écarts entre les points bougent.</p>
+            <div class="DemoBox">
+                <div class="PxRow" id="pxRow">
+                    <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+                    <div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div><div class="PxDot"></div>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="pxToggle" type="button">Regrouper par paires</button>
+                </div>
+                <div class="DemoResult" id="pxResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var row = document.getElementById('pxRow');
+            var toggle = document.getElementById('pxToggle');
+            var result = document.getElementById('pxResult');
+            var on = false;
+
+            toggle.addEventListener('click', function(){
+                on = !on;
+                row.classList.toggle('grouped', on);
+                toggle.textContent = on ? 'Revenir à un espacement régulier' : 'Regrouper par paires';
+                result.className = 'DemoResult show';
+                if(on){
+                    result.innerHTML = 'Les points n’ont ni changé de couleur ni de taille&nbsp;: seuls les écarts entre eux ont bougé. Pourtant, vous voyez désormais 4 paires distinctes là où il n’y avait qu’une rangée continue. C’est la loi de proximité&nbsp;: la distance seule suffit à créer un groupe perçu.';
+                } else {
+                    result.innerHTML = 'Retour à un espacement parfaitement régulier&nbsp;: les 8 points se lisent à nouveau comme un seul ensemble continu.';
+                }
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

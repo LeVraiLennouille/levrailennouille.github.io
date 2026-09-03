@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow : l’état d’immersion totale en UX | Le fichier UX</title>
+
+    <meta name="description" content="C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent complètement.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/flow/">
+    <meta property="og:title" content="Flow : l’état d’immersion totale en UX | Le fichier UX">
+    <meta property="og:description" content="C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent complètement.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Décision & comportement">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flow : l’état d’immersion totale en UX | Le fichier UX">
+    <meta name="twitter:description" content="C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent complètement.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/flow/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Flow</span>
+                </nav>
+                <span class="Category">Décision & comportement · UX n°10</span>
+                <h1 class="Title">Flow</h1>
+                <p class="Lede">C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">C’est l’état d’immersion totale dans une tâche, où l’effort semble juste et les distractions disparaissent.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Le flow apparaît quand la difficulté d’une tâche est en équilibre avec le niveau de compétence de la personne qui l’exécute.</li>
+                <li>Une tâche trop difficile génère de la frustration, une tâche trop facile génère de l’ennui : l’enjeu est de calibrer ce niveau.</li>
+                <li>Donner un retour clair sur ce qui vient d’être accompli aide à maintenir cet état d’immersion.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le concept est formulé en 1975 par le psychologue Mihály Csíkszentmihályi, et s’est depuis largement diffusé dans plusieurs disciplines, bien que l’idée qu’il décrit soit reconnue depuis bien plus longtemps sous d’autres formes.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un jeu qui ajuste sa difficulté à mesure que le joueur progresse entretient cet état sans le rompre.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Une difficulté figée, ou calée sur vous&nbsp;?</h2>
+            </div>
+            <p class="Intro">Cliquez sur la cible dès qu’elle apparaît. Essayez d’abord en difficulté fixe, puis en difficulté qui s’ajuste à vos réussites.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="flStartFixed" type="button">Essayer en difficulté fixe</button>
+                    <button class="DemoBtn" id="flStartAdapt" type="button">Essayer en difficulté ajustée</button>
+                </div>
+                <div class="FlArena" id="flArena" hidden>
+                    <p class="FlStatus" id="flStatus"></p>
+                    <div class="FlZone" id="flZone"></div>
+                </div>
+                <div class="DemoScores">
+                    <span>Difficulté fixe&nbsp;: <strong id="flScoreFixed">—</strong></span>
+                    <span>Difficulté ajustée&nbsp;: <strong id="flScoreAdapt">—</strong></span>
+                </div>
+                <div class="DemoResult" id="flResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var arena = document.getElementById('flArena');
+            var status = document.getElementById('flStatus');
+            var zone = document.getElementById('flZone');
+            var scoreFixed = document.getElementById('flScoreFixed');
+            var scoreAdapt = document.getElementById('flScoreAdapt');
+            var result = document.getElementById('flResult');
+            var btnFixed = document.getElementById('flStartFixed');
+            var btnAdapt = document.getElementById('flStartAdapt');
+
+            var ROUNDS = 6;
+            var mode = null;
+            var round = 0;
+            var hits = 0;
+            var windowMs = 900;
+            var targetTimer = null;
+            var shownAt = 0;
+
+            function placeTarget(){
+                var size = mode === 'adapt' ? Math.max(30, Math.min(70, windowMs / 12)) : 40;
+                var w = zone.clientWidth, h = zone.clientHeight;
+                var x = Math.random() * (w - size);
+                var y = Math.random() * (h - size);
+                zone.innerHTML = '<button class="FlTarget" style="width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px;" type="button"></button>';
+                shownAt = performance.now();
+                var target = zone.querySelector('.FlTarget');
+                target.addEventListener('click', onHit);
+                clearTimeout(targetTimer);
+                targetTimer = setTimeout(onMiss, mode === 'fixed' ? 550 : windowMs);
+            }
+
+            function nextOrEnd(){
+                round++;
+                if(round >= ROUNDS){endRound();}
+                else {placeTarget();}
+            }
+
+            function onHit(){
+                clearTimeout(targetTimer);
+                hits++;
+                if(mode === 'adapt'){windowMs = Math.max(350, windowMs - 80);}
+                nextOrEnd();
+            }
+
+            function onMiss(){
+                zone.innerHTML = '';
+                if(mode === 'adapt'){windowMs = Math.min(1400, windowMs + 120);}
+                nextOrEnd();
+            }
+
+            function startRound(m){
+                mode = m;
+                round = 0;
+                hits = 0;
+                windowMs = 900;
+                btnFixed.disabled = true;
+                btnAdapt.disabled = true;
+                status.textContent = mode === 'fixed' ? 'Difficulté fixe — cliquez vite !' : 'Difficulté ajustée';
+                arena.hidden = false;
+                placeTarget();
+            }
+
+            function endRound(){
+                clearTimeout(targetTimer);
+                zone.innerHTML = '';
+                arena.hidden = true;
+                var pct = Math.round((hits / ROUNDS) * 100);
+                if(mode === 'fixed'){scoreFixed.textContent = pct + '%';}
+                else {scoreAdapt.textContent = pct + '%';}
+                btnFixed.disabled = false;
+                btnAdapt.disabled = false;
+
+                var f = scoreFixed.textContent, a = scoreAdapt.textContent;
+                result.className = 'DemoResult show';
+                if(f !== '—' && a !== '—'){
+                    result.innerHTML = 'Difficulté fixe&nbsp;: <strong>'+f+'</strong> de cibles touchées — difficulté ajustée&nbsp;: <strong>'+a+'</strong>. Le mode ajusté a resserré ou élargi la fenêtre de temps selon vos réussites, pour vous maintenir juste à la limite de vos capacités&nbsp;: c’est exactement l’équilibre challenge/compétence qui déclenche le flow.';
+                } else {
+                    result.innerHTML = 'Score&nbsp;: <strong>'+pct+'%</strong> de cibles touchées. Essayez maintenant l’autre mode pour comparer.';
+                }
+            }
+
+            btnFixed.addEventListener('click', function(){ startRound('fixed'); });
+            btnAdapt.addEventListener('click', function(){ startRound('adapt'); });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

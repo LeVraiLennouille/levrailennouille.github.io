@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradoxe de l’utilisateur actif en UX | Le fichier UX</title>
+    
+    <meta name="description" content="Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/paradoxe-utilisateur-actif/">
+    <meta property="og:title" content="Paradoxe de l’utilisateur actif en UX | Le fichier UX">
+    <meta property="og:description" content="Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Décision & comportement">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paradoxe de l’utilisateur actif en UX | Le fichier UX">
+    <meta name="twitter:description" content="Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/paradoxe-utilisateur-actif/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Paradoxe de l’utilisateur actif</span>
+                </nav>
+                <span class="Category">Décision & comportement · UX n°25</span>
+                <h1 class="Title">Paradoxe de l’utilisateur actif</h1>
+                <p class="Lede">Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Personne ne lit le mode d’emploi : les utilisateurs se lancent directement dans l’interface, quitte à faire des erreurs.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Les utilisateurs cherchent avant tout à accomplir leur tâche immédiate, ce qui les pousse à éviter de lire la documentation en amont.</li>
+                <li>Ce paradoxe existe parce qu’un temps investi à apprendre le système serait, en théorie, rentabilisé sur le long terme — mais peu d’utilisateurs font ce choix.</li>
+                <li>Rendre l’aide accessible directement dans le contexte d’usage, via des infobulles ou des indices visuels, accompagne ces utilisateurs pressés, quel que soit leur parcours.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le concept est défini en 1987 par Mary Beth Rosson et John Carroll, qui observent que les nouveaux utilisateurs délaissent systématiquement les manuels fournis avec un logiciel pour se lancer directement dans son usage, quitte à commettre des erreurs.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Une interface doit rester compréhensible sans notice, avec des indices visibles directement à l’écran.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Avez-vous lu le mode d’emploi&nbsp;?</h2>
+            </div>
+            <p class="Intro">Le résultat ci-dessous dépend entièrement de ce que vous faites, pas de ce que vous répondez.</p>
+            <div class="DemoBox">
+                <div class="PaInstructions">
+                    <p>Mode d’emploi&nbsp;: pour valider, cliquez d’abord sur le bouton <strong>bleu</strong>, puis sur le bouton <strong>vert</strong>. Cliquer sur le vert en premier fonctionne aussi, mais ne suit pas l’ordre indiqué.</p>
+                </div>
+                <div class="DemoActions">
+                    <button class="PaBtn PaBtn--green" id="paGreen" type="button">Vert</button>
+                    <button class="PaBtn PaBtn--blue" id="paBlue" type="button">Bleu</button>
+                </div>
+                <div class="DemoResult" id="paResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var blueBtn = document.getElementById('paBlue');
+            var greenBtn = document.getElementById('paGreen');
+            var result = document.getElementById('paResult');
+            var blueClickedFirst = false;
+            var done = false;
+
+            blueBtn.addEventListener('click', function(){
+                if(done) return;
+                blueClickedFirst = true;
+                blueBtn.disabled = true;
+            });
+
+            greenBtn.addEventListener('click', function(){
+                if(done) return;
+                done = true;
+                blueBtn.disabled = true;
+                greenBtn.disabled = true;
+                result.className = 'DemoResult show';
+
+                if(blueClickedFirst){
+                    result.innerHTML = 'Vous avez suivi l’ordre indiqué (bleu puis vert) — plutôt rare&nbsp;! La plupart des visiteurs cliquent directement, sans lire le mode d’emploi au-dessus. C’est précisément le paradoxe de l’utilisateur actif&nbsp;: foncer dans l’interface, quitte à devoir corriger après coup si besoin.';
+                } else {
+                    result.innerHTML = 'Vous avez cliqué sur le bouton vert sans passer par le bleu — exactement ce que prédit ce paradoxe&nbsp;: la plupart des gens se lancent directement dans l’interface plutôt que de lire les instructions au-dessus, même quand la réponse y était clairement écrite.';
+                }
+            });
+        })();   
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

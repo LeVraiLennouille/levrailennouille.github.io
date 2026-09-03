@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasoir d’Occam : la simplicité en UX | Le fichier UX</title>
+    
+    <meta name="description" content="Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure, comme un formulaire à 3 champs plutôt que 10.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/rasoir-doccam/">
+    <meta property="og:title" content="Rasoir d’Occam : la simplicité en UX | Le fichier UX">
+    <meta property="og:description" content="Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure, comme un formulaire à 3 champs plutôt que 10.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Principes de conception">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rasoir d’Occam : la simplicité en UX | Le fichier UX">
+    <meta name="twitter:description" content="Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure, comme un formulaire à 3 champs plutôt que 10.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/rasoir-doccam/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Rasoir d’Occam</span>
+                </nav>
+                <span class="Category">Principes de conception · UX n°27</span>
+                <h1 class="Title">Rasoir d’Occam</h1>
+                <p class="Lede">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Entre deux solutions qui répondent aussi bien au besoin, la plus simple est presque toujours la meilleure.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>La meilleure façon de réduire la complexité est encore de l’éviter dès la conception.</li>
+                <li>Chaque élément doit être examiné, et supprimé s’il n’est pas indispensable à la fonction globale.</li>
+                <li>Une conception n’est vraiment terminée que lorsque plus rien ne peut en être retiré.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le principe est attribué à Guillaume d’Ockham, moine franciscain et philosophe anglais du XIVe siècle, selon qui, entre deux explications qui se valent, celle qui repose sur le moins d’hypothèses doit être préférée.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un formulaire d’inscription à 3 champs convertit mieux qu’un formulaire à 10 champs pour le même objectif.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Jusqu’où peut-on simplifier ce bouton&nbsp;?</h2>
+            </div>
+            <p class="Intro">Décochez tout ce qui vous semble superflu, sans rendre le bouton inutilisable.</p>
+            <div class="DemoBox">
+                <div class="OcPreview">
+                    <button class="OcButton" id="ocButton" type="button">
+                        <span data-el="icon">🎉</span>
+                        <span>S’inscrire</span>
+                        <span class="OcBadge" data-el="badge">NOUVEAU</span>
+                    </button>
+                    <p class="OcSubtitle" data-el="subtitle">Cliquez ici pour vous inscrire dès maintenant</p>
+                </div>
+                <div class="OcToggles">
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="icon"> Icône décorative</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="badge"> Badge « Nouveau »</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="subtitle"> Sous-titre redondant</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="shadow"> Ombre portée</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="gradient"> Dégradé de fond</label>
+                    <label class="OcToggleRow"><input type="checkbox" checked data-target="border"> Bordure épaisse</label>
+                </div>
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ocDone" type="button">J’ai terminé</button>
+                </div>
+                <div class="DemoResult" id="ocResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var toggles = document.querySelectorAll('.OcToggles input');
+            var button = document.getElementById('ocButton');
+            var result = document.getElementById('ocResult');
+            var TOTAL = toggles.length;
+
+            toggles.forEach(function(input){
+                input.addEventListener('change', function(){
+                    var target = input.getAttribute('data-target');
+                    if(target === 'icon' || target === 'badge' || target === 'subtitle'){
+                        var el = document.querySelector('[data-el="' + target + '"]');
+                        if(el){el.style.display = input.checked ? '' : 'none';}
+                    } else if(target === 'shadow'){
+                        button.classList.toggle('no-shadow', !input.checked);
+                    } else if(target === 'gradient'){
+                        button.classList.toggle('no-gradient', !input.checked);
+                    } else if(target === 'border'){
+                        button.classList.toggle('no-border', !input.checked);
+                    }
+                });
+            });
+
+            document.getElementById('ocDone').addEventListener('click', function(){
+                var removed = Array.prototype.filter.call(toggles, function(t){return !t.checked;}).length;
+                result.className = 'DemoResult show';
+                if(removed === TOTAL){
+                    result.innerHTML = 'Vous avez tout retiré&nbsp;: il ne reste que le bouton et son texte — strictement ce qui est nécessaire pour comprendre et agir. C’est exactement le rasoir d’Occam&nbsp;: une conception n’est terminée que lorsque plus rien ne peut en être retiré.';
+                } else if(removed >= TOTAL / 2){
+                    result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments superflus. Le bouton fonctionne toujours aussi bien&nbsp;— la différence, c’est tout ce qui ne servait à rien.';
+                } else {
+                    result.innerHTML = 'Vous avez retiré <strong>' + removed + '/' + TOTAL + '</strong> éléments. Continuez&nbsp;: aucun d’entre eux n’était nécessaire pour comprendre ou utiliser ce bouton.';
+                }
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

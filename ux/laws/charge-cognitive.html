@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charge cognitive : définition et enjeux UX | Le fichier UX</title>
+    
+    <meta name="description" content="C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche et abandonne sa tâche.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/charge-cognitive/">
+    <meta property="og:title" content="Charge cognitive : définition et enjeux UX | Le fichier UX">
+    <meta property="og:description" content="C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche et abandonne sa tâche.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Mémoire & charge cognitive">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Charge cognitive : définition et enjeux UX | Le fichier UX">
+    <meta name="twitter:description" content="C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche et abandonne sa tâche.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/charge-cognitive/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Charge cognitive</span>
+                </nav>
+                <span class="Category">Mémoire & charge cognitive · UX n°03</span>
+                <h1 class="Title">Charge cognitive</h1>
+                <p class="Lede">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">C’est l’effort mental nécessaire pour comprendre une interface ; au-delà d’un certain seuil, l’utilisateur décroche.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Quand la quantité d’information à traiter dépasse ce que l’esprit peut gérer, les tâches deviennent plus difficiles et des détails sont manqués.</li>
+                <li>La charge cognitive intrinsèque correspond à l’effort nécessaire pour comprendre une information et suivre ses propres objectifs.</li>
+                <li>La charge cognitive extrinsèque correspond aux éléments d’interface superflus, qui mobilisent de l’attention sans aider à la compréhension.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">La théorie de la charge cognitive est développée à la fin des années 1980 par John Sweller, qui prolonge les travaux de George Miller sur le traitement de l’information, avec l’idée que la conception pédagogique peut être utilisée pour la réduire chez l’apprenant.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un tableau de bord qui affiche 40 indicateurs d’un coup demande plus d’effort qu’un tri par priorité.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Chronométrez votre propre recherche</h2>
+            </div>
+            <p class="Intro">Deux tableaux de bord, une seule mission&nbsp;: trouver le <strong>taux de conversion</strong> le plus vite possible. Essayez d’abord la version surchargée, puis la version triée par priorité, et comparez vos deux temps.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="ccStartOverload" type="button">Essayer la vue surchargée</button>
+                    <button class="DemoBtn" id="ccStartClean" type="button">Essayer la vue allégée</button>
+                </div>
+                <div class="CcStage" id="ccStage" hidden>
+                    <p class="CcTimer">⏱ <span id="ccTime">0.0</span>s — cliquez sur « Taux de conversion »</p>
+                    <div class="CcGrid" id="ccGrid"></div>
+                </div>
+                <div class="DemoScores">
+                    <span>Vue surchargée&nbsp;: <strong id="ccScoreOverload">—</strong></span>
+                    <span>Vue allégée&nbsp;: <strong id="ccScoreClean">—</strong></span>
+                </div>
+                <div class="DemoResult" id="ccResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var KPIS = [
+                "Utilisateurs actifs : 1 204", "Taux de rebond : 42%", "Sessions : 8 391",
+                "Durée moyenne : 3m12", "Pages vues : 15 293", "Nouveaux inscrits : 87",
+                "Taux d’ouverture : 24%", "Paniers abandonnés : 156", "Temps de chargement : 1.8s",
+                "Requêtes support : 32", "Taux de clic : 3.1%", "Visiteurs uniques : 6 720",
+                "Erreurs serveur : 4", "Taux de churn : 2.4%", "Note moyenne : 4.3/5",
+                "Partages sociaux : 211", "Abonnés newsletter : 3 980", "Temps sur page : 2m05",
+                "Taux de retour : 38%", "Coût par clic : 0.42€", "Impressions : 44 120",
+                "Taux d’erreur : 0.6%", "Ventes du jour : 312", "Trafic mobile : 61%"
+            ];
+            var TARGET = "Taux de conversion : 4.8%";
+
+            var stage = document.getElementById('ccStage');
+            var grid = document.getElementById('ccGrid');
+            var timeEl = document.getElementById('ccTime');
+            var scoreOverload = document.getElementById('ccScoreOverload');
+            var scoreClean = document.getElementById('ccScoreClean');
+            var result = document.getElementById('ccResult');
+            var btnOverload = document.getElementById('ccStartOverload');
+            var btnClean = document.getElementById('ccStartClean');
+
+            var startTime = null;
+            var rafId = null;
+            var currentMode = null;
+
+            function shuffle(arr){
+                for(var i = arr.length - 1; i > 0; i--){
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+                }
+                return arr;
+            }
+
+            function tick(){
+                var elapsed = (performance.now() - startTime) / 1000;
+                timeEl.textContent = elapsed.toFixed(1);
+                rafId = requestAnimationFrame(tick);
+            }
+
+            function tileHTML(txt){
+                return '<div class="CcTile" data-target="'+(txt === TARGET ? '1' : '0')+'">'+txt+'</div>';
+            }
+
+            function startRound(mode){
+                currentMode = mode;
+                btnOverload.disabled = true;
+                btnClean.disabled = true;
+
+                if(mode === 'overload'){
+                    var all = shuffle(KPIS.slice());
+                    all.splice(Math.floor(Math.random() * (all.length + 1)), 0, TARGET);
+                    grid.className = 'CcGrid';
+                    grid.innerHTML = all.map(tileHTML).join('');
+                } else {
+                    var picks = shuffle(KPIS.slice()).slice(0, 3);
+                    var mix = shuffle([TARGET].concat(picks));
+                    grid.className = 'CcGrid clean';
+                    grid.innerHTML = mix.map(tileHTML).join('') + '<div class="CcTile more">+ 20 autres indicateurs</div>';
+                }
+
+                stage.hidden = false;
+                result.className = 'DemoResult';
+                startTime = performance.now();
+                tick();
+            }
+
+            btnOverload.addEventListener('click', function(){startRound('overload');});
+            btnClean.addEventListener('click', function(){startRound('clean');});
+
+            grid.addEventListener('click', function(e){
+                var tile = e.target.closest('.CcTile');
+                if(!tile || !currentMode) return;
+                if(tile.getAttribute('data-target') !== '1') return;
+
+                cancelAnimationFrame(rafId);
+                var elapsed = (performance.now() - startTime) / 1000;
+                if(currentMode === 'overload'){scoreOverload.textContent = elapsed.toFixed(1) + 's';}
+                else { scoreClean.textContent = elapsed.toFixed(1) + 's'; }
+                stage.hidden = true;
+                currentMode = null;
+                btnOverload.disabled = false;
+                btnClean.disabled = false;
+
+                var o = scoreOverload.textContent, c = scoreClean.textContent;
+                result.className = 'DemoResult show';
+                if(o !== '—' && c !== '—'){
+                    var of = parseFloat(o), cf = parseFloat(c);
+                    if(of > cf && cf > 0){
+                        result.innerHTML = 'Vous avez mis <strong>'+(of / cf).toFixed(1)+'&times; plus de temps</strong> dans la vue surchargée que dans la vue allégée ('+o+' contre '+c+'). Trier l’information par priorité réduit directement l’effort mental nécessaire pour trouver ce qui compte.';
+                    } else {
+                        result.innerHTML = 'Vue surchargée&nbsp;: '+o+' — Vue allégée&nbsp;: '+c+'. Sur un seul essai, le hasard joue aussi son rôle&nbsp;; à grande échelle, c’est presque toujours la version triée par priorité qui l’emporte.';
+                    }
+                } else {
+                    result.innerHTML = 'Temps enregistré. Essayez maintenant l’autre version pour comparer.';
+                }
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

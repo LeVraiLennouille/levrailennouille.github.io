@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loi de Parkinson : le temps qui s’étire en UX | Le fichier UX</title>
+
+    <meta name="description" content="Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin — d’où l’intérêt de délais courts et assumés.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/loi-de-parkinson/">
+    <meta property="og:title" content="Loi de Parkinson : le temps qui s’étire en UX | Le fichier UX">
+    <meta property="og:description" content="Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin — d’où l’intérêt de délais courts et assumés.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Principes de conception">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loi de Parkinson : le temps qui s’étire en UX | Le fichier UX">
+    <meta name="twitter:description" content="Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin — d’où l’intérêt de délais courts et assumés.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/loi-de-parkinson/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Loi de Parkinson</span>
+                </nav>
+                <span class="Category">Principes de conception · UX n°16</span>
+                <h1 class="Title">Loi de Parkinson</h1>
+                <p class="Lede">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Une tâche s’étire pour occuper tout le temps qu’on lui accorde, même sans en avoir réellement besoin.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Une tâche a tendance à s’étirer pour occuper tout le temps qu’on lui accorde.</li>
+                <li>Réduire la durée perçue d’une tâche, par rapport à ce que l’utilisateur en attend, améliore son expérience.</li>
+                <li>Des fonctions comme le remplissage automatique font gagner du temps et évitent que la tâche ne s’éternise inutilement.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Formulée par Cyril Northcote Parkinson dans un essai humoristique publié dans The Economist en 1955, cette loi s’appuie sur son expérience de la fonction publique britannique, où le travail administratif s’étendait toujours pour occuper l’intégralité du temps disponible.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Fixer un délai de session de 10 minutes plutôt que 60 pousse à remplir un formulaire sans traîner.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">La même phrase prend-elle plus de temps selon le budget annoncé&nbsp;?</h2>
+            </div>
+            <p class="Intro">Décrivez votre plat préféré en une phrase, deux fois de suite, avec un temps suggéré différent à chaque fois. On chronomètre le temps que vous prenez réellement.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="pkStartLong" type="button">Essayer avec « environ 5 minutes »</button>
+                    <button class="DemoBtn" id="pkStartShort" type="button">Essayer avec « environ 20 secondes »</button>
+                </div>
+                <div class="PkStage" id="pkStage" hidden>
+                    <p class="PkPrompt" id="pkPrompt"></p>
+                    <textarea class="DemoTextarea" id="pkInput" rows="2" placeholder="Votre phrase…"></textarea>
+                    <button class="DemoBtn" id="pkSubmit" type="button">J’ai terminé</button>
+                </div>
+                <div class="DemoScores">
+                    <span>« 5 minutes »&nbsp;: <strong id="pkScoreLong">—</strong></span>
+                    <span>« 20 secondes »&nbsp;: <strong id="pkScoreShort">—</strong></span>
+                </div>
+                <div class="DemoResult" id="pkResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var stage = document.getElementById('pkStage');
+            var prompt = document.getElementById('pkPrompt');
+            var input = document.getElementById('pkInput');
+            var submitBtn = document.getElementById('pkSubmit');
+            var scoreLong = document.getElementById('pkScoreLong');
+            var scoreShort = document.getElementById('pkScoreShort');
+            var result = document.getElementById('pkResult');
+            var btnLong = document.getElementById('pkStartLong');
+            var btnShort = document.getElementById('pkStartShort');
+
+            var mode = null, startTime = 0;
+
+            function start(m, promptText){
+                mode = m;
+                btnLong.disabled = true; btnShort.disabled = true;
+                prompt.textContent = promptText;
+                input.value = '';
+                result.className = 'DemoResult';
+                stage.hidden = false;
+                input.focus();
+                startTime = performance.now();
+            }
+
+            btnLong.addEventListener('click', function(){start('long', 'Vous avez environ 5 minutes — décrivez votre plat préféré en une phrase.');});
+            btnShort.addEventListener('click', function(){start('short', 'Vous avez environ 20 secondes — décrivez votre plat préféré en une phrase.');});
+
+            submitBtn.addEventListener('click', function(){
+                if(!mode) return;
+                var elapsed = (performance.now() - startTime) / 1000;
+                var label = elapsed.toFixed(1) + 's';
+                if(mode === 'long'){scoreLong.textContent = label;}
+                else {scoreShort.textContent = label;}
+                stage.hidden = true;
+                btnLong.disabled = false; btnShort.disabled = false;
+                mode = null;
+
+                var l = scoreLong.textContent, s = scoreShort.textContent;
+                result.className = 'DemoResult show';
+                if(l !== '—' && s !== '—'){
+                    var lf = parseFloat(l), sf = parseFloat(s);
+                    result.innerHTML = 'Avec « 5&nbsp;minutes » suggérées&nbsp;: <strong>'+l+'</strong> — avec « 20&nbsp;secondes » suggérées&nbsp;: <strong>'+s+'</strong>. '+(lf > sf ? 'La même phrase à écrire vous a pris plus de temps quand le budget annoncé était plus large&nbsp;: c’est la loi de Parkinson en action.' : 'Sur cet essai l’écart ne va pas dans le sens attendu&nbsp;; la tendance générale reste qu’un délai plus généreux pousse à en faire usage, même sans besoin réel.');
+                } else {
+                    result.innerHTML = 'Rédigé en <strong>'+label+'</strong>. Essayez maintenant l’autre budget de temps annoncé pour comparer.';
+                }
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

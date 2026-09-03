@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seuil de Doherty : la barre des 400 ms en UX | Le fichier UX</title>
+    
+    <meta name="description" content="Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/seuil-de-doherty/">
+    <meta property="og:title" content="Seuil de Doherty : la barre des 400 ms en UX | Le fichier UX">
+    <meta property="og:description" content="Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Principes de conception">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Seuil de Doherty : la barre des 400 ms en UX | Le fichier UX">
+    <meta name="twitter:description" content="Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/seuil-de-doherty/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Seuil de Doherty</span>
+                </nav>
+                <span class="Category">Principes de conception · UX n°29</span>
+                <h1 class="Title">Seuil de Doherty</h1>
+                <p class="Lede">Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Un système qui répond en moins de 400 ms maintient l’attention ; au-delà, la productivité et l’engagement chutent.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Un retour du système en moins de 400 ms maintient l’attention de l’utilisateur et augmente sa productivité.</li>
+                <li>La performance perçue compte autant que la performance réelle pour réduire la sensation d’attente.</li>
+                <li>Une animation ou une barre de progression rend l’attente supportable, même quand elle ne reflète pas précisément le temps restant.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">En 1982, Walter J. Doherty et Ahrvind J. Thadani publient dans l’IBM Systems Journal une étude fixant à 400 millisecondes le temps de réponse optimal d’un système informatique, contre 2 secondes auparavant — un seuil sous lequel l’usage d’une application est perçu comme fluide, presque addictif.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un indicateur de frappe instantané garde une conversation fluide, contrairement à un chat qui traîne à charger.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">La même attente, avec ou sans indicateur</h2>
+            </div>
+            <p class="Intro">Les deux boutons ci-dessous déclenchent exactement la même attente de 2,5 secondes. Un seul affiche un indicateur pendant ce temps.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="dtNoFeedback" type="button">Sans indicateur</button>
+                    <button class="DemoBtn" id="dtFeedback" type="button">Avec indicateur</button>
+                </div>
+                <div class="DtStage" id="dtStage" hidden>
+                    <div class="DtSpinner" id="dtSpinner"></div>
+                </div>
+                <div class="DtAsk" id="dtAsk" hidden>
+                    <p class="DtAskLabel">Laquelle des deux attentes vous a semblé la plus longue&nbsp;?</p>
+                    <div class="DemoActions">
+                        <button class="DemoBtnGhost" data-pick="no" type="button">Sans indicateur</button>
+                        <button class="DemoBtnGhost" data-pick="yes" type="button">Avec indicateur</button>
+                    </div>  
+                </div>
+                <div class="DemoResult" id="dtResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var stage = document.getElementById('dtStage');
+            var spinner = document.getElementById('dtSpinner');
+            var ask = document.getElementById('dtAsk');
+            var result = document.getElementById('dtResult');
+            var btnNo = document.getElementById('dtNoFeedback');
+            var btnYes = document.getElementById('dtFeedback');
+            var seenNo = false, seenYes = false;
+            var DELAY = 2500;
+
+            function run(withSpinner, cb){
+                btnNo.disabled = true; btnYes.disabled = true;
+                stage.hidden = false;
+                spinner.style.visibility = withSpinner ? 'visible' : 'hidden';
+
+                setTimeout(function(){
+                    stage.hidden = true;
+                    btnNo.disabled = false; btnYes.disabled = false;
+                    cb();
+                }, DELAY);
+            }
+
+            function maybeAsk(){
+                if(seenNo && seenYes && ask.hidden){ask.hidden = false;}
+            }
+
+            btnNo.addEventListener('click', function(){run(false, function(){seenNo = true; maybeAsk();});});
+            btnYes.addEventListener('click', function(){run(true, function(){seenYes = true; maybeAsk();});});
+
+            ask.querySelectorAll('button').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var pick = btn.getAttribute('data-pick');
+                    result.className = 'DemoResult show';
+                    if(pick === 'no'){
+                        result.innerHTML = 'Vous avez trouvé l’attente sans indicateur plus longue — alors qu’elle durait exactement la même chose. C’est la performance perçue&nbsp;: un simple indicateur de chargement rend un délai identique plus supportable, sans changer le temps réel d’une milliseconde.';
+                    } else {
+                        result.innerHTML = 'Vous avez trouvé l’attente avec indicateur plus longue — plus rare, mais possible sur un délai aussi court. Sur des attentes plus longues, l’effet inverse est très largement documenté&nbsp;: un indicateur de progression rend l’attente nettement plus supportable.';
+                    }
+                    ask.querySelectorAll('button').forEach(function(b){b.disabled = true;});
+                });
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

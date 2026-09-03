@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mémoire de travail : définition en UX | Le fichier UX</title>
+    
+    <meta name="description" content="C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours, comme un récapitulatif de commande.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/memoire-de-travail/">
+    <meta property="og:title" content="Mémoire de travail : définition en UX | Le fichier UX">
+    <meta property="og:description" content="C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours, comme un récapitulatif de commande.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Mémoire & charge cognitive">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mémoire de travail : définition en UX | Le fichier UX">
+    <meta name="twitter:description" content="C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours, comme un récapitulatif de commande.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/memoire-de-travail/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Mémoire de travail</span>
+                </nav>
+                <span class="Category">Mémoire & charge cognitive · UX n°23</span>
+                <h1 class="Title">Mémoire de travail</h1>
+                <p class="Lede">C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">C’est la mémoire à court terme qui retient temporairement les informations nécessaires pour réaliser une tâche en cours.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>La mémoire de travail ne retient que 4 à 7 éléments à la fois, chacun s’effaçant en 20 à 30 secondes environ.</li>
+                <li>L’esprit reconnaît bien mieux une information déjà vue qu’il ne parvient à la garder disponible en mémoire — d’où l’intérêt de rendre visible ce qui a déjà été consulté, comme les liens visités ou un fil d’Ariane.</li>
+                <li>Mieux vaut faire porter l’effort de mémorisation par le système que par l’utilisateur, en conservant les informations importantes d’un écran à l’autre.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Le terme est utilisé dans les années 1960 par George Miller, Eugene Galanter et Karl Pribram, avant d’être repris par Richard Atkinson et Richard Shiffrin pour décrire ce qu’on appelait jusqu’alors la mémoire à court terme.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Garder le récapitulatif de commande visible évite à l’utilisateur de devoir se souvenir de ses choix précédents.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">Rappel libre ou reconnaissance&nbsp;: lequel gagne&nbsp;?</h2>
+            </div>
+            <p class="Intro">6 mots s’affichent 5 secondes. On teste ensuite votre rappel libre, puis votre reconnaissance sur la même liste — pour comparer les deux.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="wmStart" type="button">Commencer</button>
+                </div>
+                <div class="DemoStudyList" id="wmStage" hidden>
+                    <ol class="SpList" id="wmList"></ol>
+                </div>
+                <div class="DemoRecall" id="wmRecall" hidden>
+                    <label for="wmInput" class="DemoRecallLabel">Rappel libre — tapez ce dont vous vous souvenez&nbsp;:</label>
+                    <textarea class="DemoTextarea" id="wmInput" rows="2" placeholder="ex : tasse, ballon…"></textarea>
+                    <button class="DemoBtn" id="wmRecallCheck" type="button">Valider mon rappel</button>
+                </div>
+                <div class="DemoRecall" id="wmRecog" hidden>
+                    <p class="DemoRecallLabel">Reconnaissance — cliquez sur tous les mots déjà vus&nbsp;:</p>
+                    <div class="WmChips" id="wmChips"></div>
+                    <button class="DemoBtn" id="wmRecogCheck" type="button">Valider ma reconnaissance</button>
+                </div>
+                <div class="DemoScores">
+                    <span>Rappel libre&nbsp;: <strong id="wmScoreRecall">—</strong></span>
+                    <span>Reconnaissance&nbsp;: <strong id="wmScoreRecog">—</strong></span>
+                </div>
+                <div class="DemoResult" id="wmResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var WORDS = ["corde","tasse","échelle","ballon","miroir","bougie"];
+            var DECOYS = ["brosse","casque","ancre","ruban","tambour","valise"];
+            var listEl = document.getElementById('wmList');
+            var stage = document.getElementById('wmStage');
+            var startBtn = document.getElementById('wmStart');
+            var recallBox = document.getElementById('wmRecall');
+            var input = document.getElementById('wmInput');
+            var recallCheck = document.getElementById('wmRecallCheck');
+            var recogBox = document.getElementById('wmRecog');
+            var chipsEl = document.getElementById('wmChips');
+            var recogCheck = document.getElementById('wmRecogCheck');
+            var scoreRecall = document.getElementById('wmScoreRecall');
+            var scoreRecog = document.getElementById('wmScoreRecog');
+            var result = document.getElementById('wmResult');
+
+            function normalize(s){
+                return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+            }
+
+            function shuffle(arr){
+                var a = arr.slice();
+                for(var i = a.length - 1; i > 0; i--){
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var t = a[i]; a[i] = a[j]; a[j] = t;
+                }
+                return a;
+            }
+
+            startBtn.addEventListener('click', function(){
+                startBtn.disabled = true;
+                recallBox.hidden = true;
+                recogBox.hidden = true;
+                result.className = 'DemoResult';
+                input.value = '';
+                listEl.innerHTML = WORDS.map(function(w){return '<li>'+w+'</li>';}).join('');
+                stage.hidden = false;
+
+                setTimeout(function(){
+                    stage.hidden = true;
+                    recallBox.hidden = false;
+                    input.focus();
+                }, 5000);
+            });
+
+            recallCheck.addEventListener('click', function(){
+                var typed = input.value.split(/[,;]/).map(normalize).filter(Boolean);
+                var hits = WORDS.filter(function(w){return typed.indexOf(normalize(w)) !== -1;}).length;
+                scoreRecall.textContent = hits + '/6';
+                recallBox.hidden = true;
+
+                var pool = shuffle(WORDS.concat(DECOYS));
+                chipsEl.innerHTML = pool.map(function(w){return '<span class="WmChip" data-word="'+w+'">'+w+'</span>';}).join('');
+                recogBox.hidden = false;
+            });
+
+            chipsEl.addEventListener('click', function(e){
+                var chip = e.target.closest('.WmChip');
+                if(chip){chip.classList.toggle('picked');}
+            });
+
+            recogCheck.addEventListener('click', function(){
+                var picked = Array.prototype.map.call(chipsEl.querySelectorAll('.WmChip.picked'), function(c){return c.getAttribute('data-word');});
+                var hits = WORDS.filter(function(w){return picked.indexOf(w) !== -1;}).length;
+                scoreRecog.textContent = hits + '/6';
+                recogBox.hidden = true;
+
+                result.className = 'DemoResult show';
+                var r = scoreRecall.textContent, g = scoreRecog.textContent;
+                var rn = parseInt(r, 10), gn = parseInt(g, 10);
+                if(gn > rn){
+                    result.innerHTML = 'Rappel libre&nbsp;: <strong>'+r+'</strong> — reconnaissance&nbsp;: <strong>'+g+'</strong>. Reconnaître était plus facile que se rappeler sans aide&nbsp;: c’est pour cela qu’une interface gagne à garder les choses visibles (historique, liens visités) plutôt que de compter sur la mémoire pure de l’utilisateur.';
+                } else {
+                    result.innerHTML = 'Rappel libre&nbsp;: <strong>'+r+'</strong> — reconnaissance&nbsp;: <strong>'+g+'</strong>. Sur une liste aussi courte, l’écart ne se voit pas toujours&nbsp;; sur des listes plus longues, la reconnaissance dépasse presque systématiquement le rappel libre.';
+                }
+                startBtn.disabled = false;
+                startBtn.textContent = 'Réessayer';
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>

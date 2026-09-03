@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loi de Tesler : la complexité incompressible | Le fichier UX</title>
+
+    <meta name="description" content="Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://levrailennouille.github.io/ux/laws/loi-de-tesler/">
+    <meta property="og:title" content="Loi de Tesler : la complexité incompressible | Le fichier UX">
+    <meta property="og:description" content="Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.">
+    <meta property="og:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+    <meta property="article:author" content="Lenny Gadroy">
+    <meta property="article:section" content="Principes de conception">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loi de Tesler : la complexité incompressible | Le fichier UX">
+    <meta name="twitter:description" content="Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.">
+    <meta name="twitter:image" content="https://levrailennouille.github.io/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://levrailennouille.github.io/ux/laws/loi-de-tesler/">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link href="/ux/laws/laws.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        <section class="SecondaryHero">
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Loi de Tesler</span>
+                </nav>
+                <span class="Category">Principes de conception · UX n°21</span>
+                <h1 class="Title">Loi de Tesler</h1>
+                <p class="Lede">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
+            </div>
+        </section>
+        <section class="Block" id="principe">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Le principe</span>
+                <h2 class="Title">Ce que dit cette loi</h2>
+            </div>
+            <p class="Intro">Toute tâche a un niveau de complexité incompressible : elle ne disparaît pas, elle se déplace entre le système et l’utilisateur.</p>
+        </section>
+        <section class="Block Alt" id="cles">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Points clés</span>
+                <h2 class="Title">Ce qu’il faut retenir</h2>
+            </div>
+            <ul class="Takeaways">
+                <li>Toute application possède un noyau de complexité qui ne peut être supprimé — seulement déplacé, du système vers l’utilisateur ou inversement.</li>
+                <li>Le rôle du concepteur est d’absorber un maximum de cette complexité en amont, plutôt que de la reporter sur chaque utilisateur.</li>
+                <li>Il ne faut pas concevoir pour un utilisateur idéalisé et parfaitement rationnel : dans la réalité, les comportements sont souvent plus complexes que prévu.</li>
+            </ul>
+        </section>
+        <section class="Block" id="origines">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Origines</span>
+                <h2 class="Title">D’où vient ce principe</h2>
+            </div>
+            <p class="Intro">Alors qu’il travaillait chez Xerox PARC au milieu des années 1980, Larry Tesler observe que la façon dont les utilisateurs interagissent avec une application compte autant que l’application elle-même, formulant ainsi la loi de conservation de la complexité.</p>
+        </section>
+        <section class="Block Alt" id="pratique">
+            <div class="SectionTitle">
+                <span class="Eyebrow">En pratique</span>
+                <h2 class="Title">Un exemple concret</h2>
+            </div>
+            <div class="Highlight">
+                <div>
+                    <p class="HighlightLabel">Exemple</p>
+                    <p>Un correcteur d’adresse automatique déplace la complexité du côté du système plutôt que de la laisser à l’utilisateur.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="demo">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démonstration</span>
+                <h2 class="Title">La complexité n’a pas disparu, elle a changé de camp</h2>
+            </div>
+            <p class="Intro">Entrez une date de votre choix, de deux façons différentes. On regarde où se loge la difficulté.</p>
+            <div class="DemoBox">
+                <div class="DemoActions">
+                    <button class="DemoBtn" id="tlShowRaw" type="button">Essayer le mode brut</button>
+                    <button class="DemoBtn" id="tlShowGuided" type="button">Essayer le mode assisté</button>
+                </div>
+                <div class="TlBox" id="tlRaw" hidden>
+                    <label class="TlLabel" for="tlRawInput">Format exact attendu&nbsp;: <code>JJ.MM.AAAA</code></label>
+                    <div class="TlInputRow">
+                        <input type="text" id="tlRawInput" placeholder="ex : 05.03.1998">
+                        <button class="DemoBtn" id="tlRawCheck" type="button">Valider</button>
+                    </div>
+                </div>
+                <div class="TlBox" id="tlGuided" hidden>
+                    <div class="TlSelectRow">
+                        <select id="tlDay" aria-label="Jour"></select>
+                        <select id="tlMonth" aria-label="Mois"></select>
+                        <select id="tlYear" aria-label="Année"></select>
+                        <button class="DemoBtn" id="tlGuidedCheck" type="button">Valider</button>
+                    </div>
+                </div>
+                <div class="DemoScores">
+                    <span>Mode brut&nbsp;: <strong id="tlScoreRaw">—</strong></span>
+                    <span>Mode assisté&nbsp;: <strong id="tlScoreGuided">—</strong></span>
+                </div>
+                <div class="DemoResult" id="tlResult" aria-live="polite"></div>
+            </div>
+        </section>
+        <section class="Block" id="liees">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Lois liées</span>
+                <h2 class="Title">À explorer ensuite</h2>
+            </div>
+            <div class="CompareGrid RelatedGrid"></div>
+        </section> 
+        <nav class="PageNav"></nav>
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script>
+        (function(){
+            "use strict";
+            var rawBox = document.getElementById('tlRaw');
+            var guidedBox = document.getElementById('tlGuided');
+            var rawInput = document.getElementById('tlRawInput');
+            var rawCheck = document.getElementById('tlRawCheck');
+            var guidedCheck = document.getElementById('tlGuidedCheck');
+            var scoreRaw = document.getElementById('tlScoreRaw');
+            var scoreGuided = document.getElementById('tlScoreGuided');
+            var result = document.getElementById('tlResult');
+            var daySel = document.getElementById('tlDay');
+            var monthSel = document.getElementById('tlMonth');
+            var yearSel = document.getElementById('tlYear');
+            var showRawBtn = document.getElementById('tlShowRaw');
+            var showGuidedBtn = document.getElementById('tlShowGuided');
+            var rawAttempts = 0;
+
+            function fillSelect(sel, from, to){
+                var html = '';
+                for(var i = from; i <= to; i++){html += '<option value="'+i+'">'+i+'</option>';}
+                sel.innerHTML = html;
+            }
+            fillSelect(daySel, 1, 31);
+            fillSelect(monthSel, 1, 12);
+            fillSelect(yearSel, 1950, 2026);
+
+            function checkComparison(){
+                var r = scoreRaw.textContent, g = scoreGuided.textContent;
+                if(r !== '—' && g !== '—'){
+                    result.className = 'DemoResult show';
+                    result.innerHTML = 'Mode brut&nbsp;: <strong>'+r+'</strong> — mode assisté&nbsp;: <strong>'+g+'</strong>. La difficulté de respecter un format n’a pas disparu dans le mode assisté&nbsp;: elle a été absorbée par le système, qui ne propose que des valeurs valides. C’est la loi de Tesler&nbsp;: la complexité se déplace, elle ne s’annule jamais vraiment.';
+                }
+            }
+
+            showRawBtn.addEventListener('click', function(){
+                rawBox.hidden = false;
+                rawAttempts = 0;
+                rawInput.value = '';
+                rawInput.placeholder = 'ex : 05.03.1998';
+                rawInput.style.borderColor = '';
+                rawInput.focus();
+            });
+            
+            showGuidedBtn.addEventListener('click', function(){
+                guidedBox.hidden = false;
+            });
+
+            rawCheck.addEventListener('click', function(){
+                rawAttempts++;
+                var v = rawInput.value.trim();
+                var m = v.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+                if(m){
+                    scoreRaw.textContent = rawAttempts + ' essai' + (rawAttempts > 1 ? 's' : '');
+                    rawBox.hidden = true;
+                    checkComparison();
+                } else {
+                    rawInput.style.borderColor = '#e53e3e';
+                    rawInput.placeholder = 'Format incorrect, réessayez : JJ.MM.AAAA';
+                    rawInput.value = '';
+                }
+            });
+
+            guidedCheck.addEventListener('click', function(){
+                scoreGuided.textContent = '1 essai';
+                guidedBox.hidden = true;
+                checkComparison();
+            });
+        })();
+    </script>
+    <script src="/ux/laws/laws.js"></script>
+</body>
+</html>
