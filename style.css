@@ -4709,7 +4709,6 @@ main.About {
                 position: absolute;
                 top: 6px;
                 left: 24px;
-                font-family: Georgia, serif;
                 font-size: 5.5rem;
                 font-weight: 700;
                 line-height: 1;
@@ -6588,7 +6587,7 @@ main.Terms {
     main.Index section.TeamGallery {
         .GalleryGrid {column-count: 2;}
     }
-    
+
     main.UX {
         .Hero .Decor {display:none;}
         .Block .CompareGrid {grid-template-columns:1fr;}
