@@ -41,7 +41,7 @@ const headerHTML = `
                     <span class="Dot"></span>
                     <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                 </span>
-            </button>
+            </a>
         </div>
     </nav>
 `;
@@ -50,7 +50,7 @@ document.getElementById('HeaderPlaceHolder').innerHTML = headerHTML;
 
 function initHamburger() {
     var navbar = document.querySelector('.NavBar');
-    if (!navbar) return;
+    if (!navbar || navbar.querySelector('.HamburgerBtn')) return;
 
     var btn = document.createElement('button');
     btn.className = 'HamburgerBtn';
@@ -95,3 +95,5 @@ function initHamburger() {
     nav.querySelectorAll('a').forEach(function (a) {a.addEventListener('click', function () { toggle(false); });});
     window.addEventListener('resize', function () {if (window.innerWidth > 950) toggle(false);});
 }
+
+initHamburger();
