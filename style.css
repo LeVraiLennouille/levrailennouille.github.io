@@ -6384,6 +6384,7 @@ main.Terms {
                                 font-weight: 600;
                                 color: var(--PureBlack);
                                 text-transform: none;
+                                overflow-wrap: anywhere;
 
                                 a {color: var(--Primary);}
                             }
@@ -6998,6 +6999,7 @@ main.Terms {
                 .TermsArticles .TermsArticle {
                     grid-template-columns: 1fr;
                     gap: 8px;
+                    padding: 32px 0;
 
                     .Num {padding-top: 0;}
                     .SecondContainer .Card .CardRow .Label {width: 90px;}
@@ -7199,11 +7201,19 @@ main.Terms {
         width: auto;
     }
 
-    main.Terms .TermsContent .Container.TermsArticles .TermsArticle .SecondContainer .Card .CardRow {
-        flex-direction: column;
-        gap: 4px;
+    main.Terms .TermsContent {
+        padding: 40px 16px 64px;
 
-        .Label {width: auto;}
+        .Container .TermsArticles .TermsArticle {
+            padding: 24px 0;
+
+            .SecondContainer .Card .CardRow {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+        }
+            .Label {width: auto;}
+        }
     }
 }
 
