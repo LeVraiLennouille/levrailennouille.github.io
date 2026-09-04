@@ -6573,26 +6573,60 @@ main.Terms {
         }
     }
 
-    main.Index section.Why {
-        padding: 60px 20px 80px;
+    main.Index {
+        section.Why {
+            padding: 60px 20px 80px;
 
-        .Layout {
-            grid-template-columns: 1fr;
-            gap: 48px;
+            .Layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
 
-            .Card:nth-of-type(2) {
-                display: flex;
-                flex-direction: column;
+                .Card:nth-of-type(2) {
+                    display: flex;
+                    flex-direction: column;
 
-                h4 {order: 1;}
-                p {order: 2;}
-                .CardImg {order: 3;}
+                    h4 {order: 1;}
+                    p {order: 2;}
+                    .CardImg {order: 3;}
+                }
             }
+        }
+
+        section.TeamGallery {
+            .GalleryGrid {column-count: 2;}
         }
     }
 
-    main.Index section.TeamGallery {
-        .GalleryGrid {column-count: 2;}
+    main.Services {
+        section.Why {
+            padding: 130px 24px 50px;
+
+            .Header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+
+                .Lead {max-width: 100%;}
+            }
+
+            .Grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+
+                .Card.Featured, .Card:nth-child(2), .Card:nth-child(3) {margin-top: 0;}
+            }
+        }
+
+        section.Grid {
+            padding: 40px 24px 80px;
+
+            .Grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+
+                .Card:nth-child(1), .Card:nth-child(2) {grid-column: auto; grid-row: auto;}
+            }
+        }
     }
 
     main.UX {
@@ -6675,6 +6709,16 @@ main.Terms {
 }
 
 @media (max-width: 768px) {
+    section.CallToAction .Design {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 48px 32px;
+        border-radius: 24px;
+
+        .Action {max-width: 100%;}
+    }
+    
     main.Services {
         section.Why {
             padding: 130px 24px 50px;
