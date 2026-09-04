@@ -224,7 +224,7 @@
         const cat = CATS[law.cat];
         return "" +
             '<a class="LawCard" href="ux/laws/">' +
-                '<img class="CardCover" src="img/ux/laws/' + law.slug + '.png" alt="' + law.name + '" loading="lazy">' +
+                '<img class="CardCover" src="img/ux/laws/' + law.slug + '.png" alt="' + law.name + '" loading="lazy" onerror="this.onerror=null;this.src=\'assets/og-preview.png\';">' +
                 '<span class="CardTop"><span class="Category">' + cat.label + '</span><span class="Code">UX n°' + law.code + '</span></span>' +
                 "<h3>" + law.name + "</h3>" +
                 "<p>" + law.def + "</p>" +
