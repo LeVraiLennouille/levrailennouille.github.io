@@ -6732,6 +6732,14 @@ main.Terms {
         .PageNav .PageNavLink {max-width: 100%;}
     }
 
+    .SecondaryHero {
+        padding: 130px 24px 60px;
+
+        .Decor {display: none;}
+    }
+
+    main.Blog.Index .BlogListing {padding: 64px 28px 84px;}
+
     main.Blog {
         .BlogHero {
             padding: 130px 24px 60px;
@@ -6769,6 +6777,30 @@ main.Terms {
     }
 
     main.About {
+        section.Timeline {
+            padding: 130px 24px 100px;
+
+            .TimelineHeader {margin-bottom: 64px;}
+            .TimelineList {max-width: 440px;}
+
+            .TimelineItem {
+                grid-template-columns: 56px 1fr;
+                column-gap: 24px;
+
+                .Rail {grid-column: 1;}
+                .Line {left: 50%;}
+
+                .Circle {width: 48px; height: 48px;}
+
+                &:nth-child(odd) .Content, &:nth-child(even) .Content {
+                grid-column: 2;
+                text-align: left;
+                margin: 0;
+                max-width: none;
+                }
+            }
+        }
+
         section.Skills, section.Values, section.Anchor {
             padding: 70px 24px;
 
@@ -6874,6 +6906,8 @@ main.Terms {
         --Gap:       28px;
     }
 
+    section.DesignedCTA section.CTA {padding: 40px 24px;}
+
     section.Merge {
         padding: 0 10px;
 
@@ -6938,6 +6972,8 @@ main.Terms {
             .RelatedProjects {margin: 72px auto 64px;}
         }
     }
+
+    .SecondaryHero .HeroInner .Breadcrumb {display: none;}
 
     main.Blog {
         &.Index {
