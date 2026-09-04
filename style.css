@@ -222,8 +222,8 @@ html, body {
         justify-content: center;
         align-items: center;
         gap: 5px;
-        width: 38px;
-        height: 38px;
+        width: 44px;
+        height: 44px;
         border-radius: 8px;
         transition: background 0.2s ease;
 
@@ -6541,6 +6541,7 @@ main.Terms {
 }
 
 @media (max-width: 950px) {
+    * {cursor: auto !important;}
     #CursorDot, #CursorBall {display: none;}
     .NavBar {
         padding: 0 24px;
@@ -6602,6 +6603,30 @@ main.Terms {
         .Block .DefinirVisual {width:min(260px,70%); align-self:center;}
     }
 
+    main.About section.Timeline {
+        padding: 130px 24px 100px;
+
+        .TimelineHeader {margin-bottom: 64px;}
+        .TimelineList {max-width: 440px;}
+
+        .TimelineItem {
+            grid-template-columns: 56px 1fr;
+            column-gap: 24px;
+
+            .Rail {grid-column: 1;}
+            .Line {left: 50%;}
+
+            .Circle {width: 48px; height: 48px;}
+
+            &:nth-child(odd) .Content, &:nth-child(even) .Content {
+            grid-column: 2;
+            text-align: left;
+            margin: 0;
+            max-width: none;
+            }
+        }
+    }
+
     main.Reals {
         section.Why {
             padding: 0 20px;
@@ -6639,6 +6664,14 @@ main.Terms {
     }
 
     main.Terms .TermsContent .Container {grid-template-columns: 200px 1fr; gap: 48px;}
+}
+
+@media (min-width: 601px) and (max-width: 950px) {
+    main.About section.Me {
+        gap: 48px;
+
+        svg {width: min(55vw, 340px);}
+    }
 }
 
 @media (max-width: 768px) {
@@ -6729,31 +6762,13 @@ main.Terms {
         }
     }
 
+    section.DesignedCTA {
+        .Waves {height: 70px;}
+
+        section.CTA {padding: 20px 24px;}
+    }
+
     main.About {
-        section.Timeline {
-            padding: 130px 24px 100px;
-
-            .TimelineHeader {margin-bottom: 64px;}
-            .TimelineList {max-width: 440px;}
-
-            .TimelineItem {
-                grid-template-columns: 56px 1fr;
-                column-gap: 24px;
-
-                .Rail {grid-column: 1;}
-                .Line {left: 50%;}
-
-                .Circle {width: 48px; height: 48px;}
-
-                &:nth-child(odd) .Content, &:nth-child(even) .Content {
-                grid-column: 2;
-                text-align: left;
-                margin: 0;
-                max-width: none;
-                }
-            }
-        }
-
         section.Skills, section.Values, section.Anchor {
             padding: 70px 24px;
 
@@ -7010,6 +7025,23 @@ main.Terms {
 }
 
 @media (max-width: 420px) {
+    main.About section.Timeline {
+        padding-right: 16px;
+        padding-left: 16px;
+
+        .TimelineItem {
+            grid-template-columns: 40px 1fr;
+            column-gap: 16px;
+
+            .Circle {
+                width: 40px;
+                height: 40px;
+
+                svg {width: 18px; height: 18px;}
+            }
+        }
+    }
+
     main.Simu .Layout .Form {
         padding-top: 28px;
         padding-right: 16px;
