@@ -118,7 +118,7 @@ html, body {
     align-items: center;
     justify-content: space-between;
     background-color: var(--PureWhite);
-    padding-left: 200px;
+    padding-left: clamp(40px, 10vw, 200px);
     height: 64px;
     font-size: 1rem;
     font-weight: 600;
@@ -1726,6 +1726,7 @@ main.Index {
         background-color: var(--Background);
         display: flex;
         flex-direction: column;
+        padding: 0 48px;
 
         h2 {
             display: block;
@@ -1785,6 +1786,7 @@ main.Index {
 
     section.Benefits {
         background-color: var(--Background);
+        padding: 0 48px;
 
         .Layout {
             display: grid;
@@ -1842,6 +1844,8 @@ main.Index {
     }
 
     section.Gallery {
+        padding: 0 48px;
+
         .SectionTitle h2.Title {font-size: 2.71rem;}
         
         .Grid {
@@ -1864,6 +1868,8 @@ main.Index {
     }
 
     section.LatestPosts {
+        padding: 0 48px;
+
         .SectionHeader {
             display: flex;
             align-items: flex-end;
@@ -6540,6 +6546,11 @@ main.Terms {
     .MobileNav    {display: none !important;}
 }
 
+@media (hover: none), (pointer: coarse) {
+    * {cursor: auto !important;}
+    #CursorDot, #CursorBall {display: none;}
+}
+
 @media (max-width: 950px) {
     * {cursor: auto !important;}
     #CursorDot, #CursorBall {display: none;}
@@ -6574,12 +6585,25 @@ main.Terms {
     }
 
     main.Index {
+        section.Impact {
+            padding: 40px 28px;
+
+            .StatsGrid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .Card {padding: 22px;}
+        }
+
         section.Why {
             padding: 60px 20px 80px;
 
             .Layout {
                 grid-template-columns: 1fr;
                 gap: 48px;
+
+                .Card p {text-align: left;}
 
                 .Card:nth-of-type(2) {
                     display: flex;
@@ -6592,8 +6616,31 @@ main.Terms {
             }
         }
 
-        section.TeamGallery {
-            .GalleryGrid {column-count: 2;}
+        section.Benefits {
+            padding: 0 20px;
+
+            .Layout {
+                grid-template-columns: 1fr;
+                row-gap: 32px;
+            }
+
+            .Column {
+                p {text-align: left;}
+
+                &:last-child {justify-self: stretch;}
+            }
+        }
+
+        section.Gallery {
+            padding: 0 20px;
+
+            .Grid {column-count: 2;}
+        }
+
+        section.LatestPosts {
+            padding: 0 20px;
+
+            .BlogGrid {grid-template-columns: repeat(2, 1fr);}
         }
     }
 
@@ -6707,11 +6754,19 @@ main.Terms {
 }
 
 @media (min-width: 601px) and (max-width: 950px) {
-    main.About section.Me {
+    main.About section.Me, main.Index section.Me {
         gap: 48px;
 
         svg {width: min(55vw, 340px);}
     }
+
+    :root {
+        --Scale:     0.78;
+        --Thickness: 15px;
+        --Border:    6px;
+    }
+
+    main.Index section.Hero img {max-width: 320px;}
 }
 
 @media (max-width: 768px) {
@@ -7000,15 +7055,31 @@ main.Terms {
             img {max-width: 225px;}
         }
 
+        section.Impact {padding: 32px 20px;}
+
         section.Why {
             padding: 40px 16px 60px;
 
             .Layout {grid-template-columns: 1fr;}
         }
 
-        section.TeamGallery {
-            .GalleryTitle {font-size: 2rem; margin-bottom: 24px;}
-            .GalleryGrid {column-count: 1;}
+        section.Gallery {
+            padding: 0 16px;
+
+            .SectionTitle h2.Title {font-size: 2rem;}
+            .Grid {column-count: 1;}
+        }
+
+        section.LatestPosts {
+            padding: 0 16px;
+
+            .SectionHeader {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .BlogGrid {grid-template-columns: 1fr;}
         }
     }
 
