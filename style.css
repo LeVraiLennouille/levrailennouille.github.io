@@ -6815,8 +6815,8 @@ main.Terms {
                 &.Featured {grid-column: span 1; grid-row: span 1;}
             }
 
-            .FeaturedBody {grid-template-columns: 1fr !important;}
-            .FeaturedBody .FeaturedPreview {margin-top: 24px;}
+            .Body {grid-template-columns: 1fr !important;}
+            .Body .FeaturedPreview {margin-top: 24px;}
         }
 
         section.CTA {
