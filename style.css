@@ -2613,6 +2613,7 @@ main.UX {
                     aspect-ratio: 16/9;
                     object-fit: cover;
                     border-radius: 18px 18px 0 0;
+                    background: radial-gradient(ellipse 85% 85% at 20% 18%, #1e4167 0%, #1c2631 55%, #1c1c1e 100%);
                     transition: transform .4s ease;
                 }
 
