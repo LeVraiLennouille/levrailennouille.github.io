@@ -94,7 +94,11 @@ html, body {
     overflow: visible;
     container-type: inline-size;
     box-shadow: rgba(var(--PureBlackRGB), 0.2) 0 12px 40px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
+
+.NuageMots.is-ready {opacity: 1;}
 
 .ConceptLines {
     position: absolute;
@@ -243,9 +247,7 @@ html, body {
 .PageOutro a {color: var(--Primary); font-weight: 600; text-decoration: none;}
 .PageOutro a:hover {text-decoration: underline;}
 
-@media (prefers-reduced-motion: reduce) {
-    .Mot, .ConceptLines line, .ConceptLines circle, .Tooltip, .ToggleMapBtn {transition-duration: 0.01ms !important;}
-}
+@media (prefers-reduced-motion: reduce) {.Mot, .ConceptLines line, .ConceptLines circle, .Tooltip, .ToggleMapBtn, .NuageMots {transition-duration: 0.01ms !important;}}
 
 @media (max-width: 640px) {
     .PageIntro {padding: 48px 20px 28px;}
@@ -262,6 +264,7 @@ html, body {
     <p>Chaque mot appartient au vocabulaire de l'UX. Survolez le nuage pour voir apparaître les liens entre les concepts, et survolez ou touchez un mot pour lire sa définition.</p>
     <button class="ToggleMapBtn" type="button" aria-pressed="false">Afficher la carte conceptuelle</button>
 </header>
+<noscript><style>.NuageMots {opacity: 1 !important;}</style></noscript>
 <div class="NuageWrapper">
 <section class="NuageMots" aria-label="Nuage de mots interactif sur l'UX Design">
     <span class="sr-only">Chaque mot est un bouton : appuyez sur Entrée pour afficher sa définition.</span>
@@ -386,7 +389,79 @@ html, body {
 <p class="PageOutro">Ces mots font aussi partie du <a href="UX.html">catalogue des 30 lois UX</a> du site — chaque loi y est détaillée avec sa propre démonstration interactive.</p>
 <script>
 (function () {
+    var nuage = document.querySelector('.NuageMots');
     var mots = document.querySelectorAll('.Mot:not(.Mot--credit)');
+
+    function resolveCloudOverlaps() {
+        var containerRect = nuage.getBoundingClientRect();
+        if (!containerRect.width || !containerRect.height) return;
+
+        var boxes = Array.prototype.map.call(mots, function (mot) {
+            var r = mot.getBoundingClientRect();
+            var left = (r.left - containerRect.left) / containerRect.width * 100;
+            var right = (r.right - containerRect.left) / containerRect.width * 100;
+            var top = (r.top - containerRect.top) / containerRect.height * 100;
+            var bottom = (r.bottom - containerRect.top) / containerRect.height * 100;
+            return {
+                mot: mot,
+                cx: (left + right) / 2,
+                cy: (top + bottom) / 2,
+                hw: (right - left) / 2,
+                hh: (bottom - top) / 2
+            };
+        });
+
+        var padding = 1.6;
+        for (var iter = 0; iter < 400; iter++) {
+            var moved = false;
+            for (var i = 0; i < boxes.length; i++) {
+                for (var j = i + 1; j < boxes.length; j++) {
+                    var a = boxes[i], b = boxes[j];
+                    var dx = b.cx - a.cx;
+                    var dy = b.cy - a.cy;
+                    var overlapX = (a.hw + b.hw + padding) - Math.abs(dx);
+                    var overlapY = (a.hh + b.hh + padding) - Math.abs(dy);
+                    if (overlapX > 0 && overlapY > 0) {
+                        moved = true;
+                        if (overlapX < overlapY) {
+                            var pushX = (overlapX / 2) * (dx >= 0 ? 1 : -1) || (i < j ? 1 : -1);
+                            a.cx -= pushX; b.cx += pushX;
+                        } else {
+                            var pushY = (overlapY / 2) * (dy >= 0 ? 1 : -1) || 1;
+                            a.cy -= pushY; b.cy += pushY;
+                        }
+                    }
+                }
+            }
+            if (!moved) break;
+        }
+
+        boxes.forEach(function (b) {
+            var cx = Math.min(100 - b.hw, Math.max(b.hw, b.cx));
+            var cy = Math.min(100 - b.hh, Math.max(b.hh, b.cy));
+            b.mot.style.setProperty('--x', cx.toFixed(2) + '%');
+            b.mot.style.setProperty('--y', cy.toFixed(2) + '%');
+        });
+    }
+
+    function revealCloud() {
+        nuage.classList.add('is-ready');
+    }
+
+    var layoutFixDone = false;
+    function runLayoutFix() {
+        if (layoutFixDone) return;
+        layoutFixDone = true;
+        try {
+            resolveCloudOverlaps();
+        } catch (err) {}
+        revealCloud();
+    }
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(runLayoutFix).catch(runLayoutFix);
+        setTimeout(runLayoutFix, 1500);
+    } else {setTimeout(runLayoutFix, 300);}
 
     function closeAll(except) {
         mots.forEach(function (m) {
@@ -437,7 +512,6 @@ html, body {
     document.addEventListener('keydown', function (e) {if (e.key === 'Escape') closeAll(null);});
 
     var toggleBtn = document.querySelector('.ToggleMapBtn');
-    var nuage = document.querySelector('.NuageMots');
     toggleBtn.addEventListener('click', function () {
         var isMap = nuage.classList.toggle('is-map');
         toggleBtn.setAttribute('aria-pressed', String(isMap));
