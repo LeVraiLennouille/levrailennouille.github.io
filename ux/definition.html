@@ -97,7 +97,6 @@ html, body {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
-
 .NuageMots.is-ready {opacity: 1;}
 
 .ConceptLines {
@@ -129,7 +128,7 @@ html, body {
     position: absolute;
     left: var(--x);
     top: var(--y);
-    transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(var(--shrink, 1));
     font-family: "Syne", sans-serif;
     font-weight: var(--fw, 600);
     font-size: var(--fs);
@@ -167,7 +166,7 @@ html, body {
 .NuageMots.is-map .Mot:not(.Mot--credit) {
     left: var(--mx);
     top: var(--my);
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
 }
 .NuageMots:hover .Mot--center, .NuageMots.is-map .Mot--center {font-size: 4.6cqw;}
 .NuageMots:hover .Mot--hub, .NuageMots.is-map .Mot--hub {font-size: 2.6cqw;}
@@ -396,19 +395,33 @@ html, body {
         var containerRect = nuage.getBoundingClientRect();
         if (!containerRect.width || !containerRect.height) return;
 
+        mots.forEach(function (mot) {mot.style.transition = 'none';});
+
+        var EDGE = 0.5;
+
+        function clampBox(b) {
+            var minX = Math.min(b.hw + EDGE, 50), maxX = Math.max(100 - b.hw - EDGE, 50);
+            var minY = Math.min(b.hh + EDGE, 50), maxY = Math.max(100 - b.hh - EDGE, 50);
+            b.cx = Math.min(maxX, Math.max(minX, b.cx));
+            b.cy = Math.min(maxY, Math.max(minY, b.cy));
+        }
+
         var boxes = Array.prototype.map.call(mots, function (mot) {
             var r = mot.getBoundingClientRect();
             var left = (r.left - containerRect.left) / containerRect.width * 100;
             var right = (r.right - containerRect.left) / containerRect.width * 100;
             var top = (r.top - containerRect.top) / containerRect.height * 100;
             var bottom = (r.bottom - containerRect.top) / containerRect.height * 100;
-            return {
+            var b = {
                 mot: mot,
                 cx: (left + right) / 2,
                 cy: (top + bottom) / 2,
                 hw: (right - left) / 2,
-                hh: (bottom - top) / 2
+                hh: (bottom - top) / 2,
+                shrink: 1
             };
+            clampBox(b);
+            return b;
         });
 
         var padding = 1.6;
@@ -430,23 +443,56 @@ html, body {
                             var pushY = (overlapY / 2) * (dy >= 0 ? 1 : -1) || 1;
                             a.cy -= pushY; b.cy += pushY;
                         }
+
+                        clampBox(a);
+                        clampBox(b);
                     }
                 }
             }
             if (!moved) break;
         }
 
+        var MIN_SHRINK = 0.7;
+        for (var shrinkPass = 0; shrinkPass < 150; shrinkPass++) {
+            var stillOverlapping = false;
+            for (var i2 = 0; i2 < boxes.length; i2++) {
+                for (var j2 = i2 + 1; j2 < boxes.length; j2++) {
+                    var a2 = boxes[i2], b2 = boxes[j2];
+                    var dx2 = b2.cx - a2.cx;
+                    var dy2 = b2.cy - a2.cy;
+                    var overlapX2 = (a2.hw + b2.hw + padding) - Math.abs(dx2);
+                    var overlapY2 = (a2.hh + b2.hh + padding) - Math.abs(dy2);
+                    if (overlapX2 > 0 && overlapY2 > 0) {
+                        stillOverlapping = true;
+                        if (a2.shrink > MIN_SHRINK) {
+                            a2.hw *= 0.97; a2.hh *= 0.97; a2.shrink *= 0.97;
+                            clampBox(a2);
+                        }
+
+                        if (b2.shrink > MIN_SHRINK) {
+                            b2.hw *= 0.97; b2.hh *= 0.97; b2.shrink *= 0.97;
+                            clampBox(b2);
+                        }
+                    }
+                }
+            }
+            if (!stillOverlapping) break;
+        }
+
         boxes.forEach(function (b) {
-            var cx = Math.min(100 - b.hw, Math.max(b.hw, b.cx));
-            var cy = Math.min(100 - b.hh, Math.max(b.hh, b.cy));
-            b.mot.style.setProperty('--x', cx.toFixed(2) + '%');
-            b.mot.style.setProperty('--y', cy.toFixed(2) + '%');
+            clampBox(b);
+            b.mot.style.setProperty('--x', b.cx.toFixed(2) + '%');
+            b.mot.style.setProperty('--y', b.cy.toFixed(2) + '%');
+            if (b.shrink < 1) {
+                b.mot.style.setProperty('--shrink', b.shrink.toFixed(3));
+            }
         });
+
+        void nuage.offsetWidth;
+        mots.forEach(function (mot) {mot.style.transition = '';});
     }
 
-    function revealCloud() {
-        nuage.classList.add('is-ready');
-    }
+    function revealCloud() {nuage.classList.add('is-ready');}
 
     var layoutFixDone = false;
     function runLayoutFix() {
