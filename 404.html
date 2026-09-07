@@ -38,6 +38,20 @@
         <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
     </main>
     <script src="/script.js"></script>
-    <script src="/js/404.js"></script>
+    <script>
+        (function () {
+            var path = window.location.pathname;
+            var pathEl = document.getElementById('NotFoundPath');
+
+            if (!pathEl || !path || path === '/') return;
+
+            try {
+                path = decodeURIComponent(path);
+            } catch (e) {}
+
+            pathEl.textContent = path;
+            pathEl.hidden = false;
+        })();
+    </script>
 </body>
 </html>
