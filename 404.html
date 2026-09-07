@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Page introuvable (404) — Lennouille</title>
+
+    <meta name="description" content="Cette page n'existe pas ou plus sur le site de Lennouille, UI/UX Designer.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#1c1c1e">
+
+    <link href="/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+</head>
+<body>
+    <main class="NotFound">
+        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+
+        <section class="SecondaryHero">
+            <div class="Decor" aria-hidden="true"><span>404</span></div>
+            <div class="HeroInner">
+                <h1 class="Title">Cette page s'est perdue en chemin.</h1>
+                <p class="SubTitle">La page demandée n'existe pas, plus, ou pas encore. Vérifiez l'URL, ou repartez tranquillement de l'accueil.</p>
+                <code class="RequestedPath" id="NotFoundPath" hidden></code>
+                <div>
+                    <a href="/" class="ArrowBtn">Retour à l'accueil <span class="Arrow">→</span></a>
+                </div>
+                <nav class="QuickLinks" aria-label="Autres pages du site">
+                    <a href="/services.html">Services</a>
+                    <span class="Dot" aria-hidden="true"></span>
+                    <a href="/reals.html">Réalisations</a>
+                    <span class="Dot" aria-hidden="true"></span>
+                    <a href="/contact.html">Contact</a>
+                </nav>
+            </div>
+        </section>
+
+        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    </main>
+    <script src="/script.js"></script>
+    <script src="/js/404.js"></script>
+</body>
+</html>
