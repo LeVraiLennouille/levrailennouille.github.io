@@ -4917,7 +4917,7 @@ main.Contact {
                         padding: 12px 15px;
                         border: 1px solid var(--PureBlack);
                         border-radius: 8px;
-                        background: transparent;
+                        background: var(--PureWhite);
                         color: var(--PureBlack);
                         font-size: 1rem;
                         outline: none;
