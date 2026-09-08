@@ -6520,7 +6520,11 @@ main.Terms {
 }
 
 @media (max-width: 1023px) {
+    .NavBar {.NavLogo, .NavCTA {display: none;}}
+
     main.Blog.Index .BlogGrid {grid-template-columns: repeat(2, 1fr);}
+
+    main.Contact .ContactLayout .SocialSidebar {display: none;}
 
     main.Simu {
         .Layout {padding-right: 0;}
@@ -6734,8 +6738,6 @@ main.Terms {
     main.Contact {
         .ContactLayout {
             flex-direction: column;
-
-            .SocialSidebar {margin-left: 16px}
 
             .ContactLeft {
                 width: 100%;
