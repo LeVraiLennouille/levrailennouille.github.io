@@ -223,7 +223,7 @@
     function cardHTML(law) {
         const cat = CATS[law.cat];
         return "" +
-            '<a class="LawCard" href="ux/laws/">' +
+            '<a class="LawCard" href="/ux/laws/' + law.slug + '/">' +
                 '<img class="CardCover" src="img/ux/laws/' + law.slug + '.svg" alt="' + law.name + '" loading="lazy" onerror="this.onerror=null;this.src=\'assets/og-preview.png\';">' +
                 '<span class="CardTop"><span class="Category">' + cat.label + '</span><span class="Code">UX n°' + law.code + '</span></span>' +
                 "<h3>" + law.name + "</h3>" +
