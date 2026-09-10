@@ -2237,7 +2237,7 @@ main.UX {
         position: relative;
         overflow: hidden;
         background-color: var(--Charcoal);
-        padding: clamp(120px,20vw,168px) 40px clamp(70px,10vw,100px);
+        padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
 
         &::before {
             content: "";
@@ -2342,7 +2342,7 @@ main.UX {
     }
 
     .Block {
-        padding: clamp(56px,9vw,96px) 0;
+        padding: clamp(56px,9vw,96px) clamp(24px,6vw,60px);
         border-top: 1px solid rgba(var(--PureBlackRGB),0.06);
 
         &#definir {
@@ -2527,6 +2527,7 @@ main.UX {
                     color: var(--Charcoal);
                     padding: 10px 16px;
                     border-radius: 50px;
+                    white-space: nowrap;
                     cursor: pointer;
                     box-shadow: 0 2px 12px rgba(var(--PureBlackRGB),0.06);
                     transition: all .2s ease;
@@ -6999,6 +7000,7 @@ main.Promenade {
         .Block .CompareGrid .Versus {display:none;}
         .Block .DefinirLayout {flex-direction:column;}
         .Block .DefinirVisual {width:min(260px,70%); align-self:center;}
+        .Block .Grid {grid-template-columns: repeat(2, 1fr); gap: 20px;}
     }
 
     main.About section.Timeline {
@@ -7399,7 +7401,11 @@ main.Promenade {
         }
     }
 
-    main.UX .Block .Controls .SearchDraw #search {width:140px;}
+    main.UX .Block {
+        .Grid {grid-template-columns: 1fr;}
+        .Controls {flex-direction: column; align-items: stretch;}
+        .Controls #search {width: 100%;}
+    }
 
     main.Reals {
         section.Why {margin: 110px auto 50px;}
