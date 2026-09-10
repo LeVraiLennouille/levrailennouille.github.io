@@ -1843,6 +1843,100 @@ main.Index {
         }
     }
 
+    section.Showcase {
+        padding: 0 48px;
+
+        .SectionHeader {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .Marquee {
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            overflow: hidden;
+            padding: 8px 48px 24px;
+            mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+
+            &:hover .MarqueeTrack {
+                animation-play-state: paused;
+            }
+        }
+
+        .MarqueeTrack {
+            display: flex;
+            align-items: stretch;
+            gap: 28px;
+            width: max-content;
+            animation: MarqueeScroll 50s linear infinite;
+            will-change: transform;
+        }
+
+        .ProjectCard {
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 560px;
+            width: 560px;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-6px);
+
+                .Preview img {transform: scale(1.03);}
+                .ProjectName {color: var(--DarkPrimary);}
+            }
+
+            .Preview {
+                aspect-ratio: 16 / 10;
+                border-radius: 20px;
+                overflow: hidden;
+                background: var(--PureWhite);
+                box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.1);
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: cover;
+                    object-position: top;
+                    transition: transform 0.4s ease;
+                }
+            }
+
+            .Caption {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                margin-top: 18px;
+            }
+
+            .ProjectName {
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: var(--Primary);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                transition: color 0.3s ease;
+            }
+
+            .ProjectDate {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--Muted);
+                flex-shrink: 0;
+            }
+        }
+    }
+
     section.Gallery {
         padding: 0 48px;
 
