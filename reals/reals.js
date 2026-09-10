@@ -51,14 +51,14 @@ var REALS = [
         imageAlt: "Mon portfolio : v3",
         date: "2026-03-01"
     },{
-        id: "goon",
-        url: "/reals/goon",
-        name: "Refonte GOON v3",
-        label: "GOON Blindtests",
+        id: "leblindtestfrancais",
+        url: "/reals/leblindtestfrancais",
+        name: "Refonte BlindtestFrançais v3",
+        label: "Le Blindtest Francais",
         category: "Product design · App Web temps réel",
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
-        image: "/img/reals/goon/mockup.webp",
-        imageAlt: "Refonte GOON v3",
+        image: "/img/reals/leblindtestfrancais/mockup.webp",
+        imageAlt: "Refonte BlindtestFrançais v3",
         date: "2026-02-19"
     },{
         id: "geoptime",
