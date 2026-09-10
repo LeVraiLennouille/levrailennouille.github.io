@@ -214,3 +214,48 @@ document.addEventListener("DOMContentLoaded", function () {
         return match ? match[1] : null;
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    var track = document.querySelector("[data-marquee-track]");
+    if (!track) return;
+
+    var showcase = REALS
+        .filter(function (p) { return !p.comingSoon; })
+        .slice()
+        .sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+
+    track.innerHTML = showcase.map(renderShowcaseCard).join("") +
+                       showcase.map(renderShowcaseCardDuplicate).join("");
+
+    function renderShowcaseCard(p) {
+        return "" +
+            '<a class="ProjectCard" href="' + p.url + '">' +
+                '<div class="Preview">' +
+                    '<img src="' + p.image + '" alt="' + p.imageAlt + '" loading="lazy">' +
+                "</div>" +
+                '<div class="Caption">' +
+                    '<span class="ProjectName">' + p.label + "</span>" +
+                    '<span class="ProjectDate">' + formatShowcaseDate(p.date) + "</span>" +
+                "</div>" +
+            "</a>";
+    }
+
+    function renderShowcaseCardDuplicate(p) {
+        return "" +
+            '<a class="ProjectCard" href="' + p.url + '" aria-hidden="true" tabindex="-1">' +
+                '<div class="Preview">' +
+                    '<img src="' + p.image + '" alt="" loading="lazy">' +
+                "</div>" +
+                '<div class="Caption">' +
+                    '<span class="ProjectName">' + p.label + "</span>" +
+                    '<span class="ProjectDate">' + formatShowcaseDate(p.date) + "</span>" +
+                "</div>" +
+            "</a>";
+    }
+
+    function formatShowcaseDate(iso) {
+        var months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        var parts = iso.split("-");
+        return months[parseInt(parts[1], 10) - 1] + " " + parts[0];
+    }
+});
