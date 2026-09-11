@@ -6,7 +6,7 @@
         //     title: "Gestion du Temps en Freelance : le Guide Complet pour les Créatifs Indépendants",
         //     excerpt: "Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant.",
         //     category: "Freelance",
-        //     date: "2027-02-01",
+        //     date: "2027-03-01",
         //     readingTime: "10 min",
         //     url: "/blog/gestion-du-temps-freelance"
         // }, {
@@ -55,7 +55,7 @@
         }, {
             title: "L'UX Design pour les Nuls : le Guide Complet et Accessible",
             excerpt: "Qu'est-ce que l'UX design ? Découvrez une définition simple, la différence avec l'UI, 5 grands principes de psychologie cognitive et les pièges à éviter, sans jargon.",
-            category: "Design",
+            category: "UX",
             date: "2026-08-01",
             readingTime: "10 min",
             url: "/blog/ux-design-pour-les-nuls"
