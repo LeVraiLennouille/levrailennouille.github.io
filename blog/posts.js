@@ -10,6 +10,13 @@
         //     readingTime: "10 min",
         //     url: "/blog/gestion-du-temps-freelance"
         // }, {
+        //     title: "Les Tests UX : le Guide Complet de Toutes les Méthodes d'Évaluation",
+        //     excerpt: "Tests utilisateurs, tri de cartes, A/B testing, SUS, NPS, tests d'accessibilité : le guide complet de toutes les méthodes de test UX et du bon moment pour les utiliser.",
+        //     category: "UX",
+        //     date: "2027-02-01",
+        //     readingTime: "10 min",
+        //     url: "/blog/tests-ux"
+        // }, {
         //     title: "Combien Coûte un Site Internet en 2027 ? Prix Réels et Complets",
         //     excerpt: "Combien coûte un site internet en 2027 ? Landing page, vitrine, e-commerce : les vrais prix pratiqués en France selon le prestataire choisi.",
         //     category: "Tarifs",
