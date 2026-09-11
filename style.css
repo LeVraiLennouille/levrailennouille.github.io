@@ -2322,6 +2322,134 @@ main.Services {
         .StatValue.Accent {color: var(--Primary);}
         .StatLabel {display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--LightMuted); margin-top: 2px;}
     }
+
+    section.Method {
+        max-width: 1400px;
+        margin: 200px auto 0;
+
+        .Header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 60px;
+            margin-bottom: 56px;
+
+            .Lead {
+                max-width: 380px;
+                font-size: 1rem;
+                line-height: 1.6;
+                color: var(--Muted);
+                padding-bottom: 6px;
+            }
+        }
+
+        .TimelineList {
+            position: relative;
+            max-width: 1080px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .TimelineItem {
+            display: grid;
+            grid-template-columns: 1fr 90px 1fr;
+            column-gap: 48px;
+            position: relative;
+
+            &:not(:last-child) {padding-bottom: 64px;}
+
+            .Rail {
+                grid-column: 2;
+                grid-row: 1;
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+
+            .Line {
+                position: absolute;
+                top: -64px;
+                bottom: -64px;
+                left: 50%;
+                width: 2px;
+                background: var(--Primary);
+                transform: translateX(-50%);
+                z-index: 0;
+            }
+
+            &:first-child .Line {top: 0;}
+            &:last-child .Line {bottom: 50%;}
+
+            .Circle {
+                position: relative;
+                z-index: 1;
+                width: 56px;
+                height: 56px;
+                flex-shrink: 0;
+                border-radius: 50%;
+                background: var(--Primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 0 10px rgba(var(--PrimaryRGB), 0.1), 0 0 38px 4px rgba(var(--PrimaryRGB), 0.45);
+
+                svg {width: 22px; height: 22px; stroke: var(--PureWhite);}
+            }
+
+            .Content {grid-row: 1; align-self: center;}
+
+            .Badge {
+                display: inline-block;
+                padding: 5px 16px;
+                border-radius: 50px;
+                background: rgba(var(--PrimaryRGB), 0.12);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
+                color: var(--Primary);
+                font-size: 0.8rem;
+                font-weight: 700;
+                margin-bottom: 14px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 0.98rem;
+                line-height: 1.6;
+                color: var(--Muted);
+            }
+
+            &:nth-child(odd) .Content {
+                grid-column: 1;
+                text-align: right;
+                margin-left: auto;
+                max-width: 420px;
+            }
+
+            &:nth-child(even) .Content {
+                grid-column: 3;
+                text-align: left;
+                margin-right: auto;
+                max-width: 420px;
+            }
+        }
+
+        .Footnote {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+            color: var(--MinMuted);
+            font-size: 0.95rem;
+            max-width: 640px;
+            margin: 64px auto 0;
+        }
+    }
 }
 
 main.UX {
@@ -7076,6 +7204,37 @@ main.Promenade {
             }
         }
 
+        section.Method {
+            padding: 60px 24px 40px;
+
+            .Header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+
+                .Lead {max-width: 100%;}
+            }
+
+            .TimelineList {max-width: 440px;}
+
+            .TimelineItem {
+                grid-template-columns: 56px 1fr;
+                column-gap: 24px;
+
+                .Rail {grid-column: 1;}
+                .Line {left: 50%;}
+
+                .Circle {width: 48px; height: 48px;}
+
+                &:nth-child(odd) .Content, &:nth-child(even) .Content {
+                    grid-column: 2;
+                    text-align: left;
+                    margin: 0;
+                    max-width: none;
+                }
+            }
+        }
+
         section.Grid {
             padding: 40px 24px 80px;
 
@@ -7633,6 +7792,23 @@ main.Promenade {
 
 @media (max-width: 420px) {
     main.About section.Timeline {
+        padding-right: 16px;
+        padding-left: 16px;
+
+        .TimelineItem {
+            grid-template-columns: 40px 1fr;
+            column-gap: 16px;
+
+            .Circle {
+                width: 40px;
+                height: 40px;
+
+                svg {width: 18px; height: 18px;}
+            }
+        }
+    }
+
+    main.Services section.Method {
         padding-right: 16px;
         padding-left: 16px;
 
