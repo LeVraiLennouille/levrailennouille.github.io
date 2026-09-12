@@ -7,6 +7,7 @@ var REALS = [
         category: "Création · Product design & Branding",
         tags: ["creation", "ui-ux", "branding", "design-system"],
         image: "/img/reals/larepousse/mockup.webp",
+        heroImage: "/img/reals/larepousse/new_hero.png",
         imageAlt: "Création La Repousse",
         date: "2026-09-01"
     },{
@@ -17,6 +18,7 @@ var REALS = [
         category: "Création · Product design & Branding",
         tags: ["creation", "product-design", "branding"],
         image: "/img/reals/scorsone/mockup.webp",
+        heroImage: "/img/reals/scorsone/new_hero.png",
         imageAlt: "Création Scorsone",
         date: "2026-07-31",
         comingSoon: true
@@ -28,6 +30,7 @@ var REALS = [
         category: "Création · Product design e-commerce",
         tags: ["creation", "product-design", "ecommerce", "branding", "wordpress"],
         image: "/img/reals/primaire/mockup.webp",
+        heroImage: "/img/reals/primaire/new_hero.png",
         imageAlt: "Création Primaire",
         date: "2026-06-05"
     },{
@@ -38,6 +41,7 @@ var REALS = [
         category: "Audit & refonte UI / UX · Design System",
         tags: ["refonte", "ui-ux", "branding", "design-system", "bien-etre"],
         image: "/img/reals/mu/mockup.webp",
+        heroImage: "/img/reals/mu/new_hero.png",
         imageAlt: "Refonte Mü-être v2",
         date: "2026-04-20"
     },{
@@ -48,6 +52,7 @@ var REALS = [
         category: "Audit & refonte UI / UX",
         tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
         image: "/img/reals/portfolio/mockup.webp",
+        heroImage: "/img/reals/portfolio/new_hero.png",
         imageAlt: "Mon portfolio : v3",
         date: "2026-03-01"
     },{
@@ -58,6 +63,7 @@ var REALS = [
         category: "Product design · App Web temps réel",
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
         image: "/img/reals/leblindtestfrancais/mockup.webp",
+        heroImage: "/img/reals/leblindtestfrancais/new_hero.png",
         imageAlt: "Refonte BlindtestFrançais v3",
         date: "2026-02-19"
     },{
@@ -68,6 +74,7 @@ var REALS = [
         category: "Création · UI / UX & Full-stack",
         tags: ["creation", "ui-ux", "fullstack", "b2b", "branding"],
         image: "/img/reals/geoptime/mockup.webp",
+        heroImage: "/img/reals/geoptime/new_hero.png",
         imageAlt: "Création GeopTime",
         date: "2025-12-10"
     },{
@@ -78,6 +85,7 @@ var REALS = [
         category: "UI/UX Design · Webdesign · Identité visuelle",
         tags: ["refonte", "ui-ux", "branding", "identite-visuelle", "migration-cms"],
         image: "/img/reals/yligen/mockup.webp",
+        heroImage: "/img/reals/yligen/new_hero.png",
         imageAlt: "Refonte Yligen v2",
         date: "2025-09-01"
     },
@@ -227,11 +235,15 @@ document.addEventListener("DOMContentLoaded", function () {
     track.innerHTML = showcase.map(renderShowcaseCard).join("") +
                        showcase.map(renderShowcaseCardDuplicate).join("");
 
+    function getShowcaseImage(p) {
+        return p.heroImage;
+    }
+
     function renderShowcaseCard(p) {
         return "" +
             '<a class="ProjectCard" href="' + p.url + '">' +
                 '<div class="Preview">' +
-                    '<img src="' + p.image + '" alt="' + p.imageAlt + '" loading="lazy">' +
+                    '<img src="' + getShowcaseImage(p) + '" alt="' + p.imageAlt + '" loading="lazy">' +
                 "</div>" +
                 '<div class="Caption">' +
                     '<span class="ProjectName">' + p.label + "</span>" +
@@ -244,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return "" +
             '<a class="ProjectCard" href="' + p.url + '" aria-hidden="true" tabindex="-1">' +
                 '<div class="Preview">' +
-                    '<img src="' + p.image + '" alt="" loading="lazy">' +
+                    '<img src="' + getShowcaseImage(p) + '" alt="" loading="lazy">' +
                 "</div>" +
                 '<div class="Caption">' +
                     '<span class="ProjectName">' + p.label + "</span>" +
