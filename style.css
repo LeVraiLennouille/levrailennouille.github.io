@@ -3252,7 +3252,7 @@ main.UX {
             margin-bottom: 6px;
         }
 
-        .Highlight {
+        .IsoHighlight {
             display: flex;
             gap: 14px;
             align-items: flex-start;
