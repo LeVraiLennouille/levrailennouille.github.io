@@ -957,6 +957,8 @@ section {
 
         .Arrow {transform: translate(3px, -3px);}
     }
+
+    &.Inline:hover .Arrow {transform: translate(3px, 0);}
 }
 
 .SecondaryHero {
@@ -2003,8 +2005,6 @@ main.Index {
             &:hover {
                 transform: translateY(-6px);
                 box-shadow: 0 16px 40px rgba(var(--PureBlackRGB), 0.12);
-
-                .CardFooter .Arrow {transform: translateX(4px);}
             }
 
             .CardTop {

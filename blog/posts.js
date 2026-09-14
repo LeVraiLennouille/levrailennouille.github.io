@@ -112,7 +112,9 @@
                 "<p>" + post.excerpt + "</p>" +
                 '<div class="CardFooter">' +
                     '<time datetime="' + post.date + '">' + formatDateLabel(post.date) + "</time>" +
-                    '<span class="Arrow" aria-hidden="true">→</span>' +
+                    '<span class="ArrowLink" aria-hidden="true">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>' +
+                    "</span>" +
                 "</div>" +
             "</a>"
         );
