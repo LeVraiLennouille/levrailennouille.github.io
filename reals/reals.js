@@ -168,7 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var grid = document.querySelector("[data-reals-grid]");
     if (!grid) return;
 
-    var sorted = REALS.slice().sort(function (a, b) {
+    var sorted = REALS.filter(function (p) {
+        return !p.comingSoon;
+    }).sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
     });
 
@@ -197,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var current = findProject(currentId);
     if (!current) return;
 
-    var others = REALS.filter(function (p) { return p.id !== current.id; });
+    var others = REALS.filter(function (p) { return p.id !== current.id && !p.comingSoon; });
 
     var ranked = others
         .map(function (p) { return { reals: p, score: similarityScore(current, p) }; })
