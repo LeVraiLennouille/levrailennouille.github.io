@@ -1,0 +1,73 @@
+# Lennouille — Lenny Gadroy, UI/UX Designer freelance
+> Lennouille est l'activité indépendante de Lenny Gadroy, UI/UX Designer & intégrateur freelance basé à Poitiers (France), disponible à distance dans toute la France. Conception d'interfaces sur-mesure, d'identités visuelles et de design systems, associée à une intégration technique propre (HTML/CSS/JS) pensée pour la conversion, l'accessibilité et la performance.
+
+Chaque projet suit le même processus en cinq étapes — compréhension, conception, prototypage, évaluation, intégration — avec un interlocuteur unique du premier brief à la mise en ligne, sous statut de micro-entrepreneur.
+
+## Services
+- [Prestations](https://lennouille.fr/services): Détail des cinq offres — sites vitrines & landing pages (dès 1000€), identité visuelle & design system (dès 750€), audit UX & refonte (dès 500€), e-commerce (dès 1500€), product design & applications métier (dès 750€) — et la méthode de travail en cinq étapes.
+- [Simulateur de devis](https://lennouille.fr/simu): Estimation de budget en 6 questions, avec envoi automatique d'un devis PDF personnalisé par email.
+- [Contact & rendez-vous](https://lennouille.fr/contact): Formulaire de contact et prise de rendez-vous directe (visio ou présentiel à Poitiers).
+
+## Réalisations
+- [Portfolio](https://lennouille.fr/reals): Vue d'ensemble des réalisations UI/UX — créations sur-mesure, refontes et identités visuelles.
+- [La Repousse](https://lennouille.fr/reals/larepousse): Identité visuelle et refonte UI/UX pour une association écologique — logo, charte graphique, site web et supports imprimés.
+- [Mü-Être](https://lennouille.fr/reals/mu): Audit & refonte UI/UX complète d'une marque de bien-être — navigation, design system et supports de communication.
+
+## Ressources UX
+- [Le fichier UX](https://lennouille.fr/ux): Définition de l'UX, différence UI vs UX, et catalogue de 30 lois de psychologie cognitive appliquées au design d'interface.
+- [Attention sélective](https://lennouille.fr/ux/laws/attention-selective) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Biais cognitif](https://lennouille.fr/ux/laws/biais-cognitif) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Charge cognitive](https://lennouille.fr/ux/laws/charge-cognitive) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Chunking](https://lennouille.fr/ux/laws/chunking) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Effet de gradient d'objectif](https://lennouille.fr/ux/laws/effet-gradient-objectif) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Effet de position sérielle](https://lennouille.fr/ux/laws/effet-position-serielle) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Effet Esthétique-Utilisabilité](https://lennouille.fr/ux/laws/effet-esthetique-usabilite) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Effet Von Restorff](https://lennouille.fr/ux/laws/effet-von-restorff) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Effet Zeigarnik](https://lennouille.fr/ux/laws/effet-zeigarnik) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Flow](https://lennouille.fr/ux/laws/flow) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de connexion uniforme](https://lennouille.fr/ux/laws/loi-connexion-uniforme) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Fitts](https://lennouille.fr/ux/laws/loi-de-fitts) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Hick](https://lennouille.fr/ux/laws/loi-de-hick) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Jakob](https://lennouille.fr/ux/laws/loi-de-jakob) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de la région commune](https://lennouille.fr/ux/laws/loi-region-commune) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Miller](https://lennouille.fr/ux/laws/loi-de-miller) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Parkinson](https://lennouille.fr/ux/laws/loi-de-parkinson) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Postel](https://lennouille.fr/ux/laws/loi-de-postel) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Prägnanz](https://lennouille.fr/ux/laws/loi-de-pragnanz) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de proximité](https://lennouille.fr/ux/laws/loi-de-proximite) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de similarité](https://lennouille.fr/ux/laws/loi-de-similarite) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Loi de Tesler](https://lennouille.fr/ux/laws/loi-de-tesler) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Mémoire de travail](https://lennouille.fr/ux/laws/memoire-de-travail) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Modèle mental](https://lennouille.fr/ux/laws/modele-mental) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Paradoxe de l'utilisateur actif](https://lennouille.fr/ux/laws/paradoxe-utilisateur-actif) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Principe de Pareto](https://lennouille.fr/ux/laws/principe-de-pareto) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Rasoir d'Occam](https://lennouille.fr/ux/laws/rasoir-doccam) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Règle du pic et de la fin](https://lennouille.fr/ux/laws/regle-pic-et-fin) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Seuil de Doherty](https://lennouille.fr/ux/laws/seuil-de-doherty) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+- [Surcharge de choix](https://lennouille.fr/ux/laws/surcharge-de-choix) : Une des 30 fiches du catalogue UX, avec origine du principe, exemple concret et démonstration interactive.
+
+## Blog et Articles
+- [Blog](https://lennouille.fr/blog): Articles sur le design, le développement front-end et la stratégie web.
+- [La Signification des Couleurs : Psychologie en Design](https://lennouille.fr/blog/signification-des-couleurs): Découvrez la théorie des couleurs, la psychologie cachée derrière chaque nuance et comment utiliser les couleurs efficacement dans vos designs et créations artistiques.
+- [L'UX Design pour les Nuls : le Guide Complet et Accessible](https://lennouille.fr/blog/ux-design-pour-les-nuls): Qu'est-ce que l'UX design ? Découvrez une définition simple, la différence avec l'UI, 5 grands principes de psychologie cognitive et les pièges à éviter, sans jargon.
+- [Avez-vous Vraiment Besoin des Réseaux Sociaux en Tant que Designer Freelance ?](https://lennouille.fr/blog/reseaux-sociaux-freelance): Faut-il être sur Instagram ou LinkedIn pour réussir en freelance ? Avantages, inconvénients et alternatives concrètes pour construire une présence qui vous correspond.
+- [Théorie des Couleurs : le Guide Complet pour Créer des Palettes Harmonieuses](https://lennouille.fr/blog/theorie-des-couleurs): Roue chromatique, harmonies de couleurs, règle des 60-30-10, psychologie des couleurs : le guide complet pour composer une palette cohérente pour votre marque ou votre site.
+- [Pourquoi la Motivation ne Suffit pas pour Atteindre vos Objectifs](https://lennouille.fr/blog/pourquoi-la-motivation-ne-suffit-pas): La motivation ne suffit pas pour tenir ses objectifs sur la durée. Pourquoi l'action doit précéder la motivation, et comment construire un processus qui tient dans le temps.
+- [Combien Coûte un Site Internet en 2027 ? Prix Réels et Complets](https://lennouille.fr/blog/combien-coute-un-site-internet-en-2027): Combien coûte un site internet en 2027 ? Landing page, vitrine, e-commerce : les vrais prix pratiqués en France selon le prestataire choisi.
+- [Les Tests UX : le Guide Complet de Toutes les Méthodes d'Évaluation](https://lennouille.fr/blog/tests-ux): Tests utilisateurs, tri de cartes, A/B testing, SUS, NPS, tests d'accessibilité : le guide complet de toutes les méthodes de test UX et du bon moment pour les utiliser.
+- [Gestion du Temps en Freelance : le Guide Complet pour les Créatifs Indépendants](https://lennouille.fr/blog/gestion-du-temps-freelance): Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant.
+
+## À propos
+- [Parcours de Lenny Gadroy](https://lennouille.fr/about): Formation (BTS NDRC, licence CRRW, Master SIC), compétences UI/UX et ancrage à Poitiers.
+
+## Optional
+- [Mentions légales](https://lennouille.fr/mentions-legales): Statut juridique de l'éditeur et de l'hébergeur du site.
+- [Politique de confidentialité](https://lennouille.fr/politique-confidentialite): Traitement des données personnelles, conforme au RGPD.
+- [CGU](https://lennouille.fr/cgu): Conditions générales d'utilisation du site et des services.
+
+## Autorisations d'utilisation par les IA
+L'indexation, le résumé et la recommandation du contenu de ce site par des agents conversationnels ou moteurs de recherche sont autorisés, à condition de citer la source (lennouille.fr) et, si possible, de renvoyer vers la page d'origine.
+
+Sans accord écrit préalable (contact@lennouille.fr), ne sont pas autorisés : la reproduction intégrale d'articles, de fiches UX ou de pages du site ; l'usage des visuels, maquettes, chartes graphiques ou études de cas clients (La Repousse, Mü-Être, etc.) pour entraîner un modèle ou générer des contenus dérivés ; toute exploitation commerciale du contenu textuel ou graphique sans attribution ; l'extraction des données transmises via le formulaire de contact ou le simulateur de devis.
+
+Ces règles précisent, sans s'y substituer, les Mentions légales, les CGU et la Politique de confidentialité du site, qui restent la référence en cas de doute.
