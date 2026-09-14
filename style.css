@@ -961,24 +961,32 @@ section {
     &.Inline:hover .Arrow {transform: translate(3px, 0);}
 }
 
-.SecondaryHero {
+.Hero {
     max-width: 100%;
-    min-height: 400px;
     margin: 0;
-    display: flex;
     position: relative;
-    background-color: var(--Charcoal);
     overflow: hidden;
-    padding: 160px 40px 90px;
-    align-items: center;
+    background-color: var(--Charcoal);
+    padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
 
     &::before {
         content: "";
         position: absolute;
         inset: 0;
         background:
-            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB), 0.2) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB), 0.28) 0%, transparent 60%);
+            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
+            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(ellipse 70% 60% at 50% 35%, transparent 20%, var(--Charcoal) 78%),
+            radial-gradient(rgba(var(--PureWhiteRGB),0.06) 1px, transparent 1.2px);
+        background-size: 100% 100%, 26px 26px;
         pointer-events: none;
     }
 
@@ -1010,6 +1018,7 @@ section {
         max-width: 1400px;
         margin: 0 auto;
         text-align: center;
+        animation: uxHeroRise .7s ease both;
 
         .Breadcrumb {
             display: flex;
@@ -1028,31 +1037,23 @@ section {
             .Current {color: var(--Primary);}
         }
 
-        .Category {
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 50px;
-            background: rgba(var(--PrimaryRGB), 0.14);
-            color: var(--Primary);
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
         h1.Title {
-            font-size: clamp(2.8rem, 7vw, 5.5rem);
-            font-weight: 900;
+            font-size: clamp(2.4rem,5.5vw,3.8rem);
+            font-weight: 800;
             color: var(--PureWhite);
-            line-height: 1;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+
+            em {
+                font-style: italic;
+                color: var(--Primary);
+            }
         }
 
-        p.SubTitle {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--MinMuted);
+        .SubTitle {
+            font-size: 1rem;
             line-height: 1.65;
+            color: rgba(var(--PureWhiteRGB),0.72);
+            margin: 0 auto 34px;
             text-transform: none;
         }
 
@@ -1067,116 +1068,6 @@ section {
             color: var(--MinMuted);
 
             .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
-        }
-    }
-}
-
-.TertiaryHero {
-    max-width: 100%;
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--Charcoal);
-    padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
-        pointer-events: none;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(ellipse 70% 60% at 50% 35%, transparent 20%, var(--Charcoal) 78%),
-            radial-gradient(rgba(var(--PureWhiteRGB),0.06) 1px, transparent 1.2px);
-        background-size: 100% 100%, 26px 26px;
-        pointer-events: none;
-    }
-
-    .Decor {
-        position: absolute;
-        right: -10px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-        pointer-events: none;
-        user-select: none;
-
-        span {
-            font-size: clamp(6rem,16vw,13rem);
-            font-weight: 800;
-            line-height: .85;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB),0.18);
-            white-space: nowrap;
-        }
-    }
-
-    .HeroInner {
-        position: relative;
-        z-index: 2;
-        max-width: 740px;
-        margin: 0 auto;
-        text-align: center;
-        animation: uxHeroRise .7s ease both;
-
-        .Category {
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 50px;
-            background: rgba(var(--PrimaryRGB),0.16);
-            color: var(--Primary);
-            font-size: .72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: clamp(2.4rem,5.5vw,3.8rem);
-            font-weight: 800;
-            color: var(--PureWhite);
-            margin-bottom: 22px;
-
-            em {
-                font-style: italic;
-                color: var(--Primary);
-            }
-        }
-
-        .Lede {
-            font-size: 1.05rem;
-            line-height: 1.65;
-            color: rgba(var(--PureWhiteRGB),0.72);
-            max-width: 52ch;
-            margin: 0 auto 34px;
-        }
-
-        .HeroCta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: .85rem;
-            font-weight: 800;
-            text-decoration: none;
-            color: var(--PureWhite);
-            background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-            padding: 14px 28px;
-            border-radius: 50px;
-            box-shadow: 0 10px 26px rgba(var(--PrimaryRGB),0.35);
-            transition: transform .2s ease, box-shadow .2s ease;
-
-            &:hover {
-                transform:translateY(-2px);
-                box-shadow:0 14px 32px rgba(var(--PrimaryRGB),0.4);
-            }
         }
     }
 }
@@ -3354,8 +3245,6 @@ main.UX {
 }
 
 main.Reals {
-    margin-top: 10vh;
-
     section.Why {
         background-color: var(--Background);
         display: flex;
