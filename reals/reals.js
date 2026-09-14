@@ -1,5 +1,65 @@
 var REALS = [
     {
+        id: "pomodoro",
+        url: "/reals/pomodoro",
+        name: "Création Pomodoro",
+        label: "Pomodoro",
+        category: "UI/UX Design · Application mobile · Identité visuelle",
+        tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
+        image: "/img/reals/pomodoro/mockup.webp",
+        heroImage: "/img/reals/pomodoro/pc-home.png",
+        imageAlt: "Création Pomodoro",
+        date: "2027-01-31",
+        comingSoon: true
+    },{
+        id: "lennoutil",
+        url: "/reals/lennoutil",
+        name: "Création Lennoutil",
+        label: "Lennoutil",
+        category: "UI/UX Design · WebApp · Identité visuelle",
+        tags: ["creation", "ui-ux", "webapp", "identite-visuelle"],
+        image: "/img/reals/lennoutil/mockup.webp",
+        heroImage: "/img/reals/lennoutil/pc-home.png",
+        imageAlt: "Création Lennoutil",
+        date: "2026-12-31",
+        comingSoon: true
+    },{
+        id: "caradd",
+        url: "/reals/caradd",
+        name: "Création CarAdd Studio",
+        label: "CarAdd Studio",
+        category: "UI/UX Design · WebApp · Identité visuelle",
+        tags: ["creation", "ui-ux", "webapp", "identite-visuelle"],
+        image: "/img/reals/caradd/mockup.webp",
+        heroImage: "/img/reals/caradd/pc-home.png",
+        imageAlt: "Création CarAdd Studio",
+        date: "2026-11-31",
+        comingSoon: true
+    },{
+        id: "habitstracker",
+        url: "/reals/habitstracker",
+        name: "Création HabitsTracker",
+        label: "HabitsTracker",
+        category: "UI/UX Design · Application mobile · Identité visuelle",
+        tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
+        image: "/img/reals/habitstracker/mockup.webp",
+        heroImage: "/img/reals/habitstracker/pc-home.png",
+        imageAlt: "Création HabitsTracker",
+        date: "2026-10-31",
+        comingSoon: true
+    },{
+        id: "undercover",
+        url: "/reals/undercover",
+        name: "Création Undercover",
+        label: "Undercover",
+        category: "UI/UX Design · WebApp · Identité visuelle",
+        tags: ["creation", "ui-ux", "webapp", "app-design", "jeu vidéo"],
+        image: "/img/reals/undercover/mockup.webp",
+        heroImage: "/img/reals/undercover/pc-home.png",
+        imageAlt: "Création Undercover",
+        date: "2026-09-19",
+        comingSoon: true
+    },{
         id: "larepousse",
         url: "/reals/larepousse",
         name: "Création La Repousse",
@@ -90,16 +150,6 @@ var REALS = [
         date: "2025-09-01"
     },
     // {
-    //     id: "caradd",
-    //     url: "/reals/caradd",
-    //     name: "Création CarAdd Studio",
-    //     label: "CarAdd Studio",
-    //     category: "UI/UX Design · Webdesign · Identité visuelle",
-    //     tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
-    //     image: "/img/reals/caradd/mockup.webp",
-    //     heroImage: "/img/reals/caradd/pc-home.png",
-    //     imageAlt: "Création CarAdd Studio",
-    //     date: "2026-05-01"
     // },{
     //     id: "gymaddict",
     //     url: "/reals/gymaddict",
@@ -110,18 +160,7 @@ var REALS = [
     //     image: "/img/reals/gymaddict/mockup.webp",
     //     heroImage: "/img/reals/caradd/pc-home.webo",
     //     imageAlt: "Création GymAddict",
-    //     date: "2026-04-15"
-    // },{
-    //     id: "habitstracker",
-    //     url: "/reals/habitstracker",
-    //     name: "Création HabitsTracker",
-    //     label: "HabitsTracker",
-    //     category: "UI/UX Design · Webdesign · Identité visuelle",
-    //     tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
-    //     image: "/img/reals/habitstracker/mockup.webp",
-    //     heroImage: "/img/reals/habitstracker/pc-home.png",
-    //     imageAlt: "Création HabitsTracker",
-    //     date: "2026-04-01"
+    //     date: "2026-06-01"
     // },
 ];
 
