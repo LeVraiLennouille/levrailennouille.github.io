@@ -567,6 +567,130 @@ html, body {
 /* ==========================================================================
    # Global Styles
 ========================================================================== */
+.SecondaryHero {
+    max-width: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--Charcoal);
+    padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
+            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            radial-gradient(ellipse 70% 60% at 50% 35%, transparent 20%, var(--Charcoal) 78%),
+            radial-gradient(rgba(var(--PureWhiteRGB),0.06) 1px, transparent 1.2px);
+        background-size: 100% 100%, 26px 26px;
+        pointer-events: none;
+    }
+
+    .Decor {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        span {
+            font-size: clamp(5rem, 12vw, 11rem);
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
+            white-space: nowrap;
+        }
+    }
+
+    .HeroInner {
+        position: relative;
+        z-index: 2;
+        max-width: 1400px;
+        margin: 0 auto;
+        text-align: center;
+        animation: uxHeroRise .7s ease both;
+
+        .Breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--MinMuted);
+            margin-bottom: 24px;
+
+            a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
+            a:hover {color: var(--Primary);}
+            .Sep {opacity: 0.5;}
+            .Current {color: var(--Primary);}
+        }
+
+        .Category {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: rgba(var(--PrimaryRGB), 0.14);
+            color: var(--Primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1.Title {
+            font-size: clamp(2.4rem,5.5vw,3.8rem);
+            font-weight: 800;
+            color: var(--PureWhite);
+            margin-bottom: 22px;
+
+            em {
+                font-style: italic;
+                color: var(--Primary);
+            }
+        }
+
+        .SubTitle {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: rgba(var(--PureWhiteRGB),0.72);
+            margin: 0 auto 34px;
+            text-transform: none;
+        }
+
+        .Meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--MinMuted);
+
+            .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
+        }
+    }
+}
+
 section {
     max-width: 1400px;
     margin: 100px auto 0;
@@ -959,117 +1083,6 @@ section {
     }
 
     &.Inline:hover .Arrow {transform: translate(3px, 0);}
-}
-
-.Hero {
-    max-width: 100%;
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--Charcoal);
-    padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
-
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse 60% 80% at 85% 20%, rgba(var(--PrimaryRGB),0.25) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 60% at 5% 90%, rgba(var(--DarkPrimaryRGB),0.32) 0%, transparent 60%);
-        pointer-events: none;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(ellipse 70% 60% at 50% 35%, transparent 20%, var(--Charcoal) 78%),
-            radial-gradient(rgba(var(--PureWhiteRGB),0.06) 1px, transparent 1.2px);
-        background-size: 100% 100%, 26px 26px;
-        pointer-events: none;
-    }
-
-    .Decor {
-        position: absolute;
-        right: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1;
-        pointer-events: none;
-        user-select: none;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-
-        span {
-            font-size: clamp(5rem, 12vw, 11rem);
-            font-weight: 900;
-            line-height: 0.9;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(var(--PrimaryRGB), 0.15);
-            white-space: nowrap;
-        }
-    }
-
-    .HeroInner {
-        position: relative;
-        z-index: 2;
-        max-width: 1400px;
-        margin: 0 auto;
-        text-align: center;
-        animation: uxHeroRise .7s ease both;
-
-        .Breadcrumb {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--MinMuted);
-            margin-bottom: 24px;
-
-            a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
-            a:hover {color: var(--Primary);}
-            .Sep {opacity: 0.5;}
-            .Current {color: var(--Primary);}
-        }
-
-        h1.Title {
-            font-size: clamp(2.4rem,5.5vw,3.8rem);
-            font-weight: 800;
-            color: var(--PureWhite);
-            margin-bottom: 22px;
-
-            em {
-                font-style: italic;
-                color: var(--Primary);
-            }
-        }
-
-        .SubTitle {
-            font-size: 1rem;
-            line-height: 1.65;
-            color: rgba(var(--PureWhiteRGB),0.72);
-            margin: 0 auto 34px;
-            text-transform: none;
-        }
-
-        .Meta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 14px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--MinMuted);
-
-            .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
-        }
-    }
 }
 
 .ToastContainer {
@@ -1745,6 +1758,8 @@ main.Index {
             grid-template-columns: repeat(3, 1fr);
             column-gap: 50px;
             justify-content: space-between;
+            background-color: white;
+            padding: 64px 32px;
 
             .Card {
                 display: flex;
@@ -1769,8 +1784,6 @@ main.Index {
 
                 .CardImg {
                     overflow: hidden;
-                    background-color: var(--Background);
-                    border: 3px solid var(--Primary);
 
                     img {
                         width: 100%;
@@ -1898,7 +1911,7 @@ main.Index {
             }
 
             .Preview {
-                aspect-ratio: 16 / 10;
+                aspect-ratio: 16 / 9;
                 border-radius: 20px;
                 overflow: hidden;
                 background: var(--PureWhite);
@@ -1923,10 +1936,9 @@ main.Index {
             }
 
             .ProjectName {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 font-weight: 800;
                 color: var(--Primary);
-                text-decoration: underline;
                 text-underline-offset: 3px;
                 transition: color 0.3s ease;
             }
@@ -2574,7 +2586,7 @@ main.UX {
                     background: var(--Primary);
                 }
 
-                &:last-of-type::before {background: var(--DarkPrimary);}
+                &:nth-of-type(even)::before {background: var(--DarkPrimary);}
 
                 h3 {
                     font-size: 1.12rem;
@@ -3038,6 +3050,18 @@ main.UX {
             .RelatedGrid {
                 grid-template-columns: repeat(3, 1fr);
                 max-width: none;
+
+                .Card.RelatedCard {
+                    background-color: var(--PureWhite);
+                    text-decoration: none;
+
+                    .RelatedCode {
+                        color: var(--Primary);
+                        font-weight: 900;
+                    }
+                }
+
+                .Card:nth-of-type(even) .RelatedCode {color: var(--DarkPrimary);}
             }
 
             .Prose {
@@ -3228,6 +3252,38 @@ main.UX {
                     padding-bottom: 18px;
                     margin: 0;
                     text-align: left;
+                }
+            }
+        }
+
+        .PageNav {
+            max-width: 1400px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            justify-content:space-between;
+            align-items:center;
+            margin: 12px auto 100px;
+
+            .PageNavLink{
+                font-size:.8rem;
+                font-weight:700;
+                text-decoration:none;
+                color:var(--Charcoal);
+                padding:11px 20px;
+                border-radius:50px;
+                background:var(--PureWhite);
+                box-shadow:0 2px 12px rgba(var(--PureBlackRGB),0.06);
+                transition:all .2s ease; max-width:40%;
+
+                &:hover{color:var(--Primary);}
+                &.Home{
+                    background:transparent;
+                    box-shadow:none;
+                    color:var(--MinMuted);
+                    max-width:none;
+
+                    &:hover{color:var(--Primary);}
                 }
             }
         }
