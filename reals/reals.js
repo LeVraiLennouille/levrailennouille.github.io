@@ -7,7 +7,7 @@ var REALS = [
         category: "Création · Product design & Branding",
         tags: ["creation", "ui-ux", "branding", "design-system"],
         image: "/img/reals/larepousse/mockup.webp",
-        heroImage: "/img/reals/larepousse/new_hero.png",
+        heroImage: "/img/reals/larepousse/pc-home.svg",
         imageAlt: "Création La Repousse",
         date: "2026-09-01"
     },{
@@ -30,7 +30,7 @@ var REALS = [
         category: "Création · Product design e-commerce",
         tags: ["creation", "product-design", "ecommerce", "branding", "wordpress"],
         image: "/img/reals/primaire/mockup.webp",
-        heroImage: "/img/reals/primaire/new_hero.png",
+        heroImage: "/img/reals/primaire/new_hero.svg",
         imageAlt: "Création Primaire",
         date: "2026-06-05"
     },{
@@ -52,7 +52,7 @@ var REALS = [
         category: "Audit & refonte UI / UX",
         tags: ["refonte", "ui-ux", "branding", "design-system", "personnel"],
         image: "/img/reals/portfolio/mockup.webp",
-        heroImage: "/img/reals/portfolio/new_hero.png",
+        heroImage: "/img/reals/portfolio/pc-home.webp",
         imageAlt: "Mon portfolio : v3",
         date: "2026-03-01"
     },{
@@ -63,7 +63,7 @@ var REALS = [
         category: "Product design · App Web temps réel",
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
         image: "/img/reals/leblindtestfrancais/mockup.webp",
-        heroImage: "/img/reals/leblindtestfrancais/new_hero.png",
+        heroImage: "/img/reals/leblindtestfrancais/pc-home.webp",
         imageAlt: "Refonte BlindtestFrançais v3",
         date: "2026-02-19"
     },{
@@ -97,6 +97,7 @@ var REALS = [
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
     //     image: "/img/reals/caradd/mockup.webp",
+    //     heroImage: "/img/reals/caradd/pc-home.png",
     //     imageAlt: "Création CarAdd Studio",
     //     date: "2026-05-01"
     // },{
@@ -107,6 +108,7 @@ var REALS = [
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
     //     image: "/img/reals/gymaddict/mockup.webp",
+    //     heroImage: "/img/reals/caradd/pc-home.webo",
     //     imageAlt: "Création GymAddict",
     //     date: "2026-04-15"
     // },{
@@ -117,6 +119,7 @@ var REALS = [
     //     category: "UI/UX Design · Webdesign · Identité visuelle",
     //     tags: ["creation", "ui-ux", "product-design", "app-design", "habitudes"],
     //     image: "/img/reals/habitstracker/mockup.webp",
+    //     heroImage: "/img/reals/habitstracker/pc-home.png",
     //     imageAlt: "Création HabitsTracker",
     //     date: "2026-04-01"
     // },
