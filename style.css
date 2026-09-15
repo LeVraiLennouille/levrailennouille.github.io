@@ -569,11 +569,15 @@ html, body {
 ========================================================================== */
 .SecondaryHero {
     max-width: 100%;
+    min-height: 100vh;
     margin: 0;
     position: relative;
     overflow: hidden;
     background-color: var(--Charcoal);
-    padding: clamp(120px,20vw,168px) clamp(20px,6vw,40px) clamp(70px,10vw,100px);
+    padding: clamp(90px,10vw,130px) clamp(20px,6vw,40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &::before {
         content: "";
@@ -1678,6 +1682,7 @@ main.Index {
     section.Impact {
         position: relative;
         overflow: hidden;
+        max-width: calc(1400px + 2 * 48px);
         padding: 56px 48px;
         text-align: center;
         border-radius: 28px;
@@ -1739,10 +1744,21 @@ main.Index {
     }
 
     section.Why {
+        position: relative;
         background-color: var(--Background);
         display: flex;
         flex-direction: column;
-        padding: 0 48px;
+        padding: 64px 48px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 55% 70% at 100% 0%, rgba(var(--PrimaryRGB), 0.14) 0%, transparent 65%),
+                radial-gradient(ellipse 45% 60% at 0% 100%, rgba(var(--DarkPrimaryRGB), 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
 
         h2 {
             display: block;
@@ -1754,11 +1770,14 @@ main.Index {
         }
 
         .Layout {
+            position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             column-gap: 50px;
             justify-content: space-between;
             background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(var(--CharcoalRGB), 0.10);
             padding: 64px 32px;
 
             .Card {
@@ -2873,7 +2892,6 @@ main.UX {
                 border-left: 3px solid var(--Primary);
                 border-radius: 0 10px 10px 0;
                 padding: 18px 20px;
-                /* margin: 24px 0; */
 
                 p {
                     margin: 0;
