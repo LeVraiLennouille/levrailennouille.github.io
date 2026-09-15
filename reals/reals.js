@@ -1,5 +1,17 @@
 var REALS = [
     {
+        id: "studio-papou",
+        url: "/reals/studio-papou",
+        name: "Refonte Studio Papou",
+        label: "Pomodoro",
+        category: "udit & refonte UI / UX · Identité visuelle",
+        tags: ["creation", "ui-ux", "branding", "identite-visuelle"],
+        image: "/img/reals/papou/mockup.webp",
+        heroImage: "/img/reals/papou/pc-home.png",
+        imageAlt: "Refonte Studio Papou",
+        date: "2027-03-31",
+        comingSoon: true
+    },{
         id: "pomodoro",
         url: "/reals/pomodoro",
         name: "Création Pomodoro",
@@ -10,18 +22,6 @@ var REALS = [
         heroImage: "/img/reals/pomodoro/pc-home.png",
         imageAlt: "Création Pomodoro",
         date: "2027-01-31",
-        comingSoon: true
-    },{
-        id: "lennoutil",
-        url: "/reals/lennoutil",
-        name: "Création Lennoutil",
-        label: "Lennoutil",
-        category: "UI/UX Design · WebApp · Identité visuelle",
-        tags: ["creation", "ui-ux", "webapp", "identite-visuelle"],
-        image: "/img/reals/lennoutil/mockup.webp",
-        heroImage: "/img/reals/lennoutil/pc-home.png",
-        imageAlt: "Création Lennoutil",
-        date: "2026-12-31",
         comingSoon: true
     },{
         id: "caradd",
@@ -46,6 +46,18 @@ var REALS = [
         heroImage: "/img/reals/habitstracker/pc-home.png",
         imageAlt: "Création HabitsTracker",
         date: "2026-10-31",
+        comingSoon: true
+    },{
+        id: "lennoutil",
+        url: "/reals/lennoutil",
+        name: "Création Lennoutil",
+        label: "Lennoutil",
+        category: "UI/UX Design · WebApp · Identité visuelle",
+        tags: ["creation", "ui-ux", "webapp", "identite-visuelle"],
+        image: "/img/reals/lennoutil/mockup.webp",
+        heroImage: "/img/reals/lennoutil/pc-home.png",
+        imageAlt: "Création Lennoutil",
+        date: "2026-09-31",
         comingSoon: true
     },{
         id: "undercover",
@@ -92,7 +104,19 @@ var REALS = [
         image: "/img/reals/primaire/mockup.webp",
         heroImage: "/img/reals/primaire/new_hero.svg",
         imageAlt: "Création Primaire",
-        date: "2026-06-05"
+        date: "2026-07-01"
+    },{
+        id: "gymaddict",
+        url: "/reals/gymaddict",
+        name: "Création GymAddict",
+        label: "GymAddict",
+        category: "UI/UX Design · Webdesign · Identité visuelle",
+        tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
+        image: "/img/reals/gymaddict/mockup.webp",
+        heroImage: "/img/reals/caradd/pc-home.webo",
+        imageAlt: "Création GymAddict",
+        date: "2026-05-01",
+        comingSoon: true
     },{
         id: "mu",
         url: "/reals/mu",
@@ -149,19 +173,6 @@ var REALS = [
         imageAlt: "Refonte Yligen v2",
         date: "2025-09-01"
     },
-    // {
-    // },{
-    //     id: "gymaddict",
-    //     url: "/reals/gymaddict",
-    //     name: "Création GymAddict",
-    //     label: "GymAddict",
-    //     category: "UI/UX Design · Webdesign · Identité visuelle",
-    //     tags: ["creation", "ui-ux", "product-design", "app-design", "fitness"],
-    //     image: "/img/reals/gymaddict/mockup.webp",
-    //     heroImage: "/img/reals/caradd/pc-home.webo",
-    //     imageAlt: "Création GymAddict",
-    //     date: "2026-06-01"
-    // },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
