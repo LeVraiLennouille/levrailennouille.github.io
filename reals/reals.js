@@ -69,8 +69,7 @@ var REALS = [
         image: "/img/reals/undercover/mockup.webp",
         heroImage: "/img/reals/undercover/pc-home.png",
         imageAlt: "Création Undercover",
-        date: "2026-09-19",
-        comingSoon: true
+        date: "2026-09-19"
     },{
         id: "larepousse",
         url: "/reals/larepousse",
