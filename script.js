@@ -265,6 +265,8 @@ const tabHiddenMessages = [
     "Tu as pris des congés ?",
 ];
 
+const TAB_TITLE_SUFFIX = " — Lennouille UI / UX Designer";
+
 function getTabHiddenMessage() {
     const stored = sessionStorage.getItem("tabHiddenMessage");
     if (stored) return stored;
@@ -276,7 +278,7 @@ function getTabHiddenMessage() {
 
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-        document.title = getTabHiddenMessage();
+        document.title = getTabHiddenMessage() + TAB_TITLE_SUFFIX;
     } else {
         document.title = originalTitle;
     }
