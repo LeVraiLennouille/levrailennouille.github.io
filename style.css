@@ -672,8 +672,8 @@ html, body {
             }
         }
 
-        .SubTitle {
-            font-size: 1rem;
+        P.SubTitle {
+            font-size: 1.25rem;
             line-height: 1.65;
             color: rgba(var(--PureWhiteRGB),0.72);
             margin: 0 auto 34px;
@@ -697,7 +697,7 @@ html, body {
 
 section {
     max-width: 1400px;
-    margin: 100px auto 0;
+    margin: 200px auto 0;
 }
 
 .SectionTitle {
@@ -942,14 +942,13 @@ section {
     align-self: flex-start;
     gap: 12px;
     outline: none;
-    color: var(--Primary);
+    color: var(--DarkPrimary);
     background: var(--PureWhite);
-    border: 2px solid var(--Primary);
     position: relative;
     overflow: hidden;
     z-index: 0;
     box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.12);
-    transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, color .4s ease-in-out, border-color .4s ease-in-out;
+    transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, color .45s ease-in-out .08s, border-color .45s ease-in-out .08s;
 
     &:before {
         content: '';
@@ -969,8 +968,7 @@ section {
 
     &:hover {
         color: var(--PureWhite);
-        border-color: transparent;
-        transform: translateY(-3px);
+        border: none;
         box-shadow: 0 12px 28px rgba(var(--PrimaryRGB), 0.35);
 
         &:before {transform: scaleX(1);}
@@ -1004,13 +1002,12 @@ section {
     background-color : var(--Primary);
     color: var(--PureWhite);
     font-weight: 800;
-    transition: all 0.3s ease;
+    border: 1.5px solid var(--Primary);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     
     &:hover {
         background-color: var(--PureWhite);
-        border: 1.5px solid var(--Primary);
         color: var(--Primary);
-        transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(var(--PrimaryRGB), 0.3);
     }
 }
@@ -1360,7 +1357,7 @@ section.DesignedCTA {
 ========================================================================== */
 section.Merge {
     max-width: 1400px;
-    margin: 10rem auto;
+    margin: 15rem auto;
     padding: 0 20px;
 
     .ListContainer {
@@ -1448,7 +1445,7 @@ section.Me {
 
 	    #LennouilleClip {
             transform-origin: center;
-    		transition: ease-out transform .4s;
+    		transition: ease-out transform .5s;
 	    }
 
 	    &:hover {
@@ -1492,10 +1489,15 @@ section.Me {
                 li {
                     margin-bottom: 5px;
 
-                    &::marker, strong {color: var(--DarkPrimary)}
+                    &::marker, strong {color: var(--Primary)}
                 }
             }
-        } 
+        }
+        
+        .SlideBtn {
+            color: var(--Primary);
+            &:hover {color: var(--PureWhite);}
+        }
     }
 }
 
@@ -1682,7 +1684,7 @@ main.Index {
     section.Impact {
         position: relative;
         overflow: hidden;
-        max-width: calc(1400px + 2 * 48px);
+        max-width: 1400px;
         padding: 56px 48px;
         text-align: center;
         border-radius: 28px;
@@ -1703,9 +1705,10 @@ main.Index {
 
         .StatsGrid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin-bottom: 36px;
+            max-width: calc(100% - 200px);
+            margin: 0 auto 36px;
         }
 
         .Card {
@@ -1750,16 +1753,6 @@ main.Index {
         flex-direction: column;
         padding: 64px 48px;
 
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 55% 70% at 100% 0%, rgba(var(--PrimaryRGB), 0.14) 0%, transparent 65%),
-                radial-gradient(ellipse 45% 60% at 0% 100%, rgba(var(--DarkPrimaryRGB), 0.12) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
         h2 {
             display: block;
             font-size: clamp(2rem, 4.5vw, 4rem);;
@@ -1780,10 +1773,10 @@ main.Index {
             box-shadow: 0 16px 40px rgba(var(--CharcoalRGB), 0.10);
             padding: 64px 32px;
 
-            .Card {
+            .Part {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 14px;
 
                 h4 {
                     font-size: 0.8rem;
@@ -1798,23 +1791,29 @@ main.Index {
                     font-weight: 400;
                     color: var(--Charcoal);
                     line-height: 1.5;
-                    text-align: justify;
+                    text-align: left;
                 }
 
-                .CardImg {
+                .PartImg {
+                    margin-top: auto;
+                    border: 1px solid var(--Primary);
+                    border-radius: 16px;
+                    background: rgba(var(--PrimaryRGB), 0.05);
                     overflow: hidden;
+                    aspect-ratio: 4 / 3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
 
                     img {
+                        border-radius: 6px;
                         width: 100%;
-                        height: auto;
-                        object-fit: cover;
+                        height: 100%;
                         display: block;
                         transition: filter 0.4s ease;
                     }
                 }
-
-                &:nth-of-type(2) {justify-content: center;}
-                &:nth-of-type(3) {justify-content: flex-end;}
             }
         }
     }
@@ -1879,6 +1878,7 @@ main.Index {
     }
 
     section.Showcase {
+        margin: 200px auto 0;
         padding: 0 48px;
 
         .SectionHeader {
