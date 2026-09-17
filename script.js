@@ -231,6 +231,21 @@ document.addEventListener('visibilitychange', () => {
 rafId = requestAnimationFrame(loop);
 }
 
+// * Tab title * //
+const originalTitle = document.title;
+const tabHiddenMessages = [
+    "Come back :("
+];
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        const randomMessage = tabHiddenMessages[Math.floor(Math.random() * tabHiddenMessages.length)];
+        document.title = randomMessage;
+    } else {
+        document.title = originalTitle;
+    }
+});
+
 // * Form * //
 const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 
