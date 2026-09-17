@@ -234,7 +234,35 @@ rafId = requestAnimationFrame(loop);
 // * Tab title * //
 const originalTitle = document.title;
 const tabHiddenMessages = [
-    "Come back :("
+    "On t'attend...",
+    "Ne pars pas !",
+    "Reviens vite 👀",
+    "Tu me manques déjà",
+    "Vous nous manquez déjà :(",
+    "Oups, tu as cliqué à côté",
+    "Garde le fil de ta visite",
+    "La visite continue ici",
+    "Ne perds pas ta progression",
+    "Le design t'attend ici",
+    "Tu me trompes avec un autre onglet ?",
+    "L'autre site est moche de toute façon.",
+    "Reviens, j'ai des cookies 🍪",
+    "Allo ? Il y a quelqu'un ?",
+    "Je sais où tu cliques. (terrifiant, pas vrai ?)",
+    "Tes clics me manque...",
+    "Tu as oublié de sauvegarder ton travail.",
+    "L'autre site a une mauvaise UX.",
+    "Onglet abandonné cherche curseur.",
+    "Je vais tout balancer au client.",
+    "Ta session reste active.",
+    "Ta page reste ouverte.",
+    "Reprends ton activité.",
+    "Ta fenêtre reste disponible.",
+    "Ne perds pas ta page.",
+    "Ton espace est toujours là.",
+    "Ton curseur a laissé une trace.",
+    "Ta souris s'est enfuie..",
+    "Tu as pris des congés ?",
 ];
 
 document.addEventListener("visibilitychange", () => {
