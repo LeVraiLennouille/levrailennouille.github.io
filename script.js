@@ -265,10 +265,18 @@ const tabHiddenMessages = [
     "Tu as pris des congés ?",
 ];
 
+function getTabHiddenMessage() {
+    const stored = sessionStorage.getItem("tabHiddenMessage");
+    if (stored) return stored;
+
+    const randomMessage = tabHiddenMessages[Math.floor(Math.random() * tabHiddenMessages.length)];
+    sessionStorage.setItem("tabHiddenMessage", randomMessage);
+    return randomMessage;
+}
+
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-        const randomMessage = tabHiddenMessages[Math.floor(Math.random() * tabHiddenMessages.length)];
-        document.title = randomMessage;
+        document.title = getTabHiddenMessage();
     } else {
         document.title = originalTitle;
     }
