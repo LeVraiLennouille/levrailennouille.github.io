@@ -1,0 +1,44 @@
+<div id="CursorDot"></div>
+<div id="CursorBall"></div>
+<nav class="NavBar">
+    <a class="NavLogo CursorHover" href="/index" aria-label="Retour à l'accueil">
+        <img src="/assets/icon.svg" alt="Logo de Lenouille"/>
+    </a>
+    <ul class="NavLinks CursorHover">
+        <li><a href="/index"><div data-text="Page principale">Accueil</div></a></li>
+        <li><a href="/services"><div data-text="Designs UI / UX">Services</div></a></li>
+        <li><a href="/reals"><div data-text="Mes réalisations">Portfolio</div></a></li>
+        <li><a href="/blog"><div data-text="Tips & Astuces">Articles</div></a></li>
+        <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
+    </ul>
+    <div class="NavCTA">
+        <a class="SimBtn CursorHover" href="/simu" data-hover="de devis">Simulateur</a>
+        <a class="SwitchBtn CursorHover" href="/contact">
+            <span class="BtnTexts">
+                <span class="DefaultText">Me contacter</span>
+                <span class="HoverText">Me contacter</span>
+            </span>
+            <span class="BtnIcon">
+                <span class="Dot"></span>
+                <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </span>
+        </a>
+    </div>
+    <button class="HamburgerBtn" aria-label="Ouvrir le menu navigation" aria-expanded="false">
+        <span class="HamburgerLine"></span>
+        <span class="HamburgerLine"></span>
+        <span class="HamburgerLine"></span>
+    </button>
+    <nav class="MobileNav" role="navigation" aria-label="Navigation mobile">
+        <a href="/index">Accueil</a>
+        <a href="/services">Mes services</a>
+        <a href="/reals">Réalisations</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">À propos</a>
+        <div class="Divider"></div>
+        <div class="CTA">
+            <a class="BtnOutline" href="/simu">Simulateur</a>
+            <a class="BtnSolid" href="/contact">Me contacter</a>
+        </div>
+    </nav>
+</nav>
