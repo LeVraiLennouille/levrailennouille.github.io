@@ -152,7 +152,7 @@
                 <a href="/reals.html" class="BtnSolid">Voir tous les projets <span aria-hidden="true">→</span></a>
             </div>
             <div class="Marquee">
-                <div class="MarqueeTrack" data-marquee-track></div>
+                <div class="MarqueeTrack" data-marquee-track>{% include reals-marquee.html %}</div>
             </div>
         </section>
         <!-- <section class="Gallery">
@@ -177,9 +177,8 @@
                 </div>
                 <a href="/blog.html" class="BtnSolid">Voir tous les articles <span aria-hidden="true">→</span></a>
             </div>
-            <div class="BlogGrid" id="LatestPostsGrid" aria-live="polite"></div>
+            <div class="BlogGrid" id="LatestPostsGrid">{% include posts-latest.html %}</div>
         </section>
-        <script src="/blog/posts.js"></script>
         {% include merge.html %}
         {% include cta.html %}
         {% include myself.html %}
@@ -190,7 +189,5 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.js"></script>
 <!-- Scripts -->
     <script src="/script.js"></script>
-    <script src="/reals/reals.js"></script>
-    <script src="/blog/posts.js"></script>
 </body>
 </html>

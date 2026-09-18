@@ -1,0 +1,13 @@
+{%- comment -%}
+  Catalogue des lois UX — remplace le bloc "grid / render()" de laws.js.
+  Les 30 fiches sont générées au build ; le filtre (onglets + recherche) ne fait
+  que masquer des cartes déjà présentes dans le HTML.
+
+  Usage dans comprendre-ux.html :
+    <div class="Grid" id="grid">{% include laws-grid.html %}</div>
+    <script src="{{ '/assets/js/laws-filter.js' | relative_url }}" defer></script>
+{%- endcomment -%}
+{%- for law in site.data.laws.laws -%}
+  {%- include laws-card.html law=law -%}
+{%- endfor -%}
+<p class="Empty" id="LawsEmpty" hidden>Aucune fiche ne correspond à cette recherche.</p>

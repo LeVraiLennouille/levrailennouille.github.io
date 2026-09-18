@@ -1,0 +1,27 @@
+{%- comment -%}
+  Liste du blog — remplace le bloc "renderPage / renderPagination" de posts.js.
+  Toutes les cartes sont générées au build ; le petit script assets/js/blog-pagination.js
+  ne fait qu'afficher la page demandée (le SEO voit donc l'intégralité des articles).
+
+  Paramètres :
+    per_page = nombre d'articles par page (8 par défaut)
+
+  Usage dans /blog.html :
+    <div class="BlogGrid" id="BlogGrid">{% include posts-grid.html %}</div>
+    <div class="Pagination" id="Pagination">{% include posts-pagination.html %}</div>
+    <script src="{{ '/assets/js/blog-pagination.js' | relative_url }}" defer></script>
+{%- endcomment -%}
+{%- assign _per = include.per_page | default: 8 -%}
+{%- assign _posts = site.data.posts | where_exp: "p", "p.draft != true" | sort: "date" | reverse -%}
+{%- if _posts.size == 0 -%}
+  {%- include posts-coming-soon.html wide=true title="Le blog arrive bientôt" text="Les premiers articles sur le design, le développement et la stratégie web sont en cours d'écriture. Revenez très vite !" -%}
+{%- else -%}
+  {%- for post in _posts -%}
+    {%- assign _page = forloop.index0 | divided_by: _per | plus: 1 -%}
+    {%- if forloop.first -%}
+      {%- include posts-card.html post=post featured=true page=_page -%}
+    {%- else -%}
+      {%- include posts-card.html post=post page=_page -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

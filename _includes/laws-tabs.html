@@ -1,0 +1,11 @@
+{%- comment -%}
+  Onglets de catégories — générés depuis _data/laws.yml pour rester synchrones avec les fiches.
+  (Facultatif : si tes onglets sont déjà écrits en dur dans la page, tu peux ignorer cet include.)
+
+  Usage :
+    <div class="Tabs">{% include laws-tabs.html %}</div>
+{%- endcomment -%}
+<button class="Tab active" data-cat="all" aria-pressed="true">Toutes</button>
+{%- for cat in site.data.laws.cats -%}
+<button class="Tab" data-cat="{{ cat.id }}" aria-pressed="false">{{ cat.label }}</button>
+{%- endfor -%}

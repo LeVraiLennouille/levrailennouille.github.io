@@ -1,0 +1,14 @@
+{%- comment -%}
+  Compteur d'articles — équivalent du bloc "countEl" dans posts.js.
+
+  Usage :
+    <span id="PostCount">{% include posts-count.html %}</span>
+{%- endcomment -%}
+{%- assign _posts = site.data.posts | where_exp: "p", "p.draft != true" -%}
+{%- if _posts.size == 0 -%}
+Bientôt de nouveaux articles
+{%- elsif _posts.size == 1 -%}
+1 article publié
+{%- else -%}
+{{ _posts.size }} articles publiés
+{%- endif -%}

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Boutons de pagination du blog — équivalent de renderPagination() dans posts.js.
+  L'état actif est géré ensuite par assets/js/blog-pagination.js.
+
+  Paramètres :
+    per_page = doit être identique à celui passé à posts-grid.html (8 par défaut)
+{%- endcomment -%}
+{%- assign _per = include.per_page | default: 8 -%}
+{%- assign _posts = site.data.posts | where_exp: "p", "p.draft != true" -%}
+{%- if _posts.size > 0 -%}
+  {%- assign _total = _posts.size | minus: 1 | divided_by: _per | plus: 1 -%}
+<button class="Arrow" data-nav="prev" data-page="1" aria-label="Page précédente" disabled>←</button>
+  {%- for i in (1.._total) -%}
+<button data-page="{{ i }}" class="{% if i == 1 %}active{% endif %}" aria-current="{% if i == 1 %}page{% else %}false{% endif %}">{{ i }}</button>
+  {%- endfor -%}
+<button class="Arrow" data-nav="next" data-page="2" aria-label="Page suivante"{% if _total == 1 %} disabled{% endif %}>→</button>
+{%- endif -%}

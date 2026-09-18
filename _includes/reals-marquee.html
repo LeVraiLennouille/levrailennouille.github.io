@@ -1,0 +1,32 @@
+{%- comment -%}
+  Marquee de la page d'accueil — remplace le dernier bloc de reals.js (data-marquee-track).
+  La série est dupliquée (copie en aria-hidden) pour la boucle infinie, comme dans le JS.
+
+  Usage :
+    <div class="MarqueeTrack" data-marquee-track>
+      {% include reals-marquee.html %}
+    </div>
+{%- endcomment -%}
+{%- assign _showcase = site.data.reals | where_exp: "p", "p.comingSoon != true" | sort: "date" | reverse -%}
+{%- for p in _showcase -%}
+<a class="ProjectCard" href="{{ p.url | relative_url }}">
+    <div class="Preview">
+        <img src="{{ p.heroImage | relative_url }}" alt="{{ p.imageAlt | escape }}" loading="lazy">
+    </div>
+    <div class="Caption">
+        <span class="ProjectName">{{ p.label }}</span>
+        <span class="ProjectDate">{% include date-fr.html date=p.date format="month" %}</span>
+    </div>
+</a>
+{%- endfor -%}
+{%- for p in _showcase -%}
+<a class="ProjectCard" href="{{ p.url | relative_url }}" aria-hidden="true" tabindex="-1">
+    <div class="Preview">
+        <img src="{{ p.heroImage | relative_url }}" alt="" loading="lazy">
+    </div>
+    <div class="Caption">
+        <span class="ProjectName">{{ p.label }}</span>
+        <span class="ProjectDate">{% include date-fr.html date=p.date format="month" %}</span>
+    </div>
+</a>
+{%- endfor -%}

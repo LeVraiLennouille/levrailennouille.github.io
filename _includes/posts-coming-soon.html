@@ -1,0 +1,15 @@
+{%- comment -%}
+  Carte "Bientôt disponible" — équivalent de comingSoonCardHTML() dans posts.js.
+
+  Paramètres (tous facultatifs) :
+    wide  = true pour la classe "Wide"
+    title = titre de la carte
+    text  = texte de la carte
+{%- endcomment -%}
+<div class="BlogCard ComingSoon{% if include.wide %} Wide{% endif %}">
+    <div class="CardTop">
+        <span class="Category">Bientôt disponible</span>
+    </div>
+    <h3>{{ include.title | default: "Un nouvel article arrive" }}</h3>
+    <p>{{ include.text | default: "De nouveaux contenus sur le design, le développement et la stratégie web sont en préparation. Revenez bientôt !" }}</p>
+</div>

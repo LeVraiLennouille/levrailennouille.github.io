@@ -1,0 +1,89 @@
+{%- comment -%}
+  Projets liés — remplace le bloc "fillRelated" de reals.js.
+  Même score qu'en JS : +2 si même category, +1 par tag commun ; à score égal, le plus récent.
+
+  Paramètres :
+    type = "similar" (3 projets proches) | "latest" (2 derniers projets non déjà cités)
+    id   = identifiant du projet courant (facultatif)
+           À défaut : page.real_id, sinon déduit de page.url (/reals/<id>/)
+
+  Usage dans une page projet :
+    ---
+    real_id: lennoutil
+    ---
+    <div class="RelatedGrid" data-related-grid="similar">
+      {% include reals-related.html type="similar" %}
+    </div>
+    <div class="RelatedGrid" data-related-grid="latest">
+      {% include reals-related.html type="latest" %}
+    </div>
+{%- endcomment -%}
+
+{%- assign _id = include.id | default: page.real_id -%}
+{%- unless _id -%}
+  {%- assign _id = page.url | split: "/reals/" | last | split: "/" | first | remove: ".html" -%}
+{%- endunless -%}
+{%- assign _current = site.data.reals | where: "id", _id | first -%}
+
+{%- if _current -%}
+  {%- assign _others = site.data.reals | where_exp: "p", "p.comingSoon != true" -%}
+
+  {%- comment -%} 1. Classement : clé "score|date|id", triée en ordre décroissant {%- endcomment -%}
+  {%- assign _ranked = "" -%}
+  {%- for p in _others -%}
+    {%- unless p.id == _current.id -%}
+      {%- assign _score = 0 -%}
+      {%- if p.category == _current.category -%}{%- assign _score = _score | plus: 2 -%}{%- endif -%}
+      {%- for t in p.tags -%}
+        {%- if _current.tags contains t -%}{%- assign _score = _score | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- assign _ranked = _ranked | append: _score | append: "|" | append: p.date | append: "|" | append: p.id | append: "," -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- assign _ranked = _ranked | split: "," | sort | reverse -%}
+  {%- assign _similar = _ranked | slice: 0, 3 -%}
+
+  {%- comment -%} 2. Liste finale selon le type demandé {%- endcomment -%}
+  {%- assign _ids = "" -%}
+  {%- if include.type == "latest" -%}
+    {%- assign _used = "|" -%}
+    {%- for k in _similar -%}
+      {%- assign _sid = k | split: "|" | last -%}
+      {%- assign _used = _used | append: _sid | append: "|" -%}
+    {%- endfor -%}
+    {%- assign _recent = _others | sort: "date" | reverse -%}
+    {%- assign _taken = 0 -%}
+    {%- for p in _recent -%}
+      {%- if _taken < 2 -%}
+        {%- assign _needle = "|" | append: p.id | append: "|" -%}
+        {%- unless p.id == _current.id or _used contains _needle -%}
+          {%- assign _ids = _ids | append: p.id | append: "," -%}
+          {%- assign _taken = _taken | plus: 1 -%}
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for k in _similar -%}
+      {%- assign _sid = k | split: "|" | last -%}
+      {%- assign _ids = _ids | append: _sid | append: "," -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%} 3. Rendu {%- endcomment -%}
+  {%- assign _list = _ids | split: "," -%}
+  {%- for _pid in _list -%}
+    {%- assign p = site.data.reals | where: "id", _pid | first -%}
+    {%- if p -%}
+<a href="{{ p.url | relative_url }}" class="RelatedCard">
+    <div class="RelatedImage">
+        <img src="{{ p.image | relative_url }}" alt="{{ p.imageAlt | escape }}" loading="lazy">
+        <div class="RelatedOverlay"><span>{{ p.label }}</span></div>
+    </div>
+    <div class="RelatedMeta">
+        <p class="RelatedCategory">{{ p.category }}</p>
+        <h3 class="RelatedName">{{ p.name }}</h3>
+    </div>
+</a>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

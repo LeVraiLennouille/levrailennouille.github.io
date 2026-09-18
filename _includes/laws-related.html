@@ -1,0 +1,37 @@
+{%- comment -%}
+  Fiches liées — remplace le bloc "relatedGrid" de laws.js.
+  Même logique qu'en JS : les 3 lois suivantes de la même catégorie, en boucle.
+
+  Paramètre :
+    slug = slug de la loi courante (facultatif)
+           À défaut : page.law_slug, sinon déduit de page.url
+
+  Usage dans une fiche :
+    ---
+    law_slug: charge-cognitive
+    ---
+    <div class="RelatedGrid">{% include laws-related.html %}</div>
+{%- endcomment -%}
+{%- assign _slug = include.slug | default: page.law_slug -%}
+{%- unless _slug -%}
+  {%- assign _slug = page.url | remove: ".html" | split: "/" | last -%}
+{%- endunless -%}
+{%- assign _current = site.data.laws.laws | where: "slug", _slug | first -%}
+{%- if _current -%}
+  {%- assign _same = site.data.laws.laws | where: "cat", _current.cat -%}
+  {%- assign _idx = 0 -%}
+  {%- for l in _same -%}
+    {%- if l.slug == _current.slug -%}{%- assign _idx = forloop.index0 -%}{%- endif -%}
+  {%- endfor -%}
+  {%- for _offset in (1..3) -%}
+    {%- assign _pos = _idx | plus: _offset | modulo: _same.size -%}
+    {%- assign law = _same[_pos] -%}
+    {%- unless law.slug == _current.slug -%}
+<a class="Card RelatedCard" href="{{ '/ux/laws/' | append: law.slug | append: '/' | relative_url }}">
+    <span class="RelatedCode">UX·{{ law.code }}</span>
+    <h3>{{ law.name }}</h3>
+    <p>{{ law.def }}</p>
+</a>
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}

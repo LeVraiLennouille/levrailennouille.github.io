@@ -1,0 +1,22 @@
+{%- comment -%}
+  Carte d'article — équivalent de cardHTML() dans posts.js.
+
+  Paramètres :
+    post     = un élément de site.data.posts (obligatoire)
+    featured = true pour ajouter la classe "Featured"
+    page     = numéro de page (utilisé par posts-grid.html pour la pagination)
+{%- endcomment -%}
+<a href="{{ include.post.url | relative_url }}" class="BlogCard{% if include.featured %} Featured{% endif %}"{% if include.page %} data-page="{{ include.page }}"{% endif %}>
+    <div class="CardTop">
+        <span class="Category">{{ include.post.category }}</span>
+        <span class="ReadTime">{{ include.post.readingTime }}</span>
+    </div>
+    <h3>{{ include.post.title }}</h3>
+    <p>{{ include.post.excerpt }}</p>
+    <div class="CardFooter">
+        <time datetime="{{ include.post.date }}">{% include date-fr.html date=include.post.date %}</time>
+        <span class="ArrowLink" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+    </div>
+</a>

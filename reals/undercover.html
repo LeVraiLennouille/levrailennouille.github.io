@@ -1,4 +1,5 @@
 ---
+real_id: undercover
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -99,10 +100,10 @@
             <h4>Coder les règles, pas seulement les écrans</h4>
             <p>Sur ce projet, j'ai porté à la fois la casquette design et la casquette développement, et la logique de jeu s'est révélée presque aussi exigeante que l'interface : distribuer les rôles spéciaux sans qu'un même joueur n'en cumule deux, faire varier automatiquement le nombre d'Undercover selon l'effectif, ou garantir qu'une paire de mots ne revienne pas avant que tout le stock du thème choisi — sept thèmes, plus de 160 paires au total — soit épuisé. J'ai même dû anticiper les situations de blocage pur, comme un duel à deux sans Procureur pour trancher une égalité, pour qu'aucune manche ne reste sans vainqueur. Traiter un simple règlement de jeu comme une véritable machine à états, cohérente de la configuration jusqu'à l'écran de fin de partie, m'a rendu beaucoup plus rigoureux dans ma façon de penser une interface avant même de l'avoir dessinée. Un bon party game numérique tient dans cet équilibre entre richesse des règles et simplicité de prise en main, et il se joue autant dans le code que dans le design.</p>
         </div>
-        {% include related-projects.html %}
+        <div class="RelatedGrid" data-related-grid="similar">{% include reals-related.html type="similar" %}</div>
+        <div class="RelatedGrid" data-related-grid="latest">{% include reals-related.html type="latest" %}</div>
         {% include footer.html %}
     </main>
     <script src="/script.js"></script>
-    <script src="/reals.js"></script>
 </body>
 </html>

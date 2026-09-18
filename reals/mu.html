@@ -1,4 +1,5 @@
 ---
+real_id: mu
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -168,10 +169,10 @@
             <img src="/img/reals/mu/plaquette1.svg" alt="Extrait de la plaquette Mü - Page 1">
             <img src="/img/reals/mu/plaquette2.svg" alt="Extrait de la plaquette Mü - Page 2">
         </div>
-        {% include related-projects.html %}
+        <div class="RelatedGrid" data-related-grid="similar">{% include reals-related.html type="similar" %}</div>
+        + <div class="RelatedGrid" data-related-grid="latest">{% include reals-related.html type="latest" %}</div>
         {% include footer.html %}
     </main>
     <script src="/script.js"></script>
-    <script src="/reals.js"></script>
 </body>
 </html>

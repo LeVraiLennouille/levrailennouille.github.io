@@ -1,4 +1,5 @@
 ---
+law_slug: loi-de-tesler
 ---
 <!DOCTYPE html>
 <html lang="fr">
@@ -128,9 +129,9 @@
                 <span class="Eyebrow">Lois liées</span>
                 <h2 class="Title">À explorer ensuite</h2>
             </div>
-            <div class="CompareGrid RelatedGrid"></div>
+            <div class="CompareGrid RelatedGrid">{% include laws-related.html %}</div>
         </section> 
-        <nav class="PageNav"></nav>
+        <nav class="PageNav">{% include laws-nav.html %}</nav>
         {% include footer.html %}
     </main>
     <script>
@@ -203,7 +204,6 @@
             });
         })();
     </script>
-    <script src="/ux/laws/laws.js"></script>
     <script src="/script.js"></script>
 </body>
 </html>
