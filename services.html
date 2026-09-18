@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="Services">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
                 <span>Services</span>
@@ -369,8 +369,8 @@
             </ol>
             <p class="Footnote">Un cycle itératif : chaque retour terrain peut relancer une nouvelle boucle de conception, jusqu'à ce que l'interface soit prête.</p>
         </section>
-        <div id="CTAPlaceHolder"></div><script src="/js/cta.js"></script>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include cta.html %}
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
 </body>

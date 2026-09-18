@@ -31,7 +31,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 </head>
 <body>
-    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    {% include header.html %}
     <main class="Reals SubPage">
         <section class="TopBanner">
             <img src="/img/reals/larepousse/mockup.webp" alt="Bannière haute La Repousse">
@@ -106,8 +106,8 @@
             <img src="/img/reals/larepousse/brochure3.svg" alt="Extrait de la brochure La Repousse - Page 3">
             <img src="/img/reals/larepousse/brochure4.svg" alt="Extrait de la brochure La Repousse - Page 4">
         </div>
-        <div id="RelatedPlaceHolder"></div><script src="/js/related.js"></script>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include related-projects.html %}
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
     <script src="/reals.js"></script>

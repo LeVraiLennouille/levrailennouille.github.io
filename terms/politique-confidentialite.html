@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="Terms Confidentialite">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <section class="SecondaryHero">
             <div class="HeroInner">
                 <h1 class="Title">Politique de confidentialité</h1>
@@ -283,8 +283,8 @@
                 </div>
             </div>
         </section>
-        <div id="TalkPlaceHolder"></div><script src="/js/talk.js"></script>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include cta.html %}
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
 </body>

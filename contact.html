@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="Contact">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <div class="ContactLayout">
             <nav class="SocialSidebar" aria-label="Réseaux sociaux">
                 <a href="https://instagram.com/lennouille.fr/" target="_blank" aria-label="Instagram">
@@ -114,7 +114,7 @@
                 <a class="ContactBookingFallback" href="https://calendar.app.google/ngcVoCB4uJaSc9vT6" target="_blank" rel="noopener">Le calendrier ne s'affiche pas ? Ouvre-le dans un nouvel onglet</a>
             </div>
         </section>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
         <div class="ToastContainer" id="ToastContainer" role="region" aria-live="assertive" aria-atomic="true"></div>
     </main>
     <script src="/guard.js"></script>

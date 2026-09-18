@@ -17,7 +17,7 @@ sitemap: false
 </head>
 <body>
     <main class="NotFound">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
 
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true"><span>404</span></div>
@@ -38,7 +38,7 @@ sitemap: false
             </div>
         </section>
 
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
     <script>

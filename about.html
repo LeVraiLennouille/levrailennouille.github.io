@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="About">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
                 <span>Lenny</span>
@@ -51,8 +51,8 @@
                 <p class="SubTitle">Retrace mon parcours professionnel. Comprends ma méthode de travail pour organiser ton futur projet digital.</p>
             </div>
         </section>
-        <div id="MePlaceHolder"></div><script src="/js/me.js"></script>
-        <div id="DesignedCTAPlaceHolder"></div><script src="/js/designedCTA.js"></script>
+        {% include myself.html %}
+        {% include designed-cta.html %}
         <section class="Timeline">
             <div class="SectionTitle">
                 <span class="Eyebrow">Parcours</span>
@@ -419,7 +419,7 @@
                 </div>
             </div>
         </section>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
 <!-- Anim -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

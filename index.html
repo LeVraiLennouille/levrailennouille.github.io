@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="Index">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %
         <section class="Hero">
             <div id="Ground" class="Box"></div>
             <img src="/assets/face.svg" alt="Visage du logo Lennouille">
@@ -180,10 +180,10 @@
             <div class="BlogGrid" id="LatestPostsGrid" aria-live="polite"></div>
         </section>
         <script src="/blog/posts.js"></script>
-        <div id="MergePlaceHolder"></div><script src="/js/merge.js"></script>
-        <div id="CTAPlaceHolder"></div><script src="/js/CTA.js"></script>
-        <div id="MePlaceHolder"></div><script src="/js/me.js"></script>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include merge.html %}
+        {% include cta.html %}
+        {% include me.html %}
+        {% include footer.html %}
     </main>
 <!-- Anim Hero -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

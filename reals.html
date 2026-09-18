@@ -34,7 +34,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 </head>
 <body>
-    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    {% include header.html %}
     <main class="Reals">
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
@@ -82,8 +82,8 @@
             </div>
             <div class="ProjectGrid" data-reals-grid></div>
         </section>
-        <div id="CTAPlaceHolder"></div><script src="/js/CTA.js"></script>
-        <div id="MergePlaceHolder"></div><script src="/js/merge.js"></script>
+        {% include cta.html %}
+        {% include merge.html %}
         <div id="ComingSoonModal" class="Hidden">
             <div class="Card">
                 <p class="ModalTitle">C'est encore en chantier (littéralement).</p>
@@ -91,7 +91,7 @@
                 <button type="button" class="BtnMain" id="ComingSoonClose">J'ai compris, je patiente...</button>
             </div>
         </div>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
     <script src="/reals/reals.js"></script>

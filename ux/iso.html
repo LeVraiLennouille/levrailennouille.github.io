@@ -35,7 +35,7 @@
 </head>
 <body>
     <main class="UX SubPage" id="top">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
                 <span>ISO</span>
@@ -251,7 +251,7 @@
                 </details>
             </div>
         </section>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
 </body>

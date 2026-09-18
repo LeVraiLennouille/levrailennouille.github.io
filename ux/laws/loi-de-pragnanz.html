@@ -38,7 +38,7 @@
 </head>
 <body>
     <main class="UX SubPage" id="top">
-        <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+        {% include header.html %}
         <section class="SecondaryHero">
             <div class="HeroInner">
                 <nav class="Breadcrumb" aria-label="Fil d'ariane">
@@ -129,7 +129,7 @@
             <div class="CompareGrid RelatedGrid"></div>
         </section> 
         <nav class="PageNav"></nav>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
     <script>
         (function(){

@@ -31,7 +31,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 </head>
 <body>
-    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    {% include header.html %}
     <main class="Reals SubPage">
         <section class="TopBanner">
             <img src="/img/reals/gymaddict/mockup.webp" alt="Bannière haute GymAddict">
@@ -97,8 +97,8 @@
             <h4>Penser pour l'utilisation</h4>
             <p>Ce projet m'a forcé à repenser mes certitudes et à concevoir pour un cas d'utilisation extrême : designer pour une personne en plein effort physique équivaut à designer pour une attention fortement dégradée. J'ai intégré de façon définitive que l'accessibilité et l'ergonomie ne sont absolument pas des options cosmétiques ; elles constituent l'essence même du produit final. Cela a considérablement affûté ma capacité à résister à la tentation des fonctionnalités superflues, m'obligeant à justifier de manière implacable chaque nouvel élément ajouté au parcours.</p>
         </div>
-        <div id="RelatedlaceHolder"></div><script src="/js/related.js"></script>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include related-projects.html %}
+        {% include footer.html %}
     </main>
     <script src="/script.js"></script>
     <script src="/reals.js"></script>

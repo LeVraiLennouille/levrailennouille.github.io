@@ -1,4 +1,52 @@
 // ! Functions ! //
+// * Header * //
+var path = window.location.pathname.split('/').pop() || 'index';
+
+(function () {
+    var bar = document.createElement('div');
+    bar.className = 'ReadingProgress';
+    document.body.prepend(bar);
+
+    function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = Math.min(progress, 100) + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress, {passive: true});
+    updateProgress();
+})();
+
+function initHamburger() {
+    var navbar = document.querySelector('.NavBar');
+    var btn = navbar ? navbar.querySelector('.HamburgerBtn') : null;
+    var nav = navbar ? navbar.querySelector('.MobileNav') : null;
+    if (!navbar || !btn || !nav) return;
+
+    function toggle(force) {
+        var open = (force !== undefined) ? force : !nav.classList.contains('open');
+        nav.classList.toggle('open', open);
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', String(open));
+    }
+
+    btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggle();
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!navbar.contains(e.target) && !nav.contains(e.target)) toggle(false);
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { toggle(false); });
+    });
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 950) toggle(false);
+    });
+}
+
 // * Cursor * //
 const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 

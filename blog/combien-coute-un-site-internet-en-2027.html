@@ -35,8 +35,7 @@ sitemap: false
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 </head>
 <body>
-    <div class="ReadingProgress" id="ReadingProgress"></div>
-    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    {% include header.html %}
     <main class="Blog">
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
@@ -403,7 +402,7 @@ sitemap: false
                 <a href="/simu" class="ButtonGhost">Simuler mon projet</a>
             </div>
         </div>
-        <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+        {% include footer.html %}
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="/script.js"></script>

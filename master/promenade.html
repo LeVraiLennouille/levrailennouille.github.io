@@ -32,8 +32,7 @@ sitemap: false
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
 </head>
 <body>
-    <div id="ReadingProgress" class="ReadingProgress"></div>
-    <div id="HeaderPlaceHolder"></div><script src="/js/header.js"></script>
+    {% include header.html %}
     <main class="Promenade">
         <section class="SecondaryHero PromenadeHero">
             <div class="Decor" aria-hidden="true"><span>WEB</span></div>
@@ -253,7 +252,7 @@ sitemap: false
             </div>
         </div>
     </main>
-    <div id="FooterPlaceHolder"></div><script src="/js/footer.js"></script>
+    {% include footer.html %}
     <script src="/script.js"></script>
     <script>
         (function () {
