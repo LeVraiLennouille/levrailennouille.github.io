@@ -55,10 +55,9 @@ var REALS = [
         category: "UI/UX Design · WebApp · Identité visuelle",
         tags: ["creation", "ui-ux", "webapp", "identite-visuelle"],
         image: "/img/reals/lennoutil/mockup.webp",
-        heroImage: "/img/reals/lennoutil/pc-home.png",
+        heroImage: "/img/reals/lennoutil/compress.png",
         imageAlt: "Création Lennoutil",
-        date: "2026-09-31",
-        comingSoon: true
+        date: "2026-09-31"
     },{
         id: "undercover",
         url: "/reals/undercover",
@@ -67,7 +66,7 @@ var REALS = [
         category: "UI/UX Design · WebApp · Identité visuelle",
         tags: ["creation", "ui-ux", "webapp", "app-design", "jeu vidéo"],
         image: "/img/reals/undercover/mockup.webp",
-        heroImage: "/img/reals/undercover/pc-home.png",
+        heroImage: "/img/reals/undercover/game.png",
         imageAlt: "Création Undercover",
         date: "2026-09-19"
     },{
@@ -142,7 +141,7 @@ var REALS = [
         id: "leblindtestfrancais",
         url: "/reals/leblindtestfrancais",
         name: "Refonte BlindtestFrançais v3",
-        label: "Le Blindtest Francais",
+        label: "Le Blindtest Français",
         category: "Product design · App Web temps réel",
         tags: ["product-design", "ui-ux", "app-web", "gaming", "temps-reel"],
         image: "/img/reals/leblindtestfrancais/mockup.webp",
