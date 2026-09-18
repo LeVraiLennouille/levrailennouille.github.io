@@ -197,38 +197,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    var section = document.querySelector("[data-related-reals]");
-    if (!section) return;
-
+(function () {
     var SIMILAR_COUNT = 3;
     var LATEST_COUNT = 2;
+    var filled = false;
 
-    var currentId = getCurrentProjectId();
-    var current = findProject(currentId);
-    if (!current) return;
+    function fillRelated(section) {
+        var currentId = getCurrentProjectId();
+        var current = findProject(currentId);
+        if (!current) return false;
 
-    var others = REALS.filter(function (p) { return p.id !== current.id && !p.comingSoon; });
+        var others = REALS.filter(function (p) { return p.id !== current.id && !p.comingSoon; });
 
-    var ranked = others
-        .map(function (p) { return { reals: p, score: similarityScore(current, p) }; })
-        .sort(function (a, b) {
-            if (b.score !== a.score) return b.score - a.score;
-            return new Date(b.reals.date) - new Date(a.reals.date);
-        });
+        var ranked = others
+            .map(function (p) { return { reals: p, score: similarityScore(current, p) }; })
+            .sort(function (a, b) {
+                if (b.score !== a.score) return b.score - a.score;
+                return new Date(b.reals.date) - new Date(a.reals.date);
+            });
 
-    var similar = ranked.slice(0, SIMILAR_COUNT).map(function (r) { return r.reals; });
-    var usedIds = similar.map(function (p) { return p.id; });
+        var similar = ranked.slice(0, SIMILAR_COUNT).map(function (r) { return r.reals; });
+        var usedIds = similar.map(function (p) { return p.id; });
 
-    var latest = others
-        .filter(function (p) { return usedIds.indexOf(p.id) === -1; })
-        .sort(function (a, b) { return new Date(b.date) - new Date(a.date); })
-        .slice(0, LATEST_COUNT);
+        var latest = others
+            .filter(function (p) { return usedIds.indexOf(p.id) === -1; })
+            .sort(function (a, b) { return new Date(b.date) - new Date(a.date); })
+            .slice(0, LATEST_COUNT);
 
-    fillGrid("similar", similar);
-    fillGrid("latest", latest);
+        fillGrid(section, "similar", similar);
+        fillGrid(section, "latest", latest);
+        return true;
+    }
 
-    function fillGrid(key, list) {
+    function fillGrid(section, key, list) {
         var block = section.querySelector('[data-related-block="' + key + '"]');
         var grid = section.querySelector('[data-related-grid="' + key + '"]');
         if (!grid) return;
@@ -236,6 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (block) block.style.display = "none";
             return;
         }
+        
         grid.innerHTML = list.map(renderCard).join("");
     }
 
@@ -258,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (var i = 0; i < b.tags.length; i++) {
             if (a.tags.indexOf(b.tags[i]) !== -1) score++;
         }
+
         return score;
     }
 
@@ -265,6 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (var i = 0; i < REALS.length; i++) {
             if (REALS[i].id === id) return REALS[i];
         }
+
         return null;
     }
 
@@ -274,7 +278,26 @@ document.addEventListener("DOMContentLoaded", function () {
         var match = href.match(/\/reals\/([^\/]+)\/?/);
         return match ? match[1] : null;
     }
-});
+
+    function tryInit() {
+        if (filled) return true;
+        var section = document.querySelector("[data-related-reals]");
+        if (!section) return false;
+        filled = fillRelated(section);
+        return filled;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (tryInit()) return;
+
+        var observer = new MutationObserver(function () {
+            if (tryInit()) observer.disconnect();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(function () { observer.disconnect(); }, 10000);
+    });
+})();
 
 document.addEventListener("DOMContentLoaded", function () {
     var track = document.querySelector("[data-marquee-track]");
