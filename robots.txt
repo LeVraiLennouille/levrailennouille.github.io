@@ -29,98 +29,21 @@ Disallow: /node_modules/
 # 2. ROBOTS D'INTELLIGENCE ARTIFICIELLE
 # ------------------------------------------------------------
 User-agent: GPTBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: ChatGPT-User
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: OAI-SearchBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: ClaudeBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Claude-User
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Claude-SearchBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: CCBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Google-Extended
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Applebot-Extended
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: PerplexityBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Perplexity-User
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Meta-ExternalAgent
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: FacebookBot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Bytespider
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Amazonbot
-Disallow: /reals
-Disallow: /img/reals/
-Disallow: /contact
-Disallow: /simu
-
 User-agent: Diffbot
-Disallow: /reals
-Disallow: /img/reals/
 Disallow: /contact
 Disallow: /simu
 
