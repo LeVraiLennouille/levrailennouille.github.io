@@ -155,10 +155,9 @@
     - "app-design"
     - "fitness"
   image: "/img/reals/gymaddict/mockup.webp"
-  heroImage: "/img/reals/caradd/pc-home.webo"
+  heroImage: "/img/reals/gymaddict/ecran-exercice.webp"
   imageAlt: "Création GymAddict"
   date: "2026-05-01"
-  comingSoon: true
 
 - id: "mu"
   url: "/reals/mu"
