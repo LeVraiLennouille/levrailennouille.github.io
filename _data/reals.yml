@@ -62,10 +62,9 @@
     - "app-design"
     - "habitudes"
   image: "/img/reals/habitstracker/mockup.webp"
-  heroImage: "/img/reals/habitstracker/pc-home.png"
+  heroImage: "/img/reals/habitstracker/ecran-habitudes.webp"
   imageAlt: "Création HabitsTracker"
   date: "2026-10-31"
-  comingSoon: true
 
 - id: "lennoutil"
   url: "/reals/lennoutil"
@@ -78,7 +77,7 @@
     - "webapp"
     - "identite-visuelle"
   image: "/img/reals/lennoutil/mockup.webp"
-  heroImage: "/img/reals/lennoutil/ecran-compresser"
+  heroImage: "/img/reals/lennoutil/ecran-compresser.webp"
   imageAlt: "Création Lennoutil"
   date: "2026-09-31"
 
