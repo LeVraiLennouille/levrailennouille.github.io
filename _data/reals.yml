@@ -78,7 +78,7 @@
     - "webapp"
     - "identite-visuelle"
   image: "/img/reals/lennoutil/mockup.webp"
-  heroImage: "/img/reals/lennoutil/ecran-compresser.webp"
+  heroImage: "/img/reals/lennoutil/ecran-compresser"
   imageAlt: "Création Lennoutil"
   date: "2026-09-31"
 
@@ -237,6 +237,6 @@
     - "identite-visuelle"
     - "migration-cms"
   image: "/img/reals/yligen/mockup.webp"
-  heroImage: "/img/reals/yligen/new_hero.png"
+  heroImage: "/img/reals/yligen/new-hero.webp"
   imageAlt: "Refonte Yligen v2"
   date: "2025-09-01"
