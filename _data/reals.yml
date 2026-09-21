@@ -219,7 +219,7 @@
     - "b2b"
     - "branding"
   image: "/img/reals/geoptime/mockup.webp"
-  heroImage: "/img/reals/geoptime/new_hero.png"
+  heroImage: "/img/reals/geoptime/new-hero.webp"
   imageAlt: "Création GeopTime"
   date: "2025-12-10"
 
