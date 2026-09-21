@@ -140,7 +140,7 @@
     - "branding"
     - "wordpress"
   image: "/img/reals/primaire/mockup.webp"
-  heroImage: "/img/reals/primaire/new_hero.svg"
+  heroImage: "/img/reals/primaire/new-hero.webp"
   imageAlt: "Création Primaire"
   date: "2026-07-01"
 
