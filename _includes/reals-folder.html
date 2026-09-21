@@ -1,0 +1,58 @@
+{%- comment -%}
+  Section "Dossier de documents" (FolderCard) — remplace le bloc dupliqué dans chaque page projet.
+  Même logique que reals-related.html : lit reals.yml pour éviter de répéter le HTML/les valeurs.
+
+  Paramètre :
+    id = identifiant du projet courant (facultatif)
+         À défaut : page.real_id, sinon déduit de page.url (/reals/<id>/)
+
+  Usage dans une page projet (le wrapper .FolderSection reste dans la page) :
+    ---
+    real_id: primaire
+    ---
+    <div class="FolderSection">
+      {% include reals-folder.html %}
+    </div>
+
+  Champs reals.yml utilisés (facultatifs, avec valeurs par défaut) :
+    folderSlug  → nom du zip : /pdf/reals/dossier-<folderSlug>.zip (défaut : id)
+                  ex. "mu" utilise folderSlug: "muetre" → dossier-muetre.zip
+    folderFiles → nombre affiché dans le compteur "Fichiers" (défaut : 5)
+{%- endcomment -%}
+
+{%- assign _id = include.id | default: page.real_id -%}
+{%- unless _id -%}
+  {%- assign _id = page.url | split: "/reals/" | last | split: "/" | first | remove: ".html" -%}
+{%- endunless -%}
+{%- assign _current = site.data.reals | where: "id", _id | first -%}
+
+{%- if _current -%}
+  {%- assign _slug = _current.folderSlug | default: _current.id -%}
+  {%- assign _count = _current.folderFiles | default: 5 -%}
+  {%- assign _countStr = _count | prepend: "00" | slice: -2, 2 -%}
+<div class="FolderCard" tabindex="0" role="group" aria-label="Dossier de documents : {{ _count }} fichiers PDF">
+    <div class="Text">
+        <div class="Label"><span>Documents à télécharger</span></div>
+        <h2>Tous les livrables,<br><em>dans un seul dossier.</em></h2>
+        <p>Tous les documents du projet au format PDF, réunis dans une archive prête à télécharger.</p>
+        <div class="Actions">
+            <a class="ArrowBtn All" href="/pdf/reals/dossier-{{ _slug }}.zip" download="dossier-{{ _slug }}.zip">Tout télécharger (.zip) <span class="Arrow">↓</span></a>
+            <div class="Counter"><b>Fichiers</b><span>·</span><i>{{ _countStr }}</i></div>
+        </div>
+    </div>
+    <div class="Stage">
+        <span class="Hint">Survolez pour ouvrir</span>
+        <div class="Scene">
+            <div class="Back"><span class="Tab"></span></div>
+            <div class="Files">
+                <span class="File" style="--i: 0" aria-hidden="true"><em>PDF</em></span>
+                <span class="File" style="--i: 1" aria-hidden="true"><em>PDF</em></span>
+                <span class="File" style="--i: 2" aria-hidden="true"><em>PDF</em></span>
+            </div>
+            <div class="Front">
+                <span class="Shine"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endif -%}

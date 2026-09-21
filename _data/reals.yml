@@ -11,6 +11,7 @@
   image: "/img/reals/papou/mockup.webp"
   heroImage: "/img/reals/papou/pc-home.png"
   imageAlt: "Refonte Studio Papou"
+  folderSlug: "papou"
   date: "2027-03-31"
   comingSoon: true
 
@@ -106,6 +107,7 @@
   image: "/img/reals/larepousse/mockup.webp"
   heroImage: "/img/reals/larepousse/pc-home.webp"
   imageAlt: "Création La Repousse"
+  folderSlug: "larepousse"
   date: "2026-09-01"
 
 - id: "scorsone"
@@ -137,6 +139,7 @@
   image: "/img/reals/primaire/mockup.webp"
   heroImage: "/img/reals/primaire/new-hero.webp"
   imageAlt: "Création Primaire"
+  folderSlug: "primaire"
   date: "2026-07-01"
 
 - id: "gymaddict"
@@ -169,6 +172,7 @@
   image: "/img/reals/mu/mockup.webp"
   heroImage: "/img/reals/mu/new-hero.webp"
   imageAlt: "Refonte Mü-être v2"
+  folderSlug: "muetre"
   date: "2026-04-20"
 
 - id: "portfolio"
@@ -201,6 +205,7 @@
   image: "/img/reals/leblindtestfrancais/mockup.webp"
   heroImage: "/img/reals/leblindtestfrancais/pc-home.webp"
   imageAlt: "Refonte BlindtestFrançais v3"
+  folderSlug: "leblindtestfrancais"
   date: "2026-02-19"
 
 - id: "geoptime"
@@ -217,6 +222,7 @@
   image: "/img/reals/geoptime/mockup.webp"
   heroImage: "/img/reals/geoptime/new-hero.webp"
   imageAlt: "Création GeopTime"
+  folderSlug: "geoptime"
   date: "2025-12-10"
 
 - id: "yligen"

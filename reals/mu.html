@@ -177,10 +177,28 @@ real_id: mu
             <img src="/img/reals/mu/plaquette-1.webp" alt="Extrait de la plaquette Mü - Page 1">
             <img src="/img/reals/mu/plaquette-2.webp" alt="Extrait de la plaquette Mü - Page 2">
         </div>
+        <div class="FolderSection">
+            {% include reals-folder.html %}
+        </div>
         <div class="RelatedGrid" data-related-grid="similar">{% include reals-related.html type="similar" %}</div>
-        + <div class="RelatedGrid" data-related-grid="latest">{% include reals-related.html type="latest" %}</div>
+        <div class="RelatedGrid" data-related-grid="latest">{% include reals-related.html type="latest" %}</div>
         {% include footer.html %}
     </main>
     <script src="/script.js"></script>
+    <script>
+        document.querySelectorAll('.FolderCard').forEach((card) => {
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        card.classList.toggle('Open');
+    });
+    card.addEventListener('keydown', (e) => {
+        if (e.target !== card) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('Open');
+        }
+    });
+});
+    </script>
 </body>
 </html>
