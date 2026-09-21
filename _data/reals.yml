@@ -109,7 +109,7 @@
     - "branding"
     - "design-system"
   image: "/img/reals/larepousse/mockup.webp"
-  heroImage: "/img/reals/larepousse/pc-home.svg"
+  heroImage: "/img/reals/larepousse/pc-home.webp"
   imageAlt: "Création La Repousse"
   date: "2026-09-01"
 
