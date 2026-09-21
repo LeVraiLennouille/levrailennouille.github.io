@@ -78,7 +78,7 @@
     - "webapp"
     - "identite-visuelle"
   image: "/img/reals/lennoutil/mockup.webp"
-  heroImage: "/img/reals/lennoutil/compress.png"
+  heroImage: "/img/reals/lennoutil/ecran-compresser.webp"
   imageAlt: "Création Lennoutil"
   date: "2026-09-31"
 
