@@ -1,7 +1,3 @@
-# Réalisations — source unique de vérité (ex-/reals/reals.js)
-# Rendu par _includes/reals-*.html
-# comingSoon: true => le projet est masqué partout (grille, marquee, projets liés)
-
 - id: "studio-papou"
   url: "/reals/studio-papou"
   name: "Refonte Studio Papou"
@@ -34,19 +30,19 @@
   date: "2027-01-31"
   comingSoon: true
 
-- id: "caradd"
-  url: "/reals/caradd"
-  name: "Création CarAdd Studio"
-  label: "CarAdd Studio"
+- id: "carads"
+  url: "/reals/carads"
+  name: "Création CarAds Studio"
+  label: "CarAds Studio"
   category: "UI/UX Design · WebApp · Identité visuelle"
   tags:
     - "creation"
     - "ui-ux"
     - "webapp"
     - "identite-visuelle"
-  image: "/img/reals/caradd/mockup.webp"
-  heroImage: "/img/reals/caradd/pc-home.png"
-  imageAlt: "Création CarAdd Studio"
+  image: "/img/reals/carads/mockup.webp"
+  heroImage: "/img/reals/carads/ecran-principal.png"
+  imageAlt: "Création CarAds Studio"
   date: "2026-11-31"
   comingSoon: true
 
