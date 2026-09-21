@@ -1,0 +1,39 @@
+{%- comment -%}
+  Cartes "Avis" de la section Recommendations — remplace la duplication du bloc
+  .MarqueeTrack recopié dans about.html (et bientôt index.html). Chaque avis n'est
+  défini qu'une fois dans avis.yml et réutilisé sur n'importe quelle page.
+
+  Paramètre :
+    limit = nombre maximum d'avis à afficher (facultatif, par défaut : tous)
+
+  Usage :
+    <section class="Recommendations">
+        <div class="SectionTitle">
+            <span class="Eyebrow">Recommandations</span>
+            <h2 class="Title">Ce que l'on dit de ma rigueur</h2>
+            <p class="Subtitle">…</p>
+        </div>
+        <div class="Marquee">
+            <div class="MarqueeTrack">
+                {% include avis-marquee.html %}
+            </div>
+        </div>
+    </section>
+{%- endcomment -%}
+
+{%- assign _avis = site.data.avis -%}
+{%- if include.limit -%}
+  {%- assign _avis = _avis | slice: 0, include.limit -%}
+{%- endif -%}
+{%- for a in _avis -%}
+<div class="Card">
+    <p class="QuoteText{% if a.placeholder %} Placeholder{% endif %}">« {{ a.quote }} »</p>
+    <div class="Author">
+        <div class="Avatar">{{ a.avatar }}</div>
+        <div>
+            <h3>{{ a.authorName }}</h3>
+            <p>{{ a.authorRole }}</p>
+        </div>
+    </div>
+</div>
+{%- endfor -%}

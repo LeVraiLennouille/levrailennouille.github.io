@@ -1,0 +1,62 @@
+- id: "etienne-pay"
+  placeholder: true
+  quote: "Espace réservé : à remplacer par la recommandation d'Étienne une fois obtenue — par exemple sur ton esprit de synthèse, ton sérieux et ta capacité à analyser les comportements."
+  authorName: "Étienne Pay"
+  authorRole: "Ancien professeur de SES"
+  avatar: "E"
+
+- id: "mohamed-chafai"
+  placeholder: true
+  quote: "Lenny design avec une grande rigueur. Il structure les idées pour faciliter les travaux de groupe. Collaborer avec lui garantit toujours un résultat net."
+  authorName: "Mohamed Chafai"
+  authorRole: "Camarade de promo, Licence CRRW"
+  avatar: "M"
+
+- id: "lucie-le-mai"
+  placeholder: true
+  quote: "Lenny travaille en autonomie dès le premier jour. Il assimile les nouveaux outils rapidement. Son intégration au sein du groupe est immédiate."
+  authorName: "Lucie Le Mai"
+  authorRole: "Primaire — Tutrice de stage"
+  avatar: "L"
+
+- id: "nicolas-louveton"
+  placeholder: true
+  quote: "Lenny aborde les interfaces avec une méthode rigoureuse. Sa démarche UX s'appuie sur l'analyse des besoins. Il justifie ses choix par des données chiffrées."
+  authorName: "Nicolas Louveton"
+  authorRole: "Professeur, Master SIC"
+  avatar: "?"
+
+- id: "simon-gauchet"
+  placeholder: true
+  quote: "Lenny vulgarise les concepts digitaux avec aisance. Il justifie ses choix d'architecture avec clarté. Ses indications aident à avancer vite."
+  authorName: "Simon Gauchet"
+  authorRole: "Ami designer"
+  avatar: "S"
+
+- id: "abdeslem-chaouchi"
+  placeholder: true
+  quote: "Lenny propose des refontes visuelles pertinentes. Sa réactivité face aux retours est totale. Son implication a transformé mon identité."
+  authorName: "Abdeslem Chaouchi"
+  authorRole: "Mü-Être — Tuteur de stage"
+  avatar: "M"
+
+- id: "maxence-halle"
+  placeholder: true
+  quote: "Lenny s'investit à 200% depuis ses débuts en freelance. Sa progression en design et en développement web force le respect. Il relève les défis avec détermination."
+  authorName: "Maxence Hallé"
+  authorRole: "Meilleur ami"
+  avatar: "?"
+
+- id: "annaelle"
+  placeholder: true
+  quote: "Lenny montre une ponctualité parfaite. Il gère les situations stressantes avec calme. Travailler à ses côtés apporte la sérénité."
+  authorName: "Annaëlle"
+  authorRole: "Collaboratrice de projet en Master"
+  avatar: "A"
+
+- id: "arsene-de-wilde"
+  placeholder: true
+  quote: "L'expérience de jeu du BlindtestFrançais est fluide. L'interface va droit au but. Le jeu est facile à comprendre et à prendre en main."
+  authorName: "Arsène De Wilde"
+  authorRole: "Bêta-testeur du BlindtestFrançais"
+  avatar: "A"
