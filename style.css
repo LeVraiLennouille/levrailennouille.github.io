@@ -3525,6 +3525,109 @@ main.Reals {
             }
         }
 
+        .LinkField {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            max-width: calc(100% - 48px);
+            margin: 0 auto 56px;
+            padding: 6px 6px 6px 26px;
+            background: var(--PureWhite);
+            border: 1px solid var(--Borders);
+            border-radius: 999px;
+            box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+            color: var(--Charcoal);
+            text-decoration: none;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(-3px);
+                border-color: var(--Primary);
+                box-shadow: 0 12px 32px rgba(var(--PrimaryRGB), 0.18);
+            }
+
+            &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 4px;}
+
+            .LinkPrefix {
+                flex-shrink: 0;
+                font-size: 0.85rem;
+                font-weight: 800;
+                color: var(--Primary);
+            }
+
+            .LinkUrl {
+                min-width: 0;
+                padding: 12px 18px 12px 2px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--Charcoal);
+            }
+
+            .LinkArrow {
+                position: relative;
+                flex-shrink: 0;
+                display: grid;
+                place-items: center;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: rgba(var(--PrimaryRGB), 0.1);
+                color: var(--Primary);
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                    transition: transform 0.3s ease;
+                }
+            }
+
+            .LinkTooltip {
+                position: absolute;
+                bottom: calc(100% + 12px);
+                left: 50%;
+                padding: 6px 10px;
+                border-radius: 8px;
+                background: var(--Charcoal);
+                color: var(--PureWhite);
+                font-size: 0.75rem;
+                font-weight: 900;
+                white-space: nowrap;
+                pointer-events: none;
+                opacity: 0;
+                transform: translate(-50%, 6px);
+                transition: opacity 0.2s ease, transform 0.2s ease;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border: 5px solid transparent;
+                    border-top-color: var(--Charcoal);
+                }
+            }
+
+            &:hover, &:focus-visible {
+                .LinkArrow {
+                    background: var(--Primary);
+                    color: var(--PureWhite);
+
+                    svg {transform: translate(2px, -2px);}
+                }
+
+                .LinkTooltip {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+        }
+
         .Intro {
             max-width: 1200px;
             margin: 0 auto 80px;
@@ -3771,7 +3874,11 @@ main.Reals {
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
 
-            &.Item2 {grid-template-columns: repeat(2, 1fr);}
+            &.Item2 {
+                grid-template-columns: repeat(2, 1fr);
+
+                &.Circle img {border-radius: 999px;}
+            }
             &.Row {grid-template-columns: none; grid-template-rows: repeat(1, 1fr);}
 
             img {
@@ -5300,6 +5407,7 @@ main.Contact {
                     }
 
                     textarea.Input+.Label {top: 22px;}
+                    textarea.Input {resize: vertical;}
 
                     input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
                     input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
@@ -7812,6 +7920,7 @@ main.Promenade {
                 margin-bottom: 56px;
                 gap: 14px;
             }
+            .LinkField {max-width: calc(100% - 32px);}
             hr {margin-bottom: 56px;}
             .ProjectBloc, .FullWidthBanner, .ProjectGallery {margin-bottom: 56px;}
             .ComparisonsGrid {
@@ -7989,6 +8098,7 @@ main.Promenade {
         .Marquee {overflow-x: auto;}
     }
     .Toast {animation: none !important;}
+    main.Reals.SubPage .LinkField, main.Reals.SubPage .LinkField .LinkArrow, main.Reals.SubPage .LinkField .LinkArrow svg, main.Reals.SubPage .LinkField .LinkTooltip {transition: none !important;}
 }
 
 main.NotFound {
