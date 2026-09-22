@@ -5710,9 +5710,15 @@ main.Contact {
             .Form {
                 display: flex;
                 flex-direction: column;
-                gap: 14px;
+                gap: 16px;
                 width: 100%;
                 max-width: 600px;
+                background: var(--PureWhite);
+                border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+                border-radius: 24px;
+                padding: 40px 44px;
+                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+                transition: box-shadow 0.3s ease;
 
                 .InputGroup {
                     position: relative;
@@ -5781,9 +5787,9 @@ main.Contact {
                 .FormActions {
                     display: flex;
                     justify-content: space-between;
-                    width: 600px;
+                    width: 100%;
                     gap: 1rem;
-                    margin-top: 1rem;
+                    margin-top: 0.5rem;
                     flex-wrap: wrap;
                     top: -10px;
                     font-size: 0.85rem;
@@ -7899,8 +7905,8 @@ main.Promenade {
                 padding: 50px 32px 40px 64px;
                 height: auto;
 
-                .Form .FormActions {
-                    width:100%;
+                .Form {
+                    padding: 32px;
                 }
             }
 
@@ -8334,7 +8340,7 @@ main.Promenade {
             .ContactLeft {
                 padding: 40px 20px 40px;
 
-                .Form .FormActions {width: 100%;}
+                .Form {padding: 26px 20px;}
                 .ContactCoords {
                     justify-content: space-between;
 
