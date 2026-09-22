@@ -1484,6 +1484,18 @@ section.Recommendations {
             pointer-events: none;
         }
 
+        &::after {
+            content: "\201D";
+            position: absolute;
+            bottom: 6px;
+            right: 24px;
+            font-size: 5.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(var(--PrimaryRGB), 0.16);
+            pointer-events: none;
+        }
+
         .QuoteText {
             position: relative;
             font-size: 1.05rem;
@@ -1528,7 +1540,7 @@ section.Recommendations {
         &:nth-child(even) {
             border-top-color: var(--DarkPrimary);
 
-            &::before {color: rgba(var(--DarkPrimaryRGB), 0.16);}
+            &::before, &::after {color: rgba(var(--DarkPrimaryRGB), 0.16);}
 
             .Author .Avatar {background: var(--DarkPrimary);}
         }

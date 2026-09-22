@@ -27,7 +27,7 @@
 {%- endif -%}
 {%- for a in _avis -%}
 <div class="Card">
-    <p class="QuoteText{% if a.placeholder %} Placeholder{% endif %}">« {{ a.quote }} »</p>
+    <p class="QuoteText{% if a.placeholder %} Placeholder{% endif %}">{{ a.quote }}</p>
     <div class="Author">
         <div class="Avatar">{{ a.avatar }}</div>
         <div>
