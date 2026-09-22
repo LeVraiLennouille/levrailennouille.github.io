@@ -5635,13 +5635,14 @@ main.Contact {
                 justify-content: center;
                 width: 34px;
                 height: 34px;
+                border-radius: 50%;
                 color: var(--Primary);
-                transition: opacity 0.25s ease, transform 0.25s ease;
+                transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
                 text-decoration: none;
 
                 &:hover {
-                    opacity: 0.75;
-                    transform: scale(1.2);
+                    background-color: rgba(var(--PrimaryRGB), 0.1);
+                    transform: scale(1.1);
                 }
             }
 
@@ -5718,7 +5719,12 @@ main.Contact {
                 border-radius: 24px;
                 padding: 40px 44px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-                transition: box-shadow 0.3s ease;
+                transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 10px 36px rgba(var(--PureBlackRGB), 0.09);
+                    transform: translateY(-2px);
+                }
 
                 .InputGroup {
                     position: relative;
@@ -5730,14 +5736,16 @@ main.Contact {
                     .Input {
                         width: 100%;
                         box-sizing: border-box;
-                        padding: 12px 15px;
-                        border: 1px solid var(--PureBlack);
-                        border-radius: 8px;
+                        padding: 13px 16px;
+                        border: 1px solid rgba(var(--PureBlackRGB), 0.15);
+                        border-radius: 12px;
                         background: var(--PureWhite);
                         color: var(--PureBlack);
                         font-size: 1rem;
                         outline: none;
                         transition: all 0.3s ease;
+
+                        &:hover {border-color: rgba(var(--PureBlackRGB), 0.3);}
 
                         &:focus~.Label,
                         &:valid~.Label,
@@ -5746,7 +5754,7 @@ main.Contact {
                             top: 0;
                             background-color: var(--Primary);
                             color: var(--PureWhite);
-                            border-radius: 4px;
+                            border-radius: 6px;
                             font-size: 0.8rem;
                             font-weight: bold;
                         }
@@ -5765,12 +5773,28 @@ main.Contact {
                     }
 
                     textarea.Input+.Label {top: 22px;}
-                    textarea.Input {resize: vertical;}
+                    textarea.Input {
+                        resize: vertical;
+                        min-height: 120px;
+
+                        &::-webkit-resizer {
+                            width: 14px;
+                            height: 14px;
+                            background-color: transparent;
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cg stroke='%23207EDE' stroke-width='1.6' stroke-linecap='round' opacity='0.5'%3E%3Cline x1='12' y1='2' x2='2' y2='12'/%3E%3Cline x1='12' y1='6' x2='6' y2='12'/%3E%3Cline x1='12' y1='10' x2='10' y2='12'/%3E%3C/g%3E%3C/svg%3E");
+                            background-repeat: no-repeat;
+                            background-position: bottom right;
+                            border-radius: 0 0 12px 0;
+                        }
+                    }
 
                     input[type="text"]:focus, input[type="email"]:focus, textarea:focus,
                     input[type="text"].HasValue, input[type="email"].HasValue, textarea.HasValue,
                     input[type="text"]:autofill, input[type="email"]:autofill, textarea:autofill,
-                    input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {border-color: var(--Primary);}
+                    input[type="text"]:-webkit-autofill, input[type="email"]:-webkit-autofill, textarea:-webkit-autofill {
+                        border-color: var(--Primary);
+                        box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.1);
+                    }
                 }
 
                 .FormRow {
@@ -5808,11 +5832,13 @@ main.Contact {
 
                         text-transform: uppercase;
                         cursor: pointer;
-                        transition: filter 0.25s ease, transform 0.2s ease;
+                        box-shadow: 0 6px 18px rgba(var(--PrimaryRGB), 0.25);
+                        transition: filter 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 
                         &:hover {
                             filter: brightness(0.88);
                             transform: translateY(-2px);
+                            box-shadow: 0 8px 22px rgba(var(--PrimaryRGB), 0.32);
                         }
                     }
 
@@ -5837,13 +5863,20 @@ main.Contact {
             }
 
             .ContactCoords {
-                margin-top: 28px;
                 display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                max-width: 600px;
+                margin-top: 22px;
                 gap: 24px;
                 flex-wrap: wrap;
 
                 a {
                     position: relative;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
                     text-decoration: none;
                     font-size: 0.8rem;
                     color: rgba(var(--PureBlackRGB),0.45);
@@ -5871,8 +5904,15 @@ main.Contact {
                         transition: transform 0.3s ease;
                     }
                 }
-    
-                .CoordDot {color: var(--Primary); font-size: 0.8rem;}
+
+                svg {
+                    width: 15px;
+                    height: 15px;
+                    flex-shrink: 0;
+                    fill: currentColor;
+                }
+
+                .CoordDot {color: var(--Primary); font-size: 1rem; font-weight: 900;}
             }
         }
     }
@@ -5887,9 +5927,13 @@ main.Contact {
         .ContactBookingFrame {
             position: relative;
             background-color: var(--PureWhite);
+            border: 1px solid rgba(var(--PureBlackRGB), 0.06);
             border-radius: 16px;
             padding: 16px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
+            transition: box-shadow 0.3s ease;
+
+            &:hover {box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.1);}
 
             iframe {
                 display: block;
