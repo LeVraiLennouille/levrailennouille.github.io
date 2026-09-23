@@ -332,6 +332,21 @@ document.addEventListener("visibilitychange", () => {
     }
 });
 
+// * Reals * //
+document.querySelectorAll('.FolderCard').forEach((card) => {
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        card.classList.toggle('Open');
+    });
+    card.addEventListener('keydown', (e) => {
+        if (e.target !== card) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.classList.toggle('Open');
+        }
+    });
+});
+
 // * Form * //
 const inputs = document.querySelectorAll('input[type="text"], input[type="email"], textarea');
 

@@ -189,20 +189,5 @@ real_id: mu
 <!-- Scripts -->
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
-    <script>
-        document.querySelectorAll('.FolderCard').forEach((card) => {
-    card.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return;
-        card.classList.toggle('Open');
-    });
-    card.addEventListener('keydown', (e) => {
-        if (e.target !== card) return;
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            card.classList.toggle('Open');
-        }
-    });
-});
-    </script>
 </body>
 </html>
