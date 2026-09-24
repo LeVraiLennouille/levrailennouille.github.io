@@ -1,0 +1,124 @@
+<!--
+  _includes/jsonld.html
+  ----------------------
+  Génère automatiquement le JSON-LD adapté à chaque page, à partir :
+  - des données globales de _data/business.yml
+  - du front matter de la page en cours (page.xxx)
+
+  Utilisation : dans _layouts/default.html, juste avant </head> :
+    {% include jsonld.html %}
+
+  Le type de schema est piloté par la variable `schema_type` dans le
+  front matter de chaque page. Types gérés ci-dessous :
+    - "Organization"   (page d'accueil, à ajouter une seule fois)
+    - "CreativeWork"    (un projet du portfolio)
+    - "Service"          (une offre de service)
+    - "Product"          (un item de la boutique de compétences)
+    - "WebPage" (défaut) (toute autre page : à propos, contact, simulateur...)
+-->
+
+{% assign biz = site.data.business %}
+{% assign type = page.schema_type | default: "WebPage" %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+
+  {% comment %} ---------- 1. ORGANIZATION (page d'accueil) ---------- {% endcomment %}
+  {% if type == "Organization" %}
+  "@type": "Organization",
+  "name": "{{ biz.name }}",
+  "legalName": "{{ biz.legal_name }}",
+  "url": "{{ biz.url }}",
+  "logo": "{{ biz.url }}{{ biz.logo }}",
+  "description": "{{ page.description | default: biz.description | strip_html | strip_newlines }}",
+  "email": "{{ biz.email }}",
+  "sameAs": [
+    {% for link in biz.social %}"{{ link }}"{% unless forloop.last %},{% endunless %}{% endfor %}
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "{{ biz.address.locality }}",
+    "addressCountry": "{{ biz.address.country }}"
+  }
+
+  {% comment %} ---------- 2. PORTFOLIO / PROJET (CreativeWork) ---------- {% endcomment %}
+  {% elsif type == "CreativeWork" %}
+  "@type": "CreativeWork",
+  "name": "{{ page.title }}",
+  "url": "{{ biz.url }}{{ page.url }}",
+  "description": "{{ page.description | default: site.description | strip_html | strip_newlines }}",
+  "creator": {
+    "@type": "Organization",
+    "name": "{{ biz.name }}",
+    "url": "{{ biz.url }}"
+  }
+  {% if page.image %},
+  "image": "{{ biz.url }}{{ page.image }}"
+  {% endif %}
+  {% if page.client %},
+  "about": "{{ page.client }}"
+  {% endif %}
+  {% if page.date %},
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}"
+  {% endif %}
+
+  {% comment %} ---------- 3. OFFRE DE SERVICE (Service) ---------- {% endcomment %}
+  {% elsif type == "Service" %}
+  "@type": "Service",
+  "serviceType": "{{ page.title }}",
+  "name": "{{ page.title }}",
+  "url": "{{ biz.url }}{{ page.url }}",
+  "description": "{{ page.description | default: site.description | strip_html | strip_newlines }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ biz.name }}",
+    "url": "{{ biz.url }}"
+  }
+  {% if page.price %},
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ page.price }}",
+    "priceCurrency": "{{ page.currency | default: 'EUR' }}",
+    "url": "{{ biz.url }}{{ page.url }}"
+  }
+  {% endif %}
+  {% if page.area_served %},
+  "areaServed": "{{ page.area_served }}"
+  {% endif %}
+
+  {% comment %} ---------- 4. BOUTIQUE DE COMPÉTENCES (Product) ---------- {% endcomment %}
+  {% elsif type == "Product" %}
+  "@type": "Product",
+  "name": "{{ page.title }}",
+  "url": "{{ biz.url }}{{ page.url }}",
+  "description": "{{ page.description | default: site.description | strip_html | strip_newlines }}",
+  {% if page.image %}"image": "{{ biz.url }}{{ page.image }}",{% endif %}
+  "brand": {
+    "@type": "Organization",
+    "name": "{{ biz.name }}"
+  }
+  {% if page.price %},
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ page.price }}",
+    "priceCurrency": "{{ page.currency | default: 'EUR' }}",
+    "availability": "https://schema.org/{{ page.availability | default: 'InStock' }}",
+    "url": "{{ biz.url }}{{ page.url }}"
+  }
+  {% endif %}
+
+  {% comment %} ---------- 5. PAGE STANDARD (défaut : à propos, contact, simulateur...) ---------- {% endcomment %}
+  {% else %}
+  "@type": "WebPage",
+  "name": "{{ page.title | default: site.title }}",
+  "url": "{{ biz.url }}{{ page.url }}",
+  "description": "{{ page.description | default: site.description | strip_html | strip_newlines }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ biz.name }}",
+    "url": "{{ biz.url }}"
+  }
+  {% endif %}
+}
+</script>

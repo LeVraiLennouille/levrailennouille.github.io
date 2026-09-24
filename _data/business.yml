@@ -1,0 +1,21 @@
+# _data/business.yml
+# Données centrales de Lennouille, réutilisées partout dans le JSON-LD.
+# Modifie ces valeurs une seule fois ici : elles se propagent sur tout le site.
+
+name: "Lennouille"
+legal_name: "Lennouille — Design UI/UX freelance"
+url: "https://lennouille.fr"
+logo: "/assets/img/logo.png"          # chemin relatif vers ton logo
+description: "Designer UI/UX freelance — portfolio, services et boutique de compétences."
+email: "contact@lennouille.fr"        # à adapter
+founder_name: "Prénom Nom"            # à adapter si tu veux un schema Person lié
+
+social:
+  - "https://www.linkedin.com/in/tonprofil"
+  - "https://www.instagram.com/tonprofil"
+  - "https://www.behance.net/tonprofil"
+  # ajoute/retire les liens réels, un par ligne
+
+address:
+  locality: "Ta ville"
+  country: "FR"
