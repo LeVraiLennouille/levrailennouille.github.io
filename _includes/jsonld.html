@@ -1,0 +1,175 @@
+{% assign biz = site.data.business %}
+{% assign type = page.schema_type | default: "WebPage" %}
+{% assign clean_url = page.url | replace: "index.html", "" | replace: ".html", "" %}
+{% if page.url contains "/blog/" %}
+  {% assign clean_url = clean_url | append: "/" | replace: "//", "/" %}
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+
+  {% if type == "Organization" %}
+  "@type": "Organization",
+  "name": {{ biz.name | jsonify }},
+  "legalName": {{ biz.legal_name | jsonify }},
+  "url": "{{ biz.url }}",
+  "logo": "{{ biz.url }}{{ biz.logo }}",
+  "description": {{ page.description | default: biz.description | strip_html | strip_newlines | jsonify }},
+  "email": {{ biz.email | jsonify }},
+  "inLanguage": "fr-FR",
+  "sameAs": [
+    {% for link in biz.social %}{{ link | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": {{ biz.address.locality | jsonify }},
+    "addressCountry": {{ biz.address.country | jsonify }}
+  }
+
+  {% elsif type == "CreativeWork" %}
+  "@type": "CreativeWork",
+  "name": {{ page.title | jsonify }},
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+  "inLanguage": "fr-FR",
+  "creator": {
+    "@type": "Organization",
+    "name": {{ biz.name | jsonify }},
+    "url": "{{ biz.url }}"
+  }
+  {% if page.image %},
+  "image": "{{ biz.url }}{{ page.image }}"
+  {% endif %}
+  {% if page.client %},
+  "about": {
+    "@type": "Organization",
+    "name": {{ page.client | jsonify }}
+  }
+  {% endif %}
+  {% if page.date %},
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}"
+  {% endif %}
+
+  {% elsif type == "Service" %}
+  "@type": "Service",
+  "serviceType": {{ page.title | jsonify }},
+  "name": {{ page.title | jsonify }},
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+  "inLanguage": "fr-FR",
+  "provider": {
+    "@type": "Organization",
+    "name": {{ biz.name | jsonify }},
+    "url": "{{ biz.url }}"
+  }
+  {% if page.price %},
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ page.price }}",
+    "priceCurrency": "{{ page.currency | default: 'EUR' }}",
+    "url": "{{ biz.url }}{{ clean_url }}"
+  }
+  {% endif %}
+  {% if page.area_served %},
+  "areaServed": {{ page.area_served | jsonify }}
+  {% endif %}
+
+  {% elsif type == "Product" %}
+  "@type": "Product",
+  "name": {{ page.title | jsonify }},
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+  "inLanguage": "fr-FR",
+  {% if page.image %}"image": "{{ biz.url }}{{ page.image }}",{% endif %}
+  "brand": {
+    "@type": "Organization",
+    "name": {{ biz.name | jsonify }}
+  }
+  {% if page.price %},
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ page.price }}",
+    "priceCurrency": "{{ page.currency | default: 'EUR' }}",
+    "availability": "https://schema.org/{{ page.availability | default: 'InStock' }}",
+    "url": "{{ biz.url }}{{ clean_url }}"
+  }
+  {% endif %}
+
+  {% elsif type == "Article" %}
+  "@type": "Article",
+  "headline": {{ page.short_title | default: page.title | jsonify }},
+  "name": {{ page.title | jsonify }},
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ biz.url }}{{ clean_url }}"
+  },
+  "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+  "inLanguage": "fr-FR",
+  {% if page.date %}"datePublished": "{{ page.date | date_to_xmlschema }}",{% endif %}
+  "articleSection": {{ page.section | jsonify }},
+  "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ biz.founder_name | jsonify }},
+    "url": "{{ biz.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ biz.name | jsonify }},
+    "url": "{{ biz.url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ biz.url }}{{ biz.logo }}"
+    }
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ biz.name | jsonify }},
+    "url": "{{ biz.url }}"
+  }
+
+  {% else %}
+  "@type": "WebPage",
+  "name": {{ page.title | default: site.title | jsonify }},
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+  "inLanguage": "fr-FR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": {{ biz.name | jsonify }},
+    "url": "{{ biz.url }}"
+  }
+  {% endif %}
+}
+</script>
+
+{% if type == "Article" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "{{ biz.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ page.parent_name | default: "Blog" | jsonify }},
+      "item": "{{ biz.url }}{{ page.parent_url | default: '/blog' }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ page.short_title | default: page.title | jsonify }},
+      "item": "{{ biz.url }}{{ clean_url }}"
+    }
+  ]
+}
+</script>
+{% endif %}
