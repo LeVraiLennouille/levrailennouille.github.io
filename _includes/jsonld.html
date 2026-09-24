@@ -1,30 +1,11 @@
-<!--
-  _includes/jsonld.html
-  ----------------------
-  Génère automatiquement le JSON-LD adapté à chaque page, à partir :
-  - des données globales de _data/business.yml
-  - du front matter de la page en cours (page.xxx)
-
-  Utilisation : dans _layouts/default.html, juste avant </head> :
-    {% include jsonld.html %}
-
-  Le type de schema est piloté par la variable `schema_type` dans le
-  front matter de chaque page. Types gérés ci-dessous :
-    - "Organization"   (page d'accueil, à ajouter une seule fois)
-    - "CreativeWork"    (un projet du portfolio)
-    - "Service"          (une offre de service)
-    - "Product"          (un item de la boutique de compétences)
-    - "WebPage" (défaut) (toute autre page : à propos, contact, simulateur...)
--->
-
 {% assign biz = site.data.business %}
 {% assign type = page.schema_type | default: "WebPage" %}
+{% assign clean_url = page.url | replace: ".html", "/" %}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
 
-  {% comment %} ---------- 1. ORGANIZATION (page d'accueil) ---------- {% endcomment %}
   {% if type == "Organization" %}
   "@type": "Organization",
   "name": "{{ biz.name }}",
@@ -42,7 +23,6 @@
     "addressCountry": "{{ biz.address.country }}"
   }
 
-  {% comment %} ---------- 2. PORTFOLIO / PROJET (CreativeWork) ---------- {% endcomment %}
   {% elsif type == "CreativeWork" %}
   "@type": "CreativeWork",
   "name": "{{ page.title }}",
@@ -63,7 +43,6 @@
   "datePublished": "{{ page.date | date: '%Y-%m-%d' }}"
   {% endif %}
 
-  {% comment %} ---------- 3. OFFRE DE SERVICE (Service) ---------- {% endcomment %}
   {% elsif type == "Service" %}
   "@type": "Service",
   "serviceType": "{{ page.title }}",
@@ -87,7 +66,6 @@
   "areaServed": "{{ page.area_served }}"
   {% endif %}
 
-  {% comment %} ---------- 4. BOUTIQUE DE COMPÉTENCES (Product) ---------- {% endcomment %}
   {% elsif type == "Product" %}
   "@type": "Product",
   "name": "{{ page.title }}",
@@ -108,7 +86,39 @@
   }
   {% endif %}
 
-  {% comment %} ---------- 5. PAGE STANDARD (défaut : à propos, contact, simulateur...) ---------- {% endcomment %}
+  {% elsif type == "Article" %}
+  "@type": "Article",
+  "headline": "{{ page.short_title | default: page.title }}",
+  "name": "{{ page.title }}",
+  "url": "{{ biz.url }}{{ clean_url }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ biz.url }}{{ clean_url }}"
+  },
+  "description": "{{ page.description | default: site.description | strip_html | strip_newlines }}",
+  "inLanguage": "fr-FR",
+  "articleSection": "{{ page.section }}",
+  "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ biz.founder_name }}",
+    "url": "{{ biz.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ biz.name }}",
+    "url": "{{ biz.url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ biz.url }}{{ biz.logo }}"
+    }
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ biz.name }}",
+    "url": "{{ biz.url }}"
+  }
+
   {% else %}
   "@type": "WebPage",
   "name": "{{ page.title | default: site.title }}",
@@ -122,3 +132,32 @@
   {% endif %}
 }
 </script>
+
+{% if type == "Article" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "{{ biz.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "UX",
+      "item": "{{ biz.url }}/ux"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.short_title | default: page.title }}",
+      "item": "{{ biz.url }}{{ clean_url }}"
+    }
+  ]
+}
+</script>
+{% endif %}
