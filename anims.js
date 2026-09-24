@@ -1,6 +1,30 @@
 (function () {
     "use strict";
-    const SELECTOR = ".Reveal";
+
+    const SELECTORS = [
+        ".Card",
+        ".ProjectCard",
+        ".BlogCard",
+        ".LawCard",
+        ".RelatedCard",
+        ".FolderCard",
+        ".BudgetCard",
+        ".TimelineItem",
+        ".Anchor",
+        ".SectionHeader",
+        ".Part",
+        ".Column",
+        ".ProjectBloc",
+        ".CompItem",
+        ".TermsArticle",
+        ".Highlight",
+        ".DemoBox",
+        ".SourceGroup",
+        ".CallToAction",
+        ".DesignedCTA",
+        ".Me",
+        ".Merge"
+    ].join(", ");
 
     const CONFIG = {
         opacity: 0,
@@ -23,7 +47,9 @@
             return;
         }
 
-        const blocks = gsap.utils.toArray(SELECTOR);
+        const blocks = gsap.utils.toArray(SELECTORS).filter(function (block) {
+            return !block.closest(".Marquee");
+        });
 
         blocks.forEach(function (block) {
             gsap.from(block, {
