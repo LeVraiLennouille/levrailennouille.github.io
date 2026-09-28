@@ -4052,7 +4052,6 @@ main.Reals {
                 pointer-events: none;
             }
 
-            /* --- Grille de points (côté dossier) --- */
             &::after {
                 content: "";
                 position: absolute;
@@ -4070,7 +4069,6 @@ main.Reals {
             &:hover, &:focus-within, &.Open {box-shadow: 0 30px 80px rgba(var(--PrimaryRGB), 0.22);}
             &:focus-visible {box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.6), 0 30px 80px rgba(var(--PrimaryRGB), 0.22);}
 
-            /* --- Texte --- */
             .Text {
                 position: relative;
                 z-index: 2;
@@ -4123,7 +4121,6 @@ main.Reals {
                 }
             }
 
-            /* --- Compteur --- */
             .Counter {
                 display: inline-flex;
                 align-items: baseline;
@@ -4145,10 +4142,8 @@ main.Reals {
                 i {font-style: normal; color: var(--Primary);}
             }
 
-            /* --- Bouton (repris de .ArrowBtn) --- */
             .All:hover .Arrow {transform: translateY(3px);}
 
-            /* --- Scène du dossier --- */
             .Stage {
                 position: relative;
                 z-index: 1;
@@ -4219,7 +4214,6 @@ main.Reals {
                 }
             }
 
-            /* --- Fichiers PDF --- */
             .Files {
                 position: absolute;
                 inset: 0;
@@ -4278,7 +4272,6 @@ main.Reals {
                 }
             }
 
-            /* --- Rabat avant --- */
             .Front {
                 top: 44px;
                 background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
@@ -4301,7 +4294,6 @@ main.Reals {
                 }
             }
 
-            /* --- État ouvert --- */
             &:hover, &:focus-within, &.Open {
                 .Hint {opacity: 0; transform: translateY(-8px);}
                 .Stage::before {opacity: 1; scale: 1.15;}
@@ -4313,7 +4305,6 @@ main.Reals {
                 .File {transform: translate(var(--x), var(--y)) rotate(var(--r));}
             }
 
-            /* --- Responsive --- */
             @media (max-width: 1000px) {
                 gap: 40px;
                 padding: 56px 40px;
@@ -7382,6 +7373,255 @@ main.Terms {
     }
 }
 
+main.CV {
+    section.Profile, section.Skills, section.Timeline, section.Interests {padding: 0 40px;}
+    section.Profile {margin-top: 100px;}
+    section.Skills, section.Timeline, section.Interests {margin-top: 140px;}
+    section.Timeline {scroll-margin-top: 90px;}
+    .SecondaryHero .SubTitle {max-width: 760px;}
+
+    .Grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 28px;
+    }
+
+    section.Profile .Grid {grid-template-columns: 1fr;}
+    section.Skills .Grid {grid-template-columns: 1.35fr 1fr; align-items: start;}
+    section.Skills .Side {display: flex; flex-direction: column; gap: 28px;}
+    section.Interests .Grid {grid-template-columns: repeat(3, 1fr);}
+
+    .Card {
+        h2, h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--Charcoal);
+        }
+
+        .CardHead {margin-bottom: 6px;}
+
+        a:not(.Link) {
+            color: var(--DarkPrimary);
+            font-weight: 700;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: var(--Primary);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+
+    section.Skills .Card {border-color: rgba(var(--PrimaryRGB), 0.5);}
+
+    .InfoList {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+
+        li {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            column-gap: 16px;
+            align-items: baseline;
+            padding: 12px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--Charcoal);
+            overflow-wrap: anywhere;
+
+            &:first-child {padding-top: 0;}
+            &:last-child {padding-bottom: 0;}
+            &:not(:last-child) {border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.08);}
+
+            .Label {
+                font-size: 0.72rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: rgba(var(--PureBlackRGB), 0.6);
+            }
+        }
+    }
+
+    .PlainList, .Points {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: var(--Muted);
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0.6em;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--Primary);
+            }
+        }
+    }
+
+    .Points {
+        gap: 8px;
+        margin-top: 2px;
+
+        li {font-size: 0.92rem;}
+    }
+
+    .SkillGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        & + .SkillGroup {
+            padding-top: 18px;
+            border-top: 1px dashed rgba(var(--PureBlackRGB), 0.14);
+        }
+
+        h4 {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: rgba(var(--PureBlackRGB), 0.6);
+        }
+    }
+
+    .Tags {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        li {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--DarkPrimary);
+            background: rgba(var(--PrimaryRGB), 0.08);
+            border: 1px solid rgba(var(--PrimaryRGB), 0.2);
+            padding: 6px 15px;
+            border-radius: 50px;
+        }
+    }
+
+    section.Timeline {
+        .TimelineList {
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .TimelineItem {
+            display: grid;
+            grid-template-columns: 1fr 90px 1fr;
+            column-gap: 32px;
+            position: relative;
+
+            &:not(:last-child) {padding-bottom: 40px;}
+
+            .Rail {
+                grid-column: 2;
+                grid-row: 1;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .Line {
+                position: absolute;
+                top: 0;
+                bottom: -40px;
+                left: 50%;
+                width: 2px;
+                background: var(--Primary);
+                transform: translateX(-50%);
+                z-index: 0;
+            }
+
+            &:first-child .Line {top: 48px;}
+            &:last-child .Line {bottom: auto; height: 48px;}
+
+            .Circle {
+                position: relative;
+                z-index: 1;
+                width: 56px;
+                height: 56px;
+                margin-top: 20px;
+                flex-shrink: 0;
+                border-radius: 50%;
+                background: var(--Primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 0 10px rgba(var(--PrimaryRGB), 0.1), 0 0 38px 4px rgba(var(--PrimaryRGB), 0.45);
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                    stroke: var(--PureWhite);
+                }
+            }
+
+            .Content {
+                grid-column: 3;
+                grid-row: 1;
+                align-self: start;
+                gap: 12px;
+            }
+
+            &:nth-child(odd) .Content {grid-column: 1;}
+
+            .Badge {
+                align-self: flex-start;
+                padding: 5px 16px;
+                border-radius: 50px;
+                background: rgba(var(--PrimaryRGB), 0.12);
+                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
+                color: var(--DarkPrimary);
+                font-size: 0.8rem;
+                font-weight: 700;
+            }
+
+            h3 {
+                font-size: 1.35rem;
+                line-height: 1.25;
+            }
+
+            .Place {
+                flex: none;
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--DarkPrimary);
+            }
+
+            .Desc {
+                flex: none;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: var(--Muted);
+            }
+
+            .Link {
+                align-self: flex-start;
+                margin-top: 4px;
+            }
+        }
+    }
+}
+
 main.Promenade {
     color: var(--Charcoal);
 
@@ -7930,6 +8170,27 @@ main.Promenade {
         }
     }
 
+    main.CV {
+        section.Profile .Grid {grid-template-columns: 1fr;}
+
+        section.Timeline {
+            .TimelineList {max-width: 640px;}
+
+            .TimelineItem {
+                grid-template-columns: 56px 1fr;
+                column-gap: 24px;
+
+                .Rail {grid-column: 1;}
+                .Circle {width: 48px; height: 48px;}
+
+                &:first-child .Line {top: 44px;}
+                &:last-child .Line {height: 44px;}
+
+                &:nth-child(odd) .Content, &:nth-child(even) .Content {grid-column: 2;}
+            }
+        }
+    }
+
     main.Reals {
         section.Why {
             margin: 130px auto 60px;
@@ -8154,6 +8415,19 @@ main.Promenade {
                 &::before {font-size: 4rem;}
             }
         }
+    }
+
+    main.CV {
+        section.Profile, section.Skills, section.Timeline, section.Interests {padding: 0 24px;}
+
+        section.Profile {margin-top: 70px;}
+        section.Skills, section.Timeline, section.Interests {margin-top: 100px;}
+
+        .SectionTitle {margin-bottom: 40px;}
+        .Grid {gap: 20px;}
+
+        section.Profile .Grid, section.Skills .Grid, section.Interests .Grid {grid-template-columns: 1fr;}
+        section.Profile .Grid .Card:first-child {grid-column: auto;}
     }
 
     main.Simu .Layout .Form {
@@ -8385,6 +8659,12 @@ main.Promenade {
         .FAQList details {padding: 4px 16px;}
     }
 
+    main.CV {
+        .Card {padding: 26px 22px;}
+        .InfoList li {grid-template-columns: 1fr; row-gap: 2px;}
+        section.Timeline .TimelineItem h3 {font-size: 1.2rem;}
+    }
+
     main.Contact {
         max-width: 100%;
 
@@ -8456,6 +8736,26 @@ main.Promenade {
 
                 svg {width: 18px; height: 18px;}
             }
+        }
+    }
+
+    main.CV {
+        section.Profile, section.Skills, section.Timeline, section.Interests {padding: 0 16px;}
+
+        section.Timeline .TimelineItem {
+            grid-template-columns: 40px 1fr;
+            column-gap: 16px;
+
+            .Circle {
+                width: 40px;
+                height: 40px;
+                margin-top: 22px;
+
+                svg {width: 18px; height: 18px;}
+            }
+
+            &:first-child .Line {top: 42px;}
+            &:last-child .Line {height: 42px;}
         }
     }
 
@@ -8550,5 +8850,122 @@ main.NotFound {
         a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
         a:hover {color: var(--Primary);}
         .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
+    }
+}
+
+@page {
+    size: A4;
+    margin: 1.2cm;
+}
+
+@media print {
+    html {font-size: 11px;}
+    html, body {background: #fff !important; overflow: visible !important;}
+
+    #CursorDot, #CursorBall, .ReadingProgress, .ToastContainer,
+    main.CV .NavBar, main.CV .Footer, main.CV section.CallToAction,
+    main.CV .SecondaryHero .Decor, main.CV .SecondaryHero .Breadcrumb, main.CV .SecondaryHero .ArrowBtn,
+    main.CV .HamburgerBtn, main.CV .MobileNav,
+    main.CV .BtnMain, main.CV .BtnSolid, main.CV .BtnGhost {display: none !important;}
+
+    main.CV {
+        * {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .SecondaryHero {
+            min-height: 0;
+            padding: 0 0 14px;
+            background: none;
+
+            &::before, &::after {display: none;}
+
+            .HeroInner {
+                max-width: none;
+                text-align: left;
+                animation: none;
+
+                h1.Title {font-size: 2rem; margin-bottom: 8px; color: #000;}
+                h1.Title em {color: var(--DarkPrimary);}
+                P.SubTitle {max-width: none; margin: 0; font-size: 1rem; color: #333;}
+            }
+        }
+
+        section {max-width: none; margin: 0 0 16px !important; padding: 0 !important;}
+
+        .SectionTitle {
+            margin: 0 0 10px;
+            text-align: left;
+            break-after: avoid;
+            page-break-after: avoid;
+
+            h2.Title {font-size: 1.5rem;}
+        }
+
+        p, li {orphans: 3; widows: 3;}
+
+        .Grid {gap: 10px;}
+        section.Profile .Grid {grid-template-columns: 1fr;}
+        section.Profile .Grid .Card:first-child {grid-column: auto;}
+        section.Skills .Grid {grid-template-columns: 1.35fr 1fr;}
+        section.Interests .Grid {grid-template-columns: repeat(3, 1fr);}
+
+        .Card {
+            gap: 6px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            box-shadow: none;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .CardHead {margin-bottom: 2px;}
+        .PlainList {gap: 4px;}
+        .Points {gap: 3px; margin-top: 0;}
+        .InfoList li {padding: 6px 0;}
+        .SkillGroup {gap: 6px;}
+        .SkillGroup + .SkillGroup {padding-top: 8px;}
+        .Tags {gap: 6px;}
+
+        .IconBox {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            box-shadow: none;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+
+            svg {width: 18px; height: 18px;}
+        }
+
+        .Badge, .Tags li {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        a {text-decoration: none !important;}
+
+        section.Timeline {
+            .TimelineList {max-width: none; margin: 0;}
+
+            .TimelineItem {
+                display: block;
+                padding-bottom: 6px !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+
+                .Rail {display: none;}
+                .Content {max-width: none; gap: 6px;}
+                .Badge {padding: 3px 12px;}
+                h3 {font-size: 1.25rem;}
+            }
+
+            .Card .Link {display: none;}
+        }
     }
 }
