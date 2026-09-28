@@ -7378,7 +7378,11 @@ main.CV {
     section.Profile {margin-top: 100px;}
     section.Skills, section.Timeline, section.Interests {margin-top: 140px;}
     section.Timeline {scroll-margin-top: 90px;}
-    .SecondaryHero .SubTitle {max-width: 760px;}
+    .SecondaryHero {
+        .SubTitle {max-width: 760px;}
+        .ArrowBtn .Arrow {transform: translate(0, -3px)}
+        .ArrowBtn:hover .Arrow {transform: translate(0, 0)}
+    }
 
     .Grid {
         max-width: 1200px;
