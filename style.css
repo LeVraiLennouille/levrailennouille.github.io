@@ -5960,6 +5960,266 @@ main.Contact {
     }
 }
 
+main.City {
+
+    section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity {
+        max-width: 1400px;
+        margin: 200px auto 0;
+        padding-inline: clamp(20px, 5vw, 40px);
+    }
+
+    section.Local .Layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        gap: 64px;
+        align-items: start;
+
+        .Intro p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--Muted);
+            max-width: 64ch;
+            margin-bottom: 18px;
+        }
+
+        .Facts {
+            position: sticky;
+            top: 110px;
+            gap: 0;
+            border-color: rgba(var(--PrimaryRGB), 0.5);
+
+            h3 {margin-bottom: 18px;}
+
+            dl > div {
+                padding: 14px 0;
+                border-top: 1px solid var(--Borders);
+            }
+
+            dt {
+                font-size: 0.78rem;
+                font-weight: 800;
+                color: var(--Primary);
+                margin-bottom: 4px;
+            }
+
+            dd {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                color: var(--Charcoal);
+
+                a {color: var(--Primary); text-decoration: none; font-weight: 700;}
+                a:hover {text-decoration: underline;}
+            }
+        }
+    }
+
+    section.Offers {
+        .OfferGrid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+
+            .Card {
+                position: relative;
+
+                .Badge {
+                    align-self: flex-start;
+                    font-size: 0.78rem;
+                    font-weight: 600;
+                    color: var(--PureWhite);
+                    background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                    padding: 6px 14px;
+                    border-radius: 50px;
+                    white-space: nowrap;
+                }
+
+                h3 {font-size: 1.35rem;}
+                > p {font-size: 0.98rem;}
+
+                .Link::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    section.Audience .Layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+        gap: 64px;
+        align-items: start;
+
+        .SectionTitle {position: sticky; top: 110px;}
+
+        .AudienceList {
+            list-style: none;
+
+            li {
+                padding: 26px 0;
+                border-top: 1px solid var(--DarkBorders);
+
+                &:last-child {border-bottom: 1px solid var(--DarkBorders);}
+            }
+
+            h3 {
+                font-size: 1.3rem;
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 8px;
+            }
+
+            p {
+                font-size: 1rem;
+                line-height: 1.65;
+                color: var(--Muted);
+                max-width: 56ch;
+            }
+        }
+    }
+
+    section.Steps {
+        .SectionTitle .Subtitle a {color: var(--Primary); font-weight: 700; text-decoration: none;}
+        .SectionTitle .Subtitle a:hover {text-decoration: underline;}
+
+        .StepList {
+            list-style: none;
+            counter-reset: step;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 24px;
+
+            li {
+                counter-increment: step;
+                border-top: 2px solid var(--Primary);
+                padding-top: 18px;
+
+                &::before {
+                    content: counter(step);
+                    display: block;
+                    font-size: 2.6rem;
+                    font-weight: 800;
+                    line-height: 1;
+                    color: transparent;
+                    -webkit-text-stroke: 1.5px var(--Primary);
+                    margin-bottom: 14px;
+                }
+            }
+
+            h3 {
+                font-size: 1.15rem;
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 8px;
+            }
+
+            p {
+                font-size: 0.92rem;
+                line-height: 1.6;
+                color: var(--Muted);
+            }
+        }
+    }
+
+    section.CityFAQ {
+        max-width: 900px;
+
+        .FAQList {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            details {
+                background: var(--PureWhite);
+                border-radius: 14px;
+                padding: 6px 22px;
+                box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.05);
+
+                &[open] summary {color: var(--Primary); margin-bottom: 6px;}
+                &[open] summary::after {transform: rotate(45deg);}
+
+                summary {
+                    list-style: none;
+                    padding: 16px 0;
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: var(--Charcoal);
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 16px;
+                    transition: color 0.2s ease;
+
+                    &::-webkit-details-marker {display: none;}
+
+                    &::after {
+                        content: "+";
+                        flex-shrink: 0;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 50%;
+                        background: rgba(var(--PrimaryRGB), 0.12);
+                        color: var(--Primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                        transition: transform 0.25s ease;
+                    }
+                }
+
+                p {
+                    font-size: 0.95rem;
+                    line-height: 1.7;
+                    color: var(--Muted);
+                    padding-bottom: 18px;
+                }
+            }
+        }
+    }
+
+    section.OtherCity .Band {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 40px 48px;
+        border-radius: 24px;
+        background: var(--Charcoal);
+
+        h2 {
+            font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+            font-weight: 800;
+            color: var(--PureWhite);
+            margin-bottom: 8px;
+        }
+
+        p {color: rgba(var(--PureWhiteRGB), 0.72); font-size: 1rem; line-height: 1.6;}
+
+        .BtnSolid {flex-shrink: 0;}
+    }
+
+    @media (max-width: 1023px) {
+        section.Steps .StepList {grid-template-columns: repeat(3, minmax(0, 1fr));}
+    }
+
+    @media (max-width: 768px) {
+        section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity {margin-top: 100px;}
+
+        section.Local .Layout, section.Audience .Layout {grid-template-columns: 1fr; gap: 36px;}
+        section.Local .Layout .Facts, section.Audience .Layout .SectionTitle {position: static;}
+
+        section.Offers .OfferGrid {grid-template-columns: 1fr;}
+
+        section.Steps .StepList {grid-template-columns: 1fr; gap: 28px;}
+
+        section.OtherCity .Band {flex-direction: column; align-items: flex-start; padding: 32px 24px;}
+    }
+}
+
 main.Simu {
     margin: 0;
     padding: 0;
