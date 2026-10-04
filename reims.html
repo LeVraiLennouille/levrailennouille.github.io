@@ -36,6 +36,99 @@ schema_type: WebPage
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
     {% include jsonld.html %}
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://lennouille.fr/reims#service",
+      "name": "Lennouille — UX Designer & Webdesigner à Reims",
+      "url": "https://lennouille.fr/reims",
+      "description": "Webdesigner et UX Designer freelance pour les entreprises de Reims et de la Marne : site web sur-mesure, audit UX, refonte et design system. Demande ton devis.",
+      "founder": {
+        "@type": "Person",
+        "name": "Lenny Gadroy"
+      },
+      "email": "lenny@lennouille.fr",
+      "serviceType": [
+        "UX Design",
+        "Webdesign",
+        "Intégration web",
+        "Audit UX"
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Reims"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Marne"
+        },
+        {
+          "@type": "Country",
+          "name": "France"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://lennouille.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Reims",
+          "item": "https://lennouille.fr/reims"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien coûte un site web avec un webdesigner à Reims ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Es-tu basé à Reims ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ma base principale est à Poitiers, et je suis également présent à Reims, où j'ai fait mes études. Je peux te rencontrer sur place sur demande, et tout le reste du projet se déroule sans friction à distance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre UX Design et webdesign ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le webdesign donne forme au site : couleurs, typographies, mise en page. L'UX Design s'occupe du parcours : que la personne trouve ce qu'elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j'intègre le résultat en code."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peux-tu refaire un site existant à Reims sans perdre mon référencement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Mon audit UX inclut l'analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
 </head>
 <body>
     <main class="City Reims">
