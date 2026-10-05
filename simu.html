@@ -57,8 +57,15 @@ description: "Estime le coût de ton projet UI/UX Design en 6 questions simples.
             "price": "0",
             "priceCurrency": "EUR"
           },
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          },
           "provider": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           }

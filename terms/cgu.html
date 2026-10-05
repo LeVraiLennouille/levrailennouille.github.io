@@ -53,6 +53,7 @@ schema_type: WebPage
           {%- endif %}
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           }

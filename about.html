@@ -55,6 +55,7 @@ description: "Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers 
           {%- endif %}
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           },
@@ -84,6 +85,7 @@ description: "Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers 
           },
           "worksFor": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           },

@@ -52,6 +52,7 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
           {%- endif %}
           "mainEntity": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}",
             "contactPoint": {
@@ -63,6 +64,7 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
           },
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           }

@@ -42,6 +42,23 @@ schema_type: WebPage
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebPage",
+          "@id": "{{ page_url }}#page",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          },
+          "about": {
+            "@id": "{{ page_url }}#service"
+          }
+        },
+        {
           "@type": "ProfessionalService",
           "@id": "{{ page_url }}#service",
           "name": {{ biz.name | append: " — UX Designer & Webdesigner à Poitiers" | jsonify }},
@@ -51,6 +68,12 @@ schema_type: WebPage
             "@type": "Person",
             "@id": "{{ biz.url }}/#lenny-gadroy",
             "name": "Lenny Gadroy"
+          },
+          "parentOrganization": {
+            "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
           },
           "email": {{ biz.email | jsonify }},
           "serviceType": [

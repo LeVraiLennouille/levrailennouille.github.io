@@ -74,6 +74,7 @@ schema_type: Article
           },
           "publisher": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}",
             "logo": {
@@ -83,6 +84,7 @@ schema_type: Article
           },
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           }

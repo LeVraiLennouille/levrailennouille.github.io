@@ -55,6 +55,7 @@ description: "CV de Lenny Gadroy, UI/UX Designer freelance : Master Web éditori
           {%- endif %}
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           },
@@ -84,6 +85,7 @@ description: "CV de Lenny Gadroy, UI/UX Designer freelance : Master Web éditori
           },
           "worksFor": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           },

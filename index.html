@@ -34,7 +34,7 @@ schema_type: Organization
     <link rel="canonical" href="https://lennouille.fr">
     <meta name="theme-color" content="#1c1c1e">
     <link href="/style.css" rel="stylesheet">
-        <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
     {%- assign biz = site.data.business -%}
     {%- assign page_url = biz.url | append: "/" -%}
     <script type="application/ld+json">
@@ -59,7 +59,7 @@ schema_type: Organization
           },
           "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "{{ biz.url }}/assets/icon.svg"
+            "url": "{{ biz.url }}{{ biz.logo }}"
           }
         },
         {
@@ -80,9 +80,9 @@ schema_type: Organization
           "url": "{{ biz.url }}",
           "logo": {
             "@type": "ImageObject",
-            "url": "{{ biz.url }}/assets/icon.svg"
+            "url": "{{ biz.url }}{{ biz.logo }}"
           },
-          "image": "{{ biz.url }}/assets/icon.svg",
+          "image": "{{ biz.url }}{{ biz.logo }}",
           "description": "Studio créatif indépendant d'UI/UX design : identité de marque, design system, conception d'interfaces et développement web.",
           "email": {{ biz.email | jsonify }},
           "founder": {

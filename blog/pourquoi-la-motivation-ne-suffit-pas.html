@@ -72,6 +72,7 @@ date: 2026-12-01
           },
           "publisher": {
             "@type": "Organization",
+            "@id": "{{ biz.url }}/#organization",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}",
             "logo": {
@@ -81,6 +82,7 @@ date: 2026-12-01
           },
           "isPartOf": {
             "@type": "WebSite",
+            "@id": "{{ biz.url }}/#website",
             "name": {{ biz.name | jsonify }},
             "url": "{{ biz.url }}"
           }
