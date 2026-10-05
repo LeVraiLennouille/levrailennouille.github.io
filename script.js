@@ -21,7 +21,7 @@ var path = window.location.pathname.split('/').pop() || 'index';
 function initHamburger() {
     var navbar = document.querySelector('.NavBar');
     var btn = navbar ? navbar.querySelector('.HamburgerBtn') : null;
-    var nav = navbar ? navbar.querySelector('.MobileNav') : null;
+    var nav = navbar ? navbar.querySelector('.NavMenu') : null;
     if (!navbar || !btn || !nav) return;
 
     function toggle(force) {
