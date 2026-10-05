@@ -24,7 +24,7 @@
   quote: "Lenny aborde les interfaces avec une méthode rigoureuse. Sa démarche UX s'appuie sur l'analyse des besoins. Il justifie ses choix par des données chiffrées."
   authorName: "Nicolas Louveton"
   authorRole: "Professeur, Master SIC"
-  avatar: "?"
+  avatar: "N"
 
 - id: "simon-gauchet"
   placeholder: true
@@ -45,7 +45,7 @@
   quote: "Lenny s'investit à 200% depuis ses débuts en freelance. Sa progression en design et en développement web force le respect. Il relève les défis avec détermination."
   authorName: "Maxence Hallé"
   authorRole: "Meilleur ami"
-  avatar: "?"
+  avatar: "M"
 
 - id: "annaelle"
   placeholder: true

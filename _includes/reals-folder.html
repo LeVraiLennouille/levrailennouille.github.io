@@ -1,25 +1,3 @@
-{%- comment -%}
-  Section "Dossier de documents" (FolderCard) — remplace le bloc dupliqué dans chaque page projet.
-  Même logique que reals-related.html : lit reals.yml pour éviter de répéter le HTML/les valeurs.
-
-  Paramètre :
-    id = identifiant du projet courant (facultatif)
-         À défaut : page.real_id, sinon déduit de page.url (/reals/<id>/)
-
-  Usage dans une page projet (le wrapper .FolderSection reste dans la page) :
-    ---
-    real_id: primaire
-    ---
-    <div class="FolderSection">
-      {% include reals-folder.html %}
-    </div>
-
-  Champs reals.yml utilisés (facultatifs, avec valeurs par défaut) :
-    folderSlug  → nom du zip : /pdf/reals/dossier-<folderSlug>.zip (défaut : id)
-                  ex. "mu" utilise folderSlug: "muetre" → dossier-muetre.zip
-    folderFiles → nombre affiché dans le compteur "Fichiers" (défaut : 5)
-{%- endcomment -%}
-
 {%- assign _id = include.id | default: page.real_id -%}
 {%- unless _id -%}
   {%- assign _id = page.url | split: "/reals/" | last | split: "/" | first | remove: ".html" -%}
