@@ -36,7 +36,53 @@ description: "Estime le coût de ton projet UI/UX Design en 6 questions simples.
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/simu" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "{{ page_url }}#app",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "browserRequirements": "Requires JavaScript",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          },
+          "provider": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Simulateur de devis",
+              "item": "{{ page_url }}"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <main class="Simu">

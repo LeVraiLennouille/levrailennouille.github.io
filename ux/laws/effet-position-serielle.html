@@ -41,7 +41,78 @@ schema_type: Article
     <link href="/style.css" rel="stylesheet">
     <link href="/ux/laws/laws.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/ux/laws/effet-position-serielle/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{ page_url }}#article",
+          "headline": {{ page.short_title | default: page.title | jsonify }},
+          "name": {{ page.title | jsonify }},
+          "url": "{{ page_url }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          },
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "articleSection": {{ page.section | jsonify }},
+          "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ biz.url }}{{ biz.logo }}"
+            }
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "UX",
+              "item": "{{ biz.url }}/ux"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": {{ page.short_title | jsonify }},
+              "item": "{{ page_url }}"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <main class="UX SubPage" id="top">

@@ -37,6 +37,82 @@ client: "CarAds Studio"
     <link rel="canonical" href="https://lennouille.fr/reals/carads">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/reals/carads" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "@id": "{{ page_url }}#work",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | split: " | " | first | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.image %}
+          "image": "{{ biz.url }}{{ page.image }}",
+          {%- endif %}
+          "keywords": [
+            "UI/UX Design",
+            "Webdesign",
+            "Identité visuelle"
+          ],
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.client %}
+          "about": {
+            "@type": "Organization",
+            "name": {{ page.client | jsonify }}
+          },
+          {%- endif %}
+          "creator": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Réalisations",
+              "item": "{{ biz.url }}/reals"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": {{ page.title | split: " | " | first | jsonify }},
+              "item": "{{ page_url }}"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     {% include header.html %}

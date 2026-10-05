@@ -35,7 +35,110 @@ schema_type: WebPage
     <meta name="theme-color" content="#1c1c1e">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/ux/iso" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "{{ page_url }}#page",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "UX",
+              "item": "{{ biz.url }}/ux"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "ISO",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "url": "{{ page_url }}",
+          "inLanguage": "fr-FR",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Dois-je acheter les textes officiels des normes ISO pour les respecter ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pas nécessairement. De nombreuses ressources gratuites, ou déjà vues en formation initiale, expliquent les principes clés. L'achat du texte officiel devient surtout utile si un client ou un contrat l'exige noir sur blanc."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Une entreprise « certifiée ISO » garantit-elle une bonne UX ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pas automatiquement. Une certification comme ISO 27001 ou ISO 9001 porte sur un système de management, pas sur la qualité de l'expérience utilisateur d'un produit précis. Les deux sujets sont complémentaires, jamais interchangeables."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Le RGAA est-il une norme ISO ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. Le RGAA est un référentiel français qui s'appuie sur les WCAG, elles-mêmes reconnues comme norme ISO/IEC 40500, mais adapté et rendu obligatoire par la loi française, pas par l'ISO elle-même."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle norme connaître en priorité quand on débute ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "L'ISO 9241-11 pour le vocabulaire de base de l'utilisabilité, et les WCAG (ISO/IEC 40500) pour l'accessibilité : à elles deux, elles couvrent l'essentiel de ce qu'un client peut vous demander."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Les normes ISO remplacent-elles les tests utilisateurs ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non, jamais. Elles donnent un cadre et un vocabulaire commun, mais seul un test avec de vraies personnes confirme qu'une interface fonctionne réellement pour son public."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Un client peut-il exiger une « certification ISO » de mon travail ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un client peut exiger que votre méthode s'appuie sur les principes d'une norme, comme l'ISO 9241-210, mais pas une certification personnelle qui n'existe pas. Soyez transparent sur cette nuance dès le départ pour éviter tout malentendu."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <main class="UX SubPage" id="top">

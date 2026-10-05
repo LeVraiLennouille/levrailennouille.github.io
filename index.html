@@ -34,8 +34,88 @@ schema_type: Organization
     <link rel="canonical" href="https://lennouille.fr">
     <meta name="theme-color" content="#1c1c1e">
     <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+        <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "{{ page_url }}#page",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "isPartOf": {
+            "@id": "{{ biz.url }}/#website"
+          },
+          "about": {
+            "@id": "{{ biz.url }}/#organization"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "{{ biz.url }}/assets/icon.svg"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ biz.url }}/#website",
+          "url": "{{ biz.url }}",
+          "name": {{ biz.name | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          "publisher": {
+            "@id": "{{ biz.url }}/#organization"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "{{ biz.url }}/#organization",
+          "name": {{ biz.name | jsonify }},
+          "url": "{{ biz.url }}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ biz.url }}/assets/icon.svg"
+          },
+          "image": "{{ biz.url }}/assets/icon.svg",
+          "description": "Studio créatif indépendant d'UI/UX design : identité de marque, design system, conception d'interfaces et développement web.",
+          "email": {{ biz.email | jsonify }},
+          "founder": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Poitiers",
+            "addressCountry": "FR"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "France"
+          },
+          "serviceType": [
+            "UX Design",
+            "UI Design",
+            "Webdesign",
+            "Design system",
+            "Audit UX",
+            "Intégration web"
+          ],
+          "knowsLanguage": "fr",
+          "sameAs": [
+            "https://www.linkedin.com/in/LennyGadroy",
+            "https://x.com/LennyGdr19"
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <main class="Index">

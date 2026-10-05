@@ -38,7 +38,126 @@ date: 2026-08-01
     <link rel="canonical" href="https://lennouille.fr/blog/ux-design-pour-les-nuls/">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/blog/ux-design-pour-les-nuls/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{ page_url }}#article",
+          "headline": {{ page.short_title | default: page.title | jsonify }},
+          "name": {{ page.title | jsonify }},
+          "url": "{{ page_url }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          },
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "articleSection": {{ page.section | jsonify }},
+          "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ biz.url }}{{ biz.logo }}"
+            }
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "{{ biz.url }}/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "UX pour les nuls",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "url": "{{ page_url }}",
+          "inLanguage": "fr-FR",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Faut-il savoir coder pour faire de l'UX design ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. L'UX design s'appuie surtout sur la recherche, l'organisation de l'information et la conception de parcours. Savoir coder aide à mieux dialoguer avec les développeurs, mais ce n'est pas un prérequis pour commencer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est la différence entre un UX designer et un UI designer ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "L'UX designer réfléchit au parcours et à la logique globale d'un produit, tandis que l'UI designer s'occupe de l'habillage visuel : couleurs, typographies, icônes. Dans beaucoup de petites structures, une même personne fait les deux."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quels outils utiliser pour débuter en UX ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Figma est aujourd'hui l'outil le plus utilisé pour créer des maquettes et des prototypes. Pour la recherche utilisateur, un simple carnet, un tableur ou un outil dédié suffisent largement au départ."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Combien de temps faut-il pour apprendre les bases de l'UX ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Comprendre les grands principes présentés dans cet article peut se faire en quelques heures. Devenir réellement à l'aise demande plutôt plusieurs mois de pratique, sur de vrais projets, avec de vrais retours d'utilisateurs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "L'UX design, c'est seulement pour les sites web et les applications ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pas du tout. Les mêmes principes s'appliquent à un distributeur de billets, à la signalétique d'un aéroport ou au mode d'emploi d'un four à micro-ondes. Dès qu'une personne interagit avec quelque chose, il y a de l'UX."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     {% include header.html %}

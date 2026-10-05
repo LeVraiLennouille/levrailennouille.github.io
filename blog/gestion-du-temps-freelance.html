@@ -39,7 +39,134 @@ date: 2027-03-01
     <link rel="canonical" href="https://lennouille.fr/blog/gestion-du-temps-freelance/">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/blog/gestion-du-temps-freelance/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{ page_url }}#article",
+          "headline": {{ page.short_title | default: page.title | jsonify }},
+          "name": {{ page.title | jsonify }},
+          "url": "{{ page_url }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          },
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "articleSection": {{ page.section | jsonify }},
+          "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ biz.url }}{{ biz.logo }}"
+            }
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "{{ biz.url }}/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Gestion du temps",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "url": "{{ page_url }}",
+          "inLanguage": "fr-FR",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Combien de temps consacrer au time blocking chaque jour ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Il n'y a pas de règle fixe : certains bloquent leur journée heure par heure, d'autres préfèrent une logique à la semaine. Commencez par un seul bloc protégé par jour, dédié à votre travail de fond, et ajustez ensuite selon ce qui tient dans la durée."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "La méthode Pomodoro fonctionne-t-elle pour du travail créatif long, comme une maquette UI ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Elle est surtout pensée pour les tâches qu'on repousse ou qui demandent de la discipline, comme l'administratif. Pour un travail créatif qui demande un état de concentration prolongé, un bloc plus long sans interruption est souvent plus efficace : gardez le Pomodoro pour les tâches qui vous coûtent le plus à démarrer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Que faire si je n'arrive jamais à respecter mon planning ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "C'est souvent le signe que le planning est trop ambitieux, pas que vous manquez de discipline. Réduisez le nombre de tâches prévues par jour et laissez volontairement des marges pour les imprévus, quasiment inévitables en freelance."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment gérer son temps quand on cumule freelance et études ou un autre emploi ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le time blocking devient encore plus utile : bloquez des créneaux fixes et non négociables pour chaque activité, plutôt que d'essayer de tout faire en même temps. La bascule mentale entre deux activités a un coût, autant la limiter au minimum de fois possible dans la journée."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Faut-il travailler le week-end pour rattraper le retard ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ponctuellement, ça peut dépanner. En système récurrent, c'est plutôt le signe que la charge de travail dépasse ce qui est soutenable, et le week-end de rattrapage devient vite la norme plutôt que l'exception. Mieux vaut revoir les priorités ou les délais annoncés aux clients."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est la meilleure méthode de gestion du temps ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Celle que vous tenez sur la durée. Toutes les techniques présentées ici gagnent à être testées, ajustées, voire combinées, jusqu'à trouver la version qui correspond à votre rythme réel, pas à celui d'un livre de productivité générique."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     {% include header.html %}

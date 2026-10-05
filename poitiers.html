@@ -35,99 +35,101 @@ schema_type: WebPage
     <meta name="theme-color" content="#1c1c1e">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/poitiers" -%}
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
     {
-      "@type": "ProfessionalService",
-      "@id": "https://lennouille.fr/poitiers#service",
-      "name": "Lennouille — UX Designer & Webdesigner à Poitiers",
-      "url": "https://lennouille.fr/poitiers",
-      "description": "Lenny Gadroy, UX Designer et webdesigner freelance à Poitiers : site web sur-mesure, audit UX et refonte pour les entreprises de la Vienne. Demande ton devis.",
-      "founder": {
-        "@type": "Person",
-        "name": "Lenny Gadroy"
-      },
-      "email": "lenny@lennouille.fr",
-      "serviceType": [
-        "UX Design",
-        "Webdesign",
-        "Intégration web",
-        "Audit UX"
-      ],
-      "areaServed": [
+      "@context": "https://schema.org",
+      "@graph": [
         {
-          "@type": "City",
-          "name": "Poitiers"
+          "@type": "ProfessionalService",
+          "@id": "{{ page_url }}#service",
+          "name": {{ biz.name | append: " — UX Designer & Webdesigner à Poitiers" | jsonify }},
+          "url": "{{ page_url }}",
+          "description": {{ page.description | jsonify }},
+          "founder": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "email": {{ biz.email | jsonify }},
+          "serviceType": [
+            "UX Design",
+            "Webdesign",
+            "Intégration web",
+            "Audit UX"
+          ],
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Poitiers"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Vienne"
+            },
+            {
+              "@type": "Country",
+              "name": "France"
+            }
+          ]
         },
         {
-          "@type": "AdministrativeArea",
-          "name": "Vienne"
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Poitiers",
+              "item": "{{ page_url }}"
+            }
+          ]
         },
         {
-          "@type": "Country",
-          "name": "France"
-        }
-      ]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Accueil",
-          "item": "https://lennouille.fr/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Poitiers",
-          "item": "https://lennouille.fr/poitiers"
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Combien coûte un site web avec un webdesigner à Poitiers ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Peut-on se rencontrer à Poitiers ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Oui. Je propose un rendez-vous en présentiel à Poitiers pour cadrer ton projet, ou en visio si tu préfères. Tu peux réserver un créneau depuis la page de contact."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Quelle est la différence entre UX Design et webdesign ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Le webdesign donne forme au site : couleurs, typographies, mise en page. L'UX Design s'occupe du parcours : que la personne trouve ce qu'elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j'intègre le résultat en code."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Travailles-tu uniquement avec des entreprises de Poitiers ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Non. Je suis basé à Poitiers, mais j'accompagne aussi des projets à distance partout en France, de l'audit à la mise en ligne."
-          }
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Combien coûte un site web avec un webdesigner à Poitiers ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Peut-on se rencontrer à Poitiers ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Oui. Je propose un rendez-vous en présentiel à Poitiers pour cadrer ton projet, ou en visio si tu préfères. Tu peux réserver un créneau depuis la page de contact."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est la différence entre UX Design et webdesign ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le webdesign donne forme au site : couleurs, typographies, mise en page. L'UX Design s'occupe du parcours : que la personne trouve ce qu'elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j'intègre le résultat en code."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Travailles-tu uniquement avec des entreprises de Poitiers ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. Je suis basé à Poitiers, mais j'accompagne aussi des projets à distance partout en France, de l'audit à la mise en ligne."
+              }
+            }
+          ]
         }
       ]
     }
-  ]
-}
     </script>
 </head>
 <body>

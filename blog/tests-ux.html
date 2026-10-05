@@ -39,7 +39,134 @@ date: 2027-05-01
     <link rel="canonical" href="https://lennouille.fr/blog/tests-ux/">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/blog/tests-ux/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{ page_url }}#article",
+          "headline": {{ page.short_title | default: page.title | jsonify }},
+          "name": {{ page.title | jsonify }},
+          "url": "{{ page_url }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          },
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "articleSection": {{ page.section | jsonify }},
+          "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ biz.url }}{{ biz.logo }}"
+            }
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "{{ biz.url }}/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Tests UX",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "url": "{{ page_url }}",
+          "inLanguage": "fr-FR",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Faut-il un budget important pour commencer à tester ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. Un test guerrilla auprès de cinq inconnus dans un café ou un test d'arborescence réalisé avec un outil gratuit coûte quasiment rien, hormis votre temps. Le budget influence surtout l'ampleur et la précision du test, pas la possibilité même d'en faire un."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quel test choisir quand on n'a jamais testé de sa vie ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un test utilisateur modéré classique, avec cinq participants et trois ou quatre tâches simples sur votre produit actuel. C'est la méthode la plus formatrice pour comprendre concrètement ce que révèle un test, avant de se spécialiser dans des méthodes plus techniques."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Peut-on tester avant d'avoir un prototype fonctionnel ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolument, et c'est même recommandé. Le tri de cartes, le test d'arborescence ou même un simple prototype papier se testent très tôt, avant d'avoir écrit la moindre ligne de code, justement pour éviter de construire sur une base bancale."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Les tests remplacent-ils une revue heuristique menée par un expert ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non, les deux sont complémentaires. Une revue heuristique, l'analyse d'une interface par un expert à la lumière de principes connus comme les lois listées dans le catalogue des 30 lois de l'UX , permet de repérer rapidement des problèmes évidents, à moindre coût. Mais seul un vrai test révèle comment de vraies personnes se comportent réellement."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Combien de temps prévoir pour un cycle de test complet ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Comptez une à deux semaines pour un cycle complet incluant le recrutement, la rédaction du script de test, l'animation des sessions et la synthèse des résultats. Un test guerrilla, à l'inverse, peut se boucler en une seule après-midi."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Faut-il retester à chaque nouvelle fonctionnalité ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pas nécessairement dans son intégralité. Un test formatif ciblé, avec trois ou quatre participants uniquement sur le nouveau parcours, suffit souvent à sécuriser une évolution sans relancer une étude complète à chaque mise à jour."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     {% include header.html %}

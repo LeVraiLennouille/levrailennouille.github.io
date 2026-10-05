@@ -39,7 +39,134 @@ date: 2027-01-01
     <link rel="canonical" href="https://lennouille.fr/blog/combien-coute-un-site-internet-en-2027/">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/blog/combien-coute-un-site-internet-en-2027/" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{ page_url }}#article",
+          "headline": {{ page.short_title | default: page.title | jsonify }},
+          "name": {{ page.title | jsonify }},
+          "url": "{{ page_url }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page_url }}"
+          },
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.date %}
+          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "articleSection": {{ page.section | jsonify }},
+          "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ biz.url }}{{ biz.logo }}"
+            }
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "{{ biz.url }}/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Coût d'un site",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "url": "{{ page_url }}",
+          "inLanguage": "fr-FR",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Combien coûte un site internet vitrine sur-mesure ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un site vitrine professionnel coûte entre 500€ et 8 000€ selon le niveau de personnalisation. En passant par un designer UI/UX et développeur freelance, comptez 500€ à 3 000€ pour une interface pensée pour vos utilisateurs. En agence, les prix démarrent plutôt à 2 000€."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quel est le prix d'un site internet pour une petite entreprise ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pour une TPE ou un artisan, prévoyez un budget de 800€ à 2 500€ pour un site vitrine de qualité professionnelle. Ce budget inclut le design de l'interface (UI), le développement web sur-mesure et l'optimisation SEO de base."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Combien coûte la création d'un site e-commerce ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un site e-commerce coûte entre 1 500€ et 50 000€ selon sa complexité et la profondeur du parcours d'achat. Pour une petite boutique de moins de 50 produits avec un tunnel de conversion optimisé, comptez 1 500€ à 5 000€. Les grandes boutiques avec des centaines de produits dépassent facilement les 15 000€."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quels sont les frais annuels d'un site internet ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Les frais récurrents d'un site internet comprennent : le nom de domaine (10-50€/an), l'hébergement performant (50-500€/an) et la maintenance (0-3 000€/an). Pour un site vitrine standard, comptez environ 150€ à 400€ par an pour garantir sa sécurité et sa rapidité."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Pourquoi les prix des sites internet varient autant d'un devis à l'autre ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Les écarts de prix s'expliquent par plusieurs facteurs : le type de prestataire (freelance vs agence), le niveau de design (template pré-fabriqué vs interface UI/UX sur-mesure), les fonctionnalités techniques et la qualité de l'accompagnement. Un site « pas cher » cache souvent des compromis sur la qualité ergonomique ou des frais cachés post-livraison."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Vaut-il mieux choisir un freelance web ou une agence ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pour la majorité des projets de TPE/PME, un profil hybride freelance offre le meilleur rapport qualité-prix. Vous dialoguez avec un interlocuteur unique et payez uniquement le travail technique et créatif, sans supporter les lourds frais de structure d'une agence. Privilégiez un freelance pour les budgets inférieurs à 10 000€."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     {% include header.html %}

@@ -37,42 +37,46 @@ description: "CV de Lenny Gadroy, UI/UX Designer freelance : Master Web éditori
     <meta name="theme-color" content="#1c1c1e">
     <link href="/style.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {% include jsonld.html %}
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/master/cv" -%}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "ProfilePage",
-          "@id": "https://lennouille.fr/master/cv#page",
-          "url": "https://lennouille.fr/master/cv",
-          "name": "CV de Lenny Gadroy : UI/UX Designer et intégrateur front-end",
+          "@id": "{{ page_url }}#page",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
           "inLanguage": "fr-FR",
-          "dateModified": "2026-10-02",
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
           "isPartOf": {
             "@type": "WebSite",
-            "name": "Lennouille",
-            "url": "https://lennouille.fr"
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
           },
           "mainEntity": {
-            "@id": "https://lennouille.fr/#lenny-gadroy"
+            "@id": "{{ biz.url }}/#lenny-gadroy"
           }
         },
         {
           "@type": "Person",
-          "@id": "https://lennouille.fr/#lenny-gadroy",
+          "@id": "{{ biz.url }}/#lenny-gadroy",
           "name": "Lenny Gadroy",
           "givenName": "Lenny",
           "familyName": "Gadroy",
           "alternateName": [
-            "Lennouille",
+            {{ biz.name | jsonify }},
             "Lenny Gadroy UI/UX Designer"
           ],
           "jobTitle": "UI/UX Designer freelance",
           "description": "UI/UX Designer, webdesigner et intégrateur front-end freelance, fondateur de Lennouille.",
-          "url": "https://lennouille.fr/about",
-          "image": "https://lennouille.fr/img/me.jpg",
-          "email": "mailto:lenny@lennouille.fr",
+          "url": "{{ biz.url }}/about",
+          "image": "{{ biz.url }}/img/me.jpg",
+          "email": {{ "mailto:" | append: biz.email | jsonify }},
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Poitiers",
@@ -80,8 +84,8 @@ description: "CV de Lenny Gadroy, UI/UX Designer freelance : Master Web éditori
           },
           "worksFor": {
             "@type": "Organization",
-            "name": "Lennouille",
-            "url": "https://lennouille.fr"
+            "name": {{ biz.name | jsonify }},
+            "url": "{{ biz.url }}"
           },
           "sameAs": [
             "https://www.linkedin.com/in/LennyGadroy",
@@ -148,13 +152,13 @@ description: "CV de Lenny Gadroy, UI/UX Designer freelance : Master Web éditori
               "@type": "ListItem",
               "position": 1,
               "name": "Accueil",
-              "item": "https://lennouille.fr/"
+              "item": "{{ biz.url }}/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "CV",
-              "item": "https://lennouille.fr/master/cv"
+              "item": "{{ page_url }}"
             }
           ]
         }
