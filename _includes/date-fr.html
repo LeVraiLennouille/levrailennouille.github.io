@@ -1,10 +1,3 @@
-{%- comment -%}
-  Formate une date ISO "AAAA-MM-JJ" en français, sans dépendre de la locale Jekyll.
-
-  Usage :
-    {% include date-fr.html date=post.date %}                 -> 1 septembre 2026
-    {% include date-fr.html date=p.date format="month" %}     -> Septembre 2026
-{%- endcomment -%}
 {%- assign _mois = "janvier,février,mars,avril,mai,juin,juillet,août,septembre,octobre,novembre,décembre" | split: "," -%}
 {%- assign _moisCap = "Janvier,Février,Mars,Avril,Mai,Juin,Juillet,Août,Septembre,Octobre,Novembre,Décembre" | split: "," -%}
 {%- assign _p = include.date | split: "-" -%}

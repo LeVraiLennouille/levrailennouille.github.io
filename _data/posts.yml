@@ -1,7 +1,3 @@
-# Articles de blog — source unique de vérité (ex-/blog/posts.js)
-# Rendu par _includes/posts-*.html
-# draft: true => l'article est masqué partout (remplace les blocs commentés du JS)
-
 - title: "Gestion du Temps en Freelance : le Guide Complet pour les Créatifs Indépendants"
   excerpt: "Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant."
   category: "Freelance"

@@ -1,13 +1,3 @@
-{%- comment -%}
-  Navigation précédent / suivant — remplace pageNavHTML() dans laws.js.
-  Parcourt les 30 lois dans l'ordre du fichier (code 01 → 30), en boucle.
-
-  Paramètre :
-    slug = slug de la loi courante (facultatif ; sinon page.law_slug puis page.url)
-
-  Usage dans une fiche :
-    <nav class="PageNav">{% include laws-nav.html %}</nav>
-{%- endcomment -%}
 {%- assign _slug = include.slug | default: page.law_slug -%}
 {%- unless _slug -%}
   {%- assign _slug = page.url | remove: ".html" | split: "/" | last -%}
@@ -24,6 +14,6 @@
   {%- assign _prev = _laws[_prevPos] -%}
   {%- assign _next = _laws[_nextPos] -%}
 <a href="{{ '/ux/laws/' | append: _prev.slug | relative_url }}" class="PageNavLink Prev">← {{ _prev.name }}</a>
-<a href="{{ '/ux/' | relative_url }}#catalogue" class="PageNavLink Home">Toutes les lois</a>
+<a href="{{ '/ux' | relative_url }}#catalogue" class="PageNavLink Home">Toutes les lois</a>
 <a href="{{ '/ux/laws/' | append: _next.slug | relative_url }}" class="PageNavLink Next">{{ _next.name }} →</a>
 {%- endif -%}

@@ -1,12 +1,3 @@
-{%- comment -%}
-  Grille du portfolio — remplace le premier bloc de reals.js (data-reals-grid).
-  Rend uniquement les cartes : le conteneur reste dans /reals.html.
-
-  Usage :
-    <div class="ProjectGrid" data-reals-grid>
-      {% include reals-grid.html %}
-    </div>
-{%- endcomment -%}
 {%- assign _reals = site.data.reals | where_exp: "p", "p.comingSoon != true" | sort: "date" | reverse -%}
 {%- for p in _reals -%}
 <a href="{{ p.url | relative_url }}" class="ProjectCard">

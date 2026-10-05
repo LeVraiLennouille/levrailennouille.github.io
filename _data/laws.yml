@@ -1,6 +1,3 @@
-# Lois UX — source unique de vérité (ex-laws.js)
-# Rendu par _includes/laws-*.html
-
 cats:
   - id: "percept"
     label: "Perception & Gestalt"

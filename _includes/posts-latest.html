@@ -1,15 +1,3 @@
-{%- comment -%}
-  3 derniers articles (accueil) — remplace le bloc "LatestPostsGrid" de posts.js.
-  Complète avec des cartes "Bientôt disponible" s'il y a moins de 3 articles publiés.
-
-  Paramètres :
-    count = nombre de cartes (3 par défaut)
-
-  Usage :
-    <div class="BlogGrid" id="LatestPostsGrid">
-      {% include posts-latest.html %}
-    </div>
-{%- endcomment -%}
 {%- assign _count = include.count | default: 3 -%}
 {%- assign _posts = site.data.posts | where_exp: "p", "p.draft != true" | sort: "date" | reverse -%}
 {%- assign _latest = _posts | slice: 0, _count -%}
