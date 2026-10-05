@@ -7,7 +7,7 @@
 {%- endcomment -%}
 {%- assign _cat = site.data.laws.cats | where: "id", include.law.cat | first -%}
 {%- assign _search = include.law.name | append: " " | append: include.law.def | replace: "&nbsp;", " " | downcase -%}
-<a class="LawCard" href="{{ '/ux/laws/' | append: include.law.slug | append: '/' | relative_url }}" data-cat="{{ include.law.cat }}" data-search="{{ _search | escape }}">
+<a class="LawCard" href="{{ '/ux/laws/' | append: include.law.slug relative_url }}" data-cat="{{ include.law.cat }}" data-search="{{ _search | escape }}">
     <img class="CardCover" src="{{ '/img/ux/laws/' | append: include.law.slug | append: '.svg' | relative_url }}" alt="{{ include.law.name | escape }}" loading="lazy" onerror="this.onerror=null;this.src='{{ '/assets/og-preview.png' | relative_url }}';">
     <span class="CardTop"><span class="Category">{{ _cat.label }}</span><span class="Code">UX n°{{ include.law.code }}</span></span>
     <h3>{{ include.law.name }}</h3>

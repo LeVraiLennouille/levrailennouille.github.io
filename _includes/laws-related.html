@@ -1,17 +1,3 @@
-{%- comment -%}
-  Fiches liées — remplace le bloc "relatedGrid" de laws.js.
-  Même logique qu'en JS : les 3 lois suivantes de la même catégorie, en boucle.
-
-  Paramètre :
-    slug = slug de la loi courante (facultatif)
-           À défaut : page.law_slug, sinon déduit de page.url
-
-  Usage dans une fiche :
-    ---
-    law_slug: charge-cognitive
-    ---
-    <div class="RelatedGrid">{% include laws-related.html %}</div>
-{%- endcomment -%}
 {%- assign _slug = include.slug | default: page.law_slug -%}
 {%- unless _slug -%}
   {%- assign _slug = page.url | remove: ".html" | split: "/" | last -%}
@@ -27,7 +13,7 @@
     {%- assign _pos = _idx | plus: _offset | modulo: _same.size -%}
     {%- assign law = _same[_pos] -%}
     {%- unless law.slug == _current.slug -%}
-<a class="Card RelatedCard" href="{{ '/ux/laws/' | append: law.slug | append: '/' | relative_url }}">
+<a class="Card RelatedCard" href="{{ '/ux/laws/' | append: law.slug | relative_url }}">
     <span class="RelatedCode">UX·{{ law.code }}</span>
     <h3>{{ law.name }}</h3>
     <p>{{ law.def }}</p>

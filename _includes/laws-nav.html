@@ -23,7 +23,7 @@
   {%- assign _nextPos = _idx | plus: 1 | modulo: _laws.size -%}
   {%- assign _prev = _laws[_prevPos] -%}
   {%- assign _next = _laws[_nextPos] -%}
-<a href="{{ '/ux/laws/' | append: _prev.slug | append: '/' | relative_url }}" class="PageNavLink Prev">← {{ _prev.name }}</a>
-<a href="{{ '/comprendre-ux/' | relative_url }}#catalogue" class="PageNavLink Home">Toutes les lois</a>
-<a href="{{ '/ux/laws/' | append: _next.slug | append: '/' | relative_url }}" class="PageNavLink Next">{{ _next.name }} →</a>
+<a href="{{ '/ux/laws/' | append: _prev.slug | relative_url }}" class="PageNavLink Prev">← {{ _prev.name }}</a>
+<a href="{{ '/ux/' | relative_url }}#catalogue" class="PageNavLink Home">Toutes les lois</a>
+<a href="{{ '/ux/laws/' | append: _next.slug | relative_url }}" class="PageNavLink Next">{{ _next.name }} →</a>
 {%- endif -%}
