@@ -333,7 +333,7 @@ html, body {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: minmax(290px, 1.35fr) repeat(3, minmax(0, 1fr));
         gap: 40px;
         padding-bottom: 40px;
         border-bottom: 1px solid rgba(var(--PureWhiteRGB), 0.1);
@@ -358,6 +358,7 @@ html, body {
                 padding: 5px 12px;
                 border-radius: 50px;
                 margin-bottom: 16px;
+                white-space: nowrap;
 
                 .FooterBadgeDot {
                     width: 7px;
@@ -5969,11 +5970,20 @@ a.InlineLink {
 }
 
 section.CallToAction.Cities {
+    .Design .Action {max-width: 360px;}
+
     .Design .Action .Links {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 12px;
+        width: max-content;
+        max-width: 100%;
+
+        .ArrowBtn {
+            margin: 0;
+            justify-content: space-between;
+            white-space: nowrap;
+        }
     }
 }
 
