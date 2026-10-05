@@ -5960,6 +5960,23 @@ main.Contact {
     }
 }
 
+a.InlineLink {
+    color: var(--Primary);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {text-decoration: underline;}
+}
+
+section.CallToAction.Cities {
+    .Design .Action .Links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
 main.City {
 
     section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity {

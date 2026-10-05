@@ -29,6 +29,14 @@
             </ul>
         </div>
         <div class="FooterCol">
+            <h4 class="FooterTitle">Zones d'intervention</h4>
+            <ul class="FooterLinks">
+                {% unless page.url contains '/poitiers' %}<li><a href="/poitiers"><span class="FooterLinkArrow">›</span>Webdesigner à Poitiers</a></li>{% endunless %}
+                {% unless page.url contains '/reims' %}<li><a href="/reims"><span class="FooterLinkArrow">›</span>Webdesigner à Reims</a></li>{% endunless %}
+                <li><a href="/contact#rdv"><span class="FooterLinkArrow">›</span>Rendez-vous en visio</a></li>
+            </ul>
+        </div>
+        <div class="FooterCol">
             <h4 class="FooterTitle">Contact</h4>
             <ul class="FooterLinks FooterSocialLinks">
                 <li><a href="https://linkedin.com/in/lennouille/" target="_blank" rel="noopener noreferrer">
