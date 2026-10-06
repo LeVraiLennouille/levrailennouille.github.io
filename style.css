@@ -9250,3 +9250,32 @@ main.NotFound {
         }
     }
 }
+
+main.Reals.SubPage .ProjectFacts {
+    max-width: 1200px; margin: 0 auto 28px; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px;
+}
+main.Reals.SubPage .ProjectFacts > div {
+    background: var(--PureWhite); border-radius: 16px; padding: 22px 22px;
+    box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+}
+main.Reals.SubPage .ProjectFacts dt {
+    font-size: 0.68rem; font-weight: 800; text-transform: uppercase;
+    color: var(--Primary); margin-bottom: 8px;
+}
+main.Reals.SubPage .ProjectFacts dd {
+    margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--Muted); font-weight: 500;
+}
+main.Reals.SubPage .ResultsGrid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+}
+main.Reals.SubPage .ResultItem {
+    background: var(--PureWhite); border-radius: 16px; padding: 26px 24px;
+    box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+}
+main.Reals.SubPage .ResultItem strong {
+    display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900;
+    color: var(--Primary); margin-bottom: 8px;
+}
+main.Reals.SubPage .ResultItem span { font-size: 0.92rem; line-height: 1.5; color: var(--Muted); font-weight: 500; }
+.ToFill { background: #fff3b0; color: #6b5a00; border-radius: 4px; padding: 0 4px; }
