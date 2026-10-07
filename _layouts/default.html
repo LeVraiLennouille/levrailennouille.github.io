@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ page.title | escape }}</title>
+    {%- if page.tarteaucitron %}
+    {% include tarteaucitron.html %}
+    {% include tarteaucitron-services.html %}
+    {%- endif %}
+
+    {%- assign biz = site.data.business -%}
+    {%- if page.url == "/" -%}
+        {%- assign canonical = biz.url -%}
+    {%- else -%}
+        {%- assign clean_url = page.url | replace: "/index.html", "/" | replace: ".html", "" | split: "/" | join: "/" -%}
+        {%- assign canonical = biz.url | append: clean_url -%}
+    {%- endif -%}
+    {%- assign og_image = page.og_image | default: "/assets/og-preview.png" -%}
+    {%- assign og_type = page.og_type | default: "website" -%}
+    {%- assign robots = page.robots | default: "index, follow" -%}
+
+    <meta name="description" content="{{ page.description | escape }}">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="{{ robots }}">
+
+    <meta property="og:type" content="{{ og_type }}">
+    {%- if og_type == "profile" %}
+    <meta property="profile:first_name" content="Lenny">
+    <meta property="profile:last_name" content="Gadroy">
+    <meta property="profile:username" content="LennyGdr19">
+    {%- endif %}
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:description" content="{{ page.description | escape }}">
+    <meta property="og:image" content="{{ biz.url }}{{ og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
+    <meta name="twitter:description" content="{{ page.description | escape }}">
+    <meta name="twitter:image" content="{{ biz.url }}{{ og_image }}">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    {%- unless robots contains "noindex" %}
+    <link rel="canonical" href="{{ canonical }}">
+    {%- endunless %}
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    {%- for css in page.head_styles %}
+    <link href="{{ css }}" rel="stylesheet">
+    {%- endfor %}
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    {%- for js in page.head_scripts %}
+    <script src="{{ js }}"></script>
+    {%- endfor %}
+</head>
+<body>
+{{ content }}
+</body>
+</html>
