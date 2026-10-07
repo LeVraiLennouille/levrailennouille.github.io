@@ -1,0 +1,29 @@
+<script src="{{ '/tarteaucitron/tarteaucitron.min.js' | relative_url }}"></script>
+<script>
+tarteaucitron.init({
+  "privacyUrl": "{{ '/terms/politique-confidentialite' | relative_url }}",
+  "bodyPosition": "bottom",
+  "hashtag": "#cookies",
+  "cookieName": "tarteaucitron",
+  "orientation": "middle",
+  "groupServices": false,
+  "showDetailsOnClick": true,
+  "serviceDefaultState": "wait",
+  "showAlertSmall": false,
+  "cookieslist": true,
+  "closePopup": false,
+  "showIcon": true,
+  "iconPosition": "BottomLeft",
+  "adblocker": false,
+  "DenyAllCta": true,
+  "AcceptAllCta": true,
+  "highPrivacy": true,
+  "handleBrowserDNTRequest": false,
+  "removeCredit": false,
+  "moreInfoLink": true,
+  "useExternalCss": false,
+  "readmoreLink": "{{ '/terms/politique-confidentialite' | relative_url }}",
+  "mandatory": true,
+  "mandatoryCta": false
+});
+</script>
