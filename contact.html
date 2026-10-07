@@ -1,96 +1,64 @@
 ---
+layout: default
 title: "Lennouille — Prêt à donner vie à vos projets UI/UX ?"
 description: "Prêt à transformer votre idée en expérience digitale mémorable ? Contactez Lennouille pour vos besoins en UI/UX Design moderne et centré utilisateur."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lennouille — Prêt à donner vie à vos projets UI/UX ?</title>
-  
-    <meta name="description" content="Prêt à transformer votre idée en expérience digitale mémorable ? Contactez Lennouille pour vos besoins en UI/UX Design moderne et centré utilisateur.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/contact">
-    <meta property="og:title" content="Lennouille — Prêt à donner vie à vos projets UI/UX ?">
-    <meta property="og:description" content="Prêt à transformer votre idée en expérience digitale mémorable ? Contactez Lennouille pour vos besoins en UI/UX Design moderne et centré utilisateur.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lennouille — Prêt à donner vie à vos projets UI/UX ?">
-    <meta name="twitter:description" content="Prêt à transformer votre idée en expérience digitale mémorable ? Contactez Lennouille pour vos besoins en UI/UX Design moderne et centré utilisateur.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/contact">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/contact" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/contact" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "ContactPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "mainEntity": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "contact@lennouille.fr",
+          "availableLanguage": "fr"
+        }
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "ContactPage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.last_modified_at %}
-          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          "mainEntity": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}",
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "customer service",
-              "email": "contact@lennouille.fr",
-              "availableLanguage": "fr"
-            }
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Contact",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "{{ page_url }}"
         }
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     <main class="Contact">
         {% include header.html %}
         <div class="ContactLayout">
@@ -237,5 +205,3 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
             });
         })();
     </script>
-</body>
-</html>

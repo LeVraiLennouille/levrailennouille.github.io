@@ -1,161 +1,129 @@
 ---
+layout: default
 title: "UX Designer & Webdesigner à Poitiers | Lennouille"
 description: "Lenny Gadroy, UX Designer et webdesigner freelance à Poitiers : site web sur-mesure, audit UX et refonte pour les entreprises de la Vienne. Demande ton devis."
 schema_type: WebPage
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>UX Designer & Webdesigner à Poitiers | Lennouille</title>
-
-    <meta name="description" content="Lenny Gadroy, UX Designer et webdesigner freelance à Poitiers : site web sur-mesure, audit UX et refonte pour les entreprises de la Vienne. Demande ton devis.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/poitiers">
-    <meta property="og:title" content="UX Designer & Webdesigner à Poitiers | Lennouille">
-    <meta property="og:description" content="Lenny Gadroy, UX Designer et webdesigner freelance à Poitiers : site web sur-mesure, audit UX et refonte pour les entreprises de la Vienne. Demande ton devis.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="UX Designer & Webdesigner à Poitiers | Lennouille">
-    <meta name="twitter:description" content="Lenny Gadroy, UX Designer et webdesigner freelance à Poitiers : site web sur-mesure, audit UX et refonte pour les entreprises de la Vienne. Demande ton devis.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/poitiers">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/poitiers" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/poitiers" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "about": {
+        "@id": "{{ page_url }}#service"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "{{ page_url }}#service",
+      "name": {{ biz.name | append: " — UX Designer & Webdesigner à Poitiers" | jsonify }},
+      "url": "{{ page_url }}",
+      "description": {{ page.description | jsonify }},
+      "founder": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "email": {{ biz.email | jsonify }},
+      "serviceType": [
+        "UX Design",
+        "Webdesign",
+        "Intégration web",
+        "Audit UX"
+      ],
+      "areaServed": [
         {
-          "@type": "WebPage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "about": {
-            "@id": "{{ page_url }}#service"
+          "@type": "City",
+          "name": "Poitiers"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Vienne"
+        },
+        {
+          "@type": "Country",
+          "name": "France"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Poitiers",
+          "item": "{{ page_url }}"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien coûte un site web avec un webdesigner à Poitiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
           }
         },
         {
-          "@type": "ProfessionalService",
-          "@id": "{{ page_url }}#service",
-          "name": {{ biz.name | append: " — UX Designer & Webdesigner à Poitiers" | jsonify }},
-          "url": "{{ page_url }}",
-          "description": {{ page.description | jsonify }},
-          "founder": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "parentOrganization": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "email": {{ biz.email | jsonify }},
-          "serviceType": [
-            "UX Design",
-            "Webdesign",
-            "Intégration web",
-            "Audit UX"
-          ],
-          "areaServed": [
-            {
-              "@type": "City",
-              "name": "Poitiers"
-            },
-            {
-              "@type": "AdministrativeArea",
-              "name": "Vienne"
-            },
-            {
-              "@type": "Country",
-              "name": "France"
-            }
-          ]
+          "@type": "Question",
+          "name": "Peut-on se rencontrer à Poitiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Je propose un rendez-vous en présentiel à Poitiers pour cadrer ton projet, ou en visio si tu préfères. Tu peux réserver un créneau depuis la page de contact."
+          }
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Poitiers",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "Question",
+          "name": "Quelle est la différence entre UX Design et webdesign ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le webdesign donne forme au site : couleurs, typographies, mise en page. L'UX Design s'occupe du parcours : que la personne trouve ce qu'elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j'intègre le résultat en code."
+          }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Combien coûte un site web avec un webdesigner à Poitiers ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Peut-on se rencontrer à Poitiers ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Oui. Je propose un rendez-vous en présentiel à Poitiers pour cadrer ton projet, ou en visio si tu préfères. Tu peux réserver un créneau depuis la page de contact."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Quelle est la différence entre UX Design et webdesign ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Le webdesign donne forme au site : couleurs, typographies, mise en page. L'UX Design s'occupe du parcours : que la personne trouve ce qu'elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j'intègre le résultat en code."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Travailles-tu uniquement avec des entreprises de Poitiers ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Non. Je suis basé à Poitiers, mais j'accompagne aussi des projets à distance partout en France, de l'audit à la mise en ligne."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Travailles-tu uniquement avec des entreprises de Poitiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Je suis basé à Poitiers, mais j'accompagne aussi des projets à distance partout en France, de l'audit à la mise en ligne."
+          }
         }
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     <main class="City Poitiers">
         {% include header.html %}
         <section class="SecondaryHero">
@@ -326,5 +294,3 @@ schema_type: WebPage
 <!-- Scripts -->
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
-</body>
-</html>

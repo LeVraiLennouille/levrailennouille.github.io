@@ -1,150 +1,117 @@
 ---
+layout: default
 title: "Lenny Gadroy, UI/UX Designer freelance | Lennouille"
 description: "Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers : parcours, compétences en UI, UX et intégration front-end. Fondateur de Lennouille."
+robots: "index, follow, max-image-preview:large, max-snippet:-1"
+og_type: profile
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lenny Gadroy, UI/UX Designer freelance | Lennouille</title>
-
-    <meta name="description" content="Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers : parcours, compétences en UI, UX et intégration front-end. Fondateur de Lennouille.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-
-    <meta property="og:type" content="profile">
-    <meta property="profile:first_name" content="Lenny">
-    <meta property="profile:last_name" content="Gadroy">
-    <meta property="profile:username" content="LennyGdr19">
-    <meta property="og:url" content="https://lennouille.fr/about">
-    <meta property="og:title" content="Lenny Gadroy, UI/UX Designer freelance | Lennouille">
-    <meta property="og:description" content="Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers : parcours, compétences en UI, UX et intégration front-end. Fondateur de Lennouille.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lenny Gadroy, UI/UX Designer freelance | Lennouille">
-    <meta name="twitter:description" content="Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers : parcours, compétences en UI, UX et intégration front-end. Fondateur de Lennouille.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/about">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/about" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/about" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "ProfilePage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "mainEntity": {
+        "@id": "{{ biz.url }}/#lenny-gadroy"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ biz.url }}/#lenny-gadroy",
+      "name": "Lenny Gadroy",
+      "givenName": "Lenny",
+      "familyName": "Gadroy",
+      "alternateName": [
+        {{ biz.name | jsonify }},
+        "Lenny Gadroy UI/UX Designer"
+      ],
+      "jobTitle": "UI/UX Designer freelance",
+      "description": "UI/UX Designer, webdesigner et intégrateur front-end freelance, fondateur de Lennouille.",
+      "url": "{{ biz.url }}/about",
+      "image": "{{ biz.url }}/img/me.jpg",
+      "email": {{ "mailto:" | append: biz.email | jsonify }},
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Poitiers",
+        "addressCountry": "FR"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/LennyGadroy",
+        "https://x.com/LennyGdr19"
+      ],
+      "alumniOf": [
         {
-          "@type": "ProfilePage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.last_modified_at %}
-          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntity": {
-            "@id": "{{ biz.url }}/#lenny-gadroy"
-          }
+          "@type": "CollegeOrUniversity",
+          "name": "Université de Poitiers",
+          "url": "https://www.univ-poitiers.fr"
         },
         {
-          "@type": "Person",
-          "@id": "{{ biz.url }}/#lenny-gadroy",
-          "name": "Lenny Gadroy",
-          "givenName": "Lenny",
-          "familyName": "Gadroy",
-          "alternateName": [
-            {{ biz.name | jsonify }},
-            "Lenny Gadroy UI/UX Designer"
-          ],
-          "jobTitle": "UI/UX Designer freelance",
-          "description": "UI/UX Designer, webdesigner et intégrateur front-end freelance, fondateur de Lennouille.",
-          "url": "{{ biz.url }}/about",
-          "image": "{{ biz.url }}/img/me.jpg",
-          "email": {{ "mailto:" | append: biz.email | jsonify }},
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Poitiers",
-            "addressCountry": "FR"
-          },
-          "worksFor": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "sameAs": [
-            "https://www.linkedin.com/in/LennyGadroy",
-            "https://x.com/LennyGdr19"
-          ],
-          "alumniOf": [
-            {
-              "@type": "CollegeOrUniversity",
-              "name": "Université de Poitiers",
-              "url": "https://www.univ-poitiers.fr"
-            },
-            {
-              "@type": "EducationalOrganization",
-              "name": "EiSINe, Charleville-Mézières"
-            },
-            {
-              "@type": "EducationalOrganization",
-              "name": "Lycée Jean-Baptiste Colbert, Reims"
-            }
-          ],
-          "knowsAbout": [
-            "UX Design",
-            "UI Design",
-            "Webdesign",
-            "Design system",
-            "Audit UX",
-            "Accessibilité web",
-            "SEO",
-            "Figma",
-            "HTML",
-            "CSS",
-            "JavaScript"
-          ],
-          "knowsLanguage": "fr"
+          "@type": "EducationalOrganization",
+          "name": "EiSINe, Charleville-Mézières"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "À propos",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "EducationalOrganization",
+          "name": "Lycée Jean-Baptiste Colbert, Reims"
+        }
+      ],
+      "knowsAbout": [
+        "UX Design",
+        "UI Design",
+        "Webdesign",
+        "Design system",
+        "Audit UX",
+        "Accessibilité web",
+        "SEO",
+        "Figma",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "knowsLanguage": "fr"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "À propos",
+          "item": "{{ page_url }}"
         }
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     <main class="About">
         {% include header.html %}
         <section class="SecondaryHero">
@@ -450,5 +417,3 @@ description: "Lenny Gadroy, UI/UX Designer et webdesigner freelance à Poitiers 
 <!-- Scripts -->
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
-</body>
-</html>
