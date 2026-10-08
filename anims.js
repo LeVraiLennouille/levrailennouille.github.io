@@ -57,11 +57,17 @@
                 y: CONFIG.y,
                 duration: CONFIG.duration,
                 ease: CONFIG.ease,
+                clearProps: "opacity,transform",
                 scrollTrigger: {
                     trigger: block,
                     start: CONFIG.start
                 }
             });
+        });
+
+        // Recalcule les positions une fois polices et images chargées
+        window.addEventListener("load", function () {
+            ScrollTrigger.refresh();
         });
     }
 

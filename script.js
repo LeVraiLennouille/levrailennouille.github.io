@@ -400,8 +400,13 @@ let split     = [[], [], []];
 let splitSpan = [[], [], []];
 let stagger   = 0.04;
 
-window.onload = () => {
-    const heroSection = select(".Hero"); 
+window.addEventListener("load", () => {
+    gsap.set("section", {autoAlpha: 1});
+
+    const heroSection = select(".Hero");
+    // Pas de hero / de .SubText sur cette page (ex. /ux) : on ne lance pas l'animation
+    if (!heroSection || !selectAll(".SubText").length) return;
+
     gsap.set(heroSection, { "--Rotation": "120deg", transformOrigin: "50% 50%" });
     gsap.set(heroSection, { "--Thickness": "8px", "--Border": "8px", "--Gap": "30px" });
 
@@ -427,14 +432,13 @@ window.onload = () => {
             stagger = (i === 0) ? -0.04 : 0.04;
 
             let splitText = splitSpan[i][j];
+            if (!splitText) return;
             gsap.timeline({
                 defaults: { repeatDelay: 0 },
                 onComplete: () => {if (split[i][j + 1]) writeText(i, j + 1);}
             }).to(splitText.chars, {opacity: 1, stagger});
         }
     }
-
-    gsap.set("section", {autoAlpha: 1});
 
     gsap.timeline({defaults: {ease: "elastic.inOut(1.6,0.6,1.3,1)"}})
         .delay(0.25)
@@ -446,7 +450,7 @@ window.onload = () => {
         .to(heroSection, {duration: 0.5, "--Thickness": "20px", "--Border": "10px", "--Gap": "52px"}, 2.3)
 
         .add(() => callWriteText(), 2.5);
-};
+});
 
 // * Scroll * //
 const textElement = document.getElementById('TextReveal');
@@ -533,3 +537,41 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// * Lois UX : filtre + recherche * //
+(function () {
+    const grid  = document.getElementById("grid");
+    const input = document.getElementById("search");
+    if (!grid || !input) return;
+
+    const cards = Array.from(grid.querySelectorAll(".LawCard"));
+    const tabs  = document.querySelectorAll(".Tabs .Tab");
+    const empty = document.getElementById("LawsEmpty");
+    const norm  = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let cat = "all";
+
+    function apply() {
+        const q = norm(input.value.trim());
+        let shown = 0;
+        cards.forEach(card => {
+            const ok = (cat === "all" || card.dataset.cat === cat) &&
+                       (!q || norm(card.dataset.search).includes(q));
+            card.style.display = ok ? "" : "none";
+            if (ok) shown++;
+        });
+        if (empty) empty.style.display = shown ? "none" : "block";
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+
+    tabs.forEach(tab => tab.addEventListener("click", () => {
+        cat = tab.dataset.cat;
+        tabs.forEach(t => {
+            const on = t === tab;
+            t.classList.toggle("active", on);
+            t.setAttribute("aria-pressed", on);
+        });
+        apply();
+    }));
+
+    input.addEventListener("input", apply);
+})();
