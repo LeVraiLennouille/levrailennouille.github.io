@@ -1,0 +1,178 @@
+---
+layout: default
+---
+{%- assign biz = site.data.business -%}
+{%- assign post_url = page.url | replace: ".html", "" | split: "/" | join: "/" -%}
+{%- assign page_url = biz.url | append: post_url -%}
+{%- assign meta = site.data.posts | where: "url", post_url | first -%}
+{%- assign headline = meta.title | default: page.title | split: " | " | first -%}
+{%- assign category = page.category | default: meta.category -%}
+{%- assign reading = page.reading_time | default: meta.readingTime -%}
+{%- assign published = page.date | default: meta.date -%}
+{%- assign summary = page.summary | default: meta.excerpt | default: page.description -%}
+{%- assign post_image = page.image | default: "/assets/og-preview.png" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ page_url }}#article",
+      "url": "{{ page_url }}",
+      "headline": {{ headline | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      "image": "{{ biz.url }}{{ post_image }}",
+      {%- if published %}
+      "datePublished": {{ published | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: published | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      {%- if category %}
+      "articleSection": {{ category | jsonify }},
+      {%- endif %}
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "isPartOf": {
+        "@type": "Blog",
+        "@id": "{{ biz.url }}/blog#blog"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page_url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "{{ biz.url }}/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ headline | jsonify }},
+          "item": "{{ page_url }}"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+{% include header.html %}
+<main class="Blog">
+    <section class="SecondaryHero BlogHero">
+        <div class="Decor" aria-hidden="true">
+            {%- if category %}<span>{{ category }}</span>{% endif %}
+            {%- if published %}<span>{{ published | date: "%Y" }}</span>{% endif %}
+        </div>
+        <div class="HeroInner">
+            <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                <a href="/">Accueil</a>
+                <span class="Sep">/</span>
+                <a href="/blog">Blog</a>
+                <span class="Sep">/</span>
+                <span class="Current">{{ category | default: "Article" }}</span>
+            </nav>
+            {%- if category %}
+            <span class="Category">{{ category }}</span>
+            {%- endif %}
+            <h1 class="Title">{{ headline }}</h1>
+            {%- if summary %}
+            <p class="SubTitle">{{ summary }}</p>
+            {%- endif %}
+            <div class="Meta">
+                <span>Lenny Gadroy</span>
+                {%- if published %}
+                <span class="Dot" aria-hidden="true"></span>
+                <time datetime="{{ published | date_to_xmlschema }}">{{ published | date: "%d/%m/%Y" }}</time>
+                {%- endif %}
+                {%- if reading %}
+                <span class="Dot" aria-hidden="true"></span>
+                <span>{{ reading }} de lecture</span>
+                {%- endif %}
+            </div>
+        </div>
+    </section>
+    <section class="BlogContent">
+        <div class="Container">
+            <aside class="Nav" aria-label="Sommaire de l'article">
+                <p class="Title">Sommaire</p>
+                <ul id="ArticleToc">
+                    {%- for item in page.toc %}
+                    <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+                    {%- endfor %}
+                </ul>
+                <div class="SideCTA">
+                    <p>{{ page.side_cta_text | default: "Un projet de site ou d'interface ? Parlons-en." }}</p>
+                    <a href="/contact">Demander un devis</a>
+                </div>
+            </aside>
+            <article class="BlogArticle">
+{{ content }}
+            </article>
+        </div>
+    </section>
+    <div class="BlogCTA">
+        <h2>{{ page.cta_title | default: "Un projet en tête ?" }}</h2>
+        <p>{{ page.cta_text | default: "Je conçois et je développe des interfaces claires, pensées pour convertir. Discutons de votre projet." }}</p>
+        <div class="CTAButtons">
+            <a href="/contact" class="ButtonSolid">Demander un devis</a>
+            <a href="/reals" class="ButtonGhost">Voir mes réalisations</a>
+        </div>
+    </div>
+    {% include footer.html %}
+</main>
+<!-- Anims -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/anims.js" defer></script>
+    <script>
+        (() => {
+            const toc = document.getElementById("ArticleToc");
+            const article = document.querySelector(".BlogArticle");
+            if (!toc || !article) return;
+            const titles = [...article.querySelectorAll("h2")];
+            const slug = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+            titles.forEach((h) => { if (!h.id) h.id = slug(h.textContent); });
+            if (!toc.children.length) {
+                titles.forEach((h) => {
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+                    a.href = "#" + h.id;
+                    a.textContent = h.textContent;
+                    li.appendChild(a);
+                    toc.appendChild(li);
+                });
+            }
+            const links = [...toc.querySelectorAll("a")];
+            if (!links.length || !("IntersectionObserver" in window)) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+                });
+            }, { rootMargin: "-20% 0px -70% 0px" });
+            titles.forEach((h) => observer.observe(h));
+        })();
+    </script>
