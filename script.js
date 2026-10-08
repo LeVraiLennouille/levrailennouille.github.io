@@ -547,6 +547,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const cards = Array.from(grid.querySelectorAll(".LawCard"));
     const tabs  = document.querySelectorAll(".Tabs .Tab");
     const empty = document.getElementById("LawsEmpty");
+
+    // Révélation à l'entrée dans le viewport : la classe .in-view est stylée dans style.css
+    if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+        cards.forEach(function (card) { io.observe(card); });
+    } else {
+        cards.forEach(function (card) { card.classList.add("in-view"); });
+    }
     const norm  = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let cat = "all";
 

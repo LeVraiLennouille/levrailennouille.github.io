@@ -5,7 +5,6 @@
         ".Card",
         ".ProjectCard",
         ".BlogCard",
-        ".LawCard",
         ".RelatedCard",
         ".FolderCard",
         ".BudgetCard",
@@ -65,7 +64,6 @@
             });
         });
 
-        // Recalcule les positions une fois polices et images chargées
         window.addEventListener("load", function () {
             ScrollTrigger.refresh();
         });
