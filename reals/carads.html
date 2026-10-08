@@ -1,208 +1,74 @@
 ---
+layout: real
 real_id: carads
 title: "Création Identité Visuelle & UI/UX : CarAds Studio | Lennouille"
 description: "Plongez dans la création de l'identité visuelle et le design d'interface UI/UX de CarAds Studio. Un projet de branding complet signé Lennouille, freelance."
 schema_type: CreativeWork
 image: /assets/og-carads.png
 client: "CarAds Studio"
+eyebrow: "UI/UX Design · Webdesign · Identité visuelle"
+heading: "Création CarAds Studio"
+banner_alt: "Bannière haute CarAds"
+link: "https://lennouille.fr/CarAds/"
+keywords:
+  - "UI/UX Design"
+  - "Webdesign"
+  - "Identité visuelle"
+facts:
+  role: "Identité visuelle, design system, UI/UX"
+  duree: "2 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Requête professionnelle"
+  resultat: "Logo en 3 déclinaisons, design system, maquette de l'espace studio"
+intro:
+  brief: "Créer l'identité visuelle et le site d'un studio automobile, sans base existante."
+  objectif: "Rassurer les prospects dès l'arrivée sur le site et les amener à prendre contact."
+  livrables: "Logo, design system et UI Kit, maquettes UI/UX orientées conversion."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création Identité Visuelle & UI/UX : CarAds Studio | Lennouille</title>
-
-    <meta name="description" content="Plongez dans la création de l'identité visuelle et le design d'interface UI/UX de CarAds Studio. Un projet de branding complet signé Lennouille, freelance.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/carads">
-    <meta property="og:title" content="Création Identité Visuelle & UI/UX : CarAds Studio | Lennouille">
-    <meta property="og:description" content="Plongez dans la création de l'identité visuelle et le design d'interface UI/UX de CarAds Studio. Un projet de branding complet signé Lennouille, freelance.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-carads.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création Identité Visuelle & UI/UX : CarAds Studio | Lennouille">
-    <meta name="twitter:description" content="Plongez dans la création de l'identité visuelle et le design d'interface UI/UX de CarAds Studio. Un projet de branding complet signé Lennouille, freelance.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-carads.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/carads">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/carads" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "UI/UX Design",
-            "Webdesign",
-            "Identité visuelle"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/carads/mockup.webp" alt="Bannière haute CarAds">
-        </section>
-        <div class="Title">
-            <span>UI/UX Design · Webdesign · Identité visuelle</span>
-            <h1>Création CarAds Studio</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennouille.fr/CarAds/" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennouille.fr/CarAds</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Identité visuelle, design system, UI/UX</dd></div>
-            <div><dt>Durée</dt><dd>2 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Requête professionnelle</dd></div>
-            <div><dt>Résultat</dt><dd>Logo en 3 déclinaisons, design system, maquette de l'espace studio</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Créer l'identité visuelle et le site d'un studio automobile, sans base existante.</p>
-            <p><b>Objectif :</b> Rassurer les prospects dès l'arrivée sur le site et les amener à prendre contact.</p>
-            <p><b>Livrables :</b> Logo, design system et UI Kit, maquettes UI/UX orientées conversion.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : aucune base existante</h4>
-                    <p>CarAds Studio n'avait ni logo ni site. L'identité et l'interface étaient à créer de zéro, pour un site qui rassure et fait contacter le studio, dans un secteur automobile aux codes visuels établis.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Benchmark et zoning</h4>
-                    <p>J'ai commencé par un benchmark de 5 sites du secteur pour relever les attentes de la cible et les signaux de confiance utilisés. Le zoning classe l'information par priorité. Les wireframes ne gardent que les éléments qui servent à la prise de contact.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Identité visuelle — Logo</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/carads/logo.webp" alt="Création du logo CarAds"></div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Logo, design system et UI Kit</h4>
-            <p>J'ai dessiné le logo et l'ai décliné en 3 versions de couleur (blanc, rouge, noir) pour les supports numériques et physiques. Le design system fixe les règles typographiques et la palette, documentées dans l'UI Kit.</p>
-        </div>
-        <div class="ProjectGallery">
-            <img src="/img/reals/carads/couleur-blanc.webp" alt="Couleur blanche CarAds">
-            <img src="/img/reals/carads/couleur-rouge.webp" alt="Couleur rouge CarAds">
-            <img src="/img/reals/carads/couleur-noir.webp" alt="Couleur noire CarAds">
+            <h4>Point de départ : aucune base existante</h4>
+            <p>CarAds Studio n'avait ni logo ni site. L'identité et l'interface étaient à créer de zéro, pour un site qui rassure et fait contacter le studio, dans un secteur automobile aux codes visuels établis.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>L'espace studio</h4>
-            <p>La page principale regroupe l'information clé pour limiter le nombre d'interactions avant le contact : 2 clics du premier écran au formulaire. Les éléments sans fonction de conversion ont été retirés.</p>
+            <h4>Benchmark et zoning</h4>
+            <p>J'ai commencé par un benchmark de 5 sites du secteur pour relever les attentes de la cible et les signaux de confiance utilisés. Le zoning classe l'information par priorité. Les wireframes ne gardent que les éléments qui servent à la prise de contact.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Espace studio</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/carads/ecran-principal.webp" alt="Création de l'espace studio"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Sans contrainte historique, chaque choix devait être justifié. J'ai validé les hypothèses UX par le parcours de conversion plutôt que par l'esthétique. Le projet m'a permis de construire un système de marque complet : logo, couleurs, règles typographiques.</p>
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>3</strong><span>déclinaisons de couleur du logo : blanc, rouge, noir</span></div>
-                <div class="ResultItem"><strong>5</strong><span>sites analysés lors du benchmark</span></div>
-                <div class="ResultItem"><strong>2</strong><span>clics entre le premier écran et le contact</span></div>
-            </div>
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Identité visuelle — Logo</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/carads/logo.webp" alt="Création du logo CarAds"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Logo, design system et UI Kit</h4>
+    <p>J'ai dessiné le logo et l'ai décliné en 3 versions de couleur (blanc, rouge, noir) pour les supports numériques et physiques. Le design system fixe les règles typographiques et la palette, documentées dans l'UI Kit.</p>
+</div>
+<div class="ProjectGallery">
+    <img src="/img/reals/carads/couleur-blanc.webp" alt="Couleur blanche CarAds">
+    <img src="/img/reals/carads/couleur-rouge.webp" alt="Couleur rouge CarAds">
+    <img src="/img/reals/carads/couleur-noir.webp" alt="Couleur noire CarAds">
+</div>
+<div class="ProjectBloc">
+    <h4>L'espace studio</h4>
+    <p>La page principale regroupe l'information clé pour limiter le nombre d'interactions avant le contact : 2 clics du premier écran au formulaire. Les éléments sans fonction de conversion ont été retirés.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Espace studio</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/carads/ecran-principal.webp" alt="Création de l'espace studio"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Sans contrainte historique, chaque choix devait être justifié. J'ai validé les hypothèses UX par le parcours de conversion plutôt que par l'esthétique. Le projet m'a permis de construire un système de marque complet : logo, couleurs, règles typographiques.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>3</strong><span>déclinaisons de couleur du logo : blanc, rouge, noir</span></div>
+        <div class="ResultItem"><strong>5</strong><span>sites analysés lors du benchmark</span></div>
+        <div class="ResultItem"><strong>2</strong><span>clics entre le premier écran et le contact</span></div>
+    </div>
+</div>

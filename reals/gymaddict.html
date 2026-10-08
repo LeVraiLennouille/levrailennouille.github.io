@@ -1,217 +1,83 @@
 ---
+layout: real
 real_id: gymaddict
 title: "App Design & UI/UX Fitness : GymAddict | Lennouille"
 description: "Création de l'application fitness GymAddict. Une interface UI/UX web et mobile pensée pour l'ergonomie de l'effort physique et le suivi de progression."
 schema_type: CreativeWork
 image: /assets/og-gymaddict.png
+eyebrow: "UI/UX Design · Webdesign · Identité visuelle"
+heading: "Création GymAddict"
+banner_alt: "Bannière haute GymAddict"
+link: "https://lennouille.fr/GymAddict/"
+keywords:
+  - "UI/UX Design"
+  - "Webdesign"
+  - "Identité visuelle"
+facts:
+  role: "UX mobile, identité visuelle, UI design"
+  duree: "4 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Projet personnel"
+  resultat: "3 espaces conçus : workout, programme, profil"
+intro:
+  brief: "Concevoir une application de suivi de musculation centrée sur l'essentiel, pour les pratiquants réguliers en salle."
+  objectif: "Permettre d'enregistrer ses charges en quelques interactions, pendant l'effort."
+  livrables: "Stratégie UX mobile, identité visuelle (vert menthe, vert forêt), UI des espaces workout, programme et profil."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>App Design & UI/UX Fitness : GymAddict | Lennouille</title>
-
-    <meta name="description" content="Création de l'application fitness GymAddict. Une interface UI/UX web et mobile pensée pour l'ergonomie de l'effort physique et le suivi de progression.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/gymaddict">
-    <meta property="og:title" content="App Design & UI/UX Fitness : GymAddict | Lennouille">
-    <meta property="og:description" content="Création de l'application fitness GymAddict. Une interface UI/UX web et mobile pensée pour l'ergonomie de l'effort physique et le suivi de progression.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-gymaddict.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="App Design & UI/UX Fitness : GymAddict | Lennouille">
-    <meta name="twitter:description" content="Création de l'application fitness GymAddict. Une interface UI/UX web et mobile pensée pour l'ergonomie de l'effort physique et le suivi de progression.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-gymaddict.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/gymaddict">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/gymaddict" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "UI/UX Design",
-            "Webdesign",
-            "Identité visuelle"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/gymaddict/mockup.webp" alt="Bannière haute GymAddict">
-        </section>
-        <div class="Title">
-            <span>UI/UX Design · Webdesign · Identité visuelle</span>
-            <h1>Création GymAddict</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennouille.fr/GymAddict/" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennouille.fr/GymAddict</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UX mobile, identité visuelle, UI design</dd></div>
-            <div><dt>Durée</dt><dd>4 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Projet personnel</dd></div>
-            <div><dt>Résultat</dt><dd>3 espaces conçus : workout, programme, profil</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Concevoir une application de suivi de musculation centrée sur l'essentiel, pour les pratiquants réguliers en salle.</p>
-            <p><b>Objectif :</b> Permettre d'enregistrer ses charges en quelques interactions, pendant l'effort.</p>
-            <p><b>Livrables :</b> Stratégie UX mobile, identité visuelle (vert menthe, vert forêt), UI des espaces workout, programme et profil.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Constat : des applications trop larges</h4>
-                    <p>Strava, MyFitnessPal et Nike Training Club couvrent le sport en général. GymAddict vise un public plus étroit : les pratiquants de salle qui veulent enregistrer leurs charges sans tableaux de bord complexes. Le problème à résoudre était la clarté et le positionnement face à ces applications.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Utilisateur cible et contraintes d'usage</h4>
-                    <p>Cible : une personne qui s'entraîne 2 à 5 fois par semaine, ni débutante ni marathonienne. L'usage se fait en salle : mains occupées, attention réduite, interactions brèves. Les wireframes limitent le nombre d'actions par écran et agrandissent les zones tactiles. Toute action supplémentaire est traitée comme un défaut d'ergonomie.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Logo</span></div>
-                <img src="/img/reals/gymaddict/logo.webp" alt="Logo GymAddict">
-            </div>
-        </section>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Couleurs désignées</span></div>
-            <div class="ProjectGallery Item2">
-                <img src="/img/reals/gymaddict/couleur-menthe.webp" alt="Couleur menthe GymAddict">
-                <img src="/img/reals/gymaddict/couleur-foret.webp" alt="Couleur forêt GymAddict">
-            </div>
+<section class="ProjectSplit">
+    <div class="SplitItem">
+        <div class="ProjectBloc">
+            <h4>Constat : des applications trop larges</h4>
+            <p>Strava, MyFitnessPal et Nike Training Club couvrent le sport en général. GymAddict vise un public plus étroit : les pratiquants de salle qui veulent enregistrer leurs charges sans tableaux de bord complexes. Le problème à résoudre était la clarté et le positionnement face à ces applications.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Identité : vert menthe et vert forêt</h4>
-            <p>J'ai choisi deux verts pour rompre avec les codes noir et rouge du secteur. Le logo représente le mouvement et reste lisible en icône d'application. Le design system et l'UI Kit limitent les éléments à l'écran pour ne pas distraire pendant l'effort.</p>
+            <h4>Utilisateur cible et contraintes d'usage</h4>
+            <p>Cible : une personne qui s'entraîne 2 à 5 fois par semaine, ni débutante ni marathonienne. L'usage se fait en salle : mains occupées, attention réduite, interactions brèves. Les wireframes limitent le nombre d'actions par écran et agrandissent les zones tactiles. Toute action supplémentaire est traitée comme un défaut d'ergonomie.</p>
         </div>
-        <div class="ProjectBloc">
-            <h4>Trois espaces</h4>
-            <p>L'interface compte trois espaces : workout, programme et profil. L'enregistrement d'une série se fait automatiquement dès l'insertion des données. Le profil affiche l'évolution des données sous forme visuelle.</p>
-        </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Espace workout</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-exercice.webp" alt="Création de l'espace workout"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace programme</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-programme.webp" alt="Création de l'espace programme"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace compte</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-profil.webp" alt="Création de l'espace profil"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Concevoir pour une personne en plein effort revient à concevoir pour une attention réduite : l'ergonomie y définit le produit. Chaque fonctionnalité ajoutée devait être justifiée par l'usage en salle.</p>
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>3</strong><span>espaces conçus : workout, programme, profil</span></div>
-                <div class="ResultItem"><strong>2</strong><span>verts (menthe, forêt) en remplacement du noir et rouge du secteur</span></div>
-                <div class="ResultItem"><strong>Automatique</strong><span>enregistrement d'une série</span></div>
-            </div>
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Logo</span></div>
+        <img src="/img/reals/gymaddict/logo.webp" alt="Logo GymAddict">
+    </div>
+</section>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/gymaddict/couleur-menthe.webp" alt="Couleur menthe GymAddict">
+        <img src="/img/reals/gymaddict/couleur-foret.webp" alt="Couleur forêt GymAddict">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Identité : vert menthe et vert forêt</h4>
+    <p>J'ai choisi deux verts pour rompre avec les codes noir et rouge du secteur. Le logo représente le mouvement et reste lisible en icône d'application. Le design system et l'UI Kit limitent les éléments à l'écran pour ne pas distraire pendant l'effort.</p>
+</div>
+<div class="ProjectBloc">
+    <h4>Trois espaces</h4>
+    <p>L'interface compte trois espaces : workout, programme et profil. L'enregistrement d'une série se fait automatiquement dès l'insertion des données. Le profil affiche l'évolution des données sous forme visuelle.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Espace workout</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-exercice.webp" alt="Création de l'espace workout"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace programme</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-programme.webp" alt="Création de l'espace programme"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace compte</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/gymaddict/ecran-profil.webp" alt="Création de l'espace profil"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Concevoir pour une personne en plein effort revient à concevoir pour une attention réduite : l'ergonomie y définit le produit. Chaque fonctionnalité ajoutée devait être justifiée par l'usage en salle.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>3</strong><span>espaces conçus : workout, programme, profil</span></div>
+        <div class="ResultItem"><strong>2</strong><span>verts (menthe, forêt) en remplacement du noir et rouge du secteur</span></div>
+        <div class="ResultItem"><strong>Automatique</strong><span>enregistrement d'une série</span></div>
+    </div>
+</div>

@@ -1,252 +1,118 @@
 ---
+layout: real
 real_id: portfolio
 title: "Audit & Refonte UI / UX : Portfolio v3 | Lennouille"
 description: "Découvrez l'audit & refonte UI / UX complète de mon portfolio. Un projet de Product design pensé pour transformer un simple catalogue en outil de conversion."
 schema_type: CreativeWork
 image: /assets/og-preview.png
+eyebrow: "Audit & refonte UI / UX"
+heading: "Refonte Portfolio v3"
+banner_alt: "Bannière haute Portfolio"
+link: "https://lennygadroy.github.io"
+keywords:
+  - "Audit & refonte UI / UX"
+facts:
+  role: "Audit, UI/UX, identité visuelle"
+  duree: "8 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Projet personnel"
+  resultat: "6 pages refondues, logo simplifié, 6 entretiens obtenus"
+intro:
+  brief: "Refondre mon portfolio (v3) pour présenter mes compétences et mes réalisations."
+  objectif: "Passer d'un catalogue de projets à un outil de candidature qui génère des entretiens."
+  livrables: "Audit de la v2, maquettes UI/UX, logo simplifié, contenu optimisé pour le référencement."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Audit & Refonte UI / UX : Portfolio v3 | Lennouille</title>
-    
-    <meta name="description" content="Découvrez l'audit & refonte UI / UX complète de mon portfolio. Un projet de Product design pensé pour transformer un simple catalogue en outil de conversion.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/portfolio">
-    <meta property="og:title" content="Audit & Refonte UI / UX : Portfolio v3 | Lennouille">
-    <meta property="og:description" content="Découvrez l'audit & refonte UI / UX complète de mon portfolio. Un projet de Product design pensé pour transformer un simple catalogue en outil de conversion.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Audit & Refonte UI / UX : Portfolio v3 | Lennouille">
-    <meta name="twitter:description" content="Découvrez l'audit & refonte UI / UX complète de mon portfolio. Un projet de Product design pensé pour transformer un simple catalogue en outil de conversion.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/portfolio">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/portfolio" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Audit & refonte UI / UX"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/portfolio/mockup.webp" alt="Bannière haute Portfolio">
-        </section>
-        <div class="Title">
-            <span>Audit & refonte UI / UX</span>
-            <h1>Refonte Portfolio v3</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennygadroy.github.io" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennygadroy.github.io</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Audit, UI/UX, identité visuelle</dd></div>
-            <div><dt>Durée</dt><dd>8 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Projet personnel</dd></div>
-            <div><dt>Résultat</dt><dd>6 pages refondues, logo simplifié, 6 entretiens obtenus</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Refondre mon portfolio (v3) pour présenter mes compétences et mes réalisations.</p>
-            <p><b>Objectif :</b> Passer d'un catalogue de projets à un outil de candidature qui génère des entretiens.</p>
-            <p><b>Livrables :</b> Audit de la v2, maquettes UI/UX, logo simplifié, contenu optimisé pour le référencement.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : la v2</h4>
-                    <p>La v2 avait une identité générique et une navigation peu claire : les meilleures réalisations étaient noyées dans des informations secondaires. L'objectif de la v3 : transformer un catalogue en outil qui attire les recruteurs et obtient des entretiens.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Audit de la v2</h4>
-                    <p>J'ai audité mon propre site et listé les frictions : chemin trop long jusqu'aux études de cas, absence de hiérarchie visuelle. Le zoning redéfinit la priorité de chaque élément : l'accueil doit convaincre en 5 secondes, le CV met en avant les compétences techniques dès le début. Les wireframes ont été validés avant le choix des couleurs.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-logo.webp" alt="Nouveau logo LG" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-logo.webp" alt="Ancien logo LG" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Identité</h4>
-            <p>J'ai positionné l'identité entre développement et design d'interface. Palette sombre avec des touches de bleu électrique. Le logo LG est simplifié : ornements supprimés, lisible sur tout support numérique (mockups ordinateur et téléphone ci-dessous).</p>
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Toutes les couleurs</span></div>
-            <img src="/img/reals/portfolio/couleurs.webp" alt="Nouvelles couleurs et logos">
-        </div>
-        <div class="ProjectGallery">
-            <img src="/img/reals/portfolio/mockup-logo-ordi.webp" alt="Mockup logo sur ordinateur">
-            <img src="/img/reals/portfolio/logo-moi.webp" alt="Lenny GADROY dans logo LG">
-            <img src="/img/reals/portfolio/mockup-logo-telephone.webp" alt="Mockup logo sur téléphone">
+            <h4>Point de départ : la v2</h4>
+            <p>La v2 avait une identité générique et une navigation peu claire : les meilleures réalisations étaient noyées dans des informations secondaires. L'objectif de la v3 : transformer un catalogue en outil qui attire les recruteurs et obtient des entretiens.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Refonte des pages</h4>
-            <p>Six pages ont été refondues : accueil, projets, albums, Skills Shop, CV, contact. Les espacements mettent les visuels en valeur. La section Skills Shop passe d'une liste à une présentation interactive. Le parcours de contact est réduit aux éléments nécessaires.</p>
+            <h4>Audit de la v2</h4>
+            <p>J'ai audité mon propre site et listé les frictions : chemin trop long jusqu'aux études de cas, absence de hiérarchie visuelle. Le zoning redéfinit la priorité de chaque élément : l'accueil doit convaincre en 5 secondes, le CV met en avant les compétences techniques dès le début. Les wireframes ont été validés avant le choix des couleurs.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après  — </span><span>Home</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-home.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-home.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page des projets</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-projets.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-page-projets.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page des albums</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-albums.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-page-albums.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Skills shop</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-skills.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-page-skils.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page CV</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-cv.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-page-cv.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page de contact</span></div>
-                <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-contact.webp" alt="Nouvelle version" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/portfolio/old-page-contact.webp" alt="Ancienne version" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Sans client, il faut se fixer soi-même des objectifs de conversion. Le piège est de concevoir pour soi : j'ai raisonné du point de vue du recruteur et du prospect. La contrainte « se présenter sans se survendre » m'a servi à travailler la hiérarchie visuelle.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-logo.webp" alt="Nouveau logo LG" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-logo.webp" alt="Ancien logo LG" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="FullWidthBanner">
-            <img src="/img/reals/portfolio/banniere-linkedin.webp" alt="Bannière LinkedIn Reprenez le contrôle">
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Identité</h4>
+    <p>J'ai positionné l'identité entre développement et design d'interface. Palette sombre avec des touches de bleu électrique. Le logo LG est simplifié : ornements supprimés, lisible sur tout support numérique (mockups ordinateur et téléphone ci-dessous).</p>
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Toutes les couleurs</span></div>
+    <img src="/img/reals/portfolio/couleurs.webp" alt="Nouvelles couleurs et logos">
+</div>
+<div class="ProjectGallery">
+    <img src="/img/reals/portfolio/mockup-logo-ordi.webp" alt="Mockup logo sur ordinateur">
+    <img src="/img/reals/portfolio/logo-moi.webp" alt="Lenny GADROY dans logo LG">
+    <img src="/img/reals/portfolio/mockup-logo-telephone.webp" alt="Mockup logo sur téléphone">
+</div>
+<div class="ProjectBloc">
+    <h4>Refonte des pages</h4>
+    <p>Six pages ont été refondues : accueil, projets, albums, Skills Shop, CV, contact. Les espacements mettent les visuels en valeur. La section Skills Shop passe d'une liste à une présentation interactive. Le parcours de contact est réduit aux éléments nécessaires.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après  — </span><span>Home</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-home.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-home.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>6</strong><span>pages refondues et comparées avant/après</span></div>
-                <div class="ResultItem"><strong>5 s</strong><span>temps visé pour convaincre sur la page d'accueil</span></div>
-                <div class="ResultItem"><strong>6</strong><span>entretiens obtenus depuis la mise en ligne de la v3 (avant mon site professionnel)</span></div>
-            </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page des projets</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-projets.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-page-projets.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page des albums</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-albums.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-page-albums.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Skills shop</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-skills.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-page-skils.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page CV</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-cv.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-page-cv.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page de contact</span></div>
+        <div class="Comparaisons"><img src="/img/reals/portfolio/new-page-contact.webp" alt="Nouvelle version" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/portfolio/old-page-contact.webp" alt="Ancienne version" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Sans client, il faut se fixer soi-même des objectifs de conversion. Le piège est de concevoir pour soi : j'ai raisonné du point de vue du recruteur et du prospect. La contrainte « se présenter sans se survendre » m'a servi à travailler la hiérarchie visuelle.</p>
+</div>
+<div class="FullWidthBanner">
+    <img src="/img/reals/portfolio/banniere-linkedin.webp" alt="Bannière LinkedIn Reprenez le contrôle">
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>6</strong><span>pages refondues et comparées avant/après</span></div>
+        <div class="ResultItem"><strong>5 s</strong><span>temps visé pour convaincre sur la page d'accueil</span></div>
+        <div class="ResultItem"><strong>6</strong><span>entretiens obtenus depuis la mise en ligne de la v3 (avant mon site professionnel)</span></div>
+    </div>
+</div>

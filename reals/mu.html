@@ -1,289 +1,153 @@
 ---
+layout: real
 real_id: mu
 title: "Refonte UI/UX & Identité Visuelle : Mü-Être | Lennouille"
 description: "Découvrez la refonte UI/UX du site bien-être Mü-Être. Une nouvelle identité visuelle alliant douceur, accessibilité et parcours utilisateur optimisé."
 schema_type: CreativeWork
 image: /assets/og-mu.png
 client: "Mü-Être"
+eyebrow: "Audit & refonte UI / UX · Design System"
+heading: "Refonte Mü être v2"
+banner_alt: "Bannière haute Mü"
+link: "https://mu-etre.fr"
+keywords:
+  - "Audit & refonte UI / UX"
+  - "Design System"
+facts:
+  role: "Audit, UI/UX, design system, supports imprimés"
+  duree: "4 semaines"
+  outils: "Figma, Adobe Xd ; Illustrator ; Canva"
+  contexte: "Client réel : Entreprise de QVCT"
+  resultat: "8 zones du site refondues, charte, carte de visite, plaquette"
+intro:
+  brief: "Refondre le site d'une marque de bien-être et de développement personnel dont la navigation, la hiérarchie de l'information et la typographie nuisaient au message."
+  objectif: "Alléger la charge mentale : trouver la page de contact ou comprendre un accompagnement sans effort."
+  livrables: "Audit et refonte UI/UX, design system et UI Kit, charte graphique, carte de visite, plaquette."
+folder: true
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Refonte UI/UX & Identité Visuelle : Mü-Être | Lennouille</title>
-
-    <meta name="description" content="Découvrez la refonte UI/UX du site bien-être Mü-Être. Une nouvelle identité visuelle alliant douceur, accessibilité et parcours utilisateur optimisé.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/mu">
-    <meta property="og:title" content="Refonte UI/UX & Identité Visuelle : Mü-Être | Lennouille">
-    <meta property="og:description" content="Découvrez la refonte UI/UX du site bien-être Mü-Être. Une nouvelle identité visuelle alliant douceur, accessibilité et parcours utilisateur optimisé.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-mu.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Refonte UI/UX & Identité Visuelle : Mü-Être | Lennouille">
-    <meta name="twitter:description" content="Découvrez la refonte UI/UX du site bien-être Mü-Être. Une nouvelle identité visuelle alliant douceur, accessibilité et parcours utilisateur optimisé.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-mu.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/mu">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/mu" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Audit & refonte UI / UX",
-            "Design System"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/mu/mockup.webp" alt="Bannière haute Mü">
-        </section>
-        <div class="Title">
-            <span>Audit & refonte UI / UX · Design System</span>
-            <h1>Refonte Mü être v2</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://mu-etre.fr" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">mu-etre.fr</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Audit, UI/UX, design system, supports imprimés</dd></div>
-            <div><dt>Durée</dt><dd>4 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma, Adobe Xd ; Illustrator ; Canva</dd></div>
-            <div><dt>Contexte</dt><dd>Client réel : Entreprise de QVCT</dd></div>
-            <div><dt>Résultat</dt><dd>8 zones du site refondues, charte, carte de visite, plaquette</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Refondre le site d'une marque de bien-être et de développement personnel dont la navigation, la hiérarchie de l'information et la typographie nuisaient au message.</p>
-            <p><b>Objectif :</b> Alléger la charge mentale : trouver la page de contact ou comprendre un accompagnement sans effort.</p>
-            <p><b>Livrables :</b> Audit et refonte UI/UX, design system et UI Kit, charte graphique, carte de visite, plaquette.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : l'audit</h4>
-                    <p>Mü-Être est une marque de bien-être et de développement personnel. L'audit page par page du site original a relevé trois défauts : une navigation confuse, aucune hiérarchie de l'information et des choix typographiques peu lisibles. Ces défauts allaient à l'encontre du message de la marque.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Réduire la charge mentale</h4>
-                    <p>Trouver la page de contact ou comprendre un accompagnement ne doit demander aucune recherche. Le zoning identifie 8 zones à retravailler en priorité. Les wireframes testent plusieurs agencements pour les contenus denses : la FAQ et les articles de blog.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Nouvelle carte de visite</span></div>
-                <div class="ProjectGallery Row">
-                    <img src="/img/reals/mu/carte-visite-recto.webp" alt="Carte de visite Mü">
-                    <img src="/img/reals/mu/carte-visite-verso.webp" alt="Verso carte de visite Mü">
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Design system et supports</h4>
-            <p>J'ai conservé l'ADN de la marque et recalibré les couleurs, les mascottes et les éléments graphiques pour gagner en cohérence. La mascotte existe en 3 versions (violet, jaune, noir et blanc) et en variantes d'émotions. Le design system et l'UI Kit sont déclinés sur la charte graphique, la carte de visite et la plaquette.</p>
-        </div>
-        <div class="ProjectGallery">
-            <img src="/img/reals/mu/mascotte-violet.webp" alt="Mascotte violette Mü">
-            <img src="/img/reals/mu/mascotte-jaune.webp" alt="Mascotte jaune Mü">
-            <img src="/img/reals/mu/mascotte-noir-blanc.webp" alt="Mascotte noire et blanche Mü">
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Nouvel arrière-plan pour tous les supports de communication</span></div>
-            <img src="/img/reals/mu/arriere-plan.webp" alt="Arrière-plan Mü">
-        </div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/mu/mascottes-emotions.webp" alt="Mascottes émotions Mü">
-            <img src="/img/reals/mu/illustrations.webp" alt="Illustrations Mü">
+            <h4>Point de départ : l'audit</h4>
+            <p>Mü-Être est une marque de bien-être et de développement personnel. L'audit page par page du site original a relevé trois défauts : une navigation confuse, aucune hiérarchie de l'information et des choix typographiques peu lisibles. Ces défauts allaient à l'encontre du message de la marque.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Lisibilité et parcours</h4>
-            <p>Les blocs de texte denses sont remplacés par des sections aérées, avec des espaces blancs plus larges. Les contrastes sont renforcés (ratio de contraste du texte : 2.28 → 11.84) et l'interlignage est ajusté pour la lecture des articles de blog. La hiérarchie guide le visiteur de l'accueil jusqu'à la prise de contact et la réservation (8 comparaisons avant/après ci-dessous).</p>
+            <h4>Réduire la charge mentale</h4>
+            <p>Trouver la page de contact ou comprendre un accompagnement ne doit demander aucune recherche. Le zoning identifie 8 zones à retravailler en priorité. Les wireframes testent plusieurs agencements pour les contenus denses : la FAQ et les articles de blog.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-hero.webp" alt="Nouvelle version du hero Mü-Être" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-hero.webp" alt="Ancienne version du hero Mü-Être" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Bloc impact</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-section-impact.webp" alt="Nouvelle version du bloc impacts" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-section-impact.webp" alt="Ancienne version du bloc impacts" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Bloc étapes</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-section-etapes.webp" alt="Nouvelle version du bloc étapes" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-section-etapes.webp" alt="Ancienne version du bloc étapes" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Articles de blog</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-page-blog.webp" alt="Nouvelle version des articles de blog" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-page-blog.webp" alt="Ancienne version des articles de blog" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page de contact</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-page-contact.webp" alt="Nouvelle version de la page contact" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-page-contact.webp" alt="Ancienne version de la page contact" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Réservation</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-section-reservation.webp" alt="Nouvelle version du bloc réservation" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-section-reservation.webp" alt="Ancienne version du bloc réservation" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Bloc FAQ</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-section-faq.webp" alt="Nouvelle version du bloc FAQ" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-section-faq.webp" alt="Ancienne version du bloc FAQ" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
-                <div class="Comparaisons"><img src="/img/reals/mu/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/mu/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Création — </span><span>Bannière</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/mu/new-section-banniere.webp" alt="Nouvelle version de la bannière"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Sur un site lié au bien-être et à la santé mentale, j'ai privilégié la sobriété à l'effet visuel. L'accessibilité et la clarté du parcours ont primé : le design du site ne comporte pas d'animation. La réduction de la charge cognitive est devenue le critère de validation de chaque écran.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Nouvelle carte de visite</span></div>
+        <div class="ProjectGallery Row">
+            <img src="/img/reals/mu/carte-visite-recto.webp" alt="Carte de visite Mü">
+            <img src="/img/reals/mu/carte-visite-verso.webp" alt="Verso carte de visite Mü">
         </div>
-        <div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/mu/charte-graphique-1.webp" alt="Charte graphique Mü - Page 1">
-            <img src="/img/reals/mu/charte-graphique-2.webp" alt="Charte graphique Mü - Page 2">
-            <img src="/img/reals/mu/charte-graphique-3.webp" alt="Charte graphique Mü - Page 3">
-            <img src="/img/reals/mu/charte-graphique-4.webp" alt="Charte graphique Mü - Page 4">
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Design system et supports</h4>
+    <p>J'ai conservé l'ADN de la marque et recalibré les couleurs, les mascottes et les éléments graphiques pour gagner en cohérence. La mascotte existe en 3 versions (violet, jaune, noir et blanc) et en variantes d'émotions. Le design system et l'UI Kit sont déclinés sur la charte graphique, la carte de visite et la plaquette.</p>
+</div>
+<div class="ProjectGallery">
+    <img src="/img/reals/mu/mascotte-violet.webp" alt="Mascotte violette Mü">
+    <img src="/img/reals/mu/mascotte-jaune.webp" alt="Mascotte jaune Mü">
+    <img src="/img/reals/mu/mascotte-noir-blanc.webp" alt="Mascotte noire et blanche Mü">
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Nouvel arrière-plan pour tous les supports de communication</span></div>
+    <img src="/img/reals/mu/arriere-plan.webp" alt="Arrière-plan Mü">
+</div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/mu/mascottes-emotions.webp" alt="Mascottes émotions Mü">
+    <img src="/img/reals/mu/illustrations.webp" alt="Illustrations Mü">
+</div>
+<div class="ProjectBloc">
+    <h4>Lisibilité et parcours</h4>
+    <p>Les blocs de texte denses sont remplacés par des sections aérées, avec des espaces blancs plus larges. Les contrastes sont renforcés (ratio de contraste du texte : 2.28 → 11.84) et l'interlignage est ajusté pour la lecture des articles de blog. La hiérarchie guide le visiteur de l'accueil jusqu'à la prise de contact et la réservation (8 comparaisons avant/après ci-dessous).</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-hero.webp" alt="Nouvelle version du hero Mü-Être" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-hero.webp" alt="Ancienne version du hero Mü-Être" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="Label"><span>Extraits de la plaquette</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/mu/plaquette-1.webp" alt="Extrait de la plaquette Mü - Page 1">
-            <img src="/img/reals/mu/plaquette-2.webp" alt="Extrait de la plaquette Mü - Page 2">
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Bloc impact</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-section-impact.webp" alt="Nouvelle version du bloc impacts" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-section-impact.webp" alt="Ancienne version du bloc impacts" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>8</strong><span>zones refondues et comparées avant/après : hero, impact, étapes, blog, contact, réservation, FAQ, footer</span></div>
-                <div class="ResultItem"><strong>2.28 → 11.84</strong><span>ratio de contraste du texte, avant → après</span></div>
-                <div class="ResultItem"><strong>3</strong><span>versions de la mascotte, plus des variantes d'émotions</span></div>
-            </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Bloc étapes</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-section-etapes.webp" alt="Nouvelle version du bloc étapes" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-section-etapes.webp" alt="Ancienne version du bloc étapes" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="FolderSection">
-            {% include reals-folder.html %}
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Articles de blog</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-page-blog.webp" alt="Nouvelle version des articles de blog" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-page-blog.webp" alt="Ancienne version des articles de blog" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page de contact</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-page-contact.webp" alt="Nouvelle version de la page contact" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-page-contact.webp" alt="Ancienne version de la page contact" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Réservation</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-section-reservation.webp" alt="Nouvelle version du bloc réservation" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-section-reservation.webp" alt="Ancienne version du bloc réservation" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Bloc FAQ</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-section-faq.webp" alt="Nouvelle version du bloc FAQ" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-section-faq.webp" alt="Ancienne version du bloc FAQ" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
+        <div class="Comparaisons"><img src="/img/reals/mu/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/mu/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Création — </span><span>Bannière</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/mu/new-section-banniere.webp" alt="Nouvelle version de la bannière"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Sur un site lié au bien-être et à la santé mentale, j'ai privilégié la sobriété à l'effet visuel. L'accessibilité et la clarté du parcours ont primé : le design du site ne comporte pas d'animation. La réduction de la charge cognitive est devenue le critère de validation de chaque écran.</p>
+</div>
+<div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/mu/charte-graphique-1.webp" alt="Charte graphique Mü - Page 1">
+    <img src="/img/reals/mu/charte-graphique-2.webp" alt="Charte graphique Mü - Page 2">
+    <img src="/img/reals/mu/charte-graphique-3.webp" alt="Charte graphique Mü - Page 3">
+    <img src="/img/reals/mu/charte-graphique-4.webp" alt="Charte graphique Mü - Page 4">
+</div>
+<div class="Label"><span>Extraits de la plaquette</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/mu/plaquette-1.webp" alt="Extrait de la plaquette Mü - Page 1">
+    <img src="/img/reals/mu/plaquette-2.webp" alt="Extrait de la plaquette Mü - Page 2">
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>8</strong><span>zones refondues et comparées avant/après : hero, impact, étapes, blog, contact, réservation, FAQ, footer</span></div>
+        <div class="ResultItem"><strong>2.28 → 11.84</strong><span>ratio de contraste du texte, avant → après</span></div>
+        <div class="ResultItem"><strong>3</strong><span>versions de la mascotte, plus des variantes d'émotions</span></div>
+    </div>
+</div>

@@ -1,233 +1,99 @@
 ---
+layout: real
 real_id: lennoutil
 title: "Création App Web & UI/UX : Lennoutil | Lennouille"
 description: "Conception UI/UX et développement de Lennoutil, une web app tout-en-un pour compresser, redimensionner, convertir et retoucher ses images — 100% dans le navigateur."
 schema_type: CreativeWork
 image: /assets/og-lennoutil.png
+eyebrow: "Product design · App Web · Développement front-end"
+heading: "Création Lennoutil"
+banner_alt: "Bannière haute Lennoutil"
+link: "https://lennouille.fr/Lennoutil/"
+keywords:
+  - "Product design"
+  - "App Web"
+  - "Développement front-end"
+facts:
+  role: "UI/UX, identité visuelle, développement front-end"
+  duree: "2 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "<span class=\"ToFill\">Requête professionnelle</span>"
+  resultat: "7 outils dans une interface, 0 fichier envoyé à un serveur"
+intro:
+  brief: "Concevoir et développer un atelier d'outils image utilisable dans le navigateur, sans compte ni serveur."
+  objectif: "Regrouper les opérations courantes sur une image dans une seule interface, sans envoi du fichier à un serveur."
+  livrables: "UI/UX du poste de travail, identité visuelle, développement front-end (HTML/CSS/JS vanilla, 100 % côté client)."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création App Web & UI/UX : Lennoutil | Lennouille</title>
-
-    <meta name="description" content="Conception UI/UX et développement de Lennoutil, une web app tout-en-un pour compresser, redimensionner, convertir et retoucher ses images — 100% dans le navigateur.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/lennoutil">
-    <meta property="og:title" content="Création App Web & UI/UX : Lennoutil | Lennouille">
-    <meta property="og:description" content="Conception UI/UX et développement de Lennoutil, une web app tout-en-un pour compresser, redimensionner, convertir et retoucher ses images — 100% dans le navigateur.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-lennoutil.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création App Web & UI/UX : Lennoutil | Lennouille">
-    <meta name="twitter:description" content="Conception UI/UX et développement de Lennoutil, une web app tout-en-un pour compresser, redimensionner, convertir et retoucher ses images — 100% dans le navigateur.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-lennoutil.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/lennoutil">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/lennoutil" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Product design",
-            "App Web",
-            "Développement front-end"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/lennoutil/mockup.webp" alt="Bannière haute Lennoutil">
-        </section>
-        <div class="Title">
-            <span>Product design · App Web · Développement front-end</span>
-            <h1>Création Lennoutil</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennouille.fr/Lennoutil/" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennouille.fr/Lennoutil</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UI/UX, identité visuelle, développement front-end</dd></div>
-            <div><dt>Durée</dt><dd>2 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd><span class="ToFill">Requête professionnelle</span></dd></div>
-            <div><dt>Résultat</dt><dd>7 outils dans une interface, 0 fichier envoyé à un serveur</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Concevoir et développer un atelier d'outils image utilisable dans le navigateur, sans compte ni serveur.</p>
-            <p><b>Objectif :</b> Regrouper les opérations courantes sur une image dans une seule interface, sans envoi du fichier à un serveur.</p>
-            <p><b>Livrables :</b> UI/UX du poste de travail, identité visuelle, développement front-end (HTML/CSS/JS vanilla, 100 % côté client).</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>7 outils, 1 interface</h4>
-                    <p>Compresser, redimensionner ou filigraner une image oblige à passer par plusieurs sites, chacun avec son interface et ses publicités, sans garantie sur le devenir du fichier envoyé. Lennoutil réunit ces opérations dans une interface unique ; le fichier reste dans le navigateur.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Un poste de travail</h4>
-                    <p>Le zoning repose sur trois éléments : un rail de navigation fixe pour changer d'outil en un clic, une zone centrale à structure constante (dépôt du fichier, aperçu, statistiques avant/après) et une colonne de réglages qui s'adapte au format importé, un SVG et un JPEG n'ayant pas les mêmes besoins.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Identité visuelle — Logo</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/logo.webp" alt="Création du logo Lennoutil"></div>
-            </div>
-        </section>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Couleurs désignées</span></div>
-            <div class="ProjectGallery Item2">
-                <img src="/img/reals/lennoutil/couleur-cyan.webp" alt="Couleur cyan Lennoutil">
-                <img src="/img/reals/lennoutil/couleur-vert.webp" alt="Couleur vert Lennoutil">
-            </div>
+<section class="ProjectSplit">
+    <div class="SplitItem">
+        <div class="ProjectBloc">
+            <h4>7 outils, 1 interface</h4>
+            <p>Compresser, redimensionner ou filigraner une image oblige à passer par plusieurs sites, chacun avec son interface et ses publicités, sans garantie sur le devenir du fichier envoyé. Lennoutil réunit ces opérations dans une interface unique ; le fichier reste dans le navigateur.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Identité</h4>
-            <p>Design system : rail de navigation sombre, espace de travail clair et neutre, accent turquoise pour les actions et les valeurs actives. Typographies : Syne pour les titres, IBM Plex Sans pour l'interface, IBM Plex Mono pour les données chiffrées (poids, dimensions, pourcentages).</p>
+            <h4>Un poste de travail</h4>
+            <p>Le zoning repose sur trois éléments : un rail de navigation fixe pour changer d'outil en un clic, une zone centrale à structure constante (dépôt du fichier, aperçu, statistiques avant/après) et une colonne de réglages qui s'adapte au format importé, un SVG et un JPEG n'ayant pas les mêmes besoins.</p>
         </div>
-        <div class="ProjectBloc">
-            <h4>Un outil par format</h4>
-            <p>Chaque outil suit les contraintes du format traité. Un SVG compressé ne perd pas en qualité : seules les métadonnées et les décimales superflues sont supprimées. Un PNG est compressé par réduction de palette. L'outil Détourer combine une détection automatique par propagation colorimétrique depuis les bords et une retouche au pinceau. Aucun fichier ne quitte le navigateur : tout le traitement est côté client.</p>
-        </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Espace compression</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-compresser.webp" alt="Création de l'espace compression"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace redimensionnement</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-redimensionner.webp" alt="Création de l'espace redimensionnement"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace conversion</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-convertir.webp" alt="Création de l'espace conversion"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace recadrage</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-recadrer.webp" alt="Création de l'espace recadrage et rotation"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace amélioration</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-ameliorer.webp" alt="Création de l'espace amélioration et agrandissement"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace détourage</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-detourer.webp" alt="Création de l'espace détourage"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace filigrane</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-filigrane.webp" alt="Création de l'espace filigrane"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Ici, l'utilisateur vient accomplir une tâche : il n'y a pas de page à rendre convaincante, et chaque friction coûte du temps. Tous les calculs se font dans le navigateur, ce qui impose de contrôler la performance à chaque décision d'interface.</p>
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>7</strong><span>outils : compresser, redimensionner, convertir, recadrer, améliorer, détourer, filigrane</span></div>
-                <div class="ResultItem"><strong>0</strong><span>fichier envoyé à un serveur : traitement 100 % côté client</span></div>
-                <div class="ResultItem"><strong>54 %</strong><span>gain de poids moyen mesuré sur +100 images test</span></div>
-            </div>
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Identité visuelle — Logo</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/logo.webp" alt="Création du logo Lennoutil"></div>
+    </div>
+</section>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/lennoutil/couleur-cyan.webp" alt="Couleur cyan Lennoutil">
+        <img src="/img/reals/lennoutil/couleur-vert.webp" alt="Couleur vert Lennoutil">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Identité</h4>
+    <p>Design system : rail de navigation sombre, espace de travail clair et neutre, accent turquoise pour les actions et les valeurs actives. Typographies : Syne pour les titres, IBM Plex Sans pour l'interface, IBM Plex Mono pour les données chiffrées (poids, dimensions, pourcentages).</p>
+</div>
+<div class="ProjectBloc">
+    <h4>Un outil par format</h4>
+    <p>Chaque outil suit les contraintes du format traité. Un SVG compressé ne perd pas en qualité : seules les métadonnées et les décimales superflues sont supprimées. Un PNG est compressé par réduction de palette. L'outil Détourer combine une détection automatique par propagation colorimétrique depuis les bords et une retouche au pinceau. Aucun fichier ne quitte le navigateur : tout le traitement est côté client.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Espace compression</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-compresser.webp" alt="Création de l'espace compression"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace redimensionnement</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-redimensionner.webp" alt="Création de l'espace redimensionnement"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace conversion</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-convertir.webp" alt="Création de l'espace conversion"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace recadrage</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-recadrer.webp" alt="Création de l'espace recadrage et rotation"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace amélioration</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-ameliorer.webp" alt="Création de l'espace amélioration et agrandissement"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace détourage</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-detourer.webp" alt="Création de l'espace détourage"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace filigrane</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennoutil/ecran-filigrane.webp" alt="Création de l'espace filigrane"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Ici, l'utilisateur vient accomplir une tâche : il n'y a pas de page à rendre convaincante, et chaque friction coûte du temps. Tous les calculs se font dans le navigateur, ce qui impose de contrôler la performance à chaque décision d'interface.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>7</strong><span>outils : compresser, redimensionner, convertir, recadrer, améliorer, détourer, filigrane</span></div>
+        <div class="ResultItem"><strong>0</strong><span>fichier envoyé à un serveur : traitement 100 % côté client</span></div>
+        <div class="ResultItem"><strong>54 %</strong><span>gain de poids moyen mesuré sur +100 images test</span></div>
+    </div>
+</div>
