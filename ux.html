@@ -115,6 +115,9 @@ description: "Apprends la définition de l'UX design et sa différence avec l'UI
                     <p class="Intro">L’expression « expérience utilisateur » se popularise dans les années 1990, portée par le chercheur Don Norman alors chez Apple, pour désigner tout ce qui entoure l’usage d’un produit&nbsp;: la façon dont on le découvre, dont on le comprend, dont on s’y repère, et ce qu’on en retient une fois l’écran éteint.</p>
                     <p class="Intro">Dans la pratique, l’UX est un travail à plusieurs mains. Elle s’appuie sur la recherche utilisateur pour comprendre les besoins réels, sur l’architecture de l’information pour organiser le contenu, sur le design d’interaction pour construire des parcours clairs, sur le design visuel pour donner une forme cohérente à l’ensemble, et sur l’écriture pour que chaque mot guide plutôt qu’il n’égare.</p>
                     <p class="Intro">Les trente fiches réunies plus bas ne sont pas des règles absolues&nbsp;: ce sont des constats, empruntés à la psychologie cognitive et à la conception d’interfaces, qui reviennent assez souvent pour mériter d’être gardés à portée de main.</p>
+                    <div class="BlockCTA">
+                        <a href="/ux/comprendre-ux" class="BtnSolid">Comprendre l’UX en détail <span class="Arrow">→</span></a>
+                    </div>
                 </div>
                 <div class="DefinirVisual">
                     <img src="/img/me.jpg" alt="Lenny Gadroy, designer UX/UI">
@@ -130,7 +133,7 @@ description: "Apprends la définition de l'UX design et sa différence avec l'UI
                 <span class="Chip">Accessibilité</span>
             </div>
         </section>
-        <section class="Block Alt" id="ux-ui">
+        <section class="Block" id="ux-ui">
             <div class="SectionTitle">
                 <span class="Eyebrow">02 — Distinction</span>
                 <h2 class="Title">UX et UI ne sont pas la même chose</h2>
@@ -146,7 +149,7 @@ description: "Apprends la définition de l'UX design et sa différence avec l'UI
                 </div>
                 <span class="Versus" aria-hidden="true">≠</span>
             </div>
-            <p class="CompareNote">Une interface peut être esthétique — une UI réussie — et pourtant perdre son utilisateur au bout de trois clics — une UX manquée. Les deux se construisent ensemble, mais elles répondent à des questions différentes.</p>
+            <p class="CompareNote">Une interface peut être esthétique — une UI réussie — et pourtant perdre son utilisateur au bout de trois clics — une UX manquée. <br>Les deux se construisent ensemble, mais elles répondent à des questions différentes.</p>
         </section>
         <section class="Block" id="catalogue">
             <div class="SectionTitle">
@@ -164,7 +167,9 @@ description: "Apprends la définition de l'UX design et sa différence avec l'UI
                 </div>
                 <input type="search" id="search" placeholder="Cherchez une loi…" aria-label="Cherchez une loi dans le fichier">
             </div>
-            <div class="Grid" id="grid"></div>
+            <div class="Grid" id="grid">
+                {% include laws-grid.html %}
+            </div>
         </section>
         {% include cta.html %}
         {% include footer.html %}

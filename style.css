@@ -2572,7 +2572,10 @@ main.UX {
             }
         }
 
-        &#ux-ui {margin-top: 56px;}
+        &#ux-ui {
+            max-width: 1400px;
+            margin: 56px auto 0;
+        }
         &:first-of-type {border-top: none;}
 
         &.Alt {
@@ -2700,11 +2703,17 @@ main.UX {
 
         .CompareNote {
             margin: 24px auto 0;
-            max-width: 70ch;
             font-size: 1rem;
             color: var(--Muted);
             text-align: center;
         }
+
+        &#ux-ui .CompareGrid {max-width: none;}
+
+        &#ux-ui .CompareGrid .Card {background: var(--PureWhite);}
+
+        .BlockCTA {margin-top: 28px;}
+
 
         .Controls {
             margin: 36px 0;
