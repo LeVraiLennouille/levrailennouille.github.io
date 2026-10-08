@@ -1,0 +1,511 @@
+---
+title: "Comprendre l'UX Design : définition et enjeux | Lennouille"
+description: "Comprendre l'UX design : définition, bénéfices, piliers et processus. Un guide simple pour saisir l'expérience utilisateur avant de découvrir les 30 lois de l'UX."
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprendre l'UX Design : définition et enjeux | Lennouille</title>
+
+    <meta name="description" content="Comprendre l'UX design : définition, bénéfices, piliers et processus. Un guide simple pour saisir l'expérience utilisateur avant de découvrir les 30 lois de l'UX.">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lennouille.fr/ux/comprendre-ux">
+    <meta property="og:title" content="Comprendre l'UX Design : définition et enjeux | Lennouille">
+    <meta property="og:description" content="Comprendre l'UX design : définition, bénéfices, piliers et processus. Un guide simple pour saisir l'expérience utilisateur avant de découvrir les 30 lois de l'UX.">
+    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Lennouille">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Comprendre l'UX Design : définition et enjeux | Lennouille">
+    <meta name="twitter:description" content="Comprendre l'UX design : définition, bénéfices, piliers et processus. Un guide simple pour saisir l'expérience utilisateur avant de découvrir les 30 lois de l'UX.">
+    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    <link rel="canonical" href="https://lennouille.fr/ux/comprendre-ux">
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    {%- assign biz = site.data.business -%}
+    {%- assign page_url = biz.url | append: "/ux/comprendre-ux" -%}
+    {%- assign parent_url = biz.url | append: "/ux" -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "{{ page_url }}#page",
+          "url": "{{ page_url }}",
+          "name": {{ page.title | jsonify }},
+          "description": {{ page.description | jsonify }},
+          "inLanguage": "fr-FR",
+          {%- if page.last_modified_at %}
+          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+          {%- endif %}
+          "about": {
+            "@type": "Thing",
+            "name": "UX Design"
+          },
+          "author": {
+            "@type": "Person",
+            "@id": "{{ biz.url }}/#lenny-gadroy",
+            "name": "Lenny Gadroy"
+          },
+          "isPartOf": {
+            "@type": "WebPage",
+            "@id": "{{ parent_url }}#page"
+          },
+          "breadcrumb": {
+            "@id": "{{ page_url }}#breadcrumb"
+          },
+          "hasPart": {
+            "@id": "{{ page_url }}#faq"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "{{ page_url }}#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "{{ biz.url }}/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "UX",
+              "item": "{{ parent_url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Comprendre l'UX",
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "{{ page_url }}#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Quelle est la différence entre UX et UI design ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "L'UX design s'occupe de l'expérience globale : le parcours, la clarté, la facilité à atteindre un objectif. L'UI design s'occupe de la couche visuelle : couleurs, typographies, boutons, espacements. L'UI est un outil au service de l'UX, pas son synonyme."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "L'UX design est-il utile pour un petit site ou un indépendant ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Oui. Un site vitrine, une page de contact ou un formulaire offrent déjà une expérience, pensée ou subie. Soigner la clarté du message, la navigation et l'affichage sur mobile aide les visiteurs à passer à l'action, quelle que soit la taille du projet."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Par où commencer pour améliorer l'UX d'un site existant ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Par un audit des parcours clés : identifier les trois ou quatre actions les plus importantes (prendre contact, réserver, acheter), les parcourir comme un nouvel arrivant, sur mobile et sur ordinateur, puis observer quelques personnes réelles. Les points de blocage apparaissent vite."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Faut-il savoir dessiner ou coder pour faire de l'UX ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non. L'UX repose d'abord sur l'écoute des utilisateurs, la structuration de l'information et le test. Savoir lire une maquette et dialoguer avec les personnes qui développent est un vrai plus, mais ce n'est pas un prérequis."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Comment savoir si l'expérience d'un site est réussie ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "En suivant des indicateurs liés aux objectifs du site : taux de passage à l'action (contact, réservation, achat), abandon d'un formulaire ou d'un panier, temps nécessaire pour accomplir une tâche. Ces chiffres montrent où ça bloque ; les tests avec de vraies personnes expliquent pourquoi."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qu'est-ce qu'une loi d'UX ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Une loi d'UX est un principe issu de la psychologie cognitive (perception, mémoire, attention, décision) observé assez souvent pour guider la conception d'une interface. Ce ne sont pas des règles absolues, mais des repères pour justifier un choix de design."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <main class="UX SubPage" id="top">
+        {% include header.html %}
+        <section class="SecondaryHero">
+            <div class="Decor" aria-hidden="true"><span>UX</span></div>
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <a href="/ux">UX</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Comprendre l’UX</span>
+                </nav>
+                <h1 class="Title">Comprendre <em>l’UX</em>&nbsp;design</h1>
+                <p class="SubTitle">L’UX design n’est ni un style graphique, ni une couche de peinture posée à la fin d’un projet. C’est une façon de concevoir qui part des personnes pour arriver au produit. Ce guide explique ce qu’est l’expérience utilisateur, pourquoi elle compte et comment elle se construit.</p>
+                <div class="Meta">
+                    <span>Guide d’initiation</span>
+                    <span class="Dot" aria-hidden="true"></span>
+                    <span>8 min de lecture</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="SubPageBody">
+            <section class="Block" id="essentiel">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">01 — L’essentiel</span>
+                    <h2 class="Title">L’UX design, c’est quoi exactement&nbsp;?</h2>
+                </div>
+                <div class="EssentielLayout">
+                    <div class="EssentielText">
+                        <p class="Intro">L’UX design (pour <em>User Experience Design</em>, « conception de l’expérience utilisateur ») désigne le travail qui consiste à façonner ce que vit une personne lorsqu’elle utilise un site, une application ou un service. La norme ISO&nbsp;9241-210 la décrit comme l’ensemble des perceptions et des réactions d’un utilisateur, avant, pendant et après l’usage d’un produit. En clair&nbsp;: ce qu’on comprend, ce qu’on ressent et ce qu’on parvient à faire.</p>
+                        <p class="Intro">Prenons un exemple du quotidien&nbsp;: réserver un billet de train. Quand le parcours est limpide, que le prix s’affiche avant la dernière étape et que la confirmation arrive aussitôt, on n’y pense même pas. Quand un champ efface nos réponses et qu’il faut tout recommencer, c’est l’expérience qui a échoué, et ce même derrière une interface soignée.</p>
+                        <p class="Intro">L’UX ne se limite donc pas à l’apparence. Elle se joue dans la structure des pages, dans le choix des mots, dans la vitesse d’affichage, dans l’accessibilité. Pour la distinguer de l’interface visuelle, la page <a href="/ux#ux-ui">UX et UI&nbsp;: quelle différence&nbsp;?</a> détaille la question.</p>
+                    </div>
+                    <aside class="Highlight Quote">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        <div>
+                            <p class="HighlightLabel">En une phrase</p>
+                            <p>L’UX design consiste à rendre un produit utile, facile à comprendre et agréable à utiliser, en partant des besoins réels des personnes qui s’en servent.</p>
+                        </div>
+                    </aside>
+                </div>
+                <ul class="Takeaways Cards">
+                    <li>L’expérience commence avant l’écran (comment on découvre le produit) et se poursuit après (ce dont on se souvient).</li>
+                    <li>Elle concerne tout le monde&nbsp;: un site vitrine, un formulaire ou une application métier ont chacun leur expérience.</li>
+                    <li>Elle se conçoit, se teste et s’améliore. Elle ne se devine pas.</li>
+                </ul>
+            </section>
+
+            <section class="Block" id="enjeux">
+                <div class="SectionTitle">
+                    <span class="Eyebrow">02 — Les enjeux</span>
+                    <h2 class="Title">Pourquoi l’expérience utilisateur change tout</h2>
+                    <p class="Subtitle">Une bonne expérience profite à toutes les parties&nbsp;: les personnes qui utilisent le produit, et celles qui l’ont créé.</p>
+                </div>
+                <div class="FeatureGrid">
+                    <div class="Card Featured">
+                        <span class="Tag">Pour les utilisateurs</span>
+                        <h3>Moins d’effort, plus de clarté</h3>
+                        <p>Une interface bien pensée réduit la charge mentale&nbsp;: chacun comprend où il se trouve, ce qu’il peut faire et ce qui va se passer ensuite.</p>
+                    </div>
+                    <div class="Card">
+                        <span class="Tag">Pour l’entreprise</span>
+                        <h3>Des objectifs plus faciles à atteindre</h3>
+                        <p>Quand le parcours est fluide, les visiteurs vont au bout de leur action&nbsp;: prendre contact, réserver, acheter. L’UX aligne les besoins des personnes avec les objectifs du projet.</p>
+                    </div>
+                    <div class="Card">
+                        <span class="Tag">Pour tous</span>
+                        <h3>Un produit plus inclusif</h3>
+                        <p>Penser l’UX, c’est aussi penser l’accessibilité&nbsp;: contrastes, navigation au clavier, textes lisibles. Ce qui fonctionne pour le plus grand nombre fonctionne mieux pour chacun.</p>
+                    </div>
+                    <div class="Card Featured">
+                        <span class="Tag">Pour la durée</span>
+                        <h3>Moins de corrections coûteuses</h3>
+                        <p>Repérer un défaut sur une maquette coûte bien moins cher que le corriger une fois le produit développé et mis en ligne.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="Block" id="piliers">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">03 — Les piliers</span>
+                    <h2 class="Title">Ce qui fait une bonne expérience</h2>
+                </div>
+                <p class="Intro">Plusieurs modèles décrivent les qualités d’une expérience réussie. Le plus connu est le «&nbsp;nid d’abeille&nbsp;» du consultant Peter Morville, qui découpe l’UX en facettes complémentaires. Elles servent de grille de lecture simple, aussi bien pour concevoir que pour auditer un site existant.</p>
+                <div class="PillarGrid">
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">01</span></div>
+                            <h3>Utile</h3>
+                        </div>
+                        <p>Le produit répond à un besoin réel, pas à une idée que personne n’a vérifiée.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">02</span></div>
+                            <h3>Utilisable</h3>
+                        </div>
+                        <p>On atteint son but facilement, sans mode d’emploi ni détour.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">03</span></div>
+                            <h3>Trouvable</h3>
+                        </div>
+                        <p>Le contenu et les fonctions se repèrent vite, grâce à une navigation claire et à des intitulés explicites.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">04</span></div>
+                            <h3>Crédible</h3>
+                        </div>
+                        <p>L’ensemble inspire confiance par sa cohérence, ses informations précises et sa fiabilité.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">05</span></div>
+                            <h3>Accessible</h3>
+                        </div>
+                        <p>Toutes les personnes peuvent s’en servir, quels que soient leur handicap, leur appareil ou leur contexte.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">06</span></div>
+                            <h3>Désirable</h3>
+                        </div>
+                        <p>L’identité visuelle, le ton et les interactions donnent envie d’y revenir.</p>
+                    </article>
+                    <article class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">07</span></div>
+                            <h3>Précieux</h3>
+                        </div>
+                        <p>Il apporte une vraie valeur, à la fois à l’utilisateur et à l’organisation qui le propose.</p>
+                    </article>
+                    <aside class="Highlight Quote Warn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <div>
+                            <p class="HighlightLabel">Point de vigilance</p>
+                            <p>Un site magnifique mais introuvable, ou accessible mais inutile, reste un échec d’expérience utilisateur.</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="Block" id="processus">
+                <div class="SectionTitle">
+                    <span class="Eyebrow">04 — Le processus</span>
+                    <h2 class="Title">Comment se construit une expérience, étape par étape</h2>
+                    <p class="Subtitle">Cinq grandes étapes reviennent dans la plupart des projets d’UX design.</p>
+                </div>
+                <div class="ProcessGrid">
+                    <div class="Card Featured">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">1</span></div>
+                            <h3>Comprendre</h3>
+                        </div>
+                        <p>Entretiens, observation, analyse des usages existants&nbsp;: on identifie qui sont les utilisateurs et ce qu’ils cherchent réellement à accomplir.</p>
+                    </div>
+                    <div class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">2</span></div>
+                            <h3>Structurer</h3>
+                        </div>
+                        <p>Organiser les contenus et les parcours&nbsp;: arborescence, intitulés, hiérarchie. C’est le plan du bâtiment, avant le choix de la peinture.</p>
+                    </div>
+                    <div class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">3</span></div>
+                            <h3>Concevoir</h3>
+                        </div>
+                        <p>Wireframes puis maquettes&nbsp;: on dessine les écrans et les interactions, puis on pose le design visuel qui leur donne leur identité.</p>
+                    </div>
+                    <div class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">4</span></div>
+                            <h3>Tester</h3>
+                        </div>
+                        <p>Mettre un prototype entre les mains de vraies personnes et observer où elles hésitent, se trompent ou abandonnent.</p>
+                    </div>
+                    <div class="Card">
+                        <div class="CardHead">
+                            <div class="IconBox"><span aria-hidden="true">5</span></div>
+                            <h3>Améliorer</h3>
+                        </div>
+                        <p>Corriger, mesurer, recommencer. Une expérience n’est jamais figée&nbsp;: elle évolue avec les usages et les attentes.</p>
+                    </div>
+                </div>
+                <div class="Highlight">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    <div>
+                        <p class="HighlightLabel">Une boucle, pas une ligne droite</p>
+                        <p>Ce que l’on apprend lors des tests nourrit la compréhension du départ. Cette démarche itérative guide mes <a href="/services">services de conception web</a> comme mes <a href="/reals">réalisations</a>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="Block" id="idees-recues">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">05 — Les idées reçues</span>
+                    <h2 class="Title">Ce que l’UX design n’est pas</h2>
+                </div>
+                <div class="MythGrid">
+                    <article class="Card Myth">
+                        <div class="CardHead">
+                            <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                            <div>
+                                <h3>«&nbsp;L’UX, c’est du joli design&nbsp;»</h3>
+                                <p>Idée reçue</p>
+                            </div>
+                        </div>
+                        <span class="MythTag Fact">En réalité</span>
+                        <p>L’esthétique y contribue, c’est le rôle de l’UI, mais un écran élégant peut rester inutilisable. L’UX juge un produit à sa capacité à aider quelqu’un à atteindre son objectif, pas à son seul aspect visuel.</p>
+                    </article>
+                    <article class="Card Myth">
+                        <div class="CardHead">
+                            <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                            <div>
+                                <h3>«&nbsp;L’UX, c’est une étape à ajouter à la fin&nbsp;»</h3>
+                                <p>Idée reçue</p>
+                            </div>
+                        </div>
+                        <span class="MythTag Fact">En réalité</span>
+                        <p>C’est l’inverse. Plus l’expérience est pensée tôt, moins les corrections sont lourdes. Intégrée dès le départ, elle oriente les choix de structure, de contenu et de technique.</p>
+                    </article>
+                    <article class="Card Myth">
+                        <div class="CardHead">
+                            <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                            <div>
+                                <h3>«&nbsp;Je sais déjà ce qui plaît à mes utilisateurs&nbsp;»</h3>
+                                <p>Idée reçue</p>
+                            </div>
+                        </div>
+                        <span class="MythTag Fact">En réalité</span>
+                        <p>Ce que l’on suppose et ce que l’on observe diffèrent souvent. Tester avec quelques personnes suffit généralement à lever de nombreux doutes et à éviter des choix fondés sur des intuitions.</p>
+                    </article>
+                    <article class="Card Myth">
+                        <div class="CardHead">
+                            <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                            <div>
+                                <h3>«&nbsp;L’UX, c’est réservé aux grandes entreprises&nbsp;»</h3>
+                                <p>Idée reçue</p>
+                            </div>
+                        </div>
+                        <span class="MythTag Fact">En réalité</span>
+                        <p>Tout projet a une expérience, qu’elle soit pensée ou subie. Un site vitrine, un formulaire de contact ou une page de réservation gagnent autant à être clairs qu’une grande plateforme.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="Block" id="faq">
+                <div class="SectionTitle">
+                    <span class="Eyebrow">06 — Questions fréquentes</span>
+                    <h2 class="Title">L’UX design en six questions</h2>
+                </div>
+                <div class="FAQList">
+                    <div class="FAQCol">
+                        <details>
+                            <summary>Quelle est la différence entre UX et UI design&nbsp;?</summary>
+                            <p>L’UX design s’occupe de l’expérience globale&nbsp;: le parcours, la clarté, la facilité à atteindre un objectif. L’UI design s’occupe de la couche visuelle&nbsp;: couleurs, typographies, boutons, espacements. L’UI est un outil au service de l’UX, pas son synonyme.</p>
+                        </details>
+                        <details>
+                            <summary>L’UX design est-il utile pour un petit site ou un indépendant&nbsp;?</summary>
+                            <p>Oui. Un site vitrine, une page de contact ou un formulaire offrent déjà une expérience, pensée ou subie. Soigner la clarté du message, la navigation et l’affichage sur mobile aide les visiteurs à passer à l’action, quelle que soit la taille du projet.</p>
+                        </details>
+                        <details>
+                            <summary>Par où commencer pour améliorer l’UX d’un site existant&nbsp;?</summary>
+                            <p>Par un audit des parcours clés&nbsp;: identifier les trois ou quatre actions les plus importantes (prendre contact, réserver, acheter), les parcourir comme un nouvel arrivant, sur mobile et sur ordinateur, puis observer quelques personnes réelles. Les points de blocage apparaissent vite.</p>
+                        </details>
+                    </div>
+                    <div class="FAQCol">
+                        <details>
+                            <summary>Faut-il savoir dessiner ou coder pour faire de l’UX&nbsp;?</summary>
+                            <p>Non. L’UX repose d’abord sur l’écoute des utilisateurs, la structuration de l’information et le test. Savoir lire une maquette et dialoguer avec les personnes qui développent est un vrai plus, mais ce n’est pas un prérequis.</p>
+                        </details>
+                        <details>
+                            <summary>Comment savoir si l’expérience d’un site est réussie&nbsp;?</summary>
+                            <p>En suivant des indicateurs liés aux objectifs du site&nbsp;: taux de passage à l’action (contact, réservation, achat), abandon d’un formulaire ou d’un panier, temps nécessaire pour accomplir une tâche. Ces chiffres montrent où ça bloque&nbsp;; les tests avec de vraies personnes expliquent pourquoi.</p>
+                        </details>
+                        <details>
+                            <summary>Qu’est-ce qu’une loi d’UX&nbsp;?</summary>
+                            <p>Une loi d’UX est un principe issu de la psychologie cognitive (perception, mémoire, attention, décision) observé assez souvent pour guider la conception d’une interface. Ce ne sont pas des règles absolues, mais des repères pour justifier un choix de design.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <section class="Block" id="lois">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">07 — La suite</span>
+                    <h2 class="Title">Passer à la pratique avec les lois de l’UX</h2>
+                </div>
+                <p class="Intro">Comprendre l’UX est une première étape&nbsp;; la mettre en œuvre en est une autre. Combien de choix afficher à l’écran&nbsp;? Où placer un bouton&nbsp;? Comment alléger un formulaire&nbsp;? Pour y répondre, la psychologie cognitive a mis en évidence des régularités du comportement humain&nbsp;: les <a href="/ux#catalogue">lois de l’UX</a>. Elles se répartissent en quatre grandes familles.</p>
+                <div class="CompareGrid Wide">
+                    <article class="Card">
+                        <div class="LawHead">
+                            <span class="LawNum">20</span>
+                            <h3><a href="/ux/laws/loi-de-proximite/">Loi de proximité</a></h3>
+                        </div>
+                        <p>Des objets rapprochés dans l’espace sont perçus comme un groupe, indépendamment de leur forme ou de leur couleur.</p>
+                        <div class="LawSimilar">
+                            <span class="Label">Lois similaires</span>
+                            <ul><li><a href="/ux/laws/loi-de-similarite/">Loi de similarité</a></li><li><a href="/ux/laws/loi-region-commune/">Loi de la région commune</a></li></ul>
+                        </div>
+                    </article>
+                    <article class="Card">
+                        <div class="LawHead">
+                            <span class="LawNum">03</span>
+                            <h3><a href="/ux/laws/charge-cognitive/">Charge cognitive</a></h3>
+                        </div>
+                        <p>C’est l’effort mental nécessaire pour comprendre une interface&nbsp;; au-delà d’un certain seuil, l’utilisateur décroche.</p>
+                        <div class="LawSimilar">
+                            <span class="Label">Lois similaires</span>
+                            <ul><li><a href="/ux/laws/loi-de-miller/">Loi de Miller</a></li><li><a href="/ux/laws/memoire-de-travail/">Mémoire de travail</a></li><li><a href="/ux/laws/chunking/">Chunking</a></li></ul>
+                        </div>
+                    </article>
+                    <article class="Card">
+                        <div class="LawHead">
+                            <span class="LawNum">13</span>
+                            <h3><a href="/ux/laws/loi-de-hick/">Loi de Hick</a></h3>
+                        </div>
+                        <p>Plus il y a d’options, et plus elles sont complexes, plus la décision prend de temps.</p>
+                        <div class="LawSimilar">
+                            <span class="Label">Lois similaires</span>
+                            <ul><li><a href="/ux/laws/surcharge-de-choix/">Surcharge de choix</a></li><li><a href="/ux/laws/loi-de-fitts/">Loi de Fitts</a></li><li><a href="/ux/laws/rasoir-doccam/">Rasoir d’Occam</a></li></ul>
+                        </div>
+                    </article>
+                    <article class="Card">
+                        <div class="LawHead">
+                            <span class="LawNum">14</span>
+                            <h3><a href="/ux/laws/loi-de-jakob/">Loi de Jakob</a></h3>
+                        </div>
+                        <p>Les utilisateurs passent le plus clair de leur temps sur d’autres sites&nbsp;: ils attendent que le vôtre fonctionne pareil.</p>
+                        <div class="LawSimilar">
+                            <span class="Label">Lois similaires</span>
+                            <ul><li><a href="/ux/laws/modele-mental/">Modèle mental</a></li><li><a href="/ux/laws/loi-de-postel/">Loi de Postel</a></li><li><a href="/ux/laws/loi-de-tesler/">Loi de Tesler</a></li></ul>
+                        </div>
+                    </article>
+                </div>
+                <div class="LawsCTA">
+                    <a href="/ux#catalogue" class="ArrowBtn">Explorer les 30 lois de l’UX <span class="Arrow">→</span></a>
+                </div>
+            </section>
+        </div>
+        {% include cta.html %}
+        {% include footer.html %}
+    </main>
+<!-- Anims -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/anims.js" defer></script>
+</body>
+</html>
