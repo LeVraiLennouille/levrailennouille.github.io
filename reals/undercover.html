@@ -1,216 +1,82 @@
 ---
+layout: reals
 real_id: undercover
 title: "Création Jeu Web & UI/UX : Undercover | Lennouille"
 description: "Création du jeu web Undercover : UX d'un party game de déduction, identité graphique façon dossier confidentiel et développement front-end complet."
 schema_type: CreativeWork
 image: /assets/og-undercover.png
+eyebrow: "Création · Product design & Développement front-end"
+heading: "Création Undercover"
+banner_alt: "Bannière haute Undercover"
+link: "https://lennouille.fr/Undercover/"
+keywords:
+  - "Création"
+  - "Product design & Développement front-end"
+facts:
+  role: "UX, identité visuelle, développement front-end et logique de jeu"
+  duree: "2 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Projet personnel"
+  resultat: "3 à 20 joueurs, 7 thèmes, plus de 200 paires de mots"
+intro:
+  brief: "Concevoir un party game de déduction pour 3 à 20 joueurs, joué sur un seul appareil, sans application à installer ni serveur."
+  objectif: "Enchaîner configuration, distribution des mots et vote sans avoir à relire les règles."
+  livrables: "UX du parcours de jeu, identité « dossier confidentiel », développement front-end (HTML/CSS/JS), logique de jeu."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création Jeu Web & UI/UX : Undercover | Lennouille</title>
-
-    <meta name="description" content="Création du jeu web Undercover : UX d'un party game de déduction, identité graphique façon dossier confidentiel et développement front-end complet.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/undercover">
-    <meta property="og:title" content="Création Jeu Web & UI/UX : Undercover | Lennouille">
-    <meta property="og:description" content="Création du jeu web Undercover : UX d'un party game de déduction, identité graphique façon dossier confidentiel et développement front-end complet.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-undercover.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création Jeu Web & UI/UX : Undercover | Lennouille">
-    <meta name="twitter:description" content="Création du jeu web Undercover : UX d'un party game de déduction, identité graphique façon dossier confidentiel et développement front-end complet.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-undercover.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/undercover">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/undercover" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Création",
-            "Product design & Développement front-end"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/undercover/mockup.webp" alt="Bannière haute Undercover">
-        </section>
-        <div class="Title">
-            <span>Création · Product design & Développement front-end</span>
-            <h1>Création Undercover</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennouille.fr/Undercover/" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennouille.fr/Undercover</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UX, identité visuelle, développement front-end et logique de jeu</dd></div>
-            <div><dt>Durée</dt><dd>2 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Projet personnel</dd></div>
-            <div><dt>Résultat</dt><dd>3 à 20 joueurs, 7 thèmes, plus de 200 paires de mots</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Concevoir un party game de déduction pour 3 à 20 joueurs, joué sur un seul appareil, sans application à installer ni serveur.</p>
-            <p><b>Objectif :</b> Enchaîner configuration, distribution des mots et vote sans avoir à relire les règles.</p>
-            <p><b>Livrables :</b> UX du parcours de jeu, identité « dossier confidentiel », développement front-end (HTML/CSS/JS), logique de jeu.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Principe du jeu</h4>
-                    <p>Undercover est un jeu à mot secret et rôle caché. Chaque joueur reçoit un mot en privé : les civils ont le même mot, l'Undercover un mot voisin, Mr. White aucun. Le jeu est une page web ouverte depuis le téléphone d'un seul joueur et passée de main en main, sans installation.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Un parcours en quatre étapes</h4>
-                    <p>Quatre étapes, chacune avec ses wireframes : configuration (effectif, thèmes, rôles spéciaux), révélation privée du mot, discussion, vote d'élimination. Contraintes : une configuration lisible malgré les options, une confidentialité garantie sur un appareil partagé, un vote en un clic sur la carte du joueur désigné.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Identité visuelle — Wordmark</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/undercover/logo.webp" alt="Logo Undercover"></div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Identité « dossier confidentiel »</h4>
-            <p>Fond sombre vignetté, cartes couleur papier vieilli, tampon « confidentiel » incliné sur chaque révélation. Typographies : Barlow Condensed (titres, compteurs, boutons) et Courier Prime (mot secret, intitulés). Deux couleurs : rouge pour la tension (élimination, tampon, camp Undercover), doré pour l'action.</p>
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Couleurs désignées</span></div>
-            <div class="ProjectGallery Item2">
-                <img src="/img/reals/undercover/couleur-doree.webp" alt="Couleur dorée Undercover">
-                <img src="/img/reals/undercover/couleur-rouge.webp" alt="Couleur rouge tampon Undercover">
-            </div>
+            <h4>Principe du jeu</h4>
+            <p>Undercover est un jeu à mot secret et rôle caché. Chaque joueur reçoit un mot en privé : les civils ont le même mot, l'Undercover un mot voisin, Mr. White aucun. Le jeu est une page web ouverte depuis le téléphone d'un seul joueur et passée de main en main, sans installation.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Confidentialité de la révélation</h4>
-            <p>Risque : un mot visible une seconde de trop. Le joueur clique sur sa propre carte, un rappel l'invite à vérifier que personne ne regarde, puis il referme lui-même la carte avant de passer l'appareil. Une carte déjà consultée ne peut pas être rouverte.</p>
+            <h4>Un parcours en quatre étapes</h4>
+            <p>Quatre étapes, chacune avec ses wireframes : configuration (effectif, thèmes, rôles spéciaux), révélation privée du mot, discussion, vote d'élimination. Contraintes : une configuration lisible malgré les options, une confidentialité garantie sur un appareil partagé, un vote en un clic sur la carte du joueur désigné.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Écran de configuration</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-accueil.webp" alt="Écran d'accueil de la partie"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Distribution des mots</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-jeu.webp" alt="Écran de jeu"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Révélation privée</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-revelation.webp" alt="Modale de révélation du mot secret"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Logique de jeu</h4>
-            <p>Règles codées : un joueur ne cumule pas deux rôles spéciaux ; le nombre d'Undercover varie avec l'effectif ; une paire de mots ne revient pas tant que les paires du thème choisi ne sont pas épuisées (7 thèmes, plus de 160 paires). Les blocages sont traités, par exemple un duel à deux sans Procureur, pour qu'aucune manche ne reste sans vainqueur. J'ai traité le règlement comme une machine à états, de la configuration à l'écran de fin.</p>
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>160+</strong><span>paires de mots réparties en 7 thèmes</span></div>
-                <div class="ResultItem"><strong>3 à 20</strong><span>joueurs sur un seul appareil</span></div>
-                <div class="ResultItem"><strong>0</strong><span>installation, 0 serveur : page web statique</span></div>
-            </div>
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Identité visuelle — Wordmark</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/undercover/logo.webp" alt="Logo Undercover"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Identité « dossier confidentiel »</h4>
+    <p>Fond sombre vignetté, cartes couleur papier vieilli, tampon « confidentiel » incliné sur chaque révélation. Typographies : Barlow Condensed (titres, compteurs, boutons) et Courier Prime (mot secret, intitulés). Deux couleurs : rouge pour la tension (élimination, tampon, camp Undercover), doré pour l'action.</p>
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/undercover/couleur-doree.webp" alt="Couleur dorée Undercover">
+        <img src="/img/reals/undercover/couleur-rouge.webp" alt="Couleur rouge tampon Undercover">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Confidentialité de la révélation</h4>
+    <p>Risque : un mot visible une seconde de trop. Le joueur clique sur sa propre carte, un rappel l'invite à vérifier que personne ne regarde, puis il referme lui-même la carte avant de passer l'appareil. Une carte déjà consultée ne peut pas être rouverte.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Écran de configuration</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-accueil.webp" alt="Écran d'accueil de la partie"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Distribution des mots</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-jeu.webp" alt="Écran de jeu"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Révélation privée</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/undercover/ecran-revelation.webp" alt="Modale de révélation du mot secret"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Logique de jeu</h4>
+    <p>Règles codées : un joueur ne cumule pas deux rôles spéciaux ; le nombre d'Undercover varie avec l'effectif ; une paire de mots ne revient pas tant que les paires du thème choisi ne sont pas épuisées (7 thèmes, plus de 160 paires). Les blocages sont traités, par exemple un duel à deux sans Procureur, pour qu'aucune manche ne reste sans vainqueur. J'ai traité le règlement comme une machine à états, de la configuration à l'écran de fin.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>160+</strong><span>paires de mots réparties en 7 thèmes</span></div>
+        <div class="ResultItem"><strong>3 à 20</strong><span>joueurs sur un seul appareil</span></div>
+        <div class="ResultItem"><strong>0</strong><span>installation, 0 serveur : page web statique</span></div>
+    </div>
+</div>

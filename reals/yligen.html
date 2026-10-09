@@ -1,223 +1,89 @@
 ---
+layout: reals
 real_id: yligen
 title: "Refonte UI/UX & Migration CMS sur-mesure : YLIGEN | Lennouille"
 description: "Découvrez la refonte UI/UX et la migration technique du CMS Odoo vers un site web sur-mesure pour YLIGEN. Nouvelle identité visuelle et webdesign premium."
 schema_type: CreativeWork
 image: /assets/og-yligen.png
 client: "YLIGEN"
+eyebrow: "UI/UX Design · Webdesign · Identité visuelle"
+heading: "Refonte Yligen v2"
+banner_alt: "Bannière haute Yligen"
+link: "https://yligen.fr"
+keywords:
+  - "UI/UX Design"
+  - "Webdesign"
+  - "Identité visuelle"
+facts:
+  role: "UI/UX design, identité visuelle"
+  duree: "4 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Client réel, migration depuis Odoo"
+  resultat: "Logo, hero, formulaire et footer refondus ; poids de page 5 → 2 Mo"
+intro:
+  brief: "Migrer le site du CMS Odoo vers un code sur-mesure (HTML/CSS/JS), compatible avec l'écosystème existant du client."
+  objectif: "Gagner en liberté de mise en page et améliorer la conversion."
+  livrables: "Charte graphique, logo redessiné, design system et UI Kit, maquettes UI/UX prêtes pour le développement."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Refonte UI/UX & Migration CMS sur-mesure : YLIGEN | Lennouille</title>
-
-    <meta name="description" content="Découvrez la refonte UI/UX et la migration technique du CMS Odoo vers un site web sur-mesure pour YLIGEN. Nouvelle identité visuelle et webdesign premium.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/yligen">
-    <meta property="og:title" content="Refonte UI/UX & Migration CMS sur-mesure : YLIGEN | Lennouille">
-    <meta property="og:description" content="Découvrez la refonte UI/UX et la migration technique du CMS Odoo vers un site web sur-mesure pour YLIGEN. Nouvelle identité visuelle et webdesign premium.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-yligen.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Refonte UI/UX & Migration CMS sur-mesure : YLIGEN | Lennouille">
-    <meta name="twitter:description" content="Découvrez la refonte UI/UX et la migration technique du CMS Odoo vers un site web sur-mesure pour YLIGEN. Nouvelle identité visuelle et webdesign premium.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-yligen.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/yligen">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/yligen" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "UI/UX Design",
-            "Webdesign",
-            "Identité visuelle"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/yligen/mockup.webp" alt="Bannière haute Yligen">
-        </section>
-        <div class="Title">
-            <span>UI/UX Design · Webdesign · Identité visuelle</span>
-            <h1>Refonte Yligen v2</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://yligen.fr" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">yligen.fr</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UI/UX design, identité visuelle</dd></div>
-            <div><dt>Durée</dt><dd>4 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Client réel, migration depuis Odoo</dd></div>
-            <div><dt>Résultat</dt><dd>Logo, hero, formulaire et footer refondus ; poids de page 5 → 2 Mo</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Migrer le site du CMS Odoo vers un code sur-mesure (HTML/CSS/JS), compatible avec l'écosystème existant du client.</p>
-            <p><b>Objectif :</b> Gagner en liberté de mise en page et améliorer la conversion.</p>
-            <p><b>Livrables :</b> Charte graphique, logo redessiné, design system et UI Kit, maquettes UI/UX prêtes pour le développement.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : un site sous Odoo</h4>
-                    <p>Le site d'YLIGEN tournait sur le CMS Odoo. Le back-office fonctionnait, mais les templates limitaient la mise en page et l'identité visuelle restait générique. La mission : migrer vers un code sur-mesure (HTML/CSS/JS), compatible avec l'écosystème du client, et refondre l'interface UI/UX.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Audit : limites du CMS et points à conserver</h4>
-                    <p>J'ai listé ce que les templates Odoo empêchaient de faire, puis ce qui pouvait rester dans l'arborescence. Les wireframes exploitent la liberté du code sur les zones qui pèsent sur la conversion : hero, formulaire de contact, footer. Chaque maquette a été pensée pour être réalisable en intégration front-end.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
-                <div class="Comparaisons"><img src="/img/reals/yligen/new-logo.webp" alt="Nouveau logo Yligen" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/yligen/old-logo.webp" alt="Ancien logo Yligen" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Nouvelle charte et design system</h4>
-            <p>J'ai créé une charte graphique, un design system et un UI Kit sur mesure, avec une palette et une typographie modernisées. Le logo a été redessiné avec un tracé plus fin, pour s'intégrer à la nouvelle interface (comparaison ci-dessus).</p>
+            <h4>Point de départ : un site sous Odoo</h4>
+            <p>Le site d'YLIGEN tournait sur le CMS Odoo. Le back-office fonctionnait, mais les templates limitaient la mise en page et l'identité visuelle restait générique. La mission : migrer vers un code sur-mesure (HTML/CSS/JS), compatible avec l'écosystème du client, et refondre l'interface UI/UX.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Ce qui change dans l'interface</h4>
-            <p>Trois zones ont été refaites : hero et navbar, formulaire de contact, footer (comparaisons ci-dessous). Poids de page après migration : 2 Mo, contre 5 Mo sous Odoo.</p>
+            <h4>Audit : limites du CMS et points à conserver</h4>
+            <p>J'ai listé ce que les templates Odoo empêchaient de faire, puis ce qui pouvait rester dans l'arborescence. Les wireframes exploitent la liberté du code sur les zones qui pèsent sur la conversion : hero, formulaire de contact, footer. Chaque maquette a été pensée pour être réalisable en intégration front-end.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
-                <div class="Comparaisons"><img src="/img/reals/yligen/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/yligen/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Formulaire</span></div>
-                <div class="Comparaisons"><img src="/img/reals/yligen/new-section-contact.webp" alt="Nouvelle version du formulaire" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/yligen/old-section-contact.webp" alt="Ancienne version du formulaire" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
-                <div class="Comparaisons"><img src="/img/reals/yligen/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/yligen/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Concevoir autour d'Odoo suppose de connaître les limites du back-office du client. Une maquette que le client ne peut pas maintenir n'a pas de valeur : la maintenabilité est devenue un critère de validation de chaque écran.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
+        <div class="Comparaisons"><img src="/img/reals/yligen/new-logo.webp" alt="Nouveau logo Yligen" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/yligen/old-logo.webp" alt="Ancien logo Yligen" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>3</strong><span>zones refondues et comparées avant/après : hero + navbar, formulaire, footer</span></div>
-                <div class="ResultItem">5 → 2 Mo</strong><span>poids de la page d'accueil, avant → après</span></div>
-                <div class="ResultItem"><strong><span class="ToFill">[A]</span> → <span class="ToFill">[B]</span></strong><span>score Lighthouse « Performance », avant → après</span></div>
-            </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Nouvelle charte et design system</h4>
+    <p>J'ai créé une charte graphique, un design system et un UI Kit sur mesure, avec une palette et une typographie modernisées. Le logo a été redessiné avec un tracé plus fin, pour s'intégrer à la nouvelle interface (comparaison ci-dessus).</p>
+</div>
+<div class="ProjectBloc">
+    <h4>Ce qui change dans l'interface</h4>
+    <p>Trois zones ont été refaites : hero et navbar, formulaire de contact, footer (comparaisons ci-dessous). Poids de page après migration : 2 Mo, contre 5 Mo sous Odoo.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
+        <div class="Comparaisons"><img src="/img/reals/yligen/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/yligen/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Formulaire</span></div>
+        <div class="Comparaisons"><img src="/img/reals/yligen/new-section-contact.webp" alt="Nouvelle version du formulaire" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/yligen/old-section-contact.webp" alt="Ancienne version du formulaire" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
+        <div class="Comparaisons"><img src="/img/reals/yligen/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/yligen/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Concevoir autour d'Odoo suppose de connaître les limites du back-office du client. Une maquette que le client ne peut pas maintenir n'a pas de valeur : la maintenabilité est devenue un critère de validation de chaque écran.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>3</strong><span>zones refondues et comparées avant/après : hero + navbar, formulaire, footer</span></div>
+        <div class="ResultItem"><strong>5 → 2 Mo</strong><span>poids de la page d'accueil, avant → après</span></div>
+        <div class="ResultItem"><strong><span class="ToFill">[A]</span> → <span class="ToFill">[B]</span></strong><span>score Lighthouse « Performance », avant → après</span></div>
+    </div>
+</div>

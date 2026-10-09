@@ -1,226 +1,90 @@
 ---
+layout: reals
 real_id: geoptime
 title: "Création B2B, Identité & UI/UX : GeopTime | Lennouille"
 description: "Refonte de l'identité visuelle et création du site B2B GeopTime. Un projet de bout en bout alliant UI/UX design et développement web full-stack."
 schema_type: CreativeWork
 image: /assets/og-geoptime.png
 client: "GeopTime"
+eyebrow: "Création · UI / UX & Full-stack"
+heading: "Création GeopTime"
+banner_alt: "Bannière haute GeopTime"
+link: "https://geoptime.com"
+keywords:
+  - "Création"
+  - "UI / UX & Full-stack"
+facts:
+  role: "UI/UX design, identité visuelle, développement full-stack"
+  duree: "12 semaines (temps partiel)"
+  outils: "Figma, HTML, CSS, JavaScript, PHP, SQL"
+  contexte: "Client réel : Entreprise d'optimisation des temps de déplacement"
+  resultat: "Site en ligne sur geoptime.com ; première réalisation full-stack en autonomie"
+intro:
+  brief: "Créer le site d'une solution B2B de gestion du temps et de localisation, de la maquette à la base de données."
+  objectif: "Expliquer des fonctionnalités logicielles complexes et générer des contacts qualifiés."
+  livrables: "Logo redessiné, design system et UI Kit, UI/UX, développement full-stack (HTML, CSS, JavaScript, PHP, SQL)."
+folder: true
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création B2B, Identité & UI/UX : GeopTime | Lennouille</title>
-
-    <meta name="description" content="Refonte de l'identité visuelle et création du site B2B GeopTime. Un projet de bout en bout alliant UI/UX design et développement web full-stack.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/geoptime">
-    <meta property="og:title" content="Création B2B, Identité & UI/UX : GeopTime | Lennouille">
-    <meta property="og:description" content="Refonte de l'identité visuelle et création du site B2B GeopTime. Un projet de bout en bout alliant UI/UX design et développement web full-stack.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-geoptime.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création B2B, Identité & UI/UX : GeopTime | Lennouille">
-    <meta name="twitter:description" content="Refonte de l'identité visuelle et création du site B2B GeopTime. Un projet de bout en bout alliant UI/UX design et développement web full-stack.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-geoptime.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/geoptime">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/geoptime" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Création",
-            "UI / UX & Full-stack"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/geoptime/mockup.webp" alt="Bannière haute GeopTime">
-        </section>
-        <div class="Title">
-            <span>Création · UI / UX & Full-stack</span>
-            <h1>Création GeopTime</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://geoptime.com" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">geoptime.com</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UI/UX design, identité visuelle, développement full-stack</dd></div>
-            <div><dt>Durée</dt><dd>12 semaines (temps partiel)</dd></div>
-            <div><dt>Outils</dt><dd>Figma, HTML, CSS, JavaScript, PHP, SQL</dd></div>
-            <div><dt>Contexte</dt><dd>Client réel : Entreprise d'optimisation des temps de déplacement</dd></div>
-            <div><dt>Résultat</dt><dd>Site en ligne sur geoptime.com ; première réalisation full-stack en autonomie</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Créer le site d'une solution B2B de gestion du temps et de localisation, de la maquette à la base de données.</p>
-            <p><b>Objectif :</b> Expliquer des fonctionnalités logicielles complexes et générer des contacts qualifiés.</p>
-            <p><b>Livrables :</b> Logo redessiné, design system et UI Kit, UI/UX, développement full-stack (HTML, CSS, JavaScript, PHP, SQL).</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : pas de site</h4>
-                    <p>GeopTime édite une solution B2B de gestion du temps et de localisation. Sa présence en ligne ne présentait pas clairement l'offre. Le site à créer devait expliquer le produit à des décideurs et générer des demandes de contact.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Objectifs métier et zoning</h4>
-                    <p>J'ai d'abord listé les objectifs de l'entreprise : générer des leads, prouver l'expertise technique, détailler les fonctionnalités sans surcharge. Chaque section répond à l'un d'eux. Les wireframes fixent l'ordre de priorité des blocs avant le webdesign.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
-                <div class="Comparaisons"><img src="/img/reals/geoptime/new-logo.webp" alt="Nouveau logo GeopTime" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/geoptime/old-logo.webp" alt="Ancien logo GeopTime" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Nouvelle identité</h4>
-            <p>J'ai créé un design system et un UI Kit : couleurs vives (bleu, vert) sur fond blanc pour le contraste. Le logo a été redessiné avec des formes plus géométriques (comparaison ci-dessus).</p>
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Couleurs désignées</span></div>
-            <div class="ProjectGallery Item2">
-                <img src="/img/reals/geoptime/couleur-bleu.webp" alt="Couleur bleu GeopTime">
-                <img src="/img/reals/geoptime/couleur-verte.webp" alt="Couleur verte GeopTime">
-            </div>
+            <h4>Point de départ : pas de site</h4>
+            <p>GeopTime édite une solution B2B de gestion du temps et de localisation. Sa présence en ligne ne présentait pas clairement l'offre. Le site à créer devait expliquer le produit à des décideurs et générer des demandes de contact.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Rendre les fonctionnalités lisibles</h4>
-            <p>Le hero présente la proposition de valeur et un appel à l'action. Les fonctionnalités sont présentées avec des icônes dans une grille, pour une lecture rapide. Le footer, auparavant simple liste de liens, sert désormais de navigation secondaire structurée (comparaisons ci-dessous).</p>
+            <h4>Objectifs métier et zoning</h4>
+            <p>J'ai d'abord listé les objectifs de l'entreprise : générer des leads, prouver l'expertise technique, détailler les fonctionnalités sans surcharge. Chaque section répond à l'un d'eux. Les wireframes fixent l'ordre de priorité des blocs avant le webdesign.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
-                <div class="Comparaisons"><img src="/img/reals/geoptime/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/geoptime/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
-                <div class="Comparaisons"><img src="/img/reals/geoptime/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/geoptime/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Design et code</h4>
-            <p>Première réalisation où j'ai assuré seul le développement complet : intégration HTML/CSS, JavaScript, logique serveur en PHP, base de données SQL. Connaître les contraintes de développement change la façon de maquetter sur Figma : je ne dessine plus d'éléments dont je ne peux pas estimer le coût d'intégration.</p>
-            <p>En collaboration avec <a href="https://studiochafai.ovh/" target="_blank">Mohamed Chafai</a></p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
+        <div class="Comparaisons"><img src="/img/reals/geoptime/new-logo.webp" alt="Nouveau logo GeopTime" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/geoptime/old-logo.webp" alt="Ancien logo GeopTime" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>5</strong><span>couches techniques assurées seul : HTML/CSS, JavaScript, PHP, SQL, design Figma</span></div>
-                <div class="ResultItem"><strong>2</strong><span>zones comparées avant/après : hero + navbar, footer ; plus le logo</span></div>
-                <div class="ResultItem"><strong>88</strong><span>heures de travail</span></div>
-            </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Nouvelle identité</h4>
+    <p>J'ai créé un design system et un UI Kit : couleurs vives (bleu, vert) sur fond blanc pour le contraste. Le logo a été redessiné avec des formes plus géométriques (comparaison ci-dessus).</p>
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/geoptime/couleur-bleu.webp" alt="Couleur bleu GeopTime">
+        <img src="/img/reals/geoptime/couleur-verte.webp" alt="Couleur verte GeopTime">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Rendre les fonctionnalités lisibles</h4>
+    <p>Le hero présente la proposition de valeur et un appel à l'action. Les fonctionnalités sont présentées avec des icônes dans une grille, pour une lecture rapide. Le footer, auparavant simple liste de liens, sert désormais de navigation secondaire structurée (comparaisons ci-dessous).</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
+        <div class="Comparaisons"><img src="/img/reals/geoptime/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/geoptime/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="FolderSection">
-            {% include reals-folder.html %}
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
+        <div class="Comparaisons"><img src="/img/reals/geoptime/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/geoptime/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Design et code</h4>
+    <p>Première réalisation où j'ai assuré seul le développement complet : intégration HTML/CSS, JavaScript, logique serveur en PHP, base de données SQL. Connaître les contraintes de développement change la façon de maquetter sur Figma : je ne dessine plus d'éléments dont je ne peux pas estimer le coût d'intégration.</p>
+    <p>En collaboration avec <a href="https://studiochafai.ovh/" target="_blank">Mohamed Chafai</a></p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>5</strong><span>couches techniques assurées seul : HTML/CSS, JavaScript, PHP, SQL, design Figma</span></div>
+        <div class="ResultItem"><strong>2</strong><span>zones comparées avant/après : hero + navbar, footer ; plus le logo</span></div>
+        <div class="ResultItem"><strong>88</strong><span>heures de travail</span></div>
+    </div>
+</div>

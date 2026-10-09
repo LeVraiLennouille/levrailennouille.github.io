@@ -1,92 +1,60 @@
 ---
+layout: default
 title: "Blog — Design, développement & stratégie web | Lennouille"
 description: "Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Blog — Design, développement & stratégie web | Lennouille</title>
-
-    <meta name="description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/blog">
-    <meta property="og:title" content="Blog — Design, développement & stratégie web | Lennouille">
-    <meta property="og:description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog — Design, développement & stratégie web | Lennouille">
-    <meta name="twitter:description" content="Le blog de Lennouille : design UI/UX, développement front-end et stratégie web, pour comprendre et mieux piloter vos projets digitaux.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/blog">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/blog" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/blog" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Blog",
+      "@id": "{{ page_url }}#blog",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "Blog",
-          "@id": "{{ page_url }}#blog",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          "author": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Blog",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "{{ page_url }}"
         }
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     {% include header.html %}
     <main class="Blog Index">
         <section class="SecondaryHero">
@@ -123,5 +91,3 @@ description: "Le blog de Lennouille : design UI/UX, développement front-end et 
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
     <script src="{{'/assets/js/blog-pagination.js' | relative_url}}" defer></script>
-</body>
-</html>

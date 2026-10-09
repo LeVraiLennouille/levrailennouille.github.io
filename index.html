@@ -1,125 +1,93 @@
 ---
+layout: default
 title: "Lennouille — UI/UX Designer : L'expérience digitale efficace"
 description: "Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs."
 schema_type: Organization
+tarteaucitron: true
+og_image: /assets/icon.svg
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lennouille — UI/UX Designer : L'expérience digitale efficace</title>
-    {% include tarteaucitron.html %}
-    {% include tarteaucitron-services.html %}
-
-    <meta name="description" content="Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr">
-    <meta property="og:title" content="Lennouille — UI/UX Designer : L'expérience digitale efficace">
-    <meta property="og:description" content="Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs.">
-    <meta property="og:image" content="https://lennouille.fr/assets/icon.svg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lennouille — UI/UX Designer : L'expérience digitale efficace">
-    <meta name="twitter:description" content="Un nom décalé, une conception redoutable. Lennouille, UI/UX Designer freelance : création de designs web modernes, efficaces et interactifs.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/icon.svg">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.last_modified_at %}
-          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          "isPartOf": {
-            "@id": "{{ biz.url }}/#website"
-          },
-          "about": {
-            "@id": "{{ biz.url }}/#organization"
-          },
-          "primaryImageOfPage": {
-            "@type": "ImageObject",
-            "url": "{{ biz.url }}{{ biz.logo }}"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "{{ biz.url }}/#website",
-          "url": "{{ biz.url }}",
-          "name": {{ biz.name | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          "publisher": {
-            "@id": "{{ biz.url }}/#organization"
-          }
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": "{{ biz.url }}/#organization",
-          "name": {{ biz.name | jsonify }},
-          "url": "{{ biz.url }}",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "{{ biz.url }}{{ biz.logo }}"
-          },
-          "image": "{{ biz.url }}{{ biz.logo }}",
-          "description": "Studio créatif indépendant d'UI/UX design : identité de marque, design system, conception d'interfaces et développement web.",
-          "email": {{ biz.email | jsonify }},
-          "founder": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Poitiers",
-            "addressCountry": "FR"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "France"
-          },
-          "serviceType": [
-            "UX Design",
-            "UI Design",
-            "Webdesign",
-            "Design system",
-            "Audit UX",
-            "Intégration web"
-          ],
-          "knowsLanguage": "fr",
-          "sameAs": [
-            "https://www.linkedin.com/in/LennyGadroy",
-            "https://x.com/LennyGdr19"
-          ]
-        }
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "isPartOf": {
+        "@id": "{{ biz.url }}/#website"
+      },
+      "about": {
+        "@id": "{{ biz.url }}/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "{{ biz.url }}{{ biz.logo }}"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ biz.url }}/#website",
+      "url": "{{ biz.url }}",
+      "name": {{ biz.name | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@id": "{{ biz.url }}/#organization"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "{{ biz.url }}/#organization",
+      "name": {{ biz.name | jsonify }},
+      "url": "{{ biz.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ biz.url }}{{ biz.logo }}"
+      },
+      "image": "{{ biz.url }}{{ biz.logo }}",
+      "description": "Studio créatif indépendant d'UI/UX design : identité de marque, design system, conception d'interfaces et développement web.",
+      "email": {{ biz.email | jsonify }},
+      "founder": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Poitiers",
+        "addressCountry": "FR"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      },
+      "serviceType": [
+        "UX Design",
+        "UI Design",
+        "Webdesign",
+        "Design system",
+        "Audit UX",
+        "Intégration web"
+      ],
+      "knowsLanguage": "fr",
+      "sameAs": [
+        "https://www.linkedin.com/in/LennyGadroy",
+        "https://x.com/LennyGdr19"
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     <main class="Index">
         {% include header.html %}
         <section class="Hero">
@@ -290,5 +258,3 @@ schema_type: Organization
 <!-- Scripts -->
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
-</body>
-</html>

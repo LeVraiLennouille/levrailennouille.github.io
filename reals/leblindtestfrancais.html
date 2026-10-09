@@ -1,231 +1,97 @@
 ---
+layout: reals
 real_id: leblindtestfrancais
 title: "Refonte App Web & UI/UX Gaming : LeBlindtestFrançais | Lennouille"
 description: "Plongez dans la refonte UI/UX de l'application web Le Blindtest Français. Une interface temps réel pensée pour le jeu multi-synchronisé et l'immersion."
 schema_type: CreativeWork
 image: /assets/og-leblindtestfrançais.png
 client: "Le Blindtest Français"
+eyebrow: "Product design · App Web temps réel"
+heading: "Refonte v3 LeBlindtestFrançais"
+banner_alt: "Bannière haute LeBlindtestFrançais"
+link: "https://leblindtestfrancais.fr"
+keywords:
+  - "Product design"
+  - "App Web temps réel"
+facts:
+  role: "Product design, UI/UX, branding"
+  duree: "+52 semaines (temps partiel)"
+  outils: "Figma ; Node.JS, Socket.io ; HTML, CSS, JavaScript"
+  contexte: "Refonte v3 d'un produit existant"
+  resultat: "3 écrans refondus : menu, jeu, connexion"
+intro:
+  brief: "Refondre l'interface d'une application de blindtest multijoueur dont le design et les fonctions étaient limités : une seule session à la fois, pas de scores en temps réel."
+  objectif: "Réduire la charge cognitive des joueurs en partie et rendre le jeu plus dynamique."
+  livrables: "Refonte UI/UX de l'espace de jeu synchronisé, nouveau logo et branding, design system."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Refonte App Web & UI/UX Gaming : LeBlindtestFrançais | Lennouille</title>
-
-    <meta name="description" content="Plongez dans la refonte UI/UX de l'application web Le Blindtest Français. Une interface temps réel pensée pour le jeu multi-synchronisé et l'immersion.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/leblindtestfrancais">
-    <meta property="og:title" content="Refonte App Web & UI/UX Gaming : LeBlindtestFrançais | Lennouille">
-    <meta property="og:description" content="Plongez dans la refonte UI/UX de l'application web Le Blindtest Français. Une interface temps réel pensée pour le jeu multi-synchronisé et l'immersion.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-leblindtestfrançais.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Refonte App Web & UI/UX Gaming : LeBlindtestFrançais | Lennouille">
-    <meta name="twitter:description" content="Plongez dans la refonte UI/UX de l'application web Le Blindtest Français. Une interface temps réel pensée pour le jeu multi-synchronisé et l'immersion.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-leblindtestfrançais.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/leblindtestfrancais">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/leblindtestfrancais" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Product design",
-            "App Web temps réel"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/leblindtestfrancais/mockup.webp" alt="Bannière haute LeBlindtestFrançais">
-        </section>
-        <div class="Title">
-            <span>Product design · App Web temps réel</span>
-            <h1>Refonte v3 LeBlindtestFrançais</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://leblindtestfrancais.fr" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">leblindtestfrancais.fr</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Product design, UI/UX, branding</dd></div>
-            <div><dt>Durée</dt><dd>+52 semaines (temps partiel)</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; Node.JS, Socket.io ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Refonte v3 d'un produit existant</dd></div>
-            <div><dt>Résultat</dt><dd>3 écrans refondus : menu, jeu, connexion</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Refondre l'interface d'une application de blindtest multijoueur dont le design et les fonctions étaient limités : une seule session à la fois, pas de scores en temps réel.</p>
-            <p><b>Objectif :</b> Réduire la charge cognitive des joueurs en partie et rendre le jeu plus dynamique.</p>
-            <p><b>Livrables :</b> Refonte UI/UX de l'espace de jeu synchronisé, nouveau logo et branding, design system.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ</h4>
-                    <p>La version précédente n'autorisait qu'une session de jeu à la fois et ne gérait pas les scores en temps réel. L'interface était datée. L'enjeu : une plateforme capable de supporter le jeu multi-synchronisé, avec une interface plus dynamique.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Tests et écran de jeu</h4>
-                    <p>Les sessions de test ont montré trois problèmes : les joueurs se perdaient dans l'interface, suivaient mal leurs scores et ressentaient peu de tension. Réponses retenues : scores pondérés par le temps, événements aléatoires, bonus stratégiques. L'écran de jeu doit afficher ensemble la question musicale, le chronomètre et les bonus actifs.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
-                <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-logo.webp" alt="Nouveau logo LeBlindtestFrançais" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-logo.webp" alt="Ancien logo LeBlindtestFrançais" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Branding</h4>
-            <p>L'ancienne charte était terne et statique. J'ai retenu des teintes saturées et des typographies à fort caractère, et redessiné le logo (comparaison ci-dessus). Le design system et l'UI Kit ont été reconstruits autour de ces choix.</p>
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Toutes les couleurs</span></div>
-            <img src="/img/reals/leblindtestfrancais/couleurs.webp" alt="Nouvelles couleurs">
-        </div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/leblindtestfrancais/mockup-ecran-ordi.webp" alt="Mockup écran de jeu sur ordinateur">
-            <img src="/img/reals/leblindtestfrancais/mockup-sticker-logo.webp" alt="Mockup logo sur un sticker">
+            <h4>Point de départ</h4>
+            <p>La version précédente n'autorisait qu'une session de jeu à la fois et ne gérait pas les scores en temps réel. L'interface était datée. L'enjeu : une plateforme capable de supporter le jeu multi-synchronisé, avec une interface plus dynamique.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Écran de jeu, menu, connexion</h4>
-            <p>Sur l'écran de jeu, la réponse et le chronomètre sont mis en avant et le reste de l'interface s'efface. Le menu principal et l'écran de connexion ont été simplifiés : 2 clics pour lancer une partie.</p>
+            <h4>Tests et écran de jeu</h4>
+            <p>Les sessions de test ont montré trois problèmes : les joueurs se perdaient dans l'interface, suivaient mal leurs scores et ressentaient peu de tension. Réponses retenues : scores pondérés par le temps, événements aléatoires, bonus stratégiques. L'écran de jeu doit afficher ensemble la question musicale, le chronomètre et les bonus actifs.</p>
         </div>
-        <hr>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Menu</span></div>
-                <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-playlists.webp" alt="Nouvelle version du menu principal" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-playlists.webp" alt="Ancienne version du menu principal" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Écran de jeu</span></div>
-                <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-jeu.webp" alt="Nouvelle version de l'écran de jeu" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-jeu.webp" alt="Ancienne version de l'écran de jeu" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Écran de connexion</span></div>
-                <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-connexion.webp" alt="Nouvelle version de l'espace de connexion" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-connexion.webp" alt="Ancienne version de l'espace de connexion" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Un jeu temps réel impose de dessiner chaque état de l'interface : attente des joueurs, chronomètre, activation d'un bonus, révélation de fin de manche. J'ai dû composer avec Socket.io et la latence réseau, et valider chaque maquette avec ces contraintes back-end.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Avant / Après — </span><span>Logo</span></div>
+        <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-logo.webp" alt="Nouveau logo LeBlindtestFrançais" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-logo.webp" alt="Ancien logo LeBlindtestFrançais" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>3</strong><span>écrans refondus et comparés avant/après : menu, jeu, connexion</span></div>
-                <div class="ResultItem"><strong>3</strong><span>mécaniques de jeu : scores pondérés par le temps, événements aléatoires, bonus</span></div>
-                <div class="ResultItem"><strong>2</strong><span>clics du menu au lancement d'une partie</span></div>
-            </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Branding</h4>
+    <p>L'ancienne charte était terne et statique. J'ai retenu des teintes saturées et des typographies à fort caractère, et redessiné le logo (comparaison ci-dessus). Le design system et l'UI Kit ont été reconstruits autour de ces choix.</p>
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Toutes les couleurs</span></div>
+    <img src="/img/reals/leblindtestfrancais/couleurs.webp" alt="Nouvelles couleurs">
+</div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/leblindtestfrancais/mockup-ecran-ordi.webp" alt="Mockup écran de jeu sur ordinateur">
+    <img src="/img/reals/leblindtestfrancais/mockup-sticker-logo.webp" alt="Mockup logo sur un sticker">
+</div>
+<div class="ProjectBloc">
+    <h4>Écran de jeu, menu, connexion</h4>
+    <p>Sur l'écran de jeu, la réponse et le chronomètre sont mis en avant et le reste de l'interface s'efface. Le menu principal et l'écran de connexion ont été simplifiés : 2 clics pour lancer une partie.</p>
+</div>
+<hr>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Menu</span></div>
+        <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-playlists.webp" alt="Nouvelle version du menu principal" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-playlists.webp" alt="Ancienne version du menu principal" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Écran de jeu</span></div>
+        <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-jeu.webp" alt="Nouvelle version de l'écran de jeu" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-jeu.webp" alt="Ancienne version de l'écran de jeu" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Écran de connexion</span></div>
+        <div class="Comparaisons"><img src="/img/reals/leblindtestfrancais/new-ecran-connexion.webp" alt="Nouvelle version de l'espace de connexion" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/leblindtestfrancais/old-ecran-connexion.webp" alt="Ancienne version de l'espace de connexion" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Un jeu temps réel impose de dessiner chaque état de l'interface : attente des joueurs, chronomètre, activation d'un bonus, révélation de fin de manche. J'ai dû composer avec Socket.io et la latence réseau, et valider chaque maquette avec ces contraintes back-end.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>3</strong><span>écrans refondus et comparés avant/après : menu, jeu, connexion</span></div>
+        <div class="ResultItem"><strong>3</strong><span>mécaniques de jeu : scores pondérés par le temps, événements aléatoires, bonus</span></div>
+        <div class="ResultItem"><strong>2</strong><span>clics du menu au lancement d'une partie</span></div>
+    </div>
+</div>

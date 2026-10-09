@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ page.title | escape }}</title>
+    {%- if page.tarteaucitron %}
+    {% include tarteaucitron.html %}
+    {% include tarteaucitron-services.html %}
+    {%- endif %}
+
+    {%- assign biz = site.data.business -%}
+    {%- if page.url == "/" -%}
+        {%- assign canonical = biz.url -%}
+    {%- else -%}
+        {%- assign clean_url = page.url | replace: "/index.html", "/" | replace: ".html", "" | split: "/" | join: "/" -%}
+        {%- assign canonical = biz.url | append: clean_url -%}
+    {%- endif -%}
+    {%- assign og_image = page.og_image | default: page.image | default: "/assets/og-preview.png" -%}
+    {%- assign og_type = page.og_type | default: "website" -%}
+    {%- if page.layout == "post" and page.og_type == nil -%}
+        {%- assign og_type = "article" -%}
+    {%- endif -%}
+    {%- assign share_title = page.short_title | default: page.title -%}
+    {%- assign og_title = page.og_title | default: share_title -%}
+    {%- assign tw_title = page.twitter_title | default: share_title -%}
+    {%- assign og_desc = page.og_description | default: page.description -%}
+    {%- assign tw_desc = page.twitter_description | default: og_desc -%}
+    {%- assign site_name = page.og_site_name | default: "Lennouille" -%}
+    {%- assign twitter_image = page.twitter_image | default: og_image -%}
+    {%- assign robots = page.robots | default: "index, follow" -%}
+
+    <meta name="description" content="{{ page.description | escape }}">
+    <meta name="author" content="Lenny Gadroy">
+    <meta name="robots" content="{{ robots }}">
+
+    <meta property="og:type" content="{{ og_type }}">
+    {%- if og_type == "profile" %}
+    <meta property="profile:first_name" content="Lenny">
+    <meta property="profile:last_name" content="Gadroy">
+    <meta property="profile:username" content="LennyGdr19">
+    {%- endif %}
+    {%- if page.layout == "post" and page.date %}
+    <meta property="article:published_time" content="{{ page.date | date: '%Y-%m-%d' }}">
+    {%- endif %}
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:title" content="{{ og_title | escape }}">
+    <meta property="og:description" content="{{ og_desc | escape }}">
+    <meta property="og:image" content="{{ biz.url }}{{ og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    {%- if page.og_image_alt %}
+    <meta property="og:image:alt" content="{{ page.og_image_alt | escape }}">
+    {%- endif %}
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="{{ site_name | escape }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ tw_title | escape }}">
+    <meta name="twitter:description" content="{{ tw_desc | escape }}">
+    <meta name="twitter:image" content="{{ biz.url }}{{ twitter_image }}">
+    {%- if page.og_image_alt %}
+    <meta name="twitter:image:alt" content="{{ page.twitter_image_alt | default: page.og_image_alt | escape }}">
+    {%- endif %}
+    <meta name="twitter:site" content="@LennyGdr19">
+    <meta name="twitter:creator" content="@LennyGdr19">
+
+    {%- unless robots contains "noindex" %}
+    <link rel="canonical" href="{{ canonical }}">
+    {%- endunless %}
+    <meta name="theme-color" content="#1c1c1e">
+    <link href="/style.css" rel="stylesheet">
+    {%- for css in page.head_styles %}
+    <link href="{{ css }}" rel="stylesheet">
+    {%- endfor %}
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+    {%- for js in page.head_scripts %}
+    <script src="{{ js }}"></script>
+    {%- endfor %}
+</head>
+<body>
+{{ content }}
+</body>
+</html>

@@ -1,93 +1,61 @@
 ---
+layout: default
 title: "L'UX Design expliqué : Définition, UI vs UX et 30 Lois | Lennouille"
 description: "Apprends la définition de l'UX design et sa différence avec l'UI. Utilise ce catalogue de 30 lois cognitives pour concevoir tes propres interfaces web."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'UX Design expliqué : Définition, UI vs UX et 30 Lois | Lennouille</title>
-
-    <meta name="description" content="Apprends la définition de l'UX design et sa différence avec l'UI. Utilise ce catalogue de 30 lois cognitives pour concevoir tes propres interfaces web.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/ux">
-    <meta property="og:title" content="L'UX Design expliqué : Définition, UI vs UX et 30 Lois | Lennouille">
-    <meta property="og:description" content="Apprends la définition de l'UX design et sa différence avec l'UI. Utilise ce catalogue de 30 lois cognitives pour concevoir tes propres interfaces web.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="L'UX Design expliqué : Définition, UI vs UX et 30 Lois | Lennouille">
-    <meta name="twitter:description" content="Apprends la définition de l'UX design et sa différence avec l'UI. Utilise ce catalogue de 30 lois cognitives pour concevoir tes propres interfaces web.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-    
-    <link rel="canonical" href="https://lennouille.fr/ux">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/ux" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/ux" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "about": {
+        "@type": "Thing",
+        "name": "UX Design"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "WebPage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.last_modified_at %}
-          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          "about": {
-            "@type": "Thing",
-            "name": "UX Design"
-          },
-          "author": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "UX",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "UX",
+          "item": "{{ page_url }}"
         }
       ]
     }
-    </script>
-</head>
-<body>
+  ]
+}
+</script>
+
     <main class="UX" id="top">
         {% include header.html %}
         <section class="SecondaryHero">
@@ -180,5 +148,3 @@ description: "Apprends la définition de l'UX design et sa différence avec l'UI
 <!-- Scripts -->
     <script src="/script.js"></script>
     <script src="/anims.js" defer></script>
-</body>
-</html>

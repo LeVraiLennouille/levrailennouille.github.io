@@ -1,0 +1,149 @@
+---
+layout: default
+---
+{%- assign biz = site.data.business -%}
+{%- assign clean_url = page.url | replace: ".html", "" | split: "/" | join: "/" -%}
+{%- assign page_url = biz.url | append: clean_url -%}
+{%- assign work_name = page.title | split: " | " | first -%}
+{%- assign visit_url = page.link | remove: "https://" | remove: "http://" | split: "/" | join: "/" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "{{ page_url }}#work",
+      "url": "{{ page_url }}",
+      "name": {{ work_name | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.image %}
+      "image": "{{ biz.url }}{{ page.image }}",
+      {%- endif %}
+      "keywords": [
+        {%- for k in page.keywords %}
+        {{ k | jsonify }}{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      {%- if page.date %}
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      {%- if page.client %}
+      "about": {
+        "@type": "Organization",
+        "name": {{ page.client | jsonify }}
+      },
+      {%- endif %}
+      "creator": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page_url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Réalisations",
+          "item": "{{ biz.url }}/reals"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ work_name | jsonify }},
+          "item": "{{ page_url }}"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+{% include header.html %}
+<main class="Reals SubPage">
+    <section class="TopBanner">
+        <img src="/img/reals/{{ page.real_id }}/mockup.webp" alt="{{ page.banner_alt }}">
+    </section>
+    <div class="Title">
+        <span>{{ page.eyebrow }}</span>
+        <h1>{{ page.heading }}</h1>
+        <hr>
+    </div>
+    {%- if page.link %}
+    <a class="LinkField" href="{{ page.link }}" target="_blank">
+        <span class="LinkPrefix">https://</span>
+        <span class="LinkUrl">{{ visit_url }}</span>
+        <span class="LinkArrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            <span class="LinkTooltip">Visiter</span>
+        </span>
+    </a>
+    {%- endif %}
+    <dl class="ProjectFacts">
+        {%- if page.facts.role %}
+        <div><dt>Rôle</dt><dd>{{ page.facts.role }}</dd></div>
+        {%- endif %}
+        {%- if page.facts.duree %}
+        <div><dt>Durée</dt><dd>{{ page.facts.duree }}</dd></div>
+        {%- endif %}
+        {%- if page.facts.outils %}
+        <div><dt>Outils</dt><dd>{{ page.facts.outils }}</dd></div>
+        {%- endif %}
+        {%- if page.facts.contexte %}
+        <div><dt>Contexte</dt><dd>{{ page.facts.contexte }}</dd></div>
+        {%- endif %}
+        {%- if page.facts.resultat %}
+        <div><dt>Résultat</dt><dd>{{ page.facts.resultat }}</dd></div>
+        {%- endif %}
+    </dl>
+    <div class="Intro">
+        {%- if page.intro.brief %}
+        <p><b>Brief :</b> {{ page.intro.brief }}</p>
+        {%- endif %}
+        {%- if page.intro.objectif %}
+        <p><b>Objectif :</b> {{ page.intro.objectif }}</p>
+        {%- endif %}
+        {%- if page.intro.livrables %}
+        <p><b>Livrables :</b> {{ page.intro.livrables }}</p>
+        {%- endif %}
+    </div>
+    <hr>
+{{ content }}
+    {%- if page.folder %}
+    <div class="FolderSection">
+        {% include reals-folder.html %}
+    </div>
+    {%- endif %}
+    {% include related-projects.html %}
+    {% include footer.html %}
+</main>
+<!-- Anims -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/anims.js" defer></script>

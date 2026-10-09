@@ -1,0 +1,165 @@
+---
+layout: default
+---
+{%- assign biz = site.data.business -%}
+{%- assign clean_url = page.url | replace: ".html", "" | split: "/" | join: "/" -%}
+{%- assign page_url = biz.url | append: clean_url -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "{{ page_url }}#article",
+      "headline": {{ page.short_title | default: page.title | jsonify }},
+      "name": {{ page.title | jsonify }},
+      "url": "{{ page_url }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page_url }}"
+      },
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.date %}
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "articleSection": {{ page.section | jsonify }},
+      "image": "{{ biz.url }}{{ page.image | default: '/assets/og-preview.png' }}",
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "{{ biz.url }}/#organization",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ biz.url }}{{ biz.logo }}"
+        }
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "{{ biz.url }}/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ page.crumb | replace: "&amp;", "&" | jsonify }},
+          "item": "{{ page_url }}"
+        }
+      ]
+    }
+    {%- if page.faq %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ page_url }}#faq",
+      "url": "{{ page_url }}",
+      "inLanguage": "fr-FR",
+      "mainEntity": [
+        {%- for item in page.faq %}
+        {
+          "@type": "Question",
+          "name": {{ item.q | jsonify }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ item.a | jsonify }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+</script>
+
+{% include header.html %}
+<main class="Blog">
+    <section class="SecondaryHero">
+        <div class="Decor" aria-hidden="true">
+            {%- for word in page.decor %}
+            <span>{{ word }}</span>
+            {%- endfor %}
+        </div>
+        <div class="HeroInner">
+            <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                <a href="/">Accueil</a>
+                <span class="Sep">/</span>
+                <a href="/blog">Blog</a>
+                <span class="Sep">/</span>
+                <span class="Current">{{ page.crumb }}</span>
+            </nav>
+            <span class="Category">{{ page.label }}</span>
+            <h1 class="Title">{{ page.heading }}</h1>
+            <div class="Meta">
+                <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{% include date-fr.html date=page.date %}</time>
+                <span class="Dot" aria-hidden="true"></span>
+                <span>{{ page.reading_time }} de lecture</span>
+            </div>
+        </div>
+    </section>
+    <section class="BlogContent">
+        <div class="Container">
+            <nav class="Nav" aria-label="Sommaire">
+                <p class="Title">Sommaire</p>
+                <ul>
+                    {%- for item in page.toc %}
+                    <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+                    {%- endfor %}
+                </ul>
+                <div class="SideCTA">
+                    <p>{{ page.side_cta.text }}</p>
+                    <a href="/contact">{{ page.side_cta.button }}</a>
+                </div>
+            </nav>
+            <article class="BlogArticle">
+{{ content }}
+            </article>
+        </div>
+    </section>
+    <div class="BlogCTA">
+        <h2>{{ page.cta.title }}</h2>
+        <p>{{ page.cta.text }}</p>
+        <ul class="Recap">
+            {%- for item in page.cta.recap %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+        </ul>
+        <div class="CTAButtons">
+            <a href="/contact" class="ButtonSolid">{{ page.cta.primary }}</a>
+            <a href="{{ page.cta.secondary_href }}" class="ButtonGhost">{{ page.cta.secondary_label }}</a>
+        </div>
+    </div>
+    {% include footer.html %}
+</main>
+<!-- Anims -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="/blog/blog.js"></script>
+    <script src="/script.js"></script>
+    <script src="/anims.js" defer></script>

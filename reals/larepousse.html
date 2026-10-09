@@ -1,229 +1,93 @@
 ---
+layout: reals
 real_id: larepousse
 title: "Identité Visuelle & UI/UX : La Repousse | Lennouille"
 description: "Refonte UI/UX de l'association La Repousse. Une nouvelle identité visuelle et un parcours utilisateur optimisé pour fédérer des bénévoles."
 schema_type: CreativeWork
 image: /assets/og-larepousse.png
 client: "La Repousse"
+eyebrow: "Identité visuelle & UI / UX"
+heading: "La Repousse : Les mains dans la terre"
+banner_alt: "Bannière haute La Repousse"
+link: "https://larepousse.fr"
+keywords:
+  - "Identité visuelle & UI / UX"
+facts:
+  role: "Identité visuelle, UI/UX, supports imprimés"
+  duree: "3 semaines"
+  outils: "Figma, Adobe Xd"
+  contexte: "Client réel : Association"
+  resultat: "Logo en 3 versions, charte, carte de visite, brochure"
+intro:
+  brief: "Construire l'image de marque d'une association qui plante des haies, pour recruter des bénévoles."
+  objectif: "Concevoir une identité lisible sur mobile et une interface web qui mène à l'engagement."
+  livrables: "Logo, charte graphique, maquettes UI/UX du site, carte de visite, brochure."
+folder: true
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Identité Visuelle & UI/UX : La Repousse | Lennouille</title>
-
-    <meta name="description" content="Refonte UI/UX de l'association La Repousse. Une nouvelle identité visuelle et un parcours utilisateur optimisé pour fédérer des bénévoles.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/larepousse">
-    <meta property="og:title" content="Identité Visuelle & UI/UX : La Repousse | Lennouille">
-    <meta property="og:description" content="Refonte UI/UX de l'association La Repousse. Une nouvelle identité visuelle et un parcours utilisateur optimisé pour fédérer des bénévoles.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-larepousse.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Identité Visuelle & UI/UX : La Repousse | Lennouille">
-    <meta name="twitter:description" content="Refonte UI/UX de l'association La Repousse. Une nouvelle identité visuelle et un parcours utilisateur optimisé pour fédérer des bénévoles.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-larepousse.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/larepousse">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/larepousse" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Identité visuelle & UI / UX"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/larepousse/mockup.webp" alt="Bannière haute La Repousse">
-        </section>
-        <div class="Title">
-            <span>Identité visuelle & UI / UX</span>
-            <h1>La Repousse : Les mains dans la terre</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://larepousse.fr" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">larepousse.fr</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Identité visuelle, UI/UX, supports imprimés</dd></div>
-            <div><dt>Durée</dt><dd>3 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma, Adobe Xd</dd></div>
-            <div><dt>Contexte</dt><dd>Client réel : Association</dd></div>
-            <div><dt>Résultat</dt><dd>Logo en 3 versions, charte, carte de visite, brochure</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Construire l'image de marque d'une association qui plante des haies, pour recruter des bénévoles.</p>
-            <p><b>Objectif :</b> Concevoir une identité lisible sur mobile et une interface web qui mène à l'engagement.</p>
-            <p><b>Livrables :</b> Logo, charte graphique, maquettes UI/UX du site, carte de visite, brochure.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Contexte : une association de terrain</h4>
-                    <p>La Repousse plante des haies sur le terrain. Elle avait besoin d'une identité visuelle adaptée à ses activités et lisible sur petits écrans. J'ai simplifié la composition du logo pour améliorer sa lisibilité.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Refonte du logo</h4>
-                    <p>L'ancien logo était peu lisible sur les supports numériques. J'ai dessiné un nouvel isotype végétal qui remplace le symbole d'origine. Le logo existe en 3 versions de couleur (orange, sable, vert) et en plusieurs formats, pour une lecture immédiate sur mobile.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Nouvelle carte de visite</span></div>
-                <div class="ProjectGallery Row">
-                    <img src="/img/reals/larepousse/carte-visite-recto.webp" alt="Carte de visite La Repousse">
-                    <img src="/img/reals/larepousse/carte-visite-verso.webp" alt="Verso carte de visite La Repousse">
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Charte graphique</h4>
-            <p>La charte s'inspire des chantiers : palette Vert Kaki et Orange Argile, typographie Aloja au tracé irrégulier. Elle est déclinée sur une carte de visite, une brochure et un arrière-plan commun aux supports de communication.</p>
-        </div>
-        <div class="ProjectGallery">
-            <img src="/img/reals/larepousse/logo-orange.webp" alt="Logo orange La Repousse">
-            <img src="/img/reals/larepousse/logo-sable.webp" alt="Logo original La Repousse">
-            <img src="/img/reals/larepousse/logo-verte.webp" alt="Logo vert La Repousse">
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Nouvel arrière-plan pour tous les supports de communication</span></div>
-            <img src="/img/reals/larepousse/arriere-plan.webp" alt="Arrière-plan La Repousse">
+            <h4>Contexte : une association de terrain</h4>
+            <p>La Repousse plante des haies sur le terrain. Elle avait besoin d'une identité visuelle adaptée à ses activités et lisible sur petits écrans. J'ai simplifié la composition du logo pour améliorer sa lisibilité.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Interface web</h4>
-            <p>Le site sert de point de ralliement. La page d'accueil place des boutons d'action visibles, présente les informations clés sous forme d'infographie et laisse de l'espace aux actualités.</p>
+            <h4>Refonte du logo</h4>
+            <p>L'ancien logo était peu lisible sur les supports numériques. J'ai dessiné un nouvel isotype végétal qui remplace le symbole d'origine. Le logo existe en 3 versions de couleur (orange, sable, vert) et en plusieurs formats, pour une lecture immédiate sur mobile.</p>
         </div>
-        <!-- <div class="Label"><span>Actualités du site</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/larepousse/actualite-1.webp" alt="Page actualité La Repousse - Page 1">
-            <img src="/img/reals/larepousse/actualite-2.webp" alt="Page actualité La Repousse - Page 2">
-        </div> -->
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Le design du site doit servir l'action de l'association. J'ai retiré les éléments secondaires pour mettre le message en avant et guider le visiteur vers l'action.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Nouvelle carte de visite</span></div>
+        <div class="ProjectGallery Row">
+            <img src="/img/reals/larepousse/carte-visite-recto.webp" alt="Carte de visite La Repousse">
+            <img src="/img/reals/larepousse/carte-visite-verso.webp" alt="Verso carte de visite La Repousse">
         </div>
-        <div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/larepousse/charte-graphique-1.webp" alt="Charte graphique La Repousse - Page 1">
-            <img src="/img/reals/larepousse/charte-graphique-2.webp" alt="Charte graphique La Repousse - Page 2">
-            <img src="/img/reals/larepousse/charte-graphique-3.webp" alt="Charte graphique La Repousse - Page 3">
-            <img src="/img/reals/larepousse/charte-graphique-4.webp" alt="Charte graphique La Repousse - Page 4">
-        </div>
-        <div class="Label"><span>Extraits de la brochure</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/larepousse/brochure-1.webp" alt="Extrait de la brochure La Repousse - Page 1">
-            <img src="/img/reals/larepousse/brochure-2.webp" alt="Extrait de la brochure La Repousse - Page 2">
-            <img src="/img/reals/larepousse/brochure-3.webp" alt="Extrait de la brochure La Repousse - Page 3">
-            <img src="/img/reals/larepousse/brochure-4.webp" alt="Extrait de la brochure La Repousse - Page 4">
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>3</strong><span>versions de couleur du logo : orange, sable, vert</span></div>
-                <div class="ResultItem"><strong>4 + 4</strong><span>pages présentées : extraits de la charte et de la brochure</span></div>
-                <div class="ResultItem"><strong>+50%</strong><span>bénévoles inscrits depuis la refonte</span></div>
-            </div>
-        </div>
-        <div class="FolderSection">
-            {% include reals-folder.html %}
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Charte graphique</h4>
+    <p>La charte s'inspire des chantiers : palette Vert Kaki et Orange Argile, typographie Aloja au tracé irrégulier. Elle est déclinée sur une carte de visite, une brochure et un arrière-plan commun aux supports de communication.</p>
+</div>
+<div class="ProjectGallery">
+    <img src="/img/reals/larepousse/logo-orange.webp" alt="Logo orange La Repousse">
+    <img src="/img/reals/larepousse/logo-sable.webp" alt="Logo original La Repousse">
+    <img src="/img/reals/larepousse/logo-verte.webp" alt="Logo vert La Repousse">
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Nouvel arrière-plan pour tous les supports de communication</span></div>
+    <img src="/img/reals/larepousse/arriere-plan.webp" alt="Arrière-plan La Repousse">
+</div>
+<div class="ProjectBloc">
+    <h4>Interface web</h4>
+    <p>Le site sert de point de ralliement. La page d'accueil place des boutons d'action visibles, présente les informations clés sous forme d'infographie et laisse de l'espace aux actualités.</p>
+</div>
+<!-- <div class="Label"><span>Actualités du site</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/larepousse/actualite-1.webp" alt="Page actualité La Repousse - Page 1">
+    <img src="/img/reals/larepousse/actualite-2.webp" alt="Page actualité La Repousse - Page 2">
+</div> -->
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Le design du site doit servir l'action de l'association. J'ai retiré les éléments secondaires pour mettre le message en avant et guider le visiteur vers l'action.</p>
+</div>
+<div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/larepousse/charte-graphique-1.webp" alt="Charte graphique La Repousse - Page 1">
+    <img src="/img/reals/larepousse/charte-graphique-2.webp" alt="Charte graphique La Repousse - Page 2">
+    <img src="/img/reals/larepousse/charte-graphique-3.webp" alt="Charte graphique La Repousse - Page 3">
+    <img src="/img/reals/larepousse/charte-graphique-4.webp" alt="Charte graphique La Repousse - Page 4">
+</div>
+<div class="Label"><span>Extraits de la brochure</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/larepousse/brochure-1.webp" alt="Extrait de la brochure La Repousse - Page 1">
+    <img src="/img/reals/larepousse/brochure-2.webp" alt="Extrait de la brochure La Repousse - Page 2">
+    <img src="/img/reals/larepousse/brochure-3.webp" alt="Extrait de la brochure La Repousse - Page 3">
+    <img src="/img/reals/larepousse/brochure-4.webp" alt="Extrait de la brochure La Repousse - Page 4">
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>3</strong><span>versions de couleur du logo : orange, sable, vert</span></div>
+        <div class="ResultItem"><strong>4 + 4</strong><span>pages présentées : extraits de la charte et de la brochure</span></div>
+        <div class="ResultItem"><strong>+50%</strong><span>bénévoles inscrits depuis la refonte</span></div>
+    </div>
+</div>

@@ -1,254 +1,118 @@
 ---
+layout: reals
 real_id: primaire
 title: "Création Site E-commerce & UI/UX : Primaire | Lennouille"
 description: "Création intégrale du site e-commerce Primaire. De la recherche UX au webdesign sur WooCommerce, un projet conçu pour optimiser le parcours client."
 schema_type: CreativeWork
 image: /assets/og-primaire.png
 client: "Primaire Média"
+eyebrow: "Création · Product design e-commerce"
+heading: "Création Primaire Média"
+banner_alt: "Bannière haute Primaire"
+link: "https://primaire-media.net"
+keywords:
+  - "Création"
+  - "Product design e-commerce"
+facts:
+  role: "Recherche UX, identité visuelle, webdesign e-commerce"
+  duree: "4 semaines"
+  outils: "Figma ; WordPress, WooCommerce"
+  contexte: "Client réel : Association"
+  resultat: "Charte graphique, 6 zones de site conçues, parcours panier et compte"
+intro:
+  brief: "Créer l'identité visuelle et la structure d'une boutique en ligne WooCommerce. Le site existait, mais sans identité visuelle ni stratégie de marque."
+  objectif: "Structurer le parcours d'achat, du produit à la confirmation de commande, pour améliorer la conversion."
+  livrables: "Recherche UX, benchmark, zoning, wireframes, design system et UI Kit, webdesign complet, charte graphique, carte de visite."
+folder: true
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création Site E-commerce & UI/UX : Primaire | Lennouille</title>
-
-    <meta name="description" content="Création intégrale du site e-commerce Primaire. De la recherche UX au webdesign sur WooCommerce, un projet conçu pour optimiser le parcours client.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/primaire">
-    <meta property="og:title" content="Création Site E-commerce & UI/UX : Primaire | Lennouille">
-    <meta property="og:description" content="Création intégrale du site e-commerce Primaire. De la recherche UX au webdesign sur WooCommerce, un projet conçu pour optimiser le parcours client.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-primaire.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création Site E-commerce & UI/UX : Primaire | Lennouille">
-    <meta name="twitter:description" content="Création intégrale du site e-commerce Primaire. De la recherche UX au webdesign sur WooCommerce, un projet conçu pour optimiser le parcours client.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-primaire.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/primaire">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/primaire" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "Création",
-            "Product design e-commerce"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/primaire/mockup.webp" alt="Bannière haute Primaire">
-        </section>
-        <div class="Title">
-            <span>Création · Product design e-commerce</span>
-            <h1>Création Primaire Média</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://primaire-media.net" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">primaire-media.net</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>Recherche UX, identité visuelle, webdesign e-commerce</dd></div>
-            <div><dt>Durée</dt><dd>4 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; WordPress, WooCommerce</dd></div>
-            <div><dt>Contexte</dt><dd>Client réel : Association</dd></div>
-            <div><dt>Résultat</dt><dd>Charte graphique, 6 zones de site conçues, parcours panier et compte</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Créer l'identité visuelle et la structure d'une boutique en ligne WooCommerce. Le site existait, mais sans identité visuelle ni stratégie de marque.</p>
-            <p><b>Objectif :</b> Structurer le parcours d'achat, du produit à la confirmation de commande, pour améliorer la conversion.</p>
-            <p><b>Livrables :</b> Recherche UX, benchmark, zoning, wireframes, design system et UI Kit, webdesign complet, charte graphique, carte de visite.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Point de départ : un site sans identité</h4>
-                    <p>Primaire disposait d'une vitrine en ligne sans identité visuelle établie ni stratégie de marque. Le site, vieillissant, n'avait ni storytelling produit ni structure orientée vers la conversion. La mission : créer l'identité et la plateforme de vente.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Benchmark, zoning, wireframes</h4>
-                    <p>Pour concevoir le tunnel de vente, j'ai analysé les standards du secteur et les sites qui inspirent confiance (8 sites benchmarkés), ainsi que les habitudes d'achat de la cible. Cette analyse a nourri le zoning et la hiérarchie des pages clés. Les wireframes tiennent compte des contraintes de WooCommerce, en particulier pour le panier et la page compte.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Nouvelle carte de visite</span></div>
-                <div class="ProjectGallery Row">
-                    <img src="/img/reals/primaire/carte-visite-recto.webp" alt="Carte de visite Primaire">
-                    <img src="/img/reals/primaire/carte-visite-verso.webp" alt="Verso carte de visite Primaire">
-                </div>
-            </div>
-        </section>
+<section class="ProjectSplit">
+    <div class="SplitItem">
         <div class="ProjectBloc">
-            <h4>Identité et design system</h4>
-            <p>Le design system et l'UI Kit ont été créés sans héritage visuel. La palette (orange et blanc) et les typographies sont minimalistes, pour que le produit reste l'élément central de l'interface. La charte s'applique à tout le tunnel, de l'accueil à la page de confirmation de commande.</p>
-        </div>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Couleurs désignées</span></div>
-            <div class="ProjectGallery Item2">
-                <img src="/img/reals/primaire/couleur-orange.webp" alt="Couleur orange Primaire">
-                <img src="/img/reals/primaire/couleur-blanche.webp" alt="Couleur blanche Primaire">
-            </div>
+            <h4>Point de départ : un site sans identité</h4>
+            <p>Primaire disposait d'une vitrine en ligne sans identité visuelle établie ni stratégie de marque. Le site, vieillissant, n'avait ni storytelling produit ni structure orientée vers la conversion. La mission : créer l'identité et la plateforme de vente.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Tunnel d'achat et fiches produits</h4>
-            <p>Le checkout est guidé par des éléments de réassurance et des appels à l'action placés à chaque étape. Les fiches produits mettent l'article en avant et facilitent l'ajout au panier. Comparaisons ci-dessous : hero, contact, blog, footer.</p>
+            <h4>Benchmark, zoning, wireframes</h4>
+            <p>Pour concevoir le tunnel de vente, j'ai analysé les standards du secteur et les sites qui inspirent confiance (8 sites benchmarkés), ainsi que les habitudes d'achat de la cible. Cette analyse a nourri le zoning et la hiérarchie des pages clés. Les wireframes tiennent compte des contraintes de WooCommerce, en particulier pour le panier et la page compte.</p>
         </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
-                <div class="Comparaisons"><img src="/img/reals/primaire/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/primaire/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Section journal</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/primaire/new-section-journal.webp" alt="Création de la section journal"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Section présentation</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/primaire/new-section-presentation.webp" alt="Création de la section présentation"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Page contact</span></div>
-                <div class="Comparaisons"><img src="/img/reals/primaire/new-page-contact.webp" alt="Nouvelle version de la page contact" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/primaire/old-page-contact.webp" alt="Ancienne version de la page contact" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Articles de blog</span></div>
-                <div class="Comparaisons"><img src="/img/reals/primaire/new-page-blog.webp" alt="Nouvelle version des articles de blog" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/primaire/old-page-blog.webp" alt="Ancienne version des articles de blog" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
-                <div class="Comparaisons"><img src="/img/reals/primaire/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
-                    <div class="Overlay"><img src="/img/reals/primaire/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
-                    <div class="Slider"></div>
-                </div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Sans cadre fixé par un client, j'ai endossé seul les décisions de direction artistique et formalisé ma méthode. Le projet m'a obligé à apprendre les règles d'ergonomie du e-commerce et à me fixer des limites pour garder la conversion comme objectif.</p>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Nouvelle carte de visite</span></div>
+        <div class="ProjectGallery Row">
+            <img src="/img/reals/primaire/carte-visite-recto.webp" alt="Carte de visite Primaire">
+            <img src="/img/reals/primaire/carte-visite-verso.webp" alt="Verso carte de visite Primaire">
         </div>
-        <div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
-        <div class="ProjectGallery Item2">
-            <img src="/img/reals/primaire/charte-graphique-1.webp" alt="Charte graphique Primaire - Page 1">
-            <img src="/img/reals/primaire/charte-graphique-2.webp" alt="Charte graphique Primaire - Page 2">
-            <img src="/img/reals/primaire/charte-graphique-3.webp" alt="Charte graphique Primaire - Page 3">
-            <img src="/img/reals/primaire/charte-graphique-4.webp" alt="Charte graphique Primaire - Page 4">
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Identité et design system</h4>
+    <p>Le design system et l'UI Kit ont été créés sans héritage visuel. La palette (orange et blanc) et les typographies sont minimalistes, pour que le produit reste l'élément central de l'interface. La charte s'applique à tout le tunnel, de l'accueil à la page de confirmation de commande.</p>
+</div>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/primaire/couleur-orange.webp" alt="Couleur orange Primaire">
+        <img src="/img/reals/primaire/couleur-blanche.webp" alt="Couleur blanche Primaire">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Tunnel d'achat et fiches produits</h4>
+    <p>Le checkout est guidé par des éléments de réassurance et des appels à l'action placés à chaque étape. Les fiches produits mettent l'article en avant et facilitent l'ajout au panier. Comparaisons ci-dessous : hero, contact, blog, footer.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Hero et NavBar</span></div>
+        <div class="Comparaisons"><img src="/img/reals/primaire/new-hero.webp" alt="Nouvelle version du hero" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/primaire/old-hero.webp" alt="Ancienne version du hero" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>4</strong><span>zones comparées avant/après : hero + navbar, page contact, blog, footer</span></div>
-                <div class="ResultItem"><strong>2</strong><span>sections créées : journal et présentation</span></div>
-                <div class="ResultItem"><strong>+24 %</strong><span>taux de conversion</span></div>
-            </div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section journal</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/primaire/new-section-journal.webp" alt="Création de la section journal"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section présentation</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/primaire/new-section-presentation.webp" alt="Création de la section présentation"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Page contact</span></div>
+        <div class="Comparaisons"><img src="/img/reals/primaire/new-page-contact.webp" alt="Nouvelle version de la page contact" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/primaire/old-page-contact.webp" alt="Ancienne version de la page contact" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        <div class="FolderSection">
-            {% include reals-folder.html %}
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Articles de blog</span></div>
+        <div class="Comparaisons"><img src="/img/reals/primaire/new-page-blog.webp" alt="Nouvelle version des articles de blog" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/primaire/old-page-blog.webp" alt="Ancienne version des articles de blog" class="OldImage"></div>
+            <div class="Slider"></div>
         </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Avant / Après — </span><span>Footer</span></div>
+        <div class="Comparaisons"><img src="/img/reals/primaire/new-footer.webp" alt="Nouvelle version du footer" class="NewImage">
+            <div class="Overlay"><img src="/img/reals/primaire/old-footer.webp" alt="Ancienne version du footer" class="OldImage"></div>
+            <div class="Slider"></div>
+        </div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Sans cadre fixé par un client, j'ai endossé seul les décisions de direction artistique et formalisé ma méthode. Le projet m'a obligé à apprendre les règles d'ergonomie du e-commerce et à me fixer des limites pour garder la conversion comme objectif.</p>
+</div>
+<div class="Label"><span>Extraits de la nouvelle charte graphique</span></div>
+<div class="ProjectGallery Item2">
+    <img src="/img/reals/primaire/charte-graphique-1.webp" alt="Charte graphique Primaire - Page 1">
+    <img src="/img/reals/primaire/charte-graphique-2.webp" alt="Charte graphique Primaire - Page 2">
+    <img src="/img/reals/primaire/charte-graphique-3.webp" alt="Charte graphique Primaire - Page 3">
+    <img src="/img/reals/primaire/charte-graphique-4.webp" alt="Charte graphique Primaire - Page 4">
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>4</strong><span>zones comparées avant/après : hero + navbar, page contact, blog, footer</span></div>
+        <div class="ResultItem"><strong>2</strong><span>sections créées : journal et présentation</span></div>
+        <div class="ResultItem"><strong>+24 %</strong><span>taux de conversion</span></div>
+    </div>
+</div>

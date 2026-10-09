@@ -1,223 +1,89 @@
 ---
+layout: reals
 real_id: habitstracker
 title: "Création App UI/UX & Data Visualisation : HabitsTracker | Lennouille"
 description: "Design d'interface de l'application HabitsTracker. Découvrez comment l'UX design et la data visualisation transforment le suivi d'habitudes au quotidien."
 schema_type: CreativeWork
 image: /assets/og-habitstracker.png
+eyebrow: "UI/UX Design · Webdesign · Identité visuelle"
+heading: "Création HabitsTracker"
+banner_alt: "Bannière haute HabitsTracker"
+link: "https://lennouille.fr/HabitsTracker/"
+keywords:
+  - "UI/UX Design"
+  - "Webdesign"
+  - "Identité visuelle"
+facts:
+  role: "UX design, UI Kit, logo"
+  duree: "4 semaines"
+  outils: "Figma ; HTML, CSS, JavaScript"
+  contexte: "Projet personnel"
+  resultat: "4 espaces conçus : habitudes, séries, succès, graphiques"
+intro:
+  brief: "Concevoir un suivi d'habitudes qui évite deux écueils : la gamification enfantine et l'interface austère."
+  objectif: "Rendre la validation quotidienne gratifiante grâce à une visualisation claire de la progression."
+  livrables: "UX centré sur la récurrence, UI Kit en mode sombre, logo."
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Création App UI/UX & Data Visualisation : HabitsTracker | Lennouille</title>
-
-    <meta name="description" content="Design d'interface de l'application HabitsTracker. Découvrez comment l'UX design et la data visualisation transforment le suivi d'habitudes au quotidien.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/reals/habitstracker">
-    <meta property="og:title" content="Création App UI/UX & Data Visualisation : HabitsTracker | Lennouille">
-    <meta property="og:description" content="Design d'interface de l'application HabitsTracker. Découvrez comment l'UX design et la data visualisation transforment le suivi d'habitudes au quotidien.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-habitstracker.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Création App UI/UX & Data Visualisation : HabitsTracker | Lennouille">
-    <meta name="twitter:description" content="Design d'interface de l'application HabitsTracker. Découvrez comment l'UX design et la data visualisation transforment le suivi d'habitudes au quotidien.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-habitstracker.png">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/reals/habitstracker">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/reals/habitstracker" -%}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          "@id": "{{ page_url }}#work",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | split: " | " | first | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.image %}
-          "image": "{{ biz.url }}{{ page.image }}",
-          {%- endif %}
-          "keywords": [
-            "UI/UX Design",
-            "Webdesign",
-            "Identité visuelle"
-          ],
-          {%- if page.date %}
-          "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          {%- if page.client %}
-          "about": {
-            "@type": "Organization",
-            "name": {{ page.client | jsonify }}
-          },
-          {%- endif %}
-          "creator": {
-            "@type": "Person",
-            "@id": "{{ biz.url }}/#lenny-gadroy",
-            "name": "Lenny Gadroy"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "@id": "{{ biz.url }}/#organization",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ page_url }}"
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Réalisations",
-              "item": "{{ biz.url }}/reals"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": {{ page.title | split: " | " | first | jsonify }},
-              "item": "{{ page_url }}"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-</head>
-<body>
-    {% include header.html %}
-    <main class="Reals SubPage">
-        <section class="TopBanner">
-            <img src="/img/reals/habitstracker/mockup.webp" alt="Bannière haute HabitsTracker">
-        </section>
-        <div class="Title">
-            <span>UI/UX Design · Webdesign · Identité visuelle</span>
-            <h1>Création HabitsTracker</h1>
-            <hr>
-        </div>
-        <a class="LinkField" href="https://lennouille.fr/HabitsTracker/" target="_blank">
-            <span class="LinkPrefix">https://</span>
-            <span class="LinkUrl">lennouille.fr/HabitsTracker</span>
-            <span class="LinkArrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
-                <span class="LinkTooltip">Visiter</span>
-            </span>
-        </a>
-        <dl class="ProjectFacts">
-            <div><dt>Rôle</dt><dd>UX design, UI Kit, logo</dd></div>
-            <div><dt>Durée</dt><dd>4 semaines</dd></div>
-            <div><dt>Outils</dt><dd>Figma ; HTML, CSS, JavaScript</dd></div>
-            <div><dt>Contexte</dt><dd>Projet personnel</dd></div>
-            <div><dt>Résultat</dt><dd>4 espaces conçus : habitudes, séries, succès, graphiques</dd></div>
-        </dl>
-        <div class="Intro">
-            <p><b>Brief :</b> Concevoir un suivi d'habitudes qui évite deux écueils : la gamification enfantine et l'interface austère.</p>
-            <p><b>Objectif :</b> Rendre la validation quotidienne gratifiante grâce à une visualisation claire de la progression.</p>
-            <p><b>Livrables :</b> UX centré sur la récurrence, UI Kit en mode sombre, logo.</p>
-        </div>
-        <hr>
-        <section class="ProjectSplit">
-            <div class="SplitItem">
-                <div class="ProjectBloc">
-                    <h4>Constat : l'abandon rapide</h4>
-                    <p>Habitica, Streaks et Done existent déjà ; la plupart des applications de ce type perdent leurs utilisateurs après environ deux semaines. Deux dérives courantes : une gamification enfantine, ou une interface de base de données austère. L'objectif était de valoriser la régularité sans tomber dans le gadget.</p>
-                </div>
-                <div class="ProjectBloc">
-                    <h4>Modèle mental et parcours</h4>
-                    <p>Les utilisateurs pensent leurs habitudes en jours, en cycles et en séries (streaks), pas en statistiques. Les wireframes portent sur trois moments : l'onboarding, le check-in quotidien et la vue rétrospective.</p>
-                </div>
-            </div>
-            <div class="SplitItem">
-                <div class="Label"><span>Identité visuelle — Logo</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/habitstracker/logo.webp" alt="Création du logo HabitsTracker"></div>
-            </div>
-        </section>
-        <div class="FullWidthBanner">
-            <div class="Label"><span>Logo</span></div>
-            <img src="/img/reals/habitstracker/banniere.webp" alt="Logo HabitsTracker">
+<section class="ProjectSplit">
+    <div class="SplitItem">
+        <div class="ProjectBloc">
+            <h4>Constat : l'abandon rapide</h4>
+            <p>Habitica, Streaks et Done existent déjà ; la plupart des applications de ce type perdent leurs utilisateurs après environ deux semaines. Deux dérives courantes : une gamification enfantine, ou une interface de base de données austère. L'objectif était de valoriser la régularité sans tomber dans le gadget.</p>
         </div>
         <div class="ProjectBloc">
-            <h4>Palette et mode sombre</h4>
-            <p>Le design system repose sur un bleu électrique et un noir profond. Le logo est réduit à un seul symbole. Le mode sombre est natif, pour un outil consulté au réveil et avant le coucher.</p>
+            <h4>Modèle mental et parcours</h4>
+            <p>Les utilisateurs pensent leurs habitudes en jours, en cycles et en séries (streaks), pas en statistiques. Les wireframes portent sur trois moments : l'onboarding, le check-in quotidien et la vue rétrospective.</p>
         </div>
-        <div class="Label"><span>Couleurs désignées</span></div>
-        <div class="ProjectGallery Item2 Circle">
-            <img src="/img/reals/habitstracker/couleur-lavande.webp" alt="Couleur lavande HabitsTracker">
-            <img src="/img/reals/habitstracker/couleur-abysse.webp" alt="Couleur abysse HabitsTracker">
-        </div>
-        <div class="ProjectBloc">
-            <h4>Quatre espaces</h4>
-            <p>L'application comprend quatre espaces : habitudes, séries, succès et graphiques. Valider une habitude demande un seul et unique clic. Les graphiques transforment l'historique en vue de progression.</p>
-        </div>
-        <section class="ComparisonsGrid">
-            <div class="CompItem">
-                <div class="Label"><span>Espace habitudes</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-habitudes.webp" alt="Création de l'espace habits"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace séries</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-series.webp" alt="Création de l'espace streaks"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace succès</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-accomplissements.webp" alt="Création de l'espace achievements"></div>
-            </div>
-            <div class="CompItem">
-                <div class="Label"><span>Espace des graphiques</span></div>
-                <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-graphique.webp" alt="Création de l'espace des graphiques"></div>
-            </div>
-        </section>
-        <div class="ProjectBloc">
-            <h4>Ce que j'en retiens</h4>
-            <p>Une interface consultée environ 300 fois par an doit rester agréable à la longue. J'ai réduit le décor et dosé les retours positifs : l'interface ne célèbre qu'à des moments choisis.</p>
-        </div>
-        <div class="ProjectBloc ProjectResults">
-            <h4>Résultats</h4>
-            <div class="ResultsGrid">
-                <div class="ResultItem"><strong>4</strong><span>espaces conçus : habitudes, séries, succès, graphiques</span></div>
-                <div class="ResultItem"><strong>3</strong><span>moments de parcours traités : onboarding, check-in, rétrospective</span></div>
-                <div class="ResultItem"><strong>1</strong><span>tap pour valider une habitude</span></div>
-            </div>
-        </div>
-        {% include related-projects.html %}
-        {% include footer.html %}
-    </main>
-<!-- Anims -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/anims.js" defer></script>
-</body>
-</html>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Identité visuelle — Logo</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/habitstracker/logo.webp" alt="Création du logo HabitsTracker"></div>
+    </div>
+</section>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Logo</span></div>
+    <img src="/img/reals/habitstracker/banniere.webp" alt="Logo HabitsTracker">
+</div>
+<div class="ProjectBloc">
+    <h4>Palette et mode sombre</h4>
+    <p>Le design system repose sur un bleu électrique et un noir profond. Le logo est réduit à un seul symbole. Le mode sombre est natif, pour un outil consulté au réveil et avant le coucher.</p>
+</div>
+<div class="Label"><span>Couleurs désignées</span></div>
+<div class="ProjectGallery Item2 Circle">
+    <img src="/img/reals/habitstracker/couleur-lavande.webp" alt="Couleur lavande HabitsTracker">
+    <img src="/img/reals/habitstracker/couleur-abysse.webp" alt="Couleur abysse HabitsTracker">
+</div>
+<div class="ProjectBloc">
+    <h4>Quatre espaces</h4>
+    <p>L'application comprend quatre espaces : habitudes, séries, succès et graphiques. Valider une habitude demande un seul et unique clic. Les graphiques transforment l'historique en vue de progression.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Espace habitudes</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-habitudes.webp" alt="Création de l'espace habits"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace séries</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-series.webp" alt="Création de l'espace streaks"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace succès</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-accomplissements.webp" alt="Création de l'espace achievements"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Espace des graphiques</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/habitstracker/ecran-graphique.webp" alt="Création de l'espace des graphiques"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Une interface consultée environ 300 fois par an doit rester agréable à la longue. J'ai réduit le décor et dosé les retours positifs : l'interface ne célèbre qu'à des moments choisis.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>4</strong><span>espaces conçus : habitudes, séries, succès, graphiques</span></div>
+        <div class="ResultItem"><strong>3</strong><span>moments de parcours traités : onboarding, check-in, rétrospective</span></div>
+        <div class="ResultItem"><strong>1</strong><span>tap pour valider une habitude</span></div>
+    </div>
+</div>
