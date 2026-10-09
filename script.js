@@ -548,7 +548,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabs  = document.querySelectorAll(".Tabs .Tab");
     const empty = document.getElementById("LawsEmpty");
 
-    // Révélation à l'entrée dans le viewport : la classe .in-view est stylée dans style.css
     if ("IntersectionObserver" in window) {
         const io = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
