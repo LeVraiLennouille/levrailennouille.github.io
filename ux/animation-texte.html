@@ -1,682 +1,648 @@
 ---
+layout: default
 title: "Animation texte CSS/JS : 30 effets en démo live | Lennouille"
 description: "Animation texte en CSS et JavaScript : 30 effets à tester en direct — apparition, boucle, interaction, sortie et expérimental. Par Lenny Gadroy."
 schema_type: CollectionPage
+robots: "index, follow, max-image-preview:large"
+og_image_alt: "Animation texte : aperçu des 30 effets CSS et JavaScript par Lennouille"
 ---
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Animation texte CSS/JS : 30 effets en démo live | Lennouille</title>
-
-    <meta name="description" content="Animation texte en CSS et JavaScript : 30 effets à tester en direct — apparition, boucle, interaction, sortie et expérimental. Par Lenny Gadroy.">
-    <meta name="author" content="Lenny Gadroy">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lennouille.fr/ux/animation-texte">
-    <meta property="og:title" content="Animation texte CSS/JS : 30 effets en démo live | Lennouille">
-    <meta property="og:description" content="Animation texte en CSS et JavaScript : 30 effets à tester en direct — apparition, boucle, interaction, sortie et expérimental. Par Lenny Gadroy.">
-    <meta property="og:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Animation texte : aperçu des 30 effets CSS et JavaScript par Lennouille">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Lennouille">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Animation texte CSS/JS : 30 effets en démo live | Lennouille">
-    <meta name="twitter:description" content="Animation texte en CSS et JavaScript : 30 effets à tester en direct — apparition, boucle, interaction, sortie et expérimental. Par Lenny Gadroy.">
-    <meta name="twitter:image" content="https://lennouille.fr/assets/og-preview.png">
-    <meta name="twitter:image:alt" content="Animation texte : aperçu des 30 effets CSS et JavaScript par Lennouille">
-    <meta name="twitter:site" content="@LennyGdr19">
-    <meta name="twitter:creator" content="@LennyGdr19">
-
-    <link rel="canonical" href="https://lennouille.fr/ux/animation-texte">
-    <meta name="theme-color" content="#1c1c1e">
-    <link href="/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
-    {%- assign biz = site.data.business -%}
-    {%- assign page_url = biz.url | append: "/ux/animation-texte" -%}
-    <script type="application/ld+json">
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/ux/animation-texte" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "CollectionPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "keywords": "animation texte, animation de texte CSS, animation texte JavaScript, typographie cinétique",
+      "about": ["Animation texte", "Typographie cinétique", "CSS", "JavaScript"],
+      "author": { "@type": "Person", "name": "Lenny Gadroy" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "30 animations de texte CSS et JavaScript",
+        "numberOfItems": 30,
+        "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Animation texte : Brouillage", "url": "{{ page_url }}#s01" },
+        { "@type": "ListItem", "position": 2, "name": "Animation texte : Machine à écrire", "url": "{{ page_url }}#s02" },
+        { "@type": "ListItem", "position": 3, "name": "Animation texte : Tableau à palettes", "url": "{{ page_url }}#s03" },
+        { "@type": "ListItem", "position": 4, "name": "Animation texte : Fondu échelonné", "url": "{{ page_url }}#s04" },
+        { "@type": "ListItem", "position": 5, "name": "Animation texte : Mise au point", "url": "{{ page_url }}#s05" },
+        { "@type": "ListItem", "position": 6, "name": "Animation texte : Glitch dédoublé", "url": "{{ page_url }}#s06" },
+        { "@type": "ListItem", "position": 7, "name": "Animation texte : Signature à l’encre", "url": "{{ page_url }}#s07" },
+        { "@type": "ListItem", "position": 8, "name": "Animation texte : Rideau", "url": "{{ page_url }}#s08" },
+        { "@type": "ListItem", "position": 9, "name": "Animation texte : Retournement 3D", "url": "{{ page_url }}#s09" },
+        { "@type": "ListItem", "position": 10, "name": "Animation texte : Vague", "url": "{{ page_url }}#s10" },
+        { "@type": "ListItem", "position": 11, "name": "Animation texte : Reflet balayant", "url": "{{ page_url }}#s11" },
+        { "@type": "ListItem", "position": 12, "name": "Animation texte : Halo respirant", "url": "{{ page_url }}#s12" },
+        { "@type": "ListItem", "position": 13, "name": "Animation texte : Ondulation liquide", "url": "{{ page_url }}#s13" },
+        { "@type": "ListItem", "position": 14, "name": "Animation texte : Défilement amorti", "url": "{{ page_url }}#s14" },
+        { "@type": "ListItem", "position": 15, "name": "Animation texte : Rotateur cinétique", "url": "{{ page_url }}#s15" },
+        { "@type": "ListItem", "position": 16, "name": "Animation texte : Attraction magnétique", "url": "{{ page_url }}#s16" },
+        { "@type": "ListItem", "position": 17, "name": "Animation texte : Progression au scroll", "url": "{{ page_url }}#s17" },
+        { "@type": "ListItem", "position": 18, "name": "Animation texte : Dispersion au survol", "url": "{{ page_url }}#s18" },
+        { "@type": "ListItem", "position": 19, "name": "Animation texte : Épaisseur dynamique", "url": "{{ page_url }}#s19" },
+        { "@type": "ListItem", "position": 20, "name": "Animation texte : Distorsion au curseur", "url": "{{ page_url }}#s20" },
+        { "@type": "ListItem", "position": 21, "name": "Animation texte : Éclatement", "url": "{{ page_url }}#s21" },
+        { "@type": "ListItem", "position": 22, "name": "Animation texte : Dissolution", "url": "{{ page_url }}#s22" },
+        { "@type": "ListItem", "position": 23, "name": "Animation texte : Pliage", "url": "{{ page_url }}#s23" },
+        { "@type": "ListItem", "position": 24, "name": "Animation texte : Cycle terminal", "url": "{{ page_url }}#s24" },
+        { "@type": "ListItem", "position": 25, "name": "Animation texte : Graisse variable", "url": "{{ page_url }}#s25" },
+        { "@type": "ListItem", "position": 26, "name": "Animation texte : Formation matricielle", "url": "{{ page_url }}#s26" },
+        { "@type": "ListItem", "position": 27, "name": "Animation texte : Métamorphose de mots", "url": "{{ page_url }}#s27" },
+        { "@type": "ListItem", "position": 28, "name": "Animation texte : Scroll chromatique", "url": "{{ page_url }}#s28" },
+        { "@type": "ListItem", "position": 29, "name": "Animation texte : Chute libre", "url": "{{ page_url }}#s29" },
+        { "@type": "ListItem", "position": 30, "name": "Animation texte : Projecteur", "url": "{{ page_url }}#s30" }
+        ]
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "CollectionPage",
-          "@id": "{{ page_url }}#page",
-          "url": "{{ page_url }}",
-          "name": {{ page.title | jsonify }},
-          "description": {{ page.description | jsonify }},
-          "inLanguage": "fr-FR",
-          {%- if page.last_modified_at %}
-          "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
-          {%- endif %}
-          "keywords": "animation texte, animation de texte CSS, animation texte JavaScript, typographie cinétique",
-          "about": ["Animation texte", "Typographie cinétique", "CSS", "JavaScript"],
-          "author": { "@type": "Person", "name": "Lenny Gadroy" },
-          "mainEntity": {
-            "@type": "ItemList",
-            "name": "30 animations de texte CSS et JavaScript",
-            "numberOfItems": 30,
-            "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Animation texte : Brouillage", "url": "{{ page_url }}#s01" },
-            { "@type": "ListItem", "position": 2, "name": "Animation texte : Machine à écrire", "url": "{{ page_url }}#s02" },
-            { "@type": "ListItem", "position": 3, "name": "Animation texte : Tableau à palettes", "url": "{{ page_url }}#s03" },
-            { "@type": "ListItem", "position": 4, "name": "Animation texte : Fondu échelonné", "url": "{{ page_url }}#s04" },
-            { "@type": "ListItem", "position": 5, "name": "Animation texte : Mise au point", "url": "{{ page_url }}#s05" },
-            { "@type": "ListItem", "position": 6, "name": "Animation texte : Glitch dédoublé", "url": "{{ page_url }}#s06" },
-            { "@type": "ListItem", "position": 7, "name": "Animation texte : Signature à l’encre", "url": "{{ page_url }}#s07" },
-            { "@type": "ListItem", "position": 8, "name": "Animation texte : Rideau", "url": "{{ page_url }}#s08" },
-            { "@type": "ListItem", "position": 9, "name": "Animation texte : Retournement 3D", "url": "{{ page_url }}#s09" },
-            { "@type": "ListItem", "position": 10, "name": "Animation texte : Vague", "url": "{{ page_url }}#s10" },
-            { "@type": "ListItem", "position": 11, "name": "Animation texte : Reflet balayant", "url": "{{ page_url }}#s11" },
-            { "@type": "ListItem", "position": 12, "name": "Animation texte : Halo respirant", "url": "{{ page_url }}#s12" },
-            { "@type": "ListItem", "position": 13, "name": "Animation texte : Ondulation liquide", "url": "{{ page_url }}#s13" },
-            { "@type": "ListItem", "position": 14, "name": "Animation texte : Défilement amorti", "url": "{{ page_url }}#s14" },
-            { "@type": "ListItem", "position": 15, "name": "Animation texte : Rotateur cinétique", "url": "{{ page_url }}#s15" },
-            { "@type": "ListItem", "position": 16, "name": "Animation texte : Attraction magnétique", "url": "{{ page_url }}#s16" },
-            { "@type": "ListItem", "position": 17, "name": "Animation texte : Progression au scroll", "url": "{{ page_url }}#s17" },
-            { "@type": "ListItem", "position": 18, "name": "Animation texte : Dispersion au survol", "url": "{{ page_url }}#s18" },
-            { "@type": "ListItem", "position": 19, "name": "Animation texte : Épaisseur dynamique", "url": "{{ page_url }}#s19" },
-            { "@type": "ListItem", "position": 20, "name": "Animation texte : Distorsion au curseur", "url": "{{ page_url }}#s20" },
-            { "@type": "ListItem", "position": 21, "name": "Animation texte : Éclatement", "url": "{{ page_url }}#s21" },
-            { "@type": "ListItem", "position": 22, "name": "Animation texte : Dissolution", "url": "{{ page_url }}#s22" },
-            { "@type": "ListItem", "position": 23, "name": "Animation texte : Pliage", "url": "{{ page_url }}#s23" },
-            { "@type": "ListItem", "position": 24, "name": "Animation texte : Cycle terminal", "url": "{{ page_url }}#s24" },
-            { "@type": "ListItem", "position": 25, "name": "Animation texte : Graisse variable", "url": "{{ page_url }}#s25" },
-            { "@type": "ListItem", "position": 26, "name": "Animation texte : Formation matricielle", "url": "{{ page_url }}#s26" },
-            { "@type": "ListItem", "position": 27, "name": "Animation texte : Métamorphose de mots", "url": "{{ page_url }}#s27" },
-            { "@type": "ListItem", "position": 28, "name": "Animation texte : Scroll chromatique", "url": "{{ page_url }}#s28" },
-            { "@type": "ListItem", "position": 29, "name": "Animation texte : Chute libre", "url": "{{ page_url }}#s29" },
-            { "@type": "ListItem", "position": 30, "name": "Animation texte : Projecteur", "url": "{{ page_url }}#s30" }
-            ]
-          },
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "{{ biz.url }}/#website",
-            "name": {{ biz.name | jsonify }},
-            "url": "{{ biz.url }}"
-          }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
         },
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Accueil",
-              "item": "{{ biz.url }}/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "UX Design",
-              "item": "{{ biz.url }}/ux"
-            },
-            {
-              "@type": "ListItem",
-              "position": 3,
-              "name": "Animation texte",
-              "item": "{{ page_url }}"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "UX Design",
+          "item": "{{ biz.url }}/ux"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Animation texte",
+          "item": "{{ page_url }}"
         }
       ]
     }
-    </script>
-</head>
-<body>
-    <main class="TextAnims" id="top">
-        {% include header.html %}
-        <section class="SecondaryHero">
-            <div class="Decor" aria-hidden="true"><span>Aa</span></div>
-            <div class="HeroInner">
-                <nav class="Breadcrumb" aria-label="Fil d'ariane">
-                    <a href="/">Accueil</a>
-                    <span class="Sep">/</span>
-                    <a href="/ux">UX Design</a>
-                    <span class="Sep">/</span>
-                    <span class="Current" aria-current="page">Animations texte</span>
-                </nav>
-                <span class="Category">Catalogue d'animation texte · CSS & JS</span>
-                <h1 class="Title">Animation texte : <br><em>chaque mot peut bouger.</em></h1>
-                <p class="SubTitle">Trente animations de texte en CSS et JavaScript, composées comme un livre d'animations typographiques. Faites défiler la page pour déclencher chaque planche ; lorsqu’une animation indique <em>survolez</em> ou <em>déplacez le curseur</em>, il réagit directement à vos gestes.</p>
-                <div class="Meta">
-                    <span>5 catégories</span>
-                    <span class="Dot"></span>
-                    <span>30 animations</span>
-                    <span class="Dot"></span>
-                    <span>30 idées à ajouter</span>
-                </div>
-            </div>
-        </section>
-        <section class="Intro" aria-labelledby="intro-title">
-            <h2 id="intro-title">Qu’est-ce qu’une animation texte ?</h2>
-            <p>Une animation texte met en mouvement des lettres, des mots ou des lignes pour attirer le regard, hiérarchiser l’information ou donner du caractère à une interface. Chacune des 30 démos ci-dessous est écrite en CSS et en JavaScript natif, sans bibliothèque externe.</p>
-            <p>Elles se répartissent en cinq familles : <a href="#s01">apparition</a>, <a href="#s10">boucle</a>, <a href="#s16">interaction</a>, <a href="#s21">sortie</a> et <a href="#s25">effets expérimentaux</a>. Bien dosée, une animation de texte renforce la lisibilité et l’<a href="/ux/comprendre">expérience utilisateur</a> ; trop présente, elle les dégrade. Besoin d’une animation texte sur votre site ? <a href="/contact">Parlons de votre projet</a>.</p>
-        </section>
-        <div class="Layout">
-            <aside class="Sidebar">
-                <div class="SideBrand">
-                    <span class="Mark">Anims</span>
-                    <h2>Typographique</h2>
-                    <p>Catalogue d'animations</p>
-                </div>
-                <nav aria-label="Sommaire des animations">
-                    <div class="SideGroup">
-                        <h3>Apparition</h3>
-                        <ul>
-                            <li><a href="#s01"><span class="Num">01</span>Brouillage</a></li>
-                            <li><a href="#s02"><span class="Num">02</span>Machine à écrire</a></li>
-                            <li><a href="#s03"><span class="Num">03</span>Tableau à palettes</a></li>
-                            <li><a href="#s04"><span class="Num">04</span>Fondu échelonné</a></li>
-                            <li><a href="#s05"><span class="Num">05</span>Mise au point</a></li>
-                            <li><a href="#s06"><span class="Num">06</span>Glitch dédoublé</a></li>
-                            <li><a href="#s07"><span class="Num">07</span>Signature à l’encre</a></li>
-                            <li><a href="#s08"><span class="Num">08</span>Rideau</a></li>
-                            <li><a href="#s09"><span class="Num">09</span>Retournement 3D</a></li>
-                        </ul>
-                    </div>
-                    <div class="SideGroup">
-                        <h3>Boucle</h3>
-                        <ul>
-                            <li><a href="#s10"><span class="Num">10</span>Vague</a></li>
-                            <li><a href="#s11"><span class="Num">11</span>Reflet balayant</a></li>
-                            <li><a href="#s12"><span class="Num">12</span>Halo respirant</a></li>
-                            <li><a href="#s13"><span class="Num">13</span>Ondulation liquide</a></li>
-                            <li><a href="#s14"><span class="Num">14</span>Défilement amorti</a></li>
-                            <li><a href="#s15"><span class="Num">15</span>Rotateur cinétique</a></li>
-                        </ul>
-                    </div>
-                    <div class="SideGroup">
-                        <h3>Interactif</h3>
-                        <ul>
-                            <li><a href="#s16"><span class="Num">16</span>Attraction magnétique</a></li>
-                            <li><a href="#s17"><span class="Num">17</span>Progression au scroll</a></li>
-                            <li><a href="#s18"><span class="Num">18</span>Dispersion au survol</a></li>
-                            <li><a href="#s19"><span class="Num">19</span>Épaisseur dynamique</a></li>
-                            <li><a href="#s20"><span class="Num">20</span>Distorsion au curseur</a></li>
-                        </ul>
-                    </div>
-                    <div class="SideGroup">
-                        <h3>Sortie</h3>
-                        <ul>
-                            <li><a href="#s21"><span class="Num">21</span>Éclatement</a></li>
-                            <li><a href="#s22"><span class="Num">22</span>Dissolution</a></li>
-                            <li><a href="#s23"><span class="Num">23</span>Pliage</a></li>
-                            <li><a href="#s24"><span class="Num">24</span>Cycle terminal</a></li>
-                        </ul>
-                    </div>
-                    <div class="SideGroup">
-                        <h3>Expérimental</h3>
-                        <ul>
-                            <li><a href="#s25"><span class="Num">25</span>Graisse variable</a></li>
-                            <li><a href="#s26"><span class="Num">26</span>Formation matricielle</a></li>
-                            <li><a href="#s27"><span class="Num">27</span>Métamorphose de mots</a></li>
-                            <li><a href="#s28"><span class="Num">28</span>Scroll chromatique</a></li>
-                            <li><a href="#s29"><span class="Num">29</span>Chute libre</a></li>
-                            <li><a href="#s30"><span class="Num">30</span>Projecteur</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </aside>
-            <div class="Content">
-                <section class="Group">
-                    <div class="SectionTitle Left">
-                        <span class="Eyebrow">Catégorie 01</span>
-                        <h2 class="Title">Animations de texte d’apparition</h2>
-                    </div>
-                    <div class="Plates">
-                        <article class="Card Plate" id="s01">
-                            <div class="PlateHead">
-                                <span class="PlateNum">01</span>
-                                <div class="PlateMeta">
-                                    <h3>Brouillage</h3>
-                                    <p>Le bruit se transforme en signal, de gauche à droite.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="01" data-anim="scramble" data-observe>
-                                <span class="Demo" data-text="Lennouille"></span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s02">
-                            <div class="PlateHead">
-                                <span class="PlateNum">02</span>
-                                <div class="PlateMeta">
-                                    <h3>Machine à écrire</h3>
-                                    <p>Une frappe à la fois, curseur compris.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="02" data-anim="typewriter" data-observe>
-                                <span class="Demo" data-text="Lennouille"></span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s03">
-                            <div class="PlateHead">
-                                <span class="PlateNum">03</span>
-                                <div class="PlateMeta">
-                                    <h3>Tableau à palettes</h3>
-                                    <p>Chaque lettre défile sur son propre tableau des départs.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="03" data-anim="splitflap" data-observe>
-                                <span class="Demo Small" data-text="Lennouille"></span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s04">
-                            <div class="PlateHead">
-                                <span class="PlateNum">04</span>
-                                <div class="PlateMeta">
-                                    <h3>Fondu échelonné</h3>
-                                    <p>Les lettres montent à leur place, l’une après l’autre.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="04" data-anim="stagger" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s05">
-                            <div class="PlateHead">
-                                <span class="PlateNum">05</span>
-                                <div class="PlateMeta">
-                                    <h3>Mise au point</h3>
-                                    <p>Du flou à la netteté.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="05" data-anim="blur" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s06">
-                            <div class="PlateHead">
-                                <span class="PlateNum">06</span>
-                                <div class="PlateMeta">
-                                    <h3>Glitch dédoublé</h3>
-                                    <p>Des fantômes rouges et cyan s’écartent de la position réelle.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="06" data-anim="glitchbox">
-                                <span class="Demo Glitch" data-text="Lennouille">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s07">
-                            <div class="PlateHead">
-                                <span class="PlateNum">07</span>
-                                <div class="PlateMeta">
-                                    <h3>Signature à l’encre</h3>
-                                    <p>Un trait se dessine sous le mot.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="07" data-anim="ink" data-observe>
-                                <span class="InkWrap">
-                                    <span class="Demo">Lennouille</span>
-                                    <svg class="InkUnderline" width="260" height="18" viewBox="0 0 260 18">
-                                        <path d="M4 10 Q 60 2, 130 9 T 256 8" fill="none" stroke="var(--Primary)" stroke-width="2" stroke-linecap="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s08">
-                            <div class="PlateHead">
-                                <span class="PlateNum">08</span>
-                                <div class="PlateMeta">
-                                    <h3>Rideau</h3>
-                                    <p>Une plaque pleine glisse pour révéler le mot en dessous.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="08" data-anim="curtain" data-observe>
-                                <span class="CurtainWrap">
-                                    <span class="Demo">Lennouille</span>
-                                    <span class="CurtainBar"></span>
-                                </span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s09">
-                            <div class="PlateHead">
-                                <span class="PlateNum">09</span>
-                                <div class="PlateMeta">
-                                    <h3>Retournement 3D</h3>
-                                    <p>Les lettres se rabattent depuis une charnière, comme des fiches de Rolodex.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="09" data-anim="flip" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                <section class="Group">
-                    <div class="SectionTitle Left">
-                        <span class="Eyebrow">Catégorie 02</span>
-                        <h2 class="Title">Animations de texte en boucle</h2>
-                    </div>
-                    <div class="Plates">
-                        <article class="Card Plate" id="s10">
-                            <div class="PlateHead">
-                                <span class="PlateNum">10</span>
-                                <div class="PlateMeta">
-                                    <h3>Vague</h3>
-                                    <p>Une ondulation parcourt la ligne de base en continu.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="10" data-anim="wave" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s11">
-                            <div class="PlateHead">
-                                <span class="PlateNum">11</span>
-                                <div class="PlateMeta">
-                                    <h3>Reflet balayant</h3>
-                                    <p>Une bande de lumière glisse sur des lettres en laiton.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="11" data-anim="shimmer" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s12">
-                            <div class="PlateHead">
-                                <span class="PlateNum">12</span>
-                                <div class="PlateMeta">
-                                    <h3>Halo respirant</h3>
-                                    <p>La lumière s’accumule puis se relâche, lente comme un souffle retenu.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="12" data-anim="glow" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s13">
-                            <div class="PlateHead">
-                                <span class="PlateNum">13</span>
-                                <div class="PlateMeta">
-                                    <h3>Ondulation liquide</h3>
-                                    <p>Chaque lettre semble suspendue dans du sirop.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="13" data-anim="liquid" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s14">
-                            <div class="PlateHead">
-                                <span class="PlateNum">14</span>
-                                <div class="PlateMeta">
-                                    <h3>Défilement amorti</h3>
-                                    <p>Un bandeau qui accélère, glisse puis se pose — jamais linéaire.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="14" data-anim="marquee" data-observe>
-                                <span class="MarqueeTrack">
-                                    <span class="Demo Small">Lennouille</span>
-                                    <span class="Demo Small">Lennouille</span>
-                                    <span class="Demo Small">Lennouille</span>
-                                </span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s15">
-                            <div class="PlateHead">
-                                <span class="PlateNum">15</span>
-                                <div class="PlateMeta">
-                                    <h3>Rotateur cinétique</h3>
-                                    <p>Un rôle, plusieurs mots, qui défilent comme un titre.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="15" data-anim="rotator">
-                                <span>Conçu&nbsp;par&nbsp;<span class="Demo RotatorWord">Lennouille</span></span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                <section class="Group">
-                    <div class="SectionTitle Left">
-                        <span class="Eyebrow">Catégorie 03</span>
-                        <h2 class="Title">Animations de texte interactives</h2>
-                    </div>
-                    <div class="Plates">
-                        <article class="Card Plate" id="s16">
-                            <div class="PlateHead">
-                                <span class="PlateNum">16</span>
-                                <div class="PlateMeta">
-                                    <h3>Attraction magnétique</h3>
-                                    <p>Les lettres se penchent vers votre curseur à son approche.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="16" data-anim="magnet">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">déplacez le curseur</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s17">
-                            <div class="PlateHead">
-                                <span class="PlateNum">17</span>
-                                <div class="PlateMeta">
-                                    <h3>Progression au scroll</h3>
-                                    <p>La couleur remplit le mot au rythme du défilement.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="17" data-anim="scrub">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">faites défiler la page</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s18">
-                            <div class="PlateHead">
-                                <span class="PlateNum">18</span>
-                                <div class="PlateMeta">
-                                    <h3>Dispersion au survol</h3>
-                                    <p>Le mot se disperse au moindre contact, puis se reforme.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="18" data-anim="scatter">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">survolez</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s19">
-                            <div class="PlateHead">
-                                <span class="PlateNum">19</span>
-                                <div class="PlateMeta">
-                                    <h3>Épaisseur dynamique</h3>
-                                    <p>Les lettres s’épaississent à mesure que le curseur s’approche.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="19" data-anim="pressure">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">déplacez le curseur</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s20">
-                            <div class="PlateHead">
-                                <span class="PlateNum">20</span>
-                                <div class="PlateMeta">
-                                    <h3>Distorsion au curseur</h3>
-                                    <p>Un effet fisheye d’inclinaison et d’échelle suit votre pointeur.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="20" data-anim="distort">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">déplacez le curseur</span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                <section class="Group">
-                    <div class="SectionTitle Left">
-                        <span class="Eyebrow">Catégorie 04</span>
-                        <h2 class="Title">Animations de texte de sortie</h2>
-                    </div>
-                    <div class="Plates">
-                        <article class="Card Plate" id="s21">
-                            <div class="PlateHead">
-                                <span class="PlateNum">21</span>
-                                <div class="PlateMeta">
-                                    <h3>Éclatement</h3>
-                                    <p>Les lettres s’éparpillent chacune sur sa propre trajectoire.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="21" data-anim="shatter">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">survolez</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s22">
-                            <div class="PlateHead">
-                                <span class="PlateNum">22</span>
-                                <div class="PlateMeta">
-                                    <h3>Dissolution</h3>
-                                    <p>Le mot s’élève, se brouille et se disperse comme de la fumée.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="22" data-anim="dissolve">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">survolez</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s23">
-                            <div class="PlateHead">
-                                <span class="PlateNum">23</span>
-                                <div class="PlateMeta">
-                                    <h3>Pliage</h3>
-                                    <p>La ligne se replie à plat vers son centre.</p>
-                                </div>
-                            </div>
-                            <div class="Stage" data-index="23" data-anim="fold">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">survolez</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s24">
-                            <div class="PlateHead">
-                                <span class="PlateNum">24</span>
-                                <div class="PlateMeta">
-                                    <h3>Cycle terminal</h3>
-                                    <p>Tapé, maintenu, effacé, puis retapé.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="24" data-anim="terminal">
-                                <span class="Demo Small TerminalText"></span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                <section class="Group">
-                    <div class="SectionTitle Left">
-                        <span class="Eyebrow">Catégorie 05</span>
-                        <h2 class="Title">Animations de texte expérimentales</h2>
-                    </div>
-                    <div class="Plates">
-                        <article class="Card Plate" id="s25">
-                            <div class="PlateHead">
-                                <span class="PlateNum">25</span>
-                                <div class="PlateMeta">
-                                    <h3>Graisse variable</h3>
-                                    <p>Une seule police, qui respire entre sa graisse la plus fine et la plus lourde.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="25" data-anim="varfont" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s26">
-                            <div class="PlateHead">
-                                <span class="PlateNum">26</span>
-                                <div class="PlateMeta">
-                                    <h3>Formation matricielle</h3>
-                                    <p>Une pluie de caractères se fige pour former le mot.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="26" data-anim="matrix" data-observe>
-                                <canvas class="Rain" width="560" height="150" role="img" aria-label="Pluie de caractères qui se fige pour former le mot Lennouille"></canvas>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s27">
-                            <div class="PlateHead">
-                                <span class="PlateNum">27</span>
-                                <div class="PlateMeta">
-                                    <h3>Métamorphose de mots</h3>
-                                    <p>Un mot se dissout pendant qu’un autre prend sa place.</p>
-                                </div>
-                                <span class="PlateTag">en continu</span>
-                            </div>
-                            <div class="Stage" data-index="27" data-anim="morph">
-                                <span class="MorphWrap">
-                                    <span class="Demo A">Lennouille</span>
-                                    <span class="Demo B">Lenny Gadroy</span>
-                                </span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s28">
-                            <div class="PlateHead">
-                                <span class="PlateNum">28</span>
-                                <div class="PlateMeta">
-                                    <h3>Scroll chromatique</h3>
-                                    <p>Les canaux de couleur se dissocient près des bords de l’écran et se réunissent au centre.</p>
-                                </div>
-                            </div>
-                            <div class="Stage Chroma" data-index="28" data-anim="chroma">
-                                <span class="Demo">Lennouille</span>
-                                <span class="Hint">faites défiler la page</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s29">
-                            <div class="PlateHead">
-                                <span class="PlateNum">29</span>
-                                <div class="PlateMeta">
-                                    <h3>Chute libre</h3>
-                                    <p>Les lettres tombent, rebondissent et se stabilisent sous leur propre poids.</p>
-                                </div>
-                                <span class="PlateTag">se rejoue à l’affichage</span>
-                            </div>
-                            <div class="Stage" data-index="29" data-anim="gravity" data-observe>
-                                <span class="Demo">Lennouille</span>
-                            </div>
-                        </article>
-                        <article class="Card Plate" id="s30">
-                            <div class="PlateHead">
-                                <span class="PlateNum">30</span>
-                                <div class="PlateMeta">
-                                    <h3>Projecteur</h3>
-                                    <p>Un faisceau de lumière suit votre curseur et révèle le mot caché dans l’obscurité.</p>
-                                </div>
-                                <span class="PlateTag">balayage auto au repos</span>
-                            </div>
-                            <div class="Stage" data-index="30" data-anim="spotlight" data-observe>
-                                <span class="Demo" data-text="Lennouille">Lennouille</span>
-                                <span class="Hint">déplacez le curseur</span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
+  ]
+}
+</script>
+
+<main class="TextAnims" id="top">
+    {% include header.html %}
+    <section class="SecondaryHero">
+        <div class="Decor" aria-hidden="true"><span>Aa</span></div>
+        <div class="HeroInner">
+            <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                <a href="/">Accueil</a>
+                <span class="Sep">/</span>
+                <a href="/ux">UX Design</a>
+                <span class="Sep">/</span>
+                <span class="Current" aria-current="page">Animations texte</span>
+            </nav>
+            <span class="Category">Catalogue d'animation texte · CSS & JS</span>
+            <h1 class="Title">Animation texte : <br><em>chaque mot peut bouger.</em></h1>
+            <p class="SubTitle">Trente animations de texte en CSS et JavaScript, composées comme un livre d'animations typographiques. Faites défiler la page pour déclencher chaque planche ; lorsqu’une animation indique <em>survolez</em> ou <em>déplacez le curseur</em>, il réagit directement à vos gestes.</p>
+            <div class="Meta">
+                <span>5 catégories</span>
+                <span class="Dot"></span>
+                <span>30 animations</span>
+                <span class="Dot"></span>
+                <span>30 idées à ajouter</span>
             </div>
         </div>
-        <div class="Progress" id="progress" aria-live="polite"><span class="Num">01</span> / 30</div>
-        {% include footer.html %}
-    </main>
+    </section>
+    <section class="Intro" aria-labelledby="intro-title">
+        <h2 id="intro-title">Qu’est-ce qu’une animation texte ?</h2>
+        <p>Une animation texte met en mouvement des lettres, des mots ou des lignes pour attirer le regard, hiérarchiser l’information ou donner du caractère à une interface. Chacune des 30 démos ci-dessous est écrite en CSS et en JavaScript natif, sans bibliothèque externe.</p>
+        <p>Elles se répartissent en cinq familles : <a href="#s01">apparition</a>, <a href="#s10">boucle</a>, <a href="#s16">interaction</a>, <a href="#s21">sortie</a> et <a href="#s25">effets expérimentaux</a>. Bien dosée, une animation de texte renforce la lisibilité et l’<a href="/ux/comprendre">expérience utilisateur</a> ; trop présente, elle les dégrade. Besoin d’une animation texte sur votre site ? <a href="/contact">Parlons de votre projet</a>.</p>
+    </section>
+    <div class="Layout">
+        <aside class="Sidebar">
+            <div class="SideBrand">
+                <span class="Mark">Anims</span>
+                <h2>Typographique</h2>
+                <p>Catalogue d'animations</p>
+            </div>
+            <nav aria-label="Sommaire des animations">
+                <div class="SideGroup">
+                    <h3>Apparition</h3>
+                    <ul>
+                        <li><a href="#s01"><span class="Num">01</span>Brouillage</a></li>
+                        <li><a href="#s02"><span class="Num">02</span>Machine à écrire</a></li>
+                        <li><a href="#s03"><span class="Num">03</span>Tableau à palettes</a></li>
+                        <li><a href="#s04"><span class="Num">04</span>Fondu échelonné</a></li>
+                        <li><a href="#s05"><span class="Num">05</span>Mise au point</a></li>
+                        <li><a href="#s06"><span class="Num">06</span>Glitch dédoublé</a></li>
+                        <li><a href="#s07"><span class="Num">07</span>Signature à l’encre</a></li>
+                        <li><a href="#s08"><span class="Num">08</span>Rideau</a></li>
+                        <li><a href="#s09"><span class="Num">09</span>Retournement 3D</a></li>
+                    </ul>
+                </div>
+                <div class="SideGroup">
+                    <h3>Boucle</h3>
+                    <ul>
+                        <li><a href="#s10"><span class="Num">10</span>Vague</a></li>
+                        <li><a href="#s11"><span class="Num">11</span>Reflet balayant</a></li>
+                        <li><a href="#s12"><span class="Num">12</span>Halo respirant</a></li>
+                        <li><a href="#s13"><span class="Num">13</span>Ondulation liquide</a></li>
+                        <li><a href="#s14"><span class="Num">14</span>Défilement amorti</a></li>
+                        <li><a href="#s15"><span class="Num">15</span>Rotateur cinétique</a></li>
+                    </ul>
+                </div>
+                <div class="SideGroup">
+                    <h3>Interactif</h3>
+                    <ul>
+                        <li><a href="#s16"><span class="Num">16</span>Attraction magnétique</a></li>
+                        <li><a href="#s17"><span class="Num">17</span>Progression au scroll</a></li>
+                        <li><a href="#s18"><span class="Num">18</span>Dispersion au survol</a></li>
+                        <li><a href="#s19"><span class="Num">19</span>Épaisseur dynamique</a></li>
+                        <li><a href="#s20"><span class="Num">20</span>Distorsion au curseur</a></li>
+                    </ul>
+                </div>
+                <div class="SideGroup">
+                    <h3>Sortie</h3>
+                    <ul>
+                        <li><a href="#s21"><span class="Num">21</span>Éclatement</a></li>
+                        <li><a href="#s22"><span class="Num">22</span>Dissolution</a></li>
+                        <li><a href="#s23"><span class="Num">23</span>Pliage</a></li>
+                        <li><a href="#s24"><span class="Num">24</span>Cycle terminal</a></li>
+                    </ul>
+                </div>
+                <div class="SideGroup">
+                    <h3>Expérimental</h3>
+                    <ul>
+                        <li><a href="#s25"><span class="Num">25</span>Graisse variable</a></li>
+                        <li><a href="#s26"><span class="Num">26</span>Formation matricielle</a></li>
+                        <li><a href="#s27"><span class="Num">27</span>Métamorphose de mots</a></li>
+                        <li><a href="#s28"><span class="Num">28</span>Scroll chromatique</a></li>
+                        <li><a href="#s29"><span class="Num">29</span>Chute libre</a></li>
+                        <li><a href="#s30"><span class="Num">30</span>Projecteur</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <div class="Content">
+            <section class="Group">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">Catégorie 01</span>
+                    <h2 class="Title">Animations de texte d’apparition</h2>
+                </div>
+                <div class="Plates">
+                    <article class="Card Plate" id="s01">
+                        <div class="PlateHead">
+                            <span class="PlateNum">01</span>
+                            <div class="PlateMeta">
+                                <h3>Brouillage</h3>
+                                <p>Le bruit se transforme en signal, de gauche à droite.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="01" data-anim="scramble" data-observe>
+                            <span class="Demo" data-text="Lennouille"></span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s02">
+                        <div class="PlateHead">
+                            <span class="PlateNum">02</span>
+                            <div class="PlateMeta">
+                                <h3>Machine à écrire</h3>
+                                <p>Une frappe à la fois, curseur compris.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="02" data-anim="typewriter" data-observe>
+                            <span class="Demo" data-text="Lennouille"></span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s03">
+                        <div class="PlateHead">
+                            <span class="PlateNum">03</span>
+                            <div class="PlateMeta">
+                                <h3>Tableau à palettes</h3>
+                                <p>Chaque lettre défile sur son propre tableau des départs.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="03" data-anim="splitflap" data-observe>
+                            <span class="Demo Small" data-text="Lennouille"></span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s04">
+                        <div class="PlateHead">
+                            <span class="PlateNum">04</span>
+                            <div class="PlateMeta">
+                                <h3>Fondu échelonné</h3>
+                                <p>Les lettres montent à leur place, l’une après l’autre.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="04" data-anim="stagger" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s05">
+                        <div class="PlateHead">
+                            <span class="PlateNum">05</span>
+                            <div class="PlateMeta">
+                                <h3>Mise au point</h3>
+                                <p>Du flou à la netteté.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="05" data-anim="blur" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s06">
+                        <div class="PlateHead">
+                            <span class="PlateNum">06</span>
+                            <div class="PlateMeta">
+                                <h3>Glitch dédoublé</h3>
+                                <p>Des fantômes rouges et cyan s’écartent de la position réelle.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="06" data-anim="glitchbox">
+                            <span class="Demo Glitch" data-text="Lennouille">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s07">
+                        <div class="PlateHead">
+                            <span class="PlateNum">07</span>
+                            <div class="PlateMeta">
+                                <h3>Signature à l’encre</h3>
+                                <p>Un trait se dessine sous le mot.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="07" data-anim="ink" data-observe>
+                            <span class="InkWrap">
+                                <span class="Demo">Lennouille</span>
+                                <svg class="InkUnderline" width="260" height="18" viewBox="0 0 260 18">
+                                    <path d="M4 10 Q 60 2, 130 9 T 256 8" fill="none" stroke="var(--Primary)" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s08">
+                        <div class="PlateHead">
+                            <span class="PlateNum">08</span>
+                            <div class="PlateMeta">
+                                <h3>Rideau</h3>
+                                <p>Une plaque pleine glisse pour révéler le mot en dessous.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="08" data-anim="curtain" data-observe>
+                            <span class="CurtainWrap">
+                                <span class="Demo">Lennouille</span>
+                                <span class="CurtainBar"></span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s09">
+                        <div class="PlateHead">
+                            <span class="PlateNum">09</span>
+                            <div class="PlateMeta">
+                                <h3>Retournement 3D</h3>
+                                <p>Les lettres se rabattent depuis une charnière, comme des fiches de Rolodex.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="09" data-anim="flip" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="Group">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">Catégorie 02</span>
+                    <h2 class="Title">Animations de texte en boucle</h2>
+                </div>
+                <div class="Plates">
+                    <article class="Card Plate" id="s10">
+                        <div class="PlateHead">
+                            <span class="PlateNum">10</span>
+                            <div class="PlateMeta">
+                                <h3>Vague</h3>
+                                <p>Une ondulation parcourt la ligne de base en continu.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="10" data-anim="wave" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s11">
+                        <div class="PlateHead">
+                            <span class="PlateNum">11</span>
+                            <div class="PlateMeta">
+                                <h3>Reflet balayant</h3>
+                                <p>Une bande de lumière glisse sur des lettres en laiton.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="11" data-anim="shimmer" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s12">
+                        <div class="PlateHead">
+                            <span class="PlateNum">12</span>
+                            <div class="PlateMeta">
+                                <h3>Halo respirant</h3>
+                                <p>La lumière s’accumule puis se relâche, lente comme un souffle retenu.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="12" data-anim="glow" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s13">
+                        <div class="PlateHead">
+                            <span class="PlateNum">13</span>
+                            <div class="PlateMeta">
+                                <h3>Ondulation liquide</h3>
+                                <p>Chaque lettre semble suspendue dans du sirop.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="13" data-anim="liquid" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s14">
+                        <div class="PlateHead">
+                            <span class="PlateNum">14</span>
+                            <div class="PlateMeta">
+                                <h3>Défilement amorti</h3>
+                                <p>Un bandeau qui accélère, glisse puis se pose — jamais linéaire.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="14" data-anim="marquee" data-observe>
+                            <span class="MarqueeTrack">
+                                <span class="Demo Small">Lennouille</span>
+                                <span class="Demo Small">Lennouille</span>
+                                <span class="Demo Small">Lennouille</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s15">
+                        <div class="PlateHead">
+                            <span class="PlateNum">15</span>
+                            <div class="PlateMeta">
+                                <h3>Rotateur cinétique</h3>
+                                <p>Un rôle, plusieurs mots, qui défilent comme un titre.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="15" data-anim="rotator">
+                            <span>Conçu&nbsp;par&nbsp;<span class="Demo RotatorWord">Lennouille</span></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="Group">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">Catégorie 03</span>
+                    <h2 class="Title">Animations de texte interactives</h2>
+                </div>
+                <div class="Plates">
+                    <article class="Card Plate" id="s16">
+                        <div class="PlateHead">
+                            <span class="PlateNum">16</span>
+                            <div class="PlateMeta">
+                                <h3>Attraction magnétique</h3>
+                                <p>Les lettres se penchent vers votre curseur à son approche.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="16" data-anim="magnet">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">déplacez le curseur</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s17">
+                        <div class="PlateHead">
+                            <span class="PlateNum">17</span>
+                            <div class="PlateMeta">
+                                <h3>Progression au scroll</h3>
+                                <p>La couleur remplit le mot au rythme du défilement.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="17" data-anim="scrub">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">faites défiler la page</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s18">
+                        <div class="PlateHead">
+                            <span class="PlateNum">18</span>
+                            <div class="PlateMeta">
+                                <h3>Dispersion au survol</h3>
+                                <p>Le mot se disperse au moindre contact, puis se reforme.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="18" data-anim="scatter">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">survolez</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s19">
+                        <div class="PlateHead">
+                            <span class="PlateNum">19</span>
+                            <div class="PlateMeta">
+                                <h3>Épaisseur dynamique</h3>
+                                <p>Les lettres s’épaississent à mesure que le curseur s’approche.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="19" data-anim="pressure">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">déplacez le curseur</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s20">
+                        <div class="PlateHead">
+                            <span class="PlateNum">20</span>
+                            <div class="PlateMeta">
+                                <h3>Distorsion au curseur</h3>
+                                <p>Un effet fisheye d’inclinaison et d’échelle suit votre pointeur.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="20" data-anim="distort">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">déplacez le curseur</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="Group">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">Catégorie 04</span>
+                    <h2 class="Title">Animations de texte de sortie</h2>
+                </div>
+                <div class="Plates">
+                    <article class="Card Plate" id="s21">
+                        <div class="PlateHead">
+                            <span class="PlateNum">21</span>
+                            <div class="PlateMeta">
+                                <h3>Éclatement</h3>
+                                <p>Les lettres s’éparpillent chacune sur sa propre trajectoire.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="21" data-anim="shatter">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">survolez</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s22">
+                        <div class="PlateHead">
+                            <span class="PlateNum">22</span>
+                            <div class="PlateMeta">
+                                <h3>Dissolution</h3>
+                                <p>Le mot s’élève, se brouille et se disperse comme de la fumée.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="22" data-anim="dissolve">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">survolez</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s23">
+                        <div class="PlateHead">
+                            <span class="PlateNum">23</span>
+                            <div class="PlateMeta">
+                                <h3>Pliage</h3>
+                                <p>La ligne se replie à plat vers son centre.</p>
+                            </div>
+                        </div>
+                        <div class="Stage" data-index="23" data-anim="fold">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">survolez</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s24">
+                        <div class="PlateHead">
+                            <span class="PlateNum">24</span>
+                            <div class="PlateMeta">
+                                <h3>Cycle terminal</h3>
+                                <p>Tapé, maintenu, effacé, puis retapé.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="24" data-anim="terminal">
+                            <span class="Demo Small TerminalText"></span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="Group">
+                <div class="SectionTitle Left">
+                    <span class="Eyebrow">Catégorie 05</span>
+                    <h2 class="Title">Animations de texte expérimentales</h2>
+                </div>
+                <div class="Plates">
+                    <article class="Card Plate" id="s25">
+                        <div class="PlateHead">
+                            <span class="PlateNum">25</span>
+                            <div class="PlateMeta">
+                                <h3>Graisse variable</h3>
+                                <p>Une seule police, qui respire entre sa graisse la plus fine et la plus lourde.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="25" data-anim="varfont" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s26">
+                        <div class="PlateHead">
+                            <span class="PlateNum">26</span>
+                            <div class="PlateMeta">
+                                <h3>Formation matricielle</h3>
+                                <p>Une pluie de caractères se fige pour former le mot.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="26" data-anim="matrix" data-observe>
+                            <canvas class="Rain" width="560" height="150" role="img" aria-label="Pluie de caractères qui se fige pour former le mot Lennouille"></canvas>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s27">
+                        <div class="PlateHead">
+                            <span class="PlateNum">27</span>
+                            <div class="PlateMeta">
+                                <h3>Métamorphose de mots</h3>
+                                <p>Un mot se dissout pendant qu’un autre prend sa place.</p>
+                            </div>
+                            <span class="PlateTag">en continu</span>
+                        </div>
+                        <div class="Stage" data-index="27" data-anim="morph">
+                            <span class="MorphWrap">
+                                <span class="Demo A">Lennouille</span>
+                                <span class="Demo B">Lenny Gadroy</span>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s28">
+                        <div class="PlateHead">
+                            <span class="PlateNum">28</span>
+                            <div class="PlateMeta">
+                                <h3>Scroll chromatique</h3>
+                                <p>Les canaux de couleur se dissocient près des bords de l’écran et se réunissent au centre.</p>
+                            </div>
+                        </div>
+                        <div class="Stage Chroma" data-index="28" data-anim="chroma">
+                            <span class="Demo">Lennouille</span>
+                            <span class="Hint">faites défiler la page</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s29">
+                        <div class="PlateHead">
+                            <span class="PlateNum">29</span>
+                            <div class="PlateMeta">
+                                <h3>Chute libre</h3>
+                                <p>Les lettres tombent, rebondissent et se stabilisent sous leur propre poids.</p>
+                            </div>
+                            <span class="PlateTag">se rejoue à l’affichage</span>
+                        </div>
+                        <div class="Stage" data-index="29" data-anim="gravity" data-observe>
+                            <span class="Demo">Lennouille</span>
+                        </div>
+                    </article>
+                    <article class="Card Plate" id="s30">
+                        <div class="PlateHead">
+                            <span class="PlateNum">30</span>
+                            <div class="PlateMeta">
+                                <h3>Projecteur</h3>
+                                <p>Un faisceau de lumière suit votre curseur et révèle le mot caché dans l’obscurité.</p>
+                            </div>
+                            <span class="PlateTag">balayage auto au repos</span>
+                        </div>
+                        <div class="Stage" data-index="30" data-anim="spotlight" data-observe>
+                            <span class="Demo" data-text="Lennouille">Lennouille</span>
+                            <span class="Hint">déplacez le curseur</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="Progress" id="progress" aria-live="polite"><span class="Num">01</span> / 30</div>
+    {% include footer.html %}
+</main>
 
 <!-- Scripts -->
-    <script src="/script.js"></script>
-    <script src="/ux/animation-texte.js" defer></script>
-</body>
-</html>
+<script src="/script.js"></script>
+<script src="/ux/animation-texte.js" defer></script>
