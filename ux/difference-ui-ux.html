@@ -1,0 +1,731 @@
+---
+layout: default
+title: "Différence entre UI et UX design : guide clair | Lennouille"
+description: "Quelle est la différence entre l'UI et l'UX design ? Définitions, rôles, exemples concrets et méthode pour les combiner dans un site ou une application efficace."
+robots: "index, follow, max-snippet:-1, max-image-preview:large"
+og_image_alt: "Différence entre UI et UX design : guide comparatif par Lennouille"
+---
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/ux/difference-ui-ux" -%}
+{%- assign parent_url = biz.url | append: "/ux" -%}
+{%- assign updated = page.last_modified_at | default: site.time -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      "keywords": "UI UX, UI, UX, UI design, UX design, différence UI UX, UX UI designer, interface utilisateur, expérience utilisateur",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "about": [
+        { "@type": "Thing", "name": "UX Design" },
+        { "@type": "Thing", "name": "UI Design" }
+      ],
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "{{ parent_url }}#page"
+      },
+      "breadcrumb": {
+        "@id": "{{ page_url }}#breadcrumb"
+      },
+      "hasPart": {
+        "@id": "{{ page_url }}#faq"
+      },
+      "citation": [
+        { "@type": "CreativeWork", "name": "ISO 9241-210:2019 — Conception centrée sur l'humain pour les systèmes interactifs", "url": "https://www.iso.org/standard/77520.html" },
+        { "@type": "CreativeWork", "name": "Nielsen Norman Group — The Definition of User Experience (UX)", "url": "https://www.nngroup.com/articles/definition-user-experience/" },
+        { "@type": "CreativeWork", "name": "Peter Morville — User Experience Design", "url": "https://semanticstudios.com/user_experience_design/" },
+        { "@type": "CreativeWork", "name": "Google — Core Web Vitals", "url": "https://web.dev/articles/vitals" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page_url }}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ biz.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": "UX", "item": "{{ parent_url }}" },
+        { "@type": "ListItem", "position": 3, "name": "Différence entre UI et UX design", "item": "{{ page_url }}" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "{{ page_url }}#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "UI et UX, est-ce la même chose ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. L'UX (expérience utilisateur) désigne ce que vit une personne en utilisant un produit : parcours, clarté, facilité à atteindre son objectif. L'UI (interface utilisateur) désigne ce qu'elle voit et manipule : couleurs, typographies, boutons, icônes, espacements. L'UI fait partie de l'UX, mais ne la résume pas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre UI design et UX design en une phrase ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'UX design détermine comment un produit doit fonctionner pour répondre aux besoins des utilisateurs ; l'UI design donne à ce fonctionnement une forme visible, cohérente et agréable à manipuler."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui intervient en premier, l'UX ou l'UI ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En général l'UX : on comprend d'abord les besoins, on structure les contenus et les parcours, puis on dessine des wireframes. L'UI intervient ensuite pour concevoir le rendu visuel. Les deux se rejoignent lors des tests, qui permettent d'ajuster la structure comme l'apparence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on faire de l'UI design sans UX design ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On peut produire de belles maquettes sans démarche UX, mais le résultat risque d'être inefficace : un écran élégant peut rester difficile à comprendre ou à utiliser. À l'inverse, une bonne UX a toujours besoin d'une interface lisible pour se concrétiser sur un site ou une application."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il choisir entre devenir UX designer ou UI designer ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pas forcément. De nombreuses offres et formations associent les deux sous l'intitulé UX/UI designer, et dans les petites structures ou en freelance, une même personne couvre souvent les deux. Dans les grandes équipes, les rôles sont plus spécialisés : recherche et conception de parcours d'un côté, système visuel et composants de l'autre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels outils utilise-t-on en UI et en UX design ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un outil de maquettage comme Figma sert aux deux disciplines : wireframes et prototypes côté UX, maquettes détaillées et design system côté UI. S'y ajoutent des outils de recherche et de test utilisateur (entretiens, tests de prototype, cartes de chaleur) et des outils d'analyse web pour mesurer l'usage réel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L'UI et l'UX ont-elles un impact sur le référencement (SEO) ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Indirectement, oui. Google utilise des signaux d'expérience de page, dont les Core Web Vitals (rapidité, stabilité d'affichage, réactivité), et un contenu lisible, bien structuré et adapté au mobile aide les visiteurs à rester et à agir. Le design ne remplace pas un bon contenu, mais il en conditionne la lisibilité."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Par où commencer pour apprendre l'UI et l'UX design ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Par les fondamentaux de l'UX : comprendre les utilisateurs, structurer l'information, tester un prototype. Côté UI, travaillez la hiérarchie visuelle, la typographie, la couleur et les composants. Refaire l'interface d'un produit existant, puis la tester auprès de quelques personnes, est un bon exercice."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<main class="UX SubPage" id="top">
+    {% include header.html %}
+    <section class="SecondaryHero">
+        <div class="Decor" aria-hidden="true"><span>UI/UX</span></div>
+        <div class="HeroInner">
+            <nav class="Breadcrumb" aria-label="Fil d'ariane">
+                <a href="/">Accueil</a>
+                <span class="Sep">/</span>
+                <a href="/ux">UX</a>
+                <span class="Sep">/</span>
+                <span class="Current">Différence UI et UX design</span>
+            </nav>
+            <h1 class="Title">UI et UX design&nbsp;: <em>quelle différence&nbsp;?</em></h1>
+            <p class="SubTitle">L’UX design s’intéresse à l’expérience vécue, l’UI design à l’interface que l’on voit et manipule. Deux disciplines complémentaires, souvent confondues. Ce guide explique ce qui les distingue, comment elles se complètent et pourquoi un site efficace a besoin des deux.</p>
+            <div class="Meta">
+                <span>Guide comparatif</span>
+                <span class="Dot" aria-hidden="true"></span>
+                <span>7 min de lecture</span>
+                <span class="Dot" aria-hidden="true"></span>
+                <span>Mis à jour le <time datetime="{{ updated | date_to_xmlschema }}">{{ updated | date: "%d/%m/%Y" }}</time></span>
+            </div>
+        </div>
+    </section>
+    <div class="SubPageBody">
+        <nav class="Toc" aria-label="Sommaire de la page">
+            <details open>
+                <summary>Sommaire</summary>
+                <ol>
+                    <li><a href="#essentiel">L’essentiel</a></li>
+                    <li><a href="#definitions">Les définitions</a></li>
+                    <li><a href="#differences">Six différences</a></li>
+                    <li><a href="#exemple">Un exemple concret</a></li>
+                    <li><a href="#livrables">Livrables et outils</a></li>
+                    <li><a href="#ensemble">Les combiner</a></li>
+                    <li><a href="#ordre">Le déroulé d’un projet</a></li>
+                    <li><a href="#cas-concret">Cas concret : Mü-Être</a></li>
+                    <li><a href="#idees-recues">Les idées reçues</a></li>
+                    <li><a href="#metiers">Les métiers</a></li>
+                    <li><a href="#enjeux">Pour votre projet</a></li>
+                    <li><a href="#faq">Questions fréquentes</a></li>
+                    <li><a href="#sources">Sources</a></li>
+                    <li><a href="#suite">La suite</a></li>
+                </ol>
+            </details>
+        </nav>
+        <section class="Block" id="essentiel">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">01 — L’essentiel</span>
+                <h2 class="Title">UI et UX design&nbsp;: la réponse en bref</h2>
+            </div>
+            <div class="EssentielLayout">
+                <div class="EssentielText">
+                    <p class="Intro">L’<strong>UI design</strong> (<em>User Interface Design</em>, « conception de l’interface utilisateur ») s’occupe de ce que l’on voit et de ce que l’on touche&nbsp;: couleurs, typographies, boutons, icônes, espacements, états des éléments au survol ou à l’erreur. L’<strong>UX design</strong> (<em>User Experience Design</em>, « conception de l’expérience utilisateur ») s’occupe de ce que l’on vit&nbsp;: la clarté des parcours, la facilité à atteindre son objectif, ce que l’on comprend et ressent avant, pendant et après l’usage.</p>
+                    <p class="Intro">Un exemple hors du web&nbsp;: le tableau de bord d’une voiture. Les cadrans, les boutons et les pictogrammes relèvent de l’UI. Le fait de trouver instinctivement les essuie-glaces, de lire sa vitesse d’un coup d’œil et de ne jamais hésiter sur une commande relève de l’UX. Le premier se regarde, le second se ressent.</p>
+                    <p class="Intro">Les deux notions ne s’opposent donc pas&nbsp;: l’UI est un des outils de l’UX. La norme <a href="https://www.iso.org/standard/77520.html">ISO 9241-210</a> rattache d’ailleurs l’expérience utilisateur aux perceptions et aux réactions d’une personne face à un produit, un système ou un service, bien au-delà de son apparence. Pour poser les bases de cette dernière, la page <a href="/ux/comprendre">Comprendre l’UX design</a> en détaille la définition, les piliers et le processus.</p>
+                </div>
+                <aside class="Highlight Quote">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <div>
+                        <p class="HighlightLabel">En une phrase</p>
+                        <p>L’UX design décide de ce qu’un produit doit permettre de faire et de la manière d’y parvenir&nbsp;; l’UI design lui donne une forme visible, cohérente et agréable à manipuler.</p>
+                    </div>
+                </aside>
+            </div>
+            <ul class="Takeaways Cards">
+                <li>L’UX est l’expérience globale&nbsp;; l’UI est l’interface visible qui la rend possible.</li>
+                <li>L’UI fait partie de l’UX, pas l’inverse&nbsp;: on peut avoir une belle interface et une mauvaise expérience.</li>
+                <li>Les deux se mesurent différemment, mais se conçoivent ensemble, du premier croquis aux derniers tests.</li>
+            </ul>
+        </section>
+        <section class="Block" id="definitions">
+            <div class="SectionTitle">
+                <span class="Eyebrow">02 — Les définitions</span>
+                <h2 class="Title">UX design et UI design, côte à côte</h2>
+                <p class="Subtitle">Deux regards sur un même produit&nbsp;: l’un part des personnes, l’autre part de l’écran.</p>
+            </div>
+            <div class="CompareGrid">
+                <article class="Card">
+                    <h3>L’UX design, l’expérience</h3>
+                    <p>L’UX design étudie les besoins des utilisateurs, organise les contenus et construit des parcours qui leur permettent d’accomplir une tâche sans effort inutile. Il se joue aussi dans le choix des mots, la vitesse d’affichage et l’accessibilité. Sa question&nbsp;: <em>est-ce utile, compréhensible et simple à utiliser&nbsp;?</em></p>
+                </article>
+                <span class="Versus" aria-hidden="true">&amp;</span>
+                <article class="Card">
+                    <h3>L’UI design, l’interface</h3>
+                    <p>L’UI design définit l’apparence et le comportement visuel des écrans&nbsp;: palette, typographie, grille, composants, icônes, animations, états des boutons et des champs. Il garantit la lisibilité et la cohérence. Sa question&nbsp;: <em>est-ce lisible, cohérent et agréable à manipuler&nbsp;?</em></p>
+                </article>
+            </div>
+            <p class="CompareNote">Dans l’usage courant, on parle souvent d’« UI/UX » ou d’« UX/UI » pour désigner l’ensemble du travail de conception.</p>
+        </section>
+        <section class="Block" id="differences">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">03 — Les différences</span>
+                <h2 class="Title">Six différences entre l’UI et l’UX design</h2>
+            </div>
+            <p class="Intro">Pour distinguer les deux disciplines, on peut les comparer sur six critères. Aucun n’est étanche&nbsp;: ce sont des dominantes, pas des frontières.</p>
+            <div class="CardGrid">
+                <div class="Card">
+                    <span class="Tag">L’objectif</span>
+                    <h3>Efficacité contre lisibilité</h3>
+                    <p><strong>UX&nbsp;:</strong> aider la personne à atteindre son but. <strong>UI&nbsp;:</strong> rendre chaque écran clair, cohérent et attrayant.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">La question posée</span>
+                    <h3>«&nbsp;Pourquoi&nbsp;?&nbsp;» contre «&nbsp;À quoi ça ressemble&nbsp;?&nbsp;»</h3>
+                    <p><strong>UX&nbsp;:</strong> pourquoi l’utilisateur est là, que cherche-t-il&nbsp;? <strong>UI&nbsp;:</strong> comment présenter l’information pour qu’elle se lise et se manipule bien.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">Le périmètre</span>
+                    <h3>Le parcours contre l’écran</h3>
+                    <p><strong>UX&nbsp;:</strong> l’ensemble du parcours, de la découverte du produit au souvenir qu’il laisse. <strong>UI&nbsp;:</strong> les écrans, leurs composants et leur cohérence visuelle.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">Les livrables</span>
+                    <h3>Des structures contre des maquettes</h3>
+                    <p><strong>UX&nbsp;:</strong> arborescence, parcours, wireframes, prototypes, comptes rendus de tests. <strong>UI&nbsp;:</strong> maquettes détaillées, charte graphique, design system.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">La mesure</span>
+                    <h3>Des comportements contre des perceptions</h3>
+                    <p><strong>UX&nbsp;:</strong> taux de réussite d’une tâche, abandon, temps d’accomplissement. <strong>UI&nbsp;:</strong> lisibilité, contrastes, cohérence, retours sur l’aspect visuel.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">Le moment</span>
+                    <h3>En amont contre ensuite</h3>
+                    <p><strong>UX&nbsp;:</strong> intervient dès la compréhension du besoin et tout au long du projet. <strong>UI&nbsp;:</strong> prend le relais une fois la structure posée, puis évolue avec les tests.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="exemple">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">04 — Un exemple concret</span>
+                <h2 class="Title">Le formulaire de contact vu par l’UX et par l’UI</h2>
+            </div>
+            <div class="Prose Intro">
+                <p>Rien de tel qu’un cas simple pour sentir la nuance. Prenons un formulaire de contact sur un site vitrine, l’un des éléments où se joue souvent la prise de contact avec un client.</p>
+                <h3>Ce que l’UX design décide</h3>
+                <ul>
+                    <li>quels champs demander (et lesquels supprimer pour ne pas décourager)</li>
+                    <li>comment expliquer ce qui se passera après l’envoi et sous quel délai</li>
+                    <li>comment formuler les messages d’erreur pour qu’ils aident à corriger</li>
+                    <li>comment garantir que le formulaire fonctionne au clavier et sur mobile</li>
+                </ul>
+                <h3>Ce que l’UI design décide</h3>
+                <ul>
+                    <li>la taille, l’alignement et l’espacement des champs et de leurs libellés</li>
+                    <li>le contraste du texte et la couleur du bouton d’envoi</li>
+                    <li>l’aspect des états de survol, de focus, d’erreur et de succès</li>
+                    <li>la cohérence de l’ensemble avec la charte graphique du site</li>
+                </ul>
+            </div>
+            <p class="Intro DemoIntro">Faites l’essai&nbsp;: activez ou désactivez chaque couche pour voir ce qu’elle change sur un même formulaire.</p>
+            <div class="UiUxDemo" data-demo>
+                <div class="DemoControls" role="group" aria-label="Choisir les couches appliquées au formulaire">
+                    <label class="DemoToggle">
+                        <input type="checkbox" data-toggle="ui" checked>
+                        <span class="Track" aria-hidden="true"><span class="Knob"></span></span>
+                        <span class="DemoToggleLabel">UI soignée</span>
+                    </label>
+                    <label class="DemoToggle">
+                        <input type="checkbox" data-toggle="ux" checked>
+                        <span class="Track" aria-hidden="true"><span class="Knob"></span></span>
+                        <span class="DemoToggleLabel">UX pensée</span>
+                    </label>
+                </div>
+                <div class="DemoStage" data-ui="on" data-ux="on">
+                    <form class="DemoForm" novalidate>
+                        <p class="DemoTitle">Contact</p>
+                        <p class="DemoHelp" data-show="ux">Réponse sous 24&nbsp;h. Seuls les champs marqués d’un astérisque sont obligatoires.</p>
+                        <div class="DemoField">
+                            <label for="demo-nom">Nom<span class="Req" data-show="ux"> *</span></label>
+                            <input id="demo-nom" type="text" autocomplete="off">
+                        </div>
+                        <div class="DemoField Invalid">
+                            <label for="demo-mail">E-mail<span class="Req" data-show="ux"> *</span></label>
+                            <input id="demo-mail" type="email" value="prenom@domaine" autocomplete="off" aria-describedby="demo-mail-err">
+                            <p class="DemoError" id="demo-mail-err"><span data-show="ux">Saisissez une adresse e-mail complète, par exemple nom@domaine.fr.</span><span data-show="noux">Erreur</span></p>
+                        </div>
+                        <div class="DemoField" data-show="noux">
+                            <label for="demo-tel">Téléphone</label>
+                            <input id="demo-tel" type="tel" autocomplete="off">
+                        </div>
+                        <div class="DemoField" data-show="noux">
+                            <label for="demo-societe">Société</label>
+                            <input id="demo-societe" type="text" autocomplete="off">
+                        </div>
+                        <div class="DemoField" data-show="noux">
+                            <label for="demo-budget">Budget</label>
+                            <input id="demo-budget" type="text" autocomplete="off">
+                        </div>
+                        <div class="DemoField">
+                            <label for="demo-message">Message<span class="Req" data-show="ux"> *</span></label>
+                            <textarea id="demo-message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="DemoSubmit"><span data-show="ux">Envoyer ma demande</span><span data-show="noux">OK</span></button>
+                    </form>
+                </div>
+                <p class="DemoCaption" aria-live="polite"></p>
+            </div>
+            <div class="Highlight">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                <div>
+                    <p class="HighlightLabel">Un même symptôme, deux causes possibles</p>
+                    <p>Un bouton que personne ne clique peut être mal visible (un défaut d’UI), mais aussi mal placé dans le parcours ou promettre autre chose que ce qui suit (un défaut d’UX). Pour le savoir, il faut observer de vraies personnes l’utiliser.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="livrables">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">05 — Livrables et outils</span>
+                <h2 class="Title">Ce que produisent l’UX designer et l’UI designer</h2>
+            </div>
+            <div class="Prose Intro">
+                <h3>Côté UX design</h3>
+                <ul>
+                    <li>entretiens et observations d’utilisateurs, personas, parcours utilisateur</li>
+                    <li>arborescence du site et architecture de l’information</li>
+                    <li>wireframes (maquettes fil de fer) et prototypes interactifs</li>
+                    <li>tests d’utilisabilité et recommandations d’amélioration</li>
+                </ul>
+                <h3>Côté UI design</h3>
+                <ul>
+                    <li>palette de couleurs, choix typographiques et grille de mise en page</li>
+                    <li>maquettes haute fidélité des écrans et de leurs variantes responsives</li>
+                    <li>bibliothèque de composants et <em>design system</em></li>
+                    <li>icônes, illustrations, micro-interactions et animations</li>
+                </ul>
+                <p>Un outil de maquettage comme Figma permet de couvrir les deux&nbsp;: on y construit les wireframes comme les maquettes finales. C’est la démarche, plus que l’outil, qui distingue les deux disciplines.</p>
+            </div>
+        </section>
+        <section class="Block" id="ensemble">
+            <div class="SectionTitle">
+                <span class="Eyebrow">06 — Les combiner</span>
+                <h2 class="Title">UX sans UI, UI sans UX&nbsp;: ce que ça donne</h2>
+                <p class="Subtitle">Quatre combinaisons, un seul cas gagnant.</p>
+            </div>
+            <div class="FeatureGrid">
+                <div class="Card Featured">
+                    <span class="Tag">UX solide + UI soignée</span>
+                    <h3>Le cas idéal</h3>
+                    <p>Le parcours est limpide et l’interface agréable. L’utilisateur atteint son but sans y penser, et l’identité visuelle renforce la confiance.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">UX solide + UI négligée</span>
+                    <h3>Efficace, mais peu engageant</h3>
+                    <p>On trouve ce que l’on cherche, mais l’aspect daté ou incohérent fait douter du sérieux du site.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">UI soignée + UX négligée</span>
+                    <h3>Beau, mais frustrant</h3>
+                    <p>L’écran impressionne, puis l’on se perd dans la navigation ou l’on ne comprend pas quoi faire. L’échec d’expérience reste entier.</p>
+                </div>
+                <div class="Card Featured">
+                    <span class="Tag">Ni l’une ni l’autre</span>
+                    <h3>Le site que l’on quitte</h3>
+                    <p>Illisible et confus, il perd ses visiteurs avant qu’ils aient pu agir. Aucune amélioration visuelle ne suffira sans repenser la structure.</p>
+                </div>
+            </div>
+        </section>
+        <section class="CallToAction Mid">
+            <div class="Design">
+                <div class="Text">
+                    <h2>UX et UI conçues ensemble,<br><em>pour un site qui convertit.</em></h2>
+                </div>
+                <div class="Action">
+                    <p>Premier échange offert. Réponse sous 24h. Devis clair avant tout engagement.</p>
+                    <a href="/contact" class="ArrowBtn">Discutons de votre projet <span class="Arrow">↗</span></a>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="ordre">
+            <div class="SectionTitle">
+                <span class="Eyebrow">07 — Le déroulé</span>
+                <h2 class="Title">Dans quel ordre travaillent l’UX et l’UI&nbsp;?</h2>
+                <p class="Subtitle">Dans la plupart des projets, l’UX ouvre la marche et l’UI prend le relais, mais les deux se rejoignent à la fin.</p>
+            </div>
+            <div class="ProcessGrid">
+                <div class="Card Featured">
+                    <div class="CardHead">
+                        <div class="IconBox"><span aria-hidden="true">1</span></div>
+                        <h3>Comprendre <small>(UX)</small></h3>
+                    </div>
+                    <p>Entretiens, observation et analyse des usages&nbsp;: on identifie qui sont les utilisateurs et ce qu’ils cherchent à accomplir.</p>
+                </div>
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox"><span aria-hidden="true">2</span></div>
+                        <h3>Structurer <small>(UX)</small></h3>
+                    </div>
+                    <p>Arborescence, intitulés et parcours&nbsp;: on organise les contenus avant de penser à leur apparence.</p>
+                </div>
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox"><span aria-hidden="true">3</span></div>
+                        <h3>Esquisser <small>(UX)</small></h3>
+                    </div>
+                    <p>Les wireframes placent les éléments et les interactions, sans couleur ni typographie, pour valider la logique des écrans.</p>
+                </div>
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox"><span aria-hidden="true">4</span></div>
+                        <h3>Habiller <small>(UI)</small></h3>
+                    </div>
+                    <p>Couleurs, typographies, composants, icônes&nbsp;: l’UI donne à la structure son identité visuelle et sa cohérence.</p>
+                </div>
+                <div class="Card">
+                    <div class="CardHead">
+                        <div class="IconBox"><span aria-hidden="true">5</span></div>
+                        <h3>Tester et ajuster <small>(UX + UI)</small></h3>
+                    </div>
+                    <p>Un prototype testé par de vraies personnes révèle les blocages de parcours comme les problèmes de lisibilité, puis on corrige.</p>
+                </div>
+            </div>
+            <div class="Highlight">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                <div>
+                    <p class="HighlightLabel">Des allers-retours constants</p>
+                    <p>Ce déroulé n’est pas figé&nbsp;: un test peut remettre en cause une structure autant qu’une couleur. C’est cette double exigence qui guide mes <a href="/services">services de conception web</a> et mes <a href="/reals">réalisations</a>.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="cas-concret">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">08 — Cas concret</span>
+                <h2 class="Title">UI et UX sur un projet réel&nbsp;: la refonte de Mü-Être</h2>
+            </div>
+            <p class="Intro">Mü-Être est une marque de bien-être et de développement personnel. L’audit de son site a relevé trois défauts&nbsp;: une navigation confuse, aucune hiérarchie de l’information et des choix typographiques peu lisibles. Les deux premiers relèvent surtout de l’UX, le troisième de l’UI. La refonte a mobilisé les deux disciplines, avec un critère commun&nbsp;: alléger la charge mentale du visiteur.</p>
+            <div class="CompareGrid Cases">
+                <article class="Card">
+                    <h3>Ce qui relevait de l’UX</h3>
+                    <ul>
+                        <li>Un audit page par page du site existant.</li>
+                        <li>Un zoning identifiant 8 zones à retravailler en priorité.</li>
+                        <li>Des wireframes testant plusieurs agencements pour la FAQ et les articles de blog.</li>
+                        <li>Un parcours guidant le visiteur de l’accueil jusqu’à la prise de contact et la réservation.</li>
+                    </ul>
+                </article>
+                <span class="Versus" aria-hidden="true">&amp;</span>
+                <article class="Card">
+                    <h3>Ce qui relevait de l’UI</h3>
+                    <ul>
+                        <li>Un ratio de contraste du texte porté de 2.28 à 11.84.</li>
+                        <li>Des sections aérées et des espaces blancs élargis à la place des blocs de texte denses.</li>
+                        <li>Un interlignage ajusté pour la lecture des articles de blog.</li>
+                        <li>Un design system, un UI Kit et une charte graphique, avec une mascotte déclinée en 3 versions.</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="BeforeAfter">
+                <p class="BALabel">Avant / Après — Page de contact</p>
+                <div class="BAPair">
+                    <figure>
+                        <img src="/img/reals/mu/old-page-contact.webp" alt="Page de contact de Mü-Être avant la refonte" loading="lazy" decoding="async">
+                        <figcaption>Avant</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="/img/reals/mu/new-page-contact.webp" alt="Page de contact de Mü-Être après la refonte" loading="lazy" decoding="async">
+                        <figcaption>Après</figcaption>
+                    </figure>
+                </div>
+                <p class="BANote">Objectif&nbsp;: trouver la page de contact sans effort.</p>
+            </div>
+            <div class="BeforeAfter">
+                <p class="BALabel">Avant / Après — Articles de blog</p>
+                <div class="BAPair">
+                    <figure>
+                        <img src="/img/reals/mu/old-page-blog.webp" alt="Articles de blog de Mü-Être avant la refonte" loading="lazy" decoding="async">
+                        <figcaption>Avant</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="/img/reals/mu/new-page-blog.webp" alt="Articles de blog de Mü-Être après la refonte" loading="lazy" decoding="async">
+                        <figcaption>Après</figcaption>
+                    </figure>
+                </div>
+                <p class="BANote">Sections aérées, contrastes renforcés, interlignage ajusté.</p>
+            </div>
+            <div class="Highlight">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <div>
+                    <p class="HighlightLabel">Ce que le projet montre</p>
+                    <p>L’UX a fixé ce que le visiteur devait trouver et dans quel ordre&nbsp;; l’UI a rendu ce parcours lisible. L’un sans l’autre n’aurait pas suffi. Le détail complet figure dans <a href="/reals">l’étude de cas Mü-Être</a>.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="idees-recues">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">09 — Les idées reçues</span>
+                <h2 class="Title">UI et UX design&nbsp;: ce qu’on confond souvent</h2>
+            </div>
+            <div class="MythGrid">
+                <article class="Card Myth">
+                    <div class="CardHead">
+                        <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                        <div>
+                            <h3>«&nbsp;L’UI et l’UX, c’est la même chose&nbsp;»</h3>
+                            <p>Idée reçue</p>
+                        </div>
+                    </div>
+                    <span class="MythTag Fact">En réalité</span>
+                    <p>Les deux sont liées mais distinctes. L’UX concerne l’expérience dans son ensemble&nbsp;; l’UI n’en est qu’une couche, la couche visible et manipulable.</p>
+                </article>
+                <article class="Card Myth">
+                    <div class="CardHead">
+                        <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                        <div>
+                            <h3>«&nbsp;L’UI design, c’est juste faire joli&nbsp;»</h3>
+                            <p>Idée reçue</p>
+                        </div>
+                    </div>
+                    <span class="MythTag Fact">En réalité</span>
+                    <p>L’UI sert la compréhension&nbsp;: hiérarchie visuelle, contrastes, taille des zones cliquables, retours d’état. Une bonne interface guide le regard et prévient les erreurs, bien au-delà de l’esthétique.</p>
+                </article>
+                <article class="Card Myth">
+                    <div class="CardHead">
+                        <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                        <div>
+                            <h3>«&nbsp;L’UX design n’a rien à voir avec le visuel&nbsp;»</h3>
+                            <p>Idée reçue</p>
+                        </div>
+                    </div>
+                    <span class="MythTag Fact">En réalité</span>
+                    <p>L’UX n’est pas un style graphique, mais elle s’appuie sur le visuel pour exister&nbsp;: un parcours bien pensé reste invisible s’il est mal présenté. D’où l’intérêt de concevoir les deux ensemble.</p>
+                </article>
+                <article class="Card Myth">
+                    <div class="CardHead">
+                        <div class="IconBox"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg></div>
+                        <div>
+                            <h3>«&nbsp;UI/UX, c’est forcément un seul métier&nbsp;»</h3>
+                            <p>Idée reçue</p>
+                        </div>
+                    </div>
+                    <span class="MythTag Fact">En réalité</span>
+                    <p>Ce sont deux compétences que l’on regroupe souvent sous le titre d’UX/UI designer, notamment en freelance ou dans les petites équipes. Dans les grandes structures, elles sont fréquemment confiées à des profils distincts.</p>
+                </article>
+            </div>
+        </section>
+        <section class="Block" id="metiers">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">10 — Les métiers</span>
+                <h2 class="Title">UX designer, UI designer, UX/UI designer&nbsp;: qui fait quoi&nbsp;?</h2>
+            </div>
+            <div class="CardGrid">
+                <div class="Card">
+                    <span class="Tag">UX designer</span>
+                    <h3>Le spécialiste du parcours</h3>
+                    <p>Il étudie les utilisateurs, structure l’information, conçoit les wireframes et pilote les tests. Il cherche à rendre le produit utile et simple à utiliser.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">UI designer</span>
+                    <h3>Le spécialiste de l’interface</h3>
+                    <p>Il crée le langage visuel&nbsp;: maquettes, composants, design system. Il veille à la lisibilité, à la cohérence et à l’adaptation aux différents écrans.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">UX/UI designer</span>
+                    <h3>Le profil polyvalent</h3>
+                    <p>Il couvre la conception du parcours et celle de l’interface. C’est le profil le plus courant pour un site vitrine, une landing page ou un projet de taille moyenne.</p>
+                </div>
+                <div class="Card">
+                    <span class="Tag">Product designer</span>
+                    <h3>La vision produit</h3>
+                    <p>Souvent proche du précédent, ce rôle ajoute une dimension stratégique&nbsp;: il relie les besoins des utilisateurs aux objectifs du produit et de l’entreprise.</p>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="enjeux">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">11 — Pour votre projet</span>
+                <h2 class="Title">Pourquoi cette différence compte pour votre site</h2>
+            </div>
+            <div class="Prose Intro">
+                <p>Confier un projet à quelqu’un qui ne pense qu’à l’interface, c’est risquer un beau site que l’on ne comprend pas. Confier un projet à quelqu’un qui ne pense qu’au parcours, c’est risquer un site logique mais peu engageant. Un site réussi demande les deux&nbsp;: une expérience pensée pour vos visiteurs et une interface cohérente avec votre image.</p>
+                <p>C’est aussi un enjeu de visibilité. Les moteurs de recherche tiennent compte de signaux d’expérience de page, dont les <a href="https://web.dev/articles/vitals">Core Web Vitals</a>, et un contenu lisible, bien structuré et adapté au mobile aide les visiteurs à rester et à agir. L’<a href="/ux/principes-web-design">approche des principes du web design</a> détaille ces leviers. Si vous hésitez sur l’ordre dans lequel vous en occuper, l’article <a href="/blog/ui-ou-ux-par-ou-commencer">UI ou UX&nbsp;: par quoi commencer pour son site web&nbsp;?</a> propose un diagnostic rapide. Pour un projet précis, découvrez mes <a href="/services">services</a> ou <a href="/contact">contactez-moi</a>.</p>
+            </div>
+        </section>
+        <section class="Block" id="faq">
+            <div class="SectionTitle">
+                <span class="Eyebrow">12 — Questions fréquentes</span>
+                <h2 class="Title">UI et UX design en huit questions</h2>
+            </div>
+            <div class="FAQList">
+                <div class="FAQCol">
+                    <details>
+                        <summary>UI et UX, est-ce la même chose&nbsp;?</summary>
+                        <p>Non. L’UX (expérience utilisateur) désigne ce que vit une personne en utilisant un produit&nbsp;: parcours, clarté, facilité à atteindre son objectif. L’UI (interface utilisateur) désigne ce qu’elle voit et manipule&nbsp;: couleurs, typographies, boutons, icônes, espacements. L’UI fait partie de l’UX, mais ne la résume pas.</p>
+                    </details>
+                    <details>
+                        <summary>Quelle est la différence entre UI design et UX design en une phrase&nbsp;?</summary>
+                        <p>L’UX design détermine comment un produit doit fonctionner pour répondre aux besoins des utilisateurs&nbsp;; l’UI design donne à ce fonctionnement une forme visible, cohérente et agréable à manipuler.</p>
+                    </details>
+                    <details>
+                        <summary>Qui intervient en premier, l’UX ou l’UI&nbsp;?</summary>
+                        <p>En général l’UX&nbsp;: on comprend d’abord les besoins, on structure les contenus et les parcours, puis on dessine des wireframes. L’UI intervient ensuite pour concevoir le rendu visuel. Les deux se rejoignent lors des tests, qui permettent d’ajuster la structure comme l’apparence.</p>
+                    </details>
+                    <details>
+                        <summary>Peut-on faire de l’UI design sans UX design&nbsp;?</summary>
+                        <p>On peut produire de belles maquettes sans démarche UX, mais le résultat risque d’être inefficace&nbsp;: un écran élégant peut rester difficile à comprendre ou à utiliser. À l’inverse, une bonne UX a toujours besoin d’une interface lisible pour se concrétiser sur un site ou une application.</p>
+                    </details>
+                </div>
+                <div class="FAQCol">
+                    <details>
+                        <summary>Faut-il choisir entre devenir UX designer ou UI designer&nbsp;?</summary>
+                        <p>Pas forcément. De nombreuses offres et formations associent les deux sous l’intitulé UX/UI designer, et dans les petites structures ou en freelance, une même personne couvre souvent les deux. Dans les grandes équipes, les rôles sont plus spécialisés&nbsp;: recherche et conception de parcours d’un côté, système visuel et composants de l’autre.</p>
+                    </details>
+                    <details>
+                        <summary>Quels outils utilise-t-on en UI et en UX design&nbsp;?</summary>
+                        <p>Un outil de maquettage comme Figma sert aux deux disciplines&nbsp;: wireframes et prototypes côté UX, maquettes détaillées et design system côté UI. S’y ajoutent des outils de recherche et de test utilisateur (entretiens, tests de prototype, cartes de chaleur) et des outils d’analyse web pour mesurer l’usage réel.</p>
+                    </details>
+                    <details>
+                        <summary>L’UI et l’UX ont-elles un impact sur le référencement (SEO)&nbsp;?</summary>
+                        <p>Indirectement, oui. Google utilise des signaux d’expérience de page, dont les Core Web Vitals (rapidité, stabilité d’affichage, réactivité), et un contenu lisible, bien structuré et adapté au mobile aide les visiteurs à rester et à agir. Le design ne remplace pas un bon contenu, mais il en conditionne la lisibilité.</p>
+                    </details>
+                    <details>
+                        <summary>Par où commencer pour apprendre l’UI et l’UX design&nbsp;?</summary>
+                        <p>Par les fondamentaux de l’UX&nbsp;: comprendre les utilisateurs, structurer l’information, tester un prototype. Côté UI, travaillez la hiérarchie visuelle, la typographie, la couleur et les composants. Refaire l’interface d’un produit existant, puis la tester auprès de quelques personnes, est un bon exercice.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+        <section class="Block" id="sources">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">13 — Sources</span>
+                <h2 class="Title">Sources et références</h2>
+            </div>
+            <div class="Prose Intro">
+                <ul>
+                    <li><a href="https://www.iso.org/standard/77520.html">ISO 9241-210:2019</a>&nbsp;: conception centrée sur l’humain pour les systèmes interactifs, cadre de la définition normalisée de l’expérience utilisateur.</li>
+                    <li><a href="https://www.nngroup.com/articles/definition-user-experience/">Nielsen Norman Group, «&nbsp;The Definition of User Experience&nbsp;»</a>&nbsp;: l’UX comme l’ensemble des aspects de l’interaction de l’utilisateur avec une entreprise, ses services et ses produits.</li>
+                    <li><a href="https://semanticstudios.com/user_experience_design/">Peter Morville, «&nbsp;User Experience Design&nbsp;»</a>&nbsp;: le modèle en nid d’abeille, qui décompose l’UX en facettes (utile, utilisable, trouvable, crédible, accessible, désirable, précieux).</li>
+                    <li><a href="https://web.dev/articles/vitals">Google, «&nbsp;Core Web Vitals&nbsp;»</a>&nbsp;: les indicateurs d’expérience de page (chargement, interactivité, stabilité visuelle).</li>
+                </ul>
+            </div>
+        </section>
+        <section class="Block" id="suite">
+            <div class="SectionTitle Left">
+                <span class="Eyebrow">14 — La suite</span>
+                <h2 class="Title">Aller plus loin en UX et en UI design</h2>
+            </div>
+            <p class="Intro">Maintenant que la frontière entre UI et UX est claire, la suite logique est de comprendre comment l’expérience se construit, puis de s’appuyer sur des repères concrets. Les pages <a href="/ux/comprendre">Comprendre l’UX design</a> et <a href="/ux/principes-web-design">Principes du web design</a> posent les bases&nbsp;; les <a href="/ux#catalogue">lois de l’UX</a> aident ensuite à justifier chaque choix d’interface, de la quantité d’options affichées à la taille d’un bouton. Pour appliquer la distinction UI/UX à votre propre site, lisez aussi l’article de blog <a href="/blog/ui-ou-ux-par-ou-commencer">UI ou UX&nbsp;: par quoi commencer pour son site web&nbsp;?</a>.</p>
+            <div class="LawsCTA">
+                <a href="/ux#catalogue" class="ArrowBtn">Explorer les 30 lois de l’UX <span class="Arrow">→</span></a>
+            </div>
+        </section>
+        <div class="Highlight AuthorBox">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <div>
+                <p class="HighlightLabel">À propos de l’auteur</p>
+                <p><strong>Lenny Gadroy</strong>, designer UI/UX et développeur front-end freelance (Lennouille). Découvrez <a href="/about">mon parcours</a> et mes <a href="/reals">réalisations</a>. Dernière mise à jour&nbsp;: <time datetime="{{ updated | date_to_xmlschema }}">{{ updated | date: "%d/%m/%Y" }}</time>.</p>
+            </div>
+        </div>
+    </div>
+    {% include cta.html %}
+    {% include footer.html %}
+</main>
+<!-- Anims -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+<script src="/script.js"></script>
+<script src="/anims.js" defer></script>
+<script>
+(function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var toc = document.querySelector('.Toc details');
+    if (toc && window.matchMedia && window.matchMedia('(max-width: 760px)').matches) {toc.removeAttribute('open');}
+
+    var demo = document.querySelector('[data-demo]');
+    if (!demo) {return;}
+    var stage = demo.querySelector('.DemoStage');
+    var caption = demo.querySelector('.DemoCaption');
+    var form = demo.querySelector('.DemoForm');
+    var uiBox = demo.querySelector('[data-toggle="ui"]');
+    var uxBox = demo.querySelector('[data-toggle="ux"]');
+    var texts = {
+        'on-on': 'UI + UX : trois champs utiles, un message d’erreur explicite, un délai de réponse annoncé et une interface lisible. C’est le cas visé.',
+        'on-off': 'UI seule : l’interface est soignée, mais le formulaire réclame des champs superflus et l’erreur (« Erreur ») n’explique rien.',
+        'off-on': 'UX seule : la structure est pensée (champs utiles, erreur explicite, délai annoncé), mais l’aspect brut, au contraste volontairement faible, nuit à la lisibilité et à la confiance.',
+        'off-off': 'Ni UI ni UX : champs inutiles, erreur muette, aucun repère visuel. Un visiteur sur mobile abandonne vite.'
+    };
+
+    function update(animate) {
+        var ui = uiBox.checked ? 'on' : 'off';
+        var ux = uxBox.checked ? 'on' : 'off';
+        stage.setAttribute('data-ui', ui);
+        stage.setAttribute('data-ux', ux);
+        caption.textContent = texts[ui + '-' + ux];
+        if (animate && !reduce && window.gsap) {
+            window.gsap.fromTo(stage, {opacity: 0.35, y: 6}, {opacity: 1, y: 0, duration: 0.4, ease: 'power2.out'});
+        }
+    }
+
+    uiBox.addEventListener('change', function () {update(true);});
+    uxBox.addEventListener('change', function () {update(true);});
+    form.addEventListener('submit', function (e) {e.preventDefault();});
+    update(false);
+})();
+</script>
