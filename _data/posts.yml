@@ -1,3 +1,27 @@
+- title: "Pourquoi la Motivation ne Suffit pas pour Atteindre vos Objectifs"
+  excerpt: "La motivation ne suffit pas pour tenir ses objectifs sur la durée. Pourquoi l'action doit précéder la motivation, et comment construire un processus qui tient dans le temps."
+  category: "Mindset"
+  date: "2027-06-01"
+  readingTime: "10 min"
+  url: "/blog/pourquoi-la-motivation-ne-suffit-pas"
+  draft: true
+
+- title: ""
+  excerpt: ""
+  category: ""
+  date: "2027-05-01"
+  readingTime: "10 min"
+  url: "/blog/"
+  draft: true
+
+- title: ""
+  excerpt: ""
+  category: ""
+  date: "2027-04-01"
+  readingTime: "10 min"
+  url: "/blog/"
+  draft: true
+
 - title: "Gestion du Temps en Freelance : le Guide Complet pour les Créatifs Indépendants"
   excerpt: "Check-in matinal, priorisation par énergie, time blocking, méthode Pomodoro : les techniques concrètes pour gérer son temps quand on est designer ou créatif indépendant."
   category: "Freelance"
@@ -22,12 +46,12 @@
   url: "/blog/combien-coute-un-site-internet-en-2027"
   draft: true
 
-- title: "Pourquoi la Motivation ne Suffit pas pour Atteindre vos Objectifs"
-  excerpt: "La motivation ne suffit pas pour tenir ses objectifs sur la durée. Pourquoi l'action doit précéder la motivation, et comment construire un processus qui tient dans le temps."
-  category: "Mindset"
+  - title: "UI ou UX : par Quoi Commencer pour son Site Web ?"
+  excerpt: "UI ou UX design : par quoi commencer pour son site web ? Signes à repérer, diagnostic rapide, méthode en 4 étapes et erreurs à éviter pour décider sereinement."
+  category: "UX"
   date: "2026-12-01"
   readingTime: "10 min"
-  url: "/blog/pourquoi-la-motivation-ne-suffit-pas"
+  url: "/blog/ui-ou-ux-par-ou-commencer"
   draft: true
 
 - title: "Théorie des Couleurs : le Guide Complet pour Créer des Palettes Harmonieuses"
