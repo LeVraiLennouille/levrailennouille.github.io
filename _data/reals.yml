@@ -15,6 +15,21 @@
   date: "2027-03-31"
   comingSoon: true
 
+- id: "blocktok"
+  url: "/reals/blocktok"
+  name: "Création BlockTok"
+  label: "Pomodoro"
+  category: "Application mobile · UI/UX Design"
+  tags:
+    - "creation"
+    - "application-mobile"
+    - "ui-ux"
+  image: "/img/reals/blocktok/mockup.webp"
+  heroImage: "/img/reals/blocktok/pc-home.png"
+  imageAlt: "Création BlockTok"
+  date: "2027-01-31"
+  comingSoon: true
+
 - id: "pomodoro"
   url: "/reals/pomodoro"
   name: "Création Pomodoro"
@@ -28,7 +43,7 @@
   image: "/img/reals/pomodoro/mockup.webp"
   heroImage: "/img/reals/pomodoro/pc-home.png"
   imageAlt: "Création Pomodoro"
-  date: "2027-01-31"
+  date: "2027-12-31"
   comingSoon: true
 
 - id: "carads"
@@ -44,6 +59,23 @@
   image: "/img/reals/carads/mockup.webp"
   heroImage: "/img/reals/carads/ecran-principal.png"
   imageAlt: "Création CarAds Studio"
+  date: "2026-12-01"
+  comingSoon: true
+
+- id: "gymaddict"
+  url: "/reals/gymaddict"
+  name: "Création GymAddict"
+  label: "GymAddict"
+  category: "UI/UX Design · Webdesign · Identité visuelle"
+  tags:
+    - "creation"
+    - "ui-ux"
+    - "product-design"
+    - "app-design"
+    - "fitness"
+  image: "/img/reals/gymaddict/mockup.webp"
+  heroImage: "/img/reals/gymaddict/ecran-exercice.webp"
+  imageAlt: "Création GymAddict"
   date: "2026-11-31"
   comingSoon: true
 
@@ -63,20 +95,35 @@
   imageAlt: "Création HabitsTracker"
   date: "2026-10-31"
 
-- id: "lennoutil"
-  url: "/reals/lennoutil"
-  name: "Création Lennoutil"
-  label: "Lennoutil"
-  category: "UI/UX Design · WebApp · Identité visuelle"
+- id: "lennaudits"
+  url: "/reals/lennaudits"
+  name: "Création LennAudits"
+  label: "LennAudits"
+  category: "WebApp · UI/UX Design · Identité visuelle"
   tags:
+    - "webapp"
     - "creation"
     - "ui-ux"
+    - "identite-visuelle"
+  image: "/img/reals/lennaudits/mockup.webp"
+  heroImage: "/img/reals/lennaudits/ecran-compresser.webp"
+  imageAlt: "Création LennAudits"
+  date: "2026-09-19"
+
+- id: "lennoutil"
+  url: "/reals/lennoutil"
+  name: "Création LennOutil"
+  label: "LennOutil"
+  category: "WebApp · UI/UX Design ·Identité visuelle"
+  tags:
     - "webapp"
+    - "creation"
+    - "ui-ux"
     - "identite-visuelle"
   image: "/img/reals/lennoutil/mockup.webp"
   heroImage: "/img/reals/lennoutil/ecran-compresser.webp"
-  imageAlt: "Création Lennoutil"
-  date: "2026-09-31"
+  imageAlt: "Création LennOutil"
+  date: "2026-09-19"
 
 - id: "undercover"
   url: "/reals/undercover"
@@ -141,22 +188,6 @@
   imageAlt: "Création Primaire"
   folderSlug: "primaire"
   date: "2026-07-01"
-
-- id: "gymaddict"
-  url: "/reals/gymaddict"
-  name: "Création GymAddict"
-  label: "GymAddict"
-  category: "UI/UX Design · Webdesign · Identité visuelle"
-  tags:
-    - "creation"
-    - "ui-ux"
-    - "product-design"
-    - "app-design"
-    - "fitness"
-  image: "/img/reals/gymaddict/mockup.webp"
-  heroImage: "/img/reals/gymaddict/ecran-exercice.webp"
-  imageAlt: "Création GymAddict"
-  date: "2026-05-01"
 
 - id: "mu"
   url: "/reals/mu"
