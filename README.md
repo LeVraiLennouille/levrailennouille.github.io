@@ -70,14 +70,18 @@ Basé à Poitiers, présent à Reims, avec des rendez-vous sur place ou en visio
 - [Webdesigner à Poitiers](https://lennouille.fr/poitiers)
 - [Webdesigner à Reims](https://lennouille.fr/reims)
 
+## Mes outils professionnels
+
+- [LennAudits](https://lennouille.fr/LennAudits/)
+- [LennOutils](https://lennouille.fr/LennOutils/)
 
 ## Dernières réalisations
 
 <details>
 <summary>Voir les dernières réalisations</summary>
 
+- [GymAddict](https://lennouille.fr/reals/gymaddict)
 - [HabitsTracker](https://lennouille.fr/reals/habitstracker)
-- [Lennoutil](https://lennouille.fr/reals/lennoutil)
 - [Undercover](https://lennouille.fr/reals/undercover)
 
 </details>
