@@ -76,8 +76,7 @@
   image: "/img/reals/gymaddict/mockup.webp"
   heroImage: "/img/reals/gymaddict/ecran-exercice.webp"
   imageAlt: "Création GymAddict"
-  date: "2026-11-31"
-  comingSoon: true
+  date: "2026-11-01"
 
 - id: "zeno"
   url: "/reals/zeno"
