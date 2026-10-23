@@ -2,7 +2,7 @@
 {%- for p in _showcase -%}
 <a class="ProjectCard" href="{{ p.url | relative_url }}">
     <div class="Preview">
-        <img src="{{ p.heroImage | relative_url }}" alt="{{ p.imageAlt | escape }}" loading="lazy">
+        <img src="{{ p.image | relative_url }}" alt="{{ p.imageAlt | escape }}" loading="lazy">
     </div>
     <div class="Caption">
         <span class="ProjectName">{{ p.label }}</span>
@@ -13,7 +13,7 @@
 {%- for p in _showcase -%}
 <a class="ProjectCard" href="{{ p.url | relative_url }}" aria-hidden="true" tabindex="-1">
     <div class="Preview">
-        <img src="{{ p.heroImage | relative_url }}" alt="" loading="lazy">
+        <img src="{{ p.image | relative_url }}" alt="" loading="lazy">
     </div>
     <div class="Caption">
         <span class="ProjectName">{{ p.label }}</span>

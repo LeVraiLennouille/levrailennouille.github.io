@@ -9,7 +9,6 @@
     - "branding"
     - "identite-visuelle"
   image: "/img/reals/papou/mockup.webp"
-  heroImage: "/img/reals/papou/pc-home.png"
   imageAlt: "Refonte Studio Papou"
   folderSlug: "papou"
   date: "2027-03-31"
@@ -25,7 +24,6 @@
     - "application-mobile"
     - "ui-ux"
   image: "/img/reals/blocktok/mockup.webp"
-  heroImage: "/img/reals/blocktok/pc-home.png"
   imageAlt: "Création BlockTok"
   date: "2027-01-31"
   comingSoon: true
@@ -41,7 +39,6 @@
     - "branding"
     - "identite-visuelle"
   image: "/img/reals/pomodoro/mockup.webp"
-  heroImage: "/img/reals/pomodoro/pc-home.png"
   imageAlt: "Création Pomodoro"
   date: "2027-12-31"
   comingSoon: true
@@ -57,7 +54,6 @@
     - "webapp"
     - "identite-visuelle"
   image: "/img/reals/carads/mockup.webp"
-  heroImage: "/img/reals/carads/ecran-principal.png"
   imageAlt: "Création CarAds Studio"
   date: "2026-12-01"
   comingSoon: true
@@ -74,7 +70,6 @@
     - "app-design"
     - "fitness"
   image: "/img/reals/gymaddict/mockup.webp"
-  heroImage: "/img/reals/gymaddict/ecran-exercice.webp"
   imageAlt: "Création GymAddict"
   date: "2026-11-01"
 
@@ -90,7 +85,6 @@
     - "app-design"
     - "habitudes"
   image: "/img/reals/zeno/mockup.webp"
-  heroImage: "/img/reals/zeno/ecran-habitudes.webp"
   imageAlt: "Création Zeno"
   date: "2026-10-31"
 
@@ -105,7 +99,6 @@
     - "ui-ux"
     - "identite-visuelle"
   image: "/img/reals/lennaudits/mockup.webp"
-  heroImage: "/img/reals/lennaudits/ecran-compresser.webp"
   imageAlt: "Création LennAudits"
   date: "2026-09-19"
 
@@ -120,7 +113,6 @@
     - "ui-ux"
     - "identite-visuelle"
   image: "/img/reals/lennoutil/mockup.webp"
-  heroImage: "/img/reals/lennoutil/ecran-compresser.webp"
   imageAlt: "Création LennOutil"
   date: "2026-09-19"
 
@@ -136,7 +128,6 @@
     - "app-design"
     - "jeu vidéo"
   image: "/img/reals/mytho-mytho/mockup.webp"
-  heroImage: "/img/reals/mytho-mytho/ecran-jeu.webp"
   imageAlt: "Création Mytho Mytho"
   date: "2026-09-19"
 
@@ -151,7 +142,6 @@
     - "branding"
     - "design-system"
   image: "/img/reals/larepousse/mockup.webp"
-  heroImage: "/img/reals/larepousse/pc-home.webp"
   imageAlt: "Création La Repousse"
   folderSlug: "larepousse"
   date: "2026-09-01"
@@ -166,7 +156,6 @@
     - "product-design"
     - "branding"
   image: "/img/reals/scorsone/mockup.webp"
-  heroImage: "/img/reals/scorsone/new_hero.png"
   imageAlt: "Création Scorsone"
   date: "2026-07-31"
   comingSoon: true
@@ -183,7 +172,6 @@
     - "branding"
     - "wordpress"
   image: "/img/reals/primaire/mockup.webp"
-  heroImage: "/img/reals/primaire/new-hero.webp"
   imageAlt: "Création Primaire"
   folderSlug: "primaire"
   date: "2026-07-01"
@@ -200,7 +188,6 @@
     - "design-system"
     - "bien-etre"
   image: "/img/reals/mu/mockup.webp"
-  heroImage: "/img/reals/mu/new-hero.webp"
   imageAlt: "Refonte Mü-être v2"
   folderSlug: "muetre"
   date: "2026-04-20"
@@ -217,7 +204,6 @@
     - "design-system"
     - "personnel"
   image: "/img/reals/portfolio/mockup.webp"
-  heroImage: "/img/reals/portfolio/pc-home.webp"
   imageAlt: "Mon portfolio : v3"
   date: "2026-03-01"
 
@@ -233,7 +219,6 @@
     - "gaming"
     - "temps-reel"
   image: "/img/reals/leblindtestfrancais/mockup.webp"
-  heroImage: "/img/reals/leblindtestfrancais/pc-home.webp"
   imageAlt: "Refonte BlindtestFrançais v3"
   folderSlug: "leblindtestfrancais"
   date: "2026-02-19"
@@ -250,7 +235,6 @@
     - "b2b"
     - "branding"
   image: "/img/reals/geoptime/mockup.webp"
-  heroImage: "/img/reals/geoptime/new-hero.webp"
   imageAlt: "Création GeopTime"
   folderSlug: "geoptime"
   date: "2025-12-10"
@@ -267,6 +251,5 @@
     - "identite-visuelle"
     - "migration-cms"
   image: "/img/reals/yligen/mockup.webp"
-  heroImage: "/img/reals/yligen/new-hero.webp"
   imageAlt: "Refonte Yligen v2"
   date: "2025-09-01"
