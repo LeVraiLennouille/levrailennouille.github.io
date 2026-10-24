@@ -5052,7 +5052,6 @@ main.Reals {
         .ProjectGallery {
             max-width: 1200px;
             margin: 0 auto 90px;
-            padding: 0 24px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;

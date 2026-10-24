@@ -21,33 +21,8 @@
   {%- assign _ranked = _ranked | split: "," | sort | reverse -%}
   {%- assign _similar = _ranked | slice: 0, 3 -%}
 
-  {%- assign _ids = "" -%}
-  {%- if include.type == "latest" -%}
-    {%- assign _used = "|" -%}
-    {%- for k in _similar -%}
-      {%- assign _sid = k | split: "|" | last -%}
-      {%- assign _used = _used | append: _sid | append: "|" -%}
-    {%- endfor -%}
-    {%- assign _recent = _others | sort: "date" | reverse -%}
-    {%- assign _taken = 0 -%}
-    {%- for p in _recent -%}
-      {%- if _taken < 2 -%}
-        {%- assign _needle = "|" | append: p.id | append: "|" -%}
-        {%- unless p.id == _current.id or _used contains _needle -%}
-          {%- assign _ids = _ids | append: p.id | append: "," -%}
-          {%- assign _taken = _taken | plus: 1 -%}
-        {%- endunless -%}
-      {%- endif -%}
-    {%- endfor -%}
-  {%- else -%}
-    {%- for k in _similar -%}
-      {%- assign _sid = k | split: "|" | last -%}
-      {%- assign _ids = _ids | append: _sid | append: "," -%}
-    {%- endfor -%}
-  {%- endif -%}
-
-  {%- assign _list = _ids | split: "," -%}
-  {%- for _pid in _list -%}
+  {%- for k in _similar -%}
+    {%- assign _pid = k | split: "|" | last -%}
     {%- assign p = site.data.reals | where: "id", _pid | first -%}
     {%- if p -%}
 <a href="{{ p.url | relative_url }}" class="RelatedCard">
