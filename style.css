@@ -2062,6 +2062,85 @@ main.Index {
         }
     }
 
+    section.Pepite {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        gap: 48px;
+        align-items: center;
+        padding: 56px 48px;
+        border-radius: 28px;
+        background: var(--Charcoal);
+        box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 80% at 90% 15%, rgba(var(--PrimaryRGB), 0.35) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 65% at 5% 95%, rgba(var(--DarkPrimaryRGB), 0.45) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .Content, .Badge {position: relative;}
+
+        .SectionTitle {
+            margin-bottom: 20px;
+
+            .Title {color: var(--PureWhite);}
+        }
+
+        .Content > p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(var(--PureWhiteRGB), 0.78);
+            max-width: 56ch;
+            margin-bottom: 28px;
+        }
+
+        .Badge {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 36px 32px;
+            border-radius: 20px;
+            background: var(--PureWhite);
+
+            .Deco {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 68px;
+                height: 68px;
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+                border-radius: 0 20px 0 100%;
+            }
+
+            .BadgeLabel {
+                font-size: 0.82rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: var(--Primary);
+            }
+
+            .BadgeTitle {
+                font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+                font-weight: 900;
+                line-height: 1.1;
+                color: var(--Charcoal);
+            }
+
+            .BadgeSub {
+                font-size: 0.95rem;
+                font-weight: 800;
+                color: var(--Muted);
+            }
+        }
+    }
+
     section.LatestPosts {
         padding: 0 48px;
 
@@ -5052,6 +5131,7 @@ main.Reals {
         .ProjectGallery {
             max-width: 1200px;
             margin: 0 auto 90px;
+            padding: 0 24px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
@@ -7115,7 +7195,7 @@ section.CallToAction.Cities {
 
 main.City {
 
-    section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity {
+    section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity, section.Journey, section.Sources {
         max-width: 1400px;
         margin: 200px auto 0;
         padding-inline: clamp(20px, 5vw, 40px);
@@ -7355,12 +7435,93 @@ main.City {
         .BtnSolid {flex-shrink: 0;}
     }
 
+    section.Journey {
+        max-width: 900px;
+
+        .Timeline {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            li {
+                display: grid;
+                grid-template-columns: 56px minmax(0, 1fr);
+                gap: 24px;
+                padding: 28px;
+                border-radius: 20px;
+                background: var(--PureWhite);
+                box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+            }
+
+            .Dot {
+                width: 56px;
+                height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-size: 1.3rem;
+                font-weight: 800;
+                color: var(--PureWhite);
+                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+            }
+
+            h3 {
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: var(--Charcoal);
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 1rem;
+                line-height: 1.7;
+                color: var(--Muted);
+            }
+
+            .ToFill {
+                padding: 14px 16px;
+                border: 1.5px dashed var(--Borders);
+                border-radius: 12px;
+                font-style: italic;
+            }
+        }
+    }
+
+    section.Sources {
+        max-width: 900px;
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--Charcoal);
+            margin-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--Muted);
+        }
+
+        a {color: var(--Primary); font-weight: 700; text-decoration: none;}
+        a:hover {text-decoration: underline;}
+    }
+
     @media (max-width: 1023px) {
         section.Steps .StepList {grid-template-columns: repeat(3, minmax(0, 1fr));}
     }
 
     @media (max-width: 768px) {
-        section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity {margin-top: 100px;}
+        section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity, section.Journey, section.Sources {margin-top: 100px;}
 
         section.Local .Layout, section.Audience .Layout {grid-template-columns: 1fr; gap: 36px;}
         section.Local .Layout .Facts, section.Audience .Layout .SectionTitle {position: static;}
@@ -7370,6 +7531,8 @@ main.City {
         section.Steps .StepList {grid-template-columns: 1fr; gap: 28px;}
 
         section.OtherCity .Band {flex-direction: column; align-items: flex-start; padding: 32px 24px;}
+
+        section.Journey .Timeline li {grid-template-columns: 1fr; gap: 16px; padding: 22px;}
     }
 }
 
@@ -9487,6 +9650,12 @@ main.Promenade {
     }
 
     main.Index {
+        section.Pepite {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 40px 28px;
+        }
+
         section.Impact {
             padding: 40px 28px;
 
@@ -10023,6 +10192,8 @@ main.Promenade {
         }
 
         section.Impact {padding: 32px 20px;}
+
+        section.Pepite {padding: 32px 20px;}
 
         section.Why {
             padding: 40px 16px 60px;

@@ -1,0 +1,280 @@
+---
+layout: default
+title: "Pépite Nord-Aquitain : étudiant-entrepreneur | Lennouille"
+description: "Découvre Pépite, le pôle qui accompagne les étudiants-entrepreneurs, et mon parcours avec Pépite Nord-Aquitain à Poitiers en tant que freelance Lennouille."
+schema_type: WebPage
+---
+{%- assign biz = site.data.business -%}
+{%- assign page_url = biz.url | append: "/pepite" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#page",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "fr-FR",
+      {%- if page.last_modified_at %}
+      "dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},
+      {%- endif %}
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ biz.url }}/#website",
+        "name": {{ biz.name | jsonify }},
+        "url": "{{ biz.url }}"
+      },
+      "author": {
+        "@type": "Person",
+        "@id": "{{ biz.url }}/#lenny-gadroy",
+        "name": "Lenny Gadroy"
+      },
+      "about": [
+        {
+          "@type": "Organization",
+          "name": "Pépite Nord-Aquitain"
+        },
+        {
+          "@type": "Thing",
+          "name": "Statut national d’étudiant-entrepreneur"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "{{ biz.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pépite",
+          "item": "{{ page_url }}"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce que Pépite ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pépite signifie « Pôles étudiants pour l’innovation, le transfert et l’entrepreneuriat ». Ce réseau national accompagne les étudiants et les jeunes diplômés qui portent un projet de création d’entreprise, et donne accès au statut national d’étudiant-entrepreneur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu’est-ce que le statut d’étudiant-entrepreneur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C’est un statut national, accordé après examen du dossier par le comité d’engagement du Pépite. Il permet de concilier ses études et son projet d’entreprise, avec un accompagnement personnalisé, une mise en réseau et, pour les jeunes diplômés, l’inscription au diplôme d’établissement étudiant-entrepreneur (D2E)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui peut devenir étudiant-entrepreneur ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les étudiants en cours de formation comme les jeunes diplômés qui portent un projet de création d’entreprise peuvent candidater auprès du Pépite rattaché à leur établissement. Le comité d’engagement décide ensuite d’accorder ou non le statut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels établissements font partie du Pépite Nord-Aquitain ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "D’après les informations publiques disponibles, le Pépite Nord-Aquitain regroupe notamment l’université de Poitiers, l’ISAE-ENSMA et l’université de Limoges. Rapproche-toi de ton établissement pour connaître la liste à jour."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+    <main class="City Pepite">
+        {% include header.html %}
+        <section class="SecondaryHero">
+            <div class="Decor" aria-hidden="true">
+                <span>Pépite</span>
+                <span>Entreprendre</span>
+            </div>
+            <div class="HeroInner">
+                <nav class="Breadcrumb" aria-label="Fil d’ariane">
+                    <a href="/">Accueil</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Pépite</span>
+                </nav>
+                <h1 class="Title">Pépite Nord-Aquitain<br>et statut <em>étudiant-entrepreneur</em></h1>
+                <p class="SubTitle">Je suis désormais étudiant-entrepreneur auprès de Pépite Nord-Aquitain. Cette page présente Pépite, le statut qu’il délivre, et mon parcours avec eux.</p>
+                <a href="/contact" class="ArrowBtn">Parler de ton projet <span class="Arrow" aria-hidden="true">→</span></a>
+            </div>
+        </section>
+        <section class="Local" id="presentation">
+            <div class="Layout">
+                <div class="Intro">
+                    <div class="SectionTitle Left">
+                        <span class="Eyebrow">Présentation</span>
+                        <h2 class="Title">Pépite, c’est quoi&nbsp;?</h2>
+                    </div>
+                    <p>Pépite signifie «&nbsp;Pôles étudiants pour l’innovation, le transfert et l’entrepreneuriat&nbsp;». Ce réseau national accompagne les étudiants et les jeunes diplômés qui portent un projet de création d’entreprise.</p>
+                    <p>Un Pépite donne accès au statut national d’étudiant-entrepreneur&nbsp;: après examen du dossier par un comité d’engagement, le candidat peut mener ses études et son projet d’entreprise en parallèle, avec un accompagnement dédié.</p>
+                    <p>Le Pépite Nord-Aquitain regroupe notamment l’université de Poitiers, l’ISAE-ENSMA et l’université de Limoges. C’est celui auquel je suis rattaché en tant qu’étudiant à l’Université de Poitiers.</p>
+                </div>
+                <aside class="Card Facts" aria-label="Pépite en bref">
+                    <h3>En bref</h3>
+                    <dl>
+                        <div><dt>Nom</dt><dd>Pôles étudiants pour l’innovation, le transfert et l’entrepreneuriat</dd></div>
+                        <div><dt>Statut délivré</dt><dd>Étudiant-entrepreneur (statut national)</dd></div>
+                        <div><dt>Pôle concerné</dt><dd>Pépite Nord-Aquitain</dd></div>
+                        <div><dt>Établissements</dt><dd>Université de Poitiers, ISAE-ENSMA, Université de Limoges</dd></div>
+                        <div><dt>Mon activité</dt><dd>Lennouille, UX/UI design et intégration web en freelance</dd></div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+        <section class="Offers" id="avantages">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Avantages</span>
+                <h2 class="Title">Ce que Pépite apporte aux étudiants-entrepreneurs</h2>
+                <p class="Subtitle">Quatre leviers pour avancer sur un projet d’entreprise sans arrêter ses études.</p>
+            </div>
+            <div class="OfferGrid">
+                <article class="Card">
+                    <span class="Badge">Accompagnement</span>
+                    <h3>Un suivi personnalisé</h3>
+                    <p>Le porteur de projet est accompagné par un enseignant et un référent externe issu du réseau Pépite, pour avancer avec un regard à la fois académique et professionnel.</p>
+                </article>
+                <article class="Card">
+                    <span class="Badge">Réseau</span>
+                    <h3>Une mise en réseau</h3>
+                    <p>Le statut ouvre l’accès à des entrepreneurs, à des structures d’accompagnement et à des réseaux de financement.</p>
+                </article>
+                <article class="Card">
+                    <span class="Badge">Cadre</span>
+                    <h3>Concilier études et projet</h3>
+                    <p>Le statut permet de développer son entreprise pendant ses études ou juste après. Les jeunes diplômés passent par le diplôme d’établissement étudiant-entrepreneur (D2E).</p>
+                </article>
+                <article class="Card">
+                    <span class="Badge">Lieux &amp; concours</span>
+                    <h3>Coworking et Prix Pépite</h3>
+                    <p>Selon les pôles, un lieu de coworking est accessible, ainsi que des concours dédiés comme le Prix Pépite, qui récompense les projets d’étudiants-entrepreneurs.</p>
+                </article>
+            </div>
+        </section>
+        <section class="Journey" id="parcours">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Mon histoire</span>
+                <h2 class="Title">Mon parcours avec Pépite</h2>
+                <p class="Subtitle">Étudiant en Master Web éditorial et stratégie UX à l’Université de Poitiers et freelance sous le nom Lennouille, je suis désormais étudiant-entrepreneur auprès de Pépite Nord-Aquitain.</p>
+            </div>
+            <ol class="Timeline">
+                <li>
+                    <span class="Dot" aria-hidden="true">1</span>
+                    <div>
+                        <h3>Comment j’ai connu Pépite</h3>
+                        <p class="ToFill">[À compléter : où et quand as-tu entendu parler de Pépite&nbsp;? Par qui&nbsp;? Qu’est-ce qui t’a donné envie de candidater&nbsp;?]</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="Dot" aria-hidden="true">2</span>
+                    <div>
+                        <h3>De la candidature au statut</h3>
+                        <p class="ToFill">[À compléter : ton dossier, le passage devant le comité d’engagement, les étapes franchies et ton ressenti.]</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="Dot" aria-hidden="true">3</span>
+                    <div>
+                        <h3>Ce que Pépite change pour Lennouille</h3>
+                        <p class="ToFill">[À compléter : l’accompagnement reçu, les projets en cours, tes objectifs pour la suite.]</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+        <section class="Steps" id="demarche">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Démarche</span>
+                <h2 class="Title">Comment devenir étudiant-entrepreneur&nbsp;?</h2>
+                <p class="Subtitle">Cinq étapes, de l’idée au statut. Le détail exact dépend du Pépite de ton établissement.</p>
+            </div>
+            <ol class="StepList">
+                <li>
+                    <h3>Avoir un projet</h3>
+                    <p>Un projet de création d’entreprise à porter, pendant tes études ou après.</p>
+                </li>
+                <li>
+                    <h3>Candidater</h3>
+                    <p>Tu déposes ton dossier en ligne auprès du Pépite rattaché à ton établissement.</p>
+                </li>
+                <li>
+                    <h3>Passer le comité</h3>
+                    <p>Le comité d’engagement du Pépite examine ta candidature.</p>
+                </li>
+                <li>
+                    <h3>Obtenir le statut</h3>
+                    <p>En cas d’avis favorable, tu deviens étudiant-entrepreneur, avec le D2E si le comité le décide.</p>
+                </li>
+                <li>
+                    <h3>Être accompagné</h3>
+                    <p>Tu avances sur ton projet avec un suivi et un réseau à tes côtés.</p>
+                </li>
+            </ol>
+        </section>
+        <section class="CityFAQ" id="faq">
+            <div class="SectionTitle">
+                <span class="Eyebrow">Questions fréquentes</span>
+                <h2 class="Title">Pépite et étudiant-entrepreneur : tes questions</h2>
+            </div>
+            <div class="FAQList">
+                <details>
+                    <summary>Qu’est-ce que Pépite&nbsp;?</summary>
+                    <p>Pépite signifie «&nbsp;Pôles étudiants pour l’innovation, le transfert et l’entrepreneuriat&nbsp;». Ce réseau national accompagne les étudiants et les jeunes diplômés qui portent un projet de création d’entreprise, et donne accès au statut national d’étudiant-entrepreneur.</p>
+                </details>
+                <details>
+                    <summary>Qu’est-ce que le statut d’étudiant-entrepreneur&nbsp;?</summary>
+                    <p>C’est un statut national, accordé après examen du dossier par le comité d’engagement du Pépite. Il permet de concilier ses études et son projet d’entreprise, avec un accompagnement personnalisé, une mise en réseau et, pour les jeunes diplômés, l’inscription au diplôme d’établissement étudiant-entrepreneur (D2E).</p>
+                </details>
+                <details>
+                    <summary>Qui peut devenir étudiant-entrepreneur&nbsp;?</summary>
+                    <p>Les étudiants en cours de formation comme les jeunes diplômés qui portent un projet de création d’entreprise peuvent candidater auprès du Pépite rattaché à leur établissement. Le comité d’engagement décide ensuite d’accorder ou non le statut.</p>
+                </details>
+                <details>
+                    <summary>Quels établissements font partie du Pépite Nord-Aquitain&nbsp;?</summary>
+                    <p>D’après les informations publiques disponibles, le Pépite Nord-Aquitain regroupe notamment l’université de Poitiers, l’ISAE-ENSMA et l’université de Limoges. Rapproche-toi de ton établissement pour connaître la liste à jour.</p>
+                </details>
+            </div>
+        </section>
+        <section class="Sources" id="sources">
+            <h2>Pour aller plus loin</h2>
+            <ul>
+                <li><a href="https://www.onisep.fr/vers-l-emploi/decouvrir-le-monde-professionnel/la-creation-d-entreprise/le-statut-d-etudiant-entrepreneur" target="_blank" rel="noopener">Onisep : le statut d’étudiant-entrepreneur</a></li>
+                <li><a href="https://www.enseignementsup-recherche.gouv.fr/fr/les-actions-de-l-etat-en-faveur-de-l-entrepreneuriat-etudiant-47733" target="_blank" rel="noopener">Ministère de l’Enseignement supérieur et de la Recherche : l’entrepreneuriat étudiant</a></li>
+            </ul>
+        </section>
+        <section class="OtherCity">
+            <div class="Band">
+                <div>
+                    <h2>Un projet web à lancer&nbsp;?</h2>
+                    <p>UX, UI, design system ou site vitrine : parlons de ton projet.</p>
+                </div>
+                <a href="/services" class="BtnSolid">Voir mes services <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+        {% include cta.html %}
+        {% include footer.html %}
+    </main>
+<!-- Anims -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- Scripts -->
+    <script src="/script.js"></script>
+    <script src="/anims.js" defer></script>
