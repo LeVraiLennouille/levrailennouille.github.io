@@ -2092,14 +2092,23 @@ main.Index {
             .Title {color: var(--PureWhite);}
         }
 
-        .UPLogo {
-            display: block;
-            width: auto;
-            height: auto;
-            max-width: 200px;
-            max-height: 48px;
+        .Logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 28px;
             margin-bottom: 24px;
-            filter: brightness(0) invert(1);
+
+            img {
+                display: block;
+                width: auto;
+                height: auto;
+                max-width: 200px;
+                max-height: 48px;
+                object-fit: contain;
+            }
+
+            .UPLogo {filter: brightness(0) invert(1);}
         }
 
         .Content > p {
@@ -2141,16 +2150,6 @@ main.Index {
                 font-weight: 900;
                 line-height: 1.1;
                 color: var(--Charcoal);
-            }
-
-            .BadgeLogo {
-                display: block;
-                width: auto;
-                height: auto;
-                max-width: 170px;
-                max-height: 70px;
-                object-fit: contain;
-                margin-bottom: 8px;
             }
 
             .BadgeSub {
@@ -7455,24 +7454,23 @@ main.City {
         .BtnSolid {flex-shrink: 0;}
     }
 
-    section.Local .Layout .Facts .Logo {
-        display: block;
-        width: auto;
-        height: auto;
-        max-width: 180px;
-        max-height: 72px;
-        object-fit: contain;
+    section.OtherCity .Band .Logos {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 28px;
         margin-bottom: 18px;
-    }
 
-    section.OtherCity .Band .UPLogo {
-        display: block;
-        width: auto;
-        height: auto;
-        max-width: 200px;
-        max-height: 48px;
-        margin-bottom: 18px;
-        filter: brightness(0) invert(1);
+        img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 200px;
+            max-height: 48px;
+            object-fit: contain;
+        }
+
+        .UPLogo {filter: brightness(0) invert(1);}
     }
 
     section.Journey {
