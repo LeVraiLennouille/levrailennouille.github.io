@@ -2155,7 +2155,7 @@ main.Index {
             .BadgeSub {
                 font-size: 0.95rem;
                 font-weight: 800;
-                color: var(--Muted);
+                color: var(--DarkPrimary);
             }
         }
     }
@@ -7528,30 +7528,55 @@ main.City {
     }
 
     section.Sources {
+        width: calc(100% - 2 * clamp(20px, 5vw, 40px));
         max-width: 900px;
+        margin: 64px auto 0;
+        padding: 36px 40px 40px;
+        background: var(--PureWhite);
+        border-radius: 20px;
+        box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 0.78rem;
             font-weight: 800;
-            color: var(--Charcoal);
-            margin-bottom: 16px;
+            color: var(--Primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
         }
 
         ul {
             list-style: none;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 10px;
         }
 
-        li {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--Muted);
-        }
+        .SourceLink {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(var(--PrimaryRGB), 0.2);
+            background: rgba(var(--PrimaryRGB), 0.05);
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--DarkPrimary);
+            text-decoration: none;
+            transition: all 0.25s ease;
 
-        a {color: var(--Primary); font-weight: 700; text-decoration: none;}
-        a:hover {text-decoration: underline;}
+            &::after {content: "\2197"; font-size: 0.95em;}
+
+            &:hover {
+                background: var(--Primary);
+                border-color: var(--Primary);
+                color: var(--PureWhite);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 18px rgba(var(--PrimaryRGB), 0.3);
+            }
+        }
     }
 
     @media (max-width: 1023px) {
@@ -7559,7 +7584,7 @@ main.City {
     }
 
     @media (max-width: 768px) {
-        section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity, section.Journey, section.Sources {margin-top: 100px;}
+        section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity, section.Journey {margin-top: 100px;}
 
         section.Local .Layout, section.Audience .Layout {grid-template-columns: 1fr; gap: 36px;}
         section.Local .Layout .Facts, section.Audience .Layout .SectionTitle {position: static;}
