@@ -2110,7 +2110,7 @@ main.Index {
                 object-fit: contain;
             }
 
-            .UPLogo {filter: brightness(0) invert(1);}
+            .UPLogo, .PepiteLogo {filter: brightness(0) invert(1);}
         }
 
         .Content > p {
