@@ -236,6 +236,8 @@ schema_type: Article
             });
 
             window.addEventListener('resize', function(){ if(on) positionOutline(); });
+            window.addEventListener('orientationchange', function(){ setTimeout(function(){ if(on) positionOutline(); }, 250); });
+            if(window.ResizeObserver){ new ResizeObserver(function(){ if(on) positionOutline(); }).observe(grid); }
         })();
     </script>
 <!-- Anims -->

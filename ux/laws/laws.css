@@ -515,7 +515,7 @@
         cursor: pointer;
     }
 
-    &--locked {
+    &.ZgItem--locked {
         opacity: .55;
         cursor: not-allowed;
 
@@ -834,20 +834,23 @@
 ========================================================================== */
 .PxRow {
     display: flex;
-    padding: 34px 20px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 34px clamp(14px, 3vw, 20px);
     background: var(--Background);
     border-radius: 14px;
     margin-top: 20px;
 
-    &.grouped .PxDot:nth-child(2n) {margin-right: 38px;}
+    &.grouped .PxDot:nth-child(2n) {margin-right: clamp(14px, 4.4vw, 38px);}
 }
 
 .PxDot {
-    width: 28px;
-    height: 28px;
+    width: clamp(12px, 4vw, 28px);
+    height: clamp(12px, 4vw, 28px);
+    flex-shrink: 0;
     border-radius: 50%;
     background: var(--Primary);
-    margin-right: 14px;
+    margin-right: clamp(5px, 1.6vw, 14px);
     transition: margin .4s ease;
 
     &:last-child {margin-right: 0;}
@@ -1103,8 +1106,8 @@
         transform: none;
     }
 
-    &--blue {background: #2563eb;}
-    &--green {background: #16a34a;}
+    &.PaBtn--blue {background: #2563eb;}
+    &.PaBtn--green {background: #16a34a;}
 }
 
 /* ==========================================================================
@@ -1367,4 +1370,41 @@
         border-color: var(--Primary);
         color: var(--Primary);
     }
+}
+
+.PoField input,
+.TlInputRow input,
+.TlSelectRow select,
+#panelA input,
+#panelB input {font-size: 16px;}
+
+@media (max-width: 768px) {
+    .SiText {text-align: left;}
+    .AuPanel {padding: 22px 18px;}
+    .AuTag {position: static; display: block; margin-bottom: 8px;}
+    .TlInputRow input, .TlSelectRow select {flex: 1 1 140px; min-width: 0;}
+    #chkInput, #mlInput {width: 100%; max-width: 260px;}
+}
+
+@media (max-width: 480px) {
+    .CcGrid {grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));}
+    .CcGrid.clean {grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));}
+    .ScGrid {grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));}
+    .RcGrid {padding: 20px; gap: 16px;}
+    .ChkStage, .MlStage {padding: 24px 14px;}
+    .VrGrid {padding: 20px 12px;}
+    .OcPreview {padding: 24px 16px;}
+    .PaBtn {padding: 14px 24px;}
+    .UcRow {gap: 18px; padding: 24px 16px;}
+}
+
+@media (hover: none), (pointer: coarse) {
+    .DemoBtn, .PaBtn, .SaReal, .WmChip, .CcTile, .ScDish {min-height: 44px;}
+    .SaBanner {min-height: 44px;}
+    .PrPlus {width: 44px; height: 44px;}
+    .ZgItem {min-height: 44px; padding: 8px 0;}
+    .ZgItem input {width: 22px; height: 22px;}
+    .OcToggleRow {min-height: 44px;}
+    .OcToggleRow input {width: 22px; height: 22px;}
+    .BcRow {min-height: 56px;}
 }

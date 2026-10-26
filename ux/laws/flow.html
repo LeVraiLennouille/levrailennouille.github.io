@@ -225,8 +225,8 @@ schema_type: Article
             function placeTarget(){
                 var size = mode === 'adapt' ? Math.max(30, Math.min(70, windowMs / 12)) : 40;
                 var w = zone.clientWidth, h = zone.clientHeight;
-                var x = Math.random() * (w - size);
-                var y = Math.random() * (h - size);
+                var x = Math.random() * Math.max(0, w - size);
+                var y = Math.random() * Math.max(0, h - size);
                 zone.innerHTML = '<button class="FlTarget" style="width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px;" type="button"></button>';
                 shownAt = performance.now();
                 var target = zone.querySelector('.FlTarget');

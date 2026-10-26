@@ -266,6 +266,7 @@ schema_type: Article
                 var v = rawInput.value.trim();
                 var m = v.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
                 if(m){
+                    rawInput.style.borderColor = '';
                     scoreRaw.textContent = rawAttempts + ' essai' + (rawAttempts > 1 ? 's' : '');
                     rawBox.hidden = true;
                     checkComparison();

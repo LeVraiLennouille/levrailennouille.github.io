@@ -276,6 +276,15 @@ schema_type: Article
                 showStart();
             }
 
+            window.addEventListener('resize', function(){
+                var t = document.getElementById('ftTarget');
+                if(!t) return;
+                var maxLeft = Math.max(0, area.clientWidth - t.offsetWidth);
+                var maxTop = Math.max(0, area.clientHeight - t.offsetHeight);
+                if(parseFloat(t.style.left) > maxLeft){ t.style.left = maxLeft + 'px'; }
+                if(t.style.top && parseFloat(t.style.top) > maxTop){ t.style.top = maxTop + 'px'; }
+            });
+
             btnNear.addEventListener('click', function(){ start('near'); });
             btnFar.addEventListener('click', function(){ start('far'); });
         })();

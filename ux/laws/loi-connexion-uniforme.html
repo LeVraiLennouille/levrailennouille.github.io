@@ -219,6 +219,9 @@ schema_type: Article
                 var pad = 16;
                 bg.style.left = (first.left - rowRect.left - pad) + 'px';
                 bg.style.width = (third.right - first.left + pad * 2) + 'px';
+                bg.style.top = (first.top - rowRect.top - 12) + 'px';
+                bg.style.height = (first.height + 24) + 'px';
+                bg.style.bottom = 'auto';
             }
 
             toggle.addEventListener('click', function(){
@@ -237,6 +240,8 @@ schema_type: Article
             });
 
             window.addEventListener('resize', function(){ if(on) positionBg(); });
+            window.addEventListener('orientationchange', function(){ setTimeout(function(){ if(on) positionBg(); }, 250); });
+            if(window.ResizeObserver){ new ResizeObserver(function(){ if(on) positionBg(); }).observe(row); }
         })();
     </script>
 <!-- Anims -->

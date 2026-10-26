@@ -224,12 +224,12 @@ schema_type: Article
             function playSequence(seq, labelText, cb){
                 stage.hidden = false;
                 label.textContent = labelText;
-                var i = 0;
+                var i = 1;
                 bar.style.height = seq[0] + '%';
                 var timer = setInterval(function(){
-                    bar.style.height = seq[i] + '%';
+                    if(i < seq.length){ bar.style.height = seq[i] + '%'; }
                     i++;
-                    if(i >= seq.length){
+                    if(i >= seq.length + 1){
                         clearInterval(timer);
                         setTimeout(function(){
                             stage.hidden = true;
