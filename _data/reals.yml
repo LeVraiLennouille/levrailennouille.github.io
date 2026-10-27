@@ -88,6 +88,20 @@
   imageAlt: "Création Zeno"
   date: "2026-10-31"
 
+- id: "lennsimu"
+  url: "/reals/lennsimu"
+  name: "Création LennSimu"
+  label: "LennSimu"
+  category: "WebApp · UI/UX Design · Identité visuelle"
+  tags:
+    - "webapp"
+    - "creation"
+    - "ui-ux"
+    - "identite-visuelle"
+  image: "/img/reals/lennsimu/mockup.webp"
+  imageAlt: "Création LennSimu"
+  date: "2026-11-01"
+
 - id: "lennaudits"
   url: "/reals/lennaudits"
   name: "Création LennAudits"
@@ -100,7 +114,7 @@
     - "identite-visuelle"
   image: "/img/reals/lennaudits/mockup.webp"
   imageAlt: "Création LennAudits"
-  date: "2026-09-19"
+  date: "2026-10-19"
 
 - id: "lennoutils"
   url: "/reals/lennoutils"

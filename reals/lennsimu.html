@@ -1,0 +1,95 @@
+---
+layout: reals
+real_id: lennsimu
+title: "Création App Web & UI/UX : LennSimu | Lennouille"
+description: "Conception UI/UX et développement de LennSimu, un simulateur de devis web en 6 étapes : estimation de prix en direct, délai estimé et devis PDF généré dans le navigateur."
+schema_type: CreativeWork
+image: /assets/og-lennsimu.png
+eyebrow: "Product design · App Web · Développement front-end"
+heading: "Création LennSimu"
+banner_alt: "Bannière LennSimu"
+link: "https://lennouille.fr/LennSimu/"
+keywords:
+  - "Product design"
+  - "App Web"
+  - "Développement front-end"
+facts:
+    role: "UI/UX, identité visuelle, développement front-end"
+    duree: "2 semaines"
+    outils: "Figma ; HTML, CSS, JavaScript"
+    contexte: "Outil professionnel"
+intro:
+    brief: "Concevoir et développer un simulateur qui permet à un client d'estimer le prix et le délai d'un projet UI/UX en quelques questions, puis de recevoir un devis."
+    objectif: "Donner une première fourchette de prix immédiate, sans échange préalable, et remplacer les allers-retours de cadrage par un devis prêt à valider."
+    livrables: "UI/UX du simulateur, identité visuelle, développement front-end (HTML/CSS/JS vanilla), moteur de calcul de l'estimation, génération du devis PDF."
+    resultat: "Un simulateur en 6 étapes, une estimation mise à jour en direct, un devis exporté en PDF"
+---
+<section class="ProjectSplit">
+    <div class="SplitItem">
+        <div class="ProjectBloc">
+            <h4>Un devis qui démarre par des échanges</h4>
+            <p>Un client qui cherche un designer freelance veut d'abord savoir si le projet rentre dans son budget. Répondre demande un premier échange pour cerner le besoin, puis un devis rédigé à la main, et le tout prend plusieurs jours avant le moindre chiffre. LennSimu donne cette première réponse tout de suite : le client décrit son projet, voit l'estimation évoluer à chaque choix et repart avec un devis.</p>
+        </div>
+        <div class="ProjectBloc">
+            <h4>Six questions, un panneau d'estimation</h4>
+            <p>Le zoning repose sur deux éléments : un rail de navigation qui montre les six étapes (informations, nature du projet, plateformes, périmètre, livrables, contraintes) et une zone centrale qui ne présente qu'une question à la fois. À droite, un panneau d'estimation reste visible en permanence : fourchette de prix, jours estimés et détail du calcul se mettent à jour à chaque réponse. Sur mobile, ce panneau devient une barre en bas d'écran qui ouvre un tiroir.</p>
+        </div>
+    </div>
+    <div class="SplitItem">
+        <div class="Label"><span>Identité visuelle — Logo</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/logo.svg" alt="Création du logo LennSimu"></div>
+    </div>
+</section>
+<div class="FullWidthBanner">
+    <div class="Label"><span>Couleurs désignées</span></div>
+    <div class="ProjectGallery Item2">
+        <img src="/img/reals/lennsimu/violet-clair.svg" alt="Couleur bleu clair LennSimu">
+        <img src="/img/reals/lennsimu/violet.svg" alt="Couleur bleu LennSimu">
+    </div>
+</div>
+<div class="ProjectBloc">
+    <h4>Identité</h4>
+    <p>Design system : un bleu profond (#134C85) pour les actions et l'étape en cours, sa version à 20 % pour les fonds et les états secondaires, un fond clair et neutre pour laisser respirer les contenus. Syne porte les titres. Le simulateur reprend la structure de LennAudits et de LennOutils (rail de navigation, cartes arrondies, boutons en pilule), et la couleur suffit à le distinguer de la famille d'outils. Le logo est décliné en icône.</p>
+</div>
+<div class="ProjectBloc">
+    <h4>Des choix qui se traduisent en jours</h4>
+    <p>Chaque réponse pèse sur l'estimation de façon lisible. La nature du projet donne une base en jours de travail. La plateforme visée applique un coefficient de complexité, le périmètre (nombre de vues) et chaque livrable ajoutent des jours. L'option urgence majore le prix et raccourcit le délai, et un code de parrainage applique une remise. Le détail du calcul reste affiché à côté du prix, pour que le client comprenne d'où vient le chiffre au lieu de le recevoir comme une boîte noire.</p>
+</div>
+<section class="ComparisonsGrid">
+    <div class="CompItem">
+        <div class="Label"><span>Section : Choix du projet</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/projets.webp" alt="Création de la section choix du projet"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section : Choix des plateformes</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/plateformes.webp" alt="Création de la section choix des plateformes"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section : Choix du périmètre</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/perimetres.webp" alt="Création de la section choix du périmètre"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section : Choix des livrables</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/livrables.webp" alt="Création de la section choix des livrables"></div>
+    </div>
+    <div class="CompItem">
+        <div class="Label"><span>Section : Choix des contraintes</span></div>
+        <div class="ProjectVisual"><img src="/img/reals/lennsimu/contraintes.webp" alt="Création de la section choix des contraintes"></div>
+    </div>
+</section>
+<div class="ProjectBloc">
+    <h4>De l'estimation au devis</h4>
+    <p>À la dernière étape, le client choisit entre une estimation immédiate et un devis officiel à signer. Le devis PDF est généré directement dans le navigateur à partir des réponses, à l'identité de l'application, et la demande m'est transmise en même temps. Le formulaire est protégé côté client : un filtre de mots interdits bloque l'envoi avec un message qui précise quoi corriger, et une limite d'envois par tranche de quinze minutes évite les demandes en rafale.</p>
+</div>
+<div class="ProjectBloc">
+    <h4>Ce que j'en retiens</h4>
+    <p>Ici, l'utilisateur est un prospect qui découvre mon offre et hésite encore. Le formulaire doit lui demander peu, rien d'obscur, et lui montrer à chaque étape ce que son choix change. Concevoir le simulateur m'a aussi obligé à chiffrer ma propre méthode : combien de jours pour chaque type de projet, et pourquoi.</p>
+</div>
+<div class="ProjectBloc ProjectResults">
+    <h4>Résultats</h4>
+    <div class="ResultsGrid">
+        <div class="ResultItem"><strong>6</strong><span>étapes pour passer du besoin à l'estimation : informations, nature du projet, plateformes, périmètre, livrables, contraintes</span></div>
+        <div class="ResultItem"><strong>1</strong><span>fourchette de prix et de délai mise à jour en direct, avec le détail du calcul</span></div>
+        <div class="ResultItem"><strong>PDF</strong><span>devis exporté depuis l'application</span></div>
+    </div>
+</div>
