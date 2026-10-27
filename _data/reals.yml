@@ -71,6 +71,20 @@
     - "fitness"
   image: "/img/reals/gymaddict/mockup.webp"
   imageAlt: "Création GymAddict"
+  date: "2026-11-10"
+
+- id: "lennsimu"
+  url: "/reals/lennsimu"
+  name: "Création LennSimu"
+  label: "LennSimu"
+  category: "WebApp · UI/UX Design · Identité visuelle"
+  tags:
+    - "webapp"
+    - "creation"
+    - "ui-ux"
+    - "identite-visuelle"
+  image: "/img/reals/lennsimu/mockup.webp"
+  imageAlt: "Création LennSimu"
   date: "2026-11-01"
 
 - id: "zeno"
@@ -87,20 +101,6 @@
   image: "/img/reals/zeno/mockup.webp"
   imageAlt: "Création Zeno"
   date: "2026-10-31"
-
-- id: "lennsimu"
-  url: "/reals/lennsimu"
-  name: "Création LennSimu"
-  label: "LennSimu"
-  category: "WebApp · UI/UX Design · Identité visuelle"
-  tags:
-    - "webapp"
-    - "creation"
-    - "ui-ux"
-    - "identite-visuelle"
-  image: "/img/reals/lennsimu/mockup.webp"
-  imageAlt: "Création LennSimu"
-  date: "2026-11-01"
 
 - id: "lennaudits"
   url: "/reals/lennaudits"
