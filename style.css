@@ -6824,6 +6824,30 @@ main.About {
         .Card {&:first-of-type, &:last-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}}
     }
 
+    section.Gallery {
+        padding: 0 48px;
+
+        .SectionTitle h2.Title {font-size: 2.71rem;}
+        
+        .Grid {
+            column-count: 3;
+            column-gap: 24px;
+
+            img {
+                display: block;
+                width: 100%;
+                margin-bottom: 24px;
+                border-radius: 16px;
+                object-fit: cover;
+                box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
+                break-inside: avoid;
+                transition: transform 0.4s ease;
+
+                &:hover {transform: translateY(-4px);}
+            }
+        }
+    }
+
     section.Anchor {
         position: relative;
         background-color: var(--Background);
