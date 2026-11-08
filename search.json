@@ -1,0 +1,26 @@
+---
+layout: null
+sitemap: false
+---
+[
+{%- assign sep = false -%}
+{%- for p in site.html_pages -%}
+  {%- if p.sitemap == false or p.url == '/404.html' or p.title == nil -%}{%- continue -%}{%- endif -%}
+  {%- if p.robots contains 'noindex' -%}{%- continue -%}{%- endif -%}
+  {%- assign u = p.url | replace: 'index.html', '' | replace: '.html', '' -%}
+  {%- if u contains '/blog/' -%}{%- assign type = 'Article' -%}
+  {%- elsif u contains '/ux/laws/' -%}{%- assign type = 'Loi UX' -%}
+  {%- elsif u contains '/ux/' -%}{%- assign type = 'Guide UX' -%}
+  {%- elsif u contains '/reals/' -%}{%- assign type = 'Projet' -%}
+  {%- elsif u contains '/terms/' -%}{%- assign type = 'Légal' -%}
+  {%- else -%}{%- assign type = 'Page' -%}
+  {%- endif -%}
+  {%- assign title = p.short_title | default: p.heading | default: p.title | split: ' | ' | first -%}
+  {%- if u == '/' -%}{%- assign title = 'Accueil' -%}{%- endif -%}
+  {%- assign kw = p.section | append: ' ' | append: p.eyebrow | append: ' ' | append: p.label | append: ' ' | append: p.crumb -%}
+  {%- if p.keywords -%}{%- assign kwj = p.keywords | join: ' ' -%}{%- assign kw = kw | append: ' ' | append: kwj -%}{%- endif -%}
+  {%- if sep %},{% endif %}
+  {"t":{{ title | strip_html | strip | jsonify }},"u":{{ u | jsonify }},"y":{{ type | jsonify }},"d":{{ p.description | default: '' | strip_html | strip | jsonify }},"k":{{ kw | strip_html | strip | jsonify }}}
+  {%- assign sep = true -%}
+{%- endfor %}
+]

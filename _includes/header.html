@@ -19,6 +19,10 @@
             <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
         </ul>
         <div class="NavCTA">
+            <button type="button" class="NavSearchBtn CursorHover" data-search-open aria-label="Rechercher sur le site" aria-haspopup="dialog" aria-expanded="false" title="Rechercher (Ctrl + K)">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span class="NavSearchLabel">Rechercher sur le site</span>
+            </button>
             <a class="SimBtn CursorHover" href="/LennSimu/" data-hover="de devis">Simulateur</a>
             <a class="SwitchBtn CursorHover" href="/contact">
                 <span class="BtnTexts">
@@ -33,3 +37,23 @@
         </div>
     </div>
 </nav>
+<div class="SearchOverlay" id="SearchOverlay" role="dialog" aria-modal="true" aria-label="Rechercher sur le site" hidden>
+    <div class="SearchBackdrop" data-search-close></div>
+    <div class="SearchPanel">
+        <form class="SearchField" role="search" action="#" onsubmit="return false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="SearchInput" type="search" name="q" placeholder="Rechercher une page, un article, une loi UX…" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="SearchResults" aria-label="Rechercher sur le site">
+            <button type="button" class="SearchClose CursorHover" data-search-close aria-label="Fermer la recherche">Esc</button>
+        </form>
+        <div class="SearchBody">
+            <p class="SearchLabel" id="SearchLabel" hidden></p>
+            <ul class="SearchResults" id="SearchResults" role="listbox" aria-label="Résultats de recherche"></ul>
+            <p class="SearchStatus" id="SearchStatus" role="status" aria-live="polite"></p>
+        </div>
+        <div class="SearchFooter" aria-hidden="true">
+            <span><kbd>↑</kbd><kbd>↓</kbd> Naviguer</span>
+            <span><kbd>↵</kbd> Ouvrir</span>
+            <span><kbd>Esc</kbd> Fermer</span>
+        </div>
+    </div>
+</div>

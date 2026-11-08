@@ -57,7 +57,7 @@
     font-size: .82rem;
     font-weight: 600;
     color: var(--Muted);
-    background: #eceae6;
+    background: var(--SurfaceAlt3);
     border: 1px solid var(--Borders);
     border-radius: 6px;
     padding: 9px 18px;
@@ -91,7 +91,7 @@
     justify-content: space-between;
     gap: 20px;
     padding: 16px 4px;
-    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+    border-bottom: 1px solid rgba(var(--LineRGB), 0.07);
     cursor: pointer;
 
     &:last-child {border-bottom: none;}
@@ -104,7 +104,7 @@
 
     strong {
         font-size: .92rem;
-        color: var(--Charcoal);
+        color: var(--Ink);
     }
 
     small {
@@ -134,7 +134,7 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: var(--PureWhite);
+        background: var(--Surface);
         box-shadow: 0 1px 4px rgba(var(--PureBlackRGB), .25);
         transition: transform .2s ease;
     }
@@ -168,7 +168,7 @@
         gap: 16px;
 
         .CcTile {
-            background: var(--PureWhite);
+            background: var(--Surface);
             box-shadow: 0 6px 20px rgba(var(--PureBlackRGB), 0.07);
             padding: 20px;
             font-size: .85rem;
@@ -215,7 +215,7 @@
 .ChkNumber {
     font-size: clamp(1.8rem, 5vw, 2.6rem);
     font-weight: 800;
-    color: var(--Charcoal);
+    color: var(--Ink);
     font-variant-numeric: tabular-nums;
 }
 
@@ -275,8 +275,8 @@
 }
  
 #panelA {
-    background: #f2f1ee;
-    border: 1px solid #ccc7bd;
+    background: var(--SurfaceAlt);
+    border: 1px solid var(--LineSolid);
  
     .AuFormA {
         display: flex;
@@ -286,7 +286,7 @@
  
     label {
         font-size: 13px;
-        color: #555;
+        color: var(--Muted);
         margin-top: 10px;
         display: block;
     }
@@ -295,9 +295,9 @@
         font-family: inherit;
         font-size: 14px;
         padding: 3px 4px;
-        border: 1px solid #999;
+        border: 1px solid var(--MinMuted);
         border-radius: 0;
-        background: #fff;
+        background: var(--Surface);
         margin-top: 3px;
         width: 100%;
         display: block;
@@ -308,20 +308,20 @@
         font-family: inherit;
         font-size: 13px;
         padding: 5px 12px;
-        background: #e2e2e2;
-        border: 1px solid #999;
+        background: var(--SurfaceAlt3);
+        border: 1px solid var(--MinMuted);
         border-radius: 0;
         cursor: pointer;
-        color: #333;
+        color: var(--Muted);
  
-        &:hover {background: #d5d5d5;}
+        &:hover {background: var(--SurfaceAlt2);}
     }
 }
  
 #panelB {
-    background: var(--PureWhite);
+    background: var(--Surface);
     box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
-    border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+    border: 1px solid rgba(var(--LineRGB), 0.06);
  
     .AuFormB {
         display: flex;
@@ -333,7 +333,7 @@
     label {
         font-size: .78rem;
         font-weight: 700;
-        color: var(--Charcoal);
+        color: var(--Ink);
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -344,7 +344,7 @@
         padding: 11px 14px;
         border: 1.5px solid var(--Borders);
         border-radius: 10px;
-        background: #faf9f7;
+        background: var(--SurfaceAlt);
         transition: border-color .2s ease;
  
         &:focus {
@@ -455,7 +455,7 @@
 }
 
 .VrItem {
-    background: var(--PureWhite);
+    background: var(--Surface);
     border-radius: 10px;
     padding: 14px 18px;
     font-size: .95rem;
@@ -504,7 +504,7 @@
     gap: 10px;
     font-size: .88rem;
     font-weight: 600;
-    color: var(--Charcoal);
+    color: var(--Ink);
     padding: 6px 0;
     cursor: pointer;
 
@@ -528,7 +528,7 @@
 .ZgAskLabel {
     font-size: .9rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 12px;
 }
 
@@ -654,7 +654,7 @@
     height: 52px;
     border-radius: 12px;
     border: 1.5px solid var(--Borders);
-    background: var(--PureWhite);
+    background: var(--Surface);
     cursor: pointer;
     transition: background .1s ease, border-color .1s ease;
 
@@ -685,7 +685,7 @@
     height: 56px;
     border-radius: 14px;
     border: 1.5px solid var(--Borders);
-    background: var(--PureWhite);
+    background: var(--Surface);
     font-size: 1.5rem;
     cursor: pointer;
     transition: border-color .15s ease, transform .15s ease;
@@ -727,7 +727,7 @@
 .MlNumber {
     font-size: clamp(1.6rem, 4.5vw, 2.4rem);
     font-weight: 800;
-    color: var(--Charcoal);
+    color: var(--Ink);
     font-variant-numeric: tabular-nums;
 }
 
@@ -761,7 +761,7 @@
 .PkPrompt {
     font-size: .9rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 12px;
 }
 
@@ -777,7 +777,7 @@
         padding: 12px 14px;
         border: 1.5px solid var(--Borders);
         border-radius: 10px;
-        background: #faf9f7;
+        background: var(--SurfaceAlt);
 
         &:focus {
             border-color: var(--Primary);
@@ -790,7 +790,7 @@
     display: block;
     font-size: .78rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 8px;
 }
 
@@ -824,7 +824,7 @@
 .PgAskLabel {
     font-size: .9rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-top: 20px;
     margin-bottom: 4px;
 }
@@ -865,7 +865,7 @@
     margin-top: 20px;
     font-size: .95rem;
     line-height: 1.9;
-    color: var(--Charcoal);
+    color: var(--Ink);
     text-align: justify;
 }
 
@@ -906,11 +906,11 @@
     display: block;
     font-size: .8rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 10px;
 
     code {
-        background: rgba(var(--PureBlackRGB), .08);
+        background: rgba(var(--LineRGB), .08);
         padding: 2px 6px;
         border-radius: 4px;
         font-size: .85em;
@@ -928,7 +928,7 @@
         padding: 10px 14px;
         border: 1.5px solid var(--Borders);
         border-radius: 10px;
-        background: var(--PureWhite);
+        background: var(--Surface);
 
         &:focus {
             border-color: var(--Primary);
@@ -948,7 +948,7 @@
         padding: 10px 14px;
         border: 1.5px solid var(--Borders);
         border-radius: 10px;
-        background: var(--PureWhite);
+        background: var(--Surface);
 
         &:focus {
             border-color: var(--Primary);
@@ -1008,8 +1008,8 @@
     padding: 9px 16px;
     border-radius: 50px;
     border: 1.5px solid var(--Borders);
-    background: var(--PureWhite);
-    color: var(--Charcoal);
+    background: var(--Surface);
+    color: var(--Ink);
     cursor: pointer;
 
     &.picked {
@@ -1046,7 +1046,7 @@
         display: block;
         font-size: .65rem;
         font-weight: 700;
-        color: var(--Charcoal);
+        color: var(--Ink);
         margin-top: 4px;
     }
 
@@ -1081,7 +1081,7 @@
     p {
         font-size: .86rem;
         line-height: 1.6;
-        color: var(--Charcoal);
+        color: var(--Ink);
         font-weight: 600;
         margin: 0;
     }
@@ -1132,7 +1132,7 @@
     display: block;
     font-size: .76rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 10px;
 }
 
@@ -1166,7 +1166,7 @@
     margin-top: 16px;
     font-size: .85rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
 }
 
 .PrUsageBar {
@@ -1251,7 +1251,7 @@
     gap: 8px;
     font-size: .82rem;
     font-weight: 600;
-    color: var(--Charcoal);
+    color: var(--Ink);
     cursor: pointer;
 
     input {
@@ -1298,7 +1298,7 @@
 .PeAskLabel {
     font-size: .9rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 12px;
 }
 
@@ -1332,7 +1332,7 @@
 .DtAskLabel {
     font-size: .9rem;
     font-weight: 700;
-    color: var(--Charcoal);
+    color: var(--Ink);
     margin-bottom: 12px;
 }
 

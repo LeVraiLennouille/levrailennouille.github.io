@@ -107,9 +107,8 @@ const whiteRGB = parseRGB(whiteResolved);
 
 function isLightTarget(rgb) {
     if (!rgb) return false;
-    if (whiteRGB && rgb[0] === whiteRGB[0] && rgb[1] === whiteRGB[1] && rgb[2] === whiteRGB[2]) return true;
-    if (bgVarRGB && rgb[0] === bgVarRGB[0]  && rgb[1] === bgVarRGB[1]  && rgb[2] === bgVarRGB[2]) return true;
-    return false;
+    // Luminance perçue : le curseur passe en noir sur fond clair, en blanc sur fond sombre ou coloré
+    return (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]) > 150;
 }
 
 function getEffectiveBgRGB(x, y) {
@@ -257,7 +256,7 @@ function loop(now) {
         const my = Math.round(mouse.y);
         const topEl = document.elementsFromPoint(mx, my).find(el => el !== dot && el !== ball);
         if (topEl && topEl.closest('.Card, .ChoiceCard, .Input')) {
-            applyTheme(true);
+            applyTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
         } else {
             const bgRGB = getEffectiveBgRGB(mx, my);
             applyTheme(bgRGB ? isLightTarget(bgRGB) : (bgVarRGB ? isLightTarget(bgVarRGB) : false));
@@ -588,4 +587,410 @@ document.addEventListener("DOMContentLoaded", function () {
     }));
 
     input.addEventListener("input", apply);
+})();
+
+
+// * Theme (Light / Dark) * //
+(function () {
+    var root = document.documentElement;
+    var KEY = 'theme';
+    var META_COLORS = {light: '#1c1c1e', dark: '#121214'};
+    var toggles = document.querySelectorAll('[data-theme-toggle]');
+    var labels = document.querySelectorAll('[data-theme-label]');
+    var flashTimer = null;
+
+    function stored() {
+        try {
+            var v = localStorage.getItem(KEY);
+            return (v === 'light' || v === 'dark') ? v : null;
+        } catch (e) {return null;}
+    }
+
+    function current() {return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';}
+
+    function paint(theme) {
+        root.setAttribute('data-theme', theme);
+        toggles.forEach(function (btn) {btn.setAttribute('aria-checked', String(theme === 'dark'));});
+        labels.forEach(function (el) {el.textContent = theme === 'dark' ? 'Sombre' : 'Clair';});
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', META_COLORS[theme]);
+    }
+
+    function setTheme(theme, persist) {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            root.classList.add('ThemeSwitching');
+            clearTimeout(flashTimer);
+            flashTimer = setTimeout(function () {root.classList.remove('ThemeSwitching');}, 400);
+        }
+        paint(theme);
+        if (persist) {
+            try {localStorage.setItem(KEY, theme);} catch (e) {}
+        }
+    }
+
+    paint(current());
+
+    toggles.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            setTheme(current() === 'dark' ? 'light' : 'dark', true);
+        });
+    });
+
+    // Tant que le visiteur n'a rien choisi, on suit le thème de son système
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onSystemChange = function (e) {if (!stored()) setTheme(e.matches ? 'dark' : 'light', false);};
+    if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
+    else if (mq.addListener) mq.addListener(onSystemChange);
+
+    // Synchronisation entre onglets
+    window.addEventListener('storage', function (e) {
+        if (e.key === KEY && (e.newValue === 'light' || e.newValue === 'dark')) paint(e.newValue);
+    });
+})();
+
+// * Search * //
+(function () {
+    var overlay = document.getElementById('SearchOverlay');
+    var input = document.getElementById('SearchInput');
+    var list = document.getElementById('SearchResults');
+    var statusEl = document.getElementById('SearchStatus');
+    var labelEl = document.getElementById('SearchLabel');
+    if (!overlay || !input || !list) return;
+
+    var root = document.documentElement;
+    var openers = document.querySelectorAll('[data-search-open]');
+    var MAX_RESULTS = 8;
+    var SUGGESTED = ['/services', '/reals', '/blog', '/ux', '/about', '/contact'];
+
+    var index = null;
+    var indexPromise = null;
+    var items = [];
+    var active = -1;
+    var lastFocus = null;
+
+    // Normalisation 1:1 (sans accents, minuscules) : les positions restent alignées avec le texte d'origine
+    function foldChar(c) {
+        if (c === '’' || c === '‘') return "'";
+        var d = c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        return d.length === 1 ? d : (c.toLowerCase().length === 1 ? c.toLowerCase() : c);
+    }
+    function fold(str) {
+        var out = '';
+        for (var i = 0; i < str.length; i++) out += foldChar(str.charAt(i));
+        return out;
+    }
+
+    function loadIndex() {
+        if (index) return Promise.resolve(index);
+        if (!indexPromise) {
+            indexPromise = fetch('/search.json', {headers: {'Accept': 'application/json'}})
+                .then(function (r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.json();
+                })
+                .then(function (data) {
+                    index = data.map(function (e) {
+                        e._t = fold(e.t || '');
+                        e._d = fold(e.d || '');
+                        e._k = fold(e.k || '');
+                        e._y = fold(e.y || '');
+                        return e;
+                    });
+                    return index;
+                })
+                .catch(function (err) {
+                    indexPromise = null;
+                    throw err;
+                });
+        }
+        return indexPromise;
+    }
+
+    function wordStart(hay, token) {
+        var i = hay.indexOf(token);
+        while (i !== -1) {
+            if (i === 0 || /[^a-z0-9]/.test(hay.charAt(i - 1))) return true;
+            i = hay.indexOf(token, i + 1);
+        }
+        return false;
+    }
+
+    function score(entry, tokens, phrase) {
+        var total = 0;
+        for (var i = 0; i < tokens.length; i++) {
+            var t = tokens[i];
+            var s = 0;
+            if (entry._t.indexOf(t) !== -1) s = wordStart(entry._t, t) ? 60 : 35;
+            if (entry._k.indexOf(t) !== -1) s = Math.max(s, wordStart(entry._k, t) ? 26 : 18);
+            if (entry._y.indexOf(t) !== -1) s = Math.max(s, 14);
+            if (entry._d.indexOf(t) !== -1) s = Math.max(s, wordStart(entry._d, t) ? 12 : 8);
+            if (!s) return 0;
+            total += s;
+        }
+        if (entry._t.indexOf(phrase) === 0) total += 40;
+        else if (entry._t.indexOf(phrase) !== -1) total += 20;
+        return total;
+    }
+
+    function run(query) {
+        var phrase = fold(query).trim();
+        var tokens = phrase.split(/\s+/).filter(Boolean);
+        if (!tokens.length) return [];
+        var res = [];
+        for (var i = 0; i < index.length; i++) {
+            var s = score(index[i], tokens, phrase);
+            if (s) res.push({entry: index[i], score: s, order: i});
+        }
+        res.sort(function (a, b) {return (b.score - a.score) || (a.order - b.order);});
+        return res.slice(0, MAX_RESULTS).map(function (r) {return r.entry;});
+    }
+
+    // Surlignage (insensible aux accents) construit sans innerHTML
+    function highlight(text, tokens) {
+        var frag = document.createDocumentFragment();
+        var folded = fold(text);
+        var marks = new Array(text.length);
+        var any = false;
+        tokens.forEach(function (t) {
+            if (!t) return;
+            var i = folded.indexOf(t);
+            while (i !== -1) {
+                for (var k = i; k < i + t.length; k++) marks[k] = true;
+                any = true;
+                i = folded.indexOf(t, i + t.length);
+            }
+        });
+        if (!any) {frag.appendChild(document.createTextNode(text)); return frag;}
+        var i = 0;
+        while (i < text.length) {
+            var on = !!marks[i];
+            var j = i;
+            while (j < text.length && !!marks[j] === on) j++;
+            var chunk = text.slice(i, j);
+            if (on) {
+                var m = document.createElement('mark');
+                m.textContent = chunk;
+                frag.appendChild(m);
+            } else {
+                frag.appendChild(document.createTextNode(chunk));
+            }
+            i = j;
+        }
+        return frag;
+    }
+
+    function snippet(desc, tokens) {
+        if (!desc) return '';
+        if (desc.length <= 150) return desc;
+        var folded = fold(desc);
+        var first = -1;
+        tokens.forEach(function (t) {
+            var i = folded.indexOf(t);
+            if (i !== -1 && (first === -1 || i < first)) first = i;
+        });
+        if (first < 100) return desc.slice(0, 150).replace(/\s+\S*$/, '') + '…';
+        var start = Math.max(0, first - 50);
+        return '…' + desc.slice(start, start + 150).replace(/^\S*\s+/, '').replace(/\s+\S*$/, '') + '…';
+    }
+
+    function clear() {
+        list.textContent = '';
+        items = [];
+        active = -1;
+        input.removeAttribute('aria-activedescendant');
+    }
+
+    function setStatus(html, visible) {
+        statusEl.className = 'SearchStatus' + (visible ? '' : ' Sr');
+        statusEl.textContent = '';
+        if (typeof html === 'string') {statusEl.textContent = html;}
+        else if (html) {statusEl.appendChild(html);}
+    }
+
+    function setLabel(text) {
+        labelEl.hidden = !text;
+        labelEl.textContent = text || '';
+    }
+
+    function buildItem(entry, tokens, i) {
+        var li = document.createElement('li');
+        li.setAttribute('role', 'presentation');
+        var a = document.createElement('a');
+        a.className = 'SearchItem CursorHover';
+        a.href = entry.u;
+        a.id = 'SearchItem' + i;
+        a.setAttribute('role', 'option');
+        a.setAttribute('aria-selected', 'false');
+        a.tabIndex = -1;
+
+        var title = document.createElement('span');
+        title.className = 'SearchTitle';
+        title.appendChild(highlight(entry.t, tokens));
+        var type = document.createElement('span');
+        type.className = 'SearchType';
+        type.textContent = entry.y;
+        a.appendChild(title);
+        a.appendChild(type);
+
+        var d = snippet(entry.d, tokens);
+        if (d) {
+            var desc = document.createElement('span');
+            desc.className = 'SearchDesc';
+            desc.appendChild(highlight(d, tokens));
+            a.appendChild(desc);
+        }
+
+        a.addEventListener('mousemove', function () {if (active !== i) setActive(i, false);});
+        li.appendChild(a);
+        return li;
+    }
+
+    function setActive(i, scroll) {
+        if (items[active]) {
+            items[active].classList.remove('Active');
+            items[active].setAttribute('aria-selected', 'false');
+        }
+        active = i;
+        if (items[active]) {
+            items[active].classList.add('Active');
+            items[active].setAttribute('aria-selected', 'true');
+            input.setAttribute('aria-activedescendant', items[active].id);
+            if (scroll) items[active].scrollIntoView({block: 'nearest'});
+        } else {
+            input.removeAttribute('aria-activedescendant');
+        }
+    }
+
+    function render() {
+        clear();
+        var q = input.value.trim();
+
+        if (!index) {
+            setLabel('');
+            setStatus('Chargement de la recherche…', true);
+            return;
+        }
+
+        var results, tokens = [];
+        if (!q) {
+            results = SUGGESTED.map(function (u) {
+                return index.filter(function (e) {return e.u === u;})[0];
+            }).filter(Boolean);
+            setLabel(results.length ? 'Pages populaires' : '');
+            setStatus('', false);
+        } else {
+            tokens = fold(q).split(/\s+/).filter(Boolean);
+            results = run(q);
+            setLabel(results.length ? (results.length + (results.length > 1 ? ' résultats' : ' résultat')) : '');
+        }
+
+        if (!results.length) {
+            if (q) {
+                var wrap = document.createDocumentFragment();
+                var strong = document.createElement('strong');
+                strong.textContent = '« ' + q + ' »';
+                wrap.appendChild(document.createTextNode('Aucun résultat pour '));
+                wrap.appendChild(strong);
+                wrap.appendChild(document.createElement('br'));
+                wrap.appendChild(document.createTextNode('Essayez un autre mot-clé, ou '));
+                var a = document.createElement('a');
+                a.href = '/contact';
+                a.textContent = 'posez-moi la question';
+                wrap.appendChild(a);
+                wrap.appendChild(document.createTextNode('.'));
+                setStatus(wrap, true);
+            }
+            return;
+        }
+
+        results.forEach(function (entry, i) {
+            var li = buildItem(entry, tokens, i);
+            list.appendChild(li);
+            items.push(li.firstChild);
+        });
+        if (q) setStatus(results.length + (results.length > 1 ? ' résultats trouvés' : ' résultat trouvé'), false);
+        setActive(0, false);
+    }
+
+    function open() {
+        if (!overlay.hidden) return;
+        lastFocus = document.activeElement;
+
+        var menu = document.querySelector('.NavMenu.open');
+        if (menu) {
+            menu.classList.remove('open');
+            var burger = document.querySelector('.HamburgerBtn.open');
+            if (burger) {burger.classList.remove('open'); burger.setAttribute('aria-expanded', 'false');}
+        }
+
+        overlay.hidden = false;
+        root.classList.add('SearchOpen');
+        openers.forEach(function (b) {b.setAttribute('aria-expanded', 'true');});
+        render();
+        input.focus();
+        input.select();
+        loadIndex().then(render).catch(function () {
+            clear();
+            setLabel('');
+            setStatus('La recherche est momentanément indisponible. Réessayez dans un instant.', true);
+        });
+    }
+
+    function close() {
+        if (overlay.hidden) return;
+        overlay.hidden = true;
+        root.classList.remove('SearchOpen');
+        openers.forEach(function (b) {b.setAttribute('aria-expanded', 'false');});
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    function go(newTab) {
+        var el = items[active] || items[0];
+        if (!el) return;
+        if (newTab) {window.open(el.href, '_blank', 'noopener');}
+        else {window.location.href = el.href;}
+    }
+
+    openers.forEach(function (b) {
+        b.addEventListener('click', open);
+        b.addEventListener('mouseenter', function () {loadIndex().catch(function () {});}, {once: true});
+        b.addEventListener('focus', function () {loadIndex().catch(function () {});}, {once: true});
+    });
+    overlay.querySelectorAll('[data-search-close]').forEach(function (el) {el.addEventListener('click', close);});
+    input.addEventListener('input', render);
+
+    overlay.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {e.preventDefault(); close(); return;}
+        if (e.key === 'ArrowDown' && items.length) {e.preventDefault(); setActive((active + 1) % items.length, true); return;}
+        if (e.key === 'ArrowUp' && items.length) {e.preventDefault(); setActive((active - 1 + items.length) % items.length, true); return;}
+        if (e.key === 'Enter' && e.target === input) {e.preventDefault(); go(e.ctrlKey || e.metaKey); return;}
+        if (e.key === 'Tab') {
+            var focusables = [input, overlay.querySelector('.SearchClose')];
+            var idx = focusables.indexOf(document.activeElement);
+            if (e.shiftKey && idx <= 0) {e.preventDefault(); focusables[focusables.length - 1].focus();}
+            else if (!e.shiftKey && idx === focusables.length - 1) {e.preventDefault(); focusables[0].focus();}
+        }
+    });
+
+    overlay.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a.SearchItem') : null;
+        if (a && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+            var url = new URL(a.href, window.location.href);
+            if (url.pathname === window.location.pathname) close();
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        var isK = (e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey) && !e.altKey;
+        if (isK) {
+            e.preventDefault();
+            if (overlay.hidden) open(); else close();
+            return;
+        }
+        if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey && overlay.hidden) {
+            var t = e.target;
+            var typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+            if (!typing) {e.preventDefault(); open();}
+        }
+    });
 })();

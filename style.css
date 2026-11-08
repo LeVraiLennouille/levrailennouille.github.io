@@ -22,6 +22,14 @@
     --MinMuted: #777777; --MinMutedRGB: 160, 179, 193;
     --LightMuted: #A3A3A3; --LightMutedRGB: 163, 163, 163;
 
+/* --- Theme (Light par défaut, surchargé par [data-theme="dark"]) --- */
+    --Surface: #fff; --SurfaceRGB: 255, 255, 255;
+    --SurfaceAlt: #faf9f7; --SurfaceAlt2: #f1efe9; --SurfaceAlt3: #eceae6;
+    --Ink: #1c1c1e; --InkRGB: 28, 28, 30;
+    --PrimaryDeep: #134C85;
+    --LineRGB: 0, 0, 0; --LineSolid: #ccc7bd;
+    color-scheme: light;
+
 /* --- Infos --- */
     --Online: #4ade80; --OnlineRGB: 74, 222, 128;
     --Success: #22c55e; --SuccessRGB: 34, 197, 94;
@@ -113,7 +121,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--PureWhite);
+    background-color: var(--Surface);
     padding: 0 200px;
     height: 64px;
     font-size: 1rem;
@@ -172,7 +180,7 @@ html, body {
                     left:0px; 
                     width:100%;
                     content:attr(data-text);
-                    color:var(--DarkPrimary);
+                    color:var(--PrimaryDeep);
                     font-size:0.45em;
                     transform:translateY(36px); -webkit-transform:translateY(36px);
                     transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
@@ -223,7 +231,7 @@ html, body {
         border-radius: 8px;
         transition: background 0.2s ease;
 
-        &:hover {background: rgba(var(--PureBlackRGB), 0.07);}
+        &:hover {background: rgba(var(--LineRGB), 0.07);}
 
         &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(-45deg);}
         &.open .HamburgerLine:nth-child(2) {opacity: 0;}
@@ -665,7 +673,7 @@ section {
     h2.Title {
         font-size: clamp(2rem, 4vw, 2.75rem);
         font-weight: 800;
-        color: var(--Charcoal);
+        color: var(--Ink);
     }
 
     p.Subtitle {
@@ -681,8 +689,8 @@ section {
     flex-direction: column;
     gap: 14px;
     border-radius: 20px;
-    background: var(--PureWhite);
-    border: 1px solid rgba(var(--PureBlackRGB), 0.1);
+    background: var(--Surface);
+    border: 1px solid rgba(var(--LineRGB), 0.1);
     padding: 32px;
     box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -697,7 +705,7 @@ section {
     h3 {
         font-size: 1.2rem;
         font-weight: 800;
-        color: var(--PureBlack);
+        color: var(--Ink);
     }
 
     > p {
@@ -716,7 +724,7 @@ section {
         h3 {
             font-size: 1.15rem;
             font-weight: 800;
-            color: var(--Charcoal);
+            color: var(--Ink);
             margin-bottom: 4px;
         }
 
@@ -1014,8 +1022,8 @@ section {
 .ArrowBtn {
     display: inline-flex;
     gap: 10px;
-    background: var(--PureWhite);
-    color: var(--Charcoal);
+    background: var(--Surface);
+    color: var(--Ink);
     font-weight: 700;
     font-size: 0.95rem;
     box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.2);
@@ -1051,7 +1059,7 @@ section {
     gap: 12px;
     padding: 14px 16px;
     border-radius: 12px;
-    background: var(--PureWhite);
+    background: var(--Surface);
     border: 1px solid rgba(var(--DangerRGB), 0.25);
     border-left: 3px solid var(--Danger);
     box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.16);
@@ -1073,7 +1081,7 @@ section {
         .ToastTitle {
             font-size: 13px;
             font-weight: 700;
-            color: var(--Charcoal);
+            color: var(--Ink);
             margin-bottom: 3px;
         }
 
@@ -1096,7 +1104,7 @@ section {
         line-height: 1;
         transition: color 0.2s ease;
 
-        &:hover {color: var(--Charcoal);}
+        &:hover {color: var(--Ink);}
     }
 }
 
@@ -1316,7 +1324,7 @@ section.Merge {
             height: max-content;
             position: sticky;
             top: 50vh;
-            color: var(--PureBlack);
+            color: var(--Ink);
             font-size: clamp(2.5rem, 6vw, 6rem);
             font-weight: 600;
             margin: 0;
@@ -1412,7 +1420,7 @@ section.Recommendations {
         flex-direction: column;
         flex: 0 0 420px;
         width: 420px;
-        background: var(--PureWhite);
+        background: var(--Surface);
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
         border-radius: 20px;
         border-top: 5px solid var(--Primary);
@@ -1447,7 +1455,7 @@ section.Recommendations {
             position: relative;
             font-size: 1.05rem;
             line-height: 1.6;
-            color: var(--Charcoal);
+            color: var(--Ink);
             margin: 10px 0 28px;
             font-style: italic;
         }
@@ -1475,7 +1483,7 @@ section.Recommendations {
             h3 {
                 font-size: 1rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             p {
@@ -1740,7 +1748,7 @@ main.Index {
 
                 &.Revealed {
                     background-color: transparent;
-                    color: var(--DarkPrimary);
+                    color: var(--PrimaryDeep);
                 }
             }
         }
@@ -1780,7 +1788,7 @@ main.Index {
             position: relative;
             overflow: hidden;
             text-align: left;
-            background: var(--PureWhite);
+            background: var(--Surface);
 
             .Deco {
                 position: absolute;
@@ -1804,7 +1812,7 @@ main.Index {
                     display: block;
                     font-size: 0.95rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     margin-top: 4px;
                 }
             }
@@ -1822,7 +1830,7 @@ main.Index {
             display: block;
             font-size: clamp(2rem, 4.5vw, 4rem);;
             font-weight: 900;
-            color: var(--Charcoal);
+            color: var(--Ink);
             line-height: 1.10;
             margin-bottom: 36px;
         }
@@ -1833,7 +1841,7 @@ main.Index {
             grid-template-columns: repeat(3, 1fr);
             column-gap: 50px;
             justify-content: space-between;
-            background-color: white;
+            background-color: var(--Surface);
             border-radius: 28px;
             box-shadow: 0 16px 40px rgba(var(--CharcoalRGB), 0.10);
             padding: 64px 32px;
@@ -1846,7 +1854,7 @@ main.Index {
                 h4 {
                     font-size: 0.8rem;
                     font-weight: 800;
-                    color: var(--DarkPrimary);
+                    color: var(--PrimaryDeep);
                     text-transform: uppercase;
                     line-height: 1.2;
                 }
@@ -1854,7 +1862,7 @@ main.Index {
                 p {
                     font-size: 1rem;
                     font-weight: 400;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     line-height: 1.5;
                     text-align: left;
                 }
@@ -1910,7 +1918,7 @@ main.Index {
                 font-size: 0.95rem;
                 font-weight: 400;
                 line-height: 1.6;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 text-align: justify;
             }
 
@@ -1936,7 +1944,7 @@ main.Index {
                 font-size: 0.9rem;
                 font-weight: 800;
                 text-transform: uppercase;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-top: 10px;
             }
         }
@@ -1991,14 +1999,14 @@ main.Index {
                 transform: translateY(-6px);
 
                 .Preview img {transform: scale(1.03);}
-                .ProjectName {color: var(--DarkPrimary);}
+                .ProjectName {color: var(--PrimaryDeep);}
             }
 
             .Preview {
                 aspect-ratio: 16 / 9;
                 border-radius: 20px;
                 overflow: hidden;
-                background: var(--PureWhite);
+                background: var(--Surface);
                 box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.1);
 
                 img {
@@ -2124,7 +2132,7 @@ main.Index {
             gap: 10px;
             padding: 36px 32px;
             border-radius: 20px;
-            background: var(--PureWhite);
+            background: var(--Surface);
 
             .Deco {
                 position: absolute;
@@ -2147,13 +2155,13 @@ main.Index {
                 font-size: clamp(1.6rem, 2.6vw, 2.2rem);
                 font-weight: 900;
                 line-height: 1.1;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             .BadgeSub {
                 font-size: 0.95rem;
                 font-weight: 800;
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
             }
         }
     }
@@ -2178,7 +2186,7 @@ main.Index {
         .BlogCard {
             display: flex;
             flex-direction: column;
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 18px;
             padding: 28px 26px;
             text-decoration: none;
@@ -2227,7 +2235,7 @@ main.Index {
             h3 {
                 font-size: 1.15rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 line-height: 1.35;
                 margin-bottom: 10px;
             }
@@ -2247,7 +2255,7 @@ main.Index {
                 justify-content: space-between;
                 font-size: 0.78rem;
                 font-weight: 700;
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
                 margin-top: auto;
 
                 time {color: inherit;}
@@ -2386,7 +2394,7 @@ main.Services {
                 gap: 12px;
                 margin-top: 24px;
                 padding-top: 18px;
-                border-top: 1px solid rgba(var(--PureBlackRGB), 0.08);
+                border-top: 1px solid rgba(var(--LineRGB), 0.08);
 
                 .Meta {
                     font-size: 0.82rem;
@@ -2396,7 +2404,7 @@ main.Services {
                     gap: 8px;
                     flex-wrap: wrap;
 
-                    strong {color: var(--PureBlack); font-weight: 700;}
+                    strong {color: var(--Ink); font-weight: 700;}
                 }
             }
 
@@ -2408,7 +2416,7 @@ main.Services {
             }
 
             &.Featured .Text {
-                h3 {color: var(--Charcoal); font-size: 1.7rem;}
+                h3 {color: var(--Ink); font-size: 1.7rem;}
                 p {color: var(--Muted);}
             }
         }
@@ -2435,14 +2443,14 @@ main.Services {
         .BrowserMock {
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid rgba(var(--PureBlackRGB), 0.08);
+            border: 1px solid rgba(var(--LineRGB), 0.08);
 
             .Chrome {
                 display: flex;
                 align-items: center;
                 gap: 6px;
                 padding: 10px 14px;
-                background: rgba(var(--PureBlackRGB), 0.04);
+                background: rgba(var(--LineRGB), 0.04);
 
                 .Dot {width: 8px; height: 8px; border-radius: 50%;}
                 .Dot.Red {background: #e5534b;}
@@ -2475,18 +2483,18 @@ main.Services {
                 display: block;
                 height: 8px;
                 border-radius: 4px;
-                background: rgba(var(--PureBlackRGB), 0.14);
+                background: rgba(var(--LineRGB), 0.14);
             }
             .MockBar.Accent {width: 44px; height: 10px; background: var(--Primary);}
             .MockBar.Wide {width: 100%; height: 10px;}
             .MockBar.Medium {width: 65%; height: 10px;}
-            .MockBar.Nav {width: 18px; height: 8px; background: rgba(var(--PureBlackRGB), 0.12);}
+            .MockBar.Nav {width: 18px; height: 8px; background: rgba(var(--LineRGB), 0.12);}
 
             .MockBtn {
                 width: 56px;
                 height: 22px;
                 border-radius: 6px;
-                background: rgba(var(--PureBlackRGB), 0.1);
+                background: rgba(var(--LineRGB), 0.1);
             }
             .MockBtn.Accent {background: var(--Primary); width: 64px;}
 
@@ -2495,7 +2503,7 @@ main.Services {
                 flex: 1;
                 aspect-ratio: 1 / 0.7;
                 border-radius: 8px;
-                background: rgba(var(--PureBlackRGB), 0.06);
+                background: rgba(var(--LineRGB), 0.06);
             }
         }
 
@@ -2507,13 +2515,13 @@ main.Services {
         }
 
         .Stat {
-            background: rgba(var(--PureBlackRGB), 0.04);
+            background: rgba(var(--LineRGB), 0.04);
             border-radius: 10px;
             padding: 10px 8px;
             text-align: center;
         }
 
-        .StatValue {display: block; font-size: 1.1rem; font-weight: 800; color: var(--PureBlack);}
+        .StatValue {display: block; font-size: 1.1rem; font-weight: 800; color: var(--Ink);}
         .StatValue.Accent {color: var(--Primary);}
         .StatLabel {display: block; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--LightMuted); margin-top: 2px;}
     }
@@ -2608,7 +2616,7 @@ main.Services {
             h3 {
                 font-size: 1.5rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 10px;
             }
 
@@ -2650,7 +2658,7 @@ main.Services {
 main.UX {
     .Block {
         padding: clamp(56px,9vw,96px) clamp(24px,6vw,60px);
-        border-top: 1px solid rgba(var(--PureBlackRGB),0.06);
+        border-top: 1px solid rgba(var(--LineRGB),0.06);
 
         &#definir {
             padding-bottom: clamp(40px,6vw,64px);
@@ -2686,7 +2694,7 @@ main.UX {
         &:first-of-type {border-top: none;}
 
         &.Alt {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 28px;
             border-top: none;
             padding: clamp(48px,8vw,64px) clamp(24px,6vw,60px);
@@ -2708,7 +2716,7 @@ main.UX {
                 text-decoration: none;
                 box-shadow: 0 1.5px 0 0 currentColor;
 
-                &:hover {color: var(--DarkPrimary);}
+                &:hover {color: var(--PrimaryDeep);}
             }
         }
 
@@ -2738,7 +2746,7 @@ main.UX {
                 z-index: 1;
                 font-size: .8rem;
                 font-weight: 700;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 background: rgba(var(--PrimaryRGB),0.08);
                 border: 1px solid rgba(var(--PrimaryRGB),0.18);
                 padding: 8px 16px;
@@ -2757,7 +2765,7 @@ main.UX {
             .Card {
                 border-radius: 20px;
                 background: rgba(var(--BackgroundRGB),0.5);
-                border: 1px solid rgba(var(--PureBlackRGB),0.08);
+                border: 1px solid rgba(var(--LineRGB),0.08);
                 padding: 32px 30px 30px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB),0.05);
                 position: relative;
@@ -2776,7 +2784,7 @@ main.UX {
                 h3 {
                     font-size: 1.12rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     margin-bottom: 10px;
                 }
 
@@ -2801,7 +2809,7 @@ main.UX {
                 border-radius: 50%;
                 background: var(--Background);
                 border: 1px solid var(--Borders);
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
                 font-size: 1rem;
                 font-weight: 800;
                 box-shadow: 0 4px 14px rgba(var(--PureBlackRGB), 0.1);
@@ -2817,7 +2825,7 @@ main.UX {
 
         &#ux-ui .CompareGrid {max-width: none;}
 
-        &#ux-ui .CompareGrid .Card {background: var(--PureWhite);}
+        &#ux-ui .CompareGrid .Card {background: var(--Surface);}
 
         .BlockCTA {margin-top: 28px;}
 
@@ -2838,9 +2846,9 @@ main.UX {
                 .Tab {
                     font-size: .78rem;
                     font-weight: 700;
-                    background: var(--PureWhite);
+                    background: var(--Surface);
                     border: 1px solid transparent;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     padding: 10px 16px;
                     border-radius: 50px;
                     white-space: nowrap;
@@ -2870,8 +2878,8 @@ main.UX {
             #search {
                 font-size: .85rem;
                 font-weight: 600;
-                background: var(--PureWhite);
-                color: var(--Charcoal);
+                background: var(--Surface);
+                color: var(--Ink);
                 border: 1px solid var(--Borders);
                 border-radius: 50px;
                 padding: 10px 18px;
@@ -2893,8 +2901,8 @@ main.UX {
                 display: flex;
                 flex-direction: column;
                 cursor: pointer;
-                background: var(--PureWhite);
-                color: var(--Charcoal);
+                background: var(--Surface);
+                color: var(--Ink);
                 border-radius: 18px;
                 padding: 26px 24px;
                 position: relative;
@@ -2959,7 +2967,7 @@ main.UX {
                 h3 {
                     font-size: 1rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     margin-bottom: 8px;
                 }
 
@@ -2998,12 +3006,12 @@ main.UX {
     &.SubPage {
         .Block {
             padding: clamp(56px, 9vw, 96px) 0;
-            border-top: 1px solid rgba(var(--PureBlackRGB), 0.06);
+            border-top: 1px solid rgba(var(--LineRGB), 0.06);
 
             &:first-of-type {border-top: none;}
 
             &.Alt {
-                background: var(--PureWhite);
+                background: var(--Surface);
                 border-radius: 28px;
                 border-top: none;
                 padding: clamp(48px, 8vw, 64px) clamp(24px, 6vw, 60px);
@@ -3026,7 +3034,7 @@ main.UX {
                     text-decoration: none;
                     box-shadow: 0 1.5px 0 0 currentColor;
 
-                  &:hover {color: var(--DarkPrimary);}
+                  &:hover {color: var(--PrimaryDeep);}
                 }
             }
 
@@ -3069,7 +3077,7 @@ main.UX {
                     margin: 0;
                     font-size: 1rem;
                     line-height: 1.6;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     font-weight: 600;
                 }
 
@@ -3091,11 +3099,11 @@ main.UX {
             }
 
             .DemoBox {
-                background: var(--PureWhite);
+                background: var(--Surface);
                 border-radius: 20px;
                 padding: clamp(24px, 4vw, 36px);
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-                border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+                border: 1px solid rgba(var(--LineRGB), 0.06);
 
                 .DemoActions {
                     display: flex;
@@ -3133,7 +3141,7 @@ main.UX {
                         font-size: .8rem;
                         font-weight: 700;
                         background: transparent;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         border: 1.5px solid var(--Borders);
                         border-radius: 50px;
                         padding: 12px 22px;
@@ -3157,7 +3165,7 @@ main.UX {
                     margin-top: 20px;
                     text-align: center;
                     padding: 26px 20px;
-                    background: #f1efe9;
+                    background: var(--SurfaceAlt2);
                     border-radius: 14px;
 
                     .SpList {
@@ -3168,10 +3176,10 @@ main.UX {
                         gap: 10px;
                         font-size: 1rem;
                         font-weight: 800;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
 
                         li {
-                            background: var(--PureWhite);
+                            background: var(--Surface);
                             border-radius: 8px;
                             padding: 8px 14px;
                             box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
@@ -3186,7 +3194,7 @@ main.UX {
                         display: block;
                         font-size: .82rem;
                         font-weight: 700;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         margin-bottom: 8px;
 
                         .DemoTextarea {
@@ -3195,7 +3203,7 @@ main.UX {
                             padding: 12px 14px;
                             border: 1.5px solid var(--Borders);
                             border-radius: 10px;
-                            background: #faf9f7;
+                            background: var(--SurfaceAlt);
                             resize: vertical;
                             margin-bottom: 14px;
 
@@ -3215,7 +3223,7 @@ main.UX {
                     margin-top: 20px;
                     font-size: .85rem;
                     font-weight: 700;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                 }
 
                 .DemoResult {
@@ -3226,7 +3234,7 @@ main.UX {
                     border-left: 3px solid var(--Primary);
                     font-size: 1rem;
                     line-height: 1.65;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     font-weight: 600;
                     display: none;
 
@@ -3242,7 +3250,7 @@ main.UX {
                 max-width: none;
 
                 .Card.RelatedCard {
-                    background-color: var(--PureWhite);
+                    background-color: var(--Surface);
                     text-decoration: none;
 
                     .RelatedCode {
@@ -3251,7 +3259,7 @@ main.UX {
                     }
                 }
 
-                .Card:nth-of-type(even) .RelatedCode {color: var(--DarkPrimary);}
+                .Card:nth-of-type(even) .RelatedCode {color: var(--PrimaryDeep);}
             }
 
             .Prose {
@@ -3342,8 +3350,8 @@ main.UX {
                     gap: 12px;
                     padding: 28px 26px;
                     border-radius: 18px;
-                    background: var(--PureWhite);
-                    border: 1px solid rgba(var(--PureBlackRGB), 0.08);
+                    background: var(--Surface);
+                    border: 1px solid rgba(var(--LineRGB), 0.08);
                     box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
 
                     &::before {display: none;}
@@ -3357,7 +3365,7 @@ main.UX {
                         font-size: 1.15rem;
                         line-height: 1.35;
                         font-weight: 800;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                     }
 
                     p {
@@ -3461,7 +3469,7 @@ main.UX {
                 text-decoration: none;
                 box-shadow: 0 1.5px 0 0 currentColor;
 
-                &:hover {color: var(--DarkPrimary);}
+                &:hover {color: var(--PrimaryDeep);}
             }
 
             .TableCaption {
@@ -3479,7 +3487,7 @@ main.UX {
                 border-radius: 14px;
                 overflow-x: auto;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-                background: var(--PureWhite);
+                background: var(--Surface);
                 max-width: 900px;
                 margin-left: auto;
                 margin-right: auto;
@@ -3505,11 +3513,11 @@ main.UX {
                         padding: 13px 20px;
                         font-size: 0.9rem;
                         font-weight: 600;
-                        color: var(--Charcoal);
-                        border-top: 1px solid rgba(var(--PureBlackRGB), 0.05);
+                        color: var(--Ink);
+                        border-top: 1px solid rgba(var(--LineRGB), 0.05);
 
                         &:last-child {
-                            color: var(--DarkPrimary);
+                            color: var(--PrimaryDeep);
                             font-weight: 800;
                             text-align: right;
                         }
@@ -3537,7 +3545,7 @@ main.UX {
                 }
 
                 details {
-                    background: var(--PureWhite);
+                    background: var(--Surface);
                     border-radius: 14px;
                     padding: 6px 22px;
                     box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.05);
@@ -3556,7 +3564,7 @@ main.UX {
                     padding: 16px 0;
                     font-size: 1rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -3605,10 +3613,10 @@ main.UX {
                 font-size:.8rem;
                 font-weight:700;
                 text-decoration:none;
-                color:var(--Charcoal);
+                color:var(--Ink);
                 padding:11px 20px;
                 border-radius:50px;
-                background:var(--PureWhite);
+                background:var(--Surface);
                 box-shadow:0 2px 12px rgba(var(--PureBlackRGB),0.06);
                 transition:all .2s ease; max-width:40%;
 
@@ -3646,8 +3654,8 @@ main.UX {
                     flex-direction: column;
                     gap: 12px;
                     padding: 30px 32px 28px;
-                    background: var(--PureWhite);
-                    border: 1px solid rgba(var(--PureBlackRGB), 0.1);
+                    background: var(--Surface);
+                    border: 1px solid rgba(var(--LineRGB), 0.1);
                     transition: transform 0.45s cubic-bezier(.22,1,.36,1), box-shadow 0.45s ease, border-color 0.45s ease;
 
                     &::before {
@@ -3739,7 +3747,7 @@ main.UX {
                         z-index: 1;
                         margin-top: 8px;
                         padding-top: 16px;
-                        border-top: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                        border-top: 1px solid rgba(var(--LineRGB), 0.07);
 
                         .Label {
                             display: block;
@@ -3769,7 +3777,7 @@ main.UX {
                             padding: 5px 12px;
                             border-radius: 50px;
                             background: rgba(var(--PrimaryRGB), 0.1);
-                            color: var(--DarkPrimary);
+                            color: var(--PrimaryDeep);
                             font-size: 0.72rem;
                             font-weight: 800;
                             line-height: 1.3;
@@ -3835,8 +3843,8 @@ main.UX {
 
                     li {
                         padding: 28px 26px;
-                        background: var(--PureWhite);
-                        border: 1px solid rgba(var(--PureBlackRGB), 0.08);
+                        background: var(--Surface);
+                        border: 1px solid rgba(var(--LineRGB), 0.08);
                         border-radius: 18px;
                         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
                         font-size: 0.95rem;
@@ -3998,7 +4006,7 @@ main.TextAnims {
                 padding-top: 18px;
                 font-size: clamp(1.15rem, 0.6vw + 1rem, 1.3rem);
                 line-height: 1.6;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             &:last-of-type {
@@ -4009,7 +4017,7 @@ main.TextAnims {
         }
 
         a {
-            color: var(--Charcoal);
+            color: var(--Ink);
             position: relative;
             font-weight: 700;
             text-decoration: none;
@@ -4068,8 +4076,8 @@ main.TextAnims {
         overflow-y: auto;
         padding: 26px 24px;
         border-radius: 20px;
-        background: var(--PureWhite);
-        border: 1px solid rgba(var(--PureBlackRGB), 0.1);
+        background: var(--Surface);
+        border: 1px solid rgba(var(--LineRGB), 0.1);
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
         scrollbar-width: none;
 
@@ -4090,7 +4098,7 @@ main.TextAnims {
             h2 {
                 font-size: 1.15rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-top: 10px;
             }
 
@@ -4222,7 +4230,7 @@ main.TextAnims {
                 h3 {
                     font-size: 1.15rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     margin-bottom: 4px;
                 }
 
@@ -4636,7 +4644,7 @@ main.Reals {
                 h4 {
                     font-size: 1.1rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     line-height: 1.3;
                 }
 
@@ -4664,7 +4672,7 @@ main.Reals {
                 display: block;
                 border-radius: 16px;
                 overflow: hidden;
-                background: var(--PureWhite);
+                background: var(--Surface);
                 text-decoration: none;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -4732,7 +4740,7 @@ main.Reals {
         &.Hidden {display: none !important;}
 
         .Card {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border: 1px solid var(--Borders);
             border-radius: 20px;
             padding: 40px 36px;
@@ -4744,7 +4752,7 @@ main.Reals {
             .ModalTitle {
                 font-size: 20px;
                 font-weight: 700;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin: 0 0 8px;
             }
 
@@ -4758,7 +4766,7 @@ main.Reals {
     }
 
     &.SubPage {
-        color: var(--Charcoal);
+        color: var(--Ink);
 
         .TopBanner {
             position: relative;
@@ -4797,7 +4805,7 @@ main.Reals {
             h1 {
                 font-size: clamp(2.6rem, 6vw, 4.4rem);
                 font-weight: 900;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 line-height: 1.05;
                 margin: 0 0 28px;
             }
@@ -4820,11 +4828,11 @@ main.Reals {
             max-width: calc(100% - 48px);
             margin: 0 auto 56px;
             padding: 6px 6px 6px 26px;
-            background: var(--PureWhite);
+            background: var(--Surface);
             border: 1px solid var(--Borders);
             border-radius: 999px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-            color: var(--Charcoal);
+            color: var(--Ink);
             text-decoration: none;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -4851,7 +4859,7 @@ main.Reals {
                 white-space: nowrap;
                 font-size: 1rem;
                 font-weight: 700;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             .LinkArrow {
@@ -4924,7 +4932,7 @@ main.Reals {
             gap: 20px;
 
             p {
-                background: var(--PureWhite);
+                background: var(--Surface);
                 border-radius: 16px;
                 padding: 26px 24px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -4990,7 +4998,7 @@ main.Reals {
                 padding-left: 22px;
                 font-size: clamp(1.5rem, 3vw, 2rem);
                 font-weight: 900;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 22px;
 
                 &::before {
@@ -5041,7 +5049,7 @@ main.Reals {
                     }
 
                     b {
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         font-weight: 800;
                     }
                 }
@@ -5057,7 +5065,7 @@ main.Reals {
                 font-size: 0.72rem;
                 font-weight: 800;
                 text-transform: uppercase;
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
 
                 &:last-child {color: var(--Primary);}
             }
@@ -5071,7 +5079,7 @@ main.Reals {
             overflow: hidden;
             margin: 0 auto 60px;
             user-select: none;
-            background-color: var(--PureWhite);
+            background-color: var(--Surface);
             border-radius: 20px;
             box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -5090,7 +5098,7 @@ main.Reals {
             height: 100%;
             overflow: hidden;
             border-right: 2px solid var(--PureWhite);
-            background-color: var(--PureWhite);
+            background-color: var(--Surface);
 
             .OldImage {
                 display: block;
@@ -5578,7 +5586,7 @@ main.Reals {
                     .RelatedTitle {
                         font-size: clamp(1.8rem, 3.5vw, 2.6rem);
                         font-weight: 900;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         margin: 0;
                     }
                 }
@@ -5615,7 +5623,7 @@ main.Reals {
                             overflow: hidden;
                             border-radius: 16px;
                             aspect-ratio: 4/3;
-                            background: var(--PureWhite);
+                            background: var(--Surface);
                             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
                             transition: box-shadow 0.3s ease;
 
@@ -5663,7 +5671,7 @@ main.Reals {
                             .RelatedName {
                                 font-size: 1.05rem;
                                 font-weight: 800;
-                                color: var(--Charcoal);
+                                color: var(--Ink);
                                 margin: 0;
                                 transition: color 0.2s ease;
                             }
@@ -5692,7 +5700,7 @@ main.Reals {
             gap: 20px;
 
             & > div {
-                background: var(--PureWhite);
+                background: var(--Surface);
                 border-radius: 16px;
                 padding: 22px 22px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -5722,7 +5730,7 @@ main.Reals {
         }
 
         .ResultItem {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 16px;
             padding: 26px 24px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -5758,7 +5766,7 @@ main.Reals {
 }
 
 main.Blog {
-    color: var(--Charcoal);
+    color: var(--Ink);
 
     &.Index {
         .BlogHero .HeroInner .Meta {justify-content: center;}
@@ -5783,7 +5791,7 @@ main.Blog {
         .BlogCard {
             display: flex;
             flex-direction: column;
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 18px;
             padding: 28px 26px;
             text-decoration: none;
@@ -5834,7 +5842,7 @@ main.Blog {
             h3 {
                 font-size: 1.15rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 line-height: 1.35;
                 margin-bottom: 10px;
             }
@@ -5854,7 +5862,7 @@ main.Blog {
                 justify-content: space-between;
                 font-size: 0.78rem;
                 font-weight: 700;
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
                 margin-top: auto;
 
                 time {color: inherit;}
@@ -5889,7 +5897,7 @@ main.Blog {
                 cursor: default;
                 align-items: center;
                 text-align: center;
-                background: var(--PureWhite);
+                background: var(--Surface);
                 box-shadow: none;
                 border: 1.5px dashed var(--Borders);
 
@@ -5933,8 +5941,8 @@ main.Blog {
                 padding: 0 14px;
                 border: none;
                 border-radius: 50px;
-                background: var(--PureWhite);
-                color: var(--Charcoal);
+                background: var(--Surface);
+                color: var(--Ink);
                 font-weight: 800;
                 font-size: 0.9rem;
                 cursor: pointer;
@@ -5962,7 +5970,7 @@ main.Blog {
             .Nav {
                 position: sticky;
                 top: 88px;
-                background-color: var(--PureWhite);
+                background-color: var(--Surface);
                 border-radius: 16px;
                 padding: 28px 24px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
@@ -5971,10 +5979,10 @@ main.Blog {
                     font-size: 0.7rem;
                     font-weight: 800;
                     text-transform: uppercase;
-                    color: var(--PureBlack);
+                    color: var(--Ink);
                     margin-bottom: 16px;
                     padding-bottom: 12px;
-                    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                    border-bottom: 1px solid rgba(var(--LineRGB), 0.07);
                 }
 
                 ul {
@@ -5989,7 +5997,7 @@ main.Blog {
                         display: block;
                         font-size: 0.8rem;
                         font-weight: 600;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         text-decoration: none;
                         padding: 7px 10px;
                         border-radius: 8px;
@@ -6008,7 +6016,7 @@ main.Blog {
 
                 .SideCTA {
                     padding-top: 18px;
-                    border-top: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                    border-top: 1px solid rgba(var(--LineRGB), 0.07);
 
                     p {
                         font-size: 0.8rem;
@@ -6041,7 +6049,7 @@ main.Blog {
         h2 {
             font-size: clamp(1.55rem, 2.6vw, 1.95rem);
             font-weight: 900;
-            color: var(--Charcoal);
+            color: var(--Ink);
             margin: 98px 0 22px;
             scroll-margin-top: 100px;
             position: relative;
@@ -6081,12 +6089,12 @@ main.Blog {
         .Lead {
             font-size: 1.15rem;
             line-height: 1.75;
-            color: var(--Charcoal);
+            color: var(--Ink);
             font-weight: 600;
             margin-bottom: 24px;
         }
 
-        strong, b {color: var(--Charcoal); font-weight: 800;}
+        strong, b {color: var(--Ink); font-weight: 800;}
 
         .Highlight {
             display: flex;
@@ -6110,7 +6118,7 @@ main.Blog {
                 margin: 0;
                 font-size: 0.92rem;
                 line-height: 1.65;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 font-weight: 600;
                 text-align: left;
             }
@@ -6124,7 +6132,7 @@ main.Blog {
             transition: color 0.2s ease;
             box-shadow: 0 1.5px 0 0 currentColor;
 
-            &:hover {color: var(--DarkPrimary);}
+            &:hover {color: var(--PrimaryDeep);}
         }
 
         > ul {
@@ -6159,7 +6167,7 @@ main.Blog {
         border-radius: 14px;
         overflow-x: auto;
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
-        background: var(--PureWhite);
+        background: var(--Surface);
 
         table {
             width: 100%;
@@ -6189,10 +6197,10 @@ main.Blog {
             padding: 13px 20px;
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--Charcoal);
-            border-top: 1px solid rgba(var(--PureBlackRGB), 0.05);
+            color: var(--Ink);
+            border-top: 1px solid rgba(var(--LineRGB), 0.05);
 
-            &:last-child {color: var(--DarkPrimary); font-weight: 800; text-align: right;}
+            &:last-child {color: var(--PrimaryDeep); font-weight: 800; text-align: right;}
         }
     }
 
@@ -6211,7 +6219,7 @@ main.Blog {
         margin: 12px 0 32px;
 
         .TrapCard {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 14px;
             padding: 24px 22px;
             box-shadow: 0 4px 20px rgba(var(--PureBlackRGB), 0.05);
@@ -6221,7 +6229,7 @@ main.Blog {
                 margin: 0 0 10px;
                 font-size: 1rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             p {
@@ -6281,7 +6289,7 @@ main.Blog {
                 margin: 0 0 12px;
                 font-size: 1.05rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             .Pill {
@@ -6312,7 +6320,7 @@ main.Blog {
         margin: 12px 0 32px;
 
         .HarmonyCard {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 16px;
             padding: 26px 24px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -6321,7 +6329,7 @@ main.Blog {
                 margin: 0 0 14px;
                 font-size: 1.05rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             .SwatchRow {
@@ -6420,7 +6428,7 @@ main.Blog {
 
         .LoopStep {
             flex: 1;
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 16px;
             padding: 24px 20px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -6444,7 +6452,7 @@ main.Blog {
                 margin: 0 0 8px;
                 font-size: 1rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
             }
 
             p {
@@ -6483,7 +6491,7 @@ main.Blog {
         margin: 12px 0 32px;
 
         details {
-            background: var(--PureWhite);
+            background: var(--Surface);
             border-radius: 14px;
             padding: 6px 22px;
             box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.05);
@@ -6497,7 +6505,7 @@ main.Blog {
                 padding: 16px 0;
                 font-size: 0.98rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -6739,7 +6747,7 @@ main.About {
             h3 {
                 font-size: 1.5rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 10px;
             }
 
@@ -6790,7 +6798,7 @@ main.About {
                 li {
                     font-size: 0.8rem;
                     font-weight: 700;
-                    color: var(--DarkPrimary);
+                    color: var(--PrimaryDeep);
                     background: rgba(var(--PrimaryRGB), 0.08);
                     border: 1px solid rgba(var(--PrimaryRGB), 0.2);
                     padding: 6px 15px;
@@ -6925,7 +6933,7 @@ main.Contact {
             .ContactTitle {
                 font-size: clamp(2.8rem, 5vw, 4.5rem);
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 line-height: 1;
                 margin-bottom: 18px;
             }
@@ -6943,7 +6951,7 @@ main.Contact {
                     font-size: 0.8rem;
                     font-weight: 700;
                     text-transform: uppercase;
-                    color: rgba(var(--PureBlackRGB), 0.8);
+                    color: rgba(var(--InkRGB), 0.8);
                     line-height: 1.6;
                     transition: color 0.3s ease;
                     padding: 0 2px 4px;
@@ -6972,8 +6980,8 @@ main.Contact {
                 gap: 16px;
                 width: 100%;
                 max-width: 600px;
-                background: var(--PureWhite);
-                border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+                background: var(--Surface);
+                border: 1px solid rgba(var(--LineRGB), 0.06);
                 border-radius: 24px;
                 padding: 40px 44px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
@@ -6995,15 +7003,15 @@ main.Contact {
                         width: 100%;
                         box-sizing: border-box;
                         padding: 13px 16px;
-                        border: 1px solid rgba(var(--PureBlackRGB), 0.15);
+                        border: 1px solid rgba(var(--LineRGB), 0.15);
                         border-radius: 12px;
-                        background: var(--PureWhite);
-                        color: var(--PureBlack);
+                        background: var(--Surface);
+                        color: var(--Ink);
                         font-size: 1rem;
                         outline: none;
                         transition: all 0.3s ease;
 
-                        &:hover {border-color: rgba(var(--PureBlackRGB), 0.3);}
+                        &:hover {border-color: rgba(var(--LineRGB), 0.3);}
 
                         &:focus~.Label,
                         &:valid~.Label,
@@ -7023,7 +7031,7 @@ main.Contact {
                         left: 15px;
                         top: 50%;
                         transform: translateY(-50%);
-                        color: var(--PureBlack);
+                        color: var(--Ink);
                         background-color: transparent;
                         padding: 0 5px;
                         pointer-events: none;
@@ -7103,8 +7111,8 @@ main.Contact {
                     button[type="reset"] {
                         padding: 14px 24px;
                         background: transparent;
-                        color: rgba(var(--PureBlackRGB),0.4);
-                        border: 1px solid rgba(var(--PureBlackRGB),0.18);
+                        color: rgba(var(--InkRGB),0.4);
+                        border: 1px solid rgba(var(--LineRGB),0.18);
                         border-radius: 50px;
                         font-size: 0.78rem;
                         font-weight: 600;
@@ -7137,7 +7145,7 @@ main.Contact {
                     gap: 8px;
                     text-decoration: none;
                     font-size: 0.8rem;
-                    color: rgba(var(--PureBlackRGB),0.45);
+                    color: rgba(var(--InkRGB),0.45);
                     line-height: 1.6;
                     width: fit-content;
                     transition: all 0.3s ease;
@@ -7184,8 +7192,8 @@ main.Contact {
 
         .ContactBookingFrame {
             position: relative;
-            background-color: var(--PureWhite);
-            border: 1px solid rgba(var(--PureBlackRGB), 0.06);
+            background-color: var(--Surface);
+            border: 1px solid rgba(var(--LineRGB), 0.06);
             border-radius: 16px;
             padding: 16px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
@@ -7207,7 +7215,7 @@ main.Contact {
             margin-top: 16px;
             text-decoration: none;
             font-size: 0.8rem;
-            color: rgba(var(--PureBlackRGB), 0.45);
+            color: rgba(var(--InkRGB), 0.45);
             transition: color 0.3s ease;
 
             &:hover {color: var(--Primary);}
@@ -7288,7 +7296,7 @@ main.City {
             dd {
                 font-size: 0.95rem;
                 line-height: 1.5;
-                color: var(--Charcoal);
+                color: var(--Ink);
 
                 a {color: var(--Primary); text-decoration: none; font-weight: 700;}
                 a:hover {text-decoration: underline;}
@@ -7350,7 +7358,7 @@ main.City {
             h3 {
                 font-size: 1.3rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 8px;
             }
 
@@ -7394,7 +7402,7 @@ main.City {
             h3 {
                 font-size: 1.15rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 8px;
             }
 
@@ -7415,7 +7423,7 @@ main.City {
             gap: 12px;
 
             details {
-                background: var(--PureWhite);
+                background: var(--Surface);
                 border-radius: 14px;
                 padding: 6px 22px;
                 box-shadow: 0 2px 16px rgba(var(--PureBlackRGB), 0.05);
@@ -7428,7 +7436,7 @@ main.City {
                     padding: 16px 0;
                     font-size: 1rem;
                     font-weight: 800;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -7519,7 +7527,7 @@ main.City {
                 gap: 24px;
                 padding: 28px;
                 border-radius: 20px;
-                background: var(--PureWhite);
+                background: var(--Surface);
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
             }
 
@@ -7539,7 +7547,7 @@ main.City {
             h3 {
                 font-size: 1.25rem;
                 font-weight: 800;
-                color: var(--Charcoal);
+                color: var(--Ink);
                 margin-bottom: 10px;
             }
 
@@ -7563,7 +7571,7 @@ main.City {
         max-width: 900px;
         margin: 64px auto 0;
         padding: 36px 40px 40px;
-        background: var(--PureWhite);
+        background: var(--Surface);
         border-radius: 20px;
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
 
@@ -7594,7 +7602,7 @@ main.City {
             font-size: 0.85rem;
             font-weight: 700;
             line-height: 1.4;
-            color: var(--DarkPrimary);
+            color: var(--PrimaryDeep);
             text-decoration: none;
             transition: all 0.25s ease;
 
@@ -7671,7 +7679,7 @@ main.Terms {
             .Nav {
             position: sticky;
             top: 88px;
-            background-color: var(--PureWhite);
+            background-color: var(--Surface);
             border-radius: 16px;
             padding: 28px 24px;
             box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
@@ -7680,10 +7688,10 @@ main.Terms {
                     font-size: 0.7rem;
                     font-weight: 800;
                     text-transform: uppercase;
-                    color: var(--PureBlack);
+                    color: var(--Ink);
                     margin-bottom: 16px;
                     padding-bottom: 12px;
-                    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                    border-bottom: 1px solid rgba(var(--LineRGB), 0.07);
                 }
 
                 ul {
@@ -7698,7 +7706,7 @@ main.Terms {
                         display: block;
                         font-size: 0.82rem;
                         font-weight: 600;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         text-decoration: none;
                         padding: 7px 0;
                         border-radius: 8px;
@@ -7731,7 +7739,7 @@ main.Terms {
                 grid-template-columns: 56px 1fr;
                 gap: 24px;
                 padding: 48px 0;
-                border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.08);
+                border-bottom: 1px solid rgba(var(--LineRGB), 0.08);
 
                 &:first-child {padding-top: 0;}
                 &:last-child  {border-bottom: none;}
@@ -7754,14 +7762,14 @@ main.Terms {
                     h3 {
                         font-size: 1rem;
                         font-weight: 700;
-                        color: var(--DarkPrimary);
+                        color: var(--PrimaryDeep);
                         margin: 24px 0 10px;
                     }
 
                     p {
                         font-size: 0.95rem;
                         line-height: 1.75;
-                        color: var(--Charcoal);
+                        color: var(--Ink);
                         margin-bottom: 14px;
                         font-weight: 500;
                         text-transform: none;
@@ -7793,10 +7801,10 @@ main.Terms {
                         }
                     }
 
-                    strong {color: var(--Charcoal);}
+                    strong {color: var(--Ink);}
 
                     .Card {
-                        background-color: var(--PureWhite);
+                        background-color: var(--Surface);
                         border-radius: 12px;
                         padding: 6px 0;
                         margin: 20px 0;
@@ -7808,7 +7816,7 @@ main.Terms {
                             align-items: baseline;
                             gap: 16px;
                             padding: 12px 20px;
-                            border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.05);
+                            border-bottom: 1px solid rgba(var(--LineRGB), 0.05);
                             transition: background 0.2s ease;
 
                             &:last-child {border-bottom: none;}
@@ -7826,7 +7834,7 @@ main.Terms {
                             .Value {
                                 font-size: 0.9rem;
                                 font-weight: 600;
-                                color: var(--PureBlack);
+                                color: var(--Ink);
                                 text-transform: none;
                                 overflow-wrap: anywhere;
 
@@ -7846,7 +7854,7 @@ main.Terms {
                         li {
                             font-size: 0.92rem;
                             font-weight: 500;
-                            color: var(--Charcoal);
+                            color: var(--Ink);
                             padding-left: 20px;
                             position: relative;
                             text-transform: none;
@@ -7888,7 +7896,7 @@ main.Terms {
                         p {
                             margin: 0;
                             font-size: 0.9rem;
-                            color: var(--Charcoal);
+                            color: var(--Ink);
                             font-weight: 600;
                         }
                     }
@@ -7940,7 +7948,7 @@ main.Terms {
 
                     .Update {
                         font-size: 0.8rem ;
-                        color: var(--PureBlack);
+                        color: var(--Ink);
                         font-style: italic;
                         margin-top: 20px;
 
@@ -7980,13 +7988,13 @@ main.CV {
             font-size: 1.15rem;
             font-weight: 800;
             line-height: 1.25;
-            color: var(--Charcoal);
+            color: var(--Ink);
         }
 
         .CardHead {margin-bottom: 6px;}
 
         a:not(.Link) {
-            color: var(--DarkPrimary);
+            color: var(--PrimaryDeep);
             font-weight: 700;
             text-decoration: none;
             overflow-wrap: anywhere;
@@ -8015,18 +8023,18 @@ main.CV {
             padding: 12px 0;
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--Charcoal);
+            color: var(--Ink);
             overflow-wrap: anywhere;
 
             &:first-child {padding-top: 0;}
             &:last-child {padding-bottom: 0;}
-            &:not(:last-child) {border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.08);}
+            &:not(:last-child) {border-bottom: 1px solid rgba(var(--LineRGB), 0.08);}
 
             .Label {
                 font-size: 0.72rem;
                 font-weight: 800;
                 text-transform: uppercase;
-                color: rgba(var(--PureBlackRGB), 0.6);
+                color: rgba(var(--InkRGB), 0.6);
             }
         }
     }
@@ -8071,14 +8079,14 @@ main.CV {
 
         & + .SkillGroup {
             padding-top: 18px;
-            border-top: 1px dashed rgba(var(--PureBlackRGB), 0.14);
+            border-top: 1px dashed rgba(var(--LineRGB), 0.14);
         }
 
         h4 {
             font-size: 0.78rem;
             font-weight: 800;
             text-transform: uppercase;
-            color: rgba(var(--PureBlackRGB), 0.6);
+            color: rgba(var(--InkRGB), 0.6);
         }
     }
 
@@ -8091,7 +8099,7 @@ main.CV {
         li {
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--DarkPrimary);
+            color: var(--PrimaryDeep);
             background: rgba(var(--PrimaryRGB), 0.08);
             border: 1px solid rgba(var(--PrimaryRGB), 0.2);
             padding: 6px 15px;
@@ -8173,7 +8181,7 @@ main.CV {
                 border-radius: 50px;
                 background: rgba(var(--PrimaryRGB), 0.12);
                 border: 1px solid rgba(var(--PrimaryRGB), 0.3);
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
                 font-size: 0.8rem;
                 font-weight: 700;
             }
@@ -8187,7 +8195,7 @@ main.CV {
                 flex: none;
                 font-size: 1rem;
                 font-weight: 700;
-                color: var(--DarkPrimary);
+                color: var(--PrimaryDeep);
             }
 
             .Desc {
@@ -8206,7 +8214,7 @@ main.CV {
 }
 
 main.Promenade {
-    color: var(--Charcoal);
+    color: var(--Ink);
 
     .PromenadeContent {
         background-color: var(--Background);
@@ -8223,7 +8231,7 @@ main.Promenade {
             .Nav {
                 position: sticky;
                 top: 88px;
-                background-color: var(--PureWhite);
+                background-color: var(--Surface);
                 border-radius: 16px;
                 padding: 28px 24px;
                 box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.07);
@@ -8232,10 +8240,10 @@ main.Promenade {
                     font-size: 0.7rem;
                     font-weight: 800;
                     text-transform: uppercase;
-                    color: var(--PureBlack);
+                    color: var(--Ink);
                     margin-bottom: 16px;
                     padding-bottom: 12px;
-                    border-bottom: 1px solid rgba(var(--PureBlackRGB), 0.07);
+                    border-bottom: 1px solid rgba(var(--LineRGB), 0.07);
                 }
 
                 ul {
@@ -8251,7 +8259,7 @@ main.Promenade {
                     display: block;
                     font-size: 0.8rem;
                     font-weight: 700;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     text-decoration: none;
                     padding: 9px 10px;
                     border-radius: 8px;
@@ -8280,7 +8288,7 @@ main.Promenade {
                 > .Lead {
                     font-size: 1.15rem;
                     line-height: 1.75;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     font-weight: 600;
                     text-align: left;
                     margin-bottom: 12px;
@@ -8293,7 +8301,7 @@ main.Promenade {
                     gap: 16px;
                     margin: 72px 0 26px;
                     padding: 20px 24px;
-                    background: var(--PureWhite);
+                    background: var(--Surface);
                     border-radius: 16px;
                     box-shadow: 0 4px 22px rgba(var(--PureBlackRGB), 0.06);
                     cursor: pointer;
@@ -8328,7 +8336,7 @@ main.Promenade {
                 .H2Title {
                     font-size: clamp(1.3rem, 2.4vw, 1.7rem);
                     font-weight: 900;
-                    color: var(--Charcoal);
+                    color: var(--Ink);
                     line-height: 1.3;
                 }
 
@@ -8362,7 +8370,7 @@ main.Promenade {
                 h4 {
                     font-size: 1.05rem;
                     font-weight: 800;
-                    color: var(--DarkPrimary);
+                    color: var(--PrimaryDeep);
                     background: rgba(var(--PrimaryRGB), 0.06);
                     padding: 14px 20px;
                     margin: 40px 0 18px;
@@ -8384,7 +8392,7 @@ main.Promenade {
                     &:last-child {margin-bottom: 0;}
                 }
 
-                strong, b {color: var(--Charcoal); font-weight: 800;}
+                strong, b {color: var(--Ink); font-weight: 800;}
 
                 a {
                     color: var(--Primary);
@@ -8393,7 +8401,7 @@ main.Promenade {
                     box-shadow: 0 1.5px 0 0 currentColor;
                     transition: color 0.2s ease;
 
-                    &:hover {color: var(--DarkPrimary);}
+                    &:hover {color: var(--PrimaryDeep);}
                 }
 
                 ul {
@@ -8462,7 +8470,7 @@ main.Promenade {
         max-width: 740px;
         margin: 64px auto 0;
         padding: 36px 36px 40px;
-        background: var(--PureWhite);
+        background: var(--Surface);
         border-radius: 20px;
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
 
@@ -8499,7 +8507,7 @@ main.Promenade {
             background: rgba(var(--PrimaryRGB), 0.05);
             font-size: 0.8rem;
             font-weight: 700;
-            color: var(--DarkPrimary);
+            color: var(--PrimaryDeep);
             text-decoration: none;
             transition: all 0.25s ease;
 
@@ -8588,7 +8596,7 @@ main.Reals.SubPage {
    # Responsive Design
 ========================================================================== */
 @media (min-width: 951px) and (max-width: 1023px) {
-    .NavBar .NavCTA {display: none;}
+    .NavBar .NavCTA .SimBtn, .NavBar .NavCTA .SwitchBtn {display: none;}
 }
 
 @media (max-width: 1023px) {
@@ -8624,7 +8632,7 @@ main.Reals.SubPage {
             width: 100%;
             box-sizing: border-box;
             max-width: 100vw;
-            background-color: var(--PureWhite);
+            background-color: var(--Surface);
             box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.12);
             z-index: 999;
             padding: 12px 16px 20px;
@@ -8649,7 +8657,7 @@ main.Reals.SubPage {
                     border-radius: 8px;
                     transition: background 0.18s, color 0.18s;
 
-                    &:hover {background: rgba(var(--PureBlackRGB), 0.05);}
+                    &:hover {background: rgba(var(--LineRGB), 0.05);}
                     &:hover>div {transform: none; -webkit-transform: none;}
 
                     &>div {
@@ -9561,7 +9569,7 @@ main.NotFound {
                 animation: none;
 
                 h1.Title {font-size: 2rem; margin-bottom: 8px; color: #000;}
-                h1.Title em {color: var(--DarkPrimary);}
+                h1.Title em {color: var(--PrimaryDeep);}
                 P.SubTitle {max-width: none; margin: 0; font-size: 1rem; color: #333;}
             }
         }
@@ -9639,4 +9647,413 @@ main.NotFound {
             .Card .Link {display: none;}
         }
     }
+}
+
+
+/* ==========================================================================
+   # Theme : Light / Dark
+   Le mode sombre surcharge uniquement les jetons (--Background, --Surface, --Ink…).
+   Les zones « sombres par conception » (footer, héros, CTA) gardent leurs couleurs.
+========================================================================== */
+html.ThemeSwitching, html.ThemeSwitching *:not(#CursorDot):not(#CursorBall):not(.ThemeThumb) {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, fill 0.35s ease, stroke 0.35s ease !important;
+}
+
+@media screen {
+    html[data-theme="dark"] {
+        color-scheme: dark;
+        --Background: #121214; --BackgroundRGB: 18, 18, 20;
+        --Surface: #1d1d21; --SurfaceRGB: 29, 29, 33;
+        --SurfaceAlt: #232328; --SurfaceAlt2: #2b2b31; --SurfaceAlt3: #26262c;
+        --Ink: #f3f0e9; --InkRGB: 243, 240, 233;
+        --Muted: #cbc7be;
+        --PrimaryDeep: #7ab8f5;
+        --MinMuted: #a19d95;
+        --LineRGB: 255, 255, 255; --LineSolid: #3c3c44;
+
+        .NavBar {
+            border-bottom: 1px solid rgba(var(--PureWhiteRGB), 0.07);
+
+        }
+
+        /* Le footer reste bleu nuit : on lui rend ses jetons d'origine */
+        .Footer {
+            --Surface: #fff; --SurfaceRGB: 255, 255, 255;
+            --Ink: #1c1c1e; --InkRGB: 28, 28, 30;
+            --Muted: #3B3B3B;
+            --MinMuted: #777777;
+            --LineRGB: 0, 0, 0;
+            --PrimaryDeep: #134C85;
+            background-color: #061525;
+        }
+    }
+}
+
+/* ==========================================================================
+   # Footer : Switch Light / Dark
+========================================================================== */
+.Footer .FooterBottom .ThemeSwitch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    .ThemeSwitchText {
+        min-width: 3.4em;
+        text-align: left;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--MinMuted);
+    }
+
+    .ThemeToggle {
+        position: relative;
+        width: 64px;
+        height: 34px;
+        padding: 0;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: 1px solid rgba(var(--PureWhiteRGB), 0.18);
+        background-color: rgba(var(--PureWhiteRGB), 0.06);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+
+        &:hover {border-color: var(--Primary);}
+        &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 3px;}
+
+        .ThemeThumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--Primary);
+            box-shadow: 0 2px 8px rgba(var(--PureBlackRGB), 0.35);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        svg {
+            position: absolute;
+            top: 50%;
+            width: 15px;
+            height: 15px;
+            margin-top: -7.5px;
+            fill: none;
+            stroke: var(--MinMuted);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .IconSun {left: 9px;}
+        .IconMoon {right: 9px;}
+
+        &[aria-checked="false"] .IconSun {stroke: var(--PureWhite);}
+        &[aria-checked="true"] {
+            .ThemeThumb {transform: translateX(30px);}
+            .IconMoon {stroke: var(--PureWhite);}
+        }
+    }
+}
+
+/* ==========================================================================
+   # NavBar : Recherche
+========================================================================== */
+.NavBar .NavCTA .NavSearchBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 44px;
+    min-width: 44px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--LineRGB), 0.16);
+    background: transparent;
+    color: var(--Primary);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .NavSearchLabel {display: none;}
+
+    &:hover {border-color: var(--Primary); background: rgba(var(--PrimaryRGB), 0.1); transform: translateY(-1px);}
+    &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 3px;}
+}
+
+html.SearchOpen {overflow: hidden;}
+
+.SearchOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12vh 16px 16px;
+
+    &[hidden] {display: none;}
+
+    .SearchBackdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(var(--PureBlackRGB), 0.5);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        animation: SearchFade 0.2s ease both;
+    }
+
+    .SearchPanel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 640px;
+        max-height: min(72vh, 660px);
+        background: var(--Surface);
+        color: var(--Ink);
+        border: 1px solid rgba(var(--LineRGB), 0.1);
+        border-radius: 20px;
+        box-shadow: 0 24px 80px rgba(var(--PureBlackRGB), 0.35);
+        overflow: hidden;
+        animation: SearchPop 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .SearchField {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        height: 64px;
+        padding: 0 16px 0 20px;
+        border-bottom: 1px solid rgba(var(--LineRGB), 0.1);
+
+        >svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            fill: none;
+            stroke: var(--Primary);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        input {
+            flex: 1;
+            min-width: 0;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: var(--Ink);
+            font: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            -webkit-appearance: none;
+            appearance: none;
+
+            &::placeholder {color: var(--MinMuted); opacity: 1;}
+            &::-webkit-search-cancel-button, &::-webkit-search-decoration {-webkit-appearance: none; display: none;}
+        }
+    }
+
+    .SearchClose, kbd {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 26px;
+        height: 26px;
+        padding: 0 7px;
+        border: 1px solid rgba(var(--LineRGB), 0.18);
+        border-bottom-width: 2px;
+        border-radius: 7px;
+        background: rgba(var(--LineRGB), 0.04);
+        color: var(--MinMuted);
+        font: inherit;
+        font-size: 0.7rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .SearchClose {cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease;}
+    .SearchClose:hover, .SearchClose:focus-visible {color: var(--Primary); border-color: var(--Primary); outline: none;}
+
+    .SearchBody {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding: 8px;
+        scrollbar-width: thin;
+    }
+
+    .SearchLabel {
+        padding: 10px 12px 6px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--MinMuted);
+    }
+
+    .SearchResults {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .SearchItem {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 3px 12px;
+        align-items: center;
+        padding: 12px;
+        border-radius: 12px;
+        color: var(--Ink);
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+
+        &.Active {background: rgba(var(--PrimaryRGB), 0.12);}
+        &.Active .SearchTitle {color: var(--Primary);}
+
+        .SearchTitle {
+            font-size: 0.98rem;
+            font-weight: 700;
+            line-height: 1.3;
+            transition: color 0.15s ease;
+        }
+
+        .SearchType {
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: rgba(var(--PrimaryRGB), 0.12);
+            color: var(--Primary);
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .SearchDesc {
+            grid-column: 1 / -1;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            font-size: 0.84rem;
+            font-weight: 500;
+            line-height: 1.45;
+            color: var(--Muted);
+        }
+
+        mark {
+            padding: 0 1px;
+            border-radius: 3px;
+            background: rgba(var(--PrimaryRGB), 0.24);
+            color: inherit;
+        }
+    }
+
+    .SearchStatus {
+        padding: 36px 20px;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.5;
+        color: var(--MinMuted);
+
+        strong {color: var(--Ink);}
+        a {color: var(--Primary); text-decoration: none; font-weight: 700;}
+        a:hover {text-decoration: underline;}
+
+        &.Sr {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    }
+
+    .SearchFooter {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-shrink: 0;
+        padding: 10px 18px;
+        border-top: 1px solid rgba(var(--LineRGB), 0.1);
+        font-size: 0.74rem;
+        font-weight: 600;
+        color: var(--MinMuted);
+
+        span {display: inline-flex; align-items: center; gap: 6px;}
+        kbd {min-width: 22px; height: 22px; font-size: 0.66rem;}
+    }
+}
+
+@keyframes SearchFade {from {opacity: 0;} to {opacity: 1;}}
+@keyframes SearchPop {from {opacity: 0; transform: translateY(-12px) scale(0.98);} to {opacity: 1; transform: none;}}
+
+@media (prefers-reduced-motion: reduce) {
+    .SearchOverlay .SearchBackdrop, .SearchOverlay .SearchPanel {animation: none;}
+    .Footer .FooterBottom .ThemeSwitch .ThemeToggle .ThemeThumb {transition: none;}
+}
+
+/* Place pour le bouton de recherche : les marges de la navbar s'adaptent sous 1580px (200px au-delà, comme avant) */
+@media (min-width: 951px) {
+    .NavBar {padding-inline: min(200px, max(24px, calc((100vw - 1180px) / 2)));}
+    .NavBar .NavLinks {gap: clamp(16px, 2.4vw, 36px);}
+    .NavBar .NavLinks li>a>div {white-space: nowrap;}
+}
+
+@media (max-width: 950px) {
+    .NavBar .NavCTA .NavSearchBtn {
+        order: -1;
+        flex: 1 0 100%;
+        justify-content: flex-start;
+        height: 48px;
+        padding: 0 16px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+
+        .NavSearchLabel {display: inline; font-weight: 800; color: var(--MinMuted);}
+    }
+
+    .Footer .FooterBottom .FooterTerms {flex-wrap: wrap; justify-content: center; row-gap: 16px;}
+}
+
+@media (max-width: 600px) {
+    .SearchOverlay {padding: 72px 12px 12px;}
+    .SearchOverlay .SearchPanel {max-height: calc(100dvh - 90px); border-radius: 16px;}
+    .SearchOverlay .SearchFooter {display: none;}
+}
+
+@media print {
+    .SearchOverlay, .NavSearchBtn, .ThemeSwitch {display: none !important;}
 }

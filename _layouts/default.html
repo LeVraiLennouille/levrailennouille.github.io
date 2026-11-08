@@ -69,6 +69,7 @@
     <link rel="canonical" href="{{ canonical }}">
     {%- endunless %}
     <meta name="theme-color" content="#1c1c1e">
+    {% include theme-init.html %}
     <link href="/style.css" rel="stylesheet">
     {%- for css in page.head_styles %}
     <link href="{{ css }}" rel="stylesheet">
