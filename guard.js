@@ -28,43 +28,93 @@ const Guard = (() => {
 
             const normalizedValue = normalizeText(entry.value);
             for (const word of BANNED_WORDS) {
-                const pattern = new RegExp(`\\b${normalizeText(word)}\\b`, "i");
+                // Les caractères spéciaux (ex. "eval(") sont échappés, sinon la RegExp lève une erreur
+                const escaped = normalizeText(word).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                const pattern = new RegExp(`(^|[^a-z0-9])${escaped}($|[^a-z0-9])`, "i");
                 if (pattern.test(normalizedValue)) return {...entry, word};
             }
         }
         return null;
     }
 
-    function showToast(message, title = "Erreur") {
-        const toastContainer = document.getElementById("ToastContainer");
-        if (!toastContainer) return;
+    const TOAST_ICONS = {
+        success: '<path d="M5.5 12.5l4.5 4.5L18.5 7.5"/>',
+        error: '<path d="M7 7l10 10M17 7L7 17"/>',
+        warning: '<path d="M12 5.5v8"/><path d="M12 18.2v.3"/>',
+        info: '<path d="M9.3 9.4a2.8 2.8 0 1 1 4.4 2.3c-1 .7-1.7 1.2-1.7 2.4"/><path d="M12 18.2v.3"/>',
+    };
+    const TOAST_MAX = 3;
+
+    /**
+     * Affiche un toast.
+     * @param {string} message
+     * @param {string} [title]
+     * @param {{type?: "success"|"error"|"warning"|"info", link?: {text: string, href: string}, duration?: number}} [options]
+     * @returns {HTMLElement|null}
+     */
+    function showToast(message, title = "Erreur", options = {}) {
+        const container = document.getElementById("ToastContainer");
+        if (!container) return null;
+
+        const type = TOAST_ICONS[options.type] ? options.type : "error";
+        const duration = options.duration || (type === "success" ? 6000 : 8000);
+        const key = `${type}|${title}|${message}`;
+
+        // Évite d'empiler deux fois le même toast
+        const duplicate = [...container.children].find((t) => t.dataset.key === key && !t.classList.contains("ToastOut"));
+        if (duplicate) return duplicate;
+        while (container.children.length >= TOAST_MAX) container.firstElementChild.remove();
 
         const toast = document.createElement("div");
-        toast.className = "Toast";
-        toast.setAttribute("role", "alert");
+        toast.className = `Toast Toast${type[0].toUpperCase()}${type.slice(1)}`;
+        toast.dataset.key = key;
+        toast.setAttribute("role", type === "error" || type === "warning" ? "alert" : "status");
+        toast.style.setProperty("--ToastDuration", `${duration}ms`);
         toast.innerHTML = `
-            <svg class="ToastIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 9v4m0 4h.01M10.29 3.86l-8.16 14.14A2 2 0 0 0 3.86 21h16.28a2 2 0 0 0 1.73-3l-8.16-14.14a2 2 0 0 0-3.46 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <div class="ToastBlobs" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="ToastBadge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${TOAST_ICONS[type]}</svg>
+            </div>
             <div class="ToastBody">
                 <p class="ToastTitle"></p>
                 <p class="ToastMessage"></p>
             </div>
             <button type="button" class="ToastClose" aria-label="Fermer la notification">&times;</button>
+            <div class="ToastProgress" aria-hidden="true"></div>
         `;
 
         toast.querySelector(".ToastTitle").textContent = title;
-        toast.querySelector(".ToastMessage").textContent = message;
+        const messageEl = toast.querySelector(".ToastMessage");
+        messageEl.textContent = message;
+        if (options.link) {
+            const a = document.createElement("a");
+            a.className = "ToastLink";
+            a.href = options.link.href;
+            a.textContent = options.link.text;
+            messageEl.append(" ", a);
+        }
 
-        toastContainer.appendChild(toast);
+        container.appendChild(toast);
 
+        let removed = false;
         const remove = () => {
+            if (removed) return;
+            removed = true;
             toast.classList.add("ToastOut");
             toast.addEventListener("animationend", () => toast.remove(), {once: true});
+            setTimeout(() => toast.remove(), 600);
         };
 
         toast.querySelector(".ToastClose").addEventListener("click", remove);
-        setTimeout(remove, 6000);
+
+        // La barre de progression pilote la fermeture (elle se met en pause au survol / focus)
+        const bar = toast.querySelector(".ToastProgress");
+        if (getComputedStyle(bar).animationName === "none") {
+            setTimeout(remove, duration);
+        } else {
+            bar.addEventListener("animationend", remove, {once: true});
+        }
+        return toast;
     }
 
     /**

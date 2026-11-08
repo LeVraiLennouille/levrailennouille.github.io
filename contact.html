@@ -166,6 +166,12 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
     <script>
         (() => {
             const FIELDS_TO_CHECK = ["prenom", "nom", "objet", "message"];
+            const FIELD_LABELS = {prenom: "ton prénom", nom: "ton nom", email: "ton e-mail", objet: "le sujet", message: "ton message"};
+            const REQUIRED = ["prenom", "nom", "email", "objet", "message"];
+            const MIN_MESSAGE_LENGTH = 10;
+            const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            const CONTACT_EMAIL = "contact@lennouille.fr";
+            const REQUEST_TIMEOUT_MS = 15000;
 
             const RATE_LIMIT_KEY = "lennouilleContactEnvois";
             const RATE_LIMIT_MAX = 3;
@@ -175,33 +181,149 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
             const toastContainer = document.getElementById("ToastContainer");
             if (!form || !toastContainer) return;
 
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const submitLabel = submitBtn ? submitBtn.textContent : "";
             const rateLimiter = Guard.createRateLimiter(RATE_LIMIT_KEY, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+            const mailLink = {text: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`};
+
+            // Les infobulles natives du navigateur laissent la place aux toasts
+            form.noValidate = true;
+
+            const group = (name) => form.elements[name]?.closest(".InputGroup");
+
+            const markInvalid = (names) => {
+                names.forEach((name) => {
+                    const field = form.elements[name];
+                    const g = group(name);
+                    if (!field || !g) return;
+                    field.setAttribute("aria-invalid", "true");
+                    g.classList.add("Invalid");
+                    g.classList.remove("Shake");
+                    void g.offsetWidth;
+                    g.classList.add("Shake");
+                });
+                form.elements[names[0]]?.focus();
+            };
+
+            const clearInvalid = (field) => {
+                field.removeAttribute("aria-invalid");
+                field.closest(".InputGroup")?.classList.remove("Invalid", "Shake");
+            };
+
+            form.addEventListener("input", (event) => clearInvalid(event.target));
+            form.addEventListener("reset", () => form.querySelectorAll("[aria-invalid]").forEach(clearInvalid));
+
+            const setBusy = (busy) => {
+                if (!submitBtn) return;
+                submitBtn.disabled = busy;
+                submitBtn.setAttribute("aria-busy", String(busy));
+                submitBtn.textContent = busy ? "Envoi en cours…" : submitLabel;
+            };
 
             const findBannedWord = () => {
                 const fields = FIELDS_TO_CHECK.map((fieldName) => {
                     const field = form.elements[fieldName];
-                    return { value: field?.value, field };
+                    return { value: field?.value, field, name: fieldName };
                 });
                 return Guard.findBannedWord(fields);
             };
 
-            form.addEventListener("submit", (event) => {
+            /** Erreurs de l'utilisateur : renvoie true si le formulaire est prêt à partir */
+            const validate = () => {
+                const missing = REQUIRED.filter((name) => !form.elements[name]?.value.trim());
+                if (missing.length) {
+                    Guard.showToast(`Il manque encore : ${missing.map((n) => FIELD_LABELS[n]).join(", ")}.`, "Oups, il manque des infos", {type: "warning"});
+                    markInvalid(missing);
+                    return false;
+                }
+
+                if (!EMAIL_PATTERN.test(form.elements.email.value.trim())) {
+                    Guard.showToast("Vérifie le format de ton adresse, par exemple prenom@exemple.fr.", "E-mail invalide", {type: "error"});
+                    markInvalid(["email"]);
+                    return false;
+                }
+
+                if (form.elements.message.value.trim().length < MIN_MESSAGE_LENGTH) {
+                    Guard.showToast(`Écris au moins ${MIN_MESSAGE_LENGTH} caractères pour que je puisse te répondre utilement.`, "Message trop court", {type: "warning"});
+                    markInvalid(["message"]);
+                    return false;
+                }
+
                 const found = findBannedWord();
                 if (found) {
-                    event.preventDefault();
-                    Guard.showToast(`Le mot « ${found.word} » n'est pas autorisé. Merci de reformuler ton message avant de l'envoyer.`, "Message non envoyé");
-                    found.field?.focus();
-                    return;
+                    Guard.showToast(`Le mot « ${found.word} » n'est pas autorisé. Merci de reformuler ton message avant de l'envoyer.`, "Message non envoyé", {type: "error"});
+                    markInvalid([found.name]);
+                    return false;
                 }
 
                 const waitMinutes = rateLimiter.isLimited();
                 if (waitMinutes !== null) {
-                    event.preventDefault();
-                    Guard.showToast(`Tu as atteint la limite de ${RATE_LIMIT_MAX} envois. Merci de réessayer dans ${waitMinutes} minute${waitMinutes > 1 ? "s" : ""}.`, "Trop d'envois");
+                    Guard.showToast(`Tu as atteint la limite de ${RATE_LIMIT_MAX} envois. Merci de réessayer dans ${waitMinutes} minute${waitMinutes > 1 ? "s" : ""}.`, "Trop d'envois", {type: "warning"});
+                    return false;
+                }
+
+                return true;
+            };
+
+            /** Erreurs du site (réseau, serveur) */
+            const showServerError = (title, message) => {
+                Guard.showToast(message, title, {type: "error", link: mailLink, duration: 10000});
+            };
+
+            const send = async () => {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+                try {
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        body: new FormData(form),
+                        headers: {Accept: "application/json"},
+                        signal: controller.signal,
+                    });
+
+                    if (response.ok) {
+                        const prenom = form.elements.prenom.value.trim();
+                        rateLimiter.record();
+                        form.reset();
+                        Guard.showToast(`Merci ${prenom}, ton message est bien parti. Je te réponds dès que possible.`, "Bien envoyé !", {type: "success"});
+                        return;
+                    }
+
+                    let data = null;
+                    try {data = await response.json();} catch {}
+
+                    if (response.status === 429) {
+                        Guard.showToast("Trop de messages envoyés en peu de temps. Patiente un instant avant de réessayer.", "Doucement !", {type: "warning"});
+                    } else if (response.status === 422 || response.status === 400) {
+                        const fields = (data?.errors || []).map((e) => e.field).filter((name) => name && form.elements[name]);
+                        if (fields.length) markInvalid([...new Set(fields)]);
+                        Guard.showToast("Le serveur n'a pas accepté ton message. Vérifie les champs en rouge puis réessaie.", "Message refusé", {type: "error"});
+                    } else {
+                        showServerError("Le site a un souci", "Ton message n'est pas parti, ce n'est pas ta faute. Réessaie dans un instant ou écris-moi directement :");
+                    }
+                } catch (error) {
+                    if (error.name === "AbortError") {
+                        showServerError("Le serveur met trop de temps", "Je n'ai pas reçu de réponse à temps. Réessaie dans un instant ou écris-moi directement :");
+                    } else {
+                        showServerError("Impossible de joindre le serveur", "Vérifie ta connexion puis réessaie. Ton message est conservé. Tu peux aussi m'écrire directement :");
+                    }
+                } finally {
+                    clearTimeout(timer);
+                }
+            };
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (submitBtn?.disabled) return;
+                if (!validate()) return;
+
+                if (navigator.onLine === false) {
+                    Guard.showToast("Tu sembles hors ligne. Ton message est conservé, réessaie dès que la connexion revient.", "Pas de connexion", {type: "error"});
                     return;
                 }
 
-                rateLimiter.record();
+                setBusy(true);
+                try {await send();} finally {setBusy(false);}
             });
         })();
     </script>

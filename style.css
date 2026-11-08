@@ -1045,67 +1045,147 @@ section {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    z-index: 999;
+    z-index: 1500;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: min(380px, calc(100vw - 48px));
+    gap: 26px;
+    width: min(420px, calc(100vw - 48px));
     pointer-events: none;
 }
 
 .Toast {
+    --ToastBg: var(--Danger);
+    --ToastDark: #a31f1f;
+    position: relative;
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    background: var(--Surface);
-    border: 1px solid rgba(var(--DangerRGB), 0.25);
-    border-left: 3px solid var(--Danger);
-    box-shadow: 0 12px 32px rgba(var(--PureBlackRGB), 0.16);
-    animation: ToastIn 0.35s cubic-bezier(.22,1,.36,1);
+    min-height: 76px;
+    padding: 18px 18px 20px 76px;
+    border-radius: 22px;
+    background: var(--ToastBg);
+    color: #fff;
+    box-shadow: 0 14px 34px rgba(var(--PureBlackRGB), 0.28);
+    animation: ToastIn 0.4s cubic-bezier(.22,1,.36,1);
     pointer-events: auto;
+
+    &.ToastSuccess {--ToastBg: #1fa35a; --ToastDark: #0d6e3b;}
+    &.ToastError   {--ToastBg: #d93156; --ToastDark: #8f1c3a;}
+    &.ToastWarning {--ToastBg: #f08a24; --ToastDark: #a85a08;}
+    &.ToastInfo    {--ToastBg: #1f78e8; --ToastDark: #134c85;}
 
     &.ToastOut {animation: ToastOut 0.25s ease forwards;}
 
-    .ToastIcon {
-        flex-shrink: 0;
-        width: 20px;
-        height: 20px;
-        color: var(--Danger);
+    .ToastBlobs {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        overflow: hidden;
+        pointer-events: none;
+
+        span {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--ToastDark);
+            opacity: 0.38;
+
+            &:nth-child(1) {width: 92px; height: 92px; left: -26px; bottom: -42px;}
+            &:nth-child(2) {width: 26px; height: 26px; left: 52px; bottom: 14px; opacity: 0.3;}
+            &:nth-child(3) {width: 14px; height: 14px; left: 10px; top: 36px; opacity: 0.25;}
+        }
+    }
+
+    .ToastBadge {
+        position: absolute;
+        top: -16px;
+        left: -10px;
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50% 50% 50% 14%;
+        background: var(--ToastDark);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(var(--PureBlackRGB), 0.3);
+
+        svg {width: 28px; height: 28px;}
     }
 
     .ToastBody {
+        position: relative;
         flex: 1;
+        min-width: 0;
 
         .ToastTitle {
-            font-size: 13px;
+            margin: 0 0 4px;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--Ink);
-            margin-bottom: 3px;
+            line-height: 1.2;
+            color: #fff;
         }
 
         .ToastMessage {
-            font-size: 13px;
-            color: var(--Muted);
+            margin: 0;
+            font-size: 0.82rem;
+            font-weight: 500;
             line-height: 1.5;
+            color: rgba(255, 255, 255, 0.94);
+            overflow-wrap: anywhere;
+        }
+
+        .ToastLink {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
         }
     }
 
     .ToastClose {
+        position: relative;
         flex-shrink: 0;
-        background: none;
+        width: 28px;
+        height: 28px;
+        margin: -4px -6px 0 0;
+        padding: 0;
         border: none;
-        padding: 2px;
-        margin: -2px -2px 0 0;
-        cursor: pointer;
-        color: var(--Muted);
-        font-size: 18px;
+        border-radius: 50%;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 22px;
         line-height: 1;
-        transition: color 0.2s ease;
+        cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease;
 
-        &:hover {color: var(--Ink);}
+        &:hover, &:focus-visible {background: rgba(255, 255, 255, 0.2); color: #fff; outline: none;}
     }
+
+    .ToastProgress {
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 0;
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        background: rgba(255, 255, 255, 0.55);
+        transform-origin: left center;
+        animation: ToastProgress var(--ToastDuration, 6000ms) linear forwards;
+    }
+
+    &:hover .ToastProgress, &:focus-within .ToastProgress {animation-play-state: paused;}
+}
+
+@keyframes ToastProgress {
+    from {transform: scaleX(1);}
+    to   {transform: scaleX(0);}
+}
+
+@keyframes FieldShake {
+    0%, 100% {transform: translateX(0);}
+    20% {transform: translateX(-6px);}
+    40% {transform: translateX(5px);}
+    60% {transform: translateX(-4px);}
+    80% {transform: translateX(2px);}
 }
 
 @keyframes ToastIn {
@@ -7061,6 +7141,17 @@ main.Contact {
                         border-color: var(--Primary);
                         box-shadow: 0 0 0 3px rgba(var(--PrimaryRGB), 0.1);
                     }
+
+                    &.Invalid {
+                        input[type="text"], input[type="email"], textarea {
+                            border-color: var(--Danger);
+                            box-shadow: 0 0 0 3px rgba(var(--DangerRGB), 0.14);
+                        }
+
+                        .Label {color: var(--Danger);}
+                        input:focus~.Label, input:valid~.Label, textarea:focus~.Label, textarea:valid~.Label {background-color: var(--Danger); color: var(--PureWhite);}
+                        &.Shake {animation: FieldShake 0.4s ease;}
+                    }
                 }
 
                 .FormRow {
@@ -9387,7 +9478,7 @@ main.Reals.SubPage {
     }
 
     .ToastContainer {
-        left: 16px;
+        left: 20px;
         right: 16px;
         bottom: 16px;
         width: auto;
@@ -10057,3 +10148,5 @@ html.SearchOpen {overflow: hidden;}
 @media print {
     .SearchOverlay, .NavSearchBtn, .ThemeSwitch {display: none !important;}
 }
+
+.Form button[type="submit"][aria-busy="true"] {opacity: 0.7; cursor: progress;}
