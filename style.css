@@ -7095,6 +7095,7 @@ main.Contact {
 
                         &:focus~.Label,
                         &:valid~.Label,
+                        &:not(:placeholder-shown)~.Label,
                         &:autofill~.Label,
                         &:-webkit-autofill~.Label {
                             top: 0;
@@ -7149,7 +7150,7 @@ main.Contact {
                         }
 
                         .Label {color: var(--Danger);}
-                        input:focus~.Label, input:valid~.Label, textarea:focus~.Label, textarea:valid~.Label {background-color: var(--Danger); color: var(--PureWhite);}
+                        input:focus~.Label, input:valid~.Label, input:not(:placeholder-shown)~.Label, textarea:focus~.Label, textarea:valid~.Label, textarea:not(:placeholder-shown)~.Label {background-color: var(--Danger); color: var(--PureWhite);}
                         &.Shake {animation: FieldShake 0.4s ease;}
                     }
                 }
@@ -9786,16 +9787,7 @@ html.ThemeSwitching, html.ThemeSwitching *:not(#CursorDot):not(#CursorBall):not(
 .Footer .FooterBottom .ThemeSwitch {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
     flex-shrink: 0;
-
-    .ThemeSwitchText {
-        min-width: 3.4em;
-        text-align: left;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--MinMuted);
-    }
 
     .ThemeToggle {
         position: relative;

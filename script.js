@@ -596,7 +596,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var KEY = 'theme';
     var META_COLORS = {light: '#1c1c1e', dark: '#121214'};
     var toggles = document.querySelectorAll('[data-theme-toggle]');
-    var labels = document.querySelectorAll('[data-theme-label]');
     var flashTimer = null;
 
     function stored() {
@@ -611,7 +610,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function paint(theme) {
         root.setAttribute('data-theme', theme);
         toggles.forEach(function (btn) {btn.setAttribute('aria-checked', String(theme === 'dark'));});
-        labels.forEach(function (el) {el.textContent = theme === 'dark' ? 'Sombre' : 'Clair';});
         var meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute('content', META_COLORS[theme]);
     }
