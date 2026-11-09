@@ -58,6 +58,22 @@
   date: "2026-12-01"
   comingSoon: true
 
+- id: "syne"
+  url: "/reals/syne"
+  name: "Création Syne"
+  label: "Syne"
+  category: "UI/UX Design · WebApp · Identité visuelle"
+  tags:
+    - "creation"
+    - "ui-ux"
+    - "webapp"
+    - "app-design"
+    - "jeu vidéo"
+  image: "/img/reals/syne/mockup.webp"
+  imageAlt: "Création Syne"
+  date: "2026-11-31"
+  comingSoon: true
+
 - id: "gymaddict"
   url: "/reals/gymaddict"
   name: "Création GymAddict"
