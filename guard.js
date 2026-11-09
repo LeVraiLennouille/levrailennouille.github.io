@@ -39,7 +39,7 @@ const Guard = (() => {
 
     const TOAST_ICONS = {
         success: '<path d="M5.5 12.5l4.5 4.5L18.5 7.5"/>',
-        error: '<path d="M7 7l10 10M17 7L7 17"/>',
+        error: '<path d="M10.3 4.2L2.7 17.4A2 2 0 0 0 4.4 20.4h15.2a2 2 0 0 0 1.7-3L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.6v4.2"/><path d="M12 17.1v.1"/>',
         warning: '<path d="M12 5.5v8"/><path d="M12 18.2v.3"/>',
         info: '<path d="M9.3 9.4a2.8 2.8 0 1 1 4.4 2.3c-1 .7-1.7 1.2-1.7 2.4"/><path d="M12 18.2v.3"/>',
     };
