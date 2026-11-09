@@ -124,6 +124,8 @@ schema_type: WebPage
 }
 </script>
 
+    <link rel="preload" as="image" href="/img/maps/poitiers-2200.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/img/maps/poitiers-1400.webp" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
     <main class="City Poitiers">
         {% include header.html %}
         <section class="SecondaryHero">
@@ -141,6 +143,7 @@ schema_type: WebPage
                 <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Poitiers et de la Vienne : design sur-mesure, parcours pensés pour la conversion, rendez-vous en présentiel ou en visio.</p>
                 <a href="/contact" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
             </div>
+            <p class="HeroCredit">Plan © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></p>
         </section>
         <section class="Local">
             <div class="Layout">

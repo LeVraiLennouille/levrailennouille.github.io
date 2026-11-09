@@ -10142,3 +10142,52 @@ html.SearchOpen {overflow: hidden;}
 }
 
 .Form button[type="submit"][aria-busy="true"] {opacity: 0.7; cursor: progress;}
+
+
+/* ==========================================================================
+   # Pages villes (Poitiers, Reims, Nantes, Paris, Bordeaux) : plan de la ville en fond du hero
+========================================================================== */
+main.City.Poitiers {--HeroMap: url("/img/maps/poitiers-2200.webp"); --HeroMapSm: url("/img/maps/poitiers-1400.webp");}
+main.City.Reims    {--HeroMap: url("/img/maps/reims-2200.webp"); --HeroMapSm: url("/img/maps/reims-1400.webp");}
+main.City.Nantes   {--HeroMap: url("/img/maps/nantes-2200.webp"); --HeroMapSm: url("/img/maps/nantes-1400.webp");}
+main.City.Paris    {--HeroMap: url("/img/maps/paris-2200.webp"); --HeroMapSm: url("/img/maps/paris-1400.webp");}
+main.City.Bordeaux {--HeroMap: url("/img/maps/bordeaux-2200.webp"); --HeroMapSm: url("/img/maps/bordeaux-1400.webp");}
+
+main.City .SecondaryHero {
+    /* le plan remplace la lueur bleue et la grille de points */
+    &::before {
+        background: var(--HeroMap) center / cover no-repeat;
+    }
+
+    /* voile sombre : garde le titre lisible au centre, laisse le plan visible sur les bords */
+    &::after {
+        background-image:
+            radial-gradient(ellipse 62% 58% at 50% 46%, rgba(var(--CharcoalRGB), 0.78) 0%, rgba(var(--CharcoalRGB), 0.5) 55%, rgba(var(--CharcoalRGB), 0.18) 100%),
+            linear-gradient(to bottom, rgba(var(--CharcoalRGB), 0.5) 0%, transparent 22%, transparent 78%, rgba(var(--CharcoalRGB), 0.6) 100%);
+        background-size: 100% 100%;
+    }
+
+    .Decor {display: none;}
+
+    .HeroCredit {
+        position: absolute;
+        right: clamp(14px, 2vw, 24px);
+        bottom: 12px;
+        z-index: 2;
+        margin: 0;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: rgba(var(--PureWhiteRGB), 0.5);
+
+        a {color: inherit; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s ease;}
+        a:hover {color: var(--PureWhite);}
+    }
+}
+
+@media (max-width: 900px) {
+    main.City .SecondaryHero::before {background-image: var(--HeroMapSm);}
+}
+
+@media print {
+    main.City .SecondaryHero .HeroCredit {display: none;}
+}
