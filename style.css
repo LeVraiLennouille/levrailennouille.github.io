@@ -47,7 +47,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important;
 }
 
 html, body {
@@ -66,35 +65,6 @@ html, body {
 /* ==========================================================================
    # JS Functions
 ========================================================================== */
-
-#CursorDot {
-    width: 8px;
-    height: 8px;
-    background: var(--PureWhite);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.15s;
-}
- 
-#CursorBall {
-    width: 28px;
-    height: 28px;
-    border: 1.5px solid rgba(var(--PureWhiteRGB), 0.6);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9998;
-    background: transparent;
-    transition: border-color 0.35s ease;
-}
 
 .ReadingProgress {
     position: fixed;
