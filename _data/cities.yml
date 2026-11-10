@@ -1,0 +1,22 @@
+# Villes affichées sur la page /villes (ordre = ordre d'affichage)
+# slug = nom du fichier dans /villes/ et de l'image /img/maps/<slug>-1400.webp
+- slug: poitiers
+  name: "Poitiers"
+  area: "Poitiers et la Vienne"
+  base: true
+
+- slug: reims
+  name: "Reims"
+  area: "Reims et la Marne"
+
+- slug: nantes
+  name: "Nantes"
+  area: "Nantes et la Loire-Atlantique"
+
+- slug: paris
+  name: "Paris"
+  area: "Paris et l'Île-de-France"
+
+- slug: bordeaux
+  name: "Bordeaux"
+  area: "Bordeaux et la Gironde"

@@ -1,11 +1,14 @@
 ---
 layout: default
-title: "UX Designer & Webdesigner à Paris | Lennouille"
-description: "Lenny Gadroy, UX Designer et webdesigner freelance pour les entreprises de Paris et d'Île-de-France : site web sur-mesure, audit UX et refonte, suivi en visio. Demande ton devis."
+redirect_from:
+  - /reims
+  - /reims.html
+title: "UX Designer & Webdesigner à Reims | Lennouille"
+description: "Webdesigner et UX Designer freelance pour les entreprises de Reims et de la Marne : site web sur-mesure, audit UX, refonte et design system. Demande ton devis."
 schema_type: WebPage
 ---
 {%- assign biz = site.data.business -%}
-{%- assign page_url = biz.url | append: "/paris" -%}
+{%- assign page_url = biz.url | append: page.url | replace: '.html', '' -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,7 +33,7 @@ schema_type: WebPage
     {
       "@type": "ProfessionalService",
       "@id": "{{ page_url }}#service",
-      "name": {{ biz.name | append: " — UX Designer & Webdesigner à Paris" | jsonify }},
+      "name": {{ biz.name | append: " — UX Designer & Webdesigner à Reims" | jsonify }},
       "url": "{{ page_url }}",
       "description": {{ page.description | jsonify }},
       "founder": {
@@ -54,11 +57,11 @@ schema_type: WebPage
       "areaServed": [
         {
           "@type": "City",
-          "name": "Paris"
+          "name": "Reims"
         },
         {
           "@type": "AdministrativeArea",
-          "name": "Île-de-France"
+          "name": "Marne"
         },
         {
           "@type": "Country",
@@ -78,7 +81,13 @@ schema_type: WebPage
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Paris",
+          "name": "Villes",
+          "item": "{{ biz.url }}/villes"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reims",
           "item": "{{ page_url }}"
         }
       ]
@@ -88,7 +97,7 @@ schema_type: WebPage
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Combien coûte un site web avec un webdesigner à Paris ?",
+          "name": "Combien coûte un site web avec un webdesigner à Reims ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange."
@@ -96,10 +105,10 @@ schema_type: WebPage
         },
         {
           "@type": "Question",
-          "name": "Travailles-tu à distance avec des clients à Paris ?",
+          "name": "Es-tu basé à Reims ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui. Je suis basé à Poitiers et l'essentiel du projet se déroule en visio : cadrage, présentation des maquettes, recette. Tu peux réserver un créneau depuis la page de contact."
+            "text": "Ma base principale est à Poitiers, et je suis également présent à Reims, où j'ai fait mes études. Je peux te rencontrer sur place sur demande, et tout le reste du projet se déroule sans friction à distance."
           }
         },
         {
@@ -112,7 +121,7 @@ schema_type: WebPage
         },
         {
           "@type": "Question",
-          "name": "Peux-tu refaire un site existant à Paris sans perdre mon référencement ?",
+          "name": "Peux-tu refaire un site existant à Reims sans perdre mon référencement ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Mon audit UX inclut l'analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO."
@@ -124,23 +133,25 @@ schema_type: WebPage
 }
 </script>
 
-    <link rel="preload" as="image" href="/img/maps/paris-2200.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/img/maps/paris-1400.webp" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
-    <main class="City Paris">
+    <link rel="preload" as="image" href="/img/maps/reims-2200.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/img/maps/reims-1400.webp" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
+    <main class="City Reims">
         {% include header.html %}
         <section class="SecondaryHero">
             <div class="Decor" aria-hidden="true">
-                <span>Paris</span>
+                <span>Reims</span>
                 <span>UX</span>
             </div>
             <div class="HeroInner">
                 <nav class="Breadcrumb" aria-label="Fil d'ariane">
                     <a href="/">Accueil</a>
                     <span class="Sep">/</span>
-                    <span class="Current">Paris</span>
+                    <a href="/villes">Villes</a>
+                    <span class="Sep">/</span>
+                    <span class="Current">Reims</span>
                 </nav>
-                <h1 class="Title">UX Designer &amp; Webdesigner<br><em>à Paris</em></h1>
-                <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Paris et d&#x27;Île-de-France : design sur-mesure, parcours pensés pour la conversion, suivi en visio de A à Z.</p>
+                <h1 class="Title">UX Designer &amp; Webdesigner<br><em>à Reims</em></h1>
+                <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Reims et de la Marne : design sur-mesure, parcours pensés pour la conversion, rendez-vous sur place ou en visio.</p>
                 <a href="/contact" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
             </div>
             <p class="HeroCredit">Plan © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></p>
@@ -149,18 +160,17 @@ schema_type: WebPage
             <div class="Layout">
                 <div class="Intro">
                     <div class="SectionTitle Left">
-                        <span class="Eyebrow">À distance depuis Poitiers</span>
-                        <h2 class="Title">Un webdesigner pour ton projet à Paris</h2>
+                        <span class="Eyebrow">Présent à Reims</span>
+                        <h2 class="Title">Un webdesigner qui connaît Reims</h2>
                     </div>
-                    <p>Je suis basé à Poitiers et j&#x27;accompagne les entreprises de Paris et d&#x27;Île-de-France à distance : un premier échange en visio, puis des points réguliers jusqu&#x27;à la mise en ligne. Lennouille est mon activité de freelance : je dessine les interfaces, puis je les code moi-même, sans intermédiaire.</p>
-                    <p>À Paris, la concurrence est forte et les visiteurs sont pressés : un site doit se comprendre en quelques secondes. C&#x27;est là que le travail sur le parcours, la hiérarchie de l&#x27;information et la vitesse d&#x27;affichage fait la différence.</p>
-                    <p>Pour un projet web à Paris, cela veut dire un site pensé pour la façon dont tes clients te cherchent sur Google, et un seul interlocuteur du brief à la mise en ligne.</p>
+                    <p>Reims est la ville où j&#x27;ai appris à analyser le comportement d&#x27;un client : j&#x27;y ai préparé mon BTS NDRC au lycée Jean-Baptiste Colbert (2023–2025, mention Bien). Cette base commerciale nourrit encore chacun de mes projets UX.</p>
+                    <p>J&#x27;interviens auprès des entreprises de Reims et de la Marne : je dessine les interfaces et je les code moi-même, pour que le site livré ressemble exactement à la maquette validée.</p>
+                    <p>Les rendez-vous peuvent se tenir à Reims sur demande, ou en visio. Ma base principale est à Poitiers, ce qui ne change rien au suivi : un seul interlocuteur, des échanges directs.</p>
                 </div>
                 <aside class="Card Facts" aria-label="Informations pratiques">
                     <h3>En bref</h3>
                     <dl>
-                        <div><dt>Zone d'intervention</dt><dd>Paris, Île-de-France et visio dans toute la France</dd></div>
-                        <div><dt>Mode de travail</dt><dd>À distance, en visio, depuis Poitiers</dd></div>
+                        <div><dt>Zone d'intervention</dt><dd>Reims, Marne (51) et visio dans toute la France</dd></div>
                         <div><dt>Expertises</dt><dd>UX Design, webdesign, intégration HTML/CSS/JS</dd></div>
                         <div><dt>Statut</dt><dd>Freelance, micro-entrepreneur</dd></div>
                         <div><dt>Contact</dt><dd><a href="mailto:lenny@lennouille.fr">lenny@lennouille.fr</a></dd></div>
@@ -171,13 +181,13 @@ schema_type: WebPage
         <section class="Offers">
             <div class="SectionTitle">
                 <span class="Eyebrow">Prestations</span>
-                <h2 class="Title">Mes prestations de webdesign à Paris</h2>
+                <h2 class="Title">Mes prestations de webdesign à Reims</h2>
                 <p class="Subtitle">Les mêmes offres que sur la page Services, avec les tarifs de départ. Chaque projet reçoit un devis adapté.</p>
             </div>
             <div class="OfferGrid">
                 <article class="Card">
                     <span class="Badge">À partir de 1 000 €</span>
-                    <h3>Site vitrine &amp; landing page à Paris</h3>
+                    <h3>Site vitrine &amp; landing page à Reims</h3>
                     <p>Un site sur-mesure qui présente ton activité clairement et donne envie de te contacter. Le balisage SEO local (JSON-LD) est intégré pour aider ton site à ressortir sur les recherches de proximité.</p>
                     <a href="/services" class="Link">Voir la prestation <span class="Arrow" aria-hidden="true">→</span></a>
                 </article>
@@ -205,30 +215,30 @@ schema_type: WebPage
             <div class="Layout">
                 <div class="SectionTitle Left">
                     <span class="Eyebrow">Mes clients</span>
-                    <h2 class="Title">Pour qui je travaille à Paris</h2>
+                    <h2 class="Title">Pour qui je travaille à Reims</h2>
                 </div>
                 <ul class="AudienceList">
                 <li>
-                    <h3>Startups et scale-ups</h3>
-                    <p>Un site et un design system évolutifs, qui suivent la croissance sans tout refaire.</p>
+                    <h3>Commerçants et restaurateurs</h3>
+                    <p>Un site qui donne l&#x27;essentiel en quelques secondes : adresse, horaires, carte ou catalogue, contact.</p>
                 </li>
                 <li>
-                    <h3>Commerces, restaurants et boutiques</h3>
-                    <p>Un site qui donne l&#x27;essentiel en quelques secondes : adresse, horaires, offre, contact.</p>
+                    <h3>Producteurs et acteurs du champagne</h3>
+                    <p>Un site qui raconte un savoir-faire et facilite la réservation d&#x27;une visite ou d&#x27;une dégustation.</p>
                 </li>
                 <li>
-                    <h3>Indépendants, consultants et professions libérales</h3>
+                    <h3>TPE et indépendants</h3>
                     <p>Une vitrine crédible qui rassure avant même le premier appel.</p>
                 </li>
                 <li>
-                    <h3>Associations et structures culturelles</h3>
+                    <h3>Associations et structures de formation</h3>
                     <p>Des parcours clairs pour s&#x27;informer, s&#x27;inscrire ou adhérer, accessibles à tous les publics.</p>
                 </li>
                 </ul>
             </div>
         </section>
-        {% include city-clients.html city="paris" label="Paris" %}
-        {% include city-avis.html city="paris" %}
+        {% include city-clients.html city="reims" label="Reims" %}
+        {% include city-avis.html city="reims" %}
         <section class="Steps">
             <div class="SectionTitle">
                 <span class="Eyebrow">Méthode</span>
@@ -261,23 +271,23 @@ schema_type: WebPage
         <section class="CityFAQ">
             <div class="SectionTitle">
                 <span class="Eyebrow">Questions fréquentes</span>
-                <h2 class="Title">UX Design et webdesign à Paris : tes questions</h2>
+                <h2 class="Title">UX Design et webdesign à Reims : tes questions</h2>
             </div>
             <div class="FAQList">
                 <details>
-                    <summary>Combien coûte un site web avec un webdesigner à Paris ?</summary>
+                    <summary>Combien coûte un site web avec un webdesigner à Reims ?</summary>
                     <p>Mes prestations démarrent à 500 € pour un audit UX et une refonte, 750 € pour une identité visuelle et un design system, 1 000 € pour un site vitrine ou une landing page, et 1 500 € pour un e-commerce. Le tarif final dépend de ton besoin : je te remets un devis après un premier échange.</p>
                 </details>
                 <details>
-                    <summary>Travailles-tu à distance avec des clients à Paris ?</summary>
-                    <p>Oui. Je suis basé à Poitiers et l'essentiel du projet se déroule en visio : cadrage, présentation des maquettes, recette. Tu peux réserver un créneau depuis la page de contact.</p>
+                    <summary>Es-tu basé à Reims ?</summary>
+                    <p>Ma base principale est à Poitiers, et je suis également présent à Reims, où j&#x27;ai fait mes études. Je peux te rencontrer sur place sur demande, et tout le reste du projet se déroule sans friction à distance.</p>
                 </details>
                 <details>
                     <summary>Quelle est la différence entre UX Design et webdesign ?</summary>
                     <p>Le webdesign donne forme au site : couleurs, typographies, mise en page. L&#x27;UX Design s&#x27;occupe du parcours : que la personne trouve ce qu&#x27;elle cherche et accomplisse son objectif sans effort superflu. Je travaille les deux, puis j&#x27;intègre le résultat en code.</p>
                 </details>
                 <details>
-                    <summary>Peux-tu refaire un site existant à Paris sans perdre mon référencement ?</summary>
+                    <summary>Peux-tu refaire un site existant à Reims sans perdre mon référencement ?</summary>
                     <p>Oui. Mon audit UX inclut l&#x27;analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO.</p>
                 </details>
             </div>
@@ -285,10 +295,10 @@ schema_type: WebPage
         <section class="OtherCity">
             <div class="Band">
                 <div>
-                    <h2>Mon activité est basée à Poitiers.</h2>
-                    <p>Même méthode, mêmes prestations, suivi en visio partout en France.</p>
+                    <h2>Je suis basé à Poitiers, où je reçois aussi sur rendez-vous.</h2>
+                    <p>Même méthode, mêmes prestations, rendez-vous sur place ou en visio.</p>
                 </div>
-                <a href="/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
+                <a href="/villes/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
             </div>
         </section>
         {% include cta.html %}

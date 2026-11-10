@@ -11,6 +11,7 @@ sitemap: false
   {%- if u contains '/blog/' -%}{%- assign type = 'Article' -%}
   {%- elsif u contains '/ux/laws/' -%}{%- assign type = 'Loi UX' -%}
   {%- elsif u contains '/ux/' -%}{%- assign type = 'Guide UX' -%}
+  {%- elsif u contains '/villes/' -%}{%- assign type = 'Ville' -%}
   {%- elsif u contains '/reals/' -%}{%- assign type = 'Projet' -%}
   {%- elsif u contains '/terms/' -%}{%- assign type = 'Légal' -%}
   {%- else -%}{%- assign type = 'Page' -%}

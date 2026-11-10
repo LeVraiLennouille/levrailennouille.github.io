@@ -23,9 +23,11 @@
                     {%- endif -%}
                 </span>
                 <h3 class="ClientName">{{ c.name }}</h3>
+                {%- if c.services and c.services.size > 0 -%}
                 <ul class="ClientServices" aria-label="Ce que j'ai réalisé">
                     {%- for s in c.services -%}<li>{{ s }}</li>{%- endfor -%}
                 </ul>
+                {%- endif -%}
                 {%- if c.url != nil and c.url != "" -%}<span class="ClientLink">Voir le projet <span aria-hidden="true">→</span></span>{%- endif -%}
             {%- if c.url != nil and c.url != "" -%}</a>{%- else -%}</div>{%- endif -%}
         </li>

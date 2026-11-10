@@ -67,8 +67,8 @@ L'interface détaille mes interventions professionnelles :
 
 Basé à Poitiers, présent à Reims, avec des rendez-vous sur place ou en visio et un accompagnement à distance partout en France.
 
-- [Webdesigner à Poitiers](https://lennouille.fr/poitiers)
-- [Webdesigner à Reims](https://lennouille.fr/reims)
+- [Webdesigner à Poitiers](https://lennouille.fr/villes/poitiers)
+- [Webdesigner à Reims](https://lennouille.fr/villes/reims)
 
 ## Mes outils professionnels
 

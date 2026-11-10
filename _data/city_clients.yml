@@ -32,6 +32,11 @@ poitiers:
     services: ["Statut étudiant-entrepreneur", "Accompagnement"]
     url: "/pepite"
 
+  - name: "Seed"
+    logo: ""            # ex. /img/seed.svg
+    services: []        # À COMPLÉTER : ce que j'ai fait pour Seed
+    url: ""
+
 reims:
   - name: "Studio Papou"
     logo: ""            # ex. /img/reals/papou/logo.svg
@@ -53,6 +58,16 @@ reims:
     services: ["Identité visuelle", "UI/UX", "Design system"]
     url: "/reals/larepousse"
 
+  - name: "Reims Citroën"
+    logo: ""            # ex. /img/reims-citroen.svg
+    services: []        # À COMPLÉTER
+    url: ""
+
+  - name: "Giratoire or Fake"
+    logo: ""            # ex. /img/giratoire-or-fake.svg
+    services: []        # À COMPLÉTER
+    url: ""
+
 paris:
   - name: "LennouilleStudio"
     logo: "/img/reals/portfolio/logo.svg"
@@ -64,6 +79,25 @@ paris:
     services: ["Product design", "Refonte UI/UX", "App web temps réel"]
     url: "/reals/leblindtestfrancais"
 
-nantes: []
+  - name: "BPI France"
+    logo: ""            # ex. /img/bpifrance.svg
+    services: []        # À COMPLÉTER
+    url: ""
+
+  - name: "Mytho Mytho"
+    logo: "/img/reals/mytho-mytho/logo.svg"
+    services: ["UX Design", "Identité visuelle", "Développement front-end"]
+    url: "/reals/mytho-mytho"
+
+nantes:
+  - name: "GeopTime"
+    logo: "/img/reals/geoptime/logo.svg"
+    services: ["Identité visuelle", "UI/UX", "Site B2B", "Développement full-stack"]
+    url: "/reals/geoptime"
+
+  - name: "CarAds Studio"
+    logo: "/img/reals/carads/logo.svg"
+    services: ["UI/UX Design", "WebApp", "Identité visuelle"]
+    url: ""             # étude de cas : ajouter /reals/carads une fois publiée
 
 bordeaux: []

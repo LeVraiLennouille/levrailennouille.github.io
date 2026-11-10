@@ -21,27 +21,27 @@
         <div class="FooterCol">
             <h4 class="FooterTitle">Zones d'intervention</h4>
             <ul class="FooterLinks FooterSocialLinks FooterZoneLinks">
-                {% unless page.url contains '/poitiers' %}<li><a href="/poitiers">
+                {%- assign _cur = page.url | replace: '.html', '' -%}{% unless _cur == '/villes/poitiers' %}<li><a href="/villes/poitiers">
                     <span class="FooterIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 21 L16.9 21 L19 11.4 L13.4 3 L6.4 8.4 Z"/><path d="M6.4 8.4 L19 11.4"/><path d="M13.4 3 L16.9 21"/></svg>
                     </span>Webdesigner à Poitiers
                 </a></li>{% endunless %}
-                {% unless page.url contains '/reims' %}<li><a href="/reims">
+                {% unless _cur == '/villes/reims' %}<li><a href="/villes/reims">
                     <span class="FooterIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 5 V9 C10.5 11 7 11.5 7 15 V20 a1 1 0 0 0 1 1 h8 a1 1 0 0 0 1 -1 V15 C17 11.5 13.5 11 13.5 9 V5 Z"/><path d="M10 3 h4 v2 h-4 Z"/><path d="M10.5 7.5 h3"/><rect x="8.5" y="15" width="7" height="3.5" rx="0.5"/><circle cx="16" cy="2.2" r="0.5"/><circle cx="13.6" cy="0.9" r="0.4"/></svg>
                     </span>Webdesigner à Reims
                 </a></li>{% endunless %}
-                {% unless page.url contains '/nantes' %}<li><a href="/nantes">
+                {% unless _cur == '/villes/nantes' %}<li><a href="/villes/nantes">
                     <span class="FooterIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 20V10h3V7h2v3h6V7h2v3h3v10Z"/><path d="M10 20v-4a2 2 0 0 1 4 0v4"/><path d="M4 10h16"/></svg>
                     </span>Webdesigner à Nantes
                 </a></li>{% endunless %}
-                {% unless page.url contains '/paris' %}<li><a href="/paris">
+                {% unless _cur == '/villes/paris' %}<li><a href="/villes/paris">
                     <span class="FooterIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2v3"/><path d="M10.5 8h3L15 14l2 6H7l2-6Z"/><path d="M9.3 14h5.4"/><path d="M12 14v3"/></svg>
                     </span>Webdesigner à Paris
                 </a></li>{% endunless %}
-                {% unless page.url contains '/bordeaux' %}<li><a href="/bordeaux">
+                {% unless _cur == '/villes/bordeaux' %}<li><a href="/villes/bordeaux">
                     <span class="FooterIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 3h10c0 5-1.5 8-5 8S7 8 7 3Z"/><path d="M12 11v9"/><path d="M8.5 21h7"/><path d="M7.4 7h9.2"/></svg>
                     </span>Webdesigner à Bordeaux
