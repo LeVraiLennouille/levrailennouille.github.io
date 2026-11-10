@@ -1,0 +1,69 @@
+# ==========================================================================
+# Références affichées sur les pages villes  (include : city-clients.html)
+#
+# Clé       = slug de la page ville : poitiers, reims, nantes, paris, bordeaux
+# name      = nom affiché
+# logo      = chemin du logo (laisser "" : le nom s'affiche en texte)
+# services  = ce que j'ai fait (une pastille par élément)
+# url       = lien vers l'étude de cas (laisser "" : pas de lien)
+#
+# Une ville sans entrée (ou liste vide) n'affiche aucune section.
+# L'ordre de la liste = l'ordre d'affichage.
+# ==========================================================================
+
+poitiers:
+  - name: "Zeno"
+    logo: "/img/reals/zeno/logo.svg"
+    services: ["Refonte UI/UX", "Identité visuelle", "Webdesign"]
+    url: "/reals/zeno"
+
+  - name: "GymAddict"
+    logo: "/img/reals/gymaddict/logo.svg"
+    services: ["UI/UX Design", "Identité visuelle", "Webdesign"]
+    url: "/reals/gymaddict"
+
+  - name: "Université de Poitiers"
+    logo: "/img/universite-poitiers.svg"
+    services: ["Master Web éditorial et stratégie UX"]
+    url: ""
+
+  - name: "Pépite Nord-Aquitain"
+    logo: "/img/pepite.svg"
+    services: ["Statut étudiant-entrepreneur", "Accompagnement"]
+    url: "/pepite"
+
+reims:
+  - name: "Studio Papou"
+    logo: ""            # ex. /img/reals/papou/logo.svg
+    services: ["Audit UI/UX", "Refonte", "Identité visuelle"]
+    url: ""             # étude de cas pas encore publiée
+
+  - name: "Mü-Être"
+    logo: ""            # ex. /img/reals/mu/logo.svg
+    services: ["Audit UI/UX", "Refonte", "Design system"]
+    url: "/reals/mu"
+
+  - name: "Primaire Média"
+    logo: ""            # ex. /img/reals/primaire/logo.svg
+    services: ["Recherche UX", "Site e-commerce", "Identité visuelle"]
+    url: "/reals/primaire"
+
+  - name: "La Repousse"
+    logo: "/img/reals/larepousse/logo.svg"
+    services: ["Identité visuelle", "UI/UX", "Design system"]
+    url: "/reals/larepousse"
+
+paris:
+  - name: "LennouilleStudio"
+    logo: "/img/reals/portfolio/logo.svg"
+    services: ["Audit UI/UX", "Refonte", "Identité visuelle"]
+    url: "/reals/portfolio"
+
+  - name: "Le Blindtest Français"
+    logo: "/img/reals/leblindtestfrancais/logo.svg"
+    services: ["Product design", "Refonte UI/UX", "App web temps réel"]
+    url: "/reals/leblindtestfrancais"
+
+nantes: []
+
+bordeaux: []

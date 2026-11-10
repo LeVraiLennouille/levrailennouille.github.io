@@ -1,0 +1,26 @@
+{%- comment -%}
+  Retours clients d'une ville (filtrés par l'attribut `pages` de _data/avis.yml).
+  Usage : include city-avis.html city="reims"
+  Aucun avis pour la ville = aucune section. Jusqu'à 3 avis : grille fixe ; au-delà : défilement.
+{%- endcomment -%}
+{%- assign _c = include.city -%}
+{%- assign _n = site.data.avis | where_exp: "a", "a.pages contains _c" | size -%}
+{%- if _n > 0 -%}
+<section class="Recommendations CityAvis">
+    <div class="SectionTitle">
+        <span class="Eyebrow">Retours clients</span>
+        <h2 class="Title">Ce qu'on dit de mon travail</h2>
+    </div>
+    {%- if _n > 3 %}
+    <div class="Marquee">
+        <div class="MarqueeTrack">
+            {% include avis-marquee.html page=_c duplicate=true %}
+        </div>
+    </div>
+    {%- else %}
+    <div class="AvisGrid">
+        {% include avis-marquee.html page=_c %}
+    </div>
+    {%- endif %}
+</section>
+{%- endif -%}

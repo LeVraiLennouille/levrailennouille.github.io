@@ -1,4 +1,16 @@
+{%- comment -%}
+  Avis clients.
+  Paramètres (tous facultatifs) :
+    page      = slug d'une page (ex. "reims") : n'affiche que les avis dont `pages` contient ce slug
+    limit     = nombre maximum d'avis
+    duplicate = true : ajoute une 2e copie masquée (nécessaire pour la boucle du défilement)
+  Sans paramètre : tous les avis (accueil, à propos).
+{%- endcomment -%}
 {%- assign _avis = site.data.avis -%}
+{%- if include.page -%}
+  {%- assign _p = include.page -%}
+  {%- assign _avis = _avis | where_exp: "a", "a.pages contains _p" -%}
+{%- endif -%}
 {%- if include.limit -%}
   {%- assign _avis = _avis | slice: 0, include.limit -%}
 {%- endif -%}
@@ -14,3 +26,17 @@
     </div>
 </div>
 {%- endfor -%}
+{%- if include.duplicate -%}
+{%- for a in _avis -%}
+<div class="Card" aria-hidden="true">
+    <p class="QuoteText{% if a.placeholder %} Placeholder{% endif %}">{{ a.quote }}</p>
+    <div class="Author">
+        <div class="Avatar">{{ a.avatar }}</div>
+        <div>
+            <h3>{{ a.authorName }}</h3>
+            <p>{{ a.authorRole }}</p>
+        </div>
+    </div>
+</div>
+{%- endfor -%}
+{%- endif -%}

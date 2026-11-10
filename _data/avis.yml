@@ -1,4 +1,10 @@
+# Avis clients.
+# pages : sur quelles pages villes l'avis s'affiche (plusieurs valeurs possibles).
+#   valeurs : poitiers, reims, nantes, paris, bordeaux      ex. pages: [reims, paris]
+#   pages: []  -> l'avis n'apparaît pas sur les pages villes (accueil et à propos affichent tous les avis)
+
 - id: "etienne-pay"
+  pages: []
   placeholder: true
   quote: "Lenny possède un esprit de synthèse affûté. Il analyse les comportements humains avec justesse. Son sérieux garantit un travail toujours abouti."
   authorName: "Étienne Pay"
@@ -6,6 +12,7 @@
   avatar: "E"
 
 - id: "mohamed-chafai"
+  pages: []
   placeholder: true
   quote: "Lenny design avec une grande rigueur. Il structure les idées pour faciliter les travaux de groupe. Collaborer avec lui garantit toujours un résultat net."
   authorName: "Mohamed Chafai"
@@ -13,6 +20,7 @@
   avatar: "M"
 
 - id: "lucie-le-mai"
+  pages: [reims]
   placeholder: true
   quote: "Lenny travaille en autonomie dès le premier jour. Il assimile les nouveaux outils rapidement. Son intégration au sein du groupe est immédiate."
   authorName: "Lucie Le Mai"
@@ -20,6 +28,7 @@
   avatar: "L"
 
 - id: "nicolas-louveton"
+  pages: [poitiers]
   placeholder: true
   quote: "Lenny aborde les interfaces avec une méthode rigoureuse. Sa démarche UX s'appuie sur l'analyse des besoins. Il justifie ses choix par des données chiffrées."
   authorName: "Nicolas Louveton"
@@ -27,6 +36,7 @@
   avatar: "N"
 
 - id: "simon-gauchet"
+  pages: []
   placeholder: true
   quote: "Lenny vulgarise les concepts digitaux avec aisance. Il justifie ses choix d'architecture avec clarté. Ses indications aident à avancer vite."
   authorName: "Simon Gauchet"
@@ -34,6 +44,7 @@
   avatar: "S"
 
 - id: "abdeslem-chaouchi"
+  pages: [reims]
   placeholder: true
   quote: "Lenny propose des refontes visuelles pertinentes. Sa réactivité face aux retours est totale. Son implication a transformé mon identité."
   authorName: "Abdeslem Chaouchi"
@@ -41,6 +52,7 @@
   avatar: "M"
 
 - id: "maxence-halle"
+  pages: []
   placeholder: true
   quote: "Lenny s'investit à 200% depuis ses débuts en freelance. Sa progression en design et en développement web force le respect. Il relève les défis avec détermination."
   authorName: "Maxence Hallé"
@@ -48,6 +60,7 @@
   avatar: "M"
 
 - id: "annaelle"
+  pages: []
   placeholder: true
   quote: "Lenny montre une ponctualité parfaite. Il gère les situations stressantes avec calme. Travailler à ses côtés apporte la sérénité."
   authorName: "Annaëlle"
@@ -55,6 +68,7 @@
   avatar: "A"
 
 - id: "arsene-de-wilde"
+  pages: [paris]
   placeholder: true
   quote: "L'expérience de jeu du BlindtestFrançais est fluide. L'interface va droit au but. Le jeu est facile à comprendre et à prendre en main."
   authorName: "Arsène De Wilde"
