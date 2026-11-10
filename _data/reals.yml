@@ -28,6 +28,36 @@
   date: "2027-01-31"
   comingSoon: true
 
+- id: "pictave"
+  url: "/reals/pictave"
+  name: "Création Pictave"
+  label: "Pictave"
+  category: "Application mobile · UI/UX Design"
+  tags:
+    - "creation"
+    - "application-mobile"
+    - "ui-ux"
+  image: "/img/reals/pictave/mockup.webp"
+  imageAlt: "Création Pictave"
+  date: "2027-01-10"
+  comingSoon: true
+
+- id: "syne"
+  url: "/reals/syne"
+  name: "Création Syne"
+  label: "Syne"
+  category: "UI/UX Design · WebApp · Identité visuelle"
+  tags:
+    - "creation"
+    - "ui-ux"
+    - "webapp"
+    - "app-design"
+    - "jeu vidéo"
+  image: "/img/reals/syne/mockup.webp"
+  imageAlt: "Création Syne"
+  date: "2026-12-31"
+  comingSoon: true
+
 - id: "pomodoro"
   url: "/reals/pomodoro"
   name: "Création Pomodoro"
