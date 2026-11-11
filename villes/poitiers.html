@@ -54,6 +54,16 @@ schema_type: WebPage
         "Intégration web",
         "Audit UX"
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Prestations de webdesign à Poitiers",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site vitrine & landing page" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audit UX & refonte" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Identité visuelle & design system" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-commerce & conversion" } }
+        ]
+      },
       "areaServed": [
         {
           "@type": "City",
@@ -126,6 +136,22 @@ schema_type: WebPage
             "@type": "Answer",
             "text": "Non. Je suis basé à Poitiers, mais j'accompagne aussi des projets à distance partout en France, de l'audit à la mise en ligne."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment mon site peut-il ressortir sur Google à Poitiers ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En combinant une structure claire (une page par service), des contenus qui citent ta ville et ton activité, des données structurées pour que Google comprenne ton entreprise, et une fiche Google Business Profile à jour. Je m'occupe de la partie technique du site ; la fiche et les avis clients restent de ton côté, avec mes conseils."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Accompagnes-tu les jeunes entreprises et les étudiants-entrepreneurs ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Je suis moi-même étudiant-entrepreneur avec Pépite Nord-Aquitain et je connais les contraintes d'un lancement : budget serré, temps limité, besoin de crédibilité rapide. On définit ensemble l'essentiel à livrer en premier."
+          }
         }
       ]
     }
@@ -138,6 +164,7 @@ schema_type: WebPage
     <main class="City Poitiers">
         {% include header.html %}
         <section class="SecondaryHero">
+            <div class="HeroMapLabel" role="img" aria-label="Plan stylisé de Poitiers, en fond de page"></div>
             <div class="Decor" aria-hidden="true">
                 <span>Poitiers</span>
                 <span>UX</span>
@@ -152,7 +179,7 @@ schema_type: WebPage
                 </nav>
                 <h1 class="Title">UX Designer &amp; Webdesigner<br><em>à Poitiers</em></h1>
                 <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Poitiers et de la Vienne : design sur-mesure, parcours pensés pour la conversion, rendez-vous en présentiel ou en visio.</p>
-                <a href="/contact" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
+                <a href="/contact?ville=poitiers" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
             </div>
             <p class="HeroCredit">Plan © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></p>
         </section>
@@ -166,6 +193,7 @@ schema_type: WebPage
                     <p>Je suis installé à Poitiers depuis mon entrée en Master Web éditorial et stratégie UX à l&#x27;Université de Poitiers. Lennouille est mon activité de freelance : je dessine les interfaces, puis je les code moi-même, sans intermédiaire.</p>
                     <p>Pour un projet web à Poitiers, cela veut dire un premier échange en face à face si tu le souhaites, un site pensé pour la façon dont tes clients te cherchent sur Google, et un seul interlocuteur du brief à la mise en ligne.</p>
                     <p>Je travaille aussi à distance avec des clients dans toute la France : la visio remplace le café quand les agendas ne s&#x27;y prêtent pas.</p>
+                    <p>À Poitiers, l&#x27;économie s&#x27;appuie sur les services, l&#x27;enseignement supérieur (l&#x27;Université de Poitiers a été fondée en 1431) et la technopole du Futuroscope, ouverte en 1987 (source : <a href="https://www.insee.fr/fr/statistiques/fichier/1292004/dec2013328.pdf" target="_blank" rel="noopener">Insee</a>). Commerçants, structures de formation et jeunes entreprises y ont besoin d&#x27;un site qui se comprend vite.</p>
                 </div>
                 <aside class="Card Facts" aria-label="Informations pratiques">
                     <h3>En bref</h3>
@@ -178,6 +206,7 @@ schema_type: WebPage
                 </aside>
             </div>
         </section>
+        {% include city-case.html city="poitiers" label="Poitiers" %}
         <section class="Offers">
             <div class="SectionTitle">
                 <span class="Eyebrow">Prestations</span>
@@ -290,15 +319,27 @@ schema_type: WebPage
                     <summary>Travailles-tu uniquement avec des entreprises de Poitiers ?</summary>
                     <p>Non. Je suis basé à Poitiers, mais j&#x27;accompagne aussi des projets à distance partout en France, de l&#x27;audit à la mise en ligne.</p>
                 </details>
+                <details>
+                    <summary>Comment mon site peut-il ressortir sur Google à Poitiers ?</summary>
+                    <p>En combinant une structure claire (une page par service), des contenus qui citent ta ville et ton activité, des données structurées pour que Google comprenne ton entreprise, et une fiche Google Business Profile à jour. Je m&#x27;occupe de la partie technique du site ; la fiche et les avis clients restent de ton côté, avec mes conseils.</p>
+                </details>
+                <details>
+                    <summary>Accompagnes-tu les jeunes entreprises et les étudiants-entrepreneurs ?</summary>
+                    <p>Oui. Je suis moi-même étudiant-entrepreneur avec Pépite Nord-Aquitain et je connais les contraintes d&#x27;un lancement : budget serré, temps limité, besoin de crédibilité rapide. On définit ensemble l&#x27;essentiel à livrer en premier.</p>
+                </details>
             </div>
         </section>
         <section class="OtherCity">
             <div class="Band">
                 <div>
-                    <h2>Je suis aussi présent à Reims et dans la Marne.</h2>
-                    <p>Même méthode, mêmes prestations, rendez-vous sur place ou en visio.</p>
+                    <h2>Je travaille aussi à Reims et à Paris.</h2>
+                    <p>Même méthode, mêmes prestations, suivi en visio partout en France.</p>
                 </div>
-                <a href="/villes/reims" class="BtnSolid">Webdesigner à Reims <span aria-hidden="true">→</span></a>
+                <div class="BandLinks">
+                    <a href="/villes/reims" class="BtnSolid">Webdesigner à Reims <span aria-hidden="true">→</span></a>
+                    <a href="/villes/paris" class="BtnSolid">Webdesigner à Paris <span aria-hidden="true">→</span></a>
+                    <a href="/villes" class="BackLink"><span aria-hidden="true">←</span> Toutes les villes</a>
+                </div>
             </div>
         </section>
         {% include cta.html %}

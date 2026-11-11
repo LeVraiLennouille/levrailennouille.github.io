@@ -9,14 +9,6 @@
   name: "Reims"
   area: "Reims et la Marne"
 
-- slug: nantes
-  name: "Nantes"
-  area: "Nantes et la Loire-Atlantique"
-
 - slug: paris
   name: "Paris"
   area: "Paris et l'Île-de-France"
-
-- slug: bordeaux
-  name: "Bordeaux"
-  area: "Bordeaux et la Gironde"

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Sur une page projet : lien vers la page ville où ce projet est cité (_data/city_clients.yml).
+{%- endcomment -%}
+{%- assign _me = page.url | replace: '.html', '' -%}
+{%- for entry in site.data.city_clients -%}
+  {%- for c in entry[1] -%}
+    {%- if c.url == _me -%}
+      {%- assign _city = site.data.cities | where: "slug", entry[0] | first -%}
+      {%- if _city -%}
+<p class="ProjectCity">
+        {%- if c.relation == "client" -%}Réalisé pour une structure de {{ _city.name }}.{%- else -%}Projet lié à {{ _city.name }}.{%- endif %}
+  <a href="/villes/{{ _city.slug }}">Webdesigner à {{ _city.name }} →</a>
+</p>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}

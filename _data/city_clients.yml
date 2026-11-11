@@ -1,11 +1,14 @@
 # ==========================================================================
 # Références affichées sur les pages villes  (include : city-clients.html)
 #
-# Clé       = slug de la page ville : poitiers, reims, nantes, paris, bordeaux
+# Clé       = slug de la page ville : poitiers, reims, paris
 # name      = nom affiché
 # logo      = chemin du logo (laisser "" : le nom s'affiche en texte)
 # services  = ce que j'ai fait (une pastille par élément)
 # url       = lien vers l'étude de cas (laisser "" : pas de lien)
+# kind      = précision affichée sur la carte (Client, Projet personnel…) — d'après le champ « Contexte » de la page projet
+# relation  = client | projet | partenaire (sert au lien « Réalisé pour… » sur les pages projet)
+# metric    = chiffre clé affiché sur la carte : {value: "+24 %", label: "taux de conversion"}
 #
 # Une ville sans entrée (ou liste vide) n'affiche aucune section.
 # L'ordre de la liste = l'ordre d'affichage.
@@ -16,21 +19,31 @@ poitiers:
     logo: "/img/reals/zeno/logo.svg"
     services: ["Refonte UI/UX", "Identité visuelle", "Webdesign"]
     url: "/reals/zeno"
+    kind: "Projet personnel"
+    relation: "projet"
+    metric: {value: "1 tap", label: "pour valider une habitude"}
 
   - name: "GymAddict"
     logo: "/img/reals/gymaddict/logo.svg"
     services: ["UI/UX Design", "Identité visuelle", "Webdesign"]
     url: "/reals/gymaddict"
+    kind: "Projet personnel"
+    relation: "projet"
+    metric: {value: "Auto", label: "enregistrement d'une série"}
 
   - name: "Université de Poitiers"
     logo: "/img/universite-poitiers.svg"
     services: ["Master Web éditorial et stratégie UX"]
     url: ""
+    kind: "Formation"
+    relation: "partenaire"
 
   - name: "Pépite Nord-Aquitain"
     logo: "/img/pepite.svg"
     services: ["Statut étudiant-entrepreneur", "Accompagnement"]
     url: "/pepite"
+    kind: "Étudiant-entrepreneur"
+    relation: "partenaire"
 
   - name: "Seed"
     logo: ""            # ex. /img/seed.svg
@@ -42,21 +55,31 @@ reims:
     logo: ""            # ex. /img/reals/papou/logo.svg
     services: ["Audit UI/UX", "Refonte", "Identité visuelle"]
     url: ""             # étude de cas pas encore publiée
+    relation: "client"
 
   - name: "Mü-Être"
     logo: ""            # ex. /img/reals/mu/logo.svg
     services: ["Audit UI/UX", "Refonte", "Design system"]
     url: "/reals/mu"
+    kind: "Client · Entreprise de QVCT"
+    relation: "client"
+    metric: {value: "2.28 → 11.84", label: "ratio de contraste du texte"}
 
   - name: "Primaire Média"
     logo: ""            # ex. /img/reals/primaire/logo.svg
     services: ["Recherche UX", "Site e-commerce", "Identité visuelle"]
     url: "/reals/primaire"
+    kind: "Client · Association"
+    relation: "client"
+    metric: {value: "+24 %", label: "taux de conversion"}
 
   - name: "La Repousse"
     logo: "/img/reals/larepousse/logo.svg"
     services: ["Identité visuelle", "UI/UX", "Design system"]
     url: "/reals/larepousse"
+    kind: "Client · Association"
+    relation: "client"
+    metric: {value: "+50 %", label: "bénévoles inscrits depuis la refonte"}
 
   - name: "Reims Citroën"
     logo: ""            # ex. /img/reims-citroen.svg
@@ -73,11 +96,25 @@ paris:
     logo: "/img/reals/portfolio/logo.svg"
     services: ["Audit UI/UX", "Refonte", "Identité visuelle"]
     url: "/reals/portfolio"
+    kind: "Projet personnel"
+    relation: "projet"
+    metric: {value: "6", label: "entretiens obtenus depuis la v3"}
 
   - name: "Le Blindtest Français"
     logo: "/img/reals/leblindtestfrancais/logo.svg"
     services: ["Product design", "Refonte UI/UX", "App web temps réel"]
     url: "/reals/leblindtestfrancais"
+    kind: "Refonte v3 d'un produit existant"
+    relation: "projet"
+    metric: {value: "2 clics", label: "du menu au lancement d'une partie"}
+
+  - name: "GeopTime"
+    logo: "/img/reals/geoptime/logo.svg"
+    services: ["Identité visuelle", "UI/UX", "Site B2B", "Développement full-stack"]
+    url: "/reals/geoptime"
+    kind: "Client · Entreprise"
+    relation: "client"
+    metric: {value: "88 h", label: "de travail"}
 
   - name: "BPI France"
     logo: ""            # ex. /img/bpifrance.svg
@@ -88,16 +125,12 @@ paris:
     logo: "/img/reals/mytho-mytho/logo.svg"
     services: ["UX Design", "Identité visuelle", "Développement front-end"]
     url: "/reals/mytho-mytho"
+    kind: "Projet personnel"
+    relation: "projet"
+    metric: {value: "160+", label: "paires de mots, réparties en 7 thèmes"}
 
-nantes:
-  - name: "GeopTime"
-    logo: "/img/reals/geoptime/logo.svg"
-    services: ["Identité visuelle", "UI/UX", "Site B2B", "Développement full-stack"]
-    url: "/reals/geoptime"
-
-  - name: "CarAds Studio"
-    logo: "/img/reals/carads/logo.svg"
-    services: ["UI/UX Design", "WebApp", "Identité visuelle"]
-    url: ""             # étude de cas : ajouter /reals/carads une fois publiée
-
-bordeaux: []
+# --------------------------------------------------------------------------
+# Non affiché pour l'instant (aucune page ville) :
+#   CarAds Studio — logo /img/reals/carads/logo.svg
+#   services : UI/UX Design, WebApp, Identité visuelle
+# --------------------------------------------------------------------------

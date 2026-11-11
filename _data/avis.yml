@@ -1,6 +1,6 @@
 # Avis clients.
 # pages : sur quelles pages villes l'avis s'affiche (plusieurs valeurs possibles).
-#   valeurs : poitiers, reims, nantes, paris, bordeaux      ex. pages: [reims, paris]
+#   valeurs : poitiers, reims, paris      ex. pages: [reims, paris]
 #   pages: []  -> l'avis n'apparaît pas sur les pages villes (accueil et à propos affichent tous les avis)
 
 - id: "etienne-pay"

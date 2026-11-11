@@ -85,6 +85,7 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
                     <span>Envoyer un message</span>
                 </div>
                 <form method="POST" action="https://formspree.io/f/moeqlegb" class="Form">
+                <input type="hidden" name="ville" id="ville" value="">
                     <div class="FormRow">
                         <div class="InputGroup">
                             <input id="prenom" type="text" name="prenom" class="Input" autocomplete="given-name" placeholder=" " required>
@@ -185,6 +186,14 @@ description: "Prêt à transformer votre idée en expérience digitale mémorabl
             const submitLabel = submitBtn ? submitBtn.textContent : "";
             const rateLimiter = Guard.createRateLimiter(RATE_LIMIT_KEY, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
             const mailLink = {text: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}`};
+
+            // Page ville d'origine (?ville=reims) : champ caché pour le suivi + sujet prérempli
+            const CITIES = {poitiers: "Poitiers", reims: "Reims", paris: "Paris"};
+            const cityKey = new URLSearchParams(window.location.search).get("ville");
+            if (cityKey && Object.prototype.hasOwnProperty.call(CITIES, cityKey)) {
+                form.elements.ville.value = cityKey;
+                if (!form.elements.objet.value.trim()) form.elements.objet.value = `Projet web à ${CITIES[cityKey]}`;
+            }
 
             // Les infobulles natives du navigateur laissent la place aux toasts
             form.noValidate = true;

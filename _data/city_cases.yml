@@ -1,0 +1,44 @@
+# ==========================================================================
+# Cas concret affiché sur chaque page ville (include : city-case.html)
+# Textes repris des pages projet (/reals/...) : brief, rôle, durée, résultats.
+# Pas d'entrée pour une ville = pas de section.
+# ==========================================================================
+
+poitiers:
+  name: "Zeno"
+  logo: "/img/reals/zeno/logo.svg"
+  kind: "Projet personnel"
+  brief: "Refondre entièrement HabitsTracker, un suivi d'habitudes fonctionnel mais dense, pour en faire une application plus lisible et plus agréable à ouvrir chaque jour."
+  role: "UX design, UI Kit, logo"
+  duree: "7 semaines"
+  metrics:
+    - {value: "1 tap", label: "pour valider une habitude"}
+    - {value: "5", label: "écrans refondus : habitudes, statistiques, succès, ressenti, compte"}
+    - {value: "3", label: "rythmes de respiration guidée ajoutés"}
+  url: "/reals/zeno"
+
+reims:
+  name: "La Repousse"
+  logo: "/img/reals/larepousse/logo.svg"
+  kind: "Client · Association"
+  brief: "Construire l'image de marque d'une association qui plante des haies, pour recruter des bénévoles."
+  role: "Identité visuelle, UI/UX, supports imprimés"
+  duree: "3 semaines"
+  metrics:
+    - {value: "+50 %", label: "bénévoles inscrits depuis la refonte"}
+    - {value: "3", label: "versions de couleur du logo : orange, sable, vert"}
+    - {value: "4 + 4", label: "pages présentées : extraits de la charte et de la brochure"}
+  url: "/reals/larepousse"
+
+paris:
+  name: "GeopTime"
+  logo: "/img/reals/geoptime/logo.svg"
+  kind: "Client · Entreprise"
+  brief: "Créer le site d'une solution B2B de gestion du temps et de localisation, de la maquette à la base de données."
+  role: "UI/UX design, identité visuelle, développement full-stack"
+  duree: "12 semaines (temps partiel)"
+  metrics:
+    - {value: "88 h", label: "de travail"}
+    - {value: "5", label: "couches techniques assurées seul : HTML/CSS, JavaScript, PHP, SQL, design Figma"}
+    - {value: "2", label: "zones comparées avant/après : hero + navbar, footer ; plus le logo"}
+  url: "/reals/geoptime"

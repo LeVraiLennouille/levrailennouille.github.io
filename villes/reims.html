@@ -54,6 +54,16 @@ schema_type: WebPage
         "Intégration web",
         "Audit UX"
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Prestations de webdesign à Reims",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site vitrine & landing page" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audit UX & refonte" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Identité visuelle & design system" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-commerce & conversion" } }
+        ]
+      },
       "areaServed": [
         {
           "@type": "City",
@@ -126,6 +136,22 @@ schema_type: WebPage
             "@type": "Answer",
             "text": "Oui. Mon audit UX inclut l'analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels projets as-tu réalisés pour des structures de Reims ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour Mü-Être, un audit et une refonte UI/UX avec un design system ; pour Primaire Média, la création d'un site e-commerce WooCommerce (+24 % de taux de conversion) ; pour La Repousse, l'identité visuelle et l'UI/UX d'une association (+50 % de bénévoles inscrits depuis la refonte). Tu retrouves chaque étude de cas dans la section « Clients et projets »."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment mon site peut-il ressortir sur Google à Reims ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En combinant une structure claire (une page par service), des contenus qui citent ta ville et ton activité, des données structurées pour que Google comprenne ton entreprise, et une fiche Google Business Profile à jour. Je m'occupe de la partie technique du site ; la fiche et les avis clients restent de ton côté, avec mes conseils."
+          }
         }
       ]
     }
@@ -138,6 +164,7 @@ schema_type: WebPage
     <main class="City Reims">
         {% include header.html %}
         <section class="SecondaryHero">
+            <div class="HeroMapLabel" role="img" aria-label="Plan stylisé de Reims, en fond de page"></div>
             <div class="Decor" aria-hidden="true">
                 <span>Reims</span>
                 <span>UX</span>
@@ -152,7 +179,7 @@ schema_type: WebPage
                 </nav>
                 <h1 class="Title">UX Designer &amp; Webdesigner<br><em>à Reims</em></h1>
                 <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Reims et de la Marne : design sur-mesure, parcours pensés pour la conversion, rendez-vous sur place ou en visio.</p>
-                <a href="/contact" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
+                <a href="/contact?ville=reims" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
             </div>
             <p class="HeroCredit">Plan © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></p>
         </section>
@@ -166,6 +193,7 @@ schema_type: WebPage
                     <p>Reims est la ville où j&#x27;ai appris à analyser le comportement d&#x27;un client : j&#x27;y ai préparé mon BTS NDRC au lycée Jean-Baptiste Colbert (2023–2025, mention Bien). Cette base commerciale nourrit encore chacun de mes projets UX.</p>
                     <p>J&#x27;interviens auprès des entreprises de Reims et de la Marne : je dessine les interfaces et je les code moi-même, pour que le site livré ressemble exactement à la maquette validée.</p>
                     <p>Les rendez-vous peuvent se tenir à Reims sur demande, ou en visio. Ma base principale est à Poitiers, ce qui ne change rien au suivi : un seul interlocuteur, des échanges directs.</p>
+                    <p>À Reims, les maisons de champagne restent un pilier de l&#x27;économie locale, aux côtés de l&#x27;enseignement supérieur : l&#x27;Université de Reims Champagne-Ardenne y est reconnue en bioéconomie (<a href="https://www.cnrs.fr/sites/default/files/press_info/2023-07/CP_LYNNA-ATMOSFERE.pdf" target="_blank" rel="noopener">source CNRS</a>). Pour les entreprises du territoire, un site clair est souvent la première image donnée aux clients et aux partenaires.</p>
                 </div>
                 <aside class="Card Facts" aria-label="Informations pratiques">
                     <h3>En bref</h3>
@@ -178,6 +206,7 @@ schema_type: WebPage
                 </aside>
             </div>
         </section>
+        {% include city-case.html city="reims" label="Reims" %}
         <section class="Offers">
             <div class="SectionTitle">
                 <span class="Eyebrow">Prestations</span>
@@ -290,15 +319,27 @@ schema_type: WebPage
                     <summary>Peux-tu refaire un site existant à Reims sans perdre mon référencement ?</summary>
                     <p>Oui. Mon audit UX inclut l&#x27;analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO.</p>
                 </details>
+                <details>
+                    <summary>Quels projets as-tu réalisés pour des structures de Reims ?</summary>
+                    <p>Pour Mü-Être, un audit et une refonte UI/UX avec un design system ; pour Primaire Média, la création d&#x27;un site e-commerce WooCommerce (+24 % de taux de conversion) ; pour La Repousse, l&#x27;identité visuelle et l&#x27;UI/UX d&#x27;une association (+50 % de bénévoles inscrits depuis la refonte). Tu retrouves chaque étude de cas dans la section « Clients et projets ».</p>
+                </details>
+                <details>
+                    <summary>Comment mon site peut-il ressortir sur Google à Reims ?</summary>
+                    <p>En combinant une structure claire (une page par service), des contenus qui citent ta ville et ton activité, des données structurées pour que Google comprenne ton entreprise, et une fiche Google Business Profile à jour. Je m&#x27;occupe de la partie technique du site ; la fiche et les avis clients restent de ton côté, avec mes conseils.</p>
+                </details>
             </div>
         </section>
         <section class="OtherCity">
             <div class="Band">
                 <div>
-                    <h2>Je suis basé à Poitiers, où je reçois aussi sur rendez-vous.</h2>
-                    <p>Même méthode, mêmes prestations, rendez-vous sur place ou en visio.</p>
+                    <h2>Mon activité est basée à Poitiers.</h2>
+                    <p>Même méthode, mêmes prestations, suivi en visio partout en France.</p>
                 </div>
-                <a href="/villes/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
+                <div class="BandLinks">
+                    <a href="/villes/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
+                    <a href="/villes/paris" class="BtnSolid">Webdesigner à Paris <span aria-hidden="true">→</span></a>
+                    <a href="/villes" class="BackLink"><span aria-hidden="true">←</span> Toutes les villes</a>
+                </div>
             </div>
         </section>
         {% include cta.html %}

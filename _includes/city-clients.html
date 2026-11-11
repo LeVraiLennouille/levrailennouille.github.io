@@ -8,8 +8,8 @@
 <section class="CityClients">
     <div class="SectionTitle">
         <span class="Eyebrow">Références · {{ include.label | default: include.city }}</span>
-        <h2 class="Title">Ils m'ont fait confiance</h2>
-        <p class="Subtitle">Les structures avec lesquelles j'ai travaillé, et ce que j'ai fait pour elles.</p>
+        <h2 class="Title">Clients et projets</h2>
+        <p class="Subtitle">Mes clients et mes projets liés à {{ include.label | default: include.city }}, avec ce que j'ai fait pour chacun.</p>
     </div>
     <ul class="ClientsGrid">
         {%- for c in _clients -%}
@@ -22,12 +22,14 @@
                     <span class="ClientMonogram" aria-hidden="true">{{ c.name | slice: 0 }}</span>
                     {%- endif -%}
                 </span>
+                {%- if c.kind and c.kind != "" -%}<span class="ClientKind">{{ c.kind }}</span>{%- endif -%}
                 <h3 class="ClientName">{{ c.name }}</h3>
                 {%- if c.services and c.services.size > 0 -%}
                 <ul class="ClientServices" aria-label="Ce que j'ai réalisé">
                     {%- for s in c.services -%}<li>{{ s }}</li>{%- endfor -%}
                 </ul>
                 {%- endif -%}
+                {%- if c.metric -%}<p class="ClientMetric"><strong>{{ c.metric.value }}</strong> <span>{{ c.metric.label }}</span></p>{%- endif -%}
                 {%- if c.url != nil and c.url != "" -%}<span class="ClientLink">Voir le projet <span aria-hidden="true">→</span></span>{%- endif -%}
             {%- if c.url != nil and c.url != "" -%}</a>{%- else -%}</div>{%- endif -%}
         </li>

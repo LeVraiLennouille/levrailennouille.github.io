@@ -54,6 +54,16 @@ schema_type: WebPage
         "Intégration web",
         "Audit UX"
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Prestations de webdesign à Paris",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site vitrine & landing page" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Audit UX & refonte" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Identité visuelle & design system" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-commerce & conversion" } }
+        ]
+      },
       "areaServed": [
         {
           "@type": "City",
@@ -126,6 +136,22 @@ schema_type: WebPage
             "@type": "Answer",
             "text": "Oui. Mon audit UX inclut l'analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels projets as-tu réalisés pour des structures parisiennes ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour GeopTime, l'identité visuelle et le site B2B (design et développement full-stack) ; pour Le Blindtest Français, la refonte UI/UX d'une application web temps réel (2 clics du menu au lancement d'une partie). Mytho Mytho et LennouilleStudio sont des projets personnels, présentés dans la section « Clients et projets »."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment se démarquer sur Google à Paris, où la concurrence est forte ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En visant des requêtes précises plutôt que « webdesigner Paris » : un métier, une spécialité, un quartier. Cela suppose une page par service, des contenus qui répondent aux vraies questions de tes clients et des données structurées propres. Je prépare ces bases dans le site ; le travail de contenu se poursuit ensuite avec toi."
+          }
         }
       ]
     }
@@ -133,11 +159,12 @@ schema_type: WebPage
 }
 </script>
 
-    <link rel="preload" as="image" href="/img/maps/paris-2200.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/img/maps/paris-1800.webp" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
     <link rel="preload" as="image" href="/img/maps/paris-1400.webp" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
     <main class="City Paris">
         {% include header.html %}
         <section class="SecondaryHero">
+            <div class="HeroMapLabel" role="img" aria-label="Plan stylisé de Paris, en fond de page"></div>
             <div class="Decor" aria-hidden="true">
                 <span>Paris</span>
                 <span>UX</span>
@@ -152,7 +179,7 @@ schema_type: WebPage
                 </nav>
                 <h1 class="Title">UX Designer &amp; Webdesigner<br><em>à Paris</em></h1>
                 <p class="SubTitle">Je conçois et je code des sites clairs pour les entreprises de Paris et d&#x27;Île-de-France : design sur-mesure, parcours pensés pour la conversion, suivi en visio de A à Z.</p>
-                <a href="/contact" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
+                <a href="/contact?ville=paris" class="ArrowBtn">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
             </div>
             <p class="HeroCredit">Plan © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a></p>
         </section>
@@ -164,7 +191,7 @@ schema_type: WebPage
                         <h2 class="Title">Un webdesigner pour ton projet à Paris</h2>
                     </div>
                     <p>Je suis basé à Poitiers et j&#x27;accompagne les entreprises de Paris et d&#x27;Île-de-France à distance : un premier échange en visio, puis des points réguliers jusqu&#x27;à la mise en ligne. Lennouille est mon activité de freelance : je dessine les interfaces, puis je les code moi-même, sans intermédiaire.</p>
-                    <p>À Paris, la concurrence est forte et les visiteurs sont pressés : un site doit se comprendre en quelques secondes. C&#x27;est là que le travail sur le parcours, la hiérarchie de l&#x27;information et la vitesse d&#x27;affichage fait la différence.</p>
+                    <p>L&#x27;Île-de-France pèse environ 30 % du PIB français (<a href="https://www.insee.fr/fr/statistiques/fichier/2017579/if_CC_2026_2027.pdf" target="_blank" rel="noopener">Insee</a>) et concentre 36 % des start-up de France, dont plus de la moitié à Paris (<a href="https://www.insee.fr/fr/statistiques/8647906" target="_blank" rel="noopener">Insee, 2022</a>). Dans un marché aussi dense, un site doit se comprendre en quelques secondes : c&#x27;est le travail sur le parcours, la hiérarchie de l&#x27;information et la vitesse d&#x27;affichage qui fait la différence.</p>
                     <p>Pour un projet web à Paris, cela veut dire un site pensé pour la façon dont tes clients te cherchent sur Google, et un seul interlocuteur du brief à la mise en ligne.</p>
                 </div>
                 <aside class="Card Facts" aria-label="Informations pratiques">
@@ -179,6 +206,7 @@ schema_type: WebPage
                 </aside>
             </div>
         </section>
+        {% include city-case.html city="paris" label="Paris" %}
         <section class="Offers">
             <div class="SectionTitle">
                 <span class="Eyebrow">Prestations</span>
@@ -291,6 +319,14 @@ schema_type: WebPage
                     <summary>Peux-tu refaire un site existant à Paris sans perdre mon référencement ?</summary>
                     <p>Oui. Mon audit UX inclut l&#x27;analyse de la structure et des URL existantes, afin de moderniser ton image tout en sécurisant ton historique technique et SEO.</p>
                 </details>
+                <details>
+                    <summary>Quels projets as-tu réalisés pour des structures parisiennes ?</summary>
+                    <p>Pour GeopTime, l&#x27;identité visuelle et le site B2B (design et développement full-stack) ; pour Le Blindtest Français, la refonte UI/UX d&#x27;une application web temps réel (2 clics du menu au lancement d&#x27;une partie). Mytho Mytho et LennouilleStudio sont des projets personnels, présentés dans la section « Clients et projets ».</p>
+                </details>
+                <details>
+                    <summary>Comment se démarquer sur Google à Paris, où la concurrence est forte ?</summary>
+                    <p>En visant des requêtes précises plutôt que « webdesigner Paris » : un métier, une spécialité, un quartier. Cela suppose une page par service, des contenus qui répondent aux vraies questions de tes clients et des données structurées propres. Je prépare ces bases dans le site ; le travail de contenu se poursuit ensuite avec toi.</p>
+                </details>
             </div>
         </section>
         <section class="OtherCity">
@@ -299,7 +335,11 @@ schema_type: WebPage
                     <h2>Mon activité est basée à Poitiers.</h2>
                     <p>Même méthode, mêmes prestations, suivi en visio partout en France.</p>
                 </div>
-                <a href="/villes/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
+                <div class="BandLinks">
+                    <a href="/villes/poitiers" class="BtnSolid">Webdesigner à Poitiers <span aria-hidden="true">→</span></a>
+                    <a href="/villes/reims" class="BtnSolid">Webdesigner à Reims <span aria-hidden="true">→</span></a>
+                    <a href="/villes" class="BackLink"><span aria-hidden="true">←</span> Toutes les villes</a>
+                </div>
             </div>
         </section>
         {% include cta.html %}

@@ -1,0 +1,36 @@
+{%- comment -%}
+  Cas concret d'une ville. Usage : include city-case.html city="reims" label="Reims"
+  Données : _data/city_cases.yml (pas d'entrée = pas de section)
+{%- endcomment -%}
+{%- assign _case = site.data.city_cases[include.city] -%}
+{%- if _case -%}
+<section class="CityCase">
+    <div class="SectionTitle">
+        <span class="Eyebrow">Étude de cas · {{ include.label | default: include.city }}</span>
+        <h2 class="Title">{{ _case.name }}</h2>
+    </div>
+    <article class="CaseCard">
+        <div class="CaseMain">
+            <span class="CaseLogo">
+                {%- if _case.logo != nil and _case.logo != "" -%}<img src="{{ _case.logo | relative_url }}" alt="Logo {{ _case.name | escape }}" loading="lazy">{%- endif -%}
+            </span>
+            <div class="CaseText">
+                {%- if _case.kind %}<span class="ClientKind">{{ _case.kind }}</span>{% endif %}
+                <p class="CaseBrief">{{ _case.brief }}</p>
+                <dl class="CaseFacts">
+                    <div><dt>Ce que j'ai fait</dt><dd>{{ _case.role }}</dd></div>
+                    <div><dt>Durée</dt><dd>{{ _case.duree }}</dd></div>
+                </dl>
+                {%- if _case.url != nil and _case.url != "" %}
+                <a class="ClientLink" href="{{ _case.url | relative_url }}">Lire l'étude de cas <span aria-hidden="true">→</span></a>
+                {%- endif %}
+            </div>
+        </div>
+        <ul class="CaseMetrics">
+            {%- for m in _case.metrics %}
+            <li><strong>{{ m.value }}</strong><span>{{ m.label }}</span></li>
+            {%- endfor %}
+        </ul>
+    </article>
+</section>
+{%- endif -%}
