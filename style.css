@@ -1141,189 +1141,105 @@ section {
    # Calls To Action
 ========================================================================== */
 section.CallToAction {
-    margin: 100px auto;
+    --PrimaryDeep: #7ab8f5;
+    margin: clamp(64px, 10vh, 100px) auto;
 
-    .Design {
-        flex-direction: row;
-        position: relative;
+    .CtaCard {
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        min-height: 440px;
         overflow: hidden;
-        background: var(--Charcoal);
         border-radius: 32px;
-        padding: 72px 64px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 60px;
+        background: var(--Charcoal);
+        color: var(--PureWhite);
         box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 55% 80% at 12% 20%, rgba(var(--PrimaryRGB), 0.35) 0%, transparent 70%),
-                radial-gradient(ellipse 45% 65% at 95% 90%, rgba(var(--DarkPrimaryRGB), 0.45) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .Text, .Action {
-            position: relative;
-            z-index: 2;
-        }
-
-        .Text h2 {
-            font-size: clamp(1.9rem, 3.6vw, 2.8rem);
-            font-weight: 900;
-            color: var(--PureWhite);
-            line-height: 1.18;
-
-            em {
-                font-style: italic;
-                background: linear-gradient(90deg, var(--PureWhite) 0%, var(--Primary) 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-            }
-        }
-
-        .Action {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 20px;
-            flex-shrink: 0;
-            max-width: 320px;
-
-            p {
-                font-size: 0.92rem;
-                line-height: 1.6;
-                color: rgba(var(--PureWhiteRGB), 0.7);
-            }
-        }
-    }
-}
-
-section.DesignedCTA {
-    max-width: 100%;
-    margin: 0;
-
-    .Waves {
-        display: block;
-        width: 100%;
-        height: 120px;
-
-        &.WaveBottom {transform: scaleX(-1) scaleY(-1);}
-
-        .WaveEchos {
-            fill-opacity: 0.4;
-            transform-box: fill-box;
-
-            &.WaveEchoFar {
-                transform-origin: center bottom;
-                animation: waveDriftFar 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-                animation-delay: -3.2s;
-            }
-
-            &.WaveEchoNear {
-                fill-opacity: 0.65;
-                transform-origin: center bottom;
-                animation: waveDriftNear 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-                animation-delay: -1.4s;
-            }
-        }
     }
 
-    section.CTA {
-        max-width: 100%;
-        margin: 0;
+    .CtaVisual {
         position: relative;
+        display: grid;
+        place-items: center;
         overflow: hidden;
-        background: linear-gradient(90deg, var(--Charcoal) 0%, var(--DarkPrimary) 100%);
-        padding: 20px 40px;
-        text-align: center;
+        background:
+            radial-gradient(ellipse 80% 70% at 25% 25%, rgba(var(--PrimaryRGB), 0.38) 0%, transparent 70%),
+            radial-gradient(ellipse 70% 60% at 90% 95%, rgba(var(--DarkPrimaryRGB), 0.5) 0%, transparent 65%);
+    }
 
-        .Content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .CtaMark {
+        position: relative;
+        width: min(72%, 300px);
+        aspect-ratio: 1;
 
-        .Badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            background-color: rgba(var(--PureWhiteRGB), 0.12);
-            border: 1px solid rgba(var(--PureWhiteRGB), 0.3);
-            color: var(--PureWhite);
-            font-size: 0.8rem;
-            font-weight: 800;
-            padding: 7px 18px;
-            border-radius: 50px;
-            margin-bottom: 24px;
+        svg {position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; color: var(--PureWhite);}
+        svg path {fill: none; stroke: currentColor; stroke-width: 1; opacity: 0.22;}
+        img {position: absolute; left: 18.9%; top: 15.9%; height: 68.2%; width: auto;}
+    }
 
-            &::before {
-                content: "";
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                background-color: var(--Online);
-                box-shadow: 0 0 0 0 rgba(var(--OnlineRGB), 0.6);
-                animation: Pulse 2s infinite;
-                flex-shrink: 0;
-            }
-        }
+    .CtaBody {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 40px;
+        padding: clamp(28px, 3.4vw, 48px);
+    }
 
-        h2 {
-            color: var(--PureWhite);
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            font-weight: 900;
-            margin-bottom: 16px;
-        }
+    .CtaBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+        font-weight: 700;
 
-        p {
-            color: var(--LightMuted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin: 0 auto 34px;
-        }
+        .CtaBadgeDot {width: 9px; height: 9px; border-radius: 50%; background: var(--Online); box-shadow: 0 0 0 4px rgba(var(--OnlineRGB), 0.2);}
+    }
 
-        .Buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+    .CtaText h2 {
+        font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--PureWhite);
 
-            a {
-                text-decoration: none;
-                padding: 15px 34px;
-                border-radius: 50px;
-                font-size: 0.85rem;
-                font-weight: 800;
-                transition: all 0.3s ease;
-
-                &:hover {box-shadow: 0 12px 14px rgba(var(--PureWhiteRGB), 0.25);}
-            }  
+        em {
+            font-style: italic;
+            background: linear-gradient(90deg, var(--PureWhite) 0%, var(--PrimaryDeep) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
     }
-}
 
+    .CtaDesc {
+        max-width: 520px;
+        margin-top: 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.6;
+        color: rgba(var(--PureWhiteRGB), 0.82);
+    }
 
-@keyframes waveDriftFar {
-    0%   {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
-    25%  {transform: translate(-9px, -4px) scale(1.045) skewX(-0.5deg);}
-    50%  {transform: translate(-15px, 3px) scale(1.06) skewX(0deg);}
-    75%  {transform: translate(-6px, 5px) scale(1.045) skewX(0.5deg);}
-    100% {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
-}
+    .CtaActions {display: flex; flex-wrap: wrap; gap: 16px;}
 
-@keyframes waveDriftNear {
-    0%   {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
-    25%  {transform: translate(9px, 4px) scale(1.05) skewX(0.5deg);}
-    50%  {transform: translate(16px, -3px) scale(1.07) skewX(0deg);}
-    75%  {transform: translate(6px, -5px) scale(1.05) skewX(-0.5deg);}
-    100% {transform: translate(0px, 0px) scale(1.03) skewX(0deg);}
+    .PillBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        padding: 22px 36px;
+        border: 2px solid var(--Primary);
+        border-radius: 999px;
+        color: var(--PureWhite);
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        .Dot {width: 12px; height: 12px; border-radius: 50%; background: var(--Primary); transition: background-color 0.3s ease;}
+        &:hover {background: var(--Primary);}
+        &:hover .Dot {background: var(--PureWhite);}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 3px;}
+    }
+
+    &.Mid .CtaCard {min-height: 360px;}
 }
 
 /* ==========================================================================
@@ -7227,26 +7143,6 @@ a.InlineLink {
     &:hover {text-decoration: underline;}
 }
 
-section.CallToAction.Cities {
-    .Design .Action {max-width: 360px;}
-
-    .Design .Action .Links {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        width: max-content;
-        max-width: 100%;
-
-        .ArrowBtn {
-            margin: 0;
-            justify-content: space-between;
-            white-space: nowrap;
-
-            &:hover .Arrow {transform: translate(3px);}
-        }
-    }
-}
-
 main.City {
 
     section.Local, section.Offers, section.Audience, section.Steps, section.CityFAQ, section.OtherCity, section.Journey, section.Sources {
@@ -8851,15 +8747,6 @@ main.Reals.SubPage {
 }
 
 @media (max-width: 768px) {
-    section.CallToAction .Design {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 32px;
-        padding: 48px 32px;
-        border-radius: 24px;
-
-        .Action {max-width: 100%;}
-    }
     
     main.Services {
         section.Grid {
@@ -8945,12 +8832,6 @@ main.Reals.SubPage {
 
             .Arrow {transform: rotate(90deg);}
         }
-    }
-
-    section.DesignedCTA {
-        .Waves {height: 70px;}
-
-        section.CTA {padding: 20px 24px;}
     }
 
     section.Recommendations .Card {flex: 0 0 min(420px, 85vw); width: min(420px, 85vw);}
@@ -9053,8 +8934,6 @@ main.Reals.SubPage {
 }
 
 @media (max-width: 600px) {
-
-    section.DesignedCTA section.CTA {padding: 40px 24px;}
 
     section.Merge {
         padding: 0 10px;
@@ -9341,7 +9220,6 @@ main.Reals.SubPage {
 
 @media (prefers-reduced-motion: reduce) {
     html {scroll-behavior:auto;}
-    section.DesignedCTA .WaveEchos {animation: none !important;}
     main.UX {
         .Hero .HeroInner {animation:none;}
 
@@ -9812,9 +9690,6 @@ html.SearchOpen {overflow: hidden;}
     .SearchOverlay .SearchBackdrop, .SearchOverlay .SearchPanel {animation: none;}
 }
 
-@media (max-width: 950px) {
-}
-
 @media (max-width: 600px) {
     .SearchOverlay {padding: 72px 12px 12px;}
     .SearchOverlay .SearchPanel {max-height: calc(100dvh - 90px); border-radius: 16px;}
@@ -9897,4 +9772,18 @@ html {background: var(--Charcoal);}
     .Footer .FooterCTA {padding: 16px 26px;}
     .Footer .FooterLegal {flex-direction: column; align-items: center; gap: 8px; text-align: center;}
     .Footer .FooterLegal li + li::before {content: none;}
+}
+
+@media (max-width: 900px) {
+    section.CallToAction .CtaCard {grid-template-columns: 1fr;}
+    section.CallToAction .CtaVisual {min-height: 220px;}
+    section.CallToAction .CtaMark {width: 170px;}
+}
+
+@media (max-width: 600px) {
+    section.CallToAction {
+        .CtaCard {border-radius: 24px;}
+        .CtaText h2 {font-size: 1.35rem;}
+        .PillBtn {padding: 16px 26px;}
+    }
 }
