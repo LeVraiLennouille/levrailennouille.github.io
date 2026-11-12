@@ -313,6 +313,9 @@ html, body {
         }
     }
 
+    .NavMenu .NavThemeBtn {background: var(--PureWhite); color: var(--Charcoal);}
+    .NavThemeMobile {display: none;}
+
     .NavMenu .NavCTA .NavSearchBtn {
         height: 48px;
         padding: 0 20px;
@@ -1734,6 +1737,7 @@ section.Me {
 ========================================================================== */
 main.Index {
     section.Hero {
+        --PrimaryDeep: #7ab8f5;
         position: relative;
         max-width: none;
         margin: 0;
@@ -1754,7 +1758,7 @@ main.Index {
 
             .BrandName {font-size: clamp(2.2rem, 3.4vw, 3.3rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--PureWhite);}
             .BrandTag {align-self: flex-end; font-size: 0.85rem; font-weight: 600; color: var(--PureWhite);}
-            .BrandTag strong {font-weight: 800; color: var(--Primary);}
+            .BrandTag strong {font-weight: 800; color: var(--PrimaryDeep);}
         }
 
         .HeroMain {
@@ -10107,6 +10111,7 @@ html.HeroAnim main.Index section.Hero .Wipe:not(.On) {background-size: 0% 100%; 
         .NavLinks li>a .LinkName {font-size: clamp(2rem, 9vw, 3rem);}
         .NavLinks li>a .LinkHint {display: none;}
         .NavCTA .SwitchBtn {display: inline-flex;}
+        .NavThemeMobile {display: grid;}
     }
 
     main.Index section.Hero {

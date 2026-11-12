@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
 (function () {
     var root = document.documentElement;
     var KEY = 'theme';
-    var META_COLORS = {light: '#1c1c1e', dark: '#121214'};
+    var META_COLORS = {light: '#1c1c1e', dark: '#1c1c1e'}; // la barre du haut (NavBar) est toujours sombre
     var toggles = document.querySelectorAll('[data-theme-toggle]');
     var flashTimer = null;
 
