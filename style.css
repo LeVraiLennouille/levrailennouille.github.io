@@ -239,14 +239,15 @@ html, body {
     }
 
     .NavMenu {
+        --PrimaryDeep: #7ab8f5;
         position: fixed;
         inset: 0;
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: clamp(24px, 5vh, 56px);
-        padding: 0 clamp(24px, 6vw, 96px) 0 calc(var(--SideW) + clamp(32px, 7vw, 110px));
+        justify-content: space-between;
+        gap: 32px;
+        padding: clamp(24px, 4.5vh, 40px) clamp(24px, 6vw, 96px) clamp(32px, 6vh, 56px) calc(var(--SideW) + clamp(32px, 7vw, 96px));
         background: var(--Charcoal);
         color: var(--PureWhite);
         overflow-y: auto;
@@ -261,25 +262,40 @@ html, body {
         }
     }
 
+    .NavMenuBrand {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        gap: 4px;
+        color: var(--PureWhite);
+        text-decoration: none;
+
+        .Name {font-size: clamp(2.2rem, 3.4vw, 3.3rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em;}
+        .Tag {align-self: flex-end; font-size: 0.85rem; font-weight: 600;}
+        .Tag strong {font-weight: 800; color: var(--PrimaryDeep);}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 6px; border-radius: 4px;}
+    }
+
     .NavLinks {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: clamp(2px, 1vh, 10px);
+        margin-block: auto;
 
         li>a {
             display: inline-flex;
-            align-items: baseline;
-            gap: 18px;
+            align-items: center;
+            gap: clamp(16px, 2vw, 28px);
             color: var(--PureWhite);
             text-decoration: none;
             transition: color 0.25s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 
-            .LinkName {font-size: clamp(2.2rem, 7.5vh, 4.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em;}
-            .LinkHint {font-size: 0.95rem; font-weight: 600; color: var(--LightMuted); transition: color 0.25s ease;}
+            &::after {content: ""; flex: none; width: clamp(10px, 1vw, 14px); aspect-ratio: 1; margin-top: 0.4em; border-radius: 50%; background: var(--Primary);}
+
+            .LinkName {font-size: clamp(2.2rem, 7.5vh, 4.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; text-transform: lowercase;}
 
             &:hover, &:focus-visible {color: var(--Primary); transform: translateX(14px);}
-            &:hover .LinkHint, &:focus-visible .LinkHint {color: var(--PureWhite);}
             &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 6px; border-radius: 4px;}
             &[aria-current="page"] {color: var(--Primary);}
         }
@@ -291,26 +307,26 @@ html, body {
         align-items: center;
         gap: 16px;
 
-        .SwitchBtn, .SimBtn {height: 48px;}
-        .SwitchBtn {
-            display: none;
-            background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+        .SimBtn {height: 48px;}
+    }
 
-            &::before {background-color: var(--PureWhite);}
+    .NavMenu .NavPill {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        padding: 22px 36px;
+        border: 2px solid var(--Primary);
+        border-radius: 999px;
+        color: var(--PureWhite);
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
 
-            .BtnTexts {
-                .DefaultText {color: var(--PureWhite);}
-                .HoverText {color: var(--Primary);}
-            }
-
-            .BtnIcon {
-                .Dot {background-color: var(--PureWhite);}
-                .Arrow {
-                    background: var(--Primary);
-                    svg {stroke: var(--PureWhite);}
-                }
-            }
-        }
+        .Dot {width: 12px; height: 12px; border-radius: 50%; background: var(--Primary); transition: background-color 0.3s ease;}
+        &:hover {background: var(--Primary);}
+        &:hover .Dot {background: var(--PureWhite);}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 3px;}
     }
 
     .NavMenu .NavThemeBtn {background: var(--PureWhite); color: var(--Charcoal);}
@@ -9733,9 +9749,10 @@ html.HeroAnim main.Index section.Hero .Wipe:not(.On) {background-size: 0% 100%; 
         .HamburgerLines {width: 34px;}
         .NavContactBtn, .NavSide {display: none;}
         .NavMenu {justify-content: flex-start; padding: calc(var(--TopH) + 24px) 24px 32px;}
+        .NavMenuBrand {display: none;}
+        .NavLinks {margin-block: 0;}
         .NavLinks li>a .LinkName {font-size: clamp(2rem, 9vw, 3rem);}
-        .NavLinks li>a .LinkHint {display: none;}
-        .NavCTA .SwitchBtn {display: inline-flex;}
+        .NavMenu .NavPill {padding: 16px 26px;}
         .NavThemeMobile {display: grid;}
     }
 

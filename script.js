@@ -30,6 +30,9 @@ function initHamburger() {
         btn.classList.toggle('open', open);
         btn.setAttribute('aria-expanded', String(open));
         document.documentElement.classList.toggle('MenuOpen', open);
+        var label = btn.querySelector('.HamburgerLabel');
+        if (label) label.textContent = open ? 'Fermer' : 'Menu';
+        btn.setAttribute('aria-label', open ? 'Fermer le menu navigation' : 'Ouvrir le menu navigation');
     }
 
     document.addEventListener('keydown', function (e) {if (e.key === 'Escape' && nav.classList.contains('open')) {toggle(false); btn.focus();}});

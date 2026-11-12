@@ -22,15 +22,20 @@
         </button>
     </div>
     <div class="NavMenu" id="NavMenu">
+        <a class="NavMenuBrand CursorHover" href="/" aria-label="Lennouille, retour à l'accueil">
+            <span class="Name">Lennouille</span>
+            <span class="Tag">Designer <strong>UI/UX</strong> freelance</span>
+        </a>
         <ul class="NavLinks CursorHover">
-            <li><a href="/"{%- if cur == "/" %} aria-current="page"{%- endif %}><span class="LinkName">Accueil</span><span class="LinkHint">Page principale</span></a></li>
-            <li><a href="/services"{%- if cur == "/services" %} aria-current="page"{%- endif %}><span class="LinkName">Services</span><span class="LinkHint">Designs UI / UX</span></a></li>
-            <li><a href="/ux"{%- if cur == "/ux" or cur contains "/ux/" %} aria-current="page"{%- endif %}><span class="LinkName">UX</span><span class="LinkHint">Tout savoir</span></a></li>
-            <li><a href="/reals"{%- if cur == "/reals" or cur contains "/reals/" %} aria-current="page"{%- endif %}><span class="LinkName">Portfolio</span><span class="LinkHint">Mes réalisations</span></a></li>
-            <li><a href="/blog"{%- if cur == "/blog" or cur contains "/blog/" %} aria-current="page"{%- endif %}><span class="LinkName">Articles</span><span class="LinkHint">Tips & Astuces</span></a></li>
-            <li><a href="/about"{%- if cur == "/about" %} aria-current="page"{%- endif %}><span class="LinkName">À propos</span><span class="LinkHint">Toutes les infos</span></a></li>
+            <li><a href="/"{%- if cur == "/" %} aria-current="page"{%- endif %}><span class="LinkName">Accueil</span></a></li>
+            <li><a href="/services"{%- if cur == "/services" %} aria-current="page"{%- endif %}><span class="LinkName">Services</span></a></li>
+            <li><a href="/ux"{%- if cur == "/ux" or cur contains "/ux/" %} aria-current="page"{%- endif %}><span class="LinkName">UX</span></a></li>
+            <li><a href="/reals"{%- if cur == "/reals" or cur contains "/reals/" %} aria-current="page"{%- endif %}><span class="LinkName">Portfolio</span></a></li>
+            <li><a href="/blog"{%- if cur == "/blog" or cur contains "/blog/" %} aria-current="page"{%- endif %}><span class="LinkName">Articles</span></a></li>
+            <li><a href="/about"{%- if cur == "/about" %} aria-current="page"{%- endif %}><span class="LinkName">À propos</span></a></li>
         </ul>
         <div class="NavCTA">
+            <a class="NavPill CursorHover" href="/contact">Contactez-moi <span class="Dot" aria-hidden="true"></span></a>
             <button type="button" class="NavSearchBtn CursorHover" data-search-open aria-label="Rechercher sur le site" aria-haspopup="dialog" aria-expanded="false" title="Rechercher (Ctrl + K)">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 <span class="NavSearchLabel">Rechercher sur le site</span>
@@ -40,16 +45,6 @@
                 <svg class="IconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="IconSun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
             </button>
-            <a class="SwitchBtn CursorHover" href="/contact">
-                <span class="BtnTexts">
-                    <span class="DefaultText">Me contacter</span>
-                    <span class="HoverText">Me contacter</span>
-                </span>
-                <span class="BtnIcon">
-                    <span class="Dot"></span>
-                    <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-                </span>
-            </a>
         </div>
     </div>
 </nav>
