@@ -1,22 +1,34 @@
 <div id="CursorDot"></div>
 <div id="CursorBall"></div>
+{%- assign cur = page.url | replace: "/index.html", "/" | replace: ".html", "" -%}
 <nav class="NavBar" aria-label="Navigation principale">
     <a class="NavLogo CursorHover" href="/" aria-label="Retour à l'accueil">
         <img src="/assets/icon.svg" alt="Logo de Lennouille"/>
     </a>
-    <button class="HamburgerBtn" aria-label="Ouvrir le menu navigation" aria-expanded="false" aria-controls="NavMenu">
-        <span class="HamburgerLine"></span>
-        <span class="HamburgerLine"></span>
-        <span class="HamburgerLine"></span>
+    <button class="HamburgerBtn CursorHover" aria-label="Ouvrir le menu navigation" aria-expanded="false" aria-controls="NavMenu">
+        <span class="HamburgerLines" aria-hidden="true"><span class="HamburgerLine"></span><span class="HamburgerLine"></span></span>
+        <span class="HamburgerLabel">Menu</span>
     </button>
+    <a class="NavContactBtn CursorHover" href="/contact">Contact</a>
+    <div class="NavSide">
+        <ul class="NavSocial">
+            <li><a class="CursorHover" href="https://www.linkedin.com/in/lennygadroy" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.07 3.78-2.07 4.04 0 4.78 2.66 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.69V21h-4V9.75z"/></svg></a></li>
+            <li><a class="CursorHover" href="https://www.instagram.com/lennygdr19" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/></svg></a></li>
+            <li><a class="CursorHover" href="https://x.com/LennyGdr19" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3zm-1.08 16.16h1.7L7.4 4.74H5.58l11.09 14.42z"/></svg></a></li>
+        </ul>
+        <button type="button" class="NavThemeBtn CursorHover" role="switch" aria-checked="false" aria-label="Mode sombre" data-theme-toggle>
+            <svg class="IconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="IconSun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+    </div>
     <div class="NavMenu" id="NavMenu">
         <ul class="NavLinks CursorHover">
-            <li><a href="/"><div data-text="Page principale">Accueil</div></a></li>
-            <li><a href="/services"><div data-text="Designs UI / UX">Services</div></a></li>
-            <li><a href="/ux"><div data-text="Tout savoir">UX</div></a></li>
-            <li><a href="/reals"><div data-text="Mes réalisations">Portfolio</div></a></li>
-            <li><a href="/blog"><div data-text="Tips & Astuces">Articles</div></a></li>
-            <li><a href="/about"><div data-text="Toutes les infos">À propos</div></a></li>
+            <li><a href="/"{%- if cur == "/" %} aria-current="page"{%- endif %}><span class="LinkName">Accueil</span><span class="LinkHint">Page principale</span></a></li>
+            <li><a href="/services"{%- if cur == "/services" %} aria-current="page"{%- endif %}><span class="LinkName">Services</span><span class="LinkHint">Designs UI / UX</span></a></li>
+            <li><a href="/ux"{%- if cur == "/ux" or cur contains "/ux/" %} aria-current="page"{%- endif %}><span class="LinkName">UX</span><span class="LinkHint">Tout savoir</span></a></li>
+            <li><a href="/reals"{%- if cur == "/reals" or cur contains "/reals/" %} aria-current="page"{%- endif %}><span class="LinkName">Portfolio</span><span class="LinkHint">Mes réalisations</span></a></li>
+            <li><a href="/blog"{%- if cur == "/blog" or cur contains "/blog/" %} aria-current="page"{%- endif %}><span class="LinkName">Articles</span><span class="LinkHint">Tips & Astuces</span></a></li>
+            <li><a href="/about"{%- if cur == "/about" %} aria-current="page"{%- endif %}><span class="LinkName">À propos</span><span class="LinkHint">Toutes les infos</span></a></li>
         </ul>
         <div class="NavCTA">
             <button type="button" class="NavSearchBtn CursorHover" data-search-open aria-label="Rechercher sur le site" aria-haspopup="dialog" aria-expanded="false" title="Rechercher (Ctrl + K)">

@@ -90,30 +90,30 @@ og_image: /assets/icon.svg
 
     <main class="Index">
         {% include header.html %}
-        <section class="Hero">
-            <div id="Ground" class="Box"></div>
-            <img src="/assets/face.svg" alt="Visage du logo Lennouille">
-            <div id="Air" class="Box"></div>
-            <div id="Text" class="Box">
-                <div class="SubBox">
-                    <div class="SubText" id="SubT1">
-                        <h1>Lennouille</h1>
-                        <span class="T1A VT TS26">Wireframe</span>
-                        <span class="T1B TS46">UX</span>
-                        <span class="T1C VT TS30">Audits</span>
-                        <span class="T1D VT TS26">Mapping</span>
-                        <span class="T1E VT TS30">Parcours</span>
-                    </div>
-                    <div class="SubText" id="SubT2">
-                        <h2>Design</h2>
-                        <span class="T2A VT TS26">Optimiser</span>
-                        <span class="T2B TS46">UI</span>
-                        <span class="T2C VT TS30">Layout</span>
-                        <span class="T2D VT TS26">Intégrer</span>
-                        <span class="T2E VT TS30">Affiner</span>
-                    </div>
+        <section class="Hero" aria-labelledby="HeroTitle">
+            <div class="HeroBrand">
+                <p class="BrandName">Lennouille</p>
+                <p class="BrandTag">Designer <strong>UI/UX</strong> freelance</p>
+            </div>
+            <div class="HeroMain">
+                <h1 class="HeroTitle" id="HeroTitle">
+                    <span class="Line">Le studio UI/UX <mark class="Wipe">créatif</mark></span>
+                    <span class="Line">qui <mark class="Wipe">conçoit</mark></span>
+                    <span class="Line"><mark class="Wipe">vos interfaces web</mark></span>
+                </h1>
+                <div class="HeroMark">
+                    <svg viewBox="0 0 333 333" aria-hidden="true" focusable="false">
+                        <path pathLength="1" d="M53 0V333"/><path pathLength="1" d="M110 0V333"/><path pathLength="1" d="M167 0V333"/><path pathLength="1" d="M223 0V333"/><path pathLength="1" d="M280 0V333"/>
+                        <path pathLength="1" d="M0 53H333"/><path pathLength="1" d="M0 110H333"/><path pathLength="1" d="M0 167H333"/><path pathLength="1" d="M0 223H333"/><path pathLength="1" d="M0 280H333"/>
+                    </svg>
+                    <img src="/assets/face.svg" alt="Visage du logo Lennouille">
                 </div>
             </div>
+            <ul class="HeroTags" aria-label="Domaines d'expertise">
+                <li><a href="/services#Offres">Audit UX <span class="Dot" aria-hidden="true"></span></a></li>
+                <li><a href="/reals">Design UI <span class="Dot" aria-hidden="true"></span></a></li>
+                <li><a href="/services#method">Intégration web <span class="Dot" aria-hidden="true"></span></a></li>
+            </ul>
         </section>
         <section class="Scroll" id="Scroll">
             <div class="Wrapper">

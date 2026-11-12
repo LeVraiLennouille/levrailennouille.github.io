@@ -29,7 +29,10 @@ function initHamburger() {
         nav.classList.toggle('open', open);
         btn.classList.toggle('open', open);
         btn.setAttribute('aria-expanded', String(open));
+        document.documentElement.classList.toggle('MenuOpen', open);
     }
+
+    document.addEventListener('keydown', function (e) {if (e.key === 'Escape' && nav.classList.contains('open')) {toggle(false); btn.focus();}});
 
     btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -161,64 +164,27 @@ document.querySelectorAll('.Nav a[href^="#"]').forEach(function (anchor) {
 
 // ! Animations ! //
 // * Hero * //
-let select    = e => document.querySelector(e);
-let selectAll = e => document.querySelectorAll(e);
+(function () {
+    var root = document.documentElement;
+    var hero = document.querySelector('main.Index section.Hero');
+    if (!hero) return;
 
-let split     = [[], [], []];
-let splitSpan = [[], [], []];
-let stagger   = 0.04;
+    function done() {root.classList.remove('HeroAnim');}
+    if (typeof gsap === 'undefined' || !root.classList.contains('HeroAnim')) {done(); return;}
+    setTimeout(done, 5000);
 
-window.addEventListener("load", () => {
-    gsap.set("section", {autoAlpha: 1});
+    var wipes = hero.querySelectorAll('.Wipe');
+    var tl = gsap.timeline({defaults: {ease: 'power3.out'}, delay: 0.15, onComplete: done});
 
-    const heroSection = select(".Hero");
-    // Pas de hero / de .SubText sur cette page (ex. /ux) : on ne lance pas l'animation
-    if (!heroSection || !selectAll(".SubText").length) return;
+    tl.from('.HeroBrand', {autoAlpha: 0, y: -14, duration: 0.6, clearProps: 'all'}, 0)
+      .from('.HeroMark path', {strokeDashoffset: 1, duration: 1.1, stagger: 0.06, ease: 'power2.inOut', clearProps: 'strokeDashoffset'}, 0.2)
+      .from('.HeroMark img', {autoAlpha: 0, scale: 0.86, rotate: -6, duration: 0.9, ease: 'back.out(1.6)', clearProps: 'all'}, 1.0)
+      .from('.HeroTags li', {autoAlpha: 0, y: 18, duration: 0.55, stagger: 0.1, clearProps: 'all'}, 1.1);
 
-    gsap.set(heroSection, { "--Rotation": "120deg", transformOrigin: "50% 50%" });
-    gsap.set(heroSection, { "--Thickness": "8px", "--Border": "8px", "--Gap": "30px" });
-
-    gsap.set("#SubT1", {x: -600, opacity: 0});
-    gsap.set("#SubT2", {x:  600, opacity: 0});
-
-    selectAll(".SubText").forEach((textDiv, i) => {
-        let spans = textDiv.querySelectorAll("span");
-        split[i].push(spans);
-        split[i].forEach(span => {
-            let st = new SplitText(span, { type: "chars" });
-            gsap.set(st.chars, { opacity: 0 });
-            splitSpan[i].push(st);
-        });
+    wipes.forEach(function (el, i) {
+        tl.call(function () {el.classList.add('On');}, null, 0.35 + i * 0.3);
     });
-
-    function callWriteText() {
-        writeText(0, 0);
-        writeText(1, 0);
-
-        function writeText(i, j) {
-            if (j >= 200) return;
-            stagger = (i === 0) ? -0.04 : 0.04;
-
-            let splitText = splitSpan[i][j];
-            if (!splitText) return;
-            gsap.timeline({
-                defaults: { repeatDelay: 0 },
-                onComplete: () => {if (split[i][j + 1]) writeText(i, j + 1);}
-            }).to(splitText.chars, {opacity: 1, stagger});
-        }
-    }
-
-    gsap.timeline({defaults: {ease: "elastic.inOut(1.6,0.6,1.3,1)"}})
-        .delay(0.25)
-
-        .to("#SubT1", {duration: 2.5, x: 0, opacity: 1})
-        .to("#SubT2", {duration: 2.5, x: 0, opacity: 1}, "<")
-
-        .to(heroSection, {duration: 2,   "--Rotation": "-60deg", transformOrigin: "50% 50%"}, 1.5)
-        .to(heroSection, {duration: 0.5, "--Thickness": "20px", "--Border": "10px", "--Gap": "52px"}, 2.3)
-
-        .add(() => callWriteText(), 2.5);
-});
+})();
 
 // * Scroll * //
 const textElement = document.getElementById('TextReveal');

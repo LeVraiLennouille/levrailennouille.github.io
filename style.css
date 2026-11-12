@@ -35,12 +35,9 @@
     --Success: #22c55e; --SuccessRGB: 34, 197, 94;
     --Danger: #e53e3e; --DangerRGB: 229, 62, 62;
 
-/* --- Hero section --- */
-    --Rotation: 0deg;
-    --Thickness: 20px;
-    --Border: 8px;
-    --Gap: 30px;
-    --Scale: 0.9;
+/* --- Layout --- */
+    --SideW: 104px;
+    --TopH: 0px;
 }
 
 * {
@@ -84,89 +81,219 @@ html, body {
 ========================================================================== */
 .NavBar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    inset: 0 auto 0 0;
     z-index: 1000;
+    width: var(--SideW);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--Surface);
-    padding: 0 200px;
-    height: 64px;
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: rgba(var(--PureBlackRGB), 0.15) 2.4px 2.4px 3.2px;
+    background: var(--Charcoal);
+    color: var(--PureWhite);
+    font-weight: 700;
 
     .NavLogo {
+        position: relative;
+        z-index: 3;
         display: flex;
-        align-items: center;
         flex-shrink: 0;
+        margin-top: 24px;
         text-decoration: none;
 
         img {
-            width: 44px;
-            height: 44px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        &:hover img {transform: rotate(-8deg) scale(1.06);}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 4px; border-radius: 50%;}
+    }
+
+    .HamburgerBtn {
+        position: relative;
+        z-index: 3;
+        margin-block: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 10px;
+        background: none;
+        border: none;
+        border-radius: 8px;
+        color: var(--PureWhite);
+        font: inherit;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: color 0.3s ease;
+
+        .HamburgerLines {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 7px;
+            width: 44px;
+        }
+
+        .HamburgerLine {
+            display: block;
+            height: 3px;
+            width: 100%;
+            border-radius: 2px;
+            background: var(--Primary);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s ease;
+            &:nth-child(1) {width: 70%;}
+        }
+
+        .HamburgerLabel {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        &:hover .HamburgerLine:nth-child(1) {width: 100%;}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 2px;}
+
+        &.open {color: var(--PureWhite);}
+        &.open .HamburgerLine:nth-child(1) {width: 100%; transform: translateY(5px) rotate(45deg);}
+        &.open .HamburgerLine:nth-child(2) {transform: translateY(-5px) rotate(-45deg);}
+    }
+
+    .NavContactBtn {
+        position: relative;
+        z-index: 3;
+        flex: 0 0 var(--SideW);
+        width: 100%;
+        height: var(--SideW);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
+        color: var(--PureWhite);
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: filter 0.3s ease;
+
+        &:hover {filter: brightness(1.12);}
+        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: -6px;}
+    }
+
+    .NavSide {
+        position: relative;
+        z-index: 3;
+        flex: 0 0 clamp(270px, 40vh, 390px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 36px 0 24px;
+        background: var(--Surface);
+        color: var(--Ink);
+    }
+
+    .NavSocial {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-block: auto;
+
+        a {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--Ink);
+            transition: color 0.25s ease, background-color 0.25s ease;
+
+            svg {width: 20px; height: 20px; fill: currentColor;}
+            &:hover {color: var(--Primary); background: rgba(var(--PrimaryRGB), 0.12);}
+            &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 2px;}
+        }
+    }
+
+    .NavThemeBtn {
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border: none;
+        border-radius: 50%;
+        background: var(--Ink);
+        color: var(--Surface);
+        cursor: pointer;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+        svg {width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
+        .IconSun {display: none;}
+        &[aria-checked="true"] .IconSun {display: block;}
+        &[aria-checked="true"] .IconMoon {display: none;}
+        &:hover {transform: rotate(18deg) scale(1.06);}
+        &:focus-visible {outline: 3px solid var(--Primary); outline-offset: 3px;}
+    }
+
+    .NavMenu {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(24px, 5vh, 56px);
+        padding: 0 clamp(24px, 6vw, 96px) 0 calc(var(--SideW) + clamp(32px, 7vw, 110px));
+        background: var(--Charcoal);
+        color: var(--PureWhite);
+        overflow-y: auto;
+        clip-path: inset(0 100% 0 0);
+        visibility: hidden;
+        transition: clip-path 0.65s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s linear 0.65s;
+
+        &.open {
+            clip-path: inset(0 0 0 0);
+            visibility: visible;
+            transition: clip-path 0.65s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s;
         }
     }
 
     .NavLinks {
-        display: flex;
-        align-items: center;
-        gap: 36px;
         list-style: none;
-        margin: 0;
-        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2px, 1vh, 10px);
 
-        li>a{
-            position:relative;
-            display:inline-block;
-            font-size:1.2em;
-            background:transparent;
-            transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
-            z-index:2;
-            color:var(--Primary);
-            text-decoration:none;
+        li>a {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 18px;
+            color: var(--PureWhite);
+            text-decoration: none;
+            transition: color 0.25s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 
-            &:hover>div{transform:scale(1.3); -webkit-transform:scale(1.3);}
-            &:hover>div:after{transition-delay:0.15s; -webkit-transition-delay:0.15s;}
-            &:hover>div:before, &:hover>div:after{transform:translateY(16px); -webkit-transform:translateY(16px); opacity:1;}
+            .LinkName {font-size: clamp(2.2rem, 7.5vh, 4.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em;}
+            .LinkHint {font-size: 0.95rem; font-weight: 600; color: var(--LightMuted); transition: color 0.25s ease;}
 
-            &>div {
-                font-size:1em;
-                text-align:center;
-                position:relative;
-                z-index:2;
-                color:var(--Primary);
-                text-decoration:none;
-                transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
-
-                &:after{
-                    opacity:0;
-                    position:absolute;
-                    top:5px;
-                    left:0px; 
-                    width:100%;
-                    content:attr(data-text);
-                    color:var(--PrimaryDeep);
-                    font-size:0.45em;
-                    transform:translateY(36px); -webkit-transform:translateY(36px);
-                    transition:0.3s ease-in-out; -webkit-transition:0.3s ease-in-out;
-                }
-            }
+            &:hover, &:focus-visible {color: var(--Primary); transform: translateX(14px);}
+            &:hover .LinkHint, &:focus-visible .LinkHint {color: var(--PureWhite);}
+            &:focus-visible {outline: 2px solid var(--Primary); outline-offset: 6px; border-radius: 4px;}
+            &[aria-current="page"] {color: var(--Primary);}
         }
     }
 
     .NavCTA {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 16px;
-        text-decoration: none;
 
-        .SwitchBtn, .SimBtn {height: 44px;}
+        .SwitchBtn, .SimBtn {height: 48px;}
         .SwitchBtn {
+            display: none;
             background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
 
             &::before {background-color: var(--PureWhite);}
@@ -186,39 +313,18 @@ html, body {
         }
     }
 
-    .HamburgerBtn {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 6px;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        width: 44px;
-        height: 44px;
-        border-radius: 8px;
-        transition: background 0.2s ease;
+    .NavMenu .NavCTA .NavSearchBtn {
+        height: 48px;
+        padding: 0 20px;
+        color: var(--PureWhite);
+        border-color: rgba(var(--PureWhiteRGB), 0.35);
 
-        &:hover {background: rgba(var(--LineRGB), 0.07);}
-
-        &.open .HamburgerLine:nth-child(1) {transform: translateY(7px) rotate(-45deg);}
-        &.open .HamburgerLine:nth-child(2) {opacity: 0;}
-        &.open .HamburgerLine:nth-child(3) {transform: translateY(-7px) rotate(45deg);}
-
-        .HamburgerLine {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background-color: var(--Primary);
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
+        .NavSearchLabel {display: inline; font-weight: 700; color: var(--PureWhite);}
+        &:hover {border-color: var(--Primary); background: rgba(var(--PrimaryRGB), 0.2);}
     }
-    
-    .NavMenu {display: contents;}
 }
+
+html.MenuOpen {overflow: hidden;}
 
 @keyframes mobileNavIn {
     from {opacity: 0; transform: translateY(-6px);}
@@ -1628,135 +1734,99 @@ section.Me {
 ========================================================================== */
 main.Index {
     section.Hero {
-        max-width: 100%;
+        position: relative;
+        max-width: none;
         margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        visibility: hidden;
-        width: 100vw;
-        height: 100vh;
-        height: 100svh;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: 36px clamp(24px, 5vw, 72px) clamp(32px, 6vh, 56px) clamp(32px, 7vw, 96px);
+        overflow: clip;
+        background: var(--Charcoal);
+        color: var(--PureWhite);
 
-        .Box {
-            position: absolute;
+        .HeroBrand {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            gap: 4px;
+
+            .BrandName {font-size: clamp(2.2rem, 3.4vw, 3.3rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--PureWhite);}
+            .BrandTag {align-self: flex-end; font-size: 0.85rem; font-weight: 600; color: var(--PureWhite);}
+            .BrandTag strong {font-weight: 800; color: var(--Primary);}
+        }
+
+        .HeroMain {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 150vw;
-            height: 150vh;
-            transform: translate(-10vw, 20px);
+            justify-content: space-between;
+            gap: clamp(32px, 5vw, 96px);
+            padding-block: 48px;
+        }
 
-            &#Ground {
-                z-index: 5;
-                backGround: linear-gradient(var(--Rotation), transparent 50%, var(--Primary) 50%);
+        .HeroTitle {
+            font-size: clamp(1.5rem, 2.9vw, 3.1rem);
+            font-weight: 800;
+            line-height: 2;
+            letter-spacing: -0.01em;
+            color: var(--PureWhite);
+
+            .Line {display: block;}
+
+            .Wipe {
+                padding: 0.16em 0.3em;
+                color: var(--PureWhite);
+                background: linear-gradient(var(--Primary), var(--Primary)) no-repeat left center / 100% 100%;
+                -webkit-box-decoration-break: clone;
+                box-decoration-break: clone;
+                transition: background-size 0.7s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease 0.25s;
+            }
+        }
+
+        .HeroMark {
+            position: relative;
+            flex: 0 0 auto;
+            width: clamp(220px, 23vw, 340px);
+            aspect-ratio: 1;
+
+            svg {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                color: var(--LightMuted);
+                overflow: visible;
             }
 
-            &#Air {
-                z-index: 10;
-                backGround:
-                    linear-gradient(var(--Rotation), transparent calc(50% - var(--Thickness) - var(--Border)),
-                    var(--Background) calc(50% - var(--Thickness) - var(--Border)),
-                    var(--Background) calc(50% - var(--Thickness)),
-                    color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% - var(--Thickness)),
-                    color-mix(in oklab, var(--Background), var(--Primary) 40%) calc(50% + var(--Thickness)),
-                    var(--Primary) calc(50% + var(--Thickness)),
-                    var(--Primary) calc(50% + var(--Thickness) + var(--Border)), transparent calc(50% + var(--Thickness) + var(--Border)));
-                backGround-repeat: no-repeat;
-            }
+            svg path {fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 1; opacity: 0.45;}
 
-            &#Text {
-                z-index: 15;
-        
-                .SubBox {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--Gap);
-                    text-align: center;
-                    font-size: 20px;
-                    transform: rotate(var(--Rotation)) scale(var(--Scale));
+            img {position: absolute; left: 18.9%; top: 15.9%; height: 68.2%; width: auto;}
+        }
 
-                    .SubText {
-                        display: inline;
-                        width: fit-content;
-                        position: relative;
-                        overflow: visible;
-                        padding: 15px;
-                        margin: 0px;
-                        font-weight: 800;
-                        font-size: 80px;
-                        line-height: 65px;
-                        border-radius: 5px;
-                        paint-order: stroke fill;
+        .HeroTags {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
 
-                        &#SubT1 {
-                            margin-right: 150px;
-                            padding-top: 10px;
-                            padding-bottom: 0px;
-                            -webkit-text-stroke: 18px var(--Primary);
-                            color: var(--Background);
+            a {
+                display: inline-flex;
+                align-items: center;
+                gap: 20px;
+                padding: 22px 36px;
+                border: 2px solid var(--Primary);
+                border-radius: 999px;
+                color: var(--PureWhite);
+                font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+                font-weight: 700;
+                text-decoration: none;
+                transition: background-color 0.3s ease, color 0.3s ease;
 
-                            h1 {
-                                font-size: inherit;
-                                line-height: inherit;
-                                font-weight: inherit;
-                            }
-                        
-                            span {
-                                &.T1A {right: -50px; bottom: 0px;}
-                                &.T1B {right: 15px; bottom: 60px;}
-                                &.T1C {right: -90px; bottom: 0px;}
-                                &.T1D {right: 45px; bottom: 120px;}
-                                &.T1E {right: -5px; bottom: 120px;}
-                            }
-                        }
-
-                        &#SubT2 {
-                            margin-left: 110px;
-                            padding-bottom: 10px;
-                            padding-top: 0px;
-                            -webkit-text-stroke: 18px var(--Background);
-                            color: var(--Primary);
-
-                            h1 {
-                                font-size: inherit;
-                                line-height: inherit;
-                                font-weight: inherit;
-                                text-transform: uppercase;
-                            }
-
-                            span {
-                                &.T2A {left: -50px; top: 0px;}
-                                &.T2B {left: 15px; top: 60px;}
-                                &.T2C {left: -100px; top: 0px;}
-                                &.T2D {left: 45px; top: 120px}
-                                &.T2E {left: -5px; top: 120px;}
-                            }
-                        }
-
-                        span {
-                            position: absolute;
-                            line-height: auto;
-                            -webkit-Text-stroke-width: 9px;
-                            white-space: nowrap;
-                            text-transform: uppercase;
-
-                            div {transform: rotate(90deg);}
-
-                            &.TS26 {font-size: 26px; font-weight: 400;}
-                            &.TS30 {font-size: 30px; font-weight: 600;}
-                            &.TS46 {
-                                font-size: 46px; font-weight: 900;
-                                div {transform: rotate(0deg);}
-                            }
-
-                            &.VT {
-                                writing-mode: vertical-rl;
-                                text-orientation: upright;
-                            }
-                        }
-                    }
-                }
+                .Dot {width: 12px; height: 12px; border-radius: 50%; background: var(--Primary); transition: background-color 0.3s ease;}
+                &:hover {background: var(--Primary); color: var(--PureWhite);}
+                &:hover .Dot {background: var(--PureWhite);}
+                &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 3px;}
             }
         }
     }
@@ -6924,7 +6994,7 @@ main.About {
 main.Contact {
     position: relative;
     margin: 100px 0 0;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     background-color: var(--Background);
 
@@ -8657,20 +8727,10 @@ main.Reals.SubPage {
 /* ==========================================================================
    # Responsive Design
 ========================================================================== */
-@media (min-width: 951px) and (max-width: 1023px) {
-    .NavBar .NavCTA .SimBtn, .NavBar .NavCTA .SwitchBtn {display: none;}
-}
-
 @media (max-width: 1023px) {
-    .NavBar .NavLogo {display: none;}
-
     main.Blog.Index .BlogGrid {grid-template-columns: repeat(2, 1fr);}
 
     main.Contact .ContactLayout .SocialSidebar {display: none;}
-}
-
-@media (min-width: 951px) {
-    .HamburgerBtn {display: none !important;}
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -8679,68 +8739,9 @@ main.Reals.SubPage {
 }
 
 @media (max-width: 950px) {
+    :root {--SideW: 0px; --TopH: 64px;}
     * {cursor: auto !important;}
     #CursorDot, #CursorBall {display: none;}
-    .NavBar {
-        padding: 0 24px;
-
-        .HamburgerBtn {display: flex;}
-
-        .NavMenu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            box-sizing: border-box;
-            max-width: 100vw;
-            background-color: var(--Surface);
-            box-shadow: 0 12px 40px rgba(var(--PureBlackRGB), 0.12);
-            z-index: 999;
-            padding: 12px 16px 20px;
-            flex-direction: column;
-            gap: 2px;
-            border-top: 1px solid rgba(var(--PrimaryRGB), 0.5);
-            animation: mobileNavIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-
-            &.open {display: flex;}
-
-            .NavLinks {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 2px;
-                width: 100%;
-
-                li>a {
-                    display: block;
-                    font-size: 0.9rem;
-                    font-weight: 800;
-                    padding: 11px 16px;
-                    border-radius: 8px;
-                    transition: background 0.18s, color 0.18s;
-
-                    &:hover {background: rgba(var(--LineRGB), 0.05);}
-                    &:hover>div {transform: none; -webkit-transform: none;}
-
-                    &>div {
-                        text-align: left;
-                        &:after {display: none;}
-                    }
-                }
-            }
-
-            .NavCTA {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: 12px;
-                margin-top: 8px;
-                padding-top: 14px;
-                border-top: 1px solid rgba(var(--PrimaryRGB), 0.5);
-            }
-        }
-    }
-
     .Footer {
         .FooterContainer {
             grid-template-columns: 1fr 1fr;
@@ -9004,13 +9005,7 @@ main.Reals.SubPage {
         svg {width: min(55vw, 340px);}
     }
 
-    :root {
-        --Scale:     0.78;
-        --Thickness: 15px;
-        --Border:    6px;
-    }
 
-    main.Index section.Hero img {max-width: 320px;}
 }
 
 @media (max-width: 768px) {
@@ -9216,12 +9211,6 @@ main.Reals.SubPage {
 }
 
 @media (max-width: 600px) {
-    :root {
-        --Scale:     0.65;
-        --Thickness: 10px;
-        --Border:    5px;
-        --Gap:       28px;
-    }
 
     .Footer .FooterBottom .FooterTerms {
         flex-wrap: wrap;
@@ -9272,11 +9261,6 @@ main.Reals.SubPage {
     }
 
     main.Index {
-        section.Hero {
-            .Box {transform: translate(-2vw, -40px);}
-            img {max-width: 225px;}
-        }
-
         section.Impact {padding: 32px 20px;}
 
         section.Pepite {padding: 32px 20px;}
@@ -9733,11 +9717,6 @@ html.ThemeSwitching, html.ThemeSwitching *:not(#CursorDot):not(#CursorBall):not(
         --MinMuted: #a19d95;
         --LineRGB: 255, 255, 255; --LineSolid: #3c3c44;
 
-        .NavBar {
-            border-bottom: 1px solid rgba(var(--PureWhiteRGB), 0.07);
-
-        }
-
         /* Le footer reste bleu nuit : on lui rend ses jetons d'origine */
         .Footer {
             --Surface: #fff; --SurfaceRGB: 255, 255, 255;
@@ -10078,26 +10057,7 @@ html.SearchOpen {overflow: hidden;}
     .Footer .FooterBottom .ThemeSwitch .ThemeToggle .ThemeThumb {transition: none;}
 }
 
-/* Place pour le bouton de recherche : les marges de la navbar s'adaptent sous 1580px (200px au-delà, comme avant) */
-@media (min-width: 951px) {
-    .NavBar {padding-inline: min(200px, max(24px, calc((100vw - 1180px) / 2)));}
-    .NavBar .NavLinks {gap: clamp(16px, 2.4vw, 36px);}
-    .NavBar .NavLinks li>a>div {white-space: nowrap;}
-}
-
 @media (max-width: 950px) {
-    .NavBar .NavCTA .NavSearchBtn {
-        order: -1;
-        flex: 1 0 100%;
-        justify-content: flex-start;
-        height: 48px;
-        padding: 0 16px;
-        border-radius: 12px;
-        font-size: 0.9rem;
-
-        .NavSearchLabel {display: inline; font-weight: 800; color: var(--MinMuted);}
-    }
-
     .Footer .FooterBottom .FooterTerms {flex-wrap: wrap; justify-content: center; row-gap: 16px;}
 }
 
@@ -10112,3 +10072,58 @@ html.SearchOpen {overflow: hidden;}
 }
 
 .Form button[type="submit"][aria-busy="true"] {opacity: 0.7; cursor: progress;}
+
+/* ==========================================================================
+   # NavBar latérale / Hero : états et responsive
+========================================================================== */
+html.HeroAnim main.Index section.Hero .Wipe:not(.On) {background-size: 0% 100%; color: var(--PureWhite);}
+
+@media (min-width: 951px) {
+    body {padding-left: var(--SideW);}
+}
+
+@media (max-width: 1100px) {
+    main.Index section.Hero {
+        .HeroMain {flex-direction: column; align-items: flex-start; gap: 40px;}
+        .HeroMark {width: 200px;}
+    }
+}
+
+@media (max-width: 950px) {
+    .NavBar {
+        inset: 0 0 auto 0;
+        width: 100%;
+        height: var(--TopH);
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-shadow: 0 1px 0 rgba(var(--PureWhiteRGB), 0.08);
+
+        .NavLogo {margin: 0; img {width: 40px; height: 40px;}}
+        .HamburgerBtn {margin: 0; flex-direction: row; gap: 12px; padding: 8px;}
+        .HamburgerLines {width: 34px;}
+        .NavContactBtn, .NavSide {display: none;}
+        .NavMenu {justify-content: flex-start; padding: calc(var(--TopH) + 24px) 24px 32px;}
+        .NavLinks li>a .LinkName {font-size: clamp(2rem, 9vw, 3rem);}
+        .NavLinks li>a .LinkHint {display: none;}
+        .NavCTA .SwitchBtn {display: inline-flex;}
+    }
+
+    main.Index section.Hero {
+        padding: calc(var(--TopH) + 28px) 20px 32px;
+        min-height: 0;
+        .HeroMain {padding-block: 28px;}
+    }
+}
+
+@media (max-width: 600px) {
+    main.Index section.Hero {
+        .HeroMark {display: none;}
+        .HeroTitle {font-size: 5.6vw;}
+        .HeroTags a {padding: 14px 22px;}
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .NavBar .NavMenu {transition: none;}
+}
