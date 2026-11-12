@@ -1,98 +1,58 @@
 <footer class="Footer">
-    <div class="FooterAccent"></div>
-    <div class="FooterContainer">
-        <div class="FooterCol">
-            <h3 class="FooterLogo">Lennouille</h3>
-            <span class="FooterBadge">
-                <span class="FooterBadgeDot"></span>Disponible pour de nouveaux projets
-            </span>
-            <p class="FooterDesc">Un nom décalé, une conception redoutable.<br>Lennouille : UI/UX Designer freelance</p>
-            <a class="SwitchBtn" href="/contact">
-                <span class="BtnTexts">
-                    <span class="DefaultText">Me contacter</span>
-                    <span class="HoverText">Me contacter</span>
-                </span>
-                <span class="BtnIcon">
-                    <span class="Dot"></span>
-                    <span class="Arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-                </span>
-            </a>
-        </div>
-        <div class="FooterCol">
-            <h4 class="FooterTitle">Zones d'intervention</h4>
-            <ul class="FooterLinks FooterSocialLinks FooterZoneLinks">
-                {% unless page.url contains '/poitiers' %}<li><a href="/poitiers">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 21 L16.9 21 L19 11.4 L13.4 3 L6.4 8.4 Z"/><path d="M6.4 8.4 L19 11.4"/><path d="M13.4 3 L16.9 21"/></svg>
-                    </span>Webdesigner à Poitiers
-                </a></li>{% endunless %}
-                {% unless page.url contains '/reims' %}<li><a href="/reims">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 5 V9 C10.5 11 7 11.5 7 15 V20 a1 1 0 0 0 1 1 h8 a1 1 0 0 0 1 -1 V15 C17 11.5 13.5 11 13.5 9 V5 Z"/><path d="M10 3 h4 v2 h-4 Z"/><path d="M10.5 7.5 h3"/><rect x="8.5" y="15" width="7" height="3.5" rx="0.5"/><circle cx="16" cy="2.2" r="0.5"/><circle cx="13.6" cy="0.9" r="0.4"/></svg>
-                    </span>Webdesigner à Reims
-                </a></li>{% endunless %}
-                <li><a href="/contact#rdv">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.7 2.3 L11.7 2.5 L11.3 4 L9.3 5.4 L7.9 5.8 L7.5 5.5 L7.3 4.9 L6.9 5 L6.8 6.2 L7.1 7.1 L6.4 7.1 L4.4 6.8 L2.9 7.6 L2.6 8.3 L3.1 8.8 L4.4 9 L4.8 9.4 L6 9.9 L6.6 11.4 L7.5 12.1 L7.6 13.2 L7.4 15.1 L7.2 16.4 L6.7 17.7 L8.2 18.4 L9.6 18.8 L11.2 19.4 L11.9 19.6 L13.6 19.5 L13.4 19 L13.6 18.2 L14.3 17.6 L15.4 17.6 L16.3 17.8 L17.1 18.2 L18.1 18 L19 17 L19.3 16.8 L18.4 15.6 L18 14.2 L18.4 12.8 L17.3 12 L18.5 9.8 L19.3 9.2 L19.6 7.2 L20.2 6.4 L18.5 6.2 L17.7 5.5 L16.9 5.4 L15.8 4.6 L15.6 4.1 L14.2 3.6 L13.5 3 Z"/></svg>
-                    </span>Rendez-vous en visio
-                </a></li>
-            </ul>
-        </div>
-        <div class="FooterCol">
-            <h4 class="FooterTitle">Navigation</h4>
-            <ul class="FooterLinks">
-                <li><a href="/index"><span class="FooterLinkArrow">›</span>Accueil</a></li>
-                <li><a href="/services"><span class="FooterLinkArrow">›</span>Mes services</a></li>
-                <li><a href="/reals"><span class="FooterLinkArrow">›</span>Portfolio</a></li>
-                <li><a href="/blog"><span class="FooterLinkArrow">›</span>Articles</a></li>
-                <li><a href="/about"><span class="FooterLinkArrow">›</span>A propos</a></li>
-            </ul>
-        </div>
-        <div class="FooterCol">
-            <h4 class="FooterTitle">Contact</h4>
-            <ul class="FooterLinks FooterSocialLinks">
-                <li><a href="https://linkedin.com/in/lennouille/" target="_blank" rel="noopener noreferrer">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </span>LinkedIn
-                </a></li>
-                <li><a href="https://instagram.com/lennouille.fr/" target="_blank" rel="noopener noreferrer">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </span>Instagram
-                </a></li>
-                <li><a href="https://github.com/LeVraiLennouille/" target="_blank" rel="noopener noreferrer">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    </span>GitHub
-                </a></li>
-                <li><a href="/contact">
-                    <span class="FooterIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </span>Me contacter
-                </a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="FooterBottom">
-        <p>&copy; 2026 Lennouille. Tous droits réservés.</p>
-        <div class="FooterTerms">
-            <ul class="FooterLinks">
-                <li><a href="/terms/mentions-legales">Mentions légales</a></li>
-                <li><a href="/terms/politique-confidentialite">Politique de confidentialité</a></li>
-                <li><a href="/terms/cgu">CGU</a></li>
-                <li><a href="#cookies" onclick="tarteaucitron.userInterface.openPanel(); return false;">Gérer mes cookies</a></li>
-            </ul>
-            <div class="ThemeSwitch">
-                <button type="button" class="ThemeToggle CursorHover" role="switch" aria-checked="false" aria-label="Mode sombre" data-theme-toggle>
-                    <span class="ThemeThumb" aria-hidden="true"></span>
-                    <svg class="IconSun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                    <svg class="IconMoon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </button>
+    <div class="FooterInner">
+        <p class="FooterBrand">
+            <span class="FooterName">Lennouille</span>
+            <span class="FooterTag">Designer <strong>UI/UX</strong> freelance</span>
+        </p>
+
+        <div class="FooterGrid">
+            <div class="FooterCol FooterAbout">
+                <p class="FooterBadge"><span class="FooterBadgeDot" aria-hidden="true"></span>Disponible pour de nouveaux projets</p>
+                <p class="FooterDesc">Un nom décalé, une conception redoutable.<br>Lennouille : UI/UX Designer freelance</p>
+                <a class="FooterCTA CursorHover" href="/contact">Contactez-moi <span class="Dot" aria-hidden="true"></span></a>
             </div>
-            <button class="FooterBackTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-            </button>
+
+            <div class="FooterCol FooterInfo">
+                <h4 class="FooterTitle">Email</h4>
+                <p><a class="FooterMail" href="mailto:{{ site.data.business.email }}">{{ site.data.business.email }}</a></p>
+
+                <h4 class="FooterTitle">Basé à</h4>
+                <p>{{ site.data.business.address.locality }}, France</p>
+
+                <h4 class="FooterTitle">Suivez-moi</h4>
+                <ul class="FooterInline">
+                    <li><a href="https://linkedin.com/in/lennouille/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                    <li><a href="https://instagram.com/lennouille.fr/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    <li><a href="https://github.com/LeVraiLennouille/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </div>
+
+            <div class="FooterCol FooterNav">
+                <h4 class="FooterTitle">Navigation</h4>
+                <ul class="FooterList">
+                    <li><a href="/index">Accueil</a></li>
+                    <li><a href="/services">Mes services</a></li>
+                    <li><a href="/reals">Portfolio</a></li>
+                    <li><a href="/blog">Articles</a></li>
+                    <li><a href="/about">À propos</a></li>
+                    <li><a href="/contact">Me contacter</a></li>
+                </ul>
+
+                <h4 class="FooterTitle">Zones d'intervention</h4>
+                <ul class="FooterList">
+                    {% unless page.url contains '/poitiers' %}<li><a href="/poitiers">Webdesigner à Poitiers</a></li>{% endunless %}
+                    {% unless page.url contains '/reims' %}<li><a href="/reims">Webdesigner à Reims</a></li>{% endunless %}
+                    <li><a href="/contact#rdv">Rendez-vous en visio</a></li>
+                </ul>
+            </div>
         </div>
+
+        <ul class="FooterLegal">
+            <li>&copy; 2026 Lennouille, tous droits réservés</li>
+            <li><a href="/terms/mentions-legales">Mentions légales</a></li>
+            <li><a href="/terms/politique-confidentialite">Politique de confidentialité</a></li>
+            <li><a href="/terms/cgu">CGU</a></li>
+            <li><a href="#cookies" onclick="tarteaucitron.userInterface.openPanel(); return false;">Gérer mes cookies</a></li>
+        </ul>
     </div>
 </footer>
