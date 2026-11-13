@@ -1454,71 +1454,122 @@ section.Recommendations {
 }
 
 section.Me {
-    max-width: 1400px;
-    margin: 0 auto 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 100px;
+    position: relative;
+    isolation: isolate;
+    max-width: 1200px;
+    margin: clamp(80px, 12vh, 140px) auto;
+    padding-top: 28px;
+    border-top: 2px solid var(--Ink);
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    column-gap: clamp(24px, 5vw, 80px);
+    row-gap: clamp(32px, 6vh, 64px);
+
+    /* Fond quadrillé en biais, estompé sur les bords */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -60px -6vw -60px;
+        z-index: -1;
+        background-image:
+            linear-gradient(rgba(var(--LineRGB), 0.07) 1px, transparent 1px),
+            linear-gradient(100deg, rgba(var(--LineRGB), 0.07) 1px, transparent 1px);
+        background-size: 72px 72px;
+        -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+        mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+        pointer-events: none;
+    }
+
+    .MeLabel {
+        grid-column: 1;
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(20px, 3vw, 48px);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.6;
+
+        .MeDot {flex: none; width: 10px; height: 10px; margin-top: 0.45em; border-radius: 50%; background: var(--Ink);}
+    }
+
+    .MeLead {
+        grid-column: 2;
+        font-size: clamp(1.8rem, 3.2vw, 3rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+    }
+
+    .MeBody {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: clamp(24px, 3vw, 44px);
+        align-items: start;
+    }
 
     svg {
-    	width: 70vw;
-	    height: auto;
-    	aspect-ratio: 1/1;
+        width: clamp(200px, 22vw, 300px);
+        height: auto;
+        aspect-ratio: 1 / 1;
 
-	    #LennouilleClip {
+        #LennouilleClip {
             transform-origin: center;
-    		transition: ease-out transform .5s;
-	    }
+            transition: ease-out transform .5s;
+        }
 
-	    &:hover {
-		    #LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
+        &:hover {
+            #LennouilleClip {transform: scale(1.15) translate(0%, 0%);}
 
-    		.TextContent{
-	    		fill: var(--PureWhite);
-		    	mix-blend-mode: overlay;
-    		}
-	    }
+            .TextContent {
+                fill: var(--PureWhite);
+                mix-blend-mode: overlay;
+            }
+        }
 
         .TextContent {
-    	    font-weight: 900; 
+            font-weight: 900;
             font-size: 0.38rem;
-	        letter-spacing: 1.5px;
-    	    fill: var(--DarkPrimary);
-	        mix-blend-mode: normal;
-	        transition: ease fill .5s;
+            letter-spacing: 1.5px;
+            fill: var(--DarkPrimary);
+            mix-blend-mode: normal;
+            transition: ease fill .5s;
         }
     }
-    
+
     .Text {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        font-weight: 400; 
-        font-size: 1.1em;
+        gap: 28px;
+        font-weight: 400;
+        font-size: 1rem;
 
         .Desc {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 14px;
+            line-height: 1.55;
 
-            p {text-align: justify ;}
+            p:first-child {font-size: 1.1rem; line-height: 1.45;}
 
             ul {
-                margin-top: 10px;
+                margin-top: 6px;
                 list-style: disc;
                 padding-left: 20px;
 
                 li {
-                    margin-bottom: 5px;
+                    margin-bottom: 6px;
 
-                    &::marker, strong {color: var(--Primary)}
+                    &::marker, strong {color: var(--PrimaryDeep);}
                 }
             }
         }
-        
+
         .SlideBtn {
-            color: var(--Primary);
+            align-self: flex-start;
+            color: #134C85; /* bouton blanc dans les 2 thèmes : bleu foncé pour le contraste */
             &:hover {color: var(--PureWhite);}
         }
     }
@@ -6551,242 +6602,6 @@ main.Blog {
     }
 }
 
-main.About {
-    section.Me {
-        margin-top: 164px;
-
-        .Text .Header .Eyebrow {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--Primary);
-            margin-bottom: 14px;
-        }
-    }
-
-    .Subtitle {
-        font-size: 1.05rem;
-        color: var(--Muted);
-        line-height: 1.6;
-    }
-
-    section.Timeline {
-        position: relative;
-        background-color: var(--Background);
-        overflow: hidden;
-        padding: 160px 40px 160px;
-
-        /* &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 55% 45% at 50% 0%, rgba(var(--PrimaryRGB), 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        } */
-
-        .TimelineList {
-            position: relative;
-            z-index: 1;
-            max-width: 1080px;
-            margin: 0 auto;
-            list-style: none;
-        }
-
-        .TimelineItem {
-            display: grid;
-            grid-template-columns: 1fr 90px 1fr;
-            column-gap: 48px;
-            position: relative;
-
-            &:not(:last-child) {padding-bottom: 64px;}
-
-            .Rail {
-                grid-column: 2;
-                grid-row: 1;
-                position: relative;
-                display: flex;
-                justify-content: center;
-            }
-
-            .Line {
-                position: absolute;
-                top: -64px;
-                bottom: -64px;
-                left: 50%;
-                width: 2px;
-                background: var(--Primary);
-                transform: translateX(-50%);
-                z-index: 0;
-            }
-
-            &:first-child .Line {top: 0;}
-            &:last-child .Line {bottom: 50%;}
-
-            .Circle {
-                position: relative;
-                z-index: 1;
-                width: 56px;
-                height: 56px;
-                flex-shrink: 0;
-                border-radius: 50%;
-                background: var(--Primary);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 0 0 10px rgba(var(--PrimaryRGB), 0.1), 0 0 38px 4px rgba(var(--PrimaryRGB), 0.45);
-
-                svg {
-                    width: 22px;
-                    height: 22px;
-                    stroke: var(--PureWhite);
-                }
-            }
-
-            .Content {
-                grid-row: 1;
-                align-self: center;
-            }
-
-            .Badge {
-                display: inline-block;
-                padding: 5px 16px;
-                border-radius: 50px;
-                background: rgba(var(--PrimaryRGB), 0.12);
-                border: 1px solid rgba(var(--PrimaryRGB), 0.3);
-                color: var(--Primary);
-                font-size: 0.8rem;
-                font-weight: 700;
-                margin-bottom: 14px;
-            }
-
-            h3 {
-                font-size: 1.5rem;
-                font-weight: 800;
-                color: var(--Ink);
-                margin-bottom: 10px;
-            }
-
-            p {
-                font-size: 0.98rem;
-                line-height: 1.6;
-                color: var(--Muted);
-            }
-
-            &:nth-child(odd) .Content {
-                grid-column: 1;
-                text-align: right;
-                margin-left: auto;
-                max-width: 420px;
-            }
-
-            &:nth-child(even) .Content {
-                grid-column: 3;
-                text-align: left;
-                margin-right: auto;
-                max-width: 420px;
-            }
-        }
-    }
-
-    section.Skills {
-        position: relative;
-        background-color: var(--Background);
-        padding: 100px 40px;
-
-        .Grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-
-        .Card {
-            &:nth-of-type(1), &:nth-of-type(2) {border-color: rgba(var(--PrimaryRGB), 0.5);}
-
-            .Tags {
-                list-style: none;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-
-                li {
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    color: var(--PrimaryDeep);
-                    background: rgba(var(--PrimaryRGB), 0.08);
-                    border: 1px solid rgba(var(--PrimaryRGB), 0.2);
-                    padding: 6px 15px;
-                    border-radius: 50px;
-                }
-            }
-        }
-
-        .Footnote {
-            text-align: center;
-            color: var(--MinMuted);
-            font-size: 0.95rem;
-            max-width: 1200px;
-            margin: 48px auto 0;
-        }
-    }
-
-    section.Values {
-        position: relative;
-        background-color: var(--Background);
-        padding: 40px 40px 120px;
-
-        .Grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-
-        .Card {&:first-of-type, &:last-of-type {border-color: rgba(var(--PrimaryRGB), 0.5);}}
-    }
-
-    section.Gallery {
-        padding: 0 48px;
-
-        .SectionTitle h2.Title {font-size: 2.71rem;}
-        
-        .Grid {
-            column-count: 3;
-            column-gap: 24px;
-
-            img {
-                display: block;
-                width: 100%;
-                margin-bottom: 24px;
-                border-radius: 16px;
-                object-fit: cover;
-                box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
-                break-inside: avoid;
-                transition: transform 0.4s ease;
-
-                &:hover {transform: translateY(-4px);}
-            }
-        }
-    }
-
-    section.Anchor {
-        position: relative;
-        background-color: var(--Background);
-        padding: 40px 40px 100px;
-
-        .Grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-    }
-}
-
 /* Zone sombre par conception : mêmes jetons que le thème sombre, quel que soit le thème choisi */
 main.Contact .ContactLayout, main.Contact section.ContactBooking, .OnDark {
     color-scheme: dark;
@@ -8575,13 +8390,6 @@ main.Reals.SubPage {
 }
 
 @media (min-width: 601px) and (max-width: 950px) {
-    main.About section.Me, main.Index section.Me {
-        gap: 48px;
-
-        svg {width: min(55vw, 340px);}
-    }
-
-
 }
 
 @media (max-width: 768px) {
@@ -8790,18 +8598,6 @@ main.Reals.SubPage {
                 width: 50%;
                 text-align: left;
             }
-        }
-    }
-
-    section.Me {
-        flex-direction: column-reverse;
-        margin: 20px;
-        gap: 30px;
-
-        svg {height: auto;}
-        .Text {
-            text-align: center;
-            .SlideBtn {align-self: flex-start; margin: 0 auto;}
         }
     }
 
@@ -9686,5 +9482,17 @@ html {background: var(--Charcoal);}
         section.ContactBooking {margin-inline: 20px;}
         section.ContactBooking .ContactBookingFrame {border-radius: 24px; padding: 10px;}
         section.ContactBooking .ContactBookingFrame iframe {height: 600px;}
+    }
+}
+
+@media (max-width: 950px) {
+    section.Me {
+        grid-template-columns: 1fr;
+        margin-inline: 20px;
+        row-gap: 24px;
+
+        .MeLabel, .MeLead, .MeBody {grid-column: 1;}
+        .MeBody {grid-template-columns: 1fr;}
+        svg {width: min(60vw, 260px);}
     }
 }
