@@ -8,22 +8,52 @@ robots: "noindex, nofollow"
     <main class="NotFound">
         {% include header.html %}
 
-        <section class="SecondaryHero">
-            <div class="Decor" aria-hidden="true"><span>404</span></div>
-            <div class="HeroInner">
-                <h1 class="Title">Cette page s'est perdue en chemin.</h1>
-                <p class="SubTitle">La page demandée n'existe pas, plus, ou pas encore. Vérifiez l'URL, ou repartez tranquillement de l'accueil.</p>
-                <code class="RequestedPath" id="NotFoundPath" hidden></code>
-                <div>
-                    <a href="/" class="ArrowBtn">Retour à l'accueil <span class="Arrow">→</span></a>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+            <symbol id="NfArrow" viewBox="0 0 122 122">
+                <path d="M106.5 0V84Q106.5 106.5 84 106.5H0" fill="none" stroke="currentColor" stroke-width="31"/>
+                <path d="M22 22L92 92" fill="none" stroke="currentColor" stroke-width="31"/>
+            </symbol>
+        </svg>
+
+        <section class="NotFoundStage">
+            <svg class="BgArrow BgArrowTop" aria-hidden="true" focusable="false"><use href="#NfArrow"/></svg>
+            <svg class="BgArrow BgArrowBottom" aria-hidden="true" focusable="false"><use href="#NfArrow"/></svg>
+
+            <div class="NotFoundFrame">
+                <div class="Glyph" aria-hidden="true">
+                    <span class="Stem"></span><span class="Bar"></span><span class="Leg"></span>
+                    <svg class="GlyphArrow ArrowSmall" focusable="false"><use href="#NfArrow"/></svg>
                 </div>
-                <nav class="QuickLinks" aria-label="Autres pages du site">
-                    <a href="/services.html">Services</a>
-                    <span class="Dot" aria-hidden="true"></span>
-                    <a href="/reals.html">Réalisations</a>
-                    <span class="Dot" aria-hidden="true"></span>
-                    <a href="/contact.html">Contact</a>
-                </nav>
+
+                <div class="NotFoundCard">
+                    <p class="NfEyebrow">… 404 …</p>
+                    <h1 class="NfTitle">Cette page s'est perdue en chemin.</h1>
+                    <p class="NfText">La page demandée n'existe pas, plus, ou pas encore. Vérifiez l'URL, ou repartez de l'un de ces points.</p>
+                    <code class="RequestedPath" id="NotFoundPath" hidden></code>
+
+                    <nav class="NfLinks" aria-label="Autres pages du site">
+                        <a class="NfLink CursorHover" href="/">
+                            <span class="T">Accueil</span>
+                            <span class="S">Retour au point de départ</span>
+                            <span class="Go" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
+                        </a>
+                        <a class="NfLink CursorHover" href="/services">
+                            <span class="T">Services</span>
+                            <span class="S">Designs UI / UX</span>
+                            <span class="Go" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
+                        </a>
+                        <a class="NfLink CursorHover" href="/reals">
+                            <span class="T">Réalisations</span>
+                            <span class="S">Mes projets</span>
+                            <span class="Go" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg></span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="Glyph" aria-hidden="true">
+                    <span class="Stem"></span><span class="Bar"></span><span class="Leg"></span>
+                    <svg class="GlyphArrow ArrowBig" focusable="false"><use href="#NfArrow"/></svg>
+                </div>
             </div>
         </section>
 

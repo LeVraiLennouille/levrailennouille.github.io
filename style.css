@@ -9049,39 +9049,116 @@ main.Reals.SubPage {
 }
 
 main.NotFound {
-    .SecondaryHero {
+    --NfBlue: #134C85;
+
+    .NotFoundStage {
+        position: relative;
+        max-width: none;
+        margin: 0;
         min-height: 100vh;
         min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: clamp(16px, 3vw, 48px);
+        overflow: hidden;
+        background: linear-gradient(180deg, color-mix(in srgb, var(--Primary) 38%, #fff) 0%, var(--Primary) 100%);
     }
 
+    .BgArrow {position: absolute; width: clamp(160px, 22vw, 340px); aspect-ratio: 1; color: rgba(255, 255, 255, 0.22); pointer-events: none;}
+    .BgArrowTop {top: -2%; right: 10%; transform: rotate(180deg);}
+    .BgArrowBottom {bottom: -2%; left: 8%;}
+
+    .NotFoundFrame {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1500px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.25%;
+        padding: 2.5%;
+        border-radius: clamp(28px, 3.5vw, 56px);
+        background:
+            radial-gradient(ellipse 60% 50% at 12% 88%, rgba(var(--PrimaryRGB), 0.28) 0%, transparent 70%),
+            var(--Charcoal);
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.25);
+    }
+
+    .Glyph {
+        position: relative;
+        min-height: 100%;
+
+        .Stem, .Bar, .Leg {position: absolute; background: #fff;}
+        .Stem {left: 0; top: 0; width: 24.3%; height: 60%; border-radius: 16px 16px 0 16px;}
+        .Bar {left: 20%; top: 42%; width: 60%; height: 18%;}
+        .Leg {right: 0; top: 0; width: 24.3%; height: 100%; border-radius: 16px;}
+
+        .GlyphArrow {position: absolute; aspect-ratio: 1; height: auto; color: var(--Primary);}
+        .ArrowSmall {left: 39.9%; top: 0; width: 20.4%;}
+        .ArrowBig {left: 19.6%; bottom: 0; width: 36.5%; transform: rotate(180deg);}
+    }
+
+    .NotFoundCard {
+        --Ink: #1c1c1e; --InkRGB: 28, 28, 30;
+        padding: clamp(20px, 2.2vw, 36px);
+        border-radius: 16px;
+        background: #fff;
+        color: var(--Ink);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: clamp(420px, 58vh, 660px);
+    }
+
+    .NfEyebrow {font-size: clamp(1rem, 1.6vw, 1.5rem); font-weight: 800;}
+    .NfTitle {font-size: clamp(1.4rem, 2.2vw, 2.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em;}
+    .NfText {font-size: 0.95rem; font-weight: 500; line-height: 1.5; color: #4a4a4d;}
+
     .RequestedPath {
-        display: inline-block;
-        margin-top: 18px;
+        align-self: center;
         padding: 6px 14px;
         border-radius: 8px;
-        background: rgba(var(--PureWhiteRGB), 0.08);
-        border: 1px solid rgba(var(--PureWhiteRGB), 0.14);
-        color: var(--PureWhite);
+        background: rgba(28, 28, 30, 0.06);
+        color: #1c1c1e;
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         word-break: break-all;
     }
 
-    .ArrowBtn {margin-top: 32px;}
+    .NfLinks {display: flex; flex-direction: column; gap: 10px; margin-top: auto; text-align: left;}
 
-    .QuickLinks {
-        display: flex;
+    .NfLink {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 12px;
+        row-gap: 2px;
         align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 26px;
-        font-size: 0.85rem;
-        font-weight: 600;
+        padding: 16px 20px;
+        border-radius: 20px;
+        background: rgba(28, 28, 30, 0.06);
+        color: #1c1c1e;
+        text-decoration: none;
+        transition: background-color 0.25s ease, color 0.25s ease;
 
-        a {color: var(--MinMuted); text-decoration: none; transition: color 0.2s ease;}
-        a:hover {color: var(--Primary);}
-        .Dot {width: 4px; height: 4px; border-radius: 50%; background: var(--MinMuted); flex-shrink: 0;}
+        .T {font-size: 1.2rem; font-weight: 800; line-height: 1.2;}
+        .S {grid-column: 1; font-size: 0.85rem; font-weight: 500; color: #5a5a5e;}
+        .Go {grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 30px; height: 30px; border: 2px solid currentColor; border-radius: 50%; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;}
+        .Go svg {width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;}
+
+        &:hover, &:focus-visible {color: var(--NfBlue);}
+        &:hover .Go, &:focus-visible .Go {background: var(--Primary); border-color: var(--Primary); color: #fff;}
+        &:focus-visible {outline: 3px solid var(--NfBlue); outline-offset: 3px;}
+    }
+}
+
+@media (max-width: 950px) {
+    main.NotFound {
+        .NotFoundStage {padding-top: calc(var(--TopH) + 16px);}
+        .NotFoundFrame {grid-template-columns: 1fr; padding: 14px;}
+        .Glyph {display: none;}
+        .NotFoundCard {min-height: 0;}
+        .NfLinks {margin-top: 12px;}
     }
 }
 
