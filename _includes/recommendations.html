@@ -1,0 +1,28 @@
+{%- assign total = site.data.avis.size -%}
+<section class="Recommendations OnDark" aria-labelledby="RecoTitle">
+    <div class="RecoHeader">
+        <div class="RecoHead">
+            <span class="RecoLabel"><span class="Dot" aria-hidden="true"></span>Recommandations</span>
+            <h2 class="RecoTitle" id="RecoTitle">Ce que l'on dit de ma rigueur</h2>
+        </div>
+        <p class="RecoDesc">Avant mes premiers clients, la confiance de celles et ceux qui ont suivi mon parcours de près.</p>
+    </div>
+
+    <div class="RecoCarousel" data-gallery-carousel role="region" aria-roledescription="carrousel" aria-label="Recommandations">
+        <div class="Slides" tabindex="0">
+            {%- for a in site.data.avis %}
+            <figure class="Card" role="group" aria-roledescription="diapositive" aria-label="Recommandation {{ forloop.index }} sur {{ total }}">
+                <blockquote class="QuoteText{% if a.placeholder %} Placeholder{% endif %}">“{{ a.quote }}”</blockquote>
+                <figcaption class="Author">
+                    <span class="Avatar" aria-hidden="true">{{ a.avatar }}</span>
+                    <span class="Who"><strong class="Name">{{ a.authorName }}</strong><span class="Role">{{ a.authorRole }}</span></span>
+                </figcaption>
+            </figure>
+            {%- endfor %}
+        </div>
+        <div class="RecoControls">
+            <button type="button" class="CursorHover" data-gallery-prev aria-label="Recommandations précédentes"><svg viewBox="0 0 28 14" aria-hidden="true"><path d="M27 7H2M8 1L2 7l6 6"/></svg></button>
+            <button type="button" class="CursorHover" data-gallery-next aria-label="Recommandations suivantes"><svg viewBox="0 0 28 14" aria-hidden="true"><path d="M1 7h25M20 1l6 6-6 6"/></svg></button>
+        </div>
+    </div>
+</section>
