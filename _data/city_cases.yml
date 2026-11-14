@@ -15,6 +15,7 @@ poitiers:
     - {value: "1 tap", label: "pour valider une habitude"}
     - {value: "5", label: "écrans refondus : habitudes, statistiques, succès, ressenti, compte"}
     - {value: "3", label: "rythmes de respiration guidée ajoutés"}
+  visual: "/img/reals/zeno/mockup.webp"
   url: "/reals/zeno"
 
 reims:
@@ -28,6 +29,7 @@ reims:
     - {value: "+50 %", label: "bénévoles inscrits depuis la refonte"}
     - {value: "3", label: "versions de couleur du logo : orange, sable, vert"}
     - {value: "4 + 4", label: "pages présentées : extraits de la charte et de la brochure"}
+  visual: "/img/reals/larepousse/mockup.webp"
   url: "/reals/larepousse"
 
 paris:
@@ -41,4 +43,5 @@ paris:
     - {value: "88 h", label: "de travail"}
     - {value: "5", label: "couches techniques assurées seul : HTML/CSS, JavaScript, PHP, SQL, design Figma"}
     - {value: "2", label: "zones comparées avant/après : hero + navbar, footer ; plus le logo"}
+  visual: "/img/reals/geoptime/mockup.webp"
   url: "/reals/geoptime"

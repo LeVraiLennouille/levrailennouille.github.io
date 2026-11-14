@@ -1,14 +1,24 @@
 # Villes affichées sur la page /villes (ordre = ordre d'affichage)
+# lat/lon = coordonnées (carte de France) ; side = côté du libellé sur la carte (left | right)
 # slug = nom du fichier dans /villes/ et de l'image /img/maps/<slug>-1400.webp
 - slug: poitiers
   name: "Poitiers"
   area: "Poitiers et la Vienne"
   base: true
+  lat: 46.5802
+  lon: 0.3404
+  side: left
 
 - slug: reims
   name: "Reims"
   area: "Reims et la Marne"
+  lat: 49.2583
+  lon: 4.0317
+  side: right
 
 - slug: paris
   name: "Paris"
   area: "Paris et l'Île-de-France"
+  lat: 48.8566
+  lon: 2.3522
+  side: left

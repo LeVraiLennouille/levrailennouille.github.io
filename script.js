@@ -992,3 +992,118 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 })();
+
+
+// * Pages villes : compteurs des chiffres clés * //
+(function () {
+    var nodes = document.querySelectorAll('[data-counter]');
+    if (!nodes.length) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // « +50 % », « 88 h », « 160+ » : un seul nombre, sinon (« 4 + 4 », « 2.28 → 11.84 ») on n'anime pas
+    function parse(text) {
+        var m = text.trim().match(/^([+\-−]?\s?)(\d+(?:[.,]\d+)?)(.*)$/);
+        if (!m || /\d/.test(m[3])) return null;
+        return {prefix: m[1], number: parseFloat(m[2].replace(',', '.')), decimals: (m[2].split(/[.,]/)[1] || '').length, suffix: m[3]};
+    }
+
+    function format(p, value) {
+        return p.prefix + value.toFixed(p.decimals).replace('.', ',') + p.suffix;
+    }
+
+    function run(el, p) {
+        var start = null, duration = 1200;
+        function step(ts) {
+            if (start === null) start = ts;
+            var t = Math.min((ts - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = format(p, p.number * eased);
+            if (t < 1) requestAnimationFrame(step); else el.textContent = el.dataset.final;
+        }
+        requestAnimationFrame(step);
+    }
+
+    var targets = [];
+    nodes.forEach(function (el) {
+        var p = parse(el.textContent);
+        if (!p) return;
+        el.dataset.final = el.textContent;
+        el.setAttribute('aria-label', el.textContent);
+        targets.push({el: el, p: p});
+    });
+    if (reduce || !('IntersectionObserver' in window)) return;
+
+    targets.forEach(function (t) {t.el.textContent = format(t.p, 0);});
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            io.unobserve(entry.target);
+            var t = targets.filter(function (x) {return x.el === entry.target;})[0];
+            if (t) run(t.el, t.p);
+        });
+    }, {threshold: 0.6});
+    targets.forEach(function (t) {io.observe(t.el);});
+})();
+
+// * Pages villes : FAQ animée, une seule réponse ouverte à la fois * //
+(function () {
+    var items = document.querySelectorAll('.CityFAQ details');
+    if (!items.length) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
+    items.forEach(function (det) {
+        var summary = det.querySelector('summary');
+        if (!summary || det.querySelector('.FAQBody')) return;
+        var body = document.createElement('div');
+        body.className = 'FAQBody';
+        while (summary.nextSibling) body.appendChild(summary.nextSibling);
+        det.appendChild(body);
+    });
+
+    function animate(det, opening) {
+        var body = det.querySelector('.FAQBody');
+        if (det._anim) det._anim.cancel();
+        det._closing = !opening;
+        if (reduce) {det.open = opening; det._closing = false; return;}
+        if (opening) {
+            det.open = true;
+            var h = body.offsetHeight;
+            det._anim = body.animate([{height: '0px', opacity: 0}, {height: h + 'px', opacity: 1}], {duration: 320, easing: EASE});
+            det._anim.onfinish = function () {det._anim = null;};
+        } else {
+            var h0 = body.offsetHeight;
+            det._anim = body.animate([{height: h0 + 'px', opacity: 1}, {height: '0px', opacity: 0}], {duration: 260, easing: EASE});
+            det._anim.onfinish = function () {det.open = false; det._closing = false; det._anim = null;};
+        }
+    }
+
+    items.forEach(function (det) {
+        det.querySelector('summary').addEventListener('click', function (e) {
+            e.preventDefault();
+            if (det.open && !det._closing) {
+                animate(det, false);
+                return;
+            }
+            items.forEach(function (other) {if (other !== det && other.open && !other._closing) animate(other, false);});
+            animate(det, true);
+        });
+    });
+})();
+
+// * Page /villes : survol/focus synchronisé entre la carte et la liste * //
+(function () {
+    var hub = document.querySelector('.CitiesMap');
+    if (!hub) return;
+    var items = hub.querySelectorAll('[data-city]');
+    function toggle(city, on) {
+        items.forEach(function (el) {
+            if (el.getAttribute('data-city') === city) el.classList.toggle('Active', on);
+        });
+    }
+    items.forEach(function (el) {
+        var city = el.getAttribute('data-city');
+        ['mouseenter', 'focus'].forEach(function (ev) {el.addEventListener(ev, function () {toggle(city, true);}, true);});
+        ['mouseleave', 'blur'].forEach(function (ev) {el.addEventListener(ev, function () {toggle(city, false);}, true);});
+    });
+})();

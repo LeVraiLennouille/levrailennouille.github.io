@@ -13,6 +13,10 @@
     </div>
     <ul class="ClientsGrid">
         {%- for c in _clients -%}
+        {%- assign _big = false -%}
+        {%- if c.services and c.services.size > 0 -%}{%- assign _big = true -%}{%- endif -%}
+        {%- if c.metric -%}{%- assign _big = true -%}{%- endif -%}
+        {%- if _big -%}
         <li class="ClientItem">
             {%- if c.url != nil and c.url != "" -%}<a class="ClientCard" href="{{ c.url | relative_url }}">{%- else -%}<div class="ClientCard">{%- endif -%}
                 <span class="ClientLogo">
@@ -33,7 +37,35 @@
                 {%- if c.url != nil and c.url != "" -%}<span class="ClientLink">Voir le projet <span aria-hidden="true">→</span></span>{%- endif -%}
             {%- if c.url != nil and c.url != "" -%}</a>{%- else -%}</div>{%- endif -%}
         </li>
+        {%- endif -%}
         {%- endfor -%}
     </ul>
+    {%- assign _more = 0 -%}
+    {%- for c in _clients -%}
+        {%- assign _big = false -%}
+        {%- if c.services and c.services.size > 0 -%}{%- assign _big = true -%}{%- endif -%}
+        {%- if c.metric -%}{%- assign _big = true -%}{%- endif -%}
+        {%- unless _big -%}{%- assign _more = _more | plus: 1 -%}{%- endunless -%}
+    {%- endfor -%}
+    {%- if _more > 0 %}
+    <div class="ClientsMore">
+        <h3 class="ClientsMoreTitle">Autres références</h3>
+        <ul class="ClientsChips">
+            {%- for c in _clients -%}
+            {%- assign _big = false -%}
+            {%- if c.services and c.services.size > 0 -%}{%- assign _big = true -%}{%- endif -%}
+            {%- if c.metric -%}{%- assign _big = true -%}{%- endif -%}
+            {%- unless _big -%}
+            <li>
+                {%- if c.url != nil and c.url != "" -%}<a class="ClientChip" href="{{ c.url | relative_url }}">{%- else -%}<span class="ClientChip">{%- endif -%}
+                    <span class="ChipLogo">{%- if c.logo != nil and c.logo != "" -%}<img src="{{ c.logo | relative_url }}" alt="" loading="lazy">{%- else -%}<span aria-hidden="true">{{ c.name | slice: 0 }}</span>{%- endif -%}</span>
+                    {{ c.name }}
+                {%- if c.url != nil and c.url != "" -%}</a>{%- else -%}</span>{%- endif -%}
+            </li>
+            {%- endunless -%}
+            {%- endfor -%}
+        </ul>
+    </div>
+    {%- endif %}
 </section>
 {%- endif -%}

@@ -1,5 +1,7 @@
 ---
 layout: default
+og_image: /img/og/villes.jpg
+og_image_alt: "Carte de France avec Poitiers, Reims et Paris — UX Designer & Webdesigner par ville, Lennouille"
 title: "UX Designer & Webdesigner par ville | Lennouille"
 description: "UX Designer et webdesigner freelance basé à Poitiers : mes pages pour Poitiers, Reims et Paris, avec références et prestations. Visio partout en France."
 ---
@@ -66,18 +68,23 @@ description: "UX Designer et webdesigner freelance basé à Poitiers : mes pages
         </div>
     </section>
     <section class="CitiesList">
-        <ul class="CitiesGrid">
-            {%- for c in site.data.cities %}
-            <li>
-                <a class="CityCard CursorHover" href="/villes/{{ c.slug }}" style="--CityMap: url('/img/maps/{{ c.slug }}-1400.webp')">
-                    {%- if c.base %}<span class="CityTag">Ma base</span>{% endif %}
-                    <span class="CityName">{{ c.name }}</span>
-                    <span class="CityArea">{{ c.area }}</span>
-                    <span class="CityGo">Webdesigner à {{ c.name }} <span aria-hidden="true">→</span></span>
-                </a>
-            </li>
-            {%- endfor %}
-        </ul>
+        <div class="CitiesMap">
+            <div class="FranceMap">{% include france-map.html %}</div>
+            <ul class="CitiesAside">
+                {%- for c in site.data.cities %}
+                <li>
+                    <a class="CityRow CursorHover" data-city="{{ c.slug }}" href="/villes/{{ c.slug }}">
+                        <span class="CityThumb" style="--CityMap: url('/img/maps/{{ c.slug }}-1400.webp')" aria-hidden="true"></span>
+                        <span class="CityInfo">
+                            <span class="CityName">{{ c.name }}{% if c.base %} <span class="CityTag">Ma base</span>{% endif %}</span>
+                            <span class="CityArea">{{ c.area }}</span>
+                        </span>
+                        <span class="CityGo" aria-hidden="true">→</span>
+                    </a>
+                </li>
+                {%- endfor %}
+            </ul>
+        </div>
     </section>
     {% include cta.html %}
     {% include footer.html %}

@@ -10321,73 +10321,112 @@ main.City section.CityAvis {
 
 
 /* ==========================================================================
-   # Page /villes (index des pages villes)
+   # Page /villes : carte de France + liste
 ========================================================================== */
 main.CityHub section.CitiesList {
     max-width: 1400px;
     margin: 120px auto 0;
     padding-inline: clamp(20px, 5vw, 40px);
 
-    .CitiesGrid {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 24px;
-
-        li {flex: 1 1 300px; max-width: 420px; display: flex;}
+    .CitiesMap {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
     }
 
-    .CityCard {
+    .FranceMap {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 6px;
-        width: 100%;
-        min-height: 300px;
-        padding: 28px;
-        border-radius: 24px;
+        padding: 20px;
+        border-radius: 28px;
+        background: radial-gradient(ellipse 80% 70% at 50% 45%, #13263f 0%, #0a1626 70%, #08111d 100%);
+        box-shadow: 0 18px 50px rgba(var(--PureBlackRGB), 0.28);
         overflow: hidden;
-        color: #fff;
-        text-decoration: none;
-        background:
-            linear-gradient(to top, rgba(var(--CharcoalRGB), 0.9) 0%, rgba(var(--CharcoalRGB), 0.35) 70%, rgba(var(--CharcoalRGB), 0.2) 100%),
-            var(--CityMap) center / cover no-repeat;
-        box-shadow: 0 10px 30px rgba(var(--PureBlackRGB), 0.18);
-        transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease;
-
-        &:hover, &:focus-visible {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 44px rgba(var(--PrimaryRGB), 0.3);
-            outline: none;
-        }
-
-        .CityTag {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 5px 12px;
-            border-radius: 999px;
-            background: var(--Primary);
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .CityName {font-size: 2rem; font-weight: 800; line-height: 1.1;}
-        .CityArea {font-size: 0.9rem; font-weight: 500; color: rgba(255, 255, 255, 0.78);}
-        .CityGo {margin-top: 10px; font-size: 0.85rem; font-weight: 700; color: #8cc2f7;}
     }
+
+    .FranceSvg {display: block; width: 100%; height: auto; max-height: 78vh; margin-inline: auto; overflow: visible;}
+
+    .FmDot {fill: rgba(var(--PrimaryRGB), 0.28);}
+    .FmFill {fill: #0e2038;}
+    .FmHatch {stroke: var(--Primary); stroke-width: 0.7; opacity: 0.38;}
+    .FmEdge {fill: none; stroke: var(--Primary); stroke-width: 1.6; stroke-linejoin: round; filter: drop-shadow(0 0 7px rgba(var(--PrimaryRGB), 0.65));}
+
+    .FmLink {
+        fill: none;
+        stroke: rgba(140, 194, 247, 0.85);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-dasharray: 3 7;
+        animation: FmFlow 1.6s linear infinite;
+        transition: stroke 0.25s ease, stroke-width 0.25s ease;
+    }
+    .FmLink.Active {stroke: #fff; stroke-width: 2.6;}
+
+    .FmMarker {
+        cursor: pointer;
+        outline: none;
+
+        .FmHit {fill: transparent;}
+        .FmDotCore {fill: var(--Primary); stroke: #fff; stroke-width: 2.4; transition: r 0.25s ease, fill 0.25s ease;}
+        .FmPulse {fill: rgba(var(--PrimaryRGB), 0.35); transform-box: fill-box; transform-origin: center; animation: FmPulse 2.4s ease-out infinite;}
+        .FmLabel {fill: #fff; font-size: 21px; font-weight: 800; paint-order: stroke; stroke: #0a1626; stroke-width: 5px; stroke-linejoin: round; transition: fill 0.25s ease;}
+
+        &.IsBase .FmDotCore {fill: #8cc2f7; r: 8;}
+        &.IsBase .FmPulse {r: 12;}
+
+        &:hover .FmDotCore, &:focus-visible .FmDotCore, &.Active .FmDotCore {r: 10; fill: #fff; stroke: var(--Primary);}
+        &:hover .FmLabel, &:focus-visible .FmLabel, &.Active .FmLabel {fill: #8cc2f7;}
+        &:focus-visible .FmHit {stroke: #fff; stroke-width: 2; stroke-dasharray: 4 4;}
+    }
+
+    .CitiesAside {list-style: none; margin: 0; padding: 0; display: grid; gap: 16px;}
+
+    .CityRow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 16px 20px 16px 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(var(--LineRGB), 0.1);
+        background: var(--Surface);
+        color: var(--Ink);
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(var(--PureBlackRGB), 0.06);
+        transition: transform 0.3s cubic-bezier(.22,1,.36,1), border-color 0.25s ease, box-shadow 0.3s ease;
+
+        &:hover, &:focus-visible, &.Active {transform: translateX(6px); border-color: var(--Primary); box-shadow: 0 12px 32px rgba(var(--PrimaryRGB), 0.2); outline: none;}
+
+        .CityThumb {
+            flex: 0 0 76px;
+            height: 76px;
+            border-radius: 16px;
+            background: linear-gradient(rgba(var(--CharcoalRGB), 0.15), rgba(var(--CharcoalRGB), 0.15)), var(--CityMap) center / cover no-repeat;
+        }
+
+        .CityInfo {flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;}
+        .CityName {font-size: 1.35rem; font-weight: 800; line-height: 1.15; display: flex; align-items: center; flex-wrap: wrap; gap: 10px;}
+        .CityArea {font-size: 0.88rem; font-weight: 500; color: var(--Muted);}
+        .CityTag {padding: 3px 10px; border-radius: 999px; background: var(--Primary); color: #fff; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;}
+        .CityGo {font-size: 1.4rem; font-weight: 700; color: var(--Primary); transition: transform 0.25s ease;}
+        &:hover .CityGo, &.Active .CityGo {transform: translateX(4px);}
+    }
+}
+
+@keyframes FmFlow {to {stroke-dashoffset: -20;}}
+@keyframes FmPulse {
+    0% {transform: scale(1); opacity: 0.9;}
+    100% {transform: scale(3.2); opacity: 0;}
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main.CityHub .FmLink, main.CityHub .FmPulse {animation: none;}
 }
 
 @media (max-width: 900px) {
     main.CityHub section.CitiesList {margin-top: 80px;}
+    main.CityHub section.CitiesList .CitiesMap {grid-template-columns: 1fr;}
+    main.CityHub section.CitiesList .FranceMap {padding: 12px;}
 }
-
 
 /* ==========================================================================
    # Pages villes : cas concret, mentions, chiffres clés
@@ -10400,41 +10439,51 @@ main.City section.CityCase {
     .CaseCard {
         margin-top: 48px;
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-        gap: 32px;
-        align-items: stretch;
-        padding: 32px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+        gap: 0;
+        overflow: hidden;
         border-radius: 24px;
         border: 1px solid rgba(var(--LineRGB), 0.1);
         border-top: 5px solid var(--Primary);
         background: var(--Surface);
         box-shadow: 0 4px 24px rgba(var(--PureBlackRGB), 0.06);
+
+        &.NoVisual {grid-template-columns: 1fr;}
     }
 
-    .CaseMain {display: flex; gap: 24px; align-items: flex-start;}
-
-    .CaseLogo {
-        flex: 0 0 112px;
+    .CaseVisual {
+        margin: 0;
         display: grid;
         place-items: center;
-        height: 112px;
-        padding: 12px;
+        padding: 28px;
+        background: linear-gradient(145deg, rgba(var(--PrimaryRGB), 0.16), rgba(var(--PrimaryRGB), 0.04));
+
+        img {display: block; width: 100%; height: auto; max-height: 460px; object-fit: contain; filter: drop-shadow(0 18px 30px rgba(var(--PureBlackRGB), 0.25));}
+    }
+
+    .CaseBody {display: flex; flex-direction: column; gap: 22px; align-items: flex-start; padding: 32px;}
+    .CaseHead {display: flex; gap: 20px; align-items: flex-start;}
+
+    .CaseLogo {
+        flex: 0 0 88px;
+        display: grid;
+        place-items: center;
+        height: 88px;
+        padding: 10px;
         border-radius: 16px;
         background: #fff;
         box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
 
-        img {display: block; height: 80px; width: auto; max-width: 100%; object-fit: contain;}
+        img {display: block; height: 64px; width: auto; max-width: 100%; object-fit: contain;}
     }
 
-    .CaseText {display: flex; flex-direction: column; gap: 14px; align-items: flex-start;}
-    .ClientLink {font-size: 0.9rem; font-weight: 700; color: var(--Primary); text-decoration: none;}
-    .ClientLink:hover, .ClientLink:focus-visible {text-decoration: underline; text-underline-offset: 3px; outline: none;}
-    .CaseBrief {margin: 0; font-size: 1.1rem; font-weight: 600; line-height: 1.55; color: var(--Ink);}
+    .CaseBrief {margin: 4px 0 0; font-size: 1.08rem; font-weight: 600; line-height: 1.55; color: var(--Ink);}
 
     .CaseFacts {
         margin: 0;
-        display: grid;
-        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 36px;
 
         dt {font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--MinMuted);}
         dd {margin: 2px 0 0; font-size: 0.95rem; font-weight: 600; color: var(--Ink);}
@@ -10444,22 +10493,18 @@ main.City section.CityCase {
         list-style: none;
         margin: 0;
         padding: 0;
+        width: 100%;
         display: grid;
-        gap: 14px;
-        align-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
 
-        li {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            padding: 16px 20px;
-            border-radius: 16px;
-            background: rgba(var(--PrimaryRGB), 0.1);
-        }
-
-        strong {flex: 0 0 6.5ch; font-size: 1.9rem; font-weight: 800; line-height: 1; color: var(--PrimaryDeep);}
-        span {font-size: 0.9rem; font-weight: 600; line-height: 1.4; color: var(--Ink);}
+        li {display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 16px; background: rgba(var(--PrimaryRGB), 0.1);}
+        strong {font-size: 1.9rem; font-weight: 800; line-height: 1; color: var(--PrimaryDeep); font-variant-numeric: tabular-nums;}
+        span {font-size: 0.82rem; font-weight: 600; line-height: 1.4; color: var(--Ink);}
     }
+
+    .ClientLink {font-size: 0.9rem; font-weight: 700; color: var(--Primary); text-decoration: none;}
+    .ClientLink:hover, .ClientLink:focus-visible {text-decoration: underline; text-underline-offset: 3px; outline: none;}
 }
 
 main.City .ClientKind {
@@ -10486,8 +10531,9 @@ main.City section.CityClients .ClientCard .ClientKind {margin-bottom: -6px;}
 
 @media (max-width: 900px) {
     main.City section.CityCase {margin-top: 120px;}
-    main.City section.CityCase .CaseCard {grid-template-columns: 1fr; padding: 22px;}
-    main.City section.CityCase .CaseMain {flex-direction: column;}
+    main.City section.CityCase .CaseCard {grid-template-columns: 1fr;}
+    main.City section.CityCase .CaseBody {padding: 22px;}
+    main.City section.CityCase .CaseHead {flex-direction: column;}
 }
 
 main.City .SecondaryHero .HeroMapLabel {position: absolute; inset: 0; pointer-events: none;}
@@ -10538,3 +10584,58 @@ main.Reals .ProjectCity {
 
 main.City section.Local .Intro p a {color: var(--Primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;}
 main.City section.Local .Intro p a:hover {color: var(--PrimaryDeep);}
+
+/* ---- Références : bande compacte "Autres références" ---- */
+main.City section.CityClients {
+    .ClientsMore {margin-top: 40px; text-align: center;}
+    .ClientsMoreTitle {margin: 0 0 16px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; color: var(--MinMuted);}
+    .ClientsChips {list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;}
+
+    .ClientChip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 18px 8px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(var(--LineRGB), 0.12);
+        background: var(--Surface);
+        color: var(--Ink);
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+
+        &:is(a):hover, &:is(a):focus-visible {border-color: var(--Primary); transform: translateY(-2px); outline: none;}
+
+        .ChipLogo {
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--Primary);
+
+            img {width: 22px; height: 22px; object-fit: contain;}
+        }
+    }
+}
+
+/* ---- Prestations : icône ---- */
+main.City section.Offers .OfferGrid .Card .IconBox {width: 52px; height: 52px; margin-bottom: 2px;}
+
+/* ---- FAQ animée ---- */
+main.City section.CityFAQ .FAQList details {
+    transition: box-shadow 0.3s ease;
+
+    &[open] {box-shadow: 0 8px 28px rgba(var(--PrimaryRGB), 0.14);}
+    &[open] summary::after {background: var(--Primary); color: #fff; transform: rotate(135deg);}
+    summary {cursor: pointer;}
+    summary::after {transition: transform 0.35s cubic-bezier(.22,1,.36,1), background-color 0.25s ease, color 0.25s ease;}
+    summary:focus-visible {outline: 2px solid var(--Primary); outline-offset: 4px; border-radius: 8px;}
+    .FAQBody {overflow: hidden;}
+}
