@@ -1,0 +1,37 @@
+{%- assign _showcase = site.data.reals | where_exp: "p", "p.comingSoon != true" | sort: "date" | reverse -%}
+<section class="Showcase" aria-labelledby="ShowcaseTitle">
+    <div class="ShowcaseHeader">
+        <div class="ShowcaseHead">
+            <span class="ShowcaseLabel"><span class="Dot" aria-hidden="true"></span>Le portfolio</span>
+            <h2 class="ShowcaseTitle" id="ShowcaseTitle">Mes dernières réalisations</h2>
+        </div>
+        <a class="ShowcaseAll CursorHover" href="{{ '/reals' | relative_url }}">Voir tous les projets</a>
+    </div>
+
+    <div class="ShowcaseSlider" data-showcase role="region" aria-roledescription="carrousel" aria-label="Mes dernières réalisations">
+        <div class="ShowcaseViewport">
+            {%- for p in _showcase %}
+            <a class="ProjectCard" href="{{ p.url | relative_url }}" role="group" aria-roledescription="diapositive" aria-label="{{ forloop.index }} sur {{ _showcase.size }} : {{ p.label | escape }}">
+                <div class="Preview">
+                    <img src="{{ p.image | relative_url }}" alt="{{ p.imageAlt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+                </div>
+                <div class="Caption">
+                    <span class="ProjectName">{{ p.label }}</span>
+                    <span class="ProjectDate">{% include date-fr.html date=p.date format="month" %}</span>
+                </div>
+            </a>
+            {%- endfor %}
+        </div>
+        <div class="ShowcaseBar">
+            <div class="ShowcaseDots">
+                {%- for p in _showcase %}
+                <button type="button" class="ShowcaseDot CursorHover" aria-label="Voir la réalisation {{ forloop.index }} : {{ p.label | escape }}"><span class="Fill"></span></button>
+                {%- endfor %}
+            </div>
+            <button type="button" class="ShowcasePause CursorHover" aria-pressed="false" aria-label="Mettre le défilement automatique en pause">
+                <svg class="IconPause" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6" width="3.2" height="12" rx="1"/><rect x="13.8" y="6" width="3.2" height="12" rx="1"/></svg>
+                <svg class="IconPlay" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </button>
+        </div>
+    </div>
+</section>

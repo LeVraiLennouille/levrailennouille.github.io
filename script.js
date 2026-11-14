@@ -757,3 +757,111 @@ document.addEventListener("DOMContentLoaded", function () {
         update();
     });
 })();
+
+// * Réalisations : slider centré, défilement automatique toutes les 5 s * //
+(function () {
+    document.querySelectorAll('[data-showcase]').forEach(function (root) {
+        var slides = [].slice.call(root.querySelectorAll('.ProjectCard'));
+        var dots = [].slice.call(root.querySelectorAll('.ShowcaseDot'));
+        var pauseBtn = root.querySelector('.ShowcasePause');
+        var n = slides.length;
+        if (n < 2) return;
+
+        var active = 0, userPaused = false, away = false, hovered = false, focused = false;
+        var prevOff = [];
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) userPaused = true; // pas de défilement automatique si l'utilisateur a demandé moins d'animations
+
+        function offset(i) {
+            var d = ((i - active) % n + n) % n;
+            if (d > n / 2) d -= n;
+            return d;
+        }
+
+        function layout(first) {
+            slides.forEach(function (s, i) {
+                var o = offset(i);
+                var jump = !first && Math.abs(o - prevOff[i]) > 1; // carte qui passe d'un bord à l'autre : sans animation
+                if (jump) s.style.transition = 'none';
+                s.style.setProperty('--off', o);
+                if (jump) {void s.offsetWidth; s.style.transition = '';}
+                prevOff[i] = o;
+                s.classList.toggle('IsActive', o === 0);
+                s.tabIndex = o === 0 ? 0 : -1;
+                if (Math.abs(o) > 1) s.setAttribute('aria-hidden', 'true'); else s.removeAttribute('aria-hidden');
+            });
+        }
+
+        function restartProgress() {
+            dots.forEach(function (d, i) {
+                d.classList.remove('Active');
+                d.setAttribute('aria-current', 'false');
+            });
+            void root.offsetWidth; // relance l'animation de la barre (5 s)
+            if (dots[active]) {
+                dots[active].classList.add('Active');
+                dots[active].setAttribute('aria-current', 'true');
+            }
+        }
+
+        function syncPause() {
+            root.classList.toggle('UserPaused', userPaused);
+            root.classList.toggle('IsPaused', userPaused || away || hovered || focused);
+            if (pauseBtn) {
+                pauseBtn.setAttribute('aria-pressed', String(userPaused));
+                pauseBtn.setAttribute('aria-label', userPaused ? 'Reprendre le défilement automatique' : 'Mettre le défilement automatique en pause');
+            }
+        }
+
+        function goTo(i) {
+            active = ((i % n) + n) % n;
+            layout(false);
+            restartProgress();
+        }
+
+        // la barre de progression pilote le minuteur : quand elle atteint 100 %, on passe à la réalisation suivante
+        root.addEventListener('animationend', function (e) {
+            if (e.animationName === 'ShowcaseFill') goTo(active + 1);
+        });
+
+        slides.forEach(function (s, i) {
+            s.addEventListener('click', function (e) {
+                if (!s.classList.contains('IsActive')) {e.preventDefault(); goTo(i);}
+            });
+        });
+        dots.forEach(function (d, i) {d.addEventListener('click', function () {goTo(i);});});
+
+        if (pauseBtn) pauseBtn.addEventListener('click', function () {userPaused = !userPaused; syncPause();});
+
+        var viewport = root.querySelector('.ShowcaseViewport');
+        viewport.addEventListener('mouseenter', function () {hovered = true; syncPause();});
+        viewport.addEventListener('mouseleave', function () {hovered = false; syncPause();});
+        root.addEventListener('focusin', function () {focused = true; syncPause();});
+        root.addEventListener('focusout', function () {focused = false; syncPause();});
+        root.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') {goTo(active + 1);}
+            if (e.key === 'ArrowLeft') {goTo(active - 1);}
+        });
+
+        // balayage tactile
+        var startX = null;
+        viewport.addEventListener('touchstart', function (e) {startX = e.touches[0].clientX;}, {passive: true});
+        viewport.addEventListener('touchend', function (e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 50) goTo(active + (dx < 0 ? 1 : -1));
+            startX = null;
+        });
+
+        // pause hors écran / onglet masqué
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {away = !entries[0].isIntersecting; syncPause();}, {threshold: 0.2}).observe(root);
+        }
+        document.addEventListener('visibilitychange', function () {away = document.hidden; syncPause();});
+
+        root.classList.add('Ready');
+        layout(true);
+        restartProgress();
+        syncPause();
+    });
+})();

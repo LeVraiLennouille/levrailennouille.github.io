@@ -199,18 +199,7 @@ og_image: /assets/icon.svg
         </section>
         {% include ux-laws-band.html %}
         {% include recommendations.html %}
-        <section class="Showcase">
-            <div class="SectionHeader">
-                <div class="SectionTitle Left">
-                    <span class="Eyebrow">Le portfolio</span>
-                    <h2 class="Title">Mes dernières réalisations</h2>
-                </div>
-                <a href="/reals" class="BtnSolid">Voir tous les projets <span aria-hidden="true">→</span></a>
-            </div>
-            <div class="Marquee">
-                <div class="MarqueeTrack" data-marquee-track>{% include reals-marquee.html %}</div>
-            </div>
-        </section>
+        {% include showcase.html %}
         {% include gallery.html key="home" %}
         <section class="Pepite">
             <div class="Content">
