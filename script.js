@@ -865,3 +865,45 @@ document.addEventListener("DOMContentLoaded", function () {
         syncPause();
     });
 })();
+
+// * Cartes : carrousel avec points (affiché seulement si les cartes débordent) * //
+(function () {
+    document.querySelectorAll('[data-cards-carousel]').forEach(function (root) {
+        var track = root.querySelector('.CardsTrack');
+        var cards = [].slice.call(track.children);
+        var dots = [].slice.call(root.querySelectorAll('.CardsDot'));
+        var prev = root.querySelector('[data-cards-prev]');
+        var next = root.querySelector('[data-cards-next]');
+        if (!track || cards.length < 2) return;
+
+        function step() {
+            var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+            return cards[0].getBoundingClientRect().width + gap;
+        }
+        function update() {
+            var overflow = track.scrollWidth - track.clientWidth > 2;
+            root.classList.toggle('HasOverflow', overflow);
+            var max = track.scrollWidth - track.clientWidth - 2;
+            var idx = Math.min(cards.length - 1, Math.round(track.scrollLeft / step()));
+            if (track.scrollLeft >= max) idx = cards.length - 1;
+            dots.forEach(function (d, i) {
+                d.classList.toggle('Active', i === idx);
+                if (i === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+            });
+            if (prev) prev.disabled = track.scrollLeft <= 2;
+            if (next) next.disabled = track.scrollLeft >= max;
+        }
+        function goTo(i) {track.scrollTo({left: i * step()});}
+
+        if (prev) prev.addEventListener('click', function () {track.scrollBy({left: -step()});});
+        if (next) next.addEventListener('click', function () {track.scrollBy({left: step()});});
+        dots.forEach(function (d, i) {d.addEventListener('click', function () {goTo(i);});});
+        track.addEventListener('scroll', update, {passive: true});
+        track.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') {e.preventDefault(); track.scrollBy({left: step()});}
+            if (e.key === 'ArrowLeft') {e.preventDefault(); track.scrollBy({left: -step()});}
+        });
+        window.addEventListener('resize', update);
+        update();
+    });
+})();

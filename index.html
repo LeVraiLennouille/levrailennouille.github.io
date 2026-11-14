@@ -153,27 +153,51 @@ og_image: /assets/icon.svg
             </div>
             <a href="/contact" class="ArrowBtn Inline">Demander un devis <span class="Arrow" aria-hidden="true">→</span></a>
         </section>
-        <section class="Why">
-            <div class="SectionTitle Left">
-                <span class="Eyebrow">La définition</span>
-                <h2 class="Title">Qu'est-ce que l'UX design ?</h2>
-                <p class="Subtitle">Définition : l'UX organise ton interface pour la rendre intuitive et rentable.</p>
-            </div>
-            <div class="Layout">
-                <div class="Part">
-                    <h4>Approche centrée utilisateur</h4>
-                    <p>Un beau design ne suffit pas. L'UX design identifie les frustrations de tes clients. Il supprime les obstacles sur leur chemin pour faciliter leurs actions sur ton site.</p>
-                    <div class="PartImg"><img src="/img/illus/vision.webp" alt=""/></div>
+        <section class="Definition" aria-labelledby="DefinitionTitle">
+            <header class="DefinitionHead">
+                <span class="DefLabel"><span class="Dot" aria-hidden="true"></span>La définition</span>
+                <h2 class="DefTitle" id="DefinitionTitle">Qu'est-ce que l'UX design ?</h2>
+                <p class="DefSubtitle">Définition : l'UX organise ton interface pour la rendre intuitive et rentable.</p>
+            </header>
+
+            <div class="DefCarousel" data-cards-carousel>
+                <div class="CardsTrack" tabindex="0">
+                    <article class="DefCard">
+                        <img src="/img/illus/vision.webp" alt="" loading="lazy">
+                        <div class="DefText">
+                            <h3>Approche centrée utilisateur</h3>
+                            <p>Un beau design ne suffit pas. L'UX design identifie les frustrations de tes clients. Il supprime les obstacles sur leur chemin pour faciliter leurs actions sur ton site.</p>
+                        </div>
+                        <span class="DefNum" aria-hidden="true">01</span>
+                    </article>
+                    <article class="DefCard">
+                        <img src="/img/illus/books.webp" alt="" loading="lazy">
+                        <div class="DefText">
+                            <h3>Décisions stratégiques</h3>
+                            <p>Chaque élément visuel a un objectif précis. L'analyse des comportements permet de construire une interface alignée avec tes objectifs de vente.</p>
+                        </div>
+                        <span class="DefNum" aria-hidden="true">02</span>
+                    </article>
+                    <article class="DefCard">
+                        <img src="/img/illus/strat.webp" alt="" loading="lazy">
+                        <div class="DefText">
+                            <h3>Vision globale</h3>
+                            <p>Je conçois et je développe ton produit. Mon expertise technique garantit des maquettes réalisables. Tu obtiens un site final identique au design initial.</p>
+                        </div>
+                        <span class="DefNum" aria-hidden="true">03</span>
+                    </article>
                 </div>
-                <div class="Part">
-                    <h4>Décisions stratégiques</h4>
-                    <p>Chaque élément visuel a un objectif précis. L'analyse des comportements permet de construire une interface alignée avec tes objectifs de vente.</p>
-                    <div class="PartImg"><img src="/img/illus/books.webp" alt=""/></div>
-                </div>
-                <div class="Part">
-                    <h4>Vision globale</h4>
-                    <p>Je conçois et je développe ton produit. Mon expertise technique garantit des maquettes réalisables. Tu obtiens un site final identique au design initial.</p>
-                    <div class="PartImg"><img src="/img/illus/strat.webp" alt=""/></div>
+                <div class="CardsBar">
+                    <span aria-hidden="true"></span>
+                    <div class="CardsDots">
+                        <button type="button" class="CardsDot CursorHover" aria-label="Carte 1 : Approche centrée utilisateur"></button>
+                        <button type="button" class="CardsDot CursorHover" aria-label="Carte 2 : Décisions stratégiques"></button>
+                        <button type="button" class="CardsDot CursorHover" aria-label="Carte 3 : Vision globale"></button>
+                    </div>
+                    <div class="CardsArrows">
+                        <button type="button" class="CursorHover" data-cards-prev aria-label="Carte précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                        <button type="button" class="CursorHover" data-cards-next aria-label="Carte suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                    </div>
                 </div>
             </div>
         </section>
