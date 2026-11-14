@@ -1,28 +1,15 @@
 <section class="CallToAction{% if include.variant %} {{ include.variant }}{% endif %}">
-    <div class="CtaCard">
-        <div class="CtaVisual" aria-hidden="true">
-            <div class="CtaMark">
-                <svg viewBox="0 0 333 333" focusable="false">
-                    <path d="M53 0V333"/><path d="M110 0V333"/><path d="M167 0V333"/><path d="M223 0V333"/><path d="M280 0V333"/>
-                    <path d="M0 53H333"/><path d="M0 110H333"/><path d="M0 167H333"/><path d="M0 223H333"/><path d="M0 280H333"/>
-                </svg>
-                <img src="/assets/face.svg" alt="" loading="lazy">
-            </div>
-        </div>
-        <div class="CtaBody">
-            <div class="CtaText">
-                {%- if include.badge %}
-                <p class="CtaBadge"><span class="CtaBadgeDot"></span>{{ include.badge }}</p>
-                {%- endif %}
-                <h2>{{ include.title }}{% if include.em %}<br><em>{{ include.em }}</em>{% endif %}</h2>
-                <p class="CtaDesc">{{ include.text }}</p>
-            </div>
-            <div class="CtaActions">
-                <a href="{{ include.href1 }}" class="PillBtn CursorHover">{{ include.label1 }} <span class="Dot" aria-hidden="true"></span></a>
-                {%- if include.label2 %}
-                <a href="{{ include.href2 }}" class="PillBtn CursorHover">{{ include.label2 }} <span class="Dot" aria-hidden="true"></span></a>
-                {%- endif %}
-            </div>
+    <div class="CtaInner">
+        {%- if include.badge %}
+        <p class="CtaBadge"><span class="CtaBadgeDot" aria-hidden="true"></span>{{ include.badge }}</p>
+        {%- endif %}
+        <h2>{{ include.title }}{% if include.em %}<br><em>{{ include.em }}</em>{% endif %}</h2>
+        <div class="CtaRow">
+            <a href="{{ include.href1 }}" class="CtaBtn CursorHover">{{ include.label1 }}</a>
+            {%- if include.label2 %}
+            <a href="{{ include.href2 }}" class="CtaBtn Ghost CursorHover">{{ include.label2 }}</a>
+            {%- endif %}
+            <p class="CtaDesc">{{ include.text }}</p>
         </div>
     </div>
 </section>

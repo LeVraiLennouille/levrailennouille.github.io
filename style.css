@@ -1156,108 +1156,6 @@ section {
 /* ==========================================================================
    # Calls To Action
 ========================================================================== */
-section.CallToAction {
-    --PrimaryDeep: #7ab8f5;
-    margin: clamp(64px, 10vh, 100px) auto;
-
-    .CtaCard {
-        display: grid;
-        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-        min-height: 440px;
-        overflow: hidden;
-        border-radius: 32px;
-        background: var(--Charcoal);
-        color: var(--PureWhite);
-        box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
-    }
-
-    .CtaVisual {
-        position: relative;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        background:
-            radial-gradient(ellipse 80% 70% at 25% 25%, rgba(var(--PrimaryRGB), 0.38) 0%, transparent 70%),
-            radial-gradient(ellipse 70% 60% at 90% 95%, rgba(var(--DarkPrimaryRGB), 0.5) 0%, transparent 65%);
-    }
-
-    .CtaMark {
-        position: relative;
-        width: min(72%, 300px);
-        aspect-ratio: 1;
-
-        svg {position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; color: var(--PureWhite);}
-        svg path {fill: none; stroke: currentColor; stroke-width: 1; opacity: 0.22;}
-        img {position: absolute; left: 18.9%; top: 15.9%; height: 68.2%; width: auto;}
-    }
-
-    .CtaBody {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 40px;
-        padding: clamp(28px, 3.4vw, 48px);
-    }
-
-    .CtaBadge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        font-size: 0.85rem;
-        font-weight: 700;
-
-        .CtaBadgeDot {width: 9px; height: 9px; border-radius: 50%; background: var(--Online); box-shadow: 0 0 0 4px rgba(var(--OnlineRGB), 0.2);}
-    }
-
-    .CtaText h2 {
-        font-size: clamp(1.6rem, 2.6vw, 2.6rem);
-        font-weight: 800;
-        line-height: 1.2;
-        color: var(--PureWhite);
-
-        em {
-            font-style: italic;
-            background: linear-gradient(90deg, var(--PureWhite) 0%, var(--PrimaryDeep) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    }
-
-    .CtaDesc {
-        max-width: 520px;
-        margin-top: 20px;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.6;
-        color: rgba(var(--PureWhiteRGB), 0.82);
-    }
-
-    .CtaActions {display: flex; flex-wrap: wrap; gap: 16px;}
-
-    .PillBtn {
-        display: inline-flex;
-        align-items: center;
-        gap: 20px;
-        padding: 22px 36px;
-        border: 2px solid var(--Primary);
-        border-radius: 999px;
-        color: var(--PureWhite);
-        font-size: 1rem;
-        font-weight: 700;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-
-        .Dot {width: 12px; height: 12px; border-radius: 50%; background: var(--Primary); transition: background-color 0.3s ease;}
-        &:hover {background: var(--Primary);}
-        &:hover .Dot {background: var(--PureWhite);}
-        &:focus-visible {outline: 3px solid var(--PureWhite); outline-offset: 3px;}
-    }
-
-    &.Mid .CtaCard {min-height: 360px;}
-}
-
 /* ==========================================================================
    # JS Multiblocks
 ========================================================================== */
@@ -9162,20 +9060,6 @@ html {background: var(--Charcoal);}
     .Footer .FooterLegal li + li::before {content: none;}
 }
 
-@media (max-width: 900px) {
-    section.CallToAction .CtaCard {grid-template-columns: 1fr;}
-    section.CallToAction .CtaVisual {min-height: 220px;}
-    section.CallToAction .CtaMark {width: 170px;}
-}
-
-@media (max-width: 600px) {
-    section.CallToAction {
-        .CtaCard {border-radius: 24px;}
-        .CtaText h2 {font-size: 1.35rem;}
-        .PillBtn {padding: 16px 26px;}
-    }
-}
-
 @media (max-width: 1100px) {
     main.Contact .ContactGrid {grid-template-columns: 1fr;}
 }
@@ -9790,5 +9674,97 @@ section.Showcase {
     section.Showcase {
         --SlideW: calc(100vw * 0.8);
         .ShowcaseAll {padding: 16px 26px;}
+    }
+}
+
+/* ==========================================================================
+   # CTA (toutes les pages) : bande sombre pleine largeur, grand titre, bouton blanc.
+   Le fond garde les nuances de bleu (halos haut-gauche et bas-droite).
+========================================================================== */
+section.CallToAction {
+    --PrimaryDeep: #7ab8f5;
+    max-width: none;
+    margin: clamp(64px, 10vh, 100px) 0;
+    padding: clamp(72px, 14vh, 140px) clamp(24px, 5vw, 72px) clamp(72px, 14vh, 140px) clamp(32px, 7vw, 96px);
+    background:
+        radial-gradient(ellipse 55% 75% at 14% 12%, rgba(var(--PrimaryRGB), 0.40) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 65% at 94% 100%, rgba(var(--DarkPrimaryRGB), 0.55) 0%, transparent 68%),
+        var(--Charcoal);
+    color: #fff;
+
+    .CtaInner {max-width: 1200px;}
+
+    .CtaBadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        font-size: 0.85rem;
+        font-weight: 700;
+
+        .CtaBadgeDot {width: 9px; height: 9px; border-radius: 50%; background: var(--Online); box-shadow: 0 0 0 4px rgba(var(--OnlineRGB), 0.2);}
+    }
+
+    h2 {
+        font-size: clamp(2.2rem, 5vw, 4.8rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: #fff;
+
+        em {
+            font-style: italic;
+            padding-right: 0.14em; /* l'italique déborde de sa boîte : évite le rognage du dégradé */
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            background: linear-gradient(90deg, #fff 0%, var(--PrimaryDeep) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .CtaRow {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px 32px;
+        margin-top: clamp(32px, 6vh, 56px);
+    }
+
+    .CtaBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 22px 36px;
+        border: 2px solid #fff;
+        border-radius: 6px;
+        background: #fff;
+        color: #1c1c1e;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+
+        &:hover {background: var(--PrimaryDeep); border-color: var(--PrimaryDeep); color: #1c1c1e;}
+        &:focus-visible {outline: 3px solid #fff; outline-offset: 3px;}
+
+        &.Ghost {background: transparent; color: #fff;}
+        &.Ghost:hover {background: #fff; border-color: #fff; color: #1c1c1e;}
+    }
+
+    .CtaDesc {max-width: 430px; font-size: 0.95rem; font-weight: 500; line-height: 1.5; color: rgba(255, 255, 255, 0.85);}
+}
+
+/* Une CTA collée au footer (ou à une autre CTA) ne fait qu'un seul bloc sombre */
+section.CallToAction:has(+ footer.Footer), section.CallToAction:has(+ section.CallToAction) {margin-bottom: 0;}
+section.CallToAction + section.CallToAction {margin-top: 0; border-top: 1px solid rgba(255, 255, 255, 0.12);}
+
+@media (max-width: 600px) {
+    section.CallToAction {
+        padding-inline: 20px;
+        .CtaBtn {flex: 1 1 100%; padding: 18px 24px;}
     }
 }
