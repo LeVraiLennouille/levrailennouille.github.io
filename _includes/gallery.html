@@ -1,0 +1,45 @@
+{%- assign g = site.data.galleries[include.key] -%}
+{%- assign imgs = g.images -%}
+{%- assign hero = imgs[0] -%}
+{%- assign small = imgs[1] -%}
+{%- assign side = imgs[2] -%}
+{%- assign total = imgs.size | minus: 3 -%}
+<section class="Gallery" aria-labelledby="GalleryTitle-{{ include.key }}">
+    <div class="GalleryIntro">
+        <span class="GalleryLabel"><span class="Dot" aria-hidden="true"></span>{{ g.eyebrow }}</span>
+        <h2 class="GalleryTitle" id="GalleryTitle-{{ include.key }}">{{ g.title }}</h2>
+        <figure class="GallerySmall">
+            <img src="{{ small.src }}" alt="{{ small.alt }}" loading="lazy">
+            <figcaption aria-hidden="true">{{ small.alt }}</figcaption>
+        </figure>
+    </div>
+
+    <figure class="GalleryHero">
+        <img src="{{ hero.src }}" alt="{{ hero.alt }}" loading="lazy">
+        <figcaption aria-hidden="true">{{ hero.alt }}</figcaption>
+    </figure>
+
+    <div class="GalleryDuo">
+        <figure class="GallerySide">
+            <img src="{{ side.src }}" alt="{{ side.alt }}" loading="lazy">
+        </figure>
+        {%- if total > 0 %}
+        <div class="GalleryCard" data-gallery-carousel role="region" aria-roledescription="carrousel" aria-label="{{ g.label }}">
+            <span class="CardTab"><span class="Dot" aria-hidden="true"></span>{{ g.label }}</span>
+            <div class="Slides">
+                {%- for img in imgs offset: 3 %}
+                <figure class="Slide" role="group" aria-roledescription="diapositive" aria-label="Photo {{ forloop.index }} sur {{ total }}">
+                    <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy">
+                    <span class="Num" aria-hidden="true">{{ forloop.index | prepend: '0' }}</span>
+                    <figcaption aria-hidden="true">{{ img.alt }}</figcaption>
+                </figure>
+                {%- endfor %}
+            </div>
+            <div class="CardControls">
+                <button type="button" class="CursorHover" data-gallery-prev aria-label="Photo précédente"><svg viewBox="0 0 28 14" aria-hidden="true"><path d="M27 7H2M8 1L2 7l6 6"/></svg></button>
+                <button type="button" class="CursorHover" data-gallery-next aria-label="Photo suivante"><svg viewBox="0 0 28 14" aria-hidden="true"><path d="M1 7h25M20 1l6 6-6 6"/></svg></button>
+            </div>
+        </div>
+        {%- endif %}
+    </div>
+</section>

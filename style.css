@@ -2011,30 +2011,6 @@ main.Index {
         }
     }
 
-    section.Gallery {
-        padding: 0 48px;
-
-        .SectionTitle h2.Title {font-size: 2.71rem;}
-        
-        .Grid {
-            column-count: 3;
-            column-gap: 24px;
-
-            img {
-                display: block;
-                width: 100%;
-                margin-bottom: 24px;
-                border-radius: 16px;
-                object-fit: cover;
-                box-shadow: 0 8px 30px rgba(var(--PureBlackRGB), 0.08);
-                break-inside: avoid;
-                transition: transform 0.4s ease;
-
-                &:hover {transform: translateY(-4px);}
-            }
-        }
-    }
-
     section.Pepite {
         position: relative;
         overflow: hidden;
@@ -8227,12 +8203,6 @@ main.Reals.SubPage {
             }
         }
 
-        section.Gallery {
-            padding: 0 20px;
-
-            .Grid {column-count: 2;}
-        }
-
         section.Showcase {
             margin-top: 120px;
             padding: 0 24px;
@@ -8610,13 +8580,6 @@ main.Reals.SubPage {
             padding: 40px 16px 60px;
 
             .Layout {grid-template-columns: 1fr;}
-        }
-
-        section.Gallery {
-            padding: 0 16px;
-
-            .SectionTitle h2.Title {font-size: 2rem;}
-            .Grid {column-count: 1;}
         }
 
         section.Showcase {
@@ -9495,4 +9458,171 @@ html {background: var(--Charcoal);}
         .MeBody {grid-template-columns: 1fr;}
         svg {width: min(60vw, 260px);}
     }
+}
+
+/* ==========================================================================
+   # Galerie (accueil + à propos)
+========================================================================== */
+section.Gallery {
+    --GalleryPanel: color-mix(in srgb, var(--Ink) 8%, var(--Background));
+    position: relative;
+    isolation: isolate;
+    max-width: 1200px;
+    margin: clamp(80px, 12vh, 140px) auto;
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    column-gap: clamp(24px, 5vw, 80px);
+    row-gap: clamp(40px, 7vh, 80px);
+    align-items: start;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -60px -6vw;
+        z-index: -1;
+        background-image:
+            linear-gradient(rgba(var(--LineRGB), 0.07) 1px, transparent 1px),
+            linear-gradient(100deg, rgba(var(--LineRGB), 0.07) 1px, transparent 1px);
+        background-size: 72px 72px;
+        -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+        mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+        pointer-events: none;
+    }
+
+    figure {margin: 0;}
+    img {display: block; width: 100%; object-fit: cover; border-radius: 6px;}
+
+    .Dot {flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--Ink);}
+
+    .GalleryIntro {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        padding-top: 28px;
+        border-top: 2px solid var(--Ink);
+    }
+
+    .GalleryLabel {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(20px, 3vw, 48px);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.6;
+
+        .Dot {margin-top: 0.45em;}
+    }
+
+    .GalleryTitle {font-size: clamp(1.5rem, 2.3vw, 2.1rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.01em;}
+
+    .GallerySmall {
+        width: clamp(180px, 20vw, 260px);
+        img {aspect-ratio: 1;}
+        figcaption {margin-top: 14px; font-size: 0.95rem; line-height: 1.45;}
+    }
+
+    .GalleryHero {
+        grid-column: 2;
+        grid-row: 1;
+
+        img {aspect-ratio: 16 / 10;}
+        figcaption {margin-top: 22px; font-size: clamp(1.2rem, 1.9vw, 1.7rem); font-weight: 600; line-height: 1.3;}
+    }
+
+    .GalleryDuo {
+        grid-column: 2;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(20px, 3vw, 40px);
+        align-items: start;
+        padding-top: 40px;
+    }
+
+    .GallerySide {margin-top: 32px;}
+    .GallerySide img {aspect-ratio: 4 / 5;}
+
+    .GalleryCard {
+        position: relative;
+        padding: 20px;
+        background: var(--GalleryPanel);
+        border-radius: 14px 0 14px 14px;
+
+        .CardTab {
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding: 11px 22px 10px 40px;
+            background: var(--GalleryPanel);
+            border-radius: 14px 14px 0 0;
+            clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .Slides {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            &::-webkit-scrollbar {display: none;}
+            &:focus-visible {outline: 2px solid var(--Ink); outline-offset: 4px; border-radius: 6px;}
+        }
+
+        .Slide {flex: 0 0 100%; scroll-snap-align: start;}
+        .Slide img {aspect-ratio: 4 / 5;}
+        .Slide .Num {display: block; margin-top: 22px; font-size: 2.6rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em;}
+        .Slide figcaption {margin-top: 12px; min-height: 2.9em; font-size: 0.95rem; line-height: 1.45;}
+
+        .CardControls {display: flex; gap: 12px; margin-top: 22px;}
+
+        .CardControls button {
+            display: grid;
+            place-items: center;
+            width: 62px;
+            height: 40px;
+            border: 1.5px solid var(--Ink);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--Ink);
+            cursor: pointer;
+            transform: skewX(-12deg);
+            transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+
+            svg {width: 26px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transform: skewX(12deg);}
+            &:hover:not(:disabled) {background: var(--Ink); color: var(--Background);}
+            &:disabled {opacity: 0.35; cursor: default;}
+            &:focus-visible {outline: 2px solid var(--Ink); outline-offset: 3px;}
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    section.Gallery {
+        grid-template-columns: 1fr;
+        margin-inline: 20px;
+
+        .GalleryIntro {grid-row: auto; gap: 24px;}
+        .GalleryHero, .GalleryDuo {grid-column: 1; grid-row: auto;}
+        .GalleryDuo {padding-top: 28px;}
+    }
+}
+
+@media (max-width: 600px) {
+    section.Gallery .GalleryDuo {grid-template-columns: 1fr; gap: 36px;}
+    section.Gallery .GalleryCard {margin-top: 28px;}
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section.Gallery .GalleryCard .Slides {scroll-behavior: auto;}
 }

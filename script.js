@@ -730,3 +730,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 })();
+
+// * Galerie : carrousel * //
+(function () {
+    document.querySelectorAll('[data-gallery-carousel]').forEach(function (card) {
+        var track = card.querySelector('.Slides');
+        var prev = card.querySelector('[data-gallery-prev]');
+        var next = card.querySelector('[data-gallery-next]');
+        if (!track || !prev || !next) return;
+
+        function update() {
+            var max = track.scrollWidth - track.clientWidth - 2;
+            prev.disabled = track.scrollLeft <= 2;
+            next.disabled = track.scrollLeft >= max;
+        }
+        function go(dir) {track.scrollBy({left: dir * track.clientWidth});}
+
+        prev.addEventListener('click', function () {go(-1);});
+        next.addEventListener('click', function () {go(1);});
+        track.addEventListener('scroll', update, {passive: true});
+        track.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') {e.preventDefault(); go(1);}
+            if (e.key === 'ArrowLeft') {e.preventDefault(); go(-1);}
+        });
+        window.addEventListener('resize', update);
+        update();
+    });
+})();

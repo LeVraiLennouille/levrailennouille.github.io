@@ -1,0 +1,24 @@
+# Galeries photo (accueil et à propos) : utilisées par _includes/gallery.html
+# Ordre : 1re photo = grande image, 2e = petite image, 3e = image latérale, les suivantes = carrousel.
+home:
+  eyebrow: "La gallerie"
+  title: "Toujours dans la joie et la bonne humeur !"
+  label: "Photos"
+  images:
+    - {src: "/img/me.jpg", alt: "Photo de Lenny Gadroy, fondateur de Lennouille"}
+    - {src: "/img/pro/rentree-pepite.webp", alt: "Photo de la rentrée Pépite Nord-Aquitain 2026"}
+    - {src: "/img/pro/pochette-pepite.webp", alt: "Photo de la pochette Pépite Nord-Aquitain"}
+    - {src: "/img/pro/paris.webp", alt: "Paris la Défense"}
+    - {src: "/img/pro/student-business-club.webp", alt: "Lenny Gadroy et Maxence Hallé au Student Business Club de Reims"}
+    - {src: "/img/pro/coworking.webp", alt: "Espace de coworking à Poitiers"}
+about:
+  eyebrow: "La gallerie (un peu plus perso)"
+  title: "Pas toujours au travail.."
+  label: "Photos"
+  images:
+    - {src: "/img/perso/running-plage.webp", alt: "Course à pied sur la plage de la Mine, Jard-sur-Mer"}
+    - {src: "/img/perso/chateau-dissay.webp", alt: "Château de Dissay, Poitiers"}
+    - {src: "/img/perso/running.webp", alt: "Course à pied dans le centre-ville de Poitiers"}
+    - {src: "/img/perso/pepite.webp", alt: "Lenny Gadroy à Pépite"}
+    - {src: "/img/perso/eglise-poitiers.webp", alt: "Église Notre-Dame-la-Grande, Poitiers"}
+    - {src: "/img/perso/spa-francorchamps.webp", alt: "Lenny Gadroy devant le paddock de F1 à Spa-Francorchamps en Belgique"}
