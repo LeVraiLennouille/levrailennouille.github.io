@@ -1,0 +1,11 @@
+{%- assign featured = "loi-de-fitts,loi-de-hick,loi-de-jakob,loi-de-miller,charge-cognitive,effet-zeigarnik,effet-von-restorff,flow,chunking,attention-selective,biais-cognitif,loi-de-proximite" | split: "," -%}
+<section class="UxLaws OnDark" aria-labelledby="UxLawsTitle">
+    <h2 class="UxLawsTitle" id="UxLawsTitle">Les lois de l'UX</h2>
+    <ul class="UxLawsList">
+        {%- for slug in featured %}
+        {%- assign law = site.data.laws.laws | where: "slug", slug | first %}
+        <li><a href="{{ '/ux/laws/' | append: law.slug | relative_url }}">{{ law.name }}</a></li>
+        {%- endfor %}
+    </ul>
+    <a class="UxLawsMore CursorHover" href="{{ '/ux' | relative_url }}">Voir les {{ site.data.laws.laws.size }} lois <span class="Dot" aria-hidden="true"></span></a>
+</section>

@@ -9626,3 +9626,109 @@ section.Gallery {
 @media (prefers-reduced-motion: reduce) {
     section.Gallery .GalleryCard .Slides {scroll-behavior: auto;}
 }
+
+/* ==========================================================================
+   # Bandeau « Les lois de l'UX » (page À propos) : grand titre condensé + liste en 3 colonnes
+   Police condensée : installe « Anton » (gratuite, licence OFL) pour le rendu exact ; sinon Impact / Arial Narrow en secours.
+   Pour l'auto-héberger : dépose fonts/Anton-Regular.ttf puis décommente :
+   @font-face {font-family: "Anton"; src: url("/fonts/Anton-Regular.ttf") format("truetype"); font-display: swap;}
+========================================================================== */
+section.UxLaws {
+    --Display: "Anton", "Bebas Neue", "Oswald", "League Gothic", Impact, "Haettenschweiler", "Arial Narrow Bold", "Liberation Sans Narrow", sans-serif;
+    max-width: none;
+    margin: clamp(64px, 10vh, 120px) 0;
+    padding: clamp(64px, 12vh, 120px) clamp(24px, 5vw, 72px);
+    background: var(--Charcoal);
+    color: #fff;
+
+    .UxLawsTitle {
+        max-width: 1400px;
+        margin: 0 auto;
+        font-family: var(--Display);
+        /* ~16 caractères condensés : la taille suit la largeur disponible (page moins barre latérale) */
+        font-size: clamp(3rem, calc((100vw - var(--SideW) - 2 * clamp(24px, 5vw, 72px)) / 7.4), 12rem);
+        font-weight: 400;
+        font-synthesis: none;
+        line-height: 0.95;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: uppercase;
+        text-wrap: balance;
+    }
+
+    .UxLawsList {
+        list-style: none;
+        max-width: 1400px;
+        margin: clamp(48px, 9vh, 96px) auto 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(4, auto);
+        grid-auto-flow: column;
+        column-gap: clamp(32px, 6vw, 96px);
+
+        li {border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
+        li:nth-child(4n) {border-bottom: 0;}
+
+        a {
+            display: block;
+            padding: 20px 0;
+            color: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+            &:hover {color: #7ab8f5; transform: translateX(8px);}
+            &:focus-visible {outline: 2px solid #fff; outline-offset: -2px; border-radius: 2px;}
+        }
+    }
+
+    .UxLawsMore {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        gap: 20px;
+        margin: clamp(40px, 7vh, 72px) auto 0;
+        padding: 22px 36px;
+        border: 2px solid var(--Primary);
+        border-radius: 999px;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        .Dot {width: 12px; height: 12px; border-radius: 50%; background: var(--Primary); transition: background-color 0.3s ease;}
+        &:hover {background: var(--Primary);}
+        &:hover .Dot {background: #fff;}
+        &:focus-visible {outline: 3px solid #fff; outline-offset: 3px;}
+    }
+}
+
+@media (max-width: 900px) {
+    section.UxLaws .UxLawsList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(6, auto);
+
+        li:nth-child(4n) {border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
+        li:nth-child(6n) {border-bottom: 0;}
+    }
+}
+
+@media (max-width: 600px) {
+    section.UxLaws {
+        padding-inline: 20px;
+        .UxLawsList {
+            grid-template-columns: 1fr;
+            grid-template-rows: none;
+            grid-auto-flow: row;
+
+            li:nth-child(6n) {border-bottom: 1px solid rgba(255, 255, 255, 0.2);}
+            li:last-child {border-bottom: 0;}
+        }
+        .UxLawsMore {padding: 16px 26px;}
+    }
+}
