@@ -1502,71 +1502,6 @@ main.Index {
         }
     }
 
-    section.Impact {
-        position: relative;
-        overflow: hidden;
-        max-width: 1400px;
-        padding: 56px 48px;
-        text-align: center;
-        border-radius: 28px;
-        background: var(--Charcoal);
-        box-shadow: 0 24px 70px rgba(var(--PureBlackRGB), 0.16);
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 55% 80% at 12% 20%, rgba(var(--PrimaryRGB), 0.35) 0%, transparent 70%),
-                radial-gradient(ellipse 45% 65% at 95% 90%, rgba(var(--DarkPrimaryRGB), 0.45) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .SectionTitle .Title {color: var(--PureWhite);}
-
-        .StatsGrid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: calc(100% - 200px);
-            margin: 0 auto 36px;
-        }
-
-        .Card {
-            position: relative;
-            overflow: hidden;
-            text-align: left;
-            background: var(--Surface);
-
-            .Deco {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 68px;
-                height: 68px;
-                background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%);
-                border-radius: 0 20px 0 100%;
-            }
-
-            .Stat {
-                .Number {
-                    font-size: clamp(1.7rem, 2.6vw, 2.1rem);
-                    font-weight: 900;
-                    color: var(--Primary);
-                    line-height: 1;
-                }
-
-                .StatLabel {
-                    display: block;
-                    font-size: 0.95rem;
-                    font-weight: 800;
-                    color: var(--Ink);
-                    margin-top: 4px;
-                }
-            }
-        }
-    }
-
     section.Benefits {
         background-color: var(--Background);
         padding: 0 48px;
@@ -7772,17 +7707,6 @@ main.Reals.SubPage {
             padding: 40px 28px;
         }
 
-        section.Impact {
-            padding: 40px 28px;
-
-            .StatsGrid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .Card {padding: 22px;}
-        }
-
         section.Benefits {
             padding: 0 20px;
 
@@ -8144,7 +8068,6 @@ main.Reals.SubPage {
     }
 
     main.Index {
-        section.Impact {padding: 32px 20px;}
 
         section.Pepite {padding: 32px 20px;}
 
@@ -9923,4 +9846,103 @@ section.Compare {
         .EvoDesc {min-height: 0;}
     }
     section.Compare {padding-inline: 20px;}
+}
+
+/* ==========================================================================
+   # Statistiques (accueil) : titre centré, trois chiffres géants, fond sombre aux halos bleus
+========================================================================== */
+section.Impact {
+    --PrimaryDeep: #7ab8f5;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    max-width: none;
+    margin: clamp(80px, 12vh, 140px) 0 0;
+    padding: clamp(64px, 11vh, 120px) clamp(24px, 5vw, 72px);
+    text-align: center;
+    background: var(--Charcoal);
+    color: #fff;
+
+    /* les nuances de bleu du fond (halo haut-gauche, halo bas-droite) */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            radial-gradient(ellipse 55% 80% at 12% 20%, rgba(var(--PrimaryRGB), 0.35) 0%, transparent 70%),
+            radial-gradient(ellipse 45% 65% at 95% 90%, rgba(var(--DarkPrimaryRGB), 0.45) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .ImpactLabel {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--PrimaryDeep);
+
+        .Dot {width: 9px; height: 9px; border-radius: 50%; background: currentColor;}
+    }
+
+    .ImpactTitle {font-size: clamp(2.2rem, 4.6vw, 4.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #fff;}
+
+    .StatsGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(32px, 5vw, 72px);
+        max-width: 1100px;
+        margin: clamp(48px, 9vh, 88px) auto 0;
+    }
+
+    .Number {
+        display: inline-block; /* le dégradé suit toute la largeur du chiffre */
+        white-space: nowrap;
+        font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        padding-right: 0.06em;
+        background: linear-gradient(90deg, #fff 0%, var(--PrimaryDeep) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .StatLabel {margin-top: 18px; font-size: 1.05rem; font-weight: 800;}
+    .StatItem p {max-width: 28ch; margin: 10px auto 0; font-size: 0.92rem; font-weight: 500; line-height: 1.55; color: rgba(255, 255, 255, 0.8);}
+
+    .ImpactBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: clamp(44px, 8vh, 72px);
+        padding: 22px 36px;
+        border-radius: 6px;
+        background: #fff;
+        color: #1c1c1e;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background-color 0.25s ease;
+
+        &:hover {background: var(--PrimaryDeep);}
+        &:focus-visible {outline: 3px solid #fff; outline-offset: 3px;}
+    }
+}
+
+@media (max-width: 800px) {
+    section.Impact {
+        padding-inline: 20px;
+        .StatsGrid {grid-template-columns: 1fr; gap: 0;}
+        .StatItem {padding: 32px 0;}
+        .StatItem + .StatItem {border-top: 1px solid rgba(255, 255, 255, 0.14);}
+        .ImpactBtn {padding: 18px 26px;}
+    }
 }
