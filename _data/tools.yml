@@ -1,0 +1,28 @@
+# Outils et méthodes (page Services) : mêmes groupes que la section « Compétences » de la page À propos.
+# Pour chaque outil : « role » = la phrase affichée à droite dans l'accordéon (à ajuster librement).
+groups:
+  - title: "Design d'interface (UI)"
+    items:
+      - {name: "Figma", role: "Maquettes, prototypes interactifs et collaboration"}
+      - {name: "Design System", role: "Composants et règles réutilisables pour un produit cohérent"}
+      - {name: "UI Kits", role: "Bibliothèques d'éléments prêtes à décliner"}
+      - {name: "Prototypage", role: "Tester le parcours avant d'écrire une ligne de code"}
+      - {name: "Typographie", role: "Hiérarchie et lisibilité de chaque écran"}
+  - title: "Expérience utilisateur (UX)"
+    items:
+      - {name: "Audit ergonomique", role: "Repérer les frictions et les points de blocage"}
+      - {name: "Wireframing & Zoning", role: "Structurer chaque page avant de passer au design"}
+      - {name: "Architecture de l'info", role: "Organiser les contenus pour qu'on s'y retrouve"}
+      - {name: "Parcours client", role: "Cartographier les étapes jusqu'à l'action"}
+  - title: "Intégration front-end"
+    items:
+      - {name: "HTML5 / CSS3", role: "Intégration propre et sur-mesure, sans surcouche"}
+      - {name: "JavaScript", role: "Interactions et animations sur-mesure"}
+      - {name: "Tailwind CSS", role: "Mise en page rapide et cohérente"}
+      - {name: "React / Next.js", role: "Applications web et interfaces dynamiques"}
+  - title: "Écosystème & stratégie"
+    items:
+      - {name: "SEO (données JSON-LD)", role: "Visibilité locale et données structurées"}
+      - {name: "CMS / E-commerce", role: "Sites administrables et boutiques en ligne"}
+      - {name: "Accessibilité", role: "Des interfaces utilisables par tous"}
+      - {name: "Git", role: "Suivi des versions et livraisons maîtrisées"}

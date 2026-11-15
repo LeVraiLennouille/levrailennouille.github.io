@@ -9946,3 +9946,110 @@ section.Impact {
         .ImpactBtn {padding: 18px 26px;}
     }
 }
+
+/* ==========================================================================
+   # Mes outils (Services) : accordéon sombre, lignes fines, fiche « libellé / valeur »
+========================================================================== */
+section.Tools {
+    --PrimaryDeep: #7ab8f5;
+    --ToolsLine: rgba(255, 255, 255, 0.28);
+    position: relative;
+    isolation: isolate;
+    max-width: none;
+    margin: clamp(80px, 12vh, 140px) 0 0;
+    padding: clamp(64px, 11vh, 120px) clamp(24px, 5vw, 72px);
+    background: var(--Charcoal);
+    color: #fff;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            radial-gradient(ellipse 55% 70% at 10% 8%, rgba(var(--PrimaryRGB), 0.32) 0%, transparent 70%),
+            radial-gradient(ellipse 50% 60% at 96% 100%, rgba(var(--DarkPrimaryRGB), 0.5) 0%, transparent 65%);
+        pointer-events: none;
+    }
+
+    .ToolsInner {max-width: 1300px; margin: 0 auto;}
+
+    .ToolsTitle {font-size: clamp(1.9rem, 3.6vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; text-align: center; text-transform: uppercase;}
+    .ToolsLead {max-width: 520px; margin: 18px auto 0; font-size: 1rem; line-height: 1.6; text-align: center; color: rgba(255, 255, 255, 0.78);}
+
+    .ToolsAccordion {margin-top: clamp(48px, 9vh, 96px); border-bottom: 1px solid var(--ToolsLine);}
+
+    .ToolsItem {border-top: 1px solid var(--ToolsLine);}
+
+    .ToolsHeading {margin: 0; font-size: inherit;}
+
+    .ToolsToggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        width: 100%;
+        padding: 24px 0;
+        border: 0;
+        background: none;
+        color: #fff;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+
+        &:focus-visible {outline: 2px solid #fff; outline-offset: -2px;}
+        &:hover .ToolsName {color: var(--PrimaryDeep);}
+    }
+
+    .ToolsName {font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 700; transition: color 0.25s ease;}
+
+    /* « + » qui devient « × » à l'ouverture */
+    .ToolsIcon {
+        position: relative;
+        flex: none;
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+        &::before, &::after {content: ""; position: absolute; inset: 50% 0 auto; height: 1.5px; margin-top: -0.75px; background: currentColor;}
+        &::after {transform: rotate(90deg);}
+    }
+    .ToolsToggle[aria-expanded="true"] .ToolsIcon {transform: rotate(45deg);}
+
+    /* Avec JS : panneaux repliés (animation de hauteur). Sans JS : tout reste ouvert. */
+    [data-accordion].Ready .ToolsPanel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-accordion].Ready .ToolsPanel.Open {grid-template-rows: 1fr;}
+    [data-accordion].Ready .ToolsPanelInner {overflow: hidden;}
+
+    .ToolsPanelInner {min-height: 0;}
+    .ToolsSpecs {margin: 0 0 clamp(16px, 3vh, 32px);}
+
+    .Spec {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 20px 20px;
+        border-top: 1px solid var(--ToolsLine);
+
+        dt {flex: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255, 255, 255, 0.68);}
+        dd {margin: 0; max-width: 62%; font-size: 0.95rem; font-weight: 600; line-height: 1.45; text-align: right;}
+    }
+}
+
+@media (max-width: 700px) {
+    section.Tools {
+        padding-inline: 20px;
+        .Spec {flex-direction: column; gap: 6px; padding: 16px 0;}
+        .Spec dd {max-width: none; text-align: left;}
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section.Tools [data-accordion].Ready .ToolsPanel, section.Tools .ToolsIcon {transition: none;}
+}

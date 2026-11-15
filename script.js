@@ -907,3 +907,38 @@ document.addEventListener("DOMContentLoaded", function () {
         update();
     });
 })();
+
+// * Accordéon (page Services : « Mes outils ») : un seul panneau ouvert à la fois * //
+(function () {
+    document.querySelectorAll('[data-accordion]').forEach(function (root) {
+        var items = [].slice.call(root.querySelectorAll('.ToolsItem'));
+        if (!items.length) return;
+
+        function set(item, open) {
+            var btn = item.querySelector('.ToolsToggle');
+            var panel = item.querySelector('.ToolsPanel');
+            btn.setAttribute('aria-expanded', String(open));
+            panel.classList.toggle('Open', open);
+        }
+
+        items.forEach(function (item, i) {
+            var btn = item.querySelector('.ToolsToggle');
+            set(item, btn.getAttribute('aria-expanded') === 'true');
+            btn.addEventListener('click', function () {
+                var willOpen = btn.getAttribute('aria-expanded') !== 'true';
+                items.forEach(function (it) {set(it, false);});
+                set(item, willOpen);
+            });
+            btn.addEventListener('keydown', function (e) {
+                var k = e.key, j = null;
+                if (k === 'ArrowDown') j = (i + 1) % items.length;
+                else if (k === 'ArrowUp') j = (i - 1 + items.length) % items.length;
+                else if (k === 'Home') j = 0;
+                else if (k === 'End') j = items.length - 1;
+                if (j !== null) {e.preventDefault(); items[j].querySelector('.ToolsToggle').focus();}
+            });
+        });
+
+        root.classList.add('Ready');
+    });
+})();

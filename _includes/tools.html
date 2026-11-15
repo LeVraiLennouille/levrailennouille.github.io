@@ -1,0 +1,28 @@
+<section class="Tools" aria-labelledby="ToolsTitle">
+    <div class="ToolsInner">
+        <h2 class="ToolsTitle" id="ToolsTitle">Mes outils</h2>
+        <p class="ToolsLead">Les méthodes et technologies que je maîtrise pour concevoir et intégrer vos interfaces.</p>
+
+        <div class="ToolsAccordion" data-accordion>
+            {%- for g in site.data.tools.groups %}
+            <div class="ToolsItem">
+                <h3 class="ToolsHeading">
+                    <button type="button" class="ToolsToggle CursorHover" id="ToolsBtn-{{ forloop.index }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="ToolsPanel-{{ forloop.index }}">
+                        <span class="ToolsName">{{ g.title }}</span>
+                        <span class="ToolsIcon" aria-hidden="true"></span>
+                    </button>
+                </h3>
+                <div class="ToolsPanel" id="ToolsPanel-{{ forloop.index }}" role="region" aria-labelledby="ToolsBtn-{{ forloop.index }}">
+                    <div class="ToolsPanelInner">
+                        <dl class="ToolsSpecs">
+                            {%- for t in g.items %}
+                            <div class="Spec"><dt>{{ t.name }}</dt><dd>{{ t.role }}</dd></div>
+                            {%- endfor %}
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+</section>
