@@ -9817,3 +9817,110 @@ section.Definition {
 @media (prefers-reduced-motion: reduce) {
     section.Definition .CardsTrack {scroll-behavior: auto;}
 }
+
+/* ==========================================================================
+   # Services : « L'évolution vers le succès » + tableau comparatif
+========================================================================== */
+.CmpSr {position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;}
+
+section.Evolution {
+    --EvoLine: rgba(var(--LineRGB), 0.14);
+    max-width: 1200px;
+    margin: clamp(80px, 12vh, 140px) auto 0;
+    padding: 0 clamp(24px, 5vw, 72px);
+
+    .EvoPanel {position: relative; border: 1px solid var(--EvoLine); background: var(--Surface);}
+
+    /* repère « + » au centre du bord haut */
+    .EvoPanel::before, .EvoCol + .EvoCol::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        width: 13px;
+        height: 13px;
+        transform: translate(-50%, -50%);
+        background:
+            linear-gradient(rgba(var(--InkRGB), 0.4), rgba(var(--InkRGB), 0.4)) center / 1px 100% no-repeat,
+            linear-gradient(rgba(var(--InkRGB), 0.4), rgba(var(--InkRGB), 0.4)) center / 100% 1px no-repeat,
+            var(--Surface);
+    }
+    .EvoPanel::before {left: 50%;}
+    .EvoCol + .EvoCol::before {left: -1px;}
+
+    .EvoHeader {padding: clamp(40px, 7vh, 64px) clamp(20px, 4vw, 48px) clamp(36px, 6vh, 56px); text-align: center;}
+
+    .EvoLabel {display: block; margin-bottom: 18px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--Muted);}
+    .EvoTitle {max-width: 18ch; margin: 0 auto; font-size: clamp(1.9rem, 3.6vw, 3.4rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.01em;}
+    .EvoAccent {color: var(--Primary);}
+    .EvoLead {max-width: 560px; margin: 22px auto 0; font-size: 1rem; line-height: 1.6; color: var(--Muted);}
+
+    .EvoCols {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--EvoLine);}
+
+    .EvoCol {position: relative; padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px) clamp(32px, 4vw, 48px);}
+    .EvoCol + .EvoCol {border-left: 1px solid var(--EvoLine);}
+
+    .EvoCol h3 {font-size: 1.3rem; font-weight: 800; line-height: 1.2;}
+    .EvoDesc {margin-top: 12px; min-height: 3em; font-size: 0.95rem; line-height: 1.55; color: var(--Muted);}
+
+    .EvoList {list-style: none; display: grid; gap: 14px; margin-top: 28px;}
+
+    .EvoList li {display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; font-weight: 600; line-height: 1.4;}
+    .EvoList svg {flex: none; width: 16px; height: 16px; margin-top: 0.18em; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;}
+    .EvoList .No svg {stroke: var(--Danger);}
+    .EvoList .Yes svg {stroke: #16a34a;}
+}
+
+section.Compare {
+    max-width: 1200px;
+    margin: clamp(80px, 12vh, 140px) auto 0;
+    padding: 0 clamp(24px, 5vw, 72px);
+
+    .CompareTitle {font-size: clamp(1.8rem, 3.4vw, 3rem); font-weight: 800; line-height: 1.12; text-align: center; letter-spacing: -0.01em;}
+    .CompareLead {max-width: 560px; margin: 18px auto 0; font-size: 1rem; line-height: 1.6; text-align: center; color: var(--Muted);}
+
+    .CompareWrap {
+        position: relative; /* contient les textes masqués « Oui / Non » dans la zone défilante */
+        margin-top: clamp(32px, 6vh, 52px);
+        border: 1px solid rgba(var(--LineRGB), 0.14);
+        border-radius: 12px;
+        background: var(--Surface);
+        overflow-x: auto;
+        &:focus-visible {outline: 2px solid var(--PrimaryDeep); outline-offset: 3px;}
+    }
+
+    .CompareTable {width: 100%; min-width: 720px; border-collapse: collapse; font-size: 0.92rem;}
+
+    .CompareTable th, .CompareTable td {padding: 18px 20px; border-bottom: 1px solid rgba(var(--LineRGB), 0.1); line-height: 1.35;}
+    .CompareTable tbody tr:last-child > * {border-bottom: 0;}
+    .CompareTable tbody tr:nth-child(even) {background: rgba(var(--InkRGB), 0.03);}
+
+    .CompareTable thead th {font-size: 0.85rem; font-weight: 800; text-align: center;}
+    .CompareTable thead .ColCrit {text-align: left; font-weight: 700; color: var(--Muted);}
+    .CompareTable thead .ColMe {color: var(--PrimaryDeep);}
+
+    .CompareTable tbody th {width: 34%; text-align: left; font-weight: 700;}
+    .CompareTable td {text-align: center; font-weight: 500;}
+    .CompareTable td.ColMe {background: rgba(var(--PrimaryRGB), 0.07); font-weight: 700;}
+
+    .Mark {display: inline-flex; align-items: center; justify-content: center;}
+    .Mark svg {width: 20px; height: 20px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;}
+    .Mark.Yes svg {stroke: var(--Ink);}
+    .ColMe .Mark.Yes svg {stroke: var(--Primary);}
+    .Mark.No svg {stroke: rgba(var(--InkRGB), 0.3);}
+    .Txt {color: var(--Ink);}
+
+    .CompareNote {margin-top: 28px; font-size: 0.95rem; text-align: center; color: var(--Muted);}
+    .CompareNote a {color: var(--PrimaryDeep); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;}
+    .CompareNote a:hover {text-decoration-thickness: 2px;}
+}
+
+@media (max-width: 900px) {
+    section.Evolution {
+        padding-inline: 20px;
+        .EvoCols {grid-template-columns: 1fr;}
+        .EvoCol + .EvoCol {border-left: 0; border-top: 1px solid var(--EvoLine);}
+        .EvoCol + .EvoCol::before {display: none;}
+        .EvoDesc {min-height: 0;}
+    }
+    section.Compare {padding-inline: 20px;}
+}
