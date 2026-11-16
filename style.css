@@ -10134,3 +10134,69 @@ main.Reals.SubPage .ProjectHero {
 @media (max-width: 950px) {
     main.Reals.SubPage .ProjectHero {padding-top: calc(var(--TopH) + 28px); padding-inline: 20px;}
 }
+
+/* ==========================================================================
+   # Services : section animée au défilement (point bleu qui grandit puis révèle « Mes réalisations »)
+========================================================================== */
+section.ServicesScroll {
+    --SsLine: rgba(var(--InkRGB), 0.45);
+    position: relative;
+    max-width: none;
+    height: 420vh;
+    margin: clamp(48px, 8vh, 96px) 0 0;
+
+    .SsStage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+        background: var(--Background);
+    }
+
+    .SsVLine, .SsHLine {position: absolute; background: var(--SsLine);}
+    .SsVLine {left: 50%; width: 1px; top: 7.7%; bottom: 7.7%;}
+    .SsHLine {top: 51%; height: 1px; left: 0.5%; right: 0.5%;}
+
+    .SsQ {position: absolute; width: min(34%, 360px); transform: translate(-50%, -50%); text-align: center;}
+    .SsQ h3 {margin-bottom: clamp(18px, 3.2vh, 32px); font-size: clamp(1.15rem, 2.1vw, 2rem); font-weight: 800; line-height: 1; letter-spacing: -0.01em; text-transform: uppercase;}
+    .SsQ p {font-size: clamp(0.75rem, 1vw, 1rem); font-weight: 600; line-height: 1.35; letter-spacing: 0.02em; text-transform: uppercase; color: var(--Muted);}
+    .SsA {left: 25%; top: 28.5%;}
+    .SsB {left: 75%; top: 29.5%;}
+    .SsC {left: 25%; top: 72%;}
+    .SsD {left: 75%; top: 72%;}
+
+    /* disque de la couleur du fond qui dégage la croix autour du point bleu */
+    .SsRing {position: absolute; left: 50%; top: 51%; border-radius: 50%; background: var(--Background); transform: translate(-50%, -50%); will-change: width, height;}
+    .SsBlue {position: absolute; inset: 0; background: linear-gradient(135deg, var(--Primary) 0%, var(--DarkPrimary) 100%); will-change: clip-path;}
+
+    .SsCases {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-size: clamp(2.2rem, 7vw, 6.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        text-align: center;
+        text-decoration: none;
+        color: #eaf3fd;
+        opacity: 0;
+        pointer-events: none;
+
+        &:focus-visible {outline: 3px solid #fff; outline-offset: -12px;}
+    }
+}
+
+@media (max-width: 700px) {
+    section.ServicesScroll {
+        .SsQ {width: 44%;}
+        .SsQ h3 {font-size: clamp(0.8rem, 4vw, 1.05rem); margin-bottom: 14px;}
+        .SsQ p {font-size: 0.72rem;}
+        .SsQ p br {display: none;}
+        .SsA {left: 25%; top: 26%;}
+        .SsB {left: 75%; top: 30%;}
+        .SsC {left: 25%; top: 72%;}
+        .SsD {left: 75%; top: 72%;}
+    }
+}

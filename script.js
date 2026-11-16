@@ -942,3 +942,71 @@ document.addEventListener("DOMContentLoaded", function () {
         root.classList.add('Ready');
     });
 })();
+
+// * Services : animation au défilement (point bleu -> « Mes réalisations ») * //
+(function () {
+    document.querySelectorAll('[data-services-scroll]').forEach(function (scene) {
+        var stage = scene.querySelector('.SsStage');
+        var ring = scene.querySelector('.SsRing');
+        var blue = scene.querySelector('.SsBlue');
+        var cases = scene.querySelector('.SsCases');
+        var lines = [].slice.call(scene.querySelectorAll('.SsVLine, .SsHLine'));
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var cur = 0, target = 0, raf = null, visible = false;
+
+        function clamp(v) {return Math.min(1, Math.max(0, v));}
+        function easeIO(t) {return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;}
+        function easeO(t) {return 1 - Math.pow(1 - t, 3);}
+
+        function render(p) {
+            var vw = stage.clientWidth, vh = stage.clientHeight;
+            var D = Math.min(vh * 0.64, vw * 0.7), dot = 16;
+            var a = easeIO(clamp((p - 0.08) / 0.42));   // le point grandit
+            var b = easeIO(clamp((p - 0.55) / 0.33));   // le cercle envahit l'écran
+            var c = clamp((p - 0.88) / 0.12);           // le plein écran devient un panneau arrondi
+            var R = Math.hypot(vw, vh) / 2 + 20;
+            var d = dot + (D - dot) * a;
+            var gap = 52 * (1 - easeO(clamp(a * 3)));   // l'espace autour du point se referme
+            var rr = d / 2 + (R - d / 2) * b;
+            ring.style.width = ring.style.height = (d + gap * 2) + 'px';
+            blue.style.clipPath = c > 0
+                ? 'inset(' + (9 * c) + 'px round ' + (10 * c) + 'px)'
+                : 'circle(' + rr + 'px at 50% ' + (vh * 0.51) + 'px)';
+            var lineOp = 1 - clamp((p - 0.5) / 0.3); // la croix s'efface avant le panneau final
+            lines.forEach(function (l) {l.style.opacity = lineOp;});
+            var op = easeO(clamp((p - 0.8) / 0.12));
+            cases.style.opacity = op;
+            cases.style.transform = 'scale(' + (0.96 + 0.04 * easeO(clamp((p - 0.8) / 0.15))) + ')';
+            var on = op > 0.6;
+            cases.style.pointerEvents = on ? 'auto' : 'none';
+            cases.tabIndex = on ? 0 : -1;
+        }
+
+        function tick() {
+            cur += (target - cur) * (reduce ? 1 : 0.12);
+            if (Math.abs(target - cur) < 0.0002) cur = target;
+            render(cur);
+            raf = cur !== target ? requestAnimationFrame(tick) : null;
+        }
+        function start() {if (!raf && visible) raf = requestAnimationFrame(tick);}
+
+        function measure() {
+            var r = scene.getBoundingClientRect(), max = scene.offsetHeight - stage.clientHeight;
+            target = max > 0 ? clamp(-r.top / max) : 0;
+            start();
+        }
+
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                visible = entries[0].isIntersecting;
+                if (visible) {measure();}
+            }, {rootMargin: '200px 0px'}).observe(scene);
+        } else {visible = true;}
+
+        window.addEventListener('scroll', measure, {passive: true});
+        window.addEventListener('resize', function () {measure(); render(cur);});
+        measure();
+        cur = target;
+        render(cur);
+    });
+})();
