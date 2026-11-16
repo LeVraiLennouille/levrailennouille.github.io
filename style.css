@@ -10053,3 +10053,84 @@ section.Tools {
 @media (prefers-reduced-motion: reduce) {
     section.Tools [data-accordion].Ready .ToolsPanel, section.Tools .ToolsIcon {transition: none;}
 }
+
+/* ==========================================================================
+   # Hero des pages de réalisations : titre géant rempli par l'image du projet + mot manuscrit
+   Polices : « Anton » (titre condensé) et une police manuscrite type pinceau (ex. « Permanent Marker »),
+   toutes deux gratuites (OFL). Sans elles : Impact / police script du système en secours.
+   Pour les auto-héberger : dépose les .ttf dans fonts/ puis décommente :
+   @font-face {font-family: "Anton"; src: url("/fonts/Anton-Regular.ttf") format("truetype"); font-display: swap;}
+   @font-face {font-family: "Permanent Marker"; src: url("/fonts/PermanentMarker-Regular.ttf") format("truetype"); font-display: swap;}
+========================================================================== */
+main.Reals.SubPage .ProjectHero {
+    --Display: "Anton", "Bebas Neue", "Oswald", "League Gothic", Impact, "Haettenschweiler", "Arial Narrow Bold", "Liberation Sans Narrow", sans-serif;
+    --Script: "Permanent Marker", "Rock Salt", "Segoe Print", "Bradley Hand", "Marker Felt", "Comic Sans MS", cursive;
+    --HeroW: min(1200px, calc(100vw - var(--SideW) - 2 * clamp(24px, 5vw, 72px)));
+    max-width: 1200px;
+    margin: 0 auto clamp(40px, 7vh, 72px);
+    padding: clamp(40px, 8vh, 88px) clamp(24px, 5vw, 72px) 0;
+
+    .HeroEyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: clamp(20px, 4vh, 40px);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--PrimaryDeep);
+
+        .Dot {width: 9px; height: 9px; border-radius: 50%; background: currentColor;}
+    }
+
+    .HeroStage {
+        --NameSize: clamp(2.6rem, min(14vw, calc(var(--HeroW) / (var(--n, 10) * 0.46))), 13rem);
+        position: relative;
+        font-family: var(--Display);
+        text-transform: uppercase;
+        line-height: 0.98;
+        letter-spacing: 0.01em;
+        overflow-wrap: anywhere;
+    }
+
+    /* l'image du projet remplit les lettres (multiply en clair, screen en sombre pour rester lisible).
+       Le mot manuscrit reste hors de la zone découpée. */
+    .HeroName, .HeroRoles {
+        background: var(--HeroImg) center / cover no-repeat, linear-gradient(135deg, var(--Primary), var(--DarkPrimary));
+        background-blend-mode: multiply;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+    html[data-theme="dark"] & :is(.HeroName, .HeroRoles) {background-blend-mode: screen;}
+
+    .HeroHeading {position: relative; margin: 0; font: inherit; line-height: inherit;}
+
+    .HeroName {display: block; padding-top: calc(var(--NameSize) * 0.34); font-size: var(--NameSize); font-weight: 400;}
+
+    .HeroScript {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        font-family: var(--Script);
+        font-size: calc(var(--NameSize) * 0.5);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
+        white-space: nowrap;
+        transform: rotate(-6deg);
+        transform-origin: left bottom;
+        color: var(--Ink);
+        -webkit-text-fill-color: var(--Ink);
+    }
+
+    .HeroRoles {margin: clamp(8px, 1.5vh, 16px) 0 0; font-size: clamp(1.8rem, 5.2vw, 5.2rem); font-weight: 400;}
+}
+
+@media (max-width: 950px) {
+    main.Reals.SubPage .ProjectHero {padding-top: calc(var(--TopH) + 28px); padding-inline: 20px;}
+}

@@ -85,14 +85,41 @@ layout: default
 
 {% include header.html %}
 <main class="Reals SubPage">
+    {%- assign _h = page.heading | strip -%}
+    {%- assign _first = _h | split: " " | first -%}
+    {%- if page.hero_script -%}
+        {%- assign hero_script = page.hero_script -%}
+        {%- assign hero_name = _h -%}
+        {%- assign script_decor = true -%}
+    {%- elsif _first == "Création" or _first == "Refonte" -%}
+        {%- assign hero_script = _first -%}
+        {%- assign hero_name = _h | remove_first: _first | strip -%}
+        {%- assign script_decor = false -%}
+    {%- else -%}
+        {%- assign _cat = page.eyebrow | split: " · " | first -%}
+        {%- if _cat.size > 14 -%}{%- assign _cat = "Projet" -%}{%- endif -%}
+        {%- assign hero_script = _cat -%}
+        {%- assign hero_name = _h -%}
+        {%- assign script_decor = true -%}
+    {%- endif -%}
+    {%- assign hero_roles = page.facts.role | split: ", " -%}
+    <section class="ProjectHero" aria-labelledby="ProjectHeroTitle">
+        <p class="HeroEyebrow"><span class="Dot" aria-hidden="true"></span>{{ page.eyebrow }}</p>
+        <div class="HeroStage" style="--HeroImg: url('/img/reals/{{ page.real_id }}/mockup.webp'); --n: {{ hero_name | size }};">
+            <h1 class="HeroHeading" id="ProjectHeroTitle">
+                <span class="HeroScript"{% if script_decor %} aria-hidden="true"{% endif %}>{{ hero_script }}</span>
+                <span class="HeroName">{{ hero_name }}</span>
+            </h1>
+            {%- if hero_roles.size > 0 %}
+            <p class="HeroRoles" aria-hidden="true">
+                {%- for r in hero_roles %}{{ r | strip }}&nbsp;• {% endfor -%}
+            </p>
+            {%- endif %}
+        </div>
+    </section>
     <section class="TopBanner">
         <img src="/img/reals/{{ page.real_id }}/mockup.webp" alt="{{ page.banner_alt }}">
     </section>
-    <div class="Title">
-        <span>{{ page.eyebrow }}</span>
-        <h1>{{ page.heading }}</h1>
-        <hr>
-    </div>
     {%- if page.link %}
     <a class="LinkField" href="{{ page.link }}" target="_blank">
         <span class="LinkPrefix">https://</span>
