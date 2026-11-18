@@ -9503,98 +9503,6 @@ section.Showcase {
 }
 
 /* ==========================================================================
-   # CTA (toutes les pages) : bande sombre pleine largeur, grand titre, bouton blanc.
-   Le fond garde les nuances de bleu (halos haut-gauche et bas-droite).
-========================================================================== */
-section.CallToAction {
-    --PrimaryDeep: #7ab8f5;
-    max-width: none;
-    margin: clamp(64px, 10vh, 100px) 0;
-    padding: clamp(72px, 14vh, 140px) clamp(24px, 5vw, 72px) clamp(72px, 14vh, 140px) clamp(32px, 7vw, 96px);
-    background:
-        radial-gradient(ellipse 55% 75% at 14% 12%, rgba(var(--PrimaryRGB), 0.40) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 65% at 94% 100%, rgba(var(--DarkPrimaryRGB), 0.55) 0%, transparent 68%),
-        var(--Charcoal);
-    color: #fff;
-
-    .CtaInner {max-width: 1200px;}
-
-    .CtaBadge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 24px;
-        font-size: 0.85rem;
-        font-weight: 700;
-
-        .CtaBadgeDot {width: 9px; height: 9px; border-radius: 50%; background: var(--Online); box-shadow: 0 0 0 4px rgba(var(--OnlineRGB), 0.2);}
-    }
-
-    h2 {
-        font-size: clamp(2.2rem, 5vw, 4.8rem);
-        font-weight: 800;
-        line-height: 1.08;
-        letter-spacing: -0.02em;
-        color: #fff;
-
-        em {
-            font-style: italic;
-            padding-right: 0.14em; /* l'italique déborde de sa boîte : évite le rognage du dégradé */
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
-            background: linear-gradient(90deg, #fff 0%, var(--PrimaryDeep) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    }
-
-    .CtaRow {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 20px 32px;
-        margin-top: clamp(32px, 6vh, 56px);
-    }
-
-    .CtaBtn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 22px 36px;
-        border: 2px solid #fff;
-        border-radius: 6px;
-        background: #fff;
-        color: #1c1c1e;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        text-decoration: none;
-        transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-
-        &:hover {background: var(--PrimaryDeep); border-color: var(--PrimaryDeep); color: #1c1c1e;}
-        &:focus-visible {outline: 3px solid #fff; outline-offset: 3px;}
-
-        &.Ghost {background: transparent; color: #fff;}
-        &.Ghost:hover {background: #fff; border-color: #fff; color: #1c1c1e;}
-    }
-
-    .CtaDesc {max-width: 430px; font-size: 0.95rem; font-weight: 500; line-height: 1.5; color: rgba(255, 255, 255, 0.85);}
-}
-
-/* Une CTA collée au footer (ou à une autre CTA) ne fait qu'un seul bloc sombre */
-section.CallToAction:has(+ footer.Footer), section.CallToAction:has(+ section.CallToAction) {margin-bottom: 0;}
-section.CallToAction + section.CallToAction {margin-top: 0; border-top: 1px solid rgba(255, 255, 255, 0.12);}
-
-@media (max-width: 600px) {
-    section.CallToAction {
-        padding-inline: 20px;
-        .CtaBtn {flex: 1 1 100%; padding: 18px 24px;}
-    }
-}
-
-/* ==========================================================================
    # Qu'est-ce que l'UX design ? (accueil) : grandes cartes photo + carrousel
 ========================================================================== */
 section.Definition {
@@ -10198,5 +10106,220 @@ section.ServicesScroll {
         .SsB {left: 75%; top: 30%;}
         .SsC {left: 25%; top: 72%;}
         .SsD {left: 75%; top: 72%;}
+    }
+}
+
+/* ==========================================================================
+   # CTA (toutes les pages) : carte arrondie, texte + bouton pilule + lien, décor à droite avec ton logo.
+   Fond : nuances de bleu de la marque (halo haut + halo bas-gauche) sur ton noir.
+========================================================================== */
+section.CallToAction {
+    --PrimaryDeep: #7ab8f5;
+    position: relative;
+    width: calc(100% - 2 * clamp(24px, 5vw, 72px));
+    max-width: 1240px;
+    margin: clamp(56px, 9vh, 100px) auto;
+}
+
+section.CallToAction .CtaCard, section.Pepite {
+    /* dégradé du fichier CTA : halo #4fa0ee en haut + bleu profond #002599 vers #207EDE */
+    --CtaFrom: #002599;
+    --CtaMid: #0a4ab5;
+    --CtaTo: #207EDE;
+    --CtaGlow: #4fa0ee;
+    --CtaBtn: #0a1a4d;
+    --CtaGlowPos: 60% 0%;
+    --CtaGlowSize: 70% 120%;
+    --CtaShade: 0.42;
+    --CtaShadeEnd: 60%;
+    --CtaBg:
+        linear-gradient(90deg, rgba(0, 16, 80, var(--CtaShade)) 0%, rgba(0, 16, 80, 0) var(--CtaShadeEnd)),
+        radial-gradient(var(--CtaGlowSize) at var(--CtaGlowPos), var(--CtaGlow) 0%, rgba(79, 160, 238, 0) 70%),
+        linear-gradient(120deg, var(--CtaFrom) 0%, var(--CtaMid) 55%, var(--CtaTo) 100%);
+}
+
+section.CallToAction .CtaCard {
+    position: relative;
+    min-height: 295px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: var(--CtaBg);
+    color: #fff;
+    box-shadow: 0 20px 60px rgba(0, 37, 153, 0.25);
+
+    .CtaCopy {position: relative; z-index: 2; max-width: 640px; padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 48px);}
+
+    .CtaBadge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 22px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #fff;
+
+        .CtaBadgeDot {width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px #fff;}
+    }
+
+    h2 {
+        margin: 0 0 14px;
+        font-size: clamp(1.7rem, 3.5vw, 3.1rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: #fff;
+
+        em {
+            padding-right: 0.14em;
+            font-style: italic;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            background: linear-gradient(90deg, #fff 0%, #bcdcff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .CtaDesc {max-width: 52ch; margin: 0 0 26px; font-size: 0.95rem; font-weight: 500; line-height: 1.55; color: #d6e8fb;}
+
+    .CtaActions {display: flex; align-items: center; flex-wrap: wrap; gap: 18px 28px;}
+
+    .CtaBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 36px;
+        padding: 15px 20px 15px 24px;
+        border-radius: 999px;
+        background: var(--CtaBtn);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.25s ease;
+
+        svg {transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);}
+        &:hover {background: #12307f;}
+        &:hover svg {transform: translateX(4px);}
+        &:focus-visible {outline: 2px solid #fff; outline-offset: 4px;}
+    }
+
+    .CtaLink {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+
+        svg {transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);}
+        &:hover {text-decoration: underline; text-underline-offset: 4px;}
+        &:hover svg {transform: translate(2px, -2px);}
+        &:focus-visible {outline: 2px solid #fff; outline-offset: 4px; border-radius: 4px;}
+    }
+}
+
+/* Décor de droite (partagé avec le bandeau Pépite) : ton logo + anneaux + points */
+.CtaArt {position: absolute; right: 0; top: 0; height: 100%; width: 52%; z-index: 1; pointer-events: none;}
+
+.CtaArt .CtaLogo {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    height: 92%;
+    width: auto;
+    transform: translateY(-50%);
+    overflow: visible;
+    filter: drop-shadow(0 14px 22px rgba(0, 26, 110, 0.38));
+}
+
+.CtaArt .CtaRing {position: absolute; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.22);}
+.CtaArt .r1 {width: 290px; height: 290px; right: 9%; top: 50%; transform: translateY(-50%);}
+.CtaArt .r2 {width: 90px; height: 90px; right: -18px; bottom: -14px; border-color: rgba(255, 255, 255, 0.45); background: rgba(255, 255, 255, 0.1);}
+.CtaArt .CtaDot {position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: 0.7;}
+.CtaArt .d1 {left: 6%; top: 24%; width: 9px; height: 9px; opacity: 0.45;}
+.CtaArt .d2 {right: 8%; top: 38%; width: 5px; height: 5px;}
+.CtaArt .d3 {right: 21%; bottom: 22%; width: 6px; height: 6px; opacity: 1;}
+
+@media (max-width: 820px) {
+    /* carte étroite : le bleu clair du dégradé passerait sous le texte, on garde la même teinte en un peu plus profond */
+    section.CallToAction .CtaCard, section.Pepite {--CtaMid: #0a46ad; --CtaTo: #0f5fc4;}
+    section.CallToAction .CtaArt {width: 100%; opacity: 0.18;}
+    main.Index section.Pepite > .CtaArt {opacity: 0.16;}
+    section.CallToAction .CtaArt .CtaLogo {right: -8%;}
+}
+
+/* Bandeau « Pépite » (accueil) : même peau, contenu inchangé */
+
+main.Index section.Pepite {
+    z-index: 0;
+    width: calc(100% - 2 * clamp(24px, 5vw, 72px));
+    max-width: 1240px;
+    margin-inline: auto;
+    border-radius: 26px;
+    background: var(--CtaBg);
+    box-shadow: 0 20px 60px rgba(0, 37, 153, 0.25);
+
+    &::before {display: none;}
+    .Content, .Badge {z-index: 2;}
+    .Badge {box-shadow: 0 18px 40px rgba(0, 26, 110, 0.35);}
+    > .CtaArt {opacity: 0.4; z-index: 1;}
+
+    .Eyebrow {color: #d6e8fb;}
+    .Content > p {color: #d6e8fb;}
+
+    .BtnSolid {
+        display: inline-flex;
+        align-items: center;
+        gap: 28px;
+        padding: 15px 22px 15px 24px;
+        border-radius: 999px;
+        border: 0;
+        background: var(--CtaBtn);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.25s ease;
+        &:hover {background: #12307f; color: #fff;}
+    }
+}
+
+@media (max-width: 820px) {
+    main.Index section.Pepite {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 32px 22px;
+
+        .Content {min-width: 0;}
+        .Title {font-size: clamp(1.25rem, 5.6vw, 2rem); overflow-wrap: break-word; hyphens: auto;}
+        .Logos img {max-width: 150px;}
+        .Badge .BadgeTitle {font-size: clamp(1.05rem, 5vw, 1.5rem); overflow-wrap: break-word;}
+    }
+}
+
+/* cartes plus étroites : le texte occupe presque toute la largeur, on pousse le halo clair vers le coin haut-droit
+   et on assombrit le fond sous le texte pour garder un bon contraste */
+@media (max-width: 1100px) {
+    section.CallToAction .CtaCard, section.Pepite {
+        --CtaGlowPos: 92% 0%;
+        --CtaGlowSize: 60% 100%;
+        --CtaShade: 0.55;
+        --CtaShadeEnd: 85%;
+        --CtaMid: #0a43a8;
+        --CtaTo: #1259bd;
+    }
+}
+
+@media (max-width: 820px) {
+    section.CallToAction .CtaCard, section.Pepite {
+        --CtaGlowPos: 100% 0%;
+        --CtaGlowSize: 70% 45%;
+        --CtaShade: 0.5;
+        --CtaShadeEnd: 100%;
+        --CtaMid: #0a3fa0;
+        --CtaTo: #0f50b3;
     }
 }
